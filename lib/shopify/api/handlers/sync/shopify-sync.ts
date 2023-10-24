@@ -21,7 +21,8 @@ export default async function shopifyToDatoCMSSync(req: NextApiRequest, res: Nex
     return res.status(200).json({ success: true, event })
 
   } catch (error) {
-    console.log(JSON.stringify(error, null, 2))
+    console.log('sync error', error)
+    //console.log(JSON.stringify(error, null, 2))
     return res.status(500).json({ success: false, error })
   }
 }
