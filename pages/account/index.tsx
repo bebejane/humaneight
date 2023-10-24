@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next/types'
 import s from './index.module.scss'
 import { getCookie, getCookies } from 'cookies-next'
 import Link from 'next/link'
+import withGlobalProps from '/lib/withGlobalProps'
 
 type Props = {
   user: Customer
@@ -21,8 +22,8 @@ export default function Account({ user }: Props) {
 }
 
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-
+export const getServerSideProps = withGlobalProps({ queries: [] }, async ({ props, context, revalidate }: any) => {
+  const { req, res } = context;
   const user = getCookie('user', { req, res });
 
   if (!user) {
@@ -36,8 +37,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
   return {
     props: {
+      ...props,
       user: JSON.parse(user)
     }
   }
 
-}
+});

@@ -1,9 +1,9 @@
 import s from './index.module.scss'
-import { GetStaticProps } from 'next/types'
 import { AllShopifyCollectionsDocument } from '@shopify/graphql'
 import { shopifyQuery } from '@shopify/graphql-client'
 import Link from 'next/link'
 import { Image } from 'react-datocms'
+import withGlobalProps from '/lib/withGlobalProps'
 
 type Props = {
   collections: Collection[]
@@ -28,13 +28,15 @@ export default function Collections({ collections }: Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, context, revalidate }: any) => {
 
   const { collections }: { collections: CollectionConnection } = await shopifyQuery(AllShopifyCollectionsDocument, { variables: { first: 10 } })
 
   return {
     props: {
+      ...props,
       collections: collections.edges.map((edge) => edge.node)
-    }
+    },
+    revalidate
   }
-}
+});

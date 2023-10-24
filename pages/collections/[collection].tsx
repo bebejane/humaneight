@@ -1,8 +1,8 @@
 import s from './[collection].module.scss'
-import { GetStaticProps } from 'next/types'
 import { AllShopifyCollectionsDocument, ShopifyCollectionDocument } from '@shopify/graphql'
 import { shopifyQuery } from '@shopify/graphql-client'
 import Link from 'next/link'
+import withGlobalProps from '/lib/withGlobalProps'
 
 type Props = {
   collection: Collection
@@ -46,18 +46,17 @@ export const getStaticPaths = async () => {
 
 }
 
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, context, revalidate }: any) => {
 
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-
-  const handle = params?.collection
+  const handle = context.params?.collection
 
   const { collection }: { collection: CollectionConnection } = await shopifyQuery(ShopifyCollectionDocument, { variables: { handle } })
 
   return {
     props: {
-      collection: collection
-    }
+      ...props,
+      collection
+    },
+    revalidate
   }
-
-}
+});

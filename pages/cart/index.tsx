@@ -1,6 +1,7 @@
 import styles from './index.module.scss'
 import { useState } from 'react'
 import useCart from '@shopify/hooks/useCart';
+import withGlobalProps from '/lib/withGlobalProps';
 
 type Props = {
 
@@ -70,3 +71,5 @@ export default function CartPage({ }: Props) {
 		</div>
 	)
 }
+
+export const getStaticProps = withGlobalProps({ queries: [] })
