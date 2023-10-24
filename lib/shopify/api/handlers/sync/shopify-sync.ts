@@ -5,9 +5,14 @@ export default async function shopifyToDatoCMSSync(req: NextApiRequest, res: Nex
 
   try {
 
-    const event = (req.headers['x-shopify-topic'] as string)?.split('/')[1]
+    const event = (req.headers['x-shopify-topic'] as string)?.split('/')?.[1]
+    console.log('sync event', event)
+    if (!event)
+      return res.status(400).json({ success: false, error: 'event type not found in headers' })
+
     const data = req.body
 
+    console.log('sync data', data)
     if (!data)
       return res.status(400).json({ success: false, error: 'item not found' })
 
