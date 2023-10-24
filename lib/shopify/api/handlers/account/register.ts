@@ -13,6 +13,7 @@ export default async function register(req: NextApiRequest, res: NextApiResponse
     })
 
     if (customerCreate.customerUserErrors) {
+      console.log('customerCreate.customerUserErrors', customerCreate.customerUserErrors)
       return res.status(500).json({ success: false, errors: shopifyGraphqlError(customerCreate.customerUserErrors) })
     }
     else
