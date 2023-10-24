@@ -1,0 +1,51 @@
+query Customer($accessToken: String!) {
+	customer(customerAccessToken: $accessToken) {
+		...CustomerFragmentLight
+	}
+}
+
+query CustomerFull($accessToken: String!) {
+	customer(customerAccessToken: $accessToken) {
+		...CustomerFragment
+	}
+}
+
+query CustomerOrders($accessToken: String!) {
+	customer(customerAccessToken: $accessToken) {
+		...CustomerOrderFragment
+	}
+}
+
+mutation CustomerCreate($input: CustomerCreateInput!) {
+	customerCreate(input: $input) {
+		customer {
+			...CustomerFragment
+		}
+		customerUserErrors {
+			code
+			field
+			message
+		}
+	}
+}
+
+mutation CustomerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+	customerAccessTokenCreate(input: $input) {
+		customerAccessToken {
+			accessToken
+			expiresAt
+		}
+		customerUserErrors {
+			...CustomerErrorsFragment
+		}
+	}
+}
+
+mutation CustomerAccessTokenDelete($accessToken: String!) {
+	customerAccessTokenDelete(customerAccessToken: $accessToken) {
+		deletedAccessToken
+		userErrors {
+			...UserErrorsFragment
+		}
+	}
+}

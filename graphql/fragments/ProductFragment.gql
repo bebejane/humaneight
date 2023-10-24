@@ -1,0 +1,10 @@
+fragment ProductFragment on ProductRecord {
+	id
+	shopifyId
+	title
+	handle
+	image {
+		...ImageFragment
+	}
+	shopifyData
+}

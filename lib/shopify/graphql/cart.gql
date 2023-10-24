@@ -1,0 +1,61 @@
+query Cart($country: CountryCode = US, $id: ID!) @inContext(country: $country) {
+	cart(id: $id) {
+		...CartFragment
+	}
+}
+
+mutation CreateCart($country: CountryCode = US, $cartInput: CartInput)
+@inContext(country: $country) {
+	cartCreate(input: $cartInput) {
+		cart {
+			...CartFragment
+		}
+		userErrors {
+			...CartErrorsFragment
+		}
+	}
+}
+
+mutation CartBuyerIdentityUpdate($cartId: ID!, $buyerIdentity: CartBuyerIdentityInput!) {
+	cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $buyerIdentity) {
+		cart {
+			...CartFragment
+		}
+		userErrors {
+			...CartErrorsFragment
+		}
+	}
+}
+
+mutation AddItemToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+	cartLinesAdd(cartId: $cartId, lines: $lines) {
+		cart {
+			...CartFragment
+		}
+		userErrors {
+			...CartErrorsFragment
+		}
+	}
+}
+
+mutation RemoveItemFromCart($cartId: ID!, $lineIds: [ID!]!) {
+	cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+		cart {
+			...CartFragment
+		}
+		userErrors {
+			...CartErrorsFragment
+		}
+	}
+}
+
+mutation UpdateItemFromCart($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+	cartLinesUpdate(cartId: $cartId, lines: $lines) {
+		cart {
+			...CartFragment
+		}
+		userErrors {
+			...CartErrorsFragment
+		}
+	}
+}

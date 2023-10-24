@@ -1,0 +1,33 @@
+fragment CustomerOrderFragment on Customer {
+	id
+	orders(first: 10) {
+		edges {
+			node {
+				id
+				fulfillmentStatus
+				canceledAt
+				cancelReason
+				processedAt
+				totalPrice {
+					amount
+					currencyCode
+				}
+				lineItems(first: 100) {
+					edges {
+						node {
+							quantity
+							title
+							variant {
+								title
+								price {
+									amount
+									currencyCode
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

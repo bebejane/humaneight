@@ -1,0 +1,14 @@
+query AllProducts($first: IntType = 100) {
+	products: allProducts(first: $first) {
+		...ProductLightFragment
+	}
+	_allProductsMeta {
+		count
+	}
+}
+
+query Product($handle: String) {
+	product(filter: { handle: { eq: $handle } }) {
+		...ProductFragment
+	}
+}

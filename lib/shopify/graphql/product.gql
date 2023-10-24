@@ -1,0 +1,19 @@
+query AllShopifyProducts($country: CountryCode = US, $first: Int = 5)
+@inContext(country: $country) {
+	products(first: $first, query: "available_for_sale") {
+		edges {
+			node {
+				...ProductFragment
+			}
+		}
+		pageInfo {
+			hasNextPage
+		}
+	}
+}
+
+query ShopifyProduct($country: CountryCode = US, $handle: String) @inContext(country: $country) {
+	product(handle: $handle) {
+		...ProductFragment
+	}
+}

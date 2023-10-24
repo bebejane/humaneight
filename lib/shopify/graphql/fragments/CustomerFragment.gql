@@ -1,0 +1,55 @@
+fragment CustomerFragment on Customer {
+	id
+	createdAt
+	updatedAt
+	displayName
+	firstName
+	lastName
+	email
+	addresses(first: 100) {
+		edges {
+			node {
+				id
+				address1
+				lastName
+				name
+				phone
+				province
+				provinceCode
+				zip
+				address2
+				company
+				country
+				countryCodeV2
+				firstName
+				formatted
+				formattedArea
+			}
+		}
+	}
+	orders(first: 100) {
+		edges {
+			node {
+				id
+				fulfillmentStatus
+				canceledAt
+				lineItems(first: 100) {
+					edges {
+						node {
+							quantity
+							title
+							variant {
+								id
+								title
+								price {
+									amount
+									currencyCode
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

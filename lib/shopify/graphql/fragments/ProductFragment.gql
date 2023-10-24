@@ -1,0 +1,27 @@
+fragment ProductFragment on Product {
+	id
+	handle
+	title
+	description
+	featuredImage {
+		id
+		url
+		height
+		width
+		altText
+	}
+	variants(first: 10) {
+		edges {
+			node {
+				id
+				title
+				weight
+				availableForSale
+				price {
+					amount
+					currencyCode
+				}
+			}
+		}
+	}
+}

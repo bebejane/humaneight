@@ -1,0 +1,8 @@
+fragment CustomerFragmentLight on Customer {
+	id
+	createdAt
+	updatedAt
+	firstName
+	lastName
+	email
+}

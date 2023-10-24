@@ -1,0 +1,13 @@
+fragment CollectionFragment on Collection {
+	id
+	handle
+	title
+	description
+	image {
+		id
+		url
+		height
+		width
+		altText
+	}
+}
