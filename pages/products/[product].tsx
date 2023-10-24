@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default function Product({ product: { id, title, handle, image, shopifyData }, shopifyProduct }: Props) {
-  console.log(shopifyData)
+
   const [addToCart] = useCart((state) => [state.addToCart])
 
   return (

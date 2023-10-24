@@ -12,7 +12,6 @@ export default function User({ }: Props) {
 
   useEffect(() => {
     const user = getCookie('user') ? JSON.parse(getCookie('user') as string) : null
-    console.log(user)
     setUser(user)
   }, [])
 

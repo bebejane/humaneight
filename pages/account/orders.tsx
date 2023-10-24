@@ -30,7 +30,6 @@ export default function Orders({ customer, orders: _orders }: Props) {
     if (data.errors) {
       setErrors(data.errors)
     } else if (data.success) {
-      console.log(data)
       location.reload()
     }
   }
