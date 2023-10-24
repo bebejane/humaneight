@@ -3,6 +3,7 @@ import { AllProductsDocument, } from '/graphql'
 import { apiQuery } from 'dato-nextjs-utils/api'
 import Link from 'next/link'
 import s from './index.module.scss'
+import withGlobalProps from '/lib/withGlobalProps'
 
 type Props = {
   products: ProductRecord[]
@@ -27,13 +28,14 @@ export default function Home({ products }: Props) {
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, context, revalidate }: any) => {
 
   const { products }: { products: ProductRecord[] } = await apiQuery(AllProductsDocument, { variables: { first: 100 } })
 
   return {
     props: {
       products
-    }
+    },
+    revalidate
   }
-}
+});

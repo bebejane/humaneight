@@ -6,6 +6,7 @@ import { useCart } from '@shopify/index'
 import { shopifyQuery } from '@shopify/graphql-client'
 import { apiQuery } from 'dato-nextjs-utils/api'
 import { Image } from 'react-datocms';
+import withGlobalProps from '/lib/withGlobalProps'
 
 type Props = {
   product: ProductRecord
@@ -50,7 +51,7 @@ export const getStaticPaths = async () => {
 }
 
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps = withGlobalProps({ queries: [] }, async ({ props, context, revalidate }: any) => {
 
   const handle = context.params?.product
   const preview = context.preview ? true : false
@@ -65,9 +66,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      ...props,
       product,
       shopifyProduct
     },
-    revalidate: 30
+    revalidate
   }
-}
+});
