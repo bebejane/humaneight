@@ -1,9 +1,9 @@
 import { buildClient } from '@datocms/cma-client-node';
 import { isDeepStrictEqual } from 'util';
-import shopify from './api'
 import { itemTypeId } from '/lib/utils';
 import { IProduct, ISmartCollection, ICustomCollection } from 'shopify-api-node';
 import { Item } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes';
+import shopify from './rest-client'
 import asyncPromiseBatch from 'async-promise-batch';
 
 const client = buildClient({ apiToken: process.env.DATOCMS_CMA_TOKEN as string })
