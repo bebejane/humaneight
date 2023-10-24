@@ -31,13 +31,13 @@ dependencies:
     version: 4.0.0
   dato-nextjs-utils:
     specifier: github:bebejane/dato-nextjs-utils
-    version: github.com/bebejane/dato-nextjs-utils/189403c1d2fb178464bbc925acea8cae8471e17a(@apollo/client@3.7.10)(@datocms/cma-client@1.3.1)(@types/node@20.6.3)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-listen@0.1.15)(next-seo@6.1.0)(next@13.5.2)(react-datocms@4.0.10)(react-dom@18.2.0)(react@18.2.0)
+    version: github.com/bebejane/dato-nextjs-utils/43d50661916ca129984e0eb463e578486a412442(@apollo/client@3.7.10)(@datocms/cma-client-node@1.3.1)(@datocms/cma-client@1.3.1)(@types/node@20.6.3)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-listen@0.1.15)(next-seo@6.1.0)(next@13.5.2)(react-datocms@4.0.10)(react-dom@18.2.0)(react@18.2.0)
   graphql:
     specifier: ^16.8.1
     version: 16.8.1
   next:
     specifier: 13.5.2
-    version: 13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.3)
+    version: 13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.4)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -48,8 +48,8 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   sass:
-    specifier: ^1.69.3
-    version: 1.69.3
+    specifier: ^1.69.4
+    version: 1.69.4
   shopify-api-node:
     specifier: ^3.12.7
     version: 3.12.7
@@ -57,8 +57,8 @@ dependencies:
     specifier: 5.2.2
     version: 5.2.2
   zustand:
-    specifier: ^4.4.3
-    version: 4.4.3(@types/react@18.2.22)(react@18.2.0)
+    specifier: ^4.4.4
+    version: 4.4.4(@types/react@18.2.22)(react@18.2.0)
 
 devDependencies:
   '@graphql-codegen/cli':
@@ -94,9 +94,6 @@ devDependencies:
   '@parcel/watcher':
     specifier: ^2.3.0
     version: 2.3.0
-  '@types/localtunnel':
-    specifier: ^2.0.2
-    version: 2.0.2
   '@types/node':
     specifier: 20.6.3
     version: 20.6.3
@@ -1927,12 +1924,6 @@ packages:
     dependencies:
       '@types/node': 20.6.3
     dev: false
-
-  /@types/localtunnel@2.0.2:
-    resolution: {integrity: sha512-jDCzqBiO0j5Tki2xbunqu0GHq1mnqb3PQrAWFCDc7U2DciLQ0VnH3wDjLZL8/nxrECNgGY1Axfle5g7hDMfiQQ==}
-    dependencies:
-      '@types/node': 20.6.3
-    dev: true
 
   /@types/mdast@3.0.12:
     resolution: {integrity: sha512-DT+iNIRNX884cx0/Q1ja7NyUPpZuv0KPyL5rGNxm1WC1OtHstl7n4Jb7nk+xacNShQMbczJjt8uFzznpp6kYBg==}
@@ -4974,12 +4965,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      next: 13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.3)
+      next: 13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.4)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /next@13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.3):
+  /next@13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.4):
     resolution: {integrity: sha512-vog4UhUaMYAzeqfiAAmgB/QWLW7p01/sg+2vn6bqc/CxHFYizMzLv6gjxKzl31EVFkfl/F+GbxlKizlkTE9RdA==}
     engines: {node: '>=16.14.0'}
     hasBin: true
@@ -5001,7 +4992,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.69.3
+      sass: 1.69.4
       styled-jsx: 5.1.1(@babel/core@7.22.20)(react@18.2.0)
       watchpack: 2.4.0
       zod: 3.21.4
@@ -5715,8 +5706,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sass@1.69.3:
-    resolution: {integrity: sha512-X99+a2iGdXkdWn1akFPs0ZmelUzyAQfvqYc2P/MPTrJRuIRoTffGzT9W9nFqG00S+c8hXzVmgxhUuHFdrwxkhQ==}
+  /sass@1.69.4:
+    resolution: {integrity: sha512-+qEreVhqAy8o++aQfCJwp0sklr2xyEzkm9Pp/Igu9wNPoe7EZEQ8X/MBvvXggI2ql607cxKg/RKOwDj6pp2XDA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -6610,8 +6601,8 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
-  /zustand@4.4.3(@types/react@18.2.22)(react@18.2.0):
-    resolution: {integrity: sha512-oRy+X3ZazZvLfmv6viIaQmtLOMeij1noakIsK/Y47PWYhT8glfXzQ4j0YcP5i0P0qI1A4rIB//SGROGyZhx91A==}
+  /zustand@4.4.4(@types/react@18.2.22)(react@18.2.0):
+    resolution: {integrity: sha512-5UTUIAiHMNf5+mFp7/AnzJXS7+XxktULFN0+D1sCiZWyX7ZG+AQpqs2qpYrynRij4QvoDdCD+U+bmg/cG3Ucxw==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': '>=16.8'
@@ -6634,15 +6625,16 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/dato-nextjs-utils/189403c1d2fb178464bbc925acea8cae8471e17a(@apollo/client@3.7.10)(@datocms/cma-client@1.3.1)(@types/node@20.6.3)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-listen@0.1.15)(next-seo@6.1.0)(next@13.5.2)(react-datocms@4.0.10)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/189403c1d2fb178464bbc925acea8cae8471e17a}
-    id: github.com/bebejane/dato-nextjs-utils/189403c1d2fb178464bbc925acea8cae8471e17a
+  github.com/bebejane/dato-nextjs-utils/43d50661916ca129984e0eb463e578486a412442(@apollo/client@3.7.10)(@datocms/cma-client-node@1.3.1)(@datocms/cma-client@1.3.1)(@types/node@20.6.3)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-listen@0.1.15)(next-seo@6.1.0)(next@13.5.2)(react-datocms@4.0.10)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {tarball: https://codeload.github.com/bebejane/dato-nextjs-utils/tar.gz/43d50661916ca129984e0eb463e578486a412442}
+    id: github.com/bebejane/dato-nextjs-utils/43d50661916ca129984e0eb463e578486a412442
     name: dato-nextjs-utils
-    version: 1.0.370
+    version: 1.0.396
     engines: {node: '>=0.16'}
     peerDependencies:
       '@apollo/client': '>=3'
       '@datocms/cma-client': '>= 1.1.0'
+      '@datocms/cma-client-node': '>= 2.0.0'
       '@types/node': '>= 16'
       '@types/react': '>= 17'
       '@types/react-dom': '>= 17'
@@ -6655,13 +6647,14 @@ packages:
     dependencies:
       '@apollo/client': 3.7.10(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
       '@datocms/cma-client': 1.3.1
+      '@datocms/cma-client-node': 1.3.1
       '@next/env': 13.5.5
       '@types/node': 20.6.3
       '@types/react': 18.2.22
       '@types/react-dom': 18.2.7
       datocms-listen: 0.1.15(graphql@16.8.1)
       markdown-truncate: 1.1.0
-      next: 13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.3)
+      next: 13.5.2(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.4)
       next-seo: 6.1.0(next@13.5.2)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-datocms: 4.0.10(graphql@16.8.1)(react@18.2.0)

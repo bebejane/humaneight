@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Cart />
       <User />
       <Head>
-        <title>next-dato-shopify</title>
+        <title>Humaneight</title>
       </Head>
       <Component {...pageProps} />
     </>
