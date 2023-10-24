@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { syncObjects, deleteObject } from '../../../sync'
+//import { syncObjects, deleteObject } from '../../../sync'
 
 export default async function shopifyToDatoCMSSync(req: NextApiRequest, res: NextApiResponse) {
   return res.status(200).json({ success: true })
