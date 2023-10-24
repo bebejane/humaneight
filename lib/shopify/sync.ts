@@ -3,6 +3,7 @@ import { isDeepStrictEqual } from 'util';
 import { itemTypeId } from '/lib/utils';
 import { IProduct, ISmartCollection, ICustomCollection } from 'shopify-api-node';
 import { Item } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes';
+
 import shopify from './rest-client'
 import asyncPromiseBatch from 'async-promise-batch';
 

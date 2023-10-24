@@ -2,6 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { syncObjects, deleteObject } from '../../../sync'
 
 export default async function shopifyToDatoCMSSync(req: NextApiRequest, res: NextApiResponse) {
+  return res.status(200).json({ success: true })
+}
+/*
+export default async function shopifyToDatoCMSSync(req: NextApiRequest, res: NextApiResponse) {
 
   try {
 
@@ -31,3 +35,4 @@ export default async function shopifyToDatoCMSSync(req: NextApiRequest, res: Nex
     return res.status(500).json({ success: false, error })
   }
 }
+*/
