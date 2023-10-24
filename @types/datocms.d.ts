@@ -23,6 +23,66 @@ type Scalars = {
   UploadId: { input: any; output: any; }
 };
 
+type AboutModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+};
+
+enum AboutModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC'
+}
+
+/** Record of type About (about) */
+type AboutRecord = RecordInterface & {
+  __typename?: 'AboutRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+};
+
+
+/** Record of type About (about) */
+type AboutRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Boolean fields */
 type BooleanFilter = {
   /** Search for records with an exact match */
@@ -95,13 +155,13 @@ type CollectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  handle?: Maybe<Scalars['String']['output']>;
+  handle: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
   products: Array<ProductRecord>;
-  shopifyData?: Maybe<Scalars['JsonField']['output']>;
-  shopifyId?: Maybe<Scalars['IntType']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  shopifyData: Scalars['JsonField']['output'];
+  shopifyId: Scalars['IntType']['output'];
+  title: Scalars['String']['output'];
 };
 
 
@@ -1971,7 +2031,7 @@ type ProductRecord = RecordInterface & {
   handle: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
-  shopifyData?: Maybe<Scalars['JsonField']['output']>;
+  shopifyData: Scalars['JsonField']['output'];
   shopifyId: Scalars['IntType']['output'];
   title: Scalars['String']['output'];
 };
@@ -2004,6 +2064,8 @@ type PublishedAtFilter = {
 type Query = {
   __typename?: 'Query';
   /** Returns meta information regarding a record collection */
+  _allAboutsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allCollectionsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProductsMeta: CollectionMetadata;
@@ -2011,6 +2073,10 @@ type Query = {
   _allUploadsMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
+  /** Returns a specific record */
+  about?: Maybe<AboutRecord>;
+  /** Returns a collection of records */
+  allAbouts: Array<AboutRecord>;
   /** Returns a collection of records */
   allCollections: Array<CollectionRecord>;
   /** Returns a collection of records */
@@ -2023,6 +2089,13 @@ type Query = {
   product?: Maybe<ProductRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
+};
+
+
+/** The query root for this schema */
+type Query_allAboutsMetaArgs = {
+  filter?: InputMaybe<AboutModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -2051,6 +2124,26 @@ type Query_allUploadsMetaArgs = {
 type Query_siteArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type QueryaboutArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<AboutModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<AboutModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryallAboutsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<AboutModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<AboutModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
 
@@ -2633,20 +2726,20 @@ type focalPoint = {
 
 type ImageFragment = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
 
-type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData?: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
 
-type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData?: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
 
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
 }>;
 
 
-type AllProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData?: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ProductQueryVariables = Exact<{
   handle?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData?: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } };
+type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, handle: string, shopifyData: any, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } };
