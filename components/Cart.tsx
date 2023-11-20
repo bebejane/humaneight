@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './Cart.module.scss'
 import cn from 'classnames'
 import useCart from '@shopify/hooks/useCart'
@@ -14,16 +14,16 @@ export default function Cart({ }: CartProps) {
 
   const [
     cart,
-    clearCart,
     createCart,
     removeFromCart,
     updateQuantity,
     updateBuyerIdentity,
     updating,
     error
-  ] = useCart((state) => [state.cart, state.clearCart, state.createCart, state.removeFromCart, state.updateQuantity, state.updateBuyerIdentity, state.updating, state.error])
+  ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updateBuyerIdentity, state.updating, state.error])
 
   const [customer, customerAccessToken] = useCustomer(useShallow((state) => [state.customer, state.customerAccessToken]))
+  const [showCart, setShowCart] = useState(false)
   const isEmpty = (!cart || cart.lines.edges.length === 0)
 
   useEffect(() => {
@@ -41,8 +41,19 @@ export default function Cart({ }: CartProps) {
     }
   }, [customerAccessToken, updateBuyerIdentity, cart, customer])
 
+  if (!showCart) {
+    return (
+      <div className={s.miniCart}>
+        <h3>Shop</h3>
+        <button className={cn(!isEmpty && s.inverted)} onClick={() => setShowCart(true)}>
+          <img className={s.icon} />
+          <div className={s.count}>{cart?.lines.edges.length}</div>
+        </button>
+      </div>
+    )
+  }
   return (
-    <div id="cart" className={cn(s.cart, updating && s.updating)} >
+    <div id="cart" className={cn(s.cart, showCart && s.show, updating && s.updating)} >
       <header>
         <h3>Cart</h3>
         <div className={s.currency}>
@@ -53,7 +64,7 @@ export default function Cart({ }: CartProps) {
             </select>
           </form>
         </div>
-        <div className={s.close}>
+        <div className={s.close} onClick={() => setShowCart(false)}>
           ×
         </div>
       </header>

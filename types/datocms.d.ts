@@ -2135,14 +2135,6 @@ type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
-/** Specifies how to filter by parent (tree-like collections only) */
-type ParentFilter = {
-  /** Filter records children of the specified record. Value must be a Record ID */
-  eq?: InputMaybe<Scalars['ItemId']['input']>;
-  /** Filter records with a parent record or not */
-  exists?: InputMaybe<Scalars['BooleanType']['input']>;
-};
-
 /** Specifies how to filter by position (sorted and tree-like collections) */
 type PositionFilter = {
   /** Search for records with an exact match */
@@ -2613,7 +2605,6 @@ type ProductTypeModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  parent?: InputMaybe<ParentFilter>;
   position?: InputMaybe<PositionFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -2659,9 +2650,7 @@ type ProductTypeRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  children?: Maybe<Array<Maybe<ProductTypeRecord>>>;
   id: Scalars['ItemId']['output'];
-  parent?: Maybe<ProductTypeRecord>;
   position?: Maybe<Scalars['IntType']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -3175,9 +3164,66 @@ type SlugFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-/** Block of type Product group (start_product_group) */
-type StartProductGroupRecord = RecordInterface & {
-  __typename?: 'StartProductGroupRecord';
+/** Block of type Editorial section (start_editorial_section) */
+type StartEditorialSectionRecord = RecordInterface & {
+  __typename?: 'StartEditorialSectionRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  buttonText?: Maybe<Scalars['String']['output']>;
+  headline?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  media?: Maybe<FileField>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Editorial section (start_editorial_section) */
+type StartEditorialSectionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Fullscreen section (start_fullscreen_section) */
+type StartFullscreenSectionRecord = RecordInterface & {
+  __typename?: 'StartFullscreenSectionRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  media?: Maybe<FileField>;
+};
+
+
+/** Block of type Fullscreen section (start_fullscreen_section) */
+type StartFullscreenSectionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type StartModelSectionsField = StartFullscreenSectionRecord | StartProductSectionRecord;
+
+/** Block of type Product section (start_product_section) */
+type StartProductSectionRecord = RecordInterface & {
+  __typename?: 'StartProductSectionRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3197,8 +3243,8 @@ type StartProductGroupRecord = RecordInterface & {
 };
 
 
-/** Block of type Product group (start_product_group) */
-type StartProductGroupRecord_seoMetaTagsArgs = {
+/** Block of type Product section (start_product_section) */
+type StartProductSectionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3245,7 +3291,7 @@ type StartRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  sections: Array<StartProductGroupRecord>;
+  sections: Array<StartModelSectionsField>;
 };
 
 

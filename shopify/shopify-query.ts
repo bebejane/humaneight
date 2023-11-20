@@ -54,7 +54,6 @@ export default async function shopifyQuery<T = void, V = void>(query: DocumentNo
     ...opt,
     queryId
   }
-  console.log(queryId)
 
   const { data } = await dedupedFetch({ ...dedupeOptions, tags: [] });
   return { ...data }
@@ -69,7 +68,7 @@ export type DedupeOptions = {
   logs: boolean
 }
 
-const dedupedFetch = async (options: DedupeOptions) => {
+const dedupedFetch = cache(async (options: DedupeOptions) => {
   const {
     url,
     body,
@@ -105,4 +104,4 @@ const dedupedFetch = async (options: DedupeOptions) => {
   }
   logs && console.log(queryId, { ...options, body: undefined }, response.headers.get('x-cache'))
   return responseBody;
-}
+})

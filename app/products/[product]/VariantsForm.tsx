@@ -53,7 +53,6 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
         <legend>Size</legend>
         <div className={s.sizes}>
           {shopifyProduct?.options.find(opt => opt.name === 'Size')?.values.map((s, idx) => {
-
             const isAvailable = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Size' && opt.value === s)) ? true : undefined
             const isSelected = variant?.selectedOptions.find(opt => opt.name === 'Size' && opt.value === s) ? true : false
 
@@ -74,7 +73,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
           })}
         </div>
       </fieldset>
-      <AddToCartButton merchandiseId={variant?.id} quantity={1} />
+      <AddToCartButton label="Add to cart" merchandiseId={variant?.id} quantity={1} />
     </form>
   )
 }

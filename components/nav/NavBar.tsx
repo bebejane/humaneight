@@ -17,8 +17,9 @@ export default async function NavBar({ }: {}) {
         <menu>
           <Link href="/">Home</Link>
         </menu>
+        <Cart />
       </nav>
-      <Cart />
+
     </>
   );
 }
