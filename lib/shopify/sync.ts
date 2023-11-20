@@ -1,6 +1,6 @@
 import { buildClient } from '@datocms/cma-client-node';
 import { isDeepStrictEqual } from 'util';
-import { itemTypeId } from '/lib/utils';
+import { itemTypeId } from '@lib/utils';
 import { IProduct, ISmartCollection, ICustomCollection } from 'shopify-api-node';
 import { Item } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes';
 

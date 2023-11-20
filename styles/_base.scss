@@ -2,45 +2,18 @@
 	--black: #161616;
 	--white: #ffffff;
 	--red: #bf0000;
-	--yellow: #ffdcb4;
-	--archive: linear-gradient(Gainsboro, silver);
 	--outer-margin: 5vw;
-	--grid-unit: calc(((100vw - (2 * var(--outer-margin))) / 4));
-	--gutter: 4vw;
 	--background: var(--white);
 	--foreground: var(--black);
-	--background-fade-color: var(--white);
-	--line: 4px solid var(--black);
-	--line-thick: 0.4vw solid var(--black);
-	--line-thin: max(1px, 0.1vw) solid var(--black);
-	--line-top: 10px;
-	--line-random: 4px solid var(--black);
-	--logosize: 4.2rem;
-	--topbar-height: calc(2rem + var(--logosize) + 2rem);
-	--navbar-height: var(--topbar-height);
-	--line-height: 1.5em;
+	--navbar-height: 2rem;
 
-	--z-menu: 1100;
-	--z-logo: 1200;
-	--z-hamburger: 1300;
-	--z-fullscreen-gallery: 1400;
-	--z-fullscreen-gallery-close: 1401;
-	--z-close-video: 1500;
+	--z-navbar: 1100;
+	--z-cart: 1200;
+	--space: 1rem;
 
-	--space: 3rem;
-	--gradien: linear-gradient(to top, rgba(255, 220, 180, 0), var--yellow);
-	--underline-pos: 0.15em;
-	--text-shadow: 1px 1px 5px #00000021;
+	@include mq($until: tablet) {}
 
-	@include mq($until: tablet) {
-		--logosize: 4.5rem;
-		--topbar-height: calc(1rem + var(--logosize) + 1rem);
-		--line-top: 4px;
-	}
-
-	@include mq($from: tablet, $until: desktop) {
-		--logosize: 3.5rem;
-	}
+	@include mq($from: tablet, $until: desktop) {}
 }
 
 body {
@@ -63,32 +36,6 @@ html {
 html,
 body {
 	//height: 100%;
-}
-
-.background-palette-animation {
-	animation: backgroundColorPalette 50s infinite alternate;
-
-	@keyframes backgroundColorPalette {
-		0% {
-			background: #ee6055;
-		}
-
-		25% {
-			background: #609ad6;
-		}
-
-		50% {
-			background: #60d394;
-		}
-
-		75% {
-			background: #ffd97d;
-		}
-
-		100% {
-			background: #ffaa85;
-		}
-	}
 }
 
 ::-webkit-scrollbar {
@@ -173,10 +120,9 @@ button {
 		padding-top: 1em;
 	}
 
-	transition:
-		color 0.2s ease-in-out,
-		background-color 0.3s ease-in-out,
-		padding 0.5s;
+	transition: color 0.2s ease-in-out,
+	background-color 0.3s ease-in-out,
+	padding 0.5s;
 
 	&:hover {
 		span {
@@ -226,18 +172,4 @@ select {
 	background-position-x: calc(100% - 1em);
 	background-position-y: center;
 	color: var(--black);
-}
-
-.page-error {
-	position: fixed;
-	top: 0;
-	left: 0;
-	min-width: 100vw;
-	min-height: 100vh;
-	z-index: 100000;
-	background-color: var(--white);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }

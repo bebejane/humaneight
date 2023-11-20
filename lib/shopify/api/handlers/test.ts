@@ -1,11 +1,7 @@
 import { buildClient } from '@datocms/cma-client-node'
-import type { NextApiRequest, NextApiResponse } from 'next'
-import shopify from '..'
-import { printExecutableGraphQLDocument } from '@graphql-tools/documents'
-import { AllShopifyProductsDocument } from '../../graphql'
-import { shopifyQuery } from '../..'
+import { NextRequest, NextResponse } from 'next/server'
 
-export default async function test(req: NextApiRequest, res: NextApiResponse) {
+export default async function test(req: NextRequest) {
 
   try {
     //console.log(printExecutableGraphQLDocument(AllShopifyProductsDocument))
@@ -13,11 +9,11 @@ export default async function test(req: NextApiRequest, res: NextApiResponse) {
     //const data: any = await graphqlClient.query({ data: printExecutableGraphQLDocument(AllShopifyProductsDocument), query: { first: 250 } })
     //const data = await shopifyQuery(AllShopifyProductsDocument, { variables: { first: 250 } })
 
-    const data = await shopify.smartCollection.list({ limit: 250 })
-    return res.status(200).json({ success: true, data })
+    //const data = await shopify.smartCollection.list({ limit: 250 })
+    return NextResponse.json({ success: true })
   } catch (error) {
     //console.log(error)
-    return res.status(500).json({ success: false, error: error })
+    throw error
 
   }
 }

@@ -1,0 +1,26 @@
+.cart {
+  position: fixed;
+  display: block;
+  right: 0;
+  top: 0;
+  z-index: var(--z-cart);
+  overflow: hidden;
+
+  &.updating {
+    opacity: 0.9;
+  }
+
+  ul {
+    list-style: none;
+    min-height: 1em;
+  }
+
+  button {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+  }
+}

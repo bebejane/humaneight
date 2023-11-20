@@ -20,30 +20,24 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "components/*": [
-        "/components"
+      "@*": [
+        "./*"
       ],
-      "graphql/*": [
-        "/graphql/"
-      ],
-      "lib/*": [
-        "/lib"
-      ],
-      "@shopify": [
-        "lib/shopify/index"
-      ],
-      "@shopify/*": [
-        "lib/shopify/*"
-      ],
-      "/*": [
-        "*"
+      "@shopify*": [
+        "./lib/shopify*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
