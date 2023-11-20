@@ -1,25 +1,26 @@
 import { CustomerCreateDocument } from '../../../graphql'
-import { shopifyQuery } from '../../../graphql-client'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import shopifyQuery from '../../../shopify-query'
+import { NextRequest, NextResponse } from 'next/server'
 import { shopifyGraphqlError } from '../../../utils'
 
-export default async function register(req: NextApiRequest, res: NextApiResponse) {
+export default async function register(req: NextRequest) {
 
-  const input: CustomerCreateInput = req.body
+  const input: CustomerCreateInput = await req.json()
 
   try {
-    const { customerCreate }: { customerCreate: CustomerCreatePayload } = await shopifyQuery(CustomerCreateDocument, {
+    const { customerCreate } = await shopifyQuery<CustomerCreateMutation, CustomerCreateMutationVariables>(CustomerCreateDocument, {
       variables: { input }
     })
 
-    if (customerCreate.customerUserErrors) {
-      return res.status(500).json({ success: false, errors: shopifyGraphqlError(customerCreate.customerUserErrors) })
-    }
+    if (!customerCreate)
+      return NextResponse.json({ success: false, error: 'Customer not found' }, { status: 400 })
+    if (customerCreate.customerUserErrors)
+      return NextResponse.json({ success: false, errors: shopifyGraphqlError(customerCreate.customerUserErrors) }, { status: 500 })
     else
-      return res.status(200).json({ success: true, ...customerCreate.customer })
+      return NextResponse.json({ success: true, ...customerCreate.customer })
 
   } catch (error) {
     const errors = (error as Error).message
-    return res.status(200).json({ success: false, errors })
+    return NextResponse.json({ success: false, errors }, { status: 500 })
   }
 }

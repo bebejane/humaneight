@@ -1,24 +1,24 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import shopify from '../../../../rest-client'
 import { getCookie } from 'cookies-next'
 import { parseGID } from '../../../../utils'
 
-export default async function cancel(req: NextApiRequest, res: NextApiResponse) {
+export default async function cancel(req: NextRequest) {
 
-  const u = getCookie('user', { req, res })
+  const u = getCookie('user', { req })
   const user = u ? JSON.parse(u) : null as unknown as User
-  const { order }: { order: Order } = req.body
+  const { order }: { order: Order } = await req.json()
   const orderId = order?.id
 
   console.log('cancel order', order?.id, user)
 
   if (!orderId)
-    return res.status(400).json({ success: false, error: 'orderId not found' })
+    return NextResponse.json({ success: false, error: 'orderId not found' }, { status: 400 })
 
   if (order.email !== user.email)
-    return res.status(401).json({ success: false, error: 'Unauthorized' })
+    return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 })
 
   await shopify.order.cancel(parseGID(order.id))
 
-  return res.status(200).json({ success: true })
+  return NextResponse.json({ success: true })
 }

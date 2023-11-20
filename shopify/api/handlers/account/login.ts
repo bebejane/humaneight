@@ -1,12 +1,12 @@
 import { CustomerAccessTokenCreateDocument, CustomerDocument } from '../../../graphql'
-import { shopifyQuery } from '../../../graphql-client'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import shopifyQuery from '../../../shopify-query'
+import { NextRequest, NextResponse } from 'next/server'
 import { getCookie, setCookie } from 'cookies-next'
 import { shopifyGraphqlError } from '../../../utils'
 
-export default async function login(req: NextApiRequest, res: NextApiResponse) {
+export default async function login(req: NextRequest) {
 
-  const input: CustomerAccessTokenCreateInput = req.body
+  const input: CustomerAccessTokenCreateInput = await req.json()
 
   const { customerAccessTokenCreate }: { customerAccessTokenCreate: CustomerAccessTokenCreatePayload } = await shopifyQuery(CustomerAccessTokenCreateDocument, {
     variables: { input }
@@ -15,12 +15,16 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   const { customerAccessToken } = customerAccessTokenCreate
 
   if (customerAccessTokenCreate.customerUserErrors?.length)
-    return res.status(500).json({ success: false, errors: shopifyGraphqlError(customerAccessTokenCreate.customerUserErrors) })
+    return NextResponse.json({ success: false, errors: shopifyGraphqlError(customerAccessTokenCreate.customerUserErrors) }, { status: 500 })
+
 
   if (!customerAccessToken?.accessToken)
-    return res.status(500).json({ success: false, error: 'Invalid credentials' })
+    return NextResponse.json({ success: false, error: 'Invalid credentials' }, { status: 401 })
 
-  const { customer } = await shopifyQuery(CustomerDocument, { variables: { accessToken: customerAccessToken.accessToken } })
+  const { customer } = await shopifyQuery<CustomerQuery, CustomerQueryVariables>(CustomerDocument, { variables: { accessToken: customerAccessToken.accessToken } })
+
+  if (!customer)
+    return NextResponse.json({ success: false, error: 'Customer not found' }, { status: 400 })
 
   const user: User = {
     id: customer.id,
@@ -29,6 +33,6 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     email: customer.email,
     customerAccessToken: customerAccessToken
   }
-  setCookie('user', user, { req, res, maxAge: 60 * 60 * 24 })
-  return res.status(200).json({ ...user })
+  setCookie('user', user, { req, maxAge: 60 * 60 * 24 })
+  return NextResponse.json({ ...user })
 }
