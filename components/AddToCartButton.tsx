@@ -16,7 +16,6 @@ export default function AddToCartButton({ className, label, merchandiseId, quant
 
   const handleAddToCart = () => {
     if (!disabled && merchandiseId) {
-      console.log('addToCart', merchandiseId, quantity)
       addToCart({ merchandiseId, quantity });
     }
   }

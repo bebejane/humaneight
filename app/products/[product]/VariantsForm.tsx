@@ -12,7 +12,7 @@ export type VariantFormProps = {
 
 export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
 
-  console.log(shopifyProduct)
+  //console.log(shopifyProduct)
 
   const { searchParams, setSearchParam } = useQueryString()
   const color = searchParams.get('color')
