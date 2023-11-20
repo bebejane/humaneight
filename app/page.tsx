@@ -17,6 +17,7 @@ export default async function Home() {
     <>
       <h1>Start</h1>
 
+      <Link href="/products">All Products</Link>
     </>
   )
 }

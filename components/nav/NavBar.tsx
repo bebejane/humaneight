@@ -1,6 +1,7 @@
 import Link from "next/link";
 import s from './NavBar.module.scss'
 import { apiQuery, DraftMode } from "next-dato-utils";
+import Cart from "@components/Cart";
 //import { AllMenusDocument } from "@graphql";
 
 export default async function NavBar({ }: {}) {
@@ -12,10 +13,12 @@ export default async function NavBar({ }: {}) {
 
   return (
     <>
-      <ul className={s.navbar}>
-        NAvbar
-      </ul>
-
+      <nav className={s.navbar}>
+        <menu>
+          <Link href="/">Home</Link>
+        </menu>
+      </nav>
+      <Cart />
     </>
   );
 }

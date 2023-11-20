@@ -1,8 +1,33 @@
-.container {
+.product {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
 
-  ul {
-    list-style: none;
+  >div {
+    flex: 0 0 50%
   }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+
+    header {
+      display: flex;
+      flex-direction: row;
+
+      h1 {
+        flex: 1 1 auto;
+      }
+    }
+
+    >p {}
+
+
+  }
+
+  .presentation {
+    background-color: pink;
+    height: 100vh;
+  }
+
 }

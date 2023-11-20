@@ -1,2 +1,2 @@
-export { default as POST } from '@lib/shopify/api/handlers/shopify-sync';
-export const runtime = "edge"
+export { default as POST } from '@shopify/api/handlers/shopify-sync';
+export const runtime = "nodejs"

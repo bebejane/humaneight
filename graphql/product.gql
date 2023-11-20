@@ -28,6 +28,21 @@ fragment ProductFragment on ProductRecord {
 	id
 	shopifyId
 	title
+	description {
+		blocks
+		value
+		links
+	}
+	shortSummary {
+		blocks
+		value
+		links
+	}
+	description {
+		blocks
+		value
+		links
+	}
 	slug
 	image {
 		...ImageFragment

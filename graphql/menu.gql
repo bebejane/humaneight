@@ -1,0 +1,6 @@
+query Menu {
+	allProductTypes(first: 100) {
+		id
+		title
+	}
+}

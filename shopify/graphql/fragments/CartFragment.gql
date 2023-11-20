@@ -23,7 +23,7 @@ fragment CartFragment on Cart {
 			currencyCode
 		}
 	}
-	lines(first: 10) {
+	lines(first: 100) {
 		edges {
 			node {
 				id
@@ -49,6 +49,11 @@ fragment CartFragment on Cart {
 						product {
 							id
 							title
+							handle
+						}
+						selectedOptions {
+							name
+							value
 						}
 					}
 				}

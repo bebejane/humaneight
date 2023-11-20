@@ -37,14 +37,14 @@ const shopifyConfig: IGraphQLConfig = {
 			},
 		},
 	},
-	documents: "lib/shopify/graphql/**/*.gql",
+	documents: "shopify/graphql/**/*.gql",
 };
 
 const environmentConfig = environment === "datocms" ? datocmsConfig : shopifyConfig
 
 const paths = {
 	operations: environment === "datocms" ? "types/datocms.d.ts" : "types/shopify.d.ts",
-	documentnode: environment === "datocms" ? "graphql/index.ts" : "lib/shopify/graphql/index.ts",
+	documentnode: environment === "datocms" ? "graphql/index.ts" : "shopify/graphql/index.ts",
 	modules: environment === "datocms" ? "types/document-modules.d.ts" : "types/shopify-document-modules.d.ts",
 };
 

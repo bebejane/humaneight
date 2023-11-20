@@ -1,23 +1,34 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import styles from './Cart.module.scss'
+import s from './Cart.module.scss'
+import cn from 'classnames'
 import useCart from '@shopify/hooks/useCart'
 import useCustomer from '@shopify/hooks/useCustomer'
 import { useShallow } from 'zustand/react/shallow'
-import Link from 'next/link'
-import cn from 'classnames'
+
 
 export type CartProps = {}
 
 export default function Cart({ }: CartProps) {
 
-  const [cart, clearCart, createCart, updateBuyerIdentity, updating, error] = useCart((state) => [state.cart, state.clearCart, state.createCart, state.updateBuyerIdentity, state.updating, state.error])
+  const [
+    cart,
+    clearCart,
+    createCart,
+    removeFromCart,
+    updateQuantity,
+    updateBuyerIdentity,
+    updating,
+    error
+  ] = useCart((state) => [state.cart, state.clearCart, state.createCart, state.removeFromCart, state.updateQuantity, state.updateBuyerIdentity, state.updating, state.error])
+
   const [customer, customerAccessToken] = useCustomer(useShallow((state) => [state.customer, state.customerAccessToken]))
   const isEmpty = (!cart || cart.lines.edges.length === 0)
 
   useEffect(() => {
     !cart && createCart()
+
   }, [cart, createCart])
 
   useEffect(() => {
@@ -26,37 +37,73 @@ export default function Cart({ }: CartProps) {
       const input = { buyerIdentity: { customerAccessToken: customerAccessToken.accessToken }, cartId: cart.id } as any
       updateBuyerIdentity(input)
     } else {
-      console.log('no customerAccessToken')
+      //console.log('no customerAccessToken')
     }
   }, [customerAccessToken, updateBuyerIdentity, cart, customer])
 
   return (
-    <div id="cart" className={cn(styles.cart, updating && styles.updating)} >
-      <h2>Cart</h2>
-      {cart?.buyerIdentity &&
-        <p>
-          {cart.buyerIdentity.customer?.displayName}
-        </p>}
-      {isEmpty && 'Empty...'}
-      {error ? error : ''}
+    <div id="cart" className={cn(s.cart, updating && s.updating)} >
+      <header>
+        <h3>Cart</h3>
+        <div className={s.currency}>
+          <label>Currency</label>
+          <form>
+            <select>
+              <option value="SEK">SEK</option>
+            </select>
+          </form>
+        </div>
+        <div className={s.close}>
+          ×
+        </div>
+      </header>
+      {isEmpty ?
+        <div className={s.empty}>Your cart is empty</div>
+        :
+        <>
+          <ul className={s.items}>
+            {cart?.lines.edges.map(({ node }, idx) =>
+              <li key={idx}>
+                <div className={s.thumb}></div>
+                <div className={s.details}>
+                  <div>{node.merchandise.product.title}</div>
+                  <div>{node.merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
+                  <div>
+                    <button
+                      onClick={() => updateQuantity(node.id, node.quantity - 1)}
+                      disabled={node.quantity === 1}
+                    >-</button>
+                    {node.quantity}
+                    <button
+                      onClick={() => updateQuantity(node.id, node.quantity + 1)}
+                    //disabled={node.quantity + 1 > (node.merchandise.quantityAvailable ?? 0)}
+                    >+</button>
+                  </div>
+                </div>
 
-      <table>
-        <tbody>
-          {cart?.lines.edges.map(({ node }, idx) =>
-            <tr key={idx}>
-              <td>{node.quantity}</td>
-              <td>X</td>
-              <td>{node.merchandise.product.title}</td>
-              <td>{node.cost.totalAmount.amount}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-
-      <button onClick={() => clearCart()}>Clear</button>
-      <Link href="/cart">
-        <button>Go to cart</button>
-      </Link>
+                <div className={s.amount}>
+                  <div className={s.price}>
+                    {node.merchandise.price.amount} {node.cost.totalAmount.currencyCode}
+                  </div>
+                  <button className={s.remove} onClick={() => removeFromCart(node.id)}>
+                    Remove
+                  </button>
+                </div>
+              </li>
+            )}
+          </ul>
+          <div className={s.total}>
+            <div>Total</div>
+            <div className={s.price}>
+              {cart?.cost.totalAmount.amount}
+            </div>
+          </div>
+          <form action={cart.checkoutUrl} method="GET">
+            <button className={s.checkout} type="submit">Checkout & pay</button>
+          </form>
+        </>
+      }
+      {error && <div className={s.error}>{error}</div>}
     </div>
   )
 }

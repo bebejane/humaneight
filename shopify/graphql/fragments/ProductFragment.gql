@@ -10,6 +10,11 @@ fragment ProductFragment on Product {
 		width
 		altText
 	}
+	options {
+		id
+		name
+		values
+	}
 	variants(first: 10) {
 		edges {
 			node {
@@ -17,6 +22,10 @@ fragment ProductFragment on Product {
 				title
 				weight
 				availableForSale
+				selectedOptions {
+					name
+					value
+				}
 				price {
 					amount
 					currencyCode

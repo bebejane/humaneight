@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { shopifyQuery } from '../graphql-client'
+import shopifyQuery from '../shopify-query'
 import { setCookie, getCookie, deleteCookie } from 'cookies-next';
 import {
   CustomerCreateDocument,

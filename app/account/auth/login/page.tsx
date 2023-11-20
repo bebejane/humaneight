@@ -1,12 +1,10 @@
+'use client'
+
 import { useState } from 'react'
-import s from './login.module.scss'
+import s from './page.module.scss'
 import Link from 'next/link'
 
-type Props = {
-
-}
-
-export default function Login({ }: Props) {
+export default function Login() {
 
   const [errors, setErrors] = useState<string | string[] | null>(null)
 
