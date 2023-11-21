@@ -29,13 +29,18 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
   const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchParam('size', e.target.value)
   }
+  console.log(color, size)
 
   return (
     <form className={s.form}>
       <fieldset>
         <legend>Color</legend>
         <div>
-          <select name="color" onChange={handleColorChange} value={variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}>
+          <select
+            name="color"
+            onChange={handleColorChange}
+            value={variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
+          >
             {colors?.values.map((color, idx) => {
               const isAvailable = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Color' && opt.value === color))
               return (
@@ -67,6 +72,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
                   name="size"
                   value={s}
                   defaultChecked={isSelected}
+                  //checked={isSelected}
                   disabled={!isAvailable}
                   onChange={handleSizeChange}
                 />

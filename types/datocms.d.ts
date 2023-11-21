@@ -2554,7 +2554,9 @@ type ProductOptionModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  title?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  shopifyId?: InputMaybe<IntegerFilter>;
+  values?: InputMaybe<JsonFilter>;
 };
 
 enum ProductOptionModelOrderBy {
@@ -2576,8 +2578,10 @@ enum ProductOptionModelOrderBy {
   _updatedAt_DESC = '_updatedAt_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
-  title_ASC = 'title_ASC',
-  title_DESC = 'title_DESC'
+  name_ASC = 'name_ASC',
+  name_DESC = 'name_DESC',
+  shopifyId_ASC = 'shopifyId_ASC',
+  shopifyId_DESC = 'shopifyId_DESC'
 }
 
 /** Record of type Product option (product_option) */
@@ -2597,12 +2601,80 @@ type ProductOptionRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  title: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  shopifyId: Scalars['IntType']['output'];
+  values: Scalars['JsonField']['output'];
 };
 
 
 /** Record of type Product option (product_option) */
 type ProductOptionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type ProductOptionValueModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ProductOptionValueModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ProductOptionValueModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  value?: InputMaybe<StringFilter>;
+};
+
+enum ProductOptionValueModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  value_ASC = 'value_ASC',
+  value_DESC = 'value_DESC'
+}
+
+/** Record of type Product option value (product_option_value) */
+type ProductOptionValueRecord = RecordInterface & {
+  __typename?: 'ProductOptionValueRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<ImageFileField>;
+  value: Scalars['String']['output'];
+};
+
+
+/** Record of type Product option value (product_option_value) */
+type ProductOptionValueRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2683,6 +2755,8 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allProductMsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allProductOptionValuesMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allProductOptionsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProductsMeta: CollectionMetadata;
@@ -2711,6 +2785,8 @@ type Query = {
   /** Returns a collection of records */
   allProductMs: Array<ProductMRecord>;
   /** Returns a collection of records */
+  allProductOptionValues: Array<ProductOptionValueRecord>;
+  /** Returns a collection of records */
   allProductOptions: Array<ProductOptionRecord>;
   /** Returns a collection of records */
   allProducts: Array<ProductRecord>;
@@ -2736,6 +2812,8 @@ type Query = {
   productMetaType?: Maybe<ProductMetaTypeRecord>;
   /** Returns a specific record */
   productOption?: Maybe<ProductOptionRecord>;
+  /** Returns a specific record */
+  productOptionValue?: Maybe<ProductOptionValueRecord>;
   /** Returns the single instance record */
   start?: Maybe<StartRecord>;
   /** Returns a specific asset */
@@ -2797,6 +2875,13 @@ type Query_allProductMetaTypesMetaArgs = {
 /** The query root for this schema */
 type Query_allProductMsMetaArgs = {
   filter?: InputMaybe<ProductMModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allProductOptionValuesMetaArgs = {
+  filter?: InputMaybe<ProductOptionValueModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2934,6 +3019,17 @@ type QueryallProductMsArgs = {
 
 
 /** The query root for this schema */
+type QueryallProductOptionValuesArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductOptionValueModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductOptionValueModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
 type QueryallProductOptionsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ProductOptionModelFilter>;
@@ -3055,6 +3151,15 @@ type QueryproductOptionArgs = {
   filter?: InputMaybe<ProductOptionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ProductOptionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryproductOptionValueArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductOptionValueModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductOptionValueModelOrderBy>>>;
 };
 
 
