@@ -1,8 +1,8 @@
 :root {
 	--black: #161616;
-	--white: #ffffff;
+	--white: #f6f3ee;
 	--red: #bf0000;
-	--gray: #D9D9D9;
+	--gray: #d9d9d9;
 	--outer-margin: 1rem;
 	--background: var(--white);
 	--foreground: var(--black);
@@ -13,9 +13,11 @@
 	--z-menu: 2000;
 	--space: 1rem;
 
-	@include mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 
-	@include mq($from: tablet, $until: desktop) {}
+	@include mq($from: tablet, $until: desktop) {
+	}
 }
 
 body {
@@ -28,7 +30,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
 	overflow-x: hidden;
-	background: linear-gradient(180deg, var(--background-fade-color), var(--white) 40%);
 }
 
 html {
@@ -85,20 +86,23 @@ article p a {
 	}
 }
 
-.intro {}
+.intro {
+}
 
 button {
 	color: var(--foreground);
+	background-color: var(--gray);
 	border: 0;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-	font-weight: bold;
+	font-weight: normal;
 	cursor: pointer;
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
-
+	@include mq($from: tablet) {
+	}
 }
 
 figcaption {

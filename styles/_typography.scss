@@ -2,6 +2,7 @@ html,
 body {
   font-size: 16px;
   font-weight: normal;
+  font-family: $body-font;
 
   @include mq($from: tablet) {
     font-size: 18px;
@@ -12,181 +13,23 @@ body {
   }
 }
 
-h1 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  line-height: 1.25;
-  font-family: $headline-font;
-}
-
-h2 {
-  font-size: 0.75rem;
-  font-family: $headline-font;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-h3 {
-  font-size: 1rem;
-  font-family: $headline-font;
-  padding-bottom: 1em;
-  line-height: var(--line-height);
-}
-
 h1,
 h2,
-h3 {
-  letter-spacing: -0.02em;
-}
-
-aside h3 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-}
-
-.logo {
-  font-family: "Logo2";
-  font-size: var(--logosize) !important;
-  font-weight: normal;
-  letter-spacing: 0 !important;
-}
-
-p {
-  line-height: var(--line-height);
-}
-
-p.intro,
-.intro p,
-.intro {
-  font-size: 1.1rem;
-  padding-bottom: 0;
-  font-weight: normal;
-  line-height: var(--line-height);
-}
-
-.thumb-intro,
-.small-body {
-  font-size: 0.75rem;
-
-  strong {
-    font-family: $headline-font;
-    font-weight: bold !important;
-    font-size: 0.65rem;
-    padding-right: 0.5em;
-  }
-
-  > p {
-    padding: 0;
-  }
-}
-
-.small,
-.small p,
-footer,
-footer nav,
-.caption label,
-aside p {
-  font-family: $headline-font;
-  font-size: 0.82rem !important;
-  text-align: center;
-}
-
-aside p {
-  font-family: $body-font;
+h3,
+h4 {
   font-weight: normal;
 }
 
-nav,
-.mid,
-button,
-.mid input,
-.mid select,
-.structured p,
-.structured li {
-  font-size: 0.88rem;
-}
-
-.mid strong {
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
-button,
-nav,
-.nav {
-  letter-spacing: -0.02em;
-  font-family: $headline-font;
-  font-size: 0.82rem;
-}
-
-strong,
-b {
-  font-family: $headline-font;
-}
-
-// För Article
-article {
-  ul {
-    padding-left: 1em;
-    list-style-type: square;
-
-    p:last-of-type {
-      margin-bottom: 0.7em;
-    }
-
-    & li:last-child p {
-      margin-bottom: 1em;
-    }
-  }
-
-  p strong,
-  .structured strong {
-    font-size: 0.95em;
-  }
-
-  .structured strong {
-    display: inline-block;
-    //padding-bottom: 1em;
-  }
-
-  p,
-  .intro,
-  h2,
-  .structured h3,
-  ul {
-    text-align: left;
-
-    @include mq($from: tablet) {
-    }
-  }
-
-  ul p {
-    padding-left: 0;
-  }
-
-  p + h3,
-  ul + h3,
-  ul + h2,
-  p + h2 {
-    padding-top: 1rem;
-  }
-
-  p strong,
-  p b {
-    font-weight: normal !important;
-    font-family: $headline-font;
-  }
-
-  p.center {
-    text-align: center;
-  }
-}
-
+form,
+input,
+select,
 button {
-  font-family: $headline-font;
+  font-family: $body-font;
 }
 
-em,
-i {
-  font-style: italic;
+menu,
+menu button,
+menu h1,
+menu h3 {
+  font-size: 2rem;
 }
