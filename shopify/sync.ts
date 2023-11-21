@@ -24,7 +24,7 @@ const objects: ObjectMap[] = [
     fields: {
       shopify_id: 'id',
       title: 'title',
-      handle: 'handle',
+      slug: 'handle',
       image: 'image',
     }
   },
@@ -34,7 +34,7 @@ const objects: ObjectMap[] = [
     fields: {
       shopify_id: 'id',
       title: 'title',
-      handle: 'handle',
+      slug: 'handle',
       image: 'image',
       products: 'products'
     }
@@ -45,7 +45,7 @@ const objects: ObjectMap[] = [
     fields: {
       shopify_id: 'id',
       title: 'title',
-      handle: 'handle',
+      slug: 'handle',
       image: 'image',
       products: 'products'
     }
