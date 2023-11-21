@@ -3,7 +3,7 @@
 import useQueryString from '@lib/hooks/useQueryString'
 import s from './VariantsForm.module.scss'
 import React from 'react'
-import AddToCartButton from '@components/AddToCartButton'
+import AddToCartButton from '@components/shopify/AddToCartButton'
 
 export type VariantFormProps = {
   allProductColors: AllProductColorsQuery['allProductColors']
@@ -16,26 +16,27 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
 
   const { searchParams, setSearchParam } = useQueryString()
   const color = searchParams.get('color')
-  const size = searchParams.get('size')
+  const size = searchParams.get('size') ?? 'M'
   const variant = findSelectedVariant(shopifyProduct as Product, color, size)
 
   const sizes = shopifyProduct?.options.find(opt => opt.name === 'Size')
   const colors = shopifyProduct?.options.find(opt => opt.name === 'Color')
 
-  const handleColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchParam('color', e.target.value)
-  }
+  const handleColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => setSearchParam('color', e.target.value)
+  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchParam('size', e.target.value)
 
-  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchParam('size', e.target.value)
-  }
+  console.log(color, size, variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
 
   return (
     <form className={s.form}>
       <fieldset>
         <legend>Color</legend>
         <div>
-          <select name="color" onChange={handleColorChange} value={variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}>
+          <select
+            name="color"
+            onChange={handleColorChange}
+            value={variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
+          >
             {colors?.values.map((color, idx) => {
               const isAvailable = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Color' && opt.value === color))
               return (
@@ -67,6 +68,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
                   name="size"
                   value={s}
                   defaultChecked={isSelected}
+                  //checked={isSelected}
                   disabled={!isAvailable}
                   onChange={handleSizeChange}
                 />

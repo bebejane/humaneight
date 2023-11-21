@@ -18,11 +18,9 @@
 	--z-menu: 2000;
 	--space: 1rem;
 
-	@include mq($until: tablet) {
-	}
+	@include mq($until: tablet) {}
 
-	@include mq($from: tablet, $until: desktop) {
-	}
+	@include mq($from: tablet, $until: desktop) {}
 }
 
 body {
@@ -84,6 +82,7 @@ a {
 main {
 	margin-right: var(--outer-margin);
 	margin-left: var(--outer-margin);
+	min-height: 100vh;
 }
 
 .grid {
@@ -92,11 +91,9 @@ main {
 	grid-gap: var(--gutter);
 }
 
-article p a {
-}
+article p a {}
 
-.intro {
-}
+.intro {}
 
 button {
 	color: var(--foreground);
@@ -109,11 +106,9 @@ button {
 	transition: all 0.2s;
 	padding: 1em;
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 figcaption {

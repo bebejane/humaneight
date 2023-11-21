@@ -36,7 +36,6 @@ const objects: ObjectMap[] = [
       shopify_id: 'id',
       title: 'title',
       slug: 'handle',
-      //image: 'image',
       products: 'products'
     }
   },
@@ -47,7 +46,6 @@ const objects: ObjectMap[] = [
       shopify_id: 'id',
       title: 'title',
       slug: 'handle',
-      //image: 'image',
       products: 'products'
     }
   }
@@ -110,6 +108,23 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
     }
 
   }
+  /*
+  if (object.model === 'product') {
+    const { options } = data;
+    const productOptionTypeId = await itemTypeId('product_option')
+    const productOptions = await client.items.list({ filter: { type: productOptionTypeId } })
+    console.log(productOptions)
+    const all = options?.map((option: any) =>
+      client.items.create({
+        item_type: { type: 'item_type', id: productOptionTypeId },
+        ...{
+          shopify_id: option.id,
+          name: option.name,
+          values: JSON.stringify(option.values)
+        }
+      }))
+  }
+  */
 
   if (object.model === 'collection') {
     const products = await shopify.collection.products(data.id, { limit: 250 })

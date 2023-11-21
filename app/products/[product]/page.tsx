@@ -40,7 +40,7 @@ export default async function Product({ params }: { params: { product: string } 
       <section className={cn(s.product, "grid")}>
         <div className={s.details}>
           <header>
-            <h1 class="body">{product.title}</h1>
+            <h1 className="body">{product.title}</h1>
             <div className={s.price}><p>{variant.price.amount} {variant.price.currencyCode}</p></div>
           </header>
           <StructuredContent id={product.id} content={product.shortSummary} />

@@ -1,0 +1,16 @@
+.filter {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+
+  li {
+    margin: 1ch;
+
+    &.selected,
+    &.selected>a {
+      font-weight: bold;
+    }
+  }
+}
