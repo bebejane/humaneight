@@ -40,7 +40,7 @@ export default async function Product({ params }: { params: { product: string } 
         <div className={s.details}>
           <header>
             <h1>{product.title}</h1>
-            <div className={s.price}>{variant.price.amount} {variant.price.currencyCode}</div>
+            <div className={s.price}><p>{variant.price.amount} {variant.price.currencyCode}</p></div>
           </header>
           <StructuredContent id={product.id} content={product.shortSummary} />
           <VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />
