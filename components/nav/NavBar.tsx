@@ -29,11 +29,11 @@ export default function NavBar({ menu }: Props) {
         <ul>
           {menu.slice(0, 3).map(({ id, title, sub, slug }) => (
             <li key={id}>
-              <h3>{title}</h3>
+              <h3 className="small">{title}</h3>
               <ul>
                 {sub?.map(({ id, title, slug }) => (
                   <li key={id}>
-                    <Link href={`${slug}`}>
+                    <Link href={`${slug}`} className="nav">
                       {title}
                     </Link>
                   </li>
