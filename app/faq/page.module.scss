@@ -1,0 +1,21 @@
+.faqs {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  >li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+    h2 {
+      white-space: nowrap;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+
+    }
+  }
+}

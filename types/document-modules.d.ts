@@ -20,6 +20,17 @@ export const ProductColorFragment: DocumentNode;
 }
     
 
+declare module '*/faq.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllFaqs: DocumentNode;
+export const AllFaqSections: DocumentNode;
+export const FaqFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

@@ -1,12 +1,18 @@
-query Menu {
-	allCollections(first: 100) {
+query Menu($first: IntType = 100, $skip: IntType = 0) {
+	allCollections(first: $first, skip: $skip) {
 		id
 		title
 		slug
 	}
-	allFaqSections(first: 100) {
+	_allCollectionsMeta {
+		count
+	}
+	allFaqSections(first: $first, skip: $skip) {
 		id
 		title
 		slug
+	}
+	_allFaqSectionsMeta {
+		count
 	}
 }

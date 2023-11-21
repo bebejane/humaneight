@@ -1,0 +1,34 @@
+query AllFaqs($first: IntType, $skip: IntType) {
+	allFaqs(first: $first, skip: $skip) {
+		...FaqFragment
+	}
+	_allFaqsMeta {
+		count
+	}
+}
+
+query AllFaqSections($first: IntType, $skip: IntType) {
+	allFaqSections(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allFaqSectionsMeta {
+		count
+	}
+}
+
+fragment FaqFragment on FaqRecord {
+	id
+	question
+	answer {
+		blocks
+		links
+		value
+	}
+	section {
+		id
+		title
+		slug
+	}
+}

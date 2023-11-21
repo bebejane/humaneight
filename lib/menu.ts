@@ -17,6 +17,11 @@ export type Menu = MenuItem[]
 
 export const buildMenu = async (): Promise<Menu> => {
   const { allCollections, allFaqSections } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
+    all: true,
+    variables: {
+      first: 100,
+      skip: 0
+    },
     tags: ['collection', 'faq_section']
   })
 

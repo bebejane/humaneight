@@ -1,0 +1,59 @@
+
+import s from './page.module.scss'
+import { AllFaqSectionsDocument, AllFaqsDocument } from '@graphql';
+import { apiQuery, DraftMode } from 'next-dato-utils';
+import FaqItem from './FaqItem';
+import Link from 'next/link';
+
+export type Props = {
+  params?: { section: string }
+}
+
+export type FaqSectionWithFaqs = FaqSectionRecord & {
+  faqs: FaqRecord[]
+}
+
+export default async function FaqPage({ params }: Props) {
+
+  const { allFaqs } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {
+    all: true,
+    variables: {
+      first: 100,
+      skip: 0,
+    },
+    tags: ['faq']
+  })
+
+  const { allFaqSections } = await apiQuery<AllFaqSectionsQuery, AllFaqSectionsQueryVariables>(AllFaqSectionsDocument, {
+    all: true,
+    variables: {
+      first: 100,
+      skip: 0,
+    },
+    tags: ['faq_section']
+  })
+
+  const faqSections = allFaqSections
+    .filter(({ slug }) => !params?.section || params?.section === slug)
+    .map(section => ({
+      ...section, faqs: allFaqs.filter(faq => faq.section?.id === section.id)
+    })).filter(({ faqs }) => faqs.length > 0) as FaqSectionWithFaqs[]
+
+  return (
+    <>
+      <h1>FAQ</h1>
+      <ul className={s.faqs}>
+        {faqSections.map(section => (
+          <li key={section.id} className={s.section}>
+            <h2><Link href={`/faq/${section.slug}`}>{section.title}</Link></h2>
+            <ul>
+              {section.faqs.map(faq =>
+                <FaqItem key={faq.id} faq={faq} />
+              )}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}
