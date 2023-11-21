@@ -19,24 +19,22 @@ export default function Footer({ menu }: Props) {
       </div>
       <nav>
         <ul className="grid">
-          {menu.map(({ id, title, sub, slug }) => (
-            <ul>
-              {menu.map(({ id, title, sub }) => (
-                <li key={id}>
-                  <h3 className="small">{title}</h3>
-                  <ul>
-                    {sub?.map(({ id, title, slug, href }) => (
-                      <li key={id}>
-                        <Link href={href ?? slug ?? ''}>
-                          {title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+          {menu.map(({ id, title, sub }) => (
+            <li key={id}>
+              <h3 className="small">{title}</h3>
+              <ul>
+                {sub?.map(({ id, title, slug, href }) => (
+                  <li key={id}>
+                    <Link href={href ?? slug ?? ''}>
+                      {title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </nav>
-    </footer>
+    </footer >
   );
 }
