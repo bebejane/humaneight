@@ -22,13 +22,13 @@ export default function Footer({ menu }: Props) {
       </div>
       <nav>
         <ul>
-          {menu.map(({ id, title, sub, slug }) => (
+          {menu.map(({ id, title, sub }) => (
             <li key={id}>
               <h3>{title}</h3>
               <ul>
-                {sub?.map(({ id, title, slug }) => (
+                {sub?.map(({ id, title, slug, href }) => (
                   <li key={id}>
-                    <Link href={`${slug}`}>
+                    <Link href={href ?? slug ?? ''}>
                       {title}
                     </Link>
                   </li>
