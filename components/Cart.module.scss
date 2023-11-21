@@ -7,7 +7,8 @@
   right: 0;
   top: 0;
   z-index: var(--z-cart);
-  padding: var(--outer-margin);
+  height: var(--navbar-height);
+  padding-right: var(--outer-margin);
 
   h3 {
     margin: 0;
@@ -26,17 +27,18 @@
     padding: 0;
     margin: 0;
     box-shadow: none;
+    padding-left: 1em !important;
 
     .icon {
       border: 0;
       width: 30px;
       height: 50px;
-      background: url('/images/cart.svg') no-repeat center center;
+      background: url("/images/cart.svg") no-repeat center center;
     }
 
     &.inverted {
       .icon {
-        background: url('/images/cart_inverted.svg') no-repeat center center;
+        background: url("/images/cart_inverted.svg") no-repeat center center;
       }
 
       color: var(--white);
@@ -64,6 +66,7 @@
   overflow: hidden;
   width: 30vw;
   padding: var(--outer-margin);
+  height: 100vh;
 
   &.updating {
     opacity: 0.9;
@@ -124,7 +127,6 @@
         }
       }
     }
-
   }
 
   .total {
@@ -140,6 +142,8 @@
     margin-right: 10px;
     cursor: pointer;
     width: 100%;
+    background-color: var(--black) !important;
+    color: var(--white);
   }
 
   table {

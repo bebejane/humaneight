@@ -10,20 +10,32 @@
   height: var(--navbar-height);
   padding: var(--outer-margin);
   margin: 0;
+  background-color: var(--background);
 
   menu {
     display: flex;
     flex-direction: row;
+    align-items: baseline;
     padding: 0;
     width: 100%;
 
     h1 {
-      flex: 1 1 100%;
+      position: absolute;
+      width: 100%;
       text-align: center;
       text-transform: uppercase;
+      z-index: -1;
+      font-size: calc(var(--navSize) * 1.1);
+    }
+
+    button {
+      background-color: transparent !important;
+      padding: 0;
+      &:hover {
+        color: var(--black);
+      }
     }
   }
-
 }
 
 .desktop {
@@ -49,16 +61,16 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     flex-direction: row;
 
-    >li {
-
+    > li {
       ul {
         display: flex;
         flex-direction: column;
 
-        li {}
+        li {
+        }
       }
     }
   }

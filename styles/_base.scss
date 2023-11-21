@@ -3,10 +3,13 @@
 	--white: #f6f3ee;
 	--red: #bf0000;
 	--gray: #d9d9d9;
-	--outer-margin: 1rem;
+	--outer-margin: 1.2rem;
 	--background: var(--white);
 	--foreground: var(--black);
-	--navbar-height: 5rem;
+	--navSize: 2.5rem;
+	--navbar-height: calc(var(--navSize) + ((2 * var(--outer-margin)) * 0.6));
+
+	--letter-space: 0.2em;
 
 	--z-navbar: 1100;
 	--z-cart: 1200;
@@ -76,6 +79,11 @@ a {
 	}
 }
 
+main {
+	margin-right: var(--outer-margin);
+	margin-left: var(--outer-margin);
+}
+
 article p a {
 	text-decoration: underline 1px !important;
 	text-underline-offset: 0.15em;
@@ -97,11 +105,18 @@ button {
 	-webkit-box-sizing: border-box;
 	font-weight: normal;
 	cursor: pointer;
+	transition: all 0.2s;
+	padding: 1em;
 
 	@include mq($until: desktop) {
 	}
 
 	@include mq($from: tablet) {
+	}
+	&:hover {
+		letter-spacing: var(--letter-space);
+		background-color: var(--black);
+		color: var(--white);
 	}
 }
 

@@ -19,8 +19,8 @@ export default function NavBar({ collections }: Props) {
     <>
       <nav className={s.navbar}>
         <menu>
-          <button onClick={() => setShowMenu(true)}>Menu</button>
-          <h1><Link href="/">Humaneight</Link></h1>
+          <button className="nav" onClick={() => setShowMenu(true)}>Menu</button>
+          <h1 className="nav"><Link href="/">Humaneight</Link></h1>
           <Cart />
         </menu>
       </nav>

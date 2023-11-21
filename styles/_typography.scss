@@ -18,6 +18,7 @@ h2,
 h3,
 h4 {
   font-weight: normal;
+  line-height: 1;
 }
 
 form,
@@ -27,9 +28,6 @@ button {
   font-family: $body-font;
 }
 
-menu,
-menu button,
-menu h1,
-menu h3 {
-  font-size: 2rem;
+.nav {
+  font-size: var(--navSize);
 }
