@@ -2,6 +2,7 @@
 
 import s from './Thumbnail.module.scss'
 import { Image } from 'react-datocms';
+import Link from 'next/link';
 import shopifyQuery from '@shopify/shopify-query';
 import Shop from '@app/shop/page';
 import { ShopifyProductDocument } from '@shopify/graphql';
@@ -19,7 +20,7 @@ export default async function Thumbnail({ product }: Props) {
   const variant = shopifyProduct?.variants?.edges?.[0]?.node;
 
   return (
-    <div className={s.thumbnail}>
+    <Link href={`/products/${product.slug}`} className={s.thumbnail}>
       {product.image &&
         <figure>
           <Image
@@ -34,11 +35,6 @@ export default async function Thumbnail({ product }: Props) {
           </figcaption>
         </figure>
       }
-      <div className={s.details}>
-
-
-      </div>
-
-    </div>
+    </Link>
   )
 }

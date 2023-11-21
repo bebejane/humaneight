@@ -1,0 +1,27 @@
+query AllAbouts($first: IntType = 100, $skip: IntType = 0) {
+	allAbouts(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allAboutsMeta {
+		count
+	}
+}
+
+query About($slug: String!) {
+	about(filter: { slug: { eq: $slug } }) {
+		...AboutFragment
+	}
+}
+
+fragment AboutFragment on AboutRecord {
+	id
+	title
+	slug
+	content {
+		blocks
+		links
+		value
+	}
+}

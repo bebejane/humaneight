@@ -1,0 +1,18 @@
+.faq {
+  .question {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .answer {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  a {
+    margin-left: 1ch;
+  }
+}
