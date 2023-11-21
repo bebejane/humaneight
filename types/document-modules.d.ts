@@ -52,6 +52,7 @@ declare module '*/product.gql' {
 export const Product: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
+export const ProductMediaItemFragment: DocumentNode;
 
   export default defaultDocument;
 }

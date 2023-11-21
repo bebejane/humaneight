@@ -4,8 +4,8 @@ import { apiQuery } from 'next-dato-utils';
 import { GlobalDocument, MenuDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
-import shopifyQuery from '@shopify/shopify-query';
-import { AllShopifyCollectionsDocument } from '@shopify/graphql';
+import Footer from '@components/nav/Footer';
+import { buildMenu, type Menu } from '@lib/menu';
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -13,21 +13,17 @@ export type LayoutProps = {
 
 export default async function RootLayout({ children }: LayoutProps) {
 
-  const { allProductTypes, draftUrl } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
-    tags: ['menu']
-  });
-  const { collections } = await shopifyQuery<AllShopifyCollectionsQuery, AllProductColorsQueryVariables>(AllShopifyCollectionsDocument, {
-
-  })
+  const menu = await buildMenu();
 
   return (
     <>
       <html lang="en">
         <body id="root" >
-          <NavBar collections={collections} />
+          <NavBar menu={menu} />
           <main>
             {children}
           </main>
+          <Footer menu={menu} />
         </body>
       </html >
 

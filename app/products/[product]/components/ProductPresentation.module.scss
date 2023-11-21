@@ -1,0 +1,30 @@
+.presentation {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+
+  .section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    figure {
+      width: 100%;
+      flex: 1 1 100%;
+
+      .image {
+        width: 100%;
+      }
+
+      &.double {
+        flex: 0 0 50%;
+      }
+    }
+
+    >p {
+      margin-top: 1rem;
+    }
+  }
+
+
+}

@@ -1,6 +1,12 @@
 query Menu {
-	allProductTypes(first: 100) {
+	allCollections(first: 100) {
 		id
 		title
+		slug
+	}
+	allFaqSections(first: 100) {
+		id
+		title
+		slug
 	}
 }

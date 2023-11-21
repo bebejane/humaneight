@@ -105,12 +105,12 @@ type CollectionModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  handle?: InputMaybe<SlugFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   products?: InputMaybe<LinksFilter>;
   shopifyData?: InputMaybe<JsonFilter>;
   shopifyId?: InputMaybe<IntegerFilter>;
+  slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -155,12 +155,12 @@ type CollectionRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  handle: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
   products: Array<ProductRecord>;
   shopifyData: Scalars['JsonField']['output'];
   shopifyId: Scalars['IntType']['output'];
+  slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
 };
 
@@ -300,6 +300,7 @@ type FaqSectionModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -343,7 +344,8 @@ type FaqSectionRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
 };
 
 
@@ -2135,22 +2137,6 @@ type OrientationFilter = {
   neq?: InputMaybe<UploadOrientation>;
 };
 
-/** Specifies how to filter by position (sorted and tree-like collections) */
-type PositionFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's strictly greater than the one specified */
-  gt?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's greater than or equal to the one specified */
-  gte?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's less than the one specified */
-  lt?: InputMaybe<Scalars['IntType']['input']>;
-  /** Filter records with a value that's less or equal than the one specified */
-  lte?: InputMaybe<Scalars['IntType']['input']>;
-  /** Exclude records with an exact match */
-  neq?: InputMaybe<Scalars['IntType']['input']>;
-};
-
 type ProductColorModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<ProductColorModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ProductColorModelFilter>>>;
@@ -2290,16 +2276,16 @@ type ProductMRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-type ProductMediaItemModelTextField = {
-  __typename?: 'ProductMediaItemModelTextField';
+type ProductMediaBlockModelTextField = {
+  __typename?: 'ProductMediaBlockModelTextField';
   blocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
 
-/** Block of type Product media (product_media_item) */
-type ProductMediaItemRecord = RecordInterface & {
-  __typename?: 'ProductMediaItemRecord';
+/** Block of type Product media (product_media_block) */
+type ProductMediaBlockRecord = RecordInterface & {
+  __typename?: 'ProductMediaBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -2315,39 +2301,12 @@ type ProductMediaItemRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
   productMedia: Array<ProductMediaModelRecord>;
-  text?: Maybe<ProductMediaItemModelTextField>;
+  text?: Maybe<ProductMediaBlockModelTextField>;
 };
 
 
-/** Block of type Product media (product_media_item) */
-type ProductMediaItemRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Block of type Product media variation (product_media_item_variation) */
-type ProductMediaItemVariationRecord = RecordInterface & {
-  __typename?: 'ProductMediaItemVariationRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  color?: Maybe<ProductColorRecord>;
-  id: Scalars['ItemId']['output'];
-  media?: Maybe<FileField>;
-};
-
-
-/** Block of type Product media variation (product_media_item_variation) */
-type ProductMediaItemVariationRecord_seoMetaTagsArgs = {
+/** Block of type Product media (product_media_block) */
+type ProductMediaBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2411,14 +2370,41 @@ type ProductMediaModelRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   altText?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  thumbnail: Array<FileField>;
+  thumbnail: Array<ImageFileField>;
   title?: Maybe<Scalars['String']['output']>;
-  variation: Array<ProductMediaItemVariationRecord>;
+  variation: Array<ProductMediaVariationBlockRecord>;
 };
 
 
 /** Record of type Product media item (product_media_model) */
 type ProductMediaModelRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Product media variation (product_media_variation_block) */
+type ProductMediaVariationBlockRecord = RecordInterface & {
+  __typename?: 'ProductMediaVariationBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  color?: Maybe<ProductColorRecord>;
+  id: Scalars['ItemId']['output'];
+  media: ImageFileField;
+};
+
+
+/** Block of type Product media variation (product_media_variation_block) */
+type ProductMediaVariationBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2504,6 +2490,7 @@ type ProductModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  collection?: InputMaybe<LinkFilter>;
   description?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
@@ -2511,12 +2498,12 @@ type ProductModelFilter = {
   label?: InputMaybe<StringFilter>;
   metaSections?: InputMaybe<LinksFilter>;
   mouseOverText?: InputMaybe<StringFilter>;
-  productType?: InputMaybe<LinkFilter>;
   shopifyData?: InputMaybe<JsonFilter>;
   shopifyId?: InputMaybe<IntegerFilter>;
   shortSummary?: InputMaybe<StructuredTextFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
+  variants?: InputMaybe<LinksFilter>;
 };
 
 enum ProductModelOrderBy {
@@ -2555,47 +2542,9 @@ type ProductModelShortSummaryField = {
   value: Scalars['JsonField']['output'];
 };
 
-/** Record of type Product (product) */
-type ProductRecord = RecordInterface & {
-  __typename?: 'ProductRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  description?: Maybe<ProductModelDescriptionField>;
-  id: Scalars['ItemId']['output'];
-  image: ImageFileField;
-  imageSecondary?: Maybe<ImageFileField>;
-  label?: Maybe<Scalars['String']['output']>;
-  metaSections: Array<ProductMRecord>;
-  mouseOverText?: Maybe<Scalars['String']['output']>;
-  productType?: Maybe<ProductTypeRecord>;
-  sections: Array<ProductMediaItemRecord>;
-  shopifyData?: Maybe<Scalars['JsonField']['output']>;
-  shopifyId: Scalars['IntType']['output'];
-  shortSummary?: Maybe<ProductModelShortSummaryField>;
-  slug: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-};
-
-
-/** Record of type Product (product) */
-type ProductRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-type ProductTypeModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ProductTypeModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<ProductTypeModelFilter>>>;
+type ProductOptionModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ProductOptionModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ProductOptionModelFilter>>>;
   _createdAt?: InputMaybe<CreatedAtFilter>;
   _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
   _isValid?: InputMaybe<BooleanFilter>;
@@ -2605,11 +2554,10 @@ type ProductTypeModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
-  position?: InputMaybe<PositionFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
-enum ProductTypeModelOrderBy {
+enum ProductOptionModelOrderBy {
   _createdAt_ASC = '_createdAt_ASC',
   _createdAt_DESC = '_createdAt_DESC',
   _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
@@ -2628,15 +2576,13 @@ enum ProductTypeModelOrderBy {
   _updatedAt_DESC = '_updatedAt_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
-  position_ASC = 'position_ASC',
-  position_DESC = 'position_DESC',
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Product type (product_type) */
-type ProductTypeRecord = RecordInterface & {
-  __typename?: 'ProductTypeRecord';
+/** Record of type Product option (product_option) */
+type ProductOptionRecord = RecordInterface & {
+  __typename?: 'ProductOptionRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -2651,13 +2597,51 @@ type ProductTypeRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  position?: Maybe<Scalars['IntType']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
 };
 
 
-/** Record of type Product type (product_type) */
-type ProductTypeRecord_seoMetaTagsArgs = {
+/** Record of type Product option (product_option) */
+type ProductOptionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Record of type Product (product) */
+type ProductRecord = RecordInterface & {
+  __typename?: 'ProductRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  collection?: Maybe<CollectionRecord>;
+  description?: Maybe<ProductModelDescriptionField>;
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<ImageFileField>;
+  imageSecondary?: Maybe<ImageFileField>;
+  label?: Maybe<Scalars['String']['output']>;
+  metaSections: Array<ProductMRecord>;
+  mouseOverText?: Maybe<Scalars['String']['output']>;
+  sections: Array<ProductMediaBlockRecord>;
+  shopifyData?: Maybe<Scalars['JsonField']['output']>;
+  shopifyId: Scalars['IntType']['output'];
+  shortSummary?: Maybe<ProductModelShortSummaryField>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  variants: Array<VariantRecord>;
+};
+
+
+/** Record of type Product (product) */
+type ProductRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2699,11 +2683,13 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allProductMsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allProductTypesMeta: CollectionMetadata;
+  _allProductOptionsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProductsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allVariantsMeta: CollectionMetadata;
   /** Returns the single instance record */
   _site: Site;
   /** Returns a specific record */
@@ -2725,11 +2711,13 @@ type Query = {
   /** Returns a collection of records */
   allProductMs: Array<ProductMRecord>;
   /** Returns a collection of records */
-  allProductTypes: Array<ProductTypeRecord>;
+  allProductOptions: Array<ProductOptionRecord>;
   /** Returns a collection of records */
   allProducts: Array<ProductRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
+  /** Returns a collection of records */
+  allVariants: Array<VariantRecord>;
   /** Returns a specific record */
   collection?: Maybe<CollectionRecord>;
   /** Returns a specific record */
@@ -2747,11 +2735,13 @@ type Query = {
   /** Returns a specific record */
   productMetaType?: Maybe<ProductMetaTypeRecord>;
   /** Returns a specific record */
-  productType?: Maybe<ProductTypeRecord>;
+  productOption?: Maybe<ProductOptionRecord>;
   /** Returns the single instance record */
   start?: Maybe<StartRecord>;
   /** Returns a specific asset */
   upload?: Maybe<FileField>;
+  /** Returns a specific record */
+  variant?: Maybe<VariantRecord>;
 };
 
 
@@ -2812,8 +2802,8 @@ type Query_allProductMsMetaArgs = {
 
 
 /** The query root for this schema */
-type Query_allProductTypesMetaArgs = {
-  filter?: InputMaybe<ProductTypeModelFilter>;
+type Query_allProductOptionsMetaArgs = {
+  filter?: InputMaybe<ProductOptionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2828,6 +2818,13 @@ type Query_allProductsMetaArgs = {
 /** The query root for this schema */
 type Query_allUploadsMetaArgs = {
   filter?: InputMaybe<UploadFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allVariantsMetaArgs = {
+  filter?: InputMaybe<VariantModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -2937,12 +2934,12 @@ type QueryallProductMsArgs = {
 
 
 /** The query root for this schema */
-type QueryallProductTypesArgs = {
+type QueryallProductOptionsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductTypeModelFilter>;
+  filter?: InputMaybe<ProductOptionModelFilter>;
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductTypeModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductOptionModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -2965,6 +2962,17 @@ type QueryallUploadsArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallVariantsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<VariantModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<VariantModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -3042,11 +3050,11 @@ type QueryproductMetaTypeArgs = {
 
 
 /** The query root for this schema */
-type QueryproductTypeArgs = {
+type QueryproductOptionArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductTypeModelFilter>;
+  filter?: InputMaybe<ProductOptionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductTypeModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductOptionModelOrderBy>>>;
 };
 
 
@@ -3063,6 +3071,15 @@ type QueryuploadArgs = {
   filter?: InputMaybe<UploadFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<UploadOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryvariantArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<VariantModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<VariantModelOrderBy>>>;
 };
 
 type RecordInterface = {
@@ -3721,6 +3738,90 @@ type UploadWidthFilter = {
   neq?: InputMaybe<Scalars['IntType']['input']>;
 };
 
+type VariantModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<VariantModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<VariantModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  adminGraphqlApiId?: InputMaybe<StringFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  inventoryQuantity?: InputMaybe<IntegerFilter>;
+  price?: InputMaybe<StringFilter>;
+  productId?: InputMaybe<IntegerFilter>;
+  shopifyId?: InputMaybe<IntegerFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum VariantModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  adminGraphqlApiId_ASC = 'adminGraphqlApiId_ASC',
+  adminGraphqlApiId_DESC = 'adminGraphqlApiId_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  inventoryQuantity_ASC = 'inventoryQuantity_ASC',
+  inventoryQuantity_DESC = 'inventoryQuantity_DESC',
+  price_ASC = 'price_ASC',
+  price_DESC = 'price_DESC',
+  productId_ASC = 'productId_ASC',
+  productId_DESC = 'productId_DESC',
+  shopifyId_ASC = 'shopifyId_ASC',
+  shopifyId_DESC = 'shopifyId_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Variant (variant) */
+type VariantRecord = RecordInterface & {
+  __typename?: 'VariantRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  adminGraphqlApiId: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  inventoryQuantity?: Maybe<Scalars['IntType']['output']>;
+  price: Scalars['String']['output'];
+  productId: Scalars['IntType']['output'];
+  shopifyId: Scalars['IntType']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Variant (variant) */
+type VariantRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 enum VideoMp4Res {
   high = 'high',
   low = 'low',
@@ -3743,7 +3844,11 @@ type AllProductColorsQuery = { __typename?: 'Query', allProductColors: Array<{ _
 
 type ProductColorFragment = { __typename?: 'ProductColorRecord', id: any, title?: string };
 
-type ImageFragment = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+
+type ImageFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+
+type ImageFragment = ImageFragment_FileField_ | ImageFragment_ImageFileField_;
 
 type SiteFragment = { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: any, content?: string, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string, siteName?: string, titleSuffix?: string, twitterAccount?: string, fallbackSeo?: { __typename?: 'SeoField', description?: string, title?: string, twitterCard?: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
 
@@ -3755,7 +3860,7 @@ type GlobalQuery = { __typename?: 'Query', site: { __typename?: 'Site', favicon:
 type MenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type MenuQuery = { __typename?: 'Query', allProductTypes: Array<{ __typename?: 'ProductTypeRecord', id: any, title?: string }> };
+type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string }>, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string }> };
 
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -3763,15 +3868,17 @@ type AllProductsQueryVariables = Exact<{
 }>;
 
 
-type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, image: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ProductQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } };
+type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title?: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> } };
 
-type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, image: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
 
-type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId: any, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title?: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> };
+
+type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title?: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };

@@ -85,13 +85,6 @@ main {
 }
 
 article p a {
-	text-decoration: underline 1px !important;
-	text-underline-offset: 0.15em;
-	text-decoration-thickness: 1px;
-
-	&:hover {
-		color: var(--beige-dark);
-	}
 }
 
 .intro {
@@ -112,11 +105,6 @@ button {
 	}
 
 	@include mq($from: tablet) {
-	}
-	&:hover {
-		letter-spacing: var(--letter-space);
-		background-color: var(--black);
-		color: var(--white);
 	}
 }
 
