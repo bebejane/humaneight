@@ -1,0 +1,47 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+
+  >h2 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .subheader {
+    display: flex;
+    flex-direction: row;
+
+    h4 {
+      flex: 1 1 auto;
+
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+
+  nav {
+    width: 100%;
+
+    ul {
+      list-style: none;
+      display: flex;
+    }
+
+    >ul {
+      flex-direction: row;
+
+      >li {
+        display: flex;
+        flex-direction: column;
+
+        ul {
+          display: flex;
+          flex-direction: column;
+
+          li {}
+        }
+      }
+    }
+  }
+}

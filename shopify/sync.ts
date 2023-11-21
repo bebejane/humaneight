@@ -1,13 +1,14 @@
+'use server'
+
+import shopify from './rest-client'
 import { buildClient } from '@datocms/cma-client-node';
 import { isDeepStrictEqual } from 'util';
 import { itemTypeId } from '@lib/utils';
 import { IProduct, ISmartCollection, ICustomCollection } from 'shopify-api-node';
+import asyncPromiseBatch from 'async-promise-batch';
 import { Item } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes';
 
-import shopify from './rest-client'
-import asyncPromiseBatch from 'async-promise-batch';
-
-const client = buildClient({ apiToken: process.env.DATOCMS_CMA_TOKEN as string })
+const client = buildClient({ apiToken: process.env.DATOCMS_API_TOKEN as string })
 
 type ObjectType = IProduct | ISmartCollection | ICustomCollection
 
@@ -25,7 +26,7 @@ const objects: ObjectMap[] = [
       shopify_id: 'id',
       title: 'title',
       slug: 'handle',
-      image: 'image',
+      //image: 'image',
     }
   },
   {
@@ -35,7 +36,7 @@ const objects: ObjectMap[] = [
       shopify_id: 'id',
       title: 'title',
       slug: 'handle',
-      image: 'image',
+      //image: 'image',
       products: 'products'
     }
   },
@@ -46,7 +47,7 @@ const objects: ObjectMap[] = [
       shopify_id: 'id',
       title: 'title',
       slug: 'handle',
-      image: 'image',
+      //image: 'image',
       products: 'products'
     }
   }
@@ -55,7 +56,7 @@ const objects: ObjectMap[] = [
 export const syncAll = async () => {
   console.log('sync started...')
   console.time('sync all')
-
+  console.log(process.env.DATOCMS_API_TOKEN)
   for (let i = 0; i < objects.length; i++) {
     const data = await shopify[objects[i].path].list({ limit: 250 })
     await syncObjects(data)
@@ -98,7 +99,7 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
     console.log('upload image', data.image.src.split('?')[0])
     try {
       const upload = await client.uploads.createFromUrl({
-        url: data.image.src,//.split('?')[0],
+        url: data.image.src,
         skipCreationIfAlreadyExists: true
       })
       data.image = { upload_id: upload.id }

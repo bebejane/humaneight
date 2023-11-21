@@ -5,10 +5,10 @@ import { notFound } from 'next/navigation';
 import { AllProductColorsDocument, AllProductsDocument, ProductDocument } from '@graphql';
 import { DraftMode, apiQuery } from 'next-dato-utils';
 import shopifyQuery from '@shopify/shopify-query';
-import AddToCartButton from '@components/AddToCartButton';
 import { ShopifyProductDocument } from '@shopify/graphql';
 import StructuredContent from '@components/layout/StructuredContent';
 import VariantsForm from '@app/products/[product]/VariantsForm';
+import ProductPresentation from '@app/products/[product]/ProductPresentation';
 
 export async function generateStaticParams() {
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
@@ -45,12 +45,7 @@ export default async function Product({ params }: { params: { product: string } 
           <StructuredContent id={product.id} content={product.shortSummary} />
           <VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />
         </div>
-        <div className={s.presentation}>
-          Presentation
-        </div>
-
-        <div className={s.presentation}>
-        </div>
+        <ProductPresentation product={product} />
       </section>
     </>
   )

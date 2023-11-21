@@ -13,11 +13,9 @@
 	--z-menu: 2000;
 	--space: 1rem;
 
-	@include mq($until: tablet) {
-	}
+	@include mq($until: tablet) {}
 
-	@include mq($from: tablet, $until: desktop) {
-	}
+	@include mq($from: tablet, $until: desktop) {}
 }
 
 body {
@@ -76,18 +74,9 @@ a {
 	}
 }
 
-article p a {
-	text-decoration: underline 1px !important;
-	text-underline-offset: 0.15em;
-	text-decoration-thickness: 1px;
+article p a {}
 
-	&:hover {
-		color: var(--beige-dark);
-	}
-}
-
-.intro {
-}
+.intro {}
 
 button {
 	color: var(--foreground);
@@ -98,11 +87,9 @@ button {
 	font-weight: normal;
 	cursor: pointer;
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 figcaption {

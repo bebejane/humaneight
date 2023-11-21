@@ -1,14 +1,18 @@
+'use server'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { syncAll } from '../sync';
+import { parseDatoError } from 'next-dato-utils';
 
 export default async function resync(req: NextRequest) {
 
   try {
+    const now = Date.now()
     await syncAll()
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, time: Date.now() - now })
 
   } catch (error) {
-    console.log(error)
-    return NextResponse.json({ success: false, error: (error as Error).message })
+    console.log(parseDatoError(error))
+    return NextResponse.json({ success: false, error: parseDatoError(error) })
   }
 }

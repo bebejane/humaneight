@@ -18,6 +18,10 @@ fragment ProductLightFragment on ProductRecord {
 	shopifyId
 	title
 	slug
+	collection {
+		id
+		title
+	}
 	image {
 		...ImageFragment
 	}
@@ -28,6 +32,10 @@ fragment ProductFragment on ProductRecord {
 	id
 	shopifyId
 	title
+	collection {
+		id
+		title
+	}
 	description {
 		blocks
 		value
@@ -47,5 +55,37 @@ fragment ProductFragment on ProductRecord {
 	image {
 		...ImageFragment
 	}
+	sections {
+		... on ProductMediaBlockRecord {
+			id
+			text {
+				blocks
+				value
+				links
+			}
+			productMedia {
+				...ProductMediaItemFragment
+			}
+		}
+	}
 	shopifyData
+}
+
+fragment ProductMediaItemFragment on ProductMediaModelRecord {
+	id
+	title
+	altText
+	thumbnail {
+		...ImageFragment
+	}
+	variation {
+		id
+		color {
+			id
+			title
+		}
+		media {
+			...ImageFragment
+		}
+	}
 }
