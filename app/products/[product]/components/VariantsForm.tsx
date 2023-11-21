@@ -3,7 +3,7 @@
 import useQueryString from '@lib/hooks/useQueryString'
 import s from './VariantsForm.module.scss'
 import React from 'react'
-import AddToCartButton from '@components/AddToCartButton'
+import AddToCartButton from '@components/shopify/AddToCartButton'
 
 export type VariantFormProps = {
   allProductColors: AllProductColorsQuery['allProductColors']

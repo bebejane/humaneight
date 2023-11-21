@@ -1,0 +1,23 @@
+query AllCollections($first: IntType = 100, $skip: IntType = 0) {
+	allCollections(first: $first, skip: $skip) {
+		...CollectionFragment
+	}
+	_allCollectionsMeta {
+		count
+	}
+}
+
+query Collection($slug: String!) {
+	collection(filter: { slug: { eq: $slug } }) {
+		...CollectionFragment
+	}
+}
+
+fragment CollectionFragment on CollectionRecord {
+	id
+	title
+	slug
+	_allReferencingProducts(first: 100) {
+		...ProductLightFragment
+	}
+}

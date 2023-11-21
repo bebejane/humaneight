@@ -8,7 +8,6 @@ fragment ImageFragment on FileFieldInterface {
 		alt
 		aspectRatio
 		base64
-		bgColor
 		height
 		sizes
 		src

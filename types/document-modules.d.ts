@@ -1,4 +1,15 @@
 
+declare module '*/collection.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllCollections: DocumentNode;
+export const Collection: DocumentNode;
+export const CollectionFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/color.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -50,6 +61,7 @@ declare module '*/product.gql' {
   const defaultDocument: DocumentNode;
   export const AllProducts: DocumentNode;
 export const Product: DocumentNode;
+export const AllProductByCollection: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
 export const ProductMediaItemFragment: DocumentNode;

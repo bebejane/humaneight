@@ -3,8 +3,7 @@
 import Link from "next/link";
 import s from './NavBar.module.scss'
 import cn from "classnames";
-import { apiQuery, DraftMode } from "next-dato-utils";
-import Cart from "@components/Cart";
+import Cart from "@components/shopify/Cart";
 import { useState } from "react";
 import type { Menu } from "@lib/menu";
 
@@ -55,12 +54,9 @@ export default function NavBar({ menu }: Props) {
           </form>
           <div>
             Customize our website for your needs
-
           </div>
         </div>
-
       </nav>
-
     </>
   );
 }

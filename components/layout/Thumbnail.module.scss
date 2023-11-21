@@ -1,0 +1,23 @@
+.thumbnail {
+  flex: 0 0 33.333%;
+  display: flex;
+  flex-direction: column;
+
+  figure {
+    .image {
+      max-height: 30vh;
+      aspect-ratio: 4/4;
+    }
+
+    .picture {
+      object-fit: contain;
+
+    }
+
+    figcaption {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+}
