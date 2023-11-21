@@ -587,6 +587,51 @@ type GalleryFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
 };
 
+type GeneralModelCookiesGdprField = {
+  __typename?: 'GeneralModelCookiesGdprField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+type GeneralModelTermsConditionsField = {
+  __typename?: 'GeneralModelTermsConditionsField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type General (general) */
+type GeneralRecord = RecordInterface & {
+  __typename?: 'GeneralRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  cookiesGdpr?: Maybe<GeneralModelCookiesGdprField>;
+  eMail?: Maybe<Scalars['String']['output']>;
+  facebook?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  instagram?: Maybe<Scalars['String']['output']>;
+  termsConditions?: Maybe<GeneralModelTermsConditionsField>;
+  twitter?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type General (general) */
+type GeneralRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type GlobalSeoField = {
   __typename?: 'GlobalSeoField';
   facebookPageUrl?: Maybe<Scalars['String']['output']>;
@@ -2893,6 +2938,8 @@ type Query = {
   faq?: Maybe<FaqRecord>;
   /** Returns a specific record */
   faqSection?: Maybe<FaqSectionRecord>;
+  /** Returns the single instance record */
+  general?: Maybe<GeneralRecord>;
   /** Returns a specific record */
   product?: Maybe<ProductRecord>;
   /** Returns a specific record */
@@ -3190,6 +3237,13 @@ type QueryfaqSectionArgs = {
   filter?: InputMaybe<FaqSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FaqSectionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerygeneralArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
