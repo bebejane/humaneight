@@ -3,9 +3,6 @@
 import Link from "next/link";
 import s from './Footer.module.scss'
 import cn from "classnames";
-import { apiQuery, DraftMode } from "next-dato-utils";
-import Cart from "@components/Cart";
-import { useState } from "react";
 import type { Menu } from "@lib/menu";
 
 export type Props = {
