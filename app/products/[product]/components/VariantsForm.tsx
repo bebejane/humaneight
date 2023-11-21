@@ -16,20 +16,16 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
 
   const { searchParams, setSearchParam } = useQueryString()
   const color = searchParams.get('color')
-  const size = searchParams.get('size')
+  const size = searchParams.get('size') ?? 'M'
   const variant = findSelectedVariant(shopifyProduct as Product, color, size)
 
   const sizes = shopifyProduct?.options.find(opt => opt.name === 'Size')
   const colors = shopifyProduct?.options.find(opt => opt.name === 'Color')
 
-  const handleColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchParam('color', e.target.value)
-  }
+  const handleColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => setSearchParam('color', e.target.value)
+  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchParam('size', e.target.value)
 
-  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchParam('size', e.target.value)
-  }
-  console.log(color, size)
+  console.log(color, size, variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
 
   return (
     <form className={s.form}>
