@@ -1,6 +1,6 @@
 import client from '@lib/client';
 import { NextRequest, NextResponse } from 'next/server'
-import { syncDatoCMSObject } from '../../sync'
+import { syncDatoCMSObject } from '../sync'
 
 export default async function datocmsToShopifySync(req: NextRequest) {
 

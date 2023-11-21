@@ -1,8 +1,8 @@
-import { CustomerAccessTokenCreateDocument, CustomerDocument } from '../../../graphql'
-import shopifyQuery from '../../../shopify-query'
+import { CustomerAccessTokenCreateDocument, CustomerDocument } from '../../graphql'
+import shopifyQuery from '../../shopify-query'
 import { NextRequest, NextResponse } from 'next/server'
 import { getCookie, setCookie } from 'cookies-next'
-import { shopifyGraphqlError } from '../../../utils'
+import { shopifyGraphqlError } from '../../utils'
 
 export default async function login(req: NextRequest) {
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { syncObjects, deleteObject } from '../../sync'
+import { syncObjects, deleteObject } from '../sync'
 
 export default async function shopifyToDatoCMSSync(req: NextRequest) {
 

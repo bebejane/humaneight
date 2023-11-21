@@ -1,7 +1,7 @@
-import { CustomerCreateDocument } from '../../../graphql'
-import shopifyQuery from '../../../shopify-query'
+import { CustomerCreateDocument } from '../../graphql'
+import shopifyQuery from '../../shopify-query'
 import { NextRequest, NextResponse } from 'next/server'
-import { shopifyGraphqlError } from '../../../utils'
+import { shopifyGraphqlError } from '../../utils'
 
 export default async function register(req: NextRequest) {
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import shopify from '../../../../rest-client'
+import shopify from '../../../rest-client'
 import { getCookie } from 'cookies-next'
-import { parseGID } from '../../../../utils'
+import { parseGID } from '../../../utils'
 
 export default async function cancel(req: NextRequest) {
 
