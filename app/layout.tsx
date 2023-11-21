@@ -1,9 +1,11 @@
 import '@styles/index.scss'
 import NavBar from '@components/nav/NavBar';
 import { apiQuery } from 'next-dato-utils';
-import { GlobalDocument } from '@graphql';
+import { GlobalDocument, MenuDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import shopifyQuery from '@shopify/shopify-query';
+import { AllShopifyCollectionsDocument } from '@shopify/graphql';
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -11,11 +13,18 @@ export type LayoutProps = {
 
 export default async function RootLayout({ children }: LayoutProps) {
 
+  const { allProductTypes, draftUrl } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
+    tags: ['menu']
+  });
+  const { collections } = await shopifyQuery<AllShopifyCollectionsQuery, AllProductColorsQueryVariables>(AllShopifyCollectionsDocument, {
+
+  })
+
   return (
     <>
       <html lang="en">
         <body id="root" >
-          <NavBar />
+          <NavBar collections={collections} />
           <main>
             {children}
           </main>

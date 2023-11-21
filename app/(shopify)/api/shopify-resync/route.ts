@@ -1,2 +1,2 @@
-export { default as POST } from '@shopify/api/handlers/shopify-resync';
+export { default as POST } from '@shopify/route-handlers/shopify-resync';
 export const runtime = "nodejs"

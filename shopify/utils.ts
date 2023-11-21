@@ -1,4 +1,4 @@
-export const flattenConnection = (data: ProductConnection | ProductConnection[] | OrderConnection | OrderConnection[]): Product[] | Order[] => {
+export const flattenConnection = <T, R>(data: T | T[]): R[] => {
   if (!Array.isArray(data))
     return data.edges.map(({ node }) => node);
 

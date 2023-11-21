@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { syncAll } from '../../sync';
+import { syncAll } from '../sync';
 
 export default async function resync(req: NextRequest) {
 

@@ -1,8 +1,88 @@
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   list-style: none;
   width: 100%;
   height: var(--navbar-height);
+  padding: var(--outer-margin);
+  margin: 0;
+
+  menu {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    width: 100%;
+
+    h1 {
+      flex: 1 1 100%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+}
+
+.desktop {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-menu);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding-top: var(--navbar-height);
+
+  &.show {
+    display: flex;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+  }
+
+  >ul {
+    flex-direction: row;
+
+    >li {
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        li {}
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--outer-margin);
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    form {
+      flex: 0 0;
+    }
+
+    div {
+      display: flex;
+      justify-content: flex-end;
+      flex: 1 1 auto;
+    }
+  }
 }

@@ -19,6 +19,9 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
   const size = searchParams.get('size')
   const variant = findSelectedVariant(shopifyProduct as Product, color, size)
 
+  const sizes = shopifyProduct?.options.find(opt => opt.name === 'Size')
+  const colors = shopifyProduct?.options.find(opt => opt.name === 'Color')
+
   const handleColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchParam('color', e.target.value)
   }
@@ -33,7 +36,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
         <legend>Color</legend>
         <div>
           <select name="color" onChange={handleColorChange} value={variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}>
-            {shopifyProduct?.options.find(opt => opt.name === 'Color')?.values.map((color, idx) => {
+            {colors?.values.map((color, idx) => {
               const isAvailable = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Color' && opt.value === color))
               return (
                 <option
@@ -52,7 +55,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
       <fieldset>
         <legend>Size</legend>
         <div className={s.sizes}>
-          {shopifyProduct?.options.find(opt => opt.name === 'Size')?.values.map((s, idx) => {
+          {sizes?.values.map((s, idx) => {
             const isAvailable = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Size' && opt.value === s)) ? true : undefined
             const isSelected = variant?.selectedOptions.find(opt => opt.name === 'Size' && opt.value === s) ? true : false
 
