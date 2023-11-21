@@ -26,6 +26,7 @@ export default function ProductPresentation({ product }: VariantFormProps) {
               const selectedVariation = variation.filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
               const media = selectedVariation.map(({ media }) => ({ media })).flat()
 
+              if (media.length === 0) return <figure>No images in color {color}</figure>
               return media.map(({ media: { responsiveImage } }) =>
                 <figure className={cn(media.length > 1 && s.double)}>
                   <Image
