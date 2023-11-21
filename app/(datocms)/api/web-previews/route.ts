@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
         break;
       case 'faq_section':
         path = `/faq/${slug}`
+        break;
       case 'product':
         path = `/products/${slug}`
         break;
