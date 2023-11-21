@@ -16,7 +16,7 @@ export type MenuItem = {
 export type Menu = MenuItem[]
 
 export const buildMenu = async (): Promise<Menu> => {
-  const { allCollections, allFaqSections } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
+  const { allCollections, allFaqSections, allAbouts } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
     all: true,
     variables: {
       first: 100,
@@ -28,7 +28,7 @@ export const buildMenu = async (): Promise<Menu> => {
   const menu: Menu = [{
     id: 'about',
     title: 'About',
-    sub: []
+    sub: allAbouts.map(({ id, slug, title }) => ({ id, title, slug: `/about/${slug}` })),
   }, {
     id: 'shop',
     title: 'Shop',
@@ -36,7 +36,10 @@ export const buildMenu = async (): Promise<Menu> => {
   }, {
     id: 'help',
     title: 'Help',
-    sub: allFaqSections.map(({ id, title }) => ({ id, title, slug: `/` })),
+    sub: [
+      { id: 'faq', title: 'Faq', slug: '/faq' },
+      ...allFaqSections.map(({ id, title, slug }) => ({ id, title, slug: `/faq/${slug}` }))
+    ],
   }, {
     id: 'legal',
     title: 'Legal',

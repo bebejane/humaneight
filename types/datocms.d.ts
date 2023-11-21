@@ -23,6 +23,13 @@ type Scalars = {
   UploadId: { input: any; output: any; }
 };
 
+type AboutModelContentField = {
+  __typename?: 'AboutModelContentField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
 type AboutModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<AboutModelFilter>>>;
@@ -34,7 +41,10 @@ type AboutModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  title?: InputMaybe<StringFilter>;
 };
 
 enum AboutModelOrderBy {
@@ -55,7 +65,9 @@ enum AboutModelOrderBy {
   _updatedAt_ASC = '_updatedAt_ASC',
   _updatedAt_DESC = '_updatedAt_DESC',
   id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC'
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
 }
 
 /** Record of type About (about) */
@@ -74,7 +86,10 @@ type AboutRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  content?: Maybe<AboutModelContentField>;
   id: Scalars['ItemId']['output'];
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
 };
 
 
@@ -4017,6 +4032,23 @@ type focalPoint = {
   y: Scalars['FloatType']['output'];
 };
 
+type AllAboutsQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+}>;
+
+
+type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
+
+type AboutQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
+
+type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
+
 type AllCollectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
@@ -4081,7 +4113,7 @@ type MenuQueryVariables = Exact<{
 }>;
 
 
-type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;

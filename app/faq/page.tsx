@@ -2,7 +2,7 @@
 import s from './page.module.scss'
 import { AllFaqSectionsDocument, AllFaqsDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
-import FaqItem from './FaqItem';
+import FaqItem from './components/FaqItem';
 import Link from 'next/link';
 
 export type Props = {

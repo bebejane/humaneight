@@ -4,7 +4,7 @@ import s from './FaqItem.module.scss'
 import cn from 'classnames'
 import Link from "next/link"
 import StructuredContent from '@components/layout/StructuredContent';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export type Props = {

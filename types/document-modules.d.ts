@@ -1,4 +1,15 @@
 
+declare module '*/about.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllAbouts: DocumentNode;
+export const About: DocumentNode;
+export const AboutFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/collection.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
