@@ -12,15 +12,27 @@ export async function POST(req: Request) {
     const paths: string[] = []
     const tags: string[] = [id]
 
-    if (api_key) tags.push(api_key)
+    if (api_key)
+      tags.push(api_key)
 
     switch (api_key) {
+      case 'start':
+      case 'general':
+        paths.push(`/`)
+        break;
+      case 'faq':
+        paths.push(`/faq`)
+        break;
+      case 'faq_section':
+        paths.push(`/faq/${slug}`)
       case 'product':
         paths.push(`/products/${slug}`)
         break;
-      case 'start':
-        paths.push(`/`)
+      case 'collection':
+        paths.push(`/shop/${slug}`)
         break;
+      case 'about':
+        paths.push(`/about/${slug}`)
       default:
         break;
     }

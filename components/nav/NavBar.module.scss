@@ -19,6 +19,7 @@
     align-items: baseline;
     padding: 0;
     width: 100%;
+    z-index: 1;
 
     h1 {
       position: absolute;
@@ -33,6 +34,7 @@
     button {
       background-color: transparent !important;
       padding: 0;
+
       &:hover {
         color: var(--black);
       }
@@ -65,7 +67,7 @@
     list-style: none;
   }
 
-  > ul {
+  >ul {
     flex-direction: row;
     width: 100%;
     padding-left: 2rem;
@@ -76,7 +78,7 @@
       padding-bottom: 1em;
     }
 
-    > li {
+    >li {
       width: 25%;
 
       ul {
@@ -109,6 +111,7 @@
       label {
         padding-right: 0.2em;
       }
+
       select {
         background-color: var(--background);
       }

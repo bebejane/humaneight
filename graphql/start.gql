@@ -1,0 +1,28 @@
+query Start {
+	start {
+		id
+		sections {
+			__typename
+			... on StartProductSectionBlockRecord {
+				id
+				headline
+				selectedProducts {
+					product {
+						...ProductLightFragment
+					}
+				}
+			}
+			... on StartFullscreenSectionBlockRecord {
+				id
+				media {
+					...MediaFragment
+				}
+			}
+			... on StartProductShortcutBlockRecord {
+				product {
+					...ProductLightFragment
+				}
+			}
+		}
+	}
+}

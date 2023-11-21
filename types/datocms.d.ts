@@ -3462,9 +3462,9 @@ type StartEditorialSectionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Block of type Fullscreen section (start_fullscreen_section) */
-type StartFullscreenSectionRecord = RecordInterface & {
-  __typename?: 'StartFullscreenSectionRecord';
+/** Block of type Fullscreen section (start_fullscreen_section_block) */
+type StartFullscreenSectionBlockRecord = RecordInterface & {
+  __typename?: 'StartFullscreenSectionBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3483,16 +3483,16 @@ type StartFullscreenSectionRecord = RecordInterface & {
 };
 
 
-/** Block of type Fullscreen section (start_fullscreen_section) */
-type StartFullscreenSectionRecord_seoMetaTagsArgs = {
+/** Block of type Fullscreen section (start_fullscreen_section_block) */
+type StartFullscreenSectionBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-type StartModelSectionsField = StartFullscreenSectionRecord | StartProductSectionRecord;
+type StartModelSectionsField = StartFullscreenSectionBlockRecord | StartProductSectionBlockRecord | StartProductShortcutBlockRecord;
 
-/** Block of type Product section (start_product_section) */
-type StartProductSectionRecord = RecordInterface & {
-  __typename?: 'StartProductSectionRecord';
+/** Block of type Product section (start_product_section_block) */
+type StartProductSectionBlockRecord = RecordInterface & {
+  __typename?: 'StartProductSectionBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3508,18 +3508,18 @@ type StartProductSectionRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   headline?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
-  selectedProducts: Array<StartProductShortcutRecord>;
+  selectedProducts: Array<StartProductShortcutBlockRecord>;
 };
 
 
-/** Block of type Product section (start_product_section) */
-type StartProductSectionRecord_seoMetaTagsArgs = {
+/** Block of type Product section (start_product_section_block) */
+type StartProductSectionBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Block of type Product shortcut (start_product_shortcut) */
-type StartProductShortcutRecord = RecordInterface & {
-  __typename?: 'StartProductShortcutRecord';
+/** Block of type Product shortcut (start_product_shortcut_block) */
+type StartProductShortcutBlockRecord = RecordInterface & {
+  __typename?: 'StartProductShortcutBlockRecord';
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -3534,12 +3534,12 @@ type StartProductShortcutRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  product?: Maybe<ProductRecord>;
+  product: ProductRecord;
 };
 
 
-/** Block of type Product shortcut (start_product_shortcut) */
-type StartProductShortcutRecord_seoMetaTagsArgs = {
+/** Block of type Product shortcut (start_product_shortcut_block) */
+type StartProductShortcutBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4160,6 +4160,8 @@ type ImageFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: st
 
 type ImageFragment = ImageFragment_FileField_ | ImageFragment_ImageFileField_;
 
+type MediaFragment = { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } };
+
 type SiteFragment = { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: any, content?: string, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string, siteName?: string, titleSuffix?: string, twitterAccount?: string, fallbackSeo?: { __typename?: 'SeoField', description?: string, title?: string, twitterCard?: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
 
 type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
@@ -4213,3 +4215,8 @@ type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId?:
 type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> };
 
 type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
+
+type StartQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, sections: Array<{ __typename: 'StartFullscreenSectionBlockRecord', id: any, media?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } | { __typename: 'StartProductSectionBlockRecord', id: any, headline?: string, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } | { __typename: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } };

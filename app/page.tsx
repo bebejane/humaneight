@@ -1,23 +1,21 @@
 import s from './page.module.scss'
 import Link from "next/link"
-import { format } from 'date-fns';
-import { apiQuery, Markdown, DraftMode } from 'next-dato-utils';
-import { Image } from 'react-datocms';
+import { apiQuery, DraftMode } from 'next-dato-utils';
+import { StartDocument } from '@graphql';
+import Block from '@components/blocks/Block';
 
 export default async function Home() {
 
-  /*
+
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
     tags: ['start'],
-    logs: true,
-    generateTags: true
   });
-  */
-  return (
-    <>
-      <h1>Start</h1>
 
-      <Link href="/products">All Products</Link>
-    </>
+  return (
+    <div>
+      {start?.sections.map((section, i) =>
+        <Block key={i} data={section} />
+      )}
+    </div>
   )
 }

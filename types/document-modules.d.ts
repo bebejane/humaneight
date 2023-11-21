@@ -60,6 +60,15 @@ declare module '*/ImageFragment.gql' {
 }
     
 
+declare module '*/MediaFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const MediaFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/SiteFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -97,6 +106,15 @@ export const AllCartProducts: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
 export const ProductMediaItemFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/start.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Start: DocumentNode;
 
   export default defaultDocument;
 }

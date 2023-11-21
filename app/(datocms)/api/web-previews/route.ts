@@ -9,18 +9,28 @@ export async function POST(req: NextRequest) {
 
     let path = null;
 
+    const { id } = item
     const { slug } = item.attributes
+    const { api_key } = itemType.attributes
 
-    switch (itemType.attributes.api_key) {
+    switch (api_key) {
       case 'start':
+      case 'general':
         path = `/`
         break;
-      case 'post':
-        path = `/posts/${slug}`
+      case 'faq':
+        path = `/faq#${id}`
         break;
-      case 'menu':
-        path = `/`
+      case 'faq_section':
+        path = `/faq/${slug}`
+      case 'product':
+        path = `/products/${slug}`
         break;
+      case 'collection':
+        path = `/shop/${slug}`
+        break;
+      case 'about':
+        path = `/about/${slug}`
       default:
         break;
     }
