@@ -1,10 +1,11 @@
 :root {
 	--black: #161616;
-	--white: #f6f3ee;
+	--beige: #f6f3ee;
+	--white: #ffffff;
 	--red: #bf0000;
 	--gray: #d9d9d9;
 	--outer-margin: 1.2rem;
-	--background: var(--white);
+	--background: var(--beige);
 	--foreground: var(--black);
 	--navSize: 2.5rem;
 	--navbar-height: calc(var(--navSize) + ((2 * var(--outer-margin)) * 0.6));
@@ -18,9 +19,11 @@
 	--z-menu: 2000;
 	--space: 1rem;
 
-	@include mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 
-	@include mq($from: tablet, $until: desktop) {}
+	@include mq($from: tablet, $until: desktop) {
+	}
 }
 
 body {
@@ -91,9 +94,11 @@ main {
 	grid-gap: var(--gutter);
 }
 
-article p a {}
+article p a {
+}
 
-.intro {}
+.intro {
+}
 
 button {
 	color: var(--foreground);
@@ -106,9 +111,11 @@ button {
 	transition: all 0.2s;
 	padding: 1em;
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 figcaption {

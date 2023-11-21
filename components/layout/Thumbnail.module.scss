@@ -5,19 +5,19 @@
 
   figure {
     .image {
-      max-height: 30vh;
-      aspect-ratio: 4/4;
+      //max-height: 30vh;
+      aspect-ratio: 1/1;
+      background-color: var(--white);
     }
 
     .picture {
       object-fit: contain;
-
     }
 
     figcaption {
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
+      justify-content: space-between;
     }
   }
 }

@@ -29,8 +29,8 @@ export default async function Thumbnail({ product }: Props) {
             pictureClassName={s.picture}
           />
           <figcaption>
-            <h3>{product.title}</h3>
-            <span>{variant?.price?.amount} {variant?.price?.currencyCode}</span>
+            <h3 className="body">{product.title}</h3>
+            <p>{variant?.price?.amount} {variant?.price?.currencyCode}</p>
           </figcaption>
         </figure>
       }

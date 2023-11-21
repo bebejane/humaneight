@@ -3,6 +3,7 @@ body {
   font-size: 16px;
   font-weight: normal;
   font-family: $body-font;
+  line-height: 1em;
 
   @include mq($from: tablet) {
     font-size: 18px;
@@ -26,15 +27,22 @@ input,
 select,
 button {
   font-family: $body-font;
+  line-height: 1;
 }
 
 .nav {
   font-size: var(--navSize);
+  line-height: 1;
 }
 
 p,
-h1.body {
+.body {
   font-size: 1.4rem;
   line-height: 1.2em;
   margin-bottom: 0;
+}
+
+p.small,
+.small {
+  font-size: 1rem;
 }

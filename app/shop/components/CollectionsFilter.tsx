@@ -17,9 +17,9 @@ export default async function CollectionsFilter({ collectionId }: Props) {
 
   return (
     <ul className={s.filter}>
-      <li className={cn(!collectionId && s.selected)}><Link href={`/shop`}>All</Link></li>
+      <li className={cn(!collectionId && s.selected, "nav")}><Link href={`/shop`}>All</Link></li>
       {allCollections.map(({ id, title, slug }) => (
-        <li key={slug} className={cn(id === collectionId && s.selected)}>
+        <li key={slug} className={cn(id === collectionId && s.selected, "nav")}>
           <Link href={`/shop/${slug}`}>{title}</Link>
         </li>
       ))}
