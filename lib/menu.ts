@@ -32,7 +32,7 @@ export const buildMenu = async (): Promise<Menu> => {
   }, {
     id: 'shop',
     title: 'Shop',
-    sub: allCollections.map(({ id, slug, title }) => ({ id, title, slug: `/collections/${slug}` })),
+    sub: allCollections.map(({ id, slug, title }) => ({ id, title, slug: `/shop/${slug}` })),
   }, {
     id: 'help',
     title: 'Help',

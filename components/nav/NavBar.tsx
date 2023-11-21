@@ -4,8 +4,9 @@ import Link from "next/link";
 import s from './NavBar.module.scss'
 import cn from "classnames";
 import Cart from "@components/shopify/Cart";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import type { Menu } from "@lib/menu";
+import { usePathname } from "next/navigation";
 
 export type Props = {
   menu: Menu
@@ -14,6 +15,11 @@ export type Props = {
 export default function NavBar({ menu }: Props) {
 
   const [showMenu, setShowMenu] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [pathname]);
 
   return (
     <>
