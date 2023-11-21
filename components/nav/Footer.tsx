@@ -3,9 +3,6 @@
 import Link from "next/link";
 import s from './Footer.module.scss'
 import cn from "classnames";
-import { apiQuery, DraftMode } from "next-dato-utils";
-import Cart from "@components/Cart";
-import { useState } from "react";
 import type { Menu } from "@lib/menu";
 
 export type Props = {
@@ -23,20 +20,22 @@ export default function Footer({ menu }: Props) {
       <nav>
         <ul className="grid">
           {menu.map(({ id, title, sub, slug }) => (
-            <li key={id}>
-              <h3 className="small">{title}</h3>
-              <ul>
-                {sub?.map(({ id, title, slug }) => (
-                  <li key={id}>
-                    <Link href={`${slug}`}>
-                      {title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+            <ul>
+              {menu.map(({ id, title, sub }) => (
+                <li key={id}>
+                  <h3 className="small">{title}</h3>
+                  <ul>
+                    {sub?.map(({ id, title, slug, href }) => (
+                      <li key={id}>
+                        <Link href={href ?? slug ?? ''}>
+                          {title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
       </nav>
     </footer>
   );
