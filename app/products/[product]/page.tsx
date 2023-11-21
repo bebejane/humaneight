@@ -7,8 +7,8 @@ import { DraftMode, apiQuery } from 'next-dato-utils';
 import shopifyQuery from '@shopify/shopify-query';
 import { ShopifyProductDocument } from '@shopify/graphql';
 import StructuredContent from '@components/layout/StructuredContent';
-import VariantsForm from '@app/products/[product]/VariantsForm';
-import ProductPresentation from '@app/products/[product]/ProductPresentation';
+import VariantsForm from './components/VariantsForm';
+import ProductPresentation from './components/ProductPresentation';
 
 export async function generateStaticParams() {
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
