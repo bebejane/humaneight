@@ -9,6 +9,7 @@
 	--navSize: 2.5rem;
 	--navbar-height: calc(var(--navSize) + ((2 * var(--outer-margin)) * 0.6));
 	--gutter: 0.8rem;
+	--gutter: 1rem;
 
 	--letter-space: 0.2em;
 
@@ -83,6 +84,12 @@ a {
 main {
 	margin-right: var(--outer-margin);
 	margin-left: var(--outer-margin);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	grid-gap: var(--gutter);
 }
 
 article p a {

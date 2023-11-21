@@ -1,7 +1,6 @@
 .presentation {
-  flex: 0 0 50%;
-  display: flex;
-  flex-direction: column;
+  grid-column-start: 5;
+  grid-column-end: 13;
 
   .section {
     display: flex;
@@ -21,10 +20,9 @@
       }
     }
 
-    >p {
+    > p {
       margin-top: 1rem;
+      margin-bottom: 2rem;
     }
   }
-
-
 }

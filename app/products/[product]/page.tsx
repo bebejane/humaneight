@@ -9,6 +9,7 @@ import { ShopifyProductDocument } from '@shopify/graphql';
 import StructuredContent from '@components/layout/StructuredContent';
 import VariantsForm from './components/VariantsForm';
 import ProductPresentation from './components/ProductPresentation';
+import cn from 'classnames';
 
 export async function generateStaticParams() {
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
@@ -36,10 +37,10 @@ export default async function Product({ params }: { params: { product: string } 
 
   return (
     <>
-      <section className={s.product}>
+      <section className={cn(s.product, "grid")}>
         <div className={s.details}>
           <header>
-            <h1>{product.title}</h1>
+            <h1 class="body">{product.title}</h1>
             <div className={s.price}><p>{variant.price.amount} {variant.price.currencyCode}</p></div>
           </header>
           <StructuredContent id={product.id} content={product.shortSummary} />
