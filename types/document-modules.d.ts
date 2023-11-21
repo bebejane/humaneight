@@ -42,6 +42,15 @@ export const FaqFragment: DocumentNode;
 }
     
 
+declare module '*/ImageCartFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ImageCartFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -84,6 +93,7 @@ declare module '*/product.gql' {
   export const AllProducts: DocumentNode;
 export const Product: DocumentNode;
 export const AllProductByCollection: DocumentNode;
+export const AllCartProducts: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
 export const ProductMediaItemFragment: DocumentNode;

@@ -26,9 +26,11 @@ export default function ProductPresentation({ product }: VariantFormProps) {
               const selectedVariation = variation.filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
               const media = selectedVariation.map(({ media }) => ({ media })).flat()
 
-              if (media.length === 0) return <figure>No images in color {color}</figure>
-              return media.map(({ media: { responsiveImage } }) =>
-                <figure className={cn(media.length > 1 && s.double)}>
+              if (media.length === 0)
+                return <figure key={id}>No images in color {color}</figure>
+
+              return media.map(({ media: { id, responsiveImage } },) =>
+                <figure className={cn(media.length > 1 && s.double)} key={id}>
                   <Image
                     key={id}
                     className={s.image}
@@ -42,6 +44,6 @@ export default function ProductPresentation({ product }: VariantFormProps) {
           </div>
         )
       })}
-    </div >
+    </div>
   )
 }

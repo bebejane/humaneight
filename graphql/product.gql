@@ -22,6 +22,19 @@ query AllProductByCollection($collectionId: ItemId, $first: IntType = 100, $skip
 	}
 }
 
+query AllCartProducts($shopifyIds: [String]!, $first: IntType = 100, $skip: IntType = 0) {
+	allProducts(first: $first, skip: $skip, filter: { shopifyId: { in: $shopifyIds } }) {
+		id
+		shopifyId
+		image {
+			...ImageCartFragment
+		}
+	}
+	_allProductsMeta(filter: { shopifyId: { in: $shopifyIds } }) {
+		count
+	}
+}
+
 fragment ProductLightFragment on ProductRecord {
 	id
 	shopifyId
