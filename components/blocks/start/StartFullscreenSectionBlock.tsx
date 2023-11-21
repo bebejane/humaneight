@@ -26,6 +26,7 @@ export default async function StartFullscreenSectionBlock({ data: { id, media } 
           muted
           loop
           playsInline
+          poster={media?.video?.thumbnailUrl}
           //@ts-ignore
           src={media?.video?.mp4high}
         />

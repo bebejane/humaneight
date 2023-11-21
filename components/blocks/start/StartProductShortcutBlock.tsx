@@ -13,12 +13,14 @@ export default async function StartProductShortcutBlock({ data: { id, product } 
 
   return (
     <section className={cn(s.container)}>
-      {product.title} Shortcut
-      {product.image &&
-        <figure>
-          <Image data={product.image.responsiveImage} />
-        </figure>
-      }
+      <Link href={`/products/${product.slug}`}>
+        {product.title} Shortcut
+        {product.image &&
+          <figure>
+            <Image data={product.image.responsiveImage} />
+          </figure>
+        }
+      </Link>
     </section>
   )
 
