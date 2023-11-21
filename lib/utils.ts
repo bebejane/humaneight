@@ -1,4 +1,4 @@
-import client from "/lib/client"
+import client from "@lib/client"
 import type { ApiError } from "@datocms/cma-client"
 
 export const parseDatoError = (err: any): string => {

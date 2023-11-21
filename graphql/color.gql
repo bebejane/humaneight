@@ -1,0 +1,13 @@
+query AllProductColors($first: IntType = 100, $skip: IntType = 0) {
+	allProductColors(first: $first, skip: $skip) {
+		...ProductColorFragment
+	}
+	_allProductColorsMeta {
+		count
+	}
+}
+
+fragment ProductColorFragment on ProductColorRecord {
+	id
+	title
+}

@@ -1,0 +1,156 @@
+.miniCart {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  top: 0;
+  z-index: var(--z-cart);
+  padding: var(--outer-margin);
+
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    outline: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+
+    .icon {
+      border: 0;
+      width: 30px;
+      height: 50px;
+      background: url('/images/cart.svg') no-repeat center center;
+    }
+
+    &.inverted {
+      .icon {
+        background: url('/images/cart_inverted.svg') no-repeat center center;
+      }
+
+      color: var(--white);
+    }
+
+    .count {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      top: 0.2em;
+    }
+  }
+}
+
+.cart {
+  position: fixed;
+  display: block;
+  background-color: var(--gray);
+  right: 0;
+  top: 0;
+  z-index: var(--z-cart);
+  overflow: hidden;
+  width: 30vw;
+  padding: var(--outer-margin);
+
+  &.updating {
+    opacity: 0.9;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+
+    h3 {
+      flex: 1 1 auto;
+    }
+
+    .currency {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .close {
+      cursor: pointer;
+      font-size: 3rem;
+    }
+  }
+
+  ul.items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      margin-top: 1em;
+
+      .thumb {
+        width: 3rem;
+        height: 3rem;
+        background-color: var(--black);
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .amount {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+
+        .price {
+          flex: 1 1 auto;
+        }
+
+        .remove {
+          flex: 0 0;
+        }
+      }
+    }
+
+  }
+
+  .total {
+    display: flex;
+    flex-direction: row;
+
+    div:first-child {
+      flex: 1 1 auto;
+    }
+  }
+
+  button.checkout {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+}
+
+.empty {
+  text-align: center;
+}
+
+.error {
+  color: var(--red);
+}

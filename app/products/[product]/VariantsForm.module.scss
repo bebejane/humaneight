@@ -1,0 +1,56 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+
+  fieldset {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    legend {
+      display: block;
+      flex: 0 0;
+    }
+
+    .sizes {
+      display: flex;
+      flex-direction: row;
+
+      input[type="radio"] {
+        display: none;
+
+        &[checked]+label {
+          background-color: var(--black);
+          color: var(--white);
+        }
+
+        &[disabled]+label {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+      }
+
+      label {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--black);
+        max-width: 30px;
+      }
+    }
+
+    >div {
+      flex: 1 1 auto;
+
+    }
+
+    select {}
+  }
+
+}

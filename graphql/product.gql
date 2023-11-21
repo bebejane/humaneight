@@ -1,5 +1,5 @@
-query AllProducts($first: IntType = 100) {
-	products: allProducts(first: $first) {
+query AllProducts($first: IntType = 100, $skip: IntType = 0) {
+	allProducts(first: $first, skip: $skip) {
 		...ProductLightFragment
 	}
 	_allProductsMeta {
@@ -7,8 +7,45 @@ query AllProducts($first: IntType = 100) {
 	}
 }
 
-query Product($handle: String) {
-	product(filter: { handle: { eq: $handle } }) {
+query Product($slug: String) {
+	product(filter: { slug: { eq: $slug } }) {
 		...ProductFragment
 	}
+}
+
+fragment ProductLightFragment on ProductRecord {
+	id
+	shopifyId
+	title
+	slug
+	image {
+		...ImageFragment
+	}
+	shopifyData
+}
+
+fragment ProductFragment on ProductRecord {
+	id
+	shopifyId
+	title
+	description {
+		blocks
+		value
+		links
+	}
+	shortSummary {
+		blocks
+		value
+		links
+	}
+	description {
+		blocks
+		value
+		links
+	}
+	slug
+	image {
+		...ImageFragment
+	}
+	shopifyData
 }
