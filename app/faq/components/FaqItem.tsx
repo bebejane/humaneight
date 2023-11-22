@@ -20,18 +20,18 @@ export default function FaqItem({ faq }: Props) {
   useEffect(() => {
     const hash = window.location.hash;
     setSelected(hash === `#${faq.id}`);
-    if (!hash) window.scrollTo(0, 0);
+    //if (!hash) window.scrollTo(0, 0);
   }, [params, faq.id]);
 
   return (
-    <li key={faq.id} className={s.faq}>
+    <li id={faq.id} key={faq.id} className={s.faq}>
       <div className={s.question}>
         <h3 className="body">{faq.question}</h3>
         <Link className="body" href={selected ? pathname : `#${faq.id}`} scroll={true}>
           {selected ? '-' : '+'}
         </Link>
       </div>
-      <div className={cn(s.answer, selected && s.show, "mid")} id={faq.id}>
+      <div className={cn(s.answer, selected && s.show, "mid")}>
         <StructuredContent id={faq.id} content={faq.answer} />
       </div>
     </li>

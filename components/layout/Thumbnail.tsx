@@ -4,9 +4,9 @@ import s from './Thumbnail.module.scss'
 import { Image } from 'react-datocms';
 import Link from 'next/link';
 import shopifyQuery from '@shopify/shopify-query';
-import Shop from '@app/shop/page';
 import { ShopifyProductDocument } from '@shopify/graphql';
 import cn from 'classnames';
+import Price from '@components/shopify/Price';
 
 export type Props = {
   product: ProductRecord,
@@ -30,11 +30,18 @@ export default async function Thumbnail({ product }: Props) {
             placeholderClassName={s.picture}
             pictureClassName={s.picture}
           />
+          {product.imageSecondary &&
+            <Image
+              data={product.imageSecondary?.responsiveImage}
+              className={cn(s.image, s.secondary)}
+              pictureClassName={s.picture}
+              usePlaceholder={false}
+              placeholderClassName={s.picture}
+            />
+          }
           <figcaption>
             <h3 className="body">{product.title}</h3>
-            <p>{variant?.price?.amount} {variant?.price?.currencyCode}</p>
-
-
+            <p><Price money={variant?.price as MoneyV2} /></p>
           </figcaption>
           <ul>
             {product.usp.map(({ id, title, description }) =>
@@ -44,7 +51,6 @@ export default async function Thumbnail({ product }: Props) {
               </li>
             )}
           </ul>
-
         </figure>
       }
     </Link>

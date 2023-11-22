@@ -30,14 +30,16 @@
     padding-left: 1em !important;
 
     .icon {
-      border: 0;
-      width: 30px;
-      height: 50px;
+
+      width: 24px;
+      height: 33px;
       background: url("/images/cart.svg") no-repeat center center;
     }
 
     &.inverted {
       .icon {
+        width: 31px;
+        height: 41px;
         background: url("/images/cart_inverted.svg") no-repeat center center;
       }
 

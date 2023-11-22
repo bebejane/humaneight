@@ -18,11 +18,9 @@
 	--z-cart: 1200;
 	--z-menu: 2000;
 
-	@include mq($until: tablet) {
-	}
+	@include mq($until: tablet) {}
 
-	@include mq($from: tablet, $until: desktop) {
-	}
+	@include mq($from: tablet, $until: desktop) {}
 }
 
 body {
@@ -34,11 +32,12 @@ body {
 	font-family: $body-font;
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
-	overflow-x: hidden;
+
 }
 
 html {
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -100,6 +99,7 @@ main {
 
 	ol {
 		padding-left: 1em;
+
 		li {
 			padding-left: 0.5em;
 		}
@@ -127,16 +127,15 @@ button {
 
 	&.full {
 		width: 100%;
+
 		&:hover {
 			letter-spacing: var(--letter-space);
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 figcaption {

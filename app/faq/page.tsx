@@ -46,8 +46,10 @@ export default async function FaqPage({ params }: Props) {
         <h1>FAQ</h1>
         <ul className={s.faqs}>
           {faqSections.map(section => (
-            <li key={section.id} className={s.section}>
-              <h2 className="body"><Link href={`/faq/${section.slug}`}>{section.title}</Link></h2>
+            <li id={section.slug} key={section.id} className={s.section} >
+              <h2 className="body">
+                <Link href={`/faq#${section.slug}`}>{section.title}</Link>
+              </h2>
               <ul className="structured">
                 {section.faqs.map(faq =>
                   <FaqItem key={faq.id} faq={faq} />

@@ -2,8 +2,11 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  let currency = request.cookies.get('country')?.value ?? 'SE'
-  request.cookies.set('country', currency)
+  const country = request.cookies.get('country')?.value ?? 'SE'
+  const currency = request.cookies.get('currency')?.value ?? 'SEK'
+  request.cookies.set('country', country)
+  request.cookies.set('currency', currency)
+
   return NextResponse.next()
 }
 

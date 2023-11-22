@@ -1,0 +1,10 @@
+fragment ImageThumnbailFragment on FileFieldInterface {
+	format
+	id
+	mimeType
+	url
+	title
+	responsiveImage(imgixParams: { ar: "1:1", fit: fill, w: 800, auto: format }) {
+		...ResponsiveImageFragment
+	}
+}

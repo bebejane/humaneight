@@ -45,7 +45,10 @@ fragment ProductLightFragment on ProductRecord {
 		title
 	}
 	image {
-		...ImageFragment
+		...ImageThumnbailFragment
+	}
+	imageSecondary {
+		...ImageThumnbailFragment
 	}
 	usp {
 		id
@@ -80,6 +83,9 @@ fragment ProductFragment on ProductRecord {
 	}
 	slug
 	image {
+		...ImageFragment
+	}
+	imageSecondary {
 		...ImageFragment
 	}
 	usp {

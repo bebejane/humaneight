@@ -32,13 +32,18 @@ export const buildMenu = async (): Promise<Menu> => {
   }, {
     id: 'shop',
     title: 'Shop',
-    sub: allCollections.map(({ id, slug, title }) => ({ id, title, slug: `/shop/${slug}` })),
+    sub: [{
+      id: 'all',
+      title: 'All',
+      slug: '/shop'
+    },
+    ...allCollections.map(({ id, slug, title }) => ({ id, title, slug: `/shop/${slug}` }))],
   }, {
     id: 'help',
     title: 'Help',
     sub: [
       { id: 'faq', title: 'Faq', slug: '/faq' },
-      ...allFaqSections.map(({ id, title, slug }) => ({ id, title, slug: `/faq/${slug}` }))
+      ...allFaqSections.map(({ id, title, slug }) => ({ id, title, slug: `/faq#${slug}` }))
     ],
   }, {
     id: 'legal',

@@ -5,12 +5,31 @@
     position: relative;
 
     .image {
+      position: relative;
       aspect-ratio: 1/1;
       background-color: var(--white);
+
+      &.secondary {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        display: none;
+
+      }
+
+
+
+    }
+
+    &:hover {
+      .secondary {
+        display: block !important;
+      }
     }
 
     .picture {
       object-fit: contain;
+
     }
 
     figcaption {
@@ -22,8 +41,8 @@
     ul {
       display: flex;
       list-style: none;
-      //justify-content: space-between;
       padding-top: 0.8rem;
+
       li {
         .title {
           display: block;
@@ -33,6 +52,7 @@
           padding-bottom: 0.9em;
           background-color: var(--white);
           margin-right: 0.3em;
+
           &:hover {
             background-color: var(--black);
             color: var(--white);
