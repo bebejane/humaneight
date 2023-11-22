@@ -6,6 +6,8 @@ import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import Footer from '@components/nav/Footer';
 import { buildMenu, type Menu } from '@lib/menu';
+import shopifyQuery from '@shopify/shopify-query';
+import { LocalizationDocument } from '@shopify/graphql';
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -14,16 +16,17 @@ export type LayoutProps = {
 export default async function RootLayout({ children }: LayoutProps) {
 
   const menu = await buildMenu();
+  const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument)
 
   return (
     <>
       <html lang="en">
         <body id="root" >
-          <NavBar menu={menu} />
+          <NavBar menu={menu} localization={localization} />
           <main>
             {children}
           </main>
-          <Footer menu={menu} />
+          <Footer menu={menu} localization={localization} />
         </body>
       </html >
 

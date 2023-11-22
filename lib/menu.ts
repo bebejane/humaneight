@@ -58,10 +58,6 @@ export const buildMenu = async (): Promise<Menu> => {
       { id: 'facebook', title: 'Facebook', href: general?.facebook },
       { id: 'twitter', title: 'Twitter', href: general?.twitter },
     ]
-  }, {
-    id: 'settings',
-    title: 'Settings',
-    sub: []
   }]
   return menu
 }

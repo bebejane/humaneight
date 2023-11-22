@@ -8136,6 +8136,11 @@ type ProductFragment = { __typename?: 'Product', id: string, handle: string, tit
 
 type UserErrorsFragment = { __typename: 'UserError', field?: Array<string>, message: string };
 
+type LocalizationQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LocalizationQuery = { __typename?: 'QueryRoot', localization: { __typename?: 'Localization', availableCountries: Array<{ __typename?: 'Country', isoCode: CountryCode, name: string, unitSystem: UnitSystem, currency: { __typename?: 'Currency', isoCode: CurrencyCode, name: string, symbol: string } }>, country: { __typename?: 'Country', isoCode: CountryCode, name: string, unitSystem: UnitSystem, currency: { __typename?: 'Currency', isoCode: CurrencyCode, name: string, symbol: string }, market?: { __typename?: 'Market', id: string, handle: string } } } };
+
 type AllShopifyProductsQueryVariables = Exact<{
   country?: InputMaybe<CountryCode>;
   first?: InputMaybe<Scalars['Int']['input']>;

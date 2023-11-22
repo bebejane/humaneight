@@ -127,6 +127,15 @@ declare module '*/UserErrorsFragment.gql' {
 }
     
 
+declare module '*/localization.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Localization: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/product.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

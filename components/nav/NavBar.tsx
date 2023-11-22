@@ -4,15 +4,17 @@ import Link from "next/link";
 import s from './NavBar.module.scss'
 import cn from "classnames";
 import Cart from "@components/shopify/Cart";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Menu } from "@lib/menu";
 import { usePathname } from "next/navigation";
+import CurrencySelector from "@components/shopify/CurrencySelector";
 
 export type Props = {
   menu: Menu
-
+  localization: LocalizationQuery['localization']
 }
-export default function NavBar({ menu }: Props) {
+
+export default function NavBar({ menu, localization }: Props) {
 
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
@@ -27,7 +29,7 @@ export default function NavBar({ menu }: Props) {
         <menu>
           <button className="nav nav-hover" onClick={() => setShowMenu(!showMenu)}>Menu</button>
           <h1 className="nav"><Link href="/">Humaneight</Link></h1>
-          <Cart />
+          <Cart localization={localization} />
         </menu>
       </nav>
       <nav className={cn(s.desktop, showMenu && s.show)}>
@@ -50,14 +52,7 @@ export default function NavBar({ menu }: Props) {
         </ul>
 
         <div className={s.footer}>
-          <form>
-            <label>
-              Change location
-            </label>
-            <select>
-              <option>SE</option>
-            </select>
-          </form>
+          <CurrencySelector localization={localization} label="Change location" />
           <div>
             Customize our website for your needs
           </div>

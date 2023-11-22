@@ -4,12 +4,14 @@ import Link from "next/link";
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
+import CurrencySelector from "@components/shopify/CurrencySelector";
 
 export type Props = {
-  menu: Menu
+  menu: Menu,
+  localization: LocalizationQuery['localization']
 
 }
-export default function Footer({ menu }: Props) {
+export default function Footer({ menu, localization }: Props) {
   return (
     <footer className={s.footer}>
       <img src="/images/logo.svg"></img>
@@ -32,6 +34,15 @@ export default function Footer({ menu }: Props) {
               </ul>
             </li>
           ))}
+          <li>
+            <h3 className="small">Settings</h3>
+            <ul>
+              <li>
+                <CurrencySelector localization={localization} label="Change location" />
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </nav>
     </footer >
