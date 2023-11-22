@@ -114,8 +114,6 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
     await client.items.unpublish(record.id)
   else
     await client.items.publish(record.id)
-
-
 }
 
 const mapObject = (object: ObjectMap, data: any, item: ObjectType): any => {

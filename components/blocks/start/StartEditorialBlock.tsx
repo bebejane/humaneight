@@ -7,14 +7,16 @@ type Props = {
   data: StartEditorialBlockRecord
 }
 
-export default async function StartEditorialBlock({ data: { id, text, buttonText, headline, media } }: Props) {
+export default async function StartEditorialBlock({ data: { id, text, buttonText, headline, media, about } }: Props) {
 
   return (
     <section className={s.editorial}>
       <div>
         <h2>{headline}</h2>
         <p>{text}</p>
-        <button className="full">{buttonText}</button>
+        <Link href={`/about/${about.slug}`}>
+          <button className="full">{buttonText}</button>
+        </Link>
       </div>
       <figure>
         {media.responsiveImage &&

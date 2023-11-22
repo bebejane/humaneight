@@ -25,8 +25,6 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
   const handleColorChange = (e: React.ChangeEvent<HTMLSelectElement>) => setSearchParam('color', e.target.value)
   const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchParam('size', e.target.value)
 
-  console.log(color, size, variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
-
   return (
     <form className={s.form}>
       <fieldset>

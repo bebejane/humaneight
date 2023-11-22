@@ -7,7 +7,7 @@ query AllCollections($first: IntType = 100, $skip: IntType = 0) {
 	}
 }
 
-query Collection($slug: String!) {
+query Collection($slug: String) {
 	collection(filter: { slug: { eq: $slug } }) {
 		...CollectionFragment
 	}

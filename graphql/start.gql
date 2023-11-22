@@ -26,6 +26,11 @@ query Start {
 				media {
 					...MediaFragment
 				}
+				about {
+					id
+					slug
+					title
+				}
 			}
 		}
 	}

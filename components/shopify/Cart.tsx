@@ -138,7 +138,7 @@ const ProductThumbnail = ({ product }: { product?: ProductRecord }) => {
 }
 
 const fetchDatoCMSProducts = async (shopifyIds: string[]) => {
-  console.log('fetchDatoCMSProducts')
+
   return apiQuery<AllCartProductsQuery, AllCartProductsQueryVariables>(AllCartProductsDocument, {
     variables: {
       shopifyIds
