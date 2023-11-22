@@ -12,7 +12,10 @@ export default async function StartProductSectionBlock({ data: { id, headline, s
 
   return (
     <section className={cn(s.container)}>
-      <h3>{headline}</h3>
+      <header>
+        <h3>{headline}</h3>
+        <span className="body">View all</span>
+      </header>
       <ThumbnailContainer>
         {selectedProducts.map((product, i) =>
           <Thumbnail key={i} product={product.product} />
