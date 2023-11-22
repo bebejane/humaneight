@@ -1,6 +1,6 @@
 
 import { AboutDocument, AllAboutsDocument } from '@graphql';
-import { apiQuery } from 'next-dato-utils';
+import { apiQuery, DraftMode } from 'next-dato-utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 
 export default async function About({ params }: { params: { about: string } }) {
 
-  const { about } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
+  const { about, draftUrl } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
     variables: {
       slug: params.about
     }
@@ -24,6 +24,7 @@ export default async function About({ params }: { params: { about: string } }) {
   return (
     <>
       <h1>{title}</h1>
+      <DraftMode url={draftUrl} tag={about.id} />
     </>
   )
 }

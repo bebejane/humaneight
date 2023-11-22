@@ -12,8 +12,7 @@ export type Props = {
 
 export default async function Shop({ params }: Props) {
 
-
-  const { collection } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, params?.collection ? {
+  const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, params?.collection ? {
     variables: {
       slug: params?.collection
     }
@@ -38,6 +37,7 @@ export default async function Shop({ params }: Props) {
           ))}
         </ThumbnailContainer>
       </div>
+      <DraftMode url={draftUrl} tag={collection?.id} />
     </>
   )
 }

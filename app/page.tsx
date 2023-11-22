@@ -6,16 +6,18 @@ import Block from '@components/blocks/Block';
 
 export default async function Home() {
 
-
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
     tags: ['start'],
   });
 
   return (
-    <div>
-      {start?.sections.map((section, i) =>
-        <Block key={i} data={section} />
-      )}
-    </div>
+    <>
+      <div>
+        {start?.sections.map((section, i) =>
+          <Block key={i} data={section} />
+        )}
+      </div>
+      <DraftMode url={draftUrl} tag={start?.id} />
+    </>
   )
 }

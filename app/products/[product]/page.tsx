@@ -33,7 +33,7 @@ export default async function Product({ params }: { params: { product: string } 
     return notFound();
 
   if (!shopifyProduct)
-    return <div>Shopify product not found for slug "{params.product}"</div>
+    return <div>Shopify product not found for slug {params.product}</div>
 
   return (
     <>
@@ -51,6 +51,7 @@ export default async function Product({ params }: { params: { product: string } 
         </div>
         <ProductPresentation product={product} />
       </section>
+      <DraftMode url={draftUrl} tag={product.id} />
     </>
   )
 }
