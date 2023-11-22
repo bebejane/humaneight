@@ -26,7 +26,7 @@
 		"datocms-structured-text-utils": "^2.0.4",
 		"graphql": "^16.8.1",
 		"is-integer": "^1.0.7",
-		"next": "14.0.4-canary.10",
+		"next": "14.0.3",
 		"next-dato-utils": "github:bebejane/next-dato-utils",
 		"react": "18.2.0",
 		"react-aria": "^3.30.0",
