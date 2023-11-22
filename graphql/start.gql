@@ -3,7 +3,7 @@ query Start {
 		id
 		sections {
 			__typename
-			... on StartProductSectionBlockRecord {
+			... on StartProductBlockRecord {
 				id
 				headline
 				selectedProducts {
@@ -12,8 +12,17 @@ query Start {
 					}
 				}
 			}
-			... on StartFullscreenSectionBlockRecord {
+			... on StartFullscreenBlockRecord {
 				id
+				media {
+					...MediaFragment
+				}
+			}
+			... on StartEditorialBlockRecord {
+				id
+				headline
+				text
+				buttonText
 				media {
 					...MediaFragment
 				}

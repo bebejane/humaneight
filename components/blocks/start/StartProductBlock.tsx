@@ -1,14 +1,14 @@
-import s from './StartProductSectionBlock.module.scss'
+import s from './StartProductBlock.module.scss'
 import cn from 'classnames'
 import ThumbnailContainer from '@components/layout/ThumbnailContainer'
 import Thumbnail from '@components/layout/Thumbnail'
 import Link from 'next/link'
 
 type Props = {
-  data: StartProductSectionBlockRecord
+  data: StartProductBlockRecord
 }
 
-export default async function StartProductSectionBlock({ data: { id, headline, selectedProducts } }: Props) {
+export default async function StartProductBlock({ data: { id, headline, selectedProducts } }: Props) {
 
   return (
     <section className={cn(s.container)}>

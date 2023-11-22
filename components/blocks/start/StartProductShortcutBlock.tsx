@@ -10,7 +10,6 @@ type Props = {
 
 export default async function StartProductShortcutBlock({ data: { id, product } }: Props) {
 
-
   return (
     <section className={cn(s.container)}>
       <Link href={`/products/${product.slug}`}>
