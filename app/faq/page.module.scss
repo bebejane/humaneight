@@ -17,6 +17,7 @@
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));
     grid-gap: var(--gutter);
+    padding-bottom: 2rem;
 
     h2 {
       grid-column: span 2;

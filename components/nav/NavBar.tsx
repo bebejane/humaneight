@@ -39,7 +39,7 @@ export default function NavBar({ menu }: Props) {
               <ul>
                 {sub?.map(({ id, title, slug }) => (
                   <li key={id}>
-                    <Link href={`${slug}`} className="nav">
+                    <Link href={`${slug}`} className="nav nav-hover">
                       {title}
                     </Link>
                   </li>
