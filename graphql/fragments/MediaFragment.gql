@@ -10,16 +10,7 @@ fragment MediaFragment on FileField {
 	width
 	height
 	responsiveImage {
-		alt
-		aspectRatio
-		base64
-		height
-		sizes
-		src
-		srcSet
-		webpSrcSet
-		title
-		width
+		...ResponsiveImageFragment
 	}
 	video {
 		thumbnailUrl

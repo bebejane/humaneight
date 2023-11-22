@@ -1,0 +1,10 @@
+fragment ImageCartThumbnailFragment on FileFieldInterface {
+	format
+	id
+	mimeType
+	url
+	title
+	responsiveImage(imgixParams: { ar: "1:1", fit: crop, w: 200 }) {
+		...ResponsiveImageFragment
+	}
+}
