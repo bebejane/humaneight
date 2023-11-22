@@ -28,7 +28,7 @@
       text-transform: uppercase;
       z-index: -1;
       font-size: calc(var(--navSize) * 1.2);
-      margin-top: -0.05em;
+      margin-top: -0.1em;
     }
 
     button {
@@ -67,7 +67,7 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     flex-direction: row;
     width: 100%;
     padding-left: 2rem;
@@ -78,7 +78,7 @@
       padding-bottom: 1em;
     }
 
-    >li {
+    > li {
       width: 25%;
 
       ul {

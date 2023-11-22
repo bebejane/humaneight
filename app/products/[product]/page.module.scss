@@ -1,26 +1,33 @@
 .product {
   width: 100%;
 
-  >div {
+  > div {
     //flex: 0 0 50%
   }
 
   .details {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-column-start: 1;
     grid-column-end: 5;
+    position: sticky;
+    top: var(--navbar-height);
+    height: calc(100vh - var(--navbar-height));
+    padding-top: 1rem;
 
     header {
       display: flex;
       flex-direction: row;
       padding-bottom: 1rem;
+      padding-top: 1rem;
 
       h1 {
         flex: 1 1 auto;
       }
     }
 
-    >p {}
+    > p {
+    }
   }
 
   .presentation {

@@ -39,11 +39,14 @@ export default async function Product({ params }: { params: { product: string } 
     <>
       <section className={cn(s.product, "grid")}>
         <div className={s.details}>
+          <p className="small">Shop | Hoodies</p>
+
           <header>
             <h1 className="body">{product.title}</h1>
             <div className={s.price}><p>{variant.price.amount} {variant.price.currencyCode}</p></div>
           </header>
           <StructuredContent id={product.id} content={product.shortSummary} />
+          <span>Read more</span>
           <VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />
         </div>
         <ProductPresentation product={product} />

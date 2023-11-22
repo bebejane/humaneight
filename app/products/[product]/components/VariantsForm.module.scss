@@ -3,11 +3,13 @@
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
+  position: absolute;
+  bottom: var(--outer-margin);
 
   fieldset {
     all: unset;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -24,12 +26,12 @@
       input[type="radio"] {
         display: none;
 
-        &[checked]+label {
+        &[checked] + label {
           background-color: var(--black);
           color: var(--white);
         }
 
-        &[disabled]+label {
+        &[disabled] + label {
           opacity: 0.5;
           pointer-events: none;
         }
@@ -45,12 +47,11 @@
       }
     }
 
-    >div {
+    > div {
       flex: 1 1 auto;
-
     }
 
-    select {}
+    select {
+    }
   }
-
 }
