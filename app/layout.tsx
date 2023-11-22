@@ -1,11 +1,11 @@
 import '@styles/index.scss'
 import NavBar from '@components/nav/NavBar';
+import Footer from '@components/nav/Footer';
 import { apiQuery } from 'next-dato-utils';
-import { GlobalDocument, MenuDocument } from '@graphql';
+import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
-import Footer from '@components/nav/Footer';
-import { buildMenu, type Menu } from '@lib/menu';
+import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
 

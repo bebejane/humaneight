@@ -1,10 +1,10 @@
-query Cart($country: CountryCode = US, $id: ID!) @inContext(country: $country) {
+query Cart($country: CountryCode = SE, $id: ID!) @inContext(country: $country) {
 	cart(id: $id) {
 		...CartFragment
 	}
 }
 
-mutation CreateCart($country: CountryCode = US, $cartInput: CartInput)
+mutation CreateCart($country: CountryCode = SE, $cartInput: CartInput)
 @inContext(country: $country) {
 	cartCreate(input: $cartInput) {
 		cart {

@@ -4,6 +4,7 @@ import type { RequestInit } from 'next/dist/server/web/spec-extension/request.js
 import type { DocumentNode, FieldNode, OperationDefinitionNode, VariableDefinitionNode } from 'graphql'
 import { print } from 'graphql/language/printer.js'
 import { cache } from 'react';
+import { cookies } from 'next/headers'
 import isInteger from 'is-integer';
 
 const shopifyApiEndpoint = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE}.myshopify.com/api/${process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION}/graphql.json`;
@@ -48,9 +49,13 @@ export default async function shopifyQuery<T = void, V = void>(query: DocumentNo
     throw new Error('SHOPIFY_STOREFRONT_API_TOKEN is not set')
 
   const queryId = (query.definitions?.[0] as any).name?.value as string
+  const country = cookies().get('country')?.value as CountryCode;
 
   const dedupeOptions: DedupeOptions = {
-    body: JSON.stringify({ query: print(query), variables: options?.variables }) as string,
+    body: JSON.stringify({
+      query: print(query),
+      variables: options?.variables ? { ...options.variables, country } : { country }
+    }) as string,
     ...opt,
     queryId
   }
