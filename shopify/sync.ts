@@ -1,14 +1,13 @@
 'use server'
 
+import client from './datocms-client'
 import shopify from './rest-client'
-import { buildClient } from '@datocms/cma-client-node';
 import { isDeepStrictEqual } from 'util';
 import { itemTypeId } from '@lib/utils';
 import { IProduct, ISmartCollection, ICustomCollection } from 'shopify-api-node';
 import asyncPromiseBatch from 'async-promise-batch';
 import { Item } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes';
-
-const client = buildClient({ apiToken: process.env.DATOCMS_API_TOKEN as string })
+import { ItemInstancesHrefSchema } from '@datocms/cma-client/dist/types/generated/SchemaTypes';
 
 type ObjectType = IProduct | ISmartCollection | ICustomCollection
 
@@ -55,6 +54,7 @@ export const syncAll = async () => {
   console.log('sync started...')
   console.time('sync all')
   console.log(process.env.DATOCMS_API_TOKEN)
+
   for (let i = 0; i < objects.length; i++) {
     const data = await shopify[objects[i].path].list({ limit: 250 })
     await syncObjects(data)
@@ -88,43 +88,12 @@ export const syncObjects = async (data: ObjectType[] | ObjectType, concurrency =
 
 export const upsertObject = async (object: ObjectMap, itemType: string, data: any) => {
 
+  console.log('sync', object.model, data.id)
+
+  data.id = String(data.id)
+
   let record = (await client.items.list({ version: 'latest', filter: { type: itemType, fields: { shopify_id: { eq: data.id } } } }))[0]
   const item = { ...data }
-  console.log('upsert', object.model, data.id)
-
-
-  if (data.image) {
-    console.log('upload image', data.image.src.split('?')[0])
-    try {
-      const upload = await client.uploads.createFromUrl({
-        url: data.image.src,
-        skipCreationIfAlreadyExists: true
-      })
-      data.image = { upload_id: upload.id }
-      console.log('uploaded image', data.image.upload_id)
-    } catch (error) {
-      console.log('error uploading image')
-      delete data.image
-    }
-
-  }
-  /*
-  if (object.model === 'product') {
-    const { options } = data;
-    const productOptionTypeId = await itemTypeId('product_option')
-    const productOptions = await client.items.list({ filter: { type: productOptionTypeId } })
-    console.log(productOptions)
-    const all = options?.map((option: any) =>
-      client.items.create({
-        item_type: { type: 'item_type', id: productOptionTypeId },
-        ...{
-          shopify_id: option.id,
-          name: option.name,
-          values: JSON.stringify(option.values)
-        }
-      }))
-  }
-  */
 
   if (object.model === 'collection') {
     const products = await shopify.collection.products(data.id, { limit: 250 })
@@ -137,10 +106,16 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
   else
     record = await client.items.update(record.id, mapObject(object, data, item));
 
+  if (object.model === 'product')
+    await syncProductVariants(data)
+
+  /*
   if (item.status === 'draft')
     await client.items.unpublish(record.id)
   else
     await client.items.publish(record.id)
+  */
+
 }
 
 const mapObject = (object: ObjectMap, data: any, item: ObjectType): any => {
@@ -199,4 +174,64 @@ export const syncDatoCMSObject = async (item: Item) => {
     throw error
 
   }
+}
+
+export const syncProductVariants = async (data: IProduct) => {
+
+  const { variants, options } = data
+  const itemTypes = await client.itemTypes.list()
+  const variantOptionTypeId = itemTypes.find(t => t.api_key === 'product_variant_option')?.id as string
+  const variantTypeId = itemTypes.find(t => t.api_key === 'product_variant')?.id as string
+  const productTypeId = itemTypes.find(t => t.api_key === 'product')?.id as string
+
+  const [products, productVariants, productOptions] = await Promise.all([
+    listAll({ filter: { type: productTypeId, fields: { shopify_id: { eq: data.id } } } }),
+    listAll({ filter: { type: variantTypeId, fields: { product_shopify_id: { eq: data.id } } } }),
+    listAll({ filter: { type: variantOptionTypeId, fields: { product_shopify_id: { eq: data.id } } } })
+  ])
+
+  const product = products[0].id
+
+  console.log('sync variants/options', data.id, data.title)
+  console.time('sync variants/options')
+
+  const variantsToDelete = productVariants.filter(({ shopify_id }) => !variants.find((pv) => String(pv.id) === String(shopify_id)))
+  const allDeletedVariants = variantsToDelete.map(({ id }) => client.items.destroy(id))
+
+  const allNewVariants = variants?.filter(({ id }) => !productVariants.find((pv) => String(pv.shopify_id) === String(id)))
+    .map(({ product_id: product_shopify_id, id: shopify_id, title, }) =>
+      client.items.create({
+        item_type: { type: 'item_type', id: variantTypeId },
+        product,
+        title,
+        product_shopify_id: String(product_shopify_id),
+        shopify_id: String(shopify_id)
+      }))
+
+
+  const optionsToDelete = productOptions.filter(({ shopify_id }) => !options.find((pv) => String(pv.id) === String(shopify_id)))
+  const allDeletedOptions = optionsToDelete?.map(({ id }) => client.items.destroy(id))
+  const allNewOptions = options?.filter(({ id }) => !productOptions.find((pv) => String(pv.shopify_id) === String(id)))
+    .map(({ product_id: product_shopify_id, id: shopify_id, name, values }) =>
+      client.items.create({
+        item_type: { type: 'item_type', id: variantOptionTypeId },
+        product,
+        name,
+        values: JSON.stringify(values),
+        product_shopify_id: String(product_shopify_id),
+        shopify_id: String(shopify_id)
+      }))
+
+  await Promise.all([...allDeletedVariants, ...allNewVariants, ...allDeletedOptions, ...allNewOptions])
+
+  console.time('sync variants/options')
+}
+
+const listAll = async function listAll(query: ItemInstancesHrefSchema): Promise<Item[]> {
+  const records = await client.items.list(query);
+
+  for await (const record of client.items.listPagedIterator(query)) {
+    records.push(record)
+  }
+  return records;
 }

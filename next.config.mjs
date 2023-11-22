@@ -18,9 +18,7 @@ const nextConfig = {
 		buildActivity: false,
 	},
 	logging: {
-		fetches: {
-			fullUrl: true,
-		},
+		//fetches: {fullUrl: true},
 	},
 	async headers() {
 		return [

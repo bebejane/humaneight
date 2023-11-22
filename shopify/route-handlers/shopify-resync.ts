@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { syncAll } from '../sync';
-import { parseDatoError } from 'next-dato-utils';
+import { parseDatoCMSApiError } from 'next-dato-utils';
 
 export default async function resync(req: NextRequest) {
 
@@ -12,7 +12,10 @@ export default async function resync(req: NextRequest) {
     return NextResponse.json({ success: true, time: Date.now() - now })
 
   } catch (error) {
-    console.log(parseDatoError(error))
-    return NextResponse.json({ success: false, error: parseDatoError(error) })
+    //console.log(JSON.stringify(error))
+    console.log(error)
+    console.log(parseDatoCMSApiError(error))
+
+    return NextResponse.json({ success: false, error: parseDatoCMSApiError(error) })
   }
 }
