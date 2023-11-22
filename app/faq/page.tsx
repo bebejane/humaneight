@@ -15,7 +15,7 @@ export type FaqSectionWithFaqs = FaqSectionRecord & {
 
 export default async function FaqPage({ params }: Props) {
 
-  const { allFaqs } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {
+  const { allFaqs, draftUrl } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {
     all: true,
     variables: {
       first: 100,
@@ -54,6 +54,7 @@ export default async function FaqPage({ params }: Props) {
           </li>
         ))}
       </ul>
+      <DraftMode url={draftUrl} tag={['faq', 'faq_section']} />
     </>
   )
 }

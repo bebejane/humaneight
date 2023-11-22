@@ -314,9 +314,9 @@ type FaqRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  answer?: Maybe<FaqModelAnswerField>;
+  answer: FaqModelAnswerField;
   id: Scalars['ItemId']['output'];
-  question?: Maybe<Scalars['String']['output']>;
+  question: Scalars['String']['output'];
   section: FaqSectionRecord;
 };
 
@@ -2345,7 +2345,7 @@ type ProductMModelFilter = {
   _status?: InputMaybe<StatusFilter>;
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  desc?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   metaType?: InputMaybe<LinkFilter>;
   text?: InputMaybe<StructuredTextFilter>;
@@ -2368,8 +2368,8 @@ enum ProductMModelOrderBy {
   _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
   _updatedAt_ASC = '_updatedAt_ASC',
   _updatedAt_DESC = '_updatedAt_DESC',
-  desc_ASC = 'desc_ASC',
-  desc_DESC = 'desc_DESC',
+  description_ASC = 'description_ASC',
+  description_DESC = 'description_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC'
 }
@@ -2397,7 +2397,7 @@ type ProductMRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  desc?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   metaType?: Maybe<ProductMetaTypeRecord>;
   text?: Maybe<ProductMModelTextField>;
@@ -2504,7 +2504,7 @@ type ProductMediaModelRecord = RecordInterface & {
   altText?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   thumbnail: Array<ImageFileField>;
-  title?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
   variation: Array<ProductMediaVariationBlockRecord>;
 };
 
@@ -2596,7 +2596,7 @@ type ProductMetaTypeRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  title?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
 };
 
 
@@ -2832,7 +2832,7 @@ type ProductRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  collection?: Maybe<CollectionRecord>;
+  collection: CollectionRecord;
   description?: Maybe<ProductModelDescriptionField>;
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
@@ -4109,16 +4109,16 @@ type AllCollectionsQueryVariables = Exact<{
 }>;
 
 
-type AllCollectionsQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllCollectionsQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type CollectionQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-type CollectionQuery = { __typename?: 'Query', collection?: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> } };
+type CollectionQuery = { __typename?: 'Query', collection?: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> } };
 
-type CollectionFragment = { __typename?: 'CollectionRecord', id: any, title: string, slug: string, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
+type CollectionFragment = { __typename?: 'CollectionRecord', id: any, title: string, slug: string, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
 
 type AllProductColorsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -4136,7 +4136,7 @@ type AllFaqsQueryVariables = Exact<{
 }>;
 
 
-type AllFaqsQuery = { __typename?: 'Query', allFaqs: Array<{ __typename?: 'FaqRecord', id: any, question?: string, answer?: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } }>, _allFaqsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllFaqsQuery = { __typename?: 'Query', allFaqs: Array<{ __typename?: 'FaqRecord', id: any, question: string, answer: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } }>, _allFaqsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllFaqSectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -4146,7 +4146,7 @@ type AllFaqSectionsQueryVariables = Exact<{
 
 type AllFaqSectionsQuery = { __typename?: 'Query', allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
-type FaqFragment = { __typename?: 'FaqRecord', id: any, question?: string, answer?: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } };
+type FaqFragment = { __typename?: 'FaqRecord', id: any, question: string, answer: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } };
 
 type ImageCartFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
 
@@ -4183,14 +4183,14 @@ type AllProductsQueryVariables = Exact<{
 }>;
 
 
-type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ProductQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> } };
+type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> } };
 
 type AllProductByCollectionQueryVariables = Exact<{
   collectionId?: InputMaybe<Scalars['ItemId']['input']>;
@@ -4199,7 +4199,7 @@ type AllProductByCollectionQueryVariables = Exact<{
 }>;
 
 
-type AllProductByCollectionQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductByCollectionQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllCartProductsQueryVariables = Exact<{
   shopifyIds: Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>;
@@ -4210,13 +4210,13 @@ type AllCartProductsQueryVariables = Exact<{
 
 type AllCartProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
-type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
 
-type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> };
+type ProductFragment = { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }> };
 
-type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: any, title?: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
+type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
 
 type StartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, sections: Array<{ __typename: 'StartFullscreenSectionBlockRecord', id: any, media?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } | { __typename: 'StartProductSectionBlockRecord', id: any, headline?: string, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } | { __typename: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection?: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } };
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, sections: Array<{ __typename: 'StartFullscreenSectionBlockRecord', id: any, media?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } | { __typename: 'StartProductSectionBlockRecord', id: any, headline?: string, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } | { __typename: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, shopifyData?: any, collection: { __typename?: 'CollectionRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } };
