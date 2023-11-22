@@ -109,12 +109,12 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
   if (object.model === 'product')
     await syncProductVariants(data)
 
-  /*
+
   if (item.status === 'draft')
     await client.items.unpublish(record.id)
   else
     await client.items.publish(record.id)
-  */
+
 
 }
 

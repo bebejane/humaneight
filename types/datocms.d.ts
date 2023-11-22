@@ -3880,6 +3880,7 @@ type StartEditorialBlockRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  about: AboutRecord;
   buttonText: Scalars['String']['output'];
   headline: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
