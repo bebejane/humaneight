@@ -7,7 +7,7 @@ import Block from '@components/blocks/Block';
 export default async function Home() {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
-    tags: ['start'],
+    tags: ['start']
   });
 
   return (
