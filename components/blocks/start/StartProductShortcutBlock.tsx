@@ -2,7 +2,6 @@ import s from './StartProductShortcutBlock.module.scss'
 import cn from 'classnames'
 import { Image } from 'react-datocms'
 import Link from 'next/link'
-import Thumbnail from '@components/layout/Thumbnail'
 
 type Props = {
   data: StartProductShortcutBlockRecord
