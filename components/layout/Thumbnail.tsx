@@ -32,7 +32,18 @@ export default async function Thumbnail({ product }: Props) {
           <figcaption>
             <h3 className="body">{product.title}</h3>
             <p>{variant?.price?.amount} {variant?.price?.currencyCode}</p>
+
+
           </figcaption>
+          <ul>
+            {product.usp.map(({ id, title, description }) =>
+              <li key={id}>
+                <span className={s.title}>{title}</span>
+                <span className={s.description} key={id}>{description}</span>
+              </li>
+            )}
+          </ul>
+
         </figure>
       }
     </Link>

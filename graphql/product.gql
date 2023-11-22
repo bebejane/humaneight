@@ -47,6 +47,11 @@ fragment ProductLightFragment on ProductRecord {
 	image {
 		...ImageFragment
 	}
+	usp {
+		id
+		title
+		description
+	}
 	shopifyData
 }
 
@@ -76,6 +81,11 @@ fragment ProductFragment on ProductRecord {
 	slug
 	image {
 		...ImageFragment
+	}
+	usp {
+		id
+		title
+		description
 	}
 	sections {
 		... on ProductMediaBlockRecord {
