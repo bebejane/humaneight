@@ -22,12 +22,21 @@ h4 {
   line-height: 1;
 }
 
-h1 {
+h1,
+h2 {
   font-size: 4rem;
   margin-bottom: 0.5em;
+  line-height: 1em;
 }
 
-h3 {
+h2 {
+  width: 100%;
+  text-align: justify;
+}
+
+h3,
+.big p,
+.big {
   font-size: 1.75rem;
 }
 
@@ -50,7 +59,8 @@ button {
 
 p,
 .body,
-ol li {
+ol li,
+button.full {
   font-size: 1.4rem;
   line-height: 1.2em;
   margin-bottom: 0;

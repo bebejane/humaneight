@@ -12,9 +12,9 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
   return (
     <section className={s.editorial}>
       <div>
-        <h3>{headline}</h3>
+        <h2>{headline}</h2>
         <p>{text}</p>
-        <button>{buttonText}</button>
+        <button className="full">{buttonText}</button>
       </div>
       <figure>
         {media.responsiveImage &&

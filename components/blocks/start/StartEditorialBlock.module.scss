@@ -1,9 +1,26 @@
 .editorial {
-  >div {}
+  display: flex;
+  margin-top: var(--space);
+  position: relative;
+
+  > div {
+    position: sticky;
+    top: var(--navbar-height);
+    width: 50%;
+    padding-right: var(--half-gutter);
+    align-self: flex-start;
+    button {
+      margin-top: 2rem;
+    }
+  }
 
   figure {
-    .image {}
+    width: 50%;
+    padding-left: var(--half-gutter);
+    .image {
+    }
 
-    .picture {}
+    .picture {
+    }
   }
 }

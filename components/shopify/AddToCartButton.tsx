@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react'
 import useCart from '@shopify/hooks/useCart'
+import cn from 'classnames'
 
 export type AddToCartButtonProps = {
   merchandiseId?: string
@@ -22,7 +23,7 @@ export default function AddToCartButton({ className, label, merchandiseId, quant
 
   return (
     <button
-      className={className}
+      className={cn(className, "full")}
       onClick={handleAddToCart}
       disabled={disabled ?? undefined}
       type="button"

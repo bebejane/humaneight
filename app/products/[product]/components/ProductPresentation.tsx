@@ -44,7 +44,9 @@ export default function ProductPresentation({ product }: VariantFormProps) {
                 </figure>
               )
             })}
-            <StructuredContent id={id} content={text} />
+            <div className="big structured">
+              <StructuredContent id={id} content={text} />
+            </div>
           </div>
         )
       })}

@@ -9,14 +9,14 @@
 	--foreground: var(--black);
 	--navSize: 2.5rem;
 	--navbar-height: calc(var(--navSize) + ((2 * var(--outer-margin)) * 0.6));
+
 	--gutter: 1.2rem;
-
+	--half-gutter: calc(var(--gutter) / 2);
 	--letter-space: 0.1em;
-
+	--space: 3rem;
 	--z-navbar: 1100;
 	--z-cart: 1200;
 	--z-menu: 2000;
-	--space: 1rem;
 
 	@include mq($until: tablet) {
 	}
@@ -122,6 +122,15 @@ button {
 	cursor: pointer;
 	transition: all 0.2s;
 	padding: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.6em;
+
+	&.full {
+		width: 100%;
+		&:hover {
+			letter-spacing: var(--letter-space);
+		}
+	}
 
 	@include mq($until: desktop) {
 	}
