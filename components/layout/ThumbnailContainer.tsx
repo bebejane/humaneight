@@ -1,5 +1,6 @@
 
 import s from './ThumbnailContainer.module.scss'
+import cn from 'classnames'
 
 export type Props = {
   children: React.ReactNode[]
@@ -8,7 +9,7 @@ export type Props = {
 export default async function ThumbnailContainer({ children }: Props) {
 
   return (
-    <div className={s.container}>
+    <div className={cn(s.container, "grid")}>
       {children}
     </div>
   )

@@ -1,11 +1,8 @@
 .thumbnail {
-  flex: 0 0 33.333%;
-  display: flex;
-  flex-direction: column;
+  grid-column: span 4;
 
   figure {
     .image {
-      //max-height: 30vh;
       aspect-ratio: 1/1;
       background-color: var(--white);
     }

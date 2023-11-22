@@ -12,10 +12,9 @@ export type Props = {
 export default function Footer({ menu }: Props) {
   return (
     <footer className={s.footer}>
-      <h2>HUMANEIGHT</h2>
+      <img src="/images/logo.svg"></img>
       <div className={s.subheader}>
-        <h3 className="nav">Crafted for the mind.</h3>
-        <h3 className="nav">Tailored for comfort.</h3>
+        <h3 className="nav">Crafted for the mind. Tailored for comfort.</h3>
       </div>
       <nav>
         <ul className="grid">
