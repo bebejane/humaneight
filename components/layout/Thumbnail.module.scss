@@ -22,7 +22,8 @@
     ul {
       display: flex;
       list-style: none;
-      padding-top: 0.5rem;
+      //justify-content: space-between;
+      padding-top: 0.8rem;
       li {
         .title {
           display: block;
@@ -30,15 +31,15 @@
           padding: 0.5em;
           padding-top: 0.8em;
           padding-bottom: 0.9em;
-          background-color: var(--gray);
-          margin-right: 0.2em;
+          background-color: var(--white);
+          margin-right: 0.3em;
         }
 
         .description {
           position: absolute;
           top: 0;
           left: 0;
-          height: 100%;
+          height: 90%;
           width: 100%;
           display: none;
           flex-direction: column;
