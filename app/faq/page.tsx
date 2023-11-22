@@ -4,6 +4,7 @@ import { AllFaqSectionsDocument, AllFaqsDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import FaqItem from './components/FaqItem';
 import Link from 'next/link';
+import cn from 'classnames';
 
 export type Props = {
   params?: { section: string }
@@ -41,19 +42,21 @@ export default async function FaqPage({ params }: Props) {
 
   return (
     <>
-      <h1>FAQ</h1>
-      <ul className={s.faqs}>
-        {faqSections.map(section => (
-          <li key={section.id} className={s.section}>
-            <h2><Link href={`/faq/${section.slug}`}>{section.title}</Link></h2>
-            <ul>
-              {section.faqs.map(faq =>
-                <FaqItem key={faq.id} faq={faq} />
-              )}
-            </ul>
-          </li>
-        ))}
-      </ul>
+      <div className={cn("grid", s.container)}>
+        <h1>FAQ</h1>
+        <ul className={s.faqs}>
+          {faqSections.map(section => (
+            <li key={section.id} className={s.section}>
+              <h2 className="body"><Link href={`/faq/${section.slug}`}>{section.title}</Link></h2>
+              <ul className="structured">
+                {section.faqs.map(faq =>
+                  <FaqItem key={faq.id} faq={faq} />
+                )}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
       <DraftMode url={draftUrl} tag={['faq', 'faq_section']} />
     </>
   )

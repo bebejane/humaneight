@@ -26,12 +26,12 @@ export default function FaqItem({ faq }: Props) {
   return (
     <li key={faq.id} className={s.faq}>
       <div className={s.question}>
-        <h3>{faq.question}</h3>
-        <Link href={selected ? pathname : `#${faq.id}`} scroll={true}>
+        <h3 className="body">{faq.question}</h3>
+        <Link className="body" href={selected ? pathname : `#${faq.id}`} scroll={true}>
           {selected ? '-' : '+'}
         </Link>
       </div>
-      <div className={cn(s.answer, selected && s.show)} id={faq.id}>
+      <div className={cn(s.answer, selected && s.show, "mid")} id={faq.id}>
         <StructuredContent id={faq.id} content={faq.answer} />
       </div>
     </li>

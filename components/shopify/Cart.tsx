@@ -43,7 +43,7 @@ export default function Cart({ }: CartProps) {
   if (!showCart) {
     return (
       <div className={s.miniCart}>
-        <h3 className="nav"><Link href="/shop">Shop</Link></h3>
+        <h3 className="nav nav-hover"><Link href="/shop">Shop</Link></h3>
         <button className={cn(!isEmpty && s.inverted)} onClick={() => setShowCart(true)}>
           <img className={s.icon} />
           <div className={s.count}>{cart?.lines.edges.length}</div>

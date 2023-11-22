@@ -2,11 +2,17 @@
   .question {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+  }
+
+  h3 {
+    padding-bottom: 0.5em;
   }
 
   .answer {
     display: none;
-
+    padding-bottom: 1rem;
+    padding-right: 10%;
     &.show {
       display: block;
     }

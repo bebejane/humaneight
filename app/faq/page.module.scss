@@ -1,21 +1,31 @@
+.container {
+  h1 {
+    grid-column-start: 4;
+    grid-column-end: 12;
+  }
+}
+
 .faqs {
+  grid-column-start: 2;
+  grid-column-end: 12;
   display: flex;
   flex-direction: column;
   list-style: none;
 
-  >li {
+  > li {
     list-style: none;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    grid-gap: var(--gutter);
 
     h2 {
-      white-space: nowrap;
+      grid-column: span 2;
     }
 
     ul {
-      display: flex;
-      flex-direction: column;
+      list-style: none;
 
+      grid-column: span 8;
     }
   }
 }

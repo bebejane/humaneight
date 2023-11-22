@@ -93,10 +93,16 @@ main {
 	grid-gap: var(--gutter);
 }
 
-article p a {
-}
+.structured {
+	p {
+		margin-bottom: 0.5em;
+	}
 
-.intro {
+	li {
+		&::marker {
+			font-size: inherit;
+		}
+	}
 }
 
 button {

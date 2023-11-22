@@ -25,7 +25,7 @@ export default function NavBar({ menu }: Props) {
     <>
       <nav className={s.navbar}>
         <menu>
-          <button className="nav" onClick={() => setShowMenu(!showMenu)}>Menu</button>
+          <button className="nav nav-hover" onClick={() => setShowMenu(!showMenu)}>Menu</button>
           <h1 className="nav"><Link href="/">Humaneight</Link></h1>
           <Cart />
         </menu>

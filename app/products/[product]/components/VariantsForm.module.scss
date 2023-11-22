@@ -9,19 +9,20 @@
   fieldset {
     all: unset;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     padding: 0;
     margin: 0;
 
     legend {
       display: block;
-      flex: 0 0;
+      width: 8ch;
     }
 
     .sizes {
       display: flex;
       flex-direction: row;
+      width: 80%;
 
       input[type="radio"] {
         display: none;

@@ -22,6 +22,11 @@ h4 {
   line-height: 1;
 }
 
+h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5em;
+}
+
 form,
 input,
 select,
@@ -35,11 +40,22 @@ button {
   line-height: 1;
 }
 
+.nav-hover:hover {
+  letter-spacing: var(--letter-space);
+}
+
 p,
-.body {
+.body,
+ol li {
   font-size: 1.4rem;
   line-height: 1.2em;
   margin-bottom: 0;
+}
+
+.mid,
+.mid p,
+ol li {
+  font-size: 1.2rem;
 }
 
 p.small,
