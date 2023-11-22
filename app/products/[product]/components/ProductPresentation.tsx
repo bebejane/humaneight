@@ -21,21 +21,22 @@ export default function ProductPresentation({ product }: VariantFormProps) {
       {product?.sections.map(({ id, productMedia, text }, i) => {
         return (
           <div className={s.section} key={id}>
-            {productMedia.map(({ id, variation, altText, title }) => {
+            {productMedia.map(({ id, variation, altText: alt }) => {
 
+              const mediaCount = productMedia.map(({ variation }) => variation).flat().filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase()).length
               const selectedVariation = variation.filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
               const media = selectedVariation.map(({ media }) => ({ media })).flat()
 
-              if (media.length === 0)
+              if (mediaCount === 0)
                 return <figure key={id}>No images in color {color}</figure>
 
               return media.map(({ media: { id, responsiveImage } },) =>
-                <figure className={cn(media.length > 1 && s.double)} key={id}>
+                <figure className={cn(mediaCount > 1 && s.double)} key={id}>
                   <Image
                     key={id}
                     className={s.image}
                     pictureClassName={s.picture}
-                    data={responsiveImage}
+                    data={{ ...responsiveImage, alt }}
                   />
                 </figure>
               )
