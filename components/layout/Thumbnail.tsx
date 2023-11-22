@@ -6,6 +6,7 @@ import Link from 'next/link';
 import shopifyQuery from '@shopify/shopify-query';
 import Shop from '@app/shop/page';
 import { ShopifyProductDocument } from '@shopify/graphql';
+import cn from 'classnames';
 
 export type Props = {
   product: ProductRecord,
@@ -39,7 +40,7 @@ export default async function Thumbnail({ product }: Props) {
             {product.usp.map(({ id, title, description }) =>
               <li key={id}>
                 <span className={s.title}>{title}</span>
-                <span className={s.description} key={id}>{description}</span>
+                <span className={cn(s.description, "nav")} key={id}>{description}</span>
               </li>
             )}
           </ul>
