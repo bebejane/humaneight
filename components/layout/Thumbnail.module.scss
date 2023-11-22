@@ -33,13 +33,17 @@
           padding-bottom: 0.9em;
           background-color: var(--white);
           margin-right: 0.3em;
+          &:hover {
+            background-color: var(--black);
+            color: var(--white);
+          }
         }
 
         .description {
           position: absolute;
           top: 0;
           left: 0;
-          height: 90%;
+          height: 85%;
           width: 100%;
           display: none;
           flex-direction: column;
