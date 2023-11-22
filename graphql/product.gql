@@ -27,7 +27,7 @@ query AllCartProducts($shopifyIds: [String]!, $first: IntType = 100, $skip: IntT
 		id
 		shopifyId
 		image {
-			...ImageCartFragment
+			...ImageCartThumbnailFragment
 		}
 	}
 	_allProductsMeta(filter: { shopifyId: { in: $shopifyIds } }) {

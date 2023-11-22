@@ -42,10 +42,10 @@ export const FaqFragment: DocumentNode;
 }
     
 
-declare module '*/ImageCartFragment.gql' {
+declare module '*/ImageCartThumbnailFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const ImageCartFragment: DocumentNode;
+  export const ImageCartThumbnailFragment: DocumentNode;
 
   export default defaultDocument;
 }
@@ -64,6 +64,15 @@ declare module '*/MediaFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const MediaFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ResponsiveImageFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ResponsiveImageFragment: DocumentNode;
 
   export default defaultDocument;
 }

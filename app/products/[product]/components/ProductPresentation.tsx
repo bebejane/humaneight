@@ -16,6 +16,8 @@ export default function ProductPresentation({ product }: VariantFormProps) {
   const { searchParams } = useQueryString()
   const color = searchParams.get('color')
 
+
+
   return (
     <div className={s.presentation}>
       {product?.sections.map(({ id, productMedia, text }, i) => {
@@ -25,6 +27,7 @@ export default function ProductPresentation({ product }: VariantFormProps) {
 
               const mediaCount = productMedia.map(({ variation }) => variation).flat().filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase()).length
               const selectedVariation = variation.filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
+              const defaultVariation = variation.filter(v => !selectedVariation.find(({ id }) => id === v.id))
               const media = selectedVariation.map(({ media }) => ({ media })).flat()
 
               if (mediaCount === 0)
