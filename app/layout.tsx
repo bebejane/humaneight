@@ -8,6 +8,14 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
+import localFont from 'next/font/local'
+
+const ConcernMedium = localFont({
+  src: '../public/fonts/Concern-Medium.woff2',
+  weight: 'normal',
+  style: 'normal',
+  display: 'swap',
+})
 
 export type LayoutProps = {
   children: React.ReactNode

@@ -49,7 +49,7 @@ export default function Cart({ localization }: CartProps) {
       <div className={s.miniCart}>
         <h3 className="nav nav-hover"><Link href="/shop">Shop</Link></h3>
         <button className={cn(!isEmpty && s.inverted)} onClick={() => setShowCart(true)}>
-          <img className={s.icon} />
+          <div className={s.icon} />
           <div className={s.count}>{cart?.lines.edges.length}</div>
         </button>
       </div>

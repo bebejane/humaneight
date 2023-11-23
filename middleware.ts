@@ -6,10 +6,9 @@ export function middleware(request: NextRequest) {
   const currency = request.cookies.get('currency')?.value ?? 'SEK'
   request.cookies.set('country', country)
   request.cookies.set('currency', currency)
-
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/', '/:path*'],
+  matcher: '/((?!api|_next|static|public|favicon.ico).*)'
 }
