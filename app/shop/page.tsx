@@ -24,7 +24,8 @@ export default async function Shop({ params }: Props) {
       collectionId: params?.collection ? collection?.id : undefined,
       first: 100,
       skip: 0,
-    }
+    },
+    tags: ['product']
   })
 
   return (
