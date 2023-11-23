@@ -30,9 +30,23 @@
     padding-left: 1em !important;
 
     .icon {
+      position: relative;
       width: 24px;
       height: 33px;
       background: url("/images/cart.svg") no-repeat center center;
+
+      .loader {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4px;
+      }
 
     }
 
@@ -43,8 +57,13 @@
         background: url("/images/cart_inverted.svg") no-repeat center center;
       }
 
+      &:hover {
+        color: var(--white);
+      }
+
       color: var(--white);
     }
+
 
     .count {
       position: absolute;
@@ -55,6 +74,17 @@
       width: 100%;
       top: 0.2em;
     }
+
+    &.loading {
+      .loader {
+        display: flex;
+      }
+
+      .count {
+        display: none;
+      }
+    }
+
   }
 }
 
@@ -69,10 +99,6 @@
   width: 30vw;
   padding: var(--outer-margin);
   height: 100vh;
-
-  &.updating {
-    opacity: 0.9;
-  }
 
   header {
     display: flex;

@@ -13,12 +13,10 @@
     display: none;
     padding-bottom: 1rem;
     padding-right: 10%;
+
     &.show {
       display: block;
     }
   }
 
-  a {
-    margin-left: 1ch;
-  }
 }

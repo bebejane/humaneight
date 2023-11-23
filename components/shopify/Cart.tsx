@@ -9,8 +9,9 @@ import { parseGID } from '@shopify/utils'
 import { Image } from 'react-datocms'
 import { AllCartProductsDocument } from '@graphql'
 import CurrencySelector from './CurrencySelector'
-
+import Loader from '@components/common/Loader'
 import Link from 'next/link'
+
 
 export type CartProps = {
   localization: LocalizationQuery['localization']
@@ -30,7 +31,8 @@ export default function Cart({ localization }: CartProps) {
   const [products, setProducts] = useState<AllCartProductsQuery['allProducts'] | null>(null)
   const [showCart, setShowCart] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const isEmpty = (!cart || cart.lines.edges.length === 0)
+  const isEmpty = cart?.lines.edges.length === 0
+  const loading = !cart || updating
 
   useEffect(() => { !cart && createCart() }, [cart, createCart])
   useEffect(() => {
@@ -44,12 +46,15 @@ export default function Cart({ localization }: CartProps) {
 
   }, [cart])
 
+
   if (!showCart) {
     return (
       <div className={s.miniCart}>
         <h3 className="nav nav-hover"><Link href="/shop">Shop</Link></h3>
-        <button className={cn(!isEmpty && s.inverted)} onClick={() => setShowCart(true)}>
-          <div className={s.icon} />
+        <button className={cn(!isEmpty && s.inverted, loading && s.loading)} onClick={() => setShowCart(true)}>
+          <div className={s.icon} >
+            <Loader loading={true} className={s.loader} invert={!isEmpty} />
+          </div>
           <div className={s.count}>{cart?.lines.edges.length}</div>
         </button>
       </div>
@@ -112,7 +117,7 @@ export default function Cart({ localization }: CartProps) {
             </div>
           </div>
 
-          <form action={cart.checkoutUrl} method="GET">
+          <form action={cart?.checkoutUrl} method="GET">
             <button className={s.checkout} type="submit">Checkout & pay</button>
           </form>
         </>
@@ -142,6 +147,6 @@ const fetchDatoCMSProducts = async (shopifyIds: string[]) => {
     variables: {
       shopifyIds
     },
-    revalidate: 0
+    revalidate: 60
   })
 }
