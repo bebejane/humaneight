@@ -4,8 +4,11 @@ import { FieldError, Label, Radio, RadioGroup, Text, Button, ListBox, ListBoxIte
 import useQueryString from '@lib/hooks/useQueryString'
 import s from './VariantsForm.module.scss'
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
+import { parseGID } from '@shopify/utils';
+import { sl } from 'date-fns/locale';
+import { sleep } from 'next-dato-utils';
 
 export type VariantFormProps = {
   allProductColors: AllProductColorsQuery['allProductColors']
@@ -16,27 +19,27 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
   //console.log(shopifyProduct)
   const { searchParams, setSearchParam } = useQueryString()
   const [colorsOpen, setColorsOpen] = useState(false)
-  const color = searchParams.get('color') ?? 'Black'
-  const size = searchParams.get('size') ?? 'M'
-  const variant = findSelectedVariant(shopifyProduct as Product, color, size)
 
-  const sizeOptions = shopifyProduct?.options.find(opt => opt.name === 'Size')?.values ?? []
-  const colorOptions = shopifyProduct?.options.find(opt => opt.name === 'Color')?.values ?? []
+  const variantId = searchParams.get('variant') ?? null
+  const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
+  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
+  const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
+  const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
 
-  const handleColorChange = (value: Key) => setSearchParam('color', value.toString())
-  const handleSizeChange = (value: string) => setSearchParam('size', value)
+  const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
   return (
     <form className={s.form}>
       <fieldset>
         <Select
+          key={variantId}
           className={s.colors}
-          onSelectionChange={handleColorChange}
+          onSelectionChange={handleVariantChange}
           onOpenChange={(o) => setColorsOpen(o)}
         >
           <Text slot="description" className={s.description}>Color</Text>
           <Button className={s.button}>
-            <SelectValue className={s.value}>
+            <SelectValue className={s.value} key={variantId}>
               {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
             </SelectValue>
             <span aria-hidden="true" className={s.arrow}>{!colorsOpen ? '▼' : '▲'}</span>
@@ -44,16 +47,20 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
           <Popover placement="top left" className={s.colorsPopover}>
             <ListBox
               className={s.options}
-              items={colorOptions.map((color, idx) => ({ id: idx, name: color }))}
+              items={availableColors.map((v, idx) => ({
+                id: parseGID(v.id),
+                name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
+              }))}
             >
-              {colorOptions.map((color, idx) => {
-                const available = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Color' && opt.value === color))
+              {availableColors.map((v, idx) => {
+                const option = v.selectedOptions.find(opt => opt.name === 'Color')
+                if (!option) return null
                 return (
                   <ListBoxItem
-                    id={color}
+                    id={parseGID(v.id)}
                     key={idx}
-                    className={cn(s.option, !available && s.disabled)}
-                  >{color}</ListBoxItem>
+                    className={cn(s.option)}
+                  >{option?.value}</ListBoxItem>
                 )
               })}
             </ListBox>
@@ -62,20 +69,20 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
       </fieldset>
 
       <fieldset>
-        <RadioGroup onChange={handleSizeChange} className={s.sizes}>
+        <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variantId}>
           <Text slot="description" className={s.description}>Size</Text>
-          {sizeOptions.map((size, idx) => {
-            const disabled = shopifyProduct?.variants?.edges.find(variant => variant.node.selectedOptions.find(opt => opt.name === 'Size' && opt.value === size)) ? false : true
-            const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && opt.value === size) ? true : false
+          {availableSizes.map((v, idx) => {
+            const option = v.selectedOptions.find(opt => opt.name === 'Size')
+            const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && option?.value === opt.value) ? true : false
 
             return (
               <React.Fragment key={idx}>
                 <Radio
-                  value={size}
-                  isDisabled={disabled}
-                  className={cn(s.radio, selected && s.selected, disabled && s.disabled)}
+                  id={parseGID(v.id)}
+                  value={parseGID(v.id)}
+                  className={cn(s.radio, selected && s.selected)}
                 >
-                  <Label className={s.label}>{size}</Label>
+                  <Label className={s.label}>{option?.value}</Label>
                 </Radio>
               </React.Fragment>
             )
@@ -88,9 +95,11 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
   )
 }
 
-const findSelectedVariant = (product: Product, color: string | null, size: string | null): ProductVariant | undefined => {
+const availableVariants = (product: Product, name: string | undefined, value: string | undefined): ProductVariant[] => {
+  if (!name || !value) return product.variants.edges.map(({ node }) => node)
 
-  return product.variants.edges.find(({ node: { selectedOptions } }) => {
-    return selectedOptions.find(opt => opt.name === 'Color' && opt.value === color) && selectedOptions.find(opt => opt.name === 'Size' && opt.value === size)
-  })?.node ?? product.variants.edges[0].node
+  return product.variants.edges.filter(({ node: { selectedOptions } }) => {
+    return selectedOptions.find(opt => opt.name === name && opt.value === value) !== undefined
+  }).map(({ node }) => node)
+
 }

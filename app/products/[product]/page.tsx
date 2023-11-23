@@ -54,7 +54,7 @@ export default async function Product({ params }: { params: { product: string } 
           <span>Read more</span>
           <VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />
         </div>
-        <ProductPresentation product={product} />
+        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
       </section>
       <DraftMode url={draftUrl} tag={product.id} />
     </>

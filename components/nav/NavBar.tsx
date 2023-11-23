@@ -7,6 +7,7 @@ import Cart from "@components/shopify/Cart";
 import { useEffect, useState } from "react";
 import type { Menu } from "@lib/menu";
 import { usePathname } from "next/navigation";
+import { useKey } from 'rooks'
 import CurrencySelector from "@components/shopify/CurrencySelector";
 
 export type Props = {
@@ -18,6 +19,8 @@ export default function NavBar({ menu, localization }: Props) {
 
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
+
+  useKey('Escape', () => setShowMenu(false));
 
   useEffect(() => {
     setShowMenu(false);
@@ -37,6 +40,7 @@ export default function NavBar({ menu, localization }: Props) {
         </menu>
       </nav>
       <nav className={cn(s.desktop, showMenu && s.show)}>
+        <button className={cn(s.menu, 'nav', 'nav-hover')}>Menu</button>
         <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
           Close
         </button>

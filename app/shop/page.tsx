@@ -1,7 +1,7 @@
 
 import s from './page.module.scss'
 import CollectionsFilter from './components/CollectionsFilter';
-import { AllCollectionsDocument, AllProductByCollectionDocument, CollectionDocument } from '@graphql';
+import { AllProductByCollectionDocument, CollectionDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import Thumbnail from '@components/layout/Thumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';

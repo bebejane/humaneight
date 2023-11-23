@@ -6,17 +6,20 @@ import React from 'react'
 import StructuredContent from '@components/layout/StructuredContent';
 import { Image } from 'react-datocms';
 import useQueryString from '@lib/hooks/useQueryString';
+import { parseGID } from '@shopify/utils';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
+  shopifyProduct: ShopifyProductQuery['product']
 }
 
-export default function ProductPresentation({ product }: VariantFormProps) {
+
+export default function ProductPresentation({ product, shopifyProduct }: VariantFormProps) {
 
   const { searchParams } = useQueryString()
-  const color = searchParams.get('color')
-
-
+  const variantId = searchParams.get('variant') ?? null
+  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
+  const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
 
   return (
     <div className={s.presentation}>
@@ -27,7 +30,6 @@ export default function ProductPresentation({ product }: VariantFormProps) {
 
               const mediaCount = productMedia.map(({ variation }) => variation).flat().filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase()).length
               const selectedVariation = variation.filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
-              const defaultVariation = variation.filter(v => !selectedVariation.find(({ id }) => id === v.id))
               const media = selectedVariation.map(({ media }) => ({ media })).flat()
 
               if (mediaCount === 0)
@@ -35,12 +37,14 @@ export default function ProductPresentation({ product }: VariantFormProps) {
 
               return media.map(({ media: { id, responsiveImage } },) =>
                 <figure className={cn(mediaCount > 1 && s.double)} key={id}>
-                  <Image
-                    key={id}
-                    className={s.image}
-                    pictureClassName={s.picture}
-                    data={{ ...responsiveImage, alt }}
-                  />
+                  {responsiveImage &&
+                    <Image
+                      key={id}
+                      className={s.image}
+                      pictureClassName={s.picture}
+                      data={{ ...responsiveImage, alt }}
+                    />
+                  }
                 </figure>
               )
             })}
