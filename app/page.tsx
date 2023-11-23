@@ -1,5 +1,4 @@
 import s from './page.module.scss'
-import Link from "next/link"
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import { StartDocument } from '@graphql';
 import Block from '@components/blocks/Block';
