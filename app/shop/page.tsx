@@ -21,7 +21,7 @@ export default async function Shop({ params }: Props) {
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     all: true,
     variables: {
-      collectionId: collection?.id,
+      collectionId: params?.collection ? collection?.id : undefined,
       first: 100,
       skip: 0,
     }

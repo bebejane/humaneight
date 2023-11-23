@@ -10,6 +10,8 @@ import StructuredContent from '@components/layout/StructuredContent';
 import VariantsForm from './components/VariantsForm';
 import ProductPresentation from './components/ProductPresentation';
 import cn from 'classnames';
+import Price from '@components/shopify/Price';
+import Link from 'next/link';
 
 export async function generateStaticParams() {
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
@@ -39,11 +41,14 @@ export default async function Product({ params }: { params: { product: string } 
     <>
       <section className={cn(s.product, "grid")}>
         <div className={s.details}>
-          <p className="small">Shop | Hoodies</p>
-
+          <p className="small">
+            <Link href="/shop">Shop</Link>
+            &nbsp;|&nbsp;
+            <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>
+          </p>
           <header>
             <h1 className="body">{product.title}</h1>
-            <div className={s.price}><p>{variant.price.amount} {variant.price.currencyCode}</p></div>
+            <div className={s.price}><p><Price money={variant.price} /></p></div>
           </header>
           <StructuredContent id={product.id} content={product.shortSummary} />
           <span>Read more</span>

@@ -37,7 +37,9 @@ export default function NavBar({ menu, localization }: Props) {
         </menu>
       </nav>
       <nav className={cn(s.desktop, showMenu && s.show)}>
-        <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>Close</button>
+        <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
+          Close
+        </button>
         <ul>
           {menu.slice(0, 3).map(({ id, title, sub, slug }) => (
             <li key={id}>
@@ -45,7 +47,7 @@ export default function NavBar({ menu, localization }: Props) {
               <ul>
                 {sub?.map(({ id, title, slug }) => (
                   <li key={id}>
-                    <Link href={`${slug}`} className="nav nav-hover">
+                    <Link href={`${slug}`} className="nav nav-hover" onClick={() => setShowMenu(false)}>
                       {title}
                     </Link>
                   </li>
