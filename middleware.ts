@@ -7,7 +7,6 @@ export function middleware(request: NextRequest) {
 
   !request.cookies.has('country') && request.cookies.set('country', country)
   !request.cookies.has('currency') && request.cookies.set('currency', currency)
-
   return NextResponse.next()
 }
 

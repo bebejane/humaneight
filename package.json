@@ -9,7 +9,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"reset": "rm -rf .next node_modules pnpm-lock.yaml ; pnpm i"
+		"reset": "rm -rf .next node_modules pnpm-lock.yaml ; pnpm i",
+		"preview": "next build && next start"
 	},
 	"dependencies": {
 		"@datocms/cma-client": "3.0.5",

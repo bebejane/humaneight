@@ -21,8 +21,6 @@ export type LayoutProps = {
   children: React.ReactNode
 }
 
-export const dynamic = 'force-static';
-
 export default async function RootLayout({ children }: LayoutProps) {
 
   const menu = await buildMenu();
