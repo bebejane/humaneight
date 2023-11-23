@@ -10,6 +10,8 @@ import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
 import localFont from 'next/font/local'
 
+export const runtime = 'edge';
+
 const ConcernMedium = localFont({
   src: '../public/fonts/Concern-Medium.woff2',
   weight: 'normal',
@@ -21,7 +23,7 @@ export type LayoutProps = {
   children: React.ReactNode
 }
 
-export const runtime = 'edge'
+
 
 export default async function RootLayout({ children }: LayoutProps) {
 
@@ -53,3 +55,4 @@ export async function generateMetadata() {
     icons: favicon.map(({ attributes: { rel, sizes, type, href: url } }) => ({ rel, url, sizes, type })) as Icon[],
   } as Metadata
 }
+

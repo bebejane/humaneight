@@ -4,7 +4,6 @@ import s from './CurrencySelector.module.scss'
 import cn from 'classnames';
 import { changeCountry } from '@shopify/server-actions';
 import { useRef } from 'react';
-import { sleep } from 'next-dato-utils';
 import { usePathname } from 'next/navigation';
 
 export type Props = {
