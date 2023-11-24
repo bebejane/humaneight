@@ -4,7 +4,7 @@ import s from './CurrencySelector.module.scss'
 import cn from 'classnames';
 import { useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import useCountry from '@lib/hooks/useCountry';
+import useCountry from '@shopify/hooks/useCountry';
 
 export type Props = {
   className?: string

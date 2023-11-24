@@ -1,15 +1,18 @@
 'use client'
 
-import useCountry from "@lib/hooks/useCountry"
+import useProduct from "@shopify/hooks/useProduct"
 
 export type Props = {
-  money: MoneyV2
+  slug?: string
+  variantId?: string
 }
 
-export default async function Price({ money }: Props) {
+export default function Price({ slug, variantId }: Props) {
 
-  const country = useCountry()
-  const currency = 'SEK'
+  const { product } = useProduct({ handle: slug })
+  const variant = product?.variants.edges.find(({ node }) => node.id === variantId)?.node as ProductVariant
+
   //const formatter = new Intl.NumberFormat(country, { style: 'currency', currency, maximumFractionDigits: 0 })
-  return <>{parseFloat(money.amount).toFixed(0)} {currency}</>
+  if (!variant) return null
+  return <>{parseFloat(variant.price.amount).toFixed(0)} {variant.price.currencyCode}</>
 }

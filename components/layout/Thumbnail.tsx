@@ -1,23 +1,18 @@
-'use server'
+'use client'
 
 import s from './Thumbnail.module.scss'
 import { Image } from 'react-datocms';
 import Link from '@components//nav/Link';
-import shopifyQuery from '@shopify/shopify-query';
-import { ShopifyProductDocument } from '@shopify/graphql';
 import cn from 'classnames';
 import Price from '@components/shopify/Price';
+import useProduct from '@shopify/hooks/useProduct';
 
 export type Props = {
   product: ProductRecord,
 }
-export default async function Thumbnail({ product }: Props) {
+export default function Thumbnail({ product }: Props) {
 
-  const { product: shopifyProduct } = await shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
-    variables: { handle: product.slug },
-    tags: [product.id]
-  })
-
+  const { product: shopifyProduct } = useProduct({ handle: product?.slug })
   const variant = shopifyProduct?.variants?.edges?.[0]?.node;
 
   return (
@@ -41,7 +36,7 @@ export default async function Thumbnail({ product }: Props) {
           }
           <figcaption>
             <h3 className="body">{product.title}</h3>
-            <p><Price money={variant?.price as MoneyV2} /></p>
+            <p><Price slug={product.slug} variantId={variant?.id} /></p>
           </figcaption>
           <ul>
             {product.usp.map(({ id, title, description }) =>

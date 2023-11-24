@@ -1,8 +1,7 @@
-'use server'
 
-import type { RequestInit } from 'next/dist/server/web/spec-extension/request.js'
+import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import type { DocumentNode } from 'graphql'
-import { print } from 'graphql/language/printer.js'
+import { print } from 'graphql/language/printer'
 import { cache } from 'react';
 import isInteger from 'is-integer';
 
@@ -44,11 +43,11 @@ export default async function shopifyQuery<T = void, V = void>(query: DocumentNo
     throw new Error('NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION is not set')
   if (!process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN)
     throw new Error('NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN is not set')
-  if (!process.env.SHOPIFY_STOREFRONT_API_TOKEN)
-    throw new Error('SHOPIFY_STOREFRONT_API_TOKEN is not set')
+  //if (!process.env.SHOPIFY_STOREFRONT_API_TOKEN)
+  //throw new Error('SHOPIFY_STOREFRONT_API_TOKEN is not set')
 
   const queryId = (query.definitions?.[0] as any).name?.value as string
-  const country = opt.country as CountryCode ?? 'SE';
+  let country = opt.country as CountryCode ?? 'SE';
 
   const dedupeOptions: DedupeOptions = {
     body: JSON.stringify({
@@ -72,7 +71,7 @@ export type DedupeOptions = {
   logs: boolean
 }
 
-const dedupedFetch = cache(async (options: DedupeOptions) => {
+const dedupedFetch = async (options: DedupeOptions) => {
   const {
     url,
     body,
@@ -108,4 +107,4 @@ const dedupedFetch = cache(async (options: DedupeOptions) => {
   }
   logs && console.log(queryId, { ...options, body: undefined }, response.headers.get('x-cache'))
   return responseBody;
-})
+}
