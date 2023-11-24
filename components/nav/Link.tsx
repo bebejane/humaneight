@@ -11,10 +11,13 @@ export type Props = LinkProps & {
 export default function Link<LinkProps>(props: Props) {
 
   const pathname = usePathname()
-  const router = useRouter()
-  const country = pathname.toLowerCase().split('/')[1].length === 2 ? pathname.toLowerCase().split('/')[1] : undefined
+  const country = getCountyFromPathname(pathname)
   const href = country ? `/${country}${props.href}` : props.href;
-
   return <NextLink {...{ ...props, href: undefined }} href={href} >{props.children}</NextLink>
 
+}
+
+const getCountyFromPathname = (pathname: string) => {
+  const [path, hash] = pathname.split('#')
+  return path.toLowerCase().split('/')[1].length === 2 ? path.toLowerCase().split('/')[1] : undefined
 }
