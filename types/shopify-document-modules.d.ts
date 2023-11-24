@@ -118,6 +118,15 @@ declare module '*/ProductFragment.gql' {
 }
     
 
+declare module '*/ProductVariantFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProductVariantFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/UserErrorsFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

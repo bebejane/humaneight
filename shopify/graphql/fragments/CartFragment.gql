@@ -46,6 +46,10 @@ fragment CartFragment on Cart {
 							amount
 							currencyCode
 						}
+						image {
+							url(transform: { maxWidth: 400, maxHeight: 400, crop: CENTER })
+							altText
+						}
 						product {
 							id
 							title

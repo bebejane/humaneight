@@ -1,0 +1,14 @@
+fragment ProductVariantFragment on ProductVariant {
+	id
+	title
+	weight
+	availableForSale
+	selectedOptions {
+		name
+		value
+	}
+	price {
+		amount
+		currencyCode
+	}
+}

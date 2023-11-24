@@ -10,4 +10,36 @@
     display: inline;
     background-color: transparent;
   }
+
+  .select {
+    display: inline;
+
+    .button {
+      display: inline-flex !important;
+      flex-direction: row;
+      align-items: center;
+      padding: 0px;
+      display: inline;
+      background-color: transparent;
+      outline: none;
+
+      .arrow {
+        font-size: 0.5em;
+        margin-left: 0.2em;
+      }
+
+    }
+
+    .popover {
+      .options {
+        .option {
+          outline: none;
+        }
+      }
+    }
+
+
+
+  }
+
 }

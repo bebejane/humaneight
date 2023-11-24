@@ -60,7 +60,7 @@ export default function Cart({ localization }: CartProps) {
       </div>
     )
   }
-
+  console.log(cart?.lines)
   return (
     <div id="cart" className={cn(s.cart, showCart && s.show, updating && s.updating)} >
       <header>
@@ -77,11 +77,11 @@ export default function Cart({ localization }: CartProps) {
           <ul className={s.items}>
             {cart?.lines.edges.map(({ node }, idx) =>
               <li key={idx}>
-                <div className={s.thumb}>
-                  <ProductThumbnail
-                    product={products?.find(({ shopifyId }) => shopifyId === parseGID(node.merchandise.product.id).toString()) as ProductRecord}
-                  />
-                </div>
+
+                <figure className={s.thumb}>
+                  <img src={node.merchandise.image?.url} alt={node.merchandise.image?.altText} />
+                </figure>
+
                 <div className={s.details}>
                   <div>{node.merchandise.product.title}</div>
                   <div>{node.merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
