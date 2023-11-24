@@ -1,6 +1,5 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
 import NextLink, { LinkProps } from 'next/link';
 import useCountry from '@lib/hooks/useCountry';
 
