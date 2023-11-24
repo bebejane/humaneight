@@ -3,8 +3,9 @@
 import s from './CurrencySelector.module.scss'
 import cn from 'classnames';
 import { useRef } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import useCountry from '@shopify/hooks/useCountry';
+import { defaultCountry } from '@lib/const';
 
 export type Props = {
   className?: string
@@ -15,17 +16,18 @@ export type Props = {
 
 export default function CurrencySelector({ className, label, localization, currency = false }: Props) {
 
-  const ref = useRef<HTMLFormElement>(null)
   const pathname = usePathname()
   const router = useRouter()
-  const { availableCountries } = localization
   const country = useCountry();
+  const { availableCountries } = localization
   const availableCurrencies = Array.from(new Set(availableCountries.map(({ currency: { isoCode } }) => isoCode)))
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const formData = new FormData(e.currentTarget.parentNode as HTMLFormElement)
-    const countryCode = (formData.get('countryCode') as string)?.toLowerCase()
-    router.push(`/${countryCode === 'se' ? '' : countryCode}`)
+    const countryCode = ((formData.get('countryCode') as string) ?? defaultCountry)
+    const path = pathname.replace(`/${country.toLowerCase()}`, `/${countryCode.toLowerCase()}`)
+    const hash = window.location.hash ? '#' + window.location.hash : ''
+    router.replace(`${path}${hash}`)
   }
 
   return (

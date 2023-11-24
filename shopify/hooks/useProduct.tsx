@@ -23,14 +23,13 @@ export default function useProduct({ handle }: { handle: string | undefined | nu
 
     setError(null);
     setLoading(true);
-    console.log('useProduct', { handle }, country)
+
     shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
       variables: { handle },
       tags: [handle],
       revalidate: 1000,
       country
     }).then(({ product }) => {
-      console.log('done')
       setProduct(product);
       setLoading(false);
     }).catch((e) => {

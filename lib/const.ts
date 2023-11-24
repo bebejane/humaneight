@@ -1,0 +1,1 @@
+export const defaultCountry = 'SE' as CountryCode
