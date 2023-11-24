@@ -11,9 +11,10 @@ import useProduct from '@shopify/hooks/useProduct';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
+  className?: string
 }
 
-export default function VariantsForm({ product }: VariantFormProps) {
+export default function VariantsForm({ product, className }: VariantFormProps) {
 
   const { product: shopifyProduct } = useProduct({ handle: product?.slug })
   const { searchParams, setSearchParam } = useQueryString()
@@ -27,8 +28,9 @@ export default function VariantsForm({ product }: VariantFormProps) {
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
   if (!shopifyProduct) return null
+
   return (
-    <form className={s.form}>
+    <form className={cn(s.form, className)}>
       <fieldset>
         <Select
           key={variantId}
@@ -70,6 +72,7 @@ export default function VariantsForm({ product }: VariantFormProps) {
       <fieldset>
         <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variantId}>
           <Text slot="description" className={s.description}>Size</Text>
+
           {availableSizes.map((v, idx) => {
             const option = v.selectedOptions.find(opt => opt.name === 'Size')
             const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && option?.value === opt.value) ? true : false

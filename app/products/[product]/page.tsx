@@ -4,7 +4,6 @@ import s from './page.module.scss'
 import { notFound } from 'next/navigation';
 import { AllProductsDocument, ProductDocument } from '@graphql';
 import { DraftMode, apiQuery } from 'next-dato-utils';
-import VariantsForm from './components/VariantsForm';
 import ProductPresentation from './components/ProductPresentation';
 import cn from 'classnames';
 import ProductInfo from '@app/products/[product]/components/ProductInfo';
@@ -30,10 +29,7 @@ export default async function Product({ params }: { params: { product: string } 
   return (
     <>
       <section className={cn(s.product, "grid")}>
-        <div className={s.details}>
-          <ProductInfo product={product} />
-          <VariantsForm product={product} />
-        </div>
+        <ProductInfo product={product} />
         <ProductPresentation product={product} />
       </section>
       <DraftMode url={draftUrl} tag={product.id} />
