@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from '@components//nav/Link'
 import s from './not-found.module.scss'
 
 export default function NotFound() {

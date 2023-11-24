@@ -1,6 +1,6 @@
 import s from './page.module.scss'
 import { Params } from '../[country]/page'
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery, DraftMode } from '@lib/next-dato-utils';
 import { StartDocument } from '@graphql';
 import Block from '@components/blocks/Block';
 

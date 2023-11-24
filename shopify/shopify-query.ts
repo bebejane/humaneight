@@ -4,7 +4,6 @@ import type { RequestInit } from 'next/dist/server/web/spec-extension/request.js
 import type { DocumentNode } from 'graphql'
 import { print } from 'graphql/language/printer.js'
 import { cache } from 'react';
-import { cookies } from 'next/headers'
 import isInteger from 'is-integer';
 
 const shopifyApiEndpoint = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE}.myshopify.com/api/${process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION}/graphql.json`;

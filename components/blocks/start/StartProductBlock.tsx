@@ -2,7 +2,7 @@ import s from './StartProductBlock.module.scss'
 import cn from 'classnames'
 import ThumbnailContainer from '@components/layout/ThumbnailContainer'
 import Thumbnail from '@components/layout/Thumbnail'
-import Link from 'next/link'
+import Link from '@components//nav/Link'
 
 type Props = {
   data: StartProductBlockRecord

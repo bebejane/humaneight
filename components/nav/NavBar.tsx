@@ -1,6 +1,6 @@
 'use client'
 
-import Link from "next/link";
+import Link from "@components//nav/Link";
 import s from './NavBar.module.scss'
 import cn from "classnames";
 import Cart from "@components/shopify/Cart";

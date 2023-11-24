@@ -29,6 +29,7 @@
 		"is-integer": "^1.0.7",
 		"next": "14.0.3",
 		"next-dato-utils": "github:bebejane/next-dato-utils",
+		"object-traversal": "^1.0.1",
 		"react": "18.2.0",
 		"react-aria": "^3.30.0",
 		"react-aria-components": "1.0.0-rc.0",

@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react'
 import s from './Cart.module.scss'
 import cn from 'classnames'
 import useCart from '@shopify/hooks/useCart'
-import { apiQuery } from 'next-dato-utils'
+import { apiQuery } from '@lib/next-dato-utils'
 import { parseGID } from '@shopify/utils'
 import { Image } from 'react-datocms'
 import { AllCartProductsDocument } from '@graphql'
 import CurrencySelector from './CurrencySelector'
 import Loader from '@components/common/Loader'
-import Link from 'next/link'
+import Link from '@components//nav/Link'
 
 
 export type CartProps = {
