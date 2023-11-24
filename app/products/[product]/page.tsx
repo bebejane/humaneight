@@ -39,24 +39,7 @@ export default async function Product({ params }: { params: { product: string } 
 
   return (
     <>
-      <section className={cn(s.product, "grid")}>
-        <div className={s.details}>
-          <p className="small">
-            <Link href="/shop">Shop</Link>
-            &nbsp;|&nbsp;
-            <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>
-          </p>
-          <header>
-            <h1 className="body">{product.title}</h1>
-            <div className={s.price}><p><Price money={variant.price} /></p></div>
-          </header>
-          <StructuredContent id={product.id} content={product.shortSummary} />
-          <span>Read more</span>
-          <VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />
-        </div>
-        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
-      </section>
-      <DraftMode url={draftUrl} tag={product.id} />
+      hej
     </>
   )
 }
