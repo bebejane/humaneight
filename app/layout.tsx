@@ -8,22 +8,12 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
-import localFont from 'next/font/local'
-
-export const runtime = 'edge';
-
-const ConcernMedium = localFont({
-  src: '../public/fonts/Concern-Medium.woff2',
-  weight: 'normal',
-  style: 'normal',
-  display: 'swap',
-})
+//import { }
+//export const runtime = 'edge';
 
 export type LayoutProps = {
   children: React.ReactNode
 }
-
-
 
 export default async function RootLayout({ children }: LayoutProps) {
 
@@ -41,7 +31,6 @@ export default async function RootLayout({ children }: LayoutProps) {
           <Footer menu={menu} localization={localization} />
         </body>
       </html >
-
     </>
   );
 }

@@ -14,7 +14,8 @@ export type ApiQueryOptions<V = void> = {
   revalidate?: number | undefined;
   tags?: string[] | undefined,
   logs?: boolean
-  all?: boolean
+  all?: boolean,
+  country?: string
 };
 
 export type DefaultApiQueryOptions = ApiQueryOptions & {
@@ -48,7 +49,7 @@ export default async function shopifyQuery<T = void, V = void>(query: DocumentNo
     throw new Error('SHOPIFY_STOREFRONT_API_TOKEN is not set')
 
   const queryId = (query.definitions?.[0] as any).name?.value as string
-  const country = cookies().get('country')?.value as CountryCode;
+  const country = opt.country as CountryCode ?? 'SE';
 
   const dedupeOptions: DedupeOptions = {
     body: JSON.stringify({
