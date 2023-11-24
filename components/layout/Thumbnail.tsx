@@ -2,7 +2,7 @@
 
 import s from './Thumbnail.module.scss'
 import { Image } from 'react-datocms';
-import Link from 'next/link';
+import Link from '@components//nav/Link';
 import shopifyQuery from '@shopify/shopify-query';
 import { ShopifyProductDocument } from '@shopify/graphql';
 import cn from 'classnames';

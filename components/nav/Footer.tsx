@@ -1,6 +1,6 @@
-'use client'
+'use server'
 
-import Link from "next/link";
+import Link from '@components//nav/Link';
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
@@ -11,7 +11,7 @@ export type Props = {
   localization: LocalizationQuery['localization']
 
 }
-export default function Footer({ menu, localization }: Props) {
+export default async function Footer({ menu, localization }: Props) {
   return (
     <footer className={s.footer}>
       <img src="/images/logo.svg"></img>
@@ -42,7 +42,6 @@ export default function Footer({ menu, localization }: Props) {
               </li>
             </ul>
           </li>
-
         </ul>
       </nav>
     </footer >

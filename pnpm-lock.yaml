@@ -53,6 +53,9 @@ dependencies:
   next-dato-utils:
     specifier: github:bebejane/next-dato-utils
     version: github.com/bebejane/next-dato-utils/36485b244d4234f6b1db364c327ce8c3f6205be6(@datocms/cma-client-browser@3.0.5)(@datocms/cma-client-node@3.0.5)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-structured-text-utils@2.0.4)(graphql@16.8.1)(react-datocms@4.1.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+  object-traversal:
+    specifier: ^1.0.1
+    version: 1.0.1
   react:
     specifier: 18.2.0
     version: 18.2.0

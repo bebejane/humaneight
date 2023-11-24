@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import s from './page.module.scss'
-import Link from 'next/link'
+import Link from '@components//nav/Link'
 
 export default function Register() {
 

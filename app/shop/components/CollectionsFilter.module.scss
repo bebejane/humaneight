@@ -1,0 +1,29 @@
+.filter {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+
+  li {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    min-width: 10ch;
+    text-align: center;
+
+    &:first-of-type {
+      text-align: left;
+    }
+
+    &:last-of-type {
+      text-align: right;
+    }
+
+    &.selected,
+    &.selected > a,
+    &:hover {
+      letter-spacing: var(--letter-space);
+    }
+  }
+}
