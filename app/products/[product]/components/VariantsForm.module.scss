@@ -1,9 +1,8 @@
 .form {
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 100%;
-  box-sizing: border-box;
-  position: absolute;
   bottom: var(--outer-margin);
 
   fieldset {
