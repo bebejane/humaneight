@@ -10,5 +10,5 @@ export default function useCountry() {
 const getCountyFromPathname = (pathname: string) => {
   const [path, hash] = pathname.split('#')
   const country = path.toLowerCase().split('/')[1].length === 2 ? path.toLowerCase().split('/')[1] : undefined
-  return country ?? 'se'
+  return country === 'se' || !country ? '' : country
 }

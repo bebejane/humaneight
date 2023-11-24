@@ -4,6 +4,7 @@ import s from './CurrencySelector.module.scss'
 import cn from 'classnames';
 import { useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import useCountry from '@lib/hooks/useCountry';
 
 export type Props = {
   className?: string
@@ -18,29 +19,18 @@ export default function CurrencySelector({ className, label, localization, curre
   const pathname = usePathname()
   const router = useRouter()
   const { availableCountries } = localization
-  const country = localization.availableCountries.find(({ isoCode }) => isoCode.toLowerCase() === pathname.toLowerCase().split('/')[1])?.isoCode.toLowerCase()
+  const country = useCountry();
   const availableCurrencies = Array.from(new Set(availableCountries.map(({ currency: { isoCode } }) => isoCode)))
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const p = (country ? pathname.toLowerCase().replace(`/${country}`, '') : pathname).split('/').slice(1).join('/')
-    console.log(p, pathname, country)
-    router.push(`/${e.currentTarget.value.toLowerCase()}/${p}`)
-    //    console.log('formData', e.currentTarget.pathname)
+    const formData = new FormData(e.currentTarget.parentNode as HTMLFormElement)
+    const countryCode = (formData.get('countryCode') as string)?.toLowerCase()
+    router.push(`/${countryCode === 'se' ? '' : countryCode}`)
   }
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    //console.log('formData', formData.get('countryCode'))
-    router.push(`/${formData.get('countryCode')}`)
-    console.log('formData', e.currentTarget.pathname)
-  }
-
 
   return (
-    <div className={cn(s.form, className)}>
-      {label &&
-        <label>{label}</label>
-      }
+    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
+      {label && <label>{label}</label>}
       {!currency ?
         <select name="countryCode" defaultValue={country} onChange={handleChange}>
           {availableCountries.map(({ isoCode }) => (
@@ -55,6 +45,6 @@ export default function CurrencySelector({ className, label, localization, curre
         </select>
 
       }
-    </div>
+    </form>
   );
 }
