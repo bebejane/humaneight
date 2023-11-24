@@ -3,10 +3,9 @@
 import s from './page.module.scss'
 import { notFound } from 'next/navigation';
 import { AllProductColorsDocument, AllProductsDocument, ProductDocument } from '@graphql';
-import { DraftMode, apiQuery } from 'next-dato-utils';
-import shopifyQuery from '@shopify/shopify-query';
-import { ShopifyProductDocument } from '@shopify/graphql';
-import StructuredContent from '@components/layout/StructuredContent';
+import { apiQuery } from 'next-dato-utils';
+
+
 import cn from 'classnames';
 
 export async function generateStaticParams() {
@@ -46,7 +45,7 @@ export default async function Product({ params }: { params: { product: string } 
             <h1 className="body">{product.title}</h1>
             <div className={s.price}><p></p></div>
           </header>
-          <StructuredContent id={product.id} content={product.shortSummary} />
+
           <span>Read more</span>
 
         </div>
