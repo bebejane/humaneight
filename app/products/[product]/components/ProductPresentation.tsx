@@ -7,19 +7,23 @@ import StructuredContent from '@components/layout/StructuredContent';
 import { Image } from 'react-datocms';
 import useQueryString from '@lib/hooks/useQueryString';
 import { parseGID } from '@shopify/utils';
+import useProduct from '@shopify/hooks/useProduct';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
-  shopifyProduct: ShopifyProductQuery['product']
 }
 
 
-export default function ProductPresentation({ product, shopifyProduct }: VariantFormProps) {
+export default function ProductPresentation({ product }: VariantFormProps) {
 
   const { searchParams } = useQueryString()
   const variantId = searchParams.get('variant') ?? null
+  const { product: shopifyProduct, error, loading } = useProduct({ handle: product?.slug })
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
   const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
+
+  if (error)
+    return <div className="error">{error.message}</div>
 
   return (
     <div className={s.presentation}>
@@ -44,7 +48,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                       pictureClassName={s.picture}
                       data={{ ...responsiveImage, alt }}
                     />
-                  }
+                  }pn
                 </figure>
               )
             })}

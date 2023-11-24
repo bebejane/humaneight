@@ -1,0 +1,29 @@
+.presentation {
+  grid-column-start: 5;
+  grid-column-end: 13;
+
+  .section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    figure {
+      width: 100%;
+      flex: 1 1 100%;
+
+      .image {
+        width: 100%;
+      }
+
+      &.double {
+        flex: 0 0 calc(50% - (var(--gutter) / 2));
+      }
+    }
+
+    div > p {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

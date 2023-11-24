@@ -7,19 +7,17 @@ import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGID } from '@shopify/utils';
-import { sl } from 'date-fns/locale';
-import { sleep } from 'next-dato-utils';
+import useProduct from '@shopify/hooks/useProduct';
 
 export type VariantFormProps = {
-  allProductColors: AllProductColorsQuery['allProductColors']
-  shopifyProduct: ShopifyProductQuery['product']
+  product: ProductQuery['product']
 }
 
-export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
-  //console.log(shopifyProduct)
+export default function VariantsForm({ product }: VariantFormProps) {
+
+  const { product: shopifyProduct } = useProduct({ handle: product?.slug })
   const { searchParams, setSearchParam } = useQueryString()
   const [colorsOpen, setColorsOpen] = useState(false)
-
   const variantId = searchParams.get('variant') ?? null
   const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
@@ -28,6 +26,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
+  if (!shopifyProduct) return null
   return (
     <form className={s.form}>
       <fieldset>
@@ -96,7 +95,7 @@ export default function VariantsForm({ shopifyProduct }: VariantFormProps) {
 }
 
 const availableVariants = (product: Product, name: string | undefined, value: string | undefined): ProductVariant[] => {
-  if (!name || !value) return product.variants.edges.map(({ node }) => node)
+  if (!name || !value) return product?.variants?.edges.map(({ node }) => node)
 
   return product.variants.edges.filter(({ node: { selectedOptions } }) => {
     return selectedOptions.find(opt => opt.name === name && opt.value === value) !== undefined
