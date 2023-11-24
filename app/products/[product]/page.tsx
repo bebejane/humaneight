@@ -42,9 +42,9 @@ export default async function Product({ params }: { params: { product: string } 
       <section className={cn(s.product, "grid")}>
         <div className={s.details}>
           <p className="small">
-            <Link href="/shop">Shop</Link>
+            {/*<Link href="/shop">Shop</Link>*/}
             &nbsp;|&nbsp;
-            <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>
+            {/*<Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>*/}
           </p>
           <header>
             <h1 className="body">{product.title}</h1>
@@ -52,9 +52,9 @@ export default async function Product({ params }: { params: { product: string } 
           </header>
           <StructuredContent id={product.id} content={product.shortSummary} />
           <span>Read more</span>
-          <VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />
+          {/*<VariantsForm allProductColors={allProductColors} shopifyProduct={shopifyProduct} />*/}
         </div>
-        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+        {/*<ProductPresentation product={product} shopifyProduct={shopifyProduct} />*/}
       </section>
       <DraftMode url={draftUrl} tag={product.id} />
     </>
