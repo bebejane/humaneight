@@ -1,7 +1,7 @@
 import storePage from '../page'
 
 import { AllCollectionsDocument } from '@graphql';
-import { apiQuery } from '@lib/next-dato-utils';
+import { apiQuery } from 'next-dato-utils';
 
 export async function generateStaticParams() {
   const { allCollections } = await apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {

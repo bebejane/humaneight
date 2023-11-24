@@ -3,7 +3,7 @@
 import s from './page.module.scss'
 import { notFound } from 'next/navigation';
 import { AllProductColorsDocument, AllProductsDocument, ProductDocument } from '@graphql';
-import { DraftMode, apiQuery } from '@lib/next-dato-utils';
+import { DraftMode, apiQuery } from 'next-dato-utils';
 import shopifyQuery from '@shopify/shopify-query';
 import { ShopifyProductDocument } from '@shopify/graphql';
 import StructuredContent from '@components/layout/StructuredContent';

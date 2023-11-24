@@ -4,7 +4,7 @@ fragment ImageCartThumbnailFragment on FileFieldInterface {
 	mimeType
 	url
 	title
-	responsiveImage(imgixParams: { ar: "1:1", fit: crop, w: 200 }) {
+	responsiveImage(imgixParams: { ar: "4:4", fit: clamp, w: 200, h: 200 }) {
 		...ResponsiveImageFragment
 	}
 }

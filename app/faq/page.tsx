@@ -1,7 +1,7 @@
 
 import s from './page.module.scss'
 import { AllFaqSectionsDocument, AllFaqsDocument } from '@graphql';
-import { apiQuery } from '@lib/next-dato-utils';
+import { apiQuery } from 'next-dato-utils';
 import FaqItem from './components/FaqItem';
 import Link from '@components//nav/Link';
 import cn from 'classnames';
