@@ -108,17 +108,6 @@ fragment ProductFragment on ProductRecord {
 			}
 		}
 	}
-	options: _allReferencingProductVariantOptions(first: 100) {
-		id
-		name
-		values
-		shopifyId
-	}
-	variants: _allReferencingProductVariants(first: 100) {
-		id
-		title
-		shopifyId
-	}
 }
 
 fragment ProductMediaItemFragment on ProductMediaModelRecord {
