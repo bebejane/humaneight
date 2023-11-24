@@ -10,6 +10,8 @@ export type Props = {
   params?: { collection?: string }
 }
 
+export const dynamic = 'force-static'
+
 export default async function Shop({ params }: Props) {
 
   const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {

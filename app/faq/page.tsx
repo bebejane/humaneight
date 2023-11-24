@@ -14,6 +14,8 @@ export type FaqSectionWithFaqs = FaqSectionRecord & {
   faqs: FaqRecord[]
 }
 
+export const dynamic = 'force-static'
+
 export default async function FaqPage() {
 
   const { allFaqs, draftUrl } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {

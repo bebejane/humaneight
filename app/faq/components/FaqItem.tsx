@@ -13,14 +13,13 @@ export type Props = {
 
 export default function FaqItem({ faq }: Props) {
 
-  const params = useParams();
   const pathname = usePathname();
   const [selected, setSelected] = useState(false)
 
   useEffect(() => {
     const hash = window.location.hash;
     setSelected(hash === `#${faq.id}`);
-  }, [params, faq.id]);
+  }, [faq.id]);
 
   return (
     <li id={faq.id} key={faq.id} className={s.faq}>
