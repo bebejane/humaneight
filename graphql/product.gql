@@ -119,7 +119,6 @@ fragment ProductFragment on ProductRecord {
 		title
 		shopifyId
 	}
-	shopifyData
 }
 
 fragment ProductMediaItemFragment on ProductMediaModelRecord {
