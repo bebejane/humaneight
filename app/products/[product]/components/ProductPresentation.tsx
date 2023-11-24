@@ -48,7 +48,7 @@ export default function ProductPresentation({ product }: VariantFormProps) {
                       pictureClassName={s.picture}
                       data={{ ...responsiveImage, alt }}
                     />
-                  }pn
+                  }
                 </figure>
               )
             })}
