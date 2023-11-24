@@ -19,10 +19,7 @@ export default function ProductInfo({ product }: Props) {
 
   const [readMore, setReadMore] = useState(false)
   const { searchParams } = useQueryString()
-
   const variantId = searchParams.get('variant') ?? null
-  const { product: shopifyProduct, loading } = useProduct({ handle: product?.slug })
-  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
 
   if (!product)
     return null
@@ -37,7 +34,9 @@ export default function ProductInfo({ product }: Props) {
         </p>
         <header>
           <h1 className="body">{product.title}</h1>
-          <div className={s.price}><p><Price slug={product.slug} variantId={variant?.id} /></p></div>
+          <div className={s.price}>
+            <p><Price slug={product.slug} variantId={variantId} /></p>
+          </div>
         </header>
         <StructuredContent
           id={product.id}

@@ -4,7 +4,7 @@ import { FieldError, Label, Radio, RadioGroup, Text, Button, ListBox, ListBoxIte
 import useQueryString from '@lib/hooks/useQueryString'
 import s from './VariantsForm.module.scss'
 import cn from 'classnames'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGID } from '@shopify/utils';
 import useProduct from '@shopify/hooks/useProduct';
@@ -19,9 +19,11 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
   const { product: shopifyProduct } = useProduct({ handle: product?.slug })
   const { searchParams, setSearchParam } = useQueryString()
   const [colorsOpen, setColorsOpen] = useState(false)
+
   const variantId = searchParams.get('variant') ?? null
   const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
+
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
 

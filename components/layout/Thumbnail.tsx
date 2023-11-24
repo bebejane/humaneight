@@ -13,7 +13,6 @@ export type Props = {
 export default function Thumbnail({ product }: Props) {
 
   const { product: shopifyProduct } = useProduct({ handle: product?.slug })
-  const variant = shopifyProduct?.variants?.edges?.[0]?.node;
 
   return (
     <Link href={`/products/${product.slug}`} className={s.thumbnail}>
@@ -36,7 +35,7 @@ export default function Thumbnail({ product }: Props) {
           }
           <figcaption>
             <h3 className="body">{product.title}</h3>
-            <p><Price slug={product.slug} variantId={variant?.id} /></p>
+            <p><Price slug={product.slug} /></p>
           </figcaption>
           <ul>
             {product.usp.map(({ id, title, description }) =>
