@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import NextLink, { LinkProps } from 'next/link';
+import useCountry from '@lib/hooks/useCountry';
 
 export type Props = LinkProps & {
   children: React.ReactNode | React.ReactNode[]
@@ -10,14 +11,8 @@ export type Props = LinkProps & {
 
 export default function Link<LinkProps>(props: Props) {
 
-  const pathname = usePathname()
-  const country = getCountyFromPathname(pathname)
+  const country = useCountry();
   const href = country ? `/${country}${props.href}` : props.href;
   return <NextLink {...{ ...props, href: undefined }} href={href} >{props.children}</NextLink>
 
-}
-
-const getCountyFromPathname = (pathname: string) => {
-  const [path, hash] = pathname.split('#')
-  return path.toLowerCase().split('/')[1].length === 2 ? path.toLowerCase().split('/')[1] : undefined
 }

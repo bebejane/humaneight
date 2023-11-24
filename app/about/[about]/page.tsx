@@ -1,6 +1,6 @@
 
 import { AboutDocument, AllAboutsDocument } from '@graphql';
-import { apiQuery, DraftMode } from '@lib/next-dato-utils';
+import { apiQuery, DraftMode } from 'next-dato-utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {

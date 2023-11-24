@@ -2,7 +2,7 @@
 import { AllCollectionsDocument } from '@graphql'
 import s from './CollectionsFilter.module.scss'
 import cn from 'classnames'
-import { apiQuery } from '@lib/next-dato-utils'
+import { apiQuery } from 'next-dato-utils'
 import Link from '@components//nav/Link'
 
 export type Props = {

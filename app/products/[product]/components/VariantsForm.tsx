@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGID } from '@shopify/utils';
 import { sl } from 'date-fns/locale';
-import { sleep } from '@lib/next-dato-utils';
+import { sleep } from 'next-dato-utils';
 
 export type VariantFormProps = {
   allProductColors: AllProductColorsQuery['allProductColors']

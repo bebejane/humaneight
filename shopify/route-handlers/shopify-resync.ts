@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { syncAll } from '../sync';
-import { parseDatoCMSApiError } from '@lib/next-dato-utils';
+import { parseDatoCMSApiError } from 'next-dato-utils';
 
 export default async function resync(req: NextRequest) {
 
