@@ -1,7 +1,7 @@
 'use server'
 
 import s from './page.module.scss'
-import { notFound } from 'next/navigation';
+//import { notFound } from 'next/navigation';
 import { AllProductColorsDocument, AllProductsDocument, ProductDocument } from '@graphql';
 import { DraftMode, apiQuery } from 'next-dato-utils';
 import shopifyQuery from '@shopify/shopify-query';
@@ -31,8 +31,8 @@ export default async function Product({ params }: { params: { product: string } 
   const { product: shopifyProduct } = await shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, { variables: { handle: params.product } });
   const variant = shopifyProduct?.variants?.edges[0]?.node as ProductVariant
 
-  if (!product)
-    return notFound();
+  //if (!product)
+  //return notFound();
 
   if (!shopifyProduct)
     return <div>Shopify product not found for slug {params.product}</div>
