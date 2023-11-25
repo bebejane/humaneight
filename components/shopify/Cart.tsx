@@ -60,7 +60,7 @@ export default function Cart({ localization }: CartProps) {
       </div>
     )
   }
-  console.log(cart?.lines)
+
   return (
     <div id="cart" className={cn(s.cart, showCart && s.show, updating && s.updating)} >
       <header>
@@ -87,11 +87,13 @@ export default function Cart({ localization }: CartProps) {
                   <div>{node.merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
                   <div>
                     <button
+                      className={s.minus}
                       onClick={() => updateQuantity(node.id, node.quantity - 1)}
                       disabled={node.quantity === 1}
                     >-</button>
                     {node.quantity}
                     <button
+                      className={s.plus}
                       onClick={() => updateQuantity(node.id, node.quantity + 1)}
                     >+</button>
                   </div>
@@ -101,9 +103,11 @@ export default function Cart({ localization }: CartProps) {
                   <div className={s.price}>
                     {node.merchandise.price.amount} {node.cost.totalAmount.currencyCode}
                   </div>
-                  <button className={s.remove} onClick={() => removeFromCart(node.id)}>
-                    Remove
-                  </button>
+                  <div>
+                    <button className={s.remove} onClick={() => removeFromCart(node.id)}>
+                      Remove
+                    </button>
+                  </div>
                 </div>
 
               </li>
@@ -113,12 +117,12 @@ export default function Cart({ localization }: CartProps) {
           <div className={s.total}>
             <div>Total</div>
             <div className={s.price}>
-              {cart?.cost.totalAmount.amount}
+              {cart?.cost.totalAmount.amount} {cart?.cost.totalAmount.currencyCode}
             </div>
           </div>
 
           <form action={cart?.checkoutUrl} method="GET">
-            <button className={s.checkout} type="submit">Checkout & pay</button>
+            <button className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
           </form>
         </>
       }

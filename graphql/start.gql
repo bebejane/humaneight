@@ -6,6 +6,11 @@ query Start {
 			... on StartProductBlockRecord {
 				id
 				headline
+				collection {
+					id
+					slug
+					title
+				}
 				selectedProducts {
 					product {
 						...ProductLightFragment

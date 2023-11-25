@@ -20,6 +20,9 @@ const nextConfig = {
 	logging: {
 		//fetches: {fullUrl: true},
 	},
+	experimental: {
+		typedRoutes: true,
+	},
 	async headers() {
 		return [
 			{

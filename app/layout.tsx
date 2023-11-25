@@ -8,8 +8,6 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
-//import { }
-//export const runtime = 'edge';
 
 export type LayoutProps = {
   children: React.ReactNode

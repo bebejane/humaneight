@@ -31,7 +31,6 @@ export default async function Product({ params }: CountryProductParams) {
   const { product: shopifyProduct } = await shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
     variables: { handle: params.product },
     country: params.country
-
   });
 
   if (!product || !shopifyProduct)

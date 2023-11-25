@@ -2,10 +2,10 @@
 
 import s from './FaqItem.module.scss'
 import cn from 'classnames'
-import Link from '@components//nav/Link'
+import Link from 'next/Link'
 import StructuredContent from '@components/layout/StructuredContent';
 import { useParams, usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export type Props = {
   faq: FaqRecord
@@ -16,17 +16,34 @@ export default function FaqItem({ faq }: Props) {
   const pathname = usePathname();
   const [selected, setSelected] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const hash = window.location.hash;
     setSelected(hash === `#${faq.id}`);
   }, [faq.id]);
 
+  useEffect(() => {
+
+    const hashChange = () => {
+      //console.log(window.location.hash)
+      //setSelected(window.location.hash === `#${faq.id}`)
+    };
+    window.addEventListener('hashchange', hashChange)
+    return () => window.removeEventListener('hashchange', hashChange)
+  }, [faq.id]);
+
+
   return (
     <li id={faq.id} key={faq.id} className={s.faq}>
-      <Link className={cn('body', s.question)} href={selected ? pathname : `#${faq.id}`} scroll={false}>
+      <a
+        className={cn('body', s.question)}
+        href={`#${faq.id}`}
+        //scroll={false}
+        onClick={(e) => { setSelected(!selected); e.preventDefault() }}
+
+      >
         <h3 className="body">{faq.question}</h3>
         {selected ? '-' : '+'}
-      </Link>
+      </a>
       <div className={cn(s.answer, selected && s.show, "mid")}>
         <StructuredContent id={faq.id} content={faq.answer} />
       </div>

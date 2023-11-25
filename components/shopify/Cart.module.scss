@@ -35,6 +35,7 @@
       height: 33px;
       background: url("/images/cart.svg") no-repeat center center;
 
+
       .loader {
         position: absolute;
         z-index: 2;
@@ -90,7 +91,8 @@
 
 .cart {
   position: fixed;
-  display: block;
+  display: flex;
+  flex-direction: column;
   background-color: var(--gray);
   right: 0;
   top: 0;
@@ -103,6 +105,7 @@
   header {
     display: flex;
     flex-direction: row;
+    align-items: center;
 
     h3 {
       flex: 1 1 auto;
@@ -111,6 +114,7 @@
     .currency {
       display: flex;
       flex-direction: row;
+      margin-right: 0.5em;
     }
 
     .close {
@@ -144,6 +148,16 @@
       .details {
         display: flex;
         flex-direction: column;
+        margin-left: 1em;
+
+        button.minus {
+          margin-right: 0.5em;
+        }
+
+        button.plus {
+
+          margin-left: 0.5em;
+        }
       }
 
       .amount {
@@ -158,6 +172,7 @@
 
         .remove {
           flex: 0 0;
+          width: auto;
         }
       }
     }
@@ -172,20 +187,29 @@
     }
   }
 
-  button.checkout {
-    margin-right: 10px;
-    cursor: pointer;
-    width: 100%;
-    background-color: var(--black) !important;
-    color: var(--white);
+  >form {
+    display: flex;
+    align-items: flex-end;
+    flex: 1 1 auto;
+
+    button.checkout {
+      margin-right: 10px;
+      cursor: pointer;
+      width: 100%;
+      background-color: var(--black) !important;
+      color: var(--white);
+    }
   }
 
-  table {
-    width: 100%;
-  }
+
+
 }
 
 .empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   text-align: center;
 }
 

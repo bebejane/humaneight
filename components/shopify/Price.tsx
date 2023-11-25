@@ -7,6 +7,7 @@ import { parseGID } from "@shopify/utils"
 export type Props = {
   slug: string
   variantId?: string | null | undefined
+
 }
 
 export default function Price({ slug, variantId }: Props) {
