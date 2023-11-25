@@ -27,8 +27,8 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
 
   if (!shopifyProduct?.product) return null
 
-  const availableSizes = availableVariants(shopifyProduct.product as Product, 'Color', variant?.selectedOptions?.find(opt => opt.name === 'Color')?.value)
-  const availableColors = availableVariants(shopifyProduct.product as Product, 'Size', variant?.selectedOptions?.find(opt => opt.name === 'Size')?.value)
+  const availableSizes = availableVariants(shopifyProduct.product as Product, 'Color', variant?.selectedOptions?.find(opt => opt?.name === 'Color')?.value)
+  const availableColors = availableVariants(shopifyProduct.product as Product, 'Size', variant?.selectedOptions?.find(opt => opt?.name === 'Size')?.value)
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
@@ -44,7 +44,7 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
           <Text slot="description" className={s.description}>Color</Text>
           <Button className={s.button}>
             <SelectValue className={s.value} key={variantId}>
-              {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
+              {variant?.selectedOptions?.find(opt => opt?.name === 'Color')?.value}
             </SelectValue>
             <span aria-hidden="true" className={s.arrow}>{!colorsOpen ? '▼' : '▲'}</span>
           </Button>
@@ -78,7 +78,7 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
 
           {availableSizes.map((v, idx) => {
             const option = v.selectedOptions.find(opt => opt.name === 'Size')
-            const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && option?.value === opt.value) ? true : false
+            const selected = variant?.selectedOptions?.find(opt => opt?.name === 'Size' && option?.value === opt.value) ? true : false
 
             return (
               <React.Fragment key={idx}>
