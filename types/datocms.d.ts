@@ -168,6 +168,9 @@ type CollectionRecord = RecordInterface & {
   _allReferencingProducts: Array<ProductRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingProductsMeta: CollectionMetadata;
+  _allReferencingStarts: Array<StartRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingStartsMeta: CollectionMetadata;
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -209,6 +212,26 @@ type CollectionRecord_allReferencingProductsMetaArgs = {
   filter?: InputMaybe<ProductModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenProductAndCollection>;
+};
+
+
+/** Record of type Collection (collection) */
+type CollectionRecord_allReferencingStartsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<StartModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<StartModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenStartAndCollection>;
+};
+
+
+/** Record of type Collection (collection) */
+type CollectionRecord_allReferencingStartsMetaArgs = {
+  filter?: InputMaybe<StartModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenStartAndCollection>;
 };
 
 
@@ -2208,6 +2231,14 @@ type InverseRelationshipFieldFilterBetweenProductVariantOptionAndProduct = {
 };
 
 /** Specifies how to filter by linking fields */
+type InverseRelationshipFieldFilterBetweenStartAndCollection = {
+  /** Filter linking records that reference current record in at least one of the specified fields */
+  anyIn?: InputMaybe<Array<StartModelFieldsReferencingCollectionModel>>;
+  /** Filter linking records that do not reference current record in any of the specified fields */
+  notIn?: InputMaybe<Array<StartModelFieldsReferencingCollectionModel>>;
+};
+
+/** Specifies how to filter by linking fields */
 type InverseRelationshipFieldFilterBetweenStartAndProduct = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<StartModelFieldsReferencingProductModel>>;
@@ -2251,6 +2282,14 @@ type InverseRelationshipFilterBetweenProductVariantAndProduct = {
 type InverseRelationshipFilterBetweenProductVariantOptionAndProduct = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenProductVariantOptionAndProduct>;
+  /** Specifies how to filter by linking locales */
+  locales?: InputMaybe<LinkingLocalesFilter>;
+};
+
+/** Specifies how to filter linking records */
+type InverseRelationshipFilterBetweenStartAndCollection = {
+  /** Specifies how to filter by linking fields */
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenStartAndCollection>;
   /** Specifies how to filter by linking locales */
   locales?: InputMaybe<LinkingLocalesFilter>;
 };
@@ -3921,6 +3960,12 @@ type StartFullscreenBlockRecord_seoMetaTagsArgs = {
 };
 
 /** Linking fields */
+enum StartModelFieldsReferencingCollectionModel {
+  start_sections = 'start_sections',
+  start_sections__startProductBlock_collection = 'start_sections__startProductBlock_collection'
+}
+
+/** Linking fields */
 enum StartModelFieldsReferencingProductModel {
   start_sections = 'start_sections',
   start_sections__startProductBlock_selectedProducts__startProductShortcutBlock_product = 'start_sections__startProductBlock_selectedProducts__startProductShortcutBlock_product'
@@ -3979,9 +4024,9 @@ type StartProductBlockRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  collection?: Maybe<CollectionRecord>;
   headline: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
-  products: Array<ProductLinkRecord>;
   selectedProducts: Array<StartProductShortcutBlockRecord>;
 };
 
