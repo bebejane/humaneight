@@ -1,3 +1,4 @@
+import { CountryShopParams } from '@app/[country]/shop/page';
 import storePage from '../page'
 
 import { AllCollectionsDocument } from '@graphql';
@@ -11,6 +12,6 @@ export async function generateStaticParams() {
   return allCollections.map(({ slug: collection }) => ({ collection }))
 }
 
-export default async function Collection({ params }: { params: { collection: string } }) {
-  return storePage({ params })
+export default async function Collection(params: CountryShopParams) {
+  return storePage(params)
 }

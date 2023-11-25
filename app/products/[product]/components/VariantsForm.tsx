@@ -11,12 +11,12 @@ import useProduct from '@shopify/hooks/useProduct';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
+  shopifyProduct: ShopifyProductQuery['product']
   className?: string
 }
 
-export default function VariantsForm({ product, className }: VariantFormProps) {
+export default function VariantsForm({ product, shopifyProduct, className }: VariantFormProps) {
 
-  const { product: shopifyProduct } = useProduct({ handle: product?.slug })
   const { searchParams, setSearchParam } = useQueryString()
   const [colorsOpen, setColorsOpen] = useState(false)
 

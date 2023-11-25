@@ -5,12 +5,9 @@ import { AllProductByCollectionDocument, CollectionDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import Thumbnail from '@components/layout/Thumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
+import { CountryShopParams } from '@app/[country]/shop/page';
 
-export type Props = {
-  params?: { collection?: string }
-}
-
-export default async function Shop({ params }: Props) {
+export default async function Shop({ params }: CountryShopParams) {
 
   const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: {

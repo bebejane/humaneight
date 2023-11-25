@@ -43,11 +43,9 @@ export default async function shopifyQuery<T = void, V = void>(query: DocumentNo
     throw new Error('NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION is not set')
   if (!process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN)
     throw new Error('NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN is not set')
-  //if (!process.env.SHOPIFY_STOREFRONT_API_TOKEN)
-  //throw new Error('SHOPIFY_STOREFRONT_API_TOKEN is not set')
 
   const queryId = (query.definitions?.[0] as any).name?.value as string
-  let country = opt.country as CountryCode ?? 'SE';
+  const country = (opt.country as CountryCode ?? 'SE').toUpperCase();
 
   const dedupeOptions: DedupeOptions = {
     body: JSON.stringify({

@@ -1,4 +1,7 @@
-export { generateStaticParams } from '@app/about/[about]/page';
 import page from '@app/about/[about]/page';
+import { CountryParams } from '@app/[country]/layout';
+export { generateStaticParams } from '@app/about/[about]/page';
 
-export default async ({ params }: { params: { about: string } }) => page({ params });
+export type CountryAboutParams = CountryParams & { params: { about: string; } };
+
+export default async (params: CountryAboutParams) => page(params);

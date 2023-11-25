@@ -1,4 +1,7 @@
 export { generateStaticParams } from '@app/products/[product]/page';
 import page from '@app/products/[product]/page';
+import { CountryParams } from '@app/[country]/layout';
 
-export default async ({ params }: { params: { product: string } }) => page({ params });
+export type CountryProductParams = CountryParams & { params: { product: string; } };
+
+export default async (params: CountryProductParams) => page(params);

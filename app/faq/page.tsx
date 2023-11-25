@@ -5,18 +5,13 @@ import { apiQuery } from 'next-dato-utils';
 import FaqItem from './components/FaqItem';
 import Link from '@components//nav/Link';
 import cn from 'classnames';
-
-export type Props = {
-  params?: { section: string }
-}
+import { CountryParams } from '@app/[country]/layout'
 
 export type FaqSectionWithFaqs = FaqSectionRecord & {
   faqs: FaqRecord[]
 }
 
-export const dynamic = 'force-static'
-
-export default async function FaqPage() {
+export default async function FaqPage(params: CountryParams) {
 
   const { allFaqs, draftUrl } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {
     all: true,

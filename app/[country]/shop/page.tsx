@@ -1,3 +1,5 @@
 import page from '@app/shop/page';
-export { dynamic } from '@app/shop/page';
-export default async () => page({ params: { collection: undefined } });
+import { CountryParams } from '@app/[country]/layout';
+
+export type CountryShopParams = CountryParams & { params: { collection: string | undefined } };
+export default async (params: CountryShopParams) => page(params);
