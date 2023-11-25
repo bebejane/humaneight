@@ -4,7 +4,7 @@ import Link from '@components//nav/Link';
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
-import CurrencySelector from "@components/shopify/CurrencySelector";
+import CountrySelector from "@components/shopify/CountrySelector";
 
 export type Props = {
   menu: Menu,
@@ -24,9 +24,9 @@ export default async function Footer({ menu, localization }: Props) {
             <li key={id}>
               <h3 className="small">{title}</h3>
               <ul>
-                {sub?.map(({ id, title, slug, href }) => (
+                {sub?.map(({ id, title, slug, href, localized }) => (
                   <li key={id}>
-                    <Link href={href ?? slug ?? ''}>
+                    <Link href={href ?? slug ?? ''} localized={localized}>
                       {title}
                     </Link>
                   </li>
@@ -38,7 +38,7 @@ export default async function Footer({ menu, localization }: Props) {
             <h3 className="small">Settings</h3>
             <ul>
               <li>
-                <CurrencySelector localization={localization} label="Change location" />
+                <CountrySelector localization={localization} label="Change location" />
               </li>
             </ul>
           </li>

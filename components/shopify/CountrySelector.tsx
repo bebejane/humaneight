@@ -2,7 +2,7 @@
 
 'use client';
 import { Button, ListBox, ListBoxItem, Popover, Select, SelectValue, Key } from 'react-aria-components';
-import s from './CurrencySelector.module.scss'
+import s from './CountrySelector.module.scss'
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
 import useCountry from '@shopify/hooks/useCountry';
@@ -16,7 +16,7 @@ export type Props = {
   currency?: boolean
 }
 
-export default function CurrencySelector({ className, label, localization, currency = false }: Props) {
+export default function CountrySelector({ className, label, localization, currency = false }: Props) {
 
   const pathname = usePathname()
   const router = useRouter()
@@ -30,7 +30,7 @@ export default function CurrencySelector({ className, label, localization, curre
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const formData = new FormData(e.currentTarget.parentNode as HTMLFormElement)
     const countryCode = ((formData.get('countryCode') as string) ?? defaultCountry)
-    const path = `/${countryCode}/${pathname.replace(`/${country.toLowerCase()}`, ``)}`
+    const path = `${countryCode !== defaultCountry ? `/${countryCode}` : ''}${pathname.replace(`/${country.toLowerCase()}`, ``)}`
     const hash = window.location.hash ? '#' + window.location.hash : ''
     router.replace(`${path}${hash}`.toLowerCase())
   }

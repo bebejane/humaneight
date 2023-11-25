@@ -8,9 +8,8 @@ export type MenuItem = {
   title: string,
   slug?: string,
   href?: string,
+  localized?: boolean,
   sub?: MenuItem[],
-  auth?: boolean,
-  position?: 'left' | 'right'
 }
 
 export type Menu = MenuItem[]
@@ -28,7 +27,7 @@ export const buildMenu = async (): Promise<Menu> => {
   const menu: Menu = [{
     id: 'about',
     title: 'About',
-    sub: allAbouts.map(({ id, slug, title }) => ({ id, title, slug: `/about/${slug}` })),
+    sub: allAbouts.map(({ id, slug, title }) => ({ id, title, slug: `/about/${slug}`, localized: false })),
   }, {
     id: 'shop',
     title: 'Shop',
@@ -42,8 +41,8 @@ export const buildMenu = async (): Promise<Menu> => {
     id: 'help',
     title: 'Help',
     sub: [
-      { id: 'faq', title: 'Faq', slug: '/faq' },
-      ...allFaqSections.map(({ id, title, slug }) => ({ id, title, slug: `/faq#${slug}` }))
+      { id: 'faq', title: 'Faq', slug: '/faq', localized: false },
+      ...allFaqSections.map(({ id, title, slug }) => ({ id, title, slug: `/faq#${slug}`, localized: false }))
     ],
   }, {
     id: 'legal',
@@ -59,9 +58,9 @@ export const buildMenu = async (): Promise<Menu> => {
     id: 'social',
     title: 'Social',
     sub: [
-      { id: 'instagram', title: 'Instagram', href: general?.instagram },
-      { id: 'facebook', title: 'Facebook', href: general?.facebook },
-      { id: 'twitter', title: 'Twitter', href: general?.twitter },
+      { id: 'instagram', title: 'Instagram', href: general?.instagram, localized: false },
+      { id: 'facebook', title: 'Facebook', href: general?.facebook, localized: false },
+      { id: 'twitter', title: 'Twitter', href: general?.twitter, localized: false },
     ]
   }]
   return menu

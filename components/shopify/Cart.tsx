@@ -8,7 +8,7 @@ import { apiQuery } from 'next-dato-utils'
 import { parseGID } from '@shopify/utils'
 import { Image } from 'react-datocms'
 import { AllCartProductsDocument } from '@graphql'
-import CurrencySelector from './CurrencySelector'
+import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
 
@@ -66,7 +66,7 @@ export default function Cart({ localization }: CartProps) {
       <header>
         <h3>Cart</h3>
         <div className={s.currency}>
-          <CurrencySelector localization={localization} label="Currency" currency={true} />
+          <CountrySelector localization={localization} label="Currency" currency={true} />
         </div>
         <div className={s.close} onClick={() => setShowCart(false)}>×</div>
       </header>

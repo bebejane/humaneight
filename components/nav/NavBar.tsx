@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import type { Menu } from "@lib/menu";
 import { usePathname } from "next/navigation";
 import { useKey } from 'rooks'
-import CurrencySelector from "@components/shopify/CurrencySelector";
+import CountrySelector from "@components/shopify/CountrySelector";
 
 export type Props = {
   menu: Menu
@@ -51,9 +51,14 @@ export default function NavBar({ menu, localization }: Props) {
             <li key={id}>
               <h3 className="small">{title}</h3>
               <ul>
-                {sub?.map(({ id, title, slug }) => (
+                {sub?.map(({ id, title, slug, localized }) => (
                   <li key={id}>
-                    <Link href={`${slug}`} className="nav nav-hover" onClick={() => setShowMenu(false)}>
+                    <Link
+                      href={`${slug}`}
+                      localized={localized}
+                      className="nav nav-hover"
+                      onClick={() => setShowMenu(false)}
+                    >
                       {title}
                     </Link>
                   </li>
@@ -64,7 +69,7 @@ export default function NavBar({ menu, localization }: Props) {
         </ul>
 
         <div className={s.footer}>
-          <CurrencySelector localization={localization} label="Change location" />
+          <CountrySelector localization={localization} label="Change location" />
           <div>
             Customize our website for your needs
           </div>
