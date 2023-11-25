@@ -3,7 +3,7 @@ import s from './orders.module.scss'
 import { getCookie, getCookies } from 'cookies-next'
 import { CustomerOrdersDocument } from '@shopify/graphql'
 import shopifyQuery from '@shopify/shopify-query'
-import { flattenConnection, parseGID } from '@shopify/utils'
+import { flattenConnection, parseGid } from '@shopify/utils'
 import React from 'react'
 
 type Props = {

@@ -6,7 +6,7 @@ import React from 'react'
 import StructuredContent from '@components/layout/StructuredContent';
 import { Image } from 'react-datocms';
 import useQueryString from '@lib/hooks/useQueryString';
-import { parseGID } from '@shopify/utils';
+import { parseGid } from '@shopify/utils';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
@@ -18,7 +18,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
 
   const { searchParams } = useQueryString()
   const variantId = searchParams.get('variant') ?? null
-  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
+  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
   const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
 
   return (

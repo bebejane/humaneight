@@ -8,7 +8,7 @@
   padding-top: 1rem;
 
   &.expanded {
-    height: auto;
+    height: calc(200vh - var(--navbar-height));
   }
 
   header {

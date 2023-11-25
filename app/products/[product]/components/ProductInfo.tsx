@@ -8,7 +8,7 @@ import useQueryString from '@lib/hooks/useQueryString';
 import Price from '@components/shopify/Price';
 import Link from '@components//nav/Link';
 import VariantsForm from '@app/products/[product]/components/VariantsForm';
-import { parseGID } from '@shopify/utils';
+import { parseGid } from '@shopify/utils';
 
 export type Props = {
   product: ProductQuery['product']
@@ -20,7 +20,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   const [readMore, setReadMore] = useState(false)
   const { searchParams } = useQueryString()
   const variantId = searchParams.get('variant') ?? null
-  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
+  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
 
   if (!product)
     return null

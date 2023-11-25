@@ -6,7 +6,7 @@ import s from './VariantsForm.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
-import { parseGID } from '@shopify/utils';
+import { parseGid } from '@shopify/utils';
 import useProduct from '@shopify/hooks/useProduct';
 
 export type VariantFormProps = {
@@ -22,14 +22,12 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
 
   const variantId = searchParams.get('variant') ?? null
   const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
-  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
+  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
 
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
-
-  if (!shopifyProduct) return null
 
   return (
     <form className={cn(s.form, className)}>
@@ -51,7 +49,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
             <ListBox
               className={s.options}
               items={availableColors.map((v, idx) => ({
-                id: parseGID(v.id),
+                id: parseGid(v.id),
                 name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
               }))}
             >
@@ -60,7 +58,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
                 if (!option) return null
                 return (
                   <ListBoxItem
-                    id={parseGID(v.id)}
+                    id={parseGid(v.id)}
                     key={idx}
                     className={cn(s.option)}
                   >{option?.value}</ListBoxItem>
@@ -82,8 +80,8 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
             return (
               <React.Fragment key={idx}>
                 <Radio
-                  id={parseGID(v.id)}
-                  value={parseGID(v.id)}
+                  id={parseGid(v.id)}
+                  value={parseGid(v.id)}
                   className={cn(s.radio, selected && s.selected)}
                 >
                   <Label className={s.label}>{option?.value}</Label>

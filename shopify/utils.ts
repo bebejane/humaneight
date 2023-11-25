@@ -4,7 +4,7 @@ export const getShopifyId = (id: string): number => {
   return shopifyId.includes('/') ? parseInt(shopifyId.split('/').pop()?.split('?')[0] as string) : parseInt(shopifyId)
 };
 
-export const parseGID = (id: string): string => {
+export const parseGid = (id: string): string => {
   return parseInt(id.split('/').pop()?.split('?')[0] as string).toString()
 };
 

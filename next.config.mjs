@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	sassOptions: {
-		includePaths: ["./components", "./pages"],
+		includePaths: ["./components", "./app"],
 		prependData: `
     	@use "sass:math";
     	@import "./styles/mediaqueries"; 
@@ -18,10 +18,9 @@ const nextConfig = {
 		buildActivity: false,
 	},
 	logging: {
-		//fetches: {fullUrl: true},
-	},
-	experimental: {
-		typedRoutes: true,
+		fetches: {
+			//fullUrl: true,
+		},
 	},
 	async headers() {
 		return [

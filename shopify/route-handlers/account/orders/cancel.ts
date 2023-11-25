@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import shopify from '../../../rest-client'
 import { getCookie } from 'cookies-next'
-import { parseGID } from '../../../utils'
+import { parseGid } from '../../../utils'
 
 export default async function cancel(req: NextRequest) {
 
@@ -18,7 +18,7 @@ export default async function cancel(req: NextRequest) {
   if (order.email !== user.email)
     return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 })
 
-  await shopify.order.cancel(parseGID(order.id))
+  await shopify.order.cancel(parseGid(order.id))
 
   return NextResponse.json({ success: true })
 }
