@@ -5,7 +5,7 @@ import { Button, ListBox, ListBoxItem, Popover, Select, SelectValue, Key } from 
 import s from './CurrencySelector.module.scss'
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
-import useCountry from '@shopify/hooks/useCountry';
+import useCountry from '@lib/shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
 import { useState } from 'react';
 

@@ -3,7 +3,6 @@ import s from './page.module.scss'
 import CollectionsFilter from './components/CollectionsFilter';
 import { AllProductByCollectionDocument, CollectionDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
-import Thumbnail from '@components/layout/Thumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
 
 export type Props = {
@@ -27,16 +26,11 @@ export default async function Shop({ params }: Props) {
     },
     tags: ['product']
   })
-
   return (
     <>
       <CollectionsFilter collectionId={collection?.id} />
       <div className={s.container}>
-        <ThumbnailContainer>
-          {allProducts?.map((product) => (
-            <Thumbnail key={product.id} product={product as ProductRecord} />
-          ))}
-        </ThumbnailContainer>
+        <ThumbnailContainer products={allProducts as ProductRecord[]} />
       </div>
       <DraftMode url={draftUrl} tag={collection?.id} />
     </>

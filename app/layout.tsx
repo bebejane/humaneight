@@ -6,8 +6,8 @@ import { GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
-import shopifyQuery from '@shopify/shopify-query';
-import { LocalizationDocument } from '@shopify/graphql';
+import shopifyQuery from '@lib/shopify/shopify-query';
+import { LocalizationDocument } from '@lib/shopify/graphql';
 //import { }
 //export const runtime = 'edge';
 

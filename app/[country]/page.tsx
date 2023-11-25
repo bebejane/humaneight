@@ -1,6 +1,6 @@
 import homePage from '../page'
-import shopifyQuery from '@shopify/shopify-query';
-import { LocalizationDocument } from '@shopify/graphql';
+import shopifyQuery from '@lib/shopify/shopify-query';
+import { LocalizationDocument } from '@lib/shopify/graphql';
 
 export type Params = { params: { country: string } }
 

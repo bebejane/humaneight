@@ -18,6 +18,7 @@
 		"@datocms/cma-client-node": "3.0.5",
 		"@datocms/rest-client-utils": "3.0.5",
 		"@graphql-tools/documents": "^1.0.0",
+		"@shopify/hydrogen-react": "^2023.10.0",
 		"@shopify/shopify-api": "^7.7.0",
 		"@types/is-integer": "^1.0.2",
 		"async-promise-batch": "^1.0.5",

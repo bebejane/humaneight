@@ -2,7 +2,7 @@
 
 import { defaultCountry } from '@lib/const';
 import NextLink, { LinkProps } from 'next/link';
-import useCountry from '@shopify/hooks/useCountry';
+import useCountry from '@lib/shopify/hooks/useCountry';
 import { usePathname } from 'next/navigation';
 
 export type Props = LinkProps & {

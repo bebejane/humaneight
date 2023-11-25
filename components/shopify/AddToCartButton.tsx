@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import useCart from '@shopify/hooks/useCart'
+import useCart from '@lib/shopify/hooks/useCart'
 import cn from 'classnames'
 
 export type AddToCartButtonProps = {

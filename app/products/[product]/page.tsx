@@ -30,7 +30,7 @@ export default async function Product({ params }: { params: { product: string } 
     <>
       <section className={cn(s.product, "grid")}>
         <ProductInfo product={product} />
-        <ProductPresentation product={product} />
+        {/*<ProductPresentation product={product} />*/}
       </section>
       <DraftMode url={draftUrl} tag={product.id} />
     </>

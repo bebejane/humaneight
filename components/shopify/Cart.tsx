@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import s from './Cart.module.scss'
 import cn from 'classnames'
-import useCart from '@shopify/hooks/useCart'
+import useCart from '@lib/shopify/hooks/useCart'
 import { apiQuery } from 'next-dato-utils'
-import { parseGID } from '@shopify/utils'
+import { parseGid } from '@shopify/hydrogen-react'
 import { Image } from 'react-datocms'
 import { AllCartProductsDocument } from '@graphql'
 import CurrencySelector from './CurrencySelector'
@@ -37,7 +37,7 @@ export default function Cart({ localization }: CartProps) {
   useEffect(() => { !cart && createCart() }, [cart, createCart])
   useEffect(() => {
 
-    const ids = cart?.lines.edges.map(({ node }) => parseGID(node.merchandise.product.id).toString())
+    const ids = cart?.lines.edges.map(({ node }) => parseGid(node.merchandise.product.id).id)
     if (!ids) return
 
     fetchDatoCMSProducts(ids)

@@ -4,15 +4,15 @@ import s from './Thumbnail.module.scss'
 import { Image } from 'react-datocms';
 import Link from '@components//nav/Link';
 import cn from 'classnames';
-import Price from '@components/shopify/Price';
-import useProduct from '@shopify/hooks/useProduct';
+import { Money, useProduct } from '@shopify/hydrogen-react';
 
 export type Props = {
   product: ProductRecord,
 }
 export default function Thumbnail({ product }: Props) {
 
-  const { product: shopifyProduct } = useProduct({ handle: product?.slug })
+  const shopifyProduct = useProduct()
+  const variant = shopifyProduct.selectedVariant ?? shopifyProduct.variants?.[0]
 
   return (
     <Link href={`/products/${product.slug}`} className={s.thumbnail}>
@@ -35,7 +35,7 @@ export default function Thumbnail({ product }: Props) {
           }
           <figcaption>
             <h3 className="body">{product.title}</h3>
-            <p><Price slug={product.slug} /></p>
+            {variant?.price && <Money data={variant.price} withoutTrailingZeros={true} />}
           </figcaption>
           <ul>
             {product.usp.map(({ id, title, description }) =>

@@ -6,8 +6,8 @@ import s from './VariantsForm.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
-import { parseGID } from '@shopify/utils';
-import useProduct from '@shopify/hooks/useProduct';
+import { parseGid, useProduct } from '@shopify/hydrogen-react';
+import { Product } from '@lib/shopify/utils';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
@@ -16,20 +16,21 @@ export type VariantFormProps = {
 
 export default function VariantsForm({ product, className }: VariantFormProps) {
 
-  const { product: shopifyProduct } = useProduct({ handle: product?.slug })
+  const shopifyProduct = useProduct()
   const { searchParams, setSearchParam } = useQueryString()
   const [colorsOpen, setColorsOpen] = useState(false)
 
   const variantId = searchParams.get('variant') ?? null
-  const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
-  const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGID(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
+  const defaultVariant = shopifyProduct?.variants?.[0]
+  const variant = shopifyProduct?.variants?.find(v => parseGid(v?.id).id === variantId) ?? defaultVariant
 
-  const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
-  const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
+
+  if (!shopifyProduct?.product) return null
+
+  const availableSizes = availableVariants(shopifyProduct.product as Product, 'Color', variant?.selectedOptions?.find(opt => opt.name === 'Color')?.value)
+  const availableColors = availableVariants(shopifyProduct.product as Product, 'Size', variant?.selectedOptions?.find(opt => opt.name === 'Size')?.value)
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
-
-  if (!shopifyProduct) return null
 
   return (
     <form className={cn(s.form, className)}>
@@ -51,7 +52,7 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
             <ListBox
               className={s.options}
               items={availableColors.map((v, idx) => ({
-                id: parseGID(v.id),
+                id: parseGid(v.id).id,
                 name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
               }))}
             >
@@ -60,7 +61,7 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
                 if (!option) return null
                 return (
                   <ListBoxItem
-                    id={parseGID(v.id)}
+                    id={parseGid(v.id).id}
                     key={idx}
                     className={cn(s.option)}
                   >{option?.value}</ListBoxItem>
@@ -82,8 +83,8 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
             return (
               <React.Fragment key={idx}>
                 <Radio
-                  id={parseGID(v.id)}
-                  value={parseGID(v.id)}
+                  id={parseGid(v.id).id}
+                  value={parseGid(v.id).id}
                   className={cn(s.radio, selected && s.selected)}
                 >
                   <Label className={s.label}>{option?.value}</Label>
@@ -100,9 +101,9 @@ export default function VariantsForm({ product, className }: VariantFormProps) {
 }
 
 const availableVariants = (product: Product, name: string | undefined, value: string | undefined): ProductVariant[] => {
-  if (!name || !value) return product?.variants?.edges.map(({ node }) => node)
+  if (!name || !value) return product.variants?.edges.map(({ node }) => node)
 
-  return product.variants.edges.filter(({ node: { selectedOptions } }) => {
+  return product.variants.edges?.filter(({ node: { selectedOptions } }) => {
     return selectedOptions.find(opt => opt.name === name && opt.value === value) !== undefined
   }).map(({ node }) => node)
 
