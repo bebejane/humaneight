@@ -8,8 +8,8 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@lib/shopify/shopify-query';
 import { LocalizationDocument } from '@lib/shopify/graphql';
-//import { }
-//export const runtime = 'edge';
+import StoreProvider from '@lib/shopify/context/StoreProvider';
+import ServerTest from '@components/nav/ServerTest';
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -21,17 +21,18 @@ export default async function RootLayout({ children }: LayoutProps) {
   const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument)
 
   return (
-    <>
-      <html lang="en">
-        <body id="root" >
+    <html lang="en">
+      <body id="root" >
+        <StoreProvider>
           <NavBar menu={menu} localization={localization} />
           <main>
             {children}
           </main>
           <Footer menu={menu} localization={localization} />
-        </body>
-      </html >
-    </>
+        </StoreProvider>
+      </body>
+    </html >
+
   );
 }
 

@@ -7,7 +7,6 @@ import StructuredContent from '@components/layout/StructuredContent';
 import useQueryString from '@lib/hooks/useQueryString';
 import Link from '@components//nav/Link';
 import VariantsForm from '@app/products/[product]/components/VariantsForm';
-import StoreProvider from '@lib/shopify/context/StoreProvider';
 import { ProductProvider, Money } from '@shopify/hydrogen-react';
 import { fetchShopifyProduct, Product } from '@lib/shopify/utils';
 import useCountry from '@lib/shopify/hooks/useCountry';
@@ -32,7 +31,6 @@ export default function ProductInfo({ product }: Props) {
   }, [])
 
   if (!product) return null
-  console.log(shopifyProduct)
 
   return (
     <>
@@ -46,11 +44,9 @@ export default function ProductInfo({ product }: Props) {
           <h1 className="body">{product.title}</h1>
           <div className={s.price}>
             {shopifyProduct && variant &&
-              <StoreProvider>
-                <ProductProvider data={shopifyProduct}>
-                  <Money key={variant.id} data={variant.price} />
-                </ProductProvider>
-              </StoreProvider>
+              <ProductProvider data={shopifyProduct}>
+                <Money key={variant.id} data={variant.price} />
+              </ProductProvider>
             }
           </div>
         </header>
@@ -68,11 +64,9 @@ export default function ProductInfo({ product }: Props) {
           className={cn(s.description, readMore && s.show)}
         />
         {shopifyProduct &&
-          <StoreProvider>
-            <ProductProvider data={shopifyProduct}>
-              <VariantsForm product={product} className={cn(readMore && s.formExpanded)} />
-            </ProductProvider>
-          </StoreProvider>
+          <ProductProvider data={shopifyProduct}>
+            <VariantsForm product={product} className={cn(readMore && s.formExpanded)} />
+          </ProductProvider>
         }
       </div>
 
