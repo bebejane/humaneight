@@ -1,8 +1,7 @@
-import s from './page.module.scss'
 import { CountryParams } from './[country]/layout'
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery, DraftMode, Block } from 'next-dato-utils';
 import { StartDocument } from '@graphql';
-import Block from '@components/blocks/Block';
+import * as blocks from '../components/blocks';
 
 export default async function Home(params: CountryParams) {
 
@@ -14,7 +13,7 @@ export default async function Home(params: CountryParams) {
     <>
       <div>
         {start?.sections.map((section, i) =>
-          <Block key={i} data={section} />
+          <Block key={i} data={section} components={blocks} />
         )}
       </div>
       <DraftMode url={draftUrl} tag={start?.id} />

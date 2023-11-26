@@ -3,12 +3,12 @@
 import s from './ProductInfo.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
-import StructuredContent from '@components/layout/StructuredContent';
 import useQueryString from '@lib/hooks/useQueryString';
-import Price from '@components/shopify/Price';
 import Link from '@components//nav/Link';
 import VariantsForm from '@app/products/[product]/components/VariantsForm';
 import { parseGid } from '@shopify/utils';
+import { StructuredText } from 'next-dato-utils';
+import * as blocks from '@components/blocks';
 
 export type Props = {
   product: ProductQuery['product']
@@ -39,17 +39,19 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
             <p>{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
           </div>
         </header>
-        <StructuredContent
+        <StructuredText
           id={product.id}
           content={product.shortSummary}
+          blocks={blocks}
           className={s.summary}
         />
         <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
           Read more
         </button>
-        <StructuredContent
+        <StructuredText
           id={product.id}
           content={product.description}
+          blocks={blocks}
           className={cn(s.description, readMore && s.show)}
         />
         <VariantsForm
