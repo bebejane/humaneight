@@ -16,7 +16,7 @@
     margin-bottom: 0.5em;
 
     .description {
-      flex: 0 0 3em
+      flex: 0 0 3em;
     }
 
     .colors {
@@ -30,9 +30,9 @@
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        border: 1px solid var(--black);
+        border: 0;
         margin: 0;
-        background-color: transparent;
+        background-color: var(--gray);
 
         .value {
           flex: 1 1 auto;
@@ -45,7 +45,6 @@
           margin: 0;
         }
       }
-
     }
 
     .sizes {
@@ -58,9 +57,10 @@
         align-items: center;
         justify-content: center;
         flex: 1 1 1em;
+        margin-right: 1px;
         height: 2em;
-        border-radius: 2px;
-        border: 1px solid var(--black);
+        border: 0px;
+        background: var(--gray);
         cursor: pointer;
 
         &.selected {
@@ -76,15 +76,14 @@
           //flex: 1 1 0em;
         }
       }
-
-
     }
 
-    >div {
+    > div {
       flex: 1 1 auto;
     }
 
-    select {}
+    select {
+    }
   }
 
   button {
@@ -93,6 +92,8 @@
 }
 
 .colorsPopover {
+  //width: 100%;
+  background-color: var(--gray);
   .options {
     display: flex;
     flex-direction: column;
@@ -102,12 +103,12 @@
       cursor: pointer;
       width: 100%;
       margin-bottom: 0.2em;
+      padding: 1em;
 
       &.disabled {
         opacity: 0.5;
         pointer-events: none;
       }
-
     }
   }
 }

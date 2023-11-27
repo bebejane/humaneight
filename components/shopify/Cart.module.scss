@@ -35,7 +35,6 @@
       height: 33px;
       background: url("/images/cart.svg") no-repeat center center;
 
-
       .loader {
         position: absolute;
         z-index: 2;
@@ -48,7 +47,6 @@
         justify-content: center;
         margin-top: 4px;
       }
-
     }
 
     &.inverted {
@@ -64,7 +62,6 @@
 
       color: var(--white);
     }
-
 
     .count {
       position: absolute;
@@ -85,7 +82,6 @@
         display: none;
       }
     }
-
   }
 }
 
@@ -136,10 +132,12 @@
       display: flex;
       flex-direction: row;
       margin-top: 1em;
+      border-top: 1px solid var(--white);
+      padding-top: 1em;
 
       .thumb {
-        width: 3rem;
-        height: 3rem;
+        width: 5rem;
+        height: 5rem;
         background-color: var(--gray);
 
         img {
@@ -149,22 +147,27 @@
         }
       }
 
-
-
       .details {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         margin-left: 1em;
 
-
-
         button.minus {
-          margin-right: 0.5em;
+          margin-right: 0.25em;
         }
 
         button.plus {
+          margin-left: 0.25em;
+        }
 
-          margin-left: 0.5em;
+        button.minus,
+        button.plus {
+          width: 1em;
+          &:hover {
+            background: var(--black);
+            color: var(--white);
+          }
         }
       }
 
@@ -173,6 +176,7 @@
         display: flex;
         flex-direction: column;
         text-align: right;
+        padding-top: 1em;
 
         .price {
           flex: 1 1 auto;
@@ -181,6 +185,7 @@
         .remove {
           flex: 0 0;
           width: auto;
+          padding-bottom: 1em;
         }
       }
     }
@@ -191,20 +196,23 @@
     flex-direction: row;
     align-items: flex-end;
     flex: 1 1 auto;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 
     div:first-child {
       flex: 1 1 auto;
     }
   }
 
-  >form {
+  .extra {
+    padding-bottom: 1em;
+    text-align: right;
+  }
+
+  > form {
     display: flex;
     align-items: flex-end;
 
-
     button.checkout {
-
       cursor: pointer;
       width: 100%;
       background-color: var(--black) !important;

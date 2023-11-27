@@ -120,6 +120,8 @@ export default function Cart({ localization }: CartProps) {
               {cart?.cost.totalAmount.amount} {cart?.cost.totalAmount.currencyCode}
             </div>
           </div>
+          <div className={s.extra}>Shipping and tax are added at checkout</div>
+
 
           <form action={cart?.checkoutUrl} method="GET">
             <button className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
