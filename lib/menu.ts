@@ -9,6 +9,7 @@ export type MenuItem = {
   slug?: string,
   href?: string,
   localized?: boolean,
+  image?: FileFieldInterface
   sub?: MenuItem[],
 }
 
@@ -27,7 +28,13 @@ export const buildMenu = async (): Promise<Menu> => {
   const menu: Menu = [{
     id: 'about',
     title: 'About',
-    sub: allAbouts.map(({ id, slug, title }) => ({ id, title, slug: `/about/${slug}`, localized: false })),
+    sub: allAbouts.map(({ id, slug, title, image }) => ({
+      id,
+      title,
+      slug: `/about/${slug}`,
+      image: image as FileFieldInterface,
+      localized: false
+    })),
   }, {
     id: 'shop',
     title: 'Shop',
@@ -36,13 +43,24 @@ export const buildMenu = async (): Promise<Menu> => {
       title: 'All',
       slug: '/shop'
     },
-    ...allCollections.map(({ id, slug, title }) => ({ id, title, slug: `/shop/${slug}` }))],
+    ...allCollections.map(({ id, slug, title, image }) => ({
+      id,
+      title,
+      image: image as FileFieldInterface,
+      slug: `/shop/${slug}`
+    }))],
   }, {
     id: 'help',
     title: 'Help',
     sub: [
       { id: 'faq', title: 'Faq', slug: '/faq', localized: false },
-      ...allFaqSections.map(({ id, title, slug }) => ({ id, title, slug: `/faq#${slug}`, localized: false }))
+      ...allFaqSections.map(({ id, title, image, slug }) => ({
+        id,
+        title,
+        image: image as FileFieldInterface,
+        slug: `/faq#${slug}`,
+        localized: false
+      }))
     ],
   }, {
     id: 'legal',

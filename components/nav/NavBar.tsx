@@ -9,6 +9,7 @@ import type { Menu } from "@lib/menu";
 import { usePathname } from "next/navigation";
 import { useKey } from 'rooks'
 import CountrySelector from "@components/shopify/CountrySelector";
+import { Image } from "react-datocms/image";
 
 export type Props = {
   menu: Menu
@@ -18,6 +19,7 @@ export type Props = {
 export default function NavBar({ menu, localization }: Props) {
 
   const [showMenu, setShowMenu] = useState(false);
+  const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
   const pathname = usePathname();
 
   useKey('Escape', () => setShowMenu(false));
@@ -25,6 +27,7 @@ export default function NavBar({ menu, localization }: Props) {
   useEffect(() => {
     setShowMenu(false);
   }, [pathname]);
+
 
   return (
     <>
@@ -43,16 +46,18 @@ export default function NavBar({ menu, localization }: Props) {
         <button className={cn(s.menu, 'nav', 'nav-hover')} onClick={() => setShowMenu(!showMenu)}>
           {showMenu ? 'Close' : 'Menu'}
         </button>
-        {/*<button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
-          Close
-  </button>*/}
+        {/*<button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>Close</button>*/}
         <ul>
           {menu.slice(0, 3).map(({ id, title, sub, slug }) => (
             <li key={id}>
               <h3 className="small">{title}</h3>
               <ul>
-                {sub?.map(({ id, title, slug, localized }) => (
-                  <li key={id}>
+                {sub?.map(({ id, title, slug, localized }, idx) => (
+                  <li
+                    key={id}
+                    onMouseEnter={() => setMenuItemId(id)}
+                    onMouseLeave={() => setMenuItemId(null)}
+                  >
                     <Link
                       href={`${slug}`}
                       localized={localized}
@@ -66,6 +71,20 @@ export default function NavBar({ menu, localization }: Props) {
               </ul>
             </li>
           ))}
+          <li className={s.thumbnail}>
+            <h3 className="small"></h3>
+            {menu.slice(0, 3).map(({ sub }) => sub).filter(sub => sub).flat().map(item => (
+              <figure key={`figure-${item?.id}`}>
+                {item?.image?.responsiveImage &&
+                  <Image
+                    data={item.image.responsiveImage}
+                    className={cn(s.image, item.id === menuItemId && s.show)}
+                    pictureClassName={s.picture}
+                  />
+                }
+              </figure>
+            ))}
+          </li>
         </ul>
 
         <div className={s.footer}>
