@@ -7,7 +7,7 @@ import useQueryString from '@lib/hooks/useQueryString';
 import Link from '@components//nav/Link';
 import VariantsForm from '@app/products/[product]/components/VariantsForm';
 import { parseGid } from '@shopify/utils';
-import { StructuredText } from 'next-dato-utils';
+import { StructuredContent } from 'next-dato-utils';
 import * as blocks from '@components/blocks';
 
 export type Props = {
@@ -39,7 +39,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
             <p>{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
           </div>
         </header>
-        <StructuredText
+        <StructuredContent
           id={product.id}
           content={product.shortSummary}
           blocks={blocks}
@@ -48,7 +48,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
         <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
           Read more
         </button>
-        <StructuredText
+        <StructuredContent
           id={product.id}
           content={product.description}
           blocks={blocks}

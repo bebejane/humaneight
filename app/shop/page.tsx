@@ -9,11 +9,12 @@ import { CountryShopParams } from '@app/[country]/shop/page';
 
 export default async function Shop({ params }: CountryShopParams) {
 
-  const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
+  const { collection, draftUrl } = params?.collection ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: {
       slug: params?.collection
     }
-  })
+  }) : { collection: undefined, draftUrl: undefined }
+
 
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     all: true,
