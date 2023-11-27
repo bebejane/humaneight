@@ -31,7 +31,7 @@ export default async function Product({ params }: CountryProductParams) {
   const { product, draftUrl } = await apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, {
     variables: { slug: params.product },
     logs: true,
-    generateTags: false
+    maxTags: 20
   });
 
   const { product: shopifyProduct } = await shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
