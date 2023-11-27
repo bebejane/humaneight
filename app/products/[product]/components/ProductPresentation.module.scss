@@ -21,47 +21,9 @@
       }
     }
 
-    div > p {
+    div>p {
       margin-top: 1rem;
       margin-bottom: 2rem;
-    }
-  }
-
-  .meta {
-    padding-top: var(--space);
-    border-bottom: 1px solid var(--black);
-
-    .metaType {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      cursor: pointer;
-      border-top: 1px solid var(--black);
-      padding-top: 1rem;
-      padding-bottom: 0.8rem;
-
-      .type {
-        flex: 1 1 100%;
-      }
-
-      button {
-        background-color: transparent;
-      }
-    }
-
-    ul {
-      list-style: none;
-      display: none;
-      padding-bottom: 1.5rem;
-      padding-right: var(--outer-margin);
-      padding-left: var(--outer-margin);
-
-      &.show {
-        display: block;
-      }
-
-      li {
-      }
     }
   }
 }

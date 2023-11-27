@@ -23,10 +23,6 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
   const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
 
-  const metaSections = metaSectionsByType(product)
-
-  console.log(metaSectionsByType)
-
   return (
     <div className={s.presentation}>
       {product?.sections.map(({ id, productMedia, text }, i) => {
@@ -60,42 +56,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
           </div>
         )
       })}
-      <div className={s.meta}>
-        {Object.keys(metaSections).map(k => {
-          const metaType = metaSections[k][0].metaType
-          return (
-            <>
-              {metaType?.title &&
-                <div
-                  className={s.metaType}
-                  onClick={() => setMetaSectionToggles({ ...metaSectionToggles, [k]: !metaSectionToggles[k] ? true : false })}
-                >
-                  <h3 className={s.type}>{metaType.title}</h3>
-                  <button>+</button>
-                </div>
-              }
-              <ul className={cn(metaSectionToggles[k] && s.show)}>
-                {metaSections[k].map(({ id, title, text }) =>
-                  <li key={id}>
-                    <StructuredContent id={id} content={text} />
-                  </li>
-                )}
-              </ul>
-            </>
-          )
-        })}
-      </div>
+
     </div >
   )
-}
-
-
-const metaSectionsByType = (product: ProductQuery['product']): { [key: string]: ProductMetaInfoRecord[] } => {
-  return product?.metaSections
-    .sort((a, b) => a.metaType.title > b.metaType.title ? 1 : -1)
-    .reduce((acc: any, metaSection) => {
-      const id = metaSection.metaType?.id
-      const sections = acc[id] ?? []
-      return { ...acc, [id]: [...sections, metaSection] }
-    }, {}) ?? null
 }
