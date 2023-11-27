@@ -5,10 +5,15 @@ import useCountry from './useCountry';
 import { useEffect, useState } from 'react';
 import { ShopifyProductDocument } from '@shopify/graphql';
 
-export default function useProduct({ handle }: { handle: string | undefined | null }) {
+export type Props = {
+  handle: string | undefined | null
+  initialData: ShopifyProductQuery['product'] | null
+}
+
+export default function useProduct({ handle, initialData }: Props) {
 
   const country = useCountry();
-  const [product, setProduct] = useState<ShopifyProductQuery['product'] | null>(null);
+  const [product, setProduct] = useState<ShopifyProductQuery['product'] | null>(initialData);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
