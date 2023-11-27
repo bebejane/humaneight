@@ -56,7 +56,6 @@ fragment ProductLightFragment on ProductRecord {
 		title
 		description
 	}
-	shopifyData
 }
 
 fragment ProductFragment on ProductRecord {
