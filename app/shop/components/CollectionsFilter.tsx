@@ -14,7 +14,7 @@ export default async function CollectionsFilter({ collectionId }: Props) {
     all: true,
     tags: ['collection']
   });
-
+  console.log(collectionId)
   return (
     <ul className={s.filter}>
       <li className={cn(!collectionId && s.selected, "nav")}><Link href={`/shop`}>All</Link></li>

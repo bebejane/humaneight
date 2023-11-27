@@ -11,11 +11,11 @@ export type Props = {
 
 export default async function Shop({ params }: Props) {
 
-  const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
+  const { collection, draftUrl } = params?.collection ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: {
       slug: params?.collection
     }
-  })
+  }) : { collection: undefined, draftUrl: undefined }
 
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     all: true,
