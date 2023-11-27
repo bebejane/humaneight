@@ -15,8 +15,13 @@
     margin: 0;
     margin-bottom: 0.5em;
 
-    .description {
+    .description,
+    .sizeguide {
       flex: 0 0 3em;
+    }
+
+    .sizeguide {
+      text-align: center;
     }
 
     .colors {

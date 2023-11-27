@@ -70,14 +70,13 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                   className={s.metaType}
                   onClick={() => setMetaSectionToggles({ ...metaSectionToggles, [k]: !metaSectionToggles[k] ? true : false })}
                 >
-                  <h4 className={s.type}>{metaType.title}</h4>
+                  <h3 className={s.type}>{metaType.title}</h3>
                   <button>+</button>
                 </div>
               }
               <ul className={cn(metaSectionToggles[k] && s.show)}>
                 {metaSections[k].map(({ id, title, text }) =>
                   <li key={id}>
-                    <strong>{title}</strong>
                     <StructuredContent id={id} content={text} />
                   </li>
                 )}
