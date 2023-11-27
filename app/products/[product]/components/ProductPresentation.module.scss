@@ -21,9 +21,39 @@
       }
     }
 
-    div > p {
+    div>p {
       margin-top: 1rem;
       margin-bottom: 2rem;
     }
+  }
+
+  .meta {
+
+    .metaType {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      cursor: pointer;
+
+      .type {
+        flex: 1 1 100%;
+      }
+
+      button {
+        background-color: transparent;
+      }
+    }
+
+    ul {
+      list-style: none;
+      display: none;
+
+      &.show {
+        display: block;
+      }
+
+      li {}
+    }
+
   }
 }

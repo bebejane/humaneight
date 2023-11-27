@@ -108,6 +108,19 @@ fragment ProductFragment on ProductRecord {
 			}
 		}
 	}
+	metaSections {
+		id
+		title
+		metaType {
+			id
+			title
+		}
+		text {
+			blocks
+			value
+			links
+		}
+	}
 }
 
 fragment ProductMediaItemFragment on ProductMediaModelRecord {
