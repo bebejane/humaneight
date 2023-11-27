@@ -57,14 +57,18 @@ button {
   letter-spacing: var(--letter-space);
 }
 
+.nav-small {
+  font-size: calc(var(--navSize) * 0.8);
+}
+
 p,
 .body,
 ol li,
-button.full {
+button.full,
+h4 {
   font-size: 1.4rem;
   line-height: 1.2em;
   margin-bottom: 0;
-  text-align: left;
 }
 
 .mid,

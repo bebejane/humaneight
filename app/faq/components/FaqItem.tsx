@@ -42,7 +42,7 @@ export default function FaqItem({ faq }: Props) {
         onClick={(e) => { setSelected(!selected); e.preventDefault() }}
 
       >
-        <h3 className="body">{faq.question}</h3>
+        <h4>{faq.question}</h4>
         {selected ? '-' : '+'}
       </a>
       <div className={cn(s.answer, selected && s.show, "mid")}>

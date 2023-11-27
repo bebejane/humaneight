@@ -42,9 +42,9 @@ export default async function FaqPage(params: CountryParams) {
         <ul className={s.faqs}>
           {faqSections.map(section => (
             <li id={section.slug} key={section.id} className={s.section} >
-              <h2 className="body">
+              <h3 >
                 <Link href={`/faq#${section.slug}`}>{section.title}</Link>
-              </h2>
+              </h3>
               <ul className="structured">
                 {section.faqs.map(faq =>
                   <FaqItem key={faq.id} faq={faq} />

@@ -56,7 +56,7 @@ export default function NavBar({ menu, localization }: Props) {
                     <Link
                       href={`${slug}`}
                       localized={localized}
-                      className="nav nav-hover"
+                      className="nav-small nav-hover"
                       onClick={() => setShowMenu(false)}
                     >
                       {title}
