@@ -28,7 +28,10 @@ export async function generateStaticParams(params: CountryParams) {
 
 export default async function Product({ params }: CountryProductParams) {
 
-  const { product, draftUrl } = await apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, { variables: { slug: params.product } });
+  const { product, draftUrl } = await apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, {
+    variables: { slug: params.product },
+    generateTags: false
+  });
   const { product: shopifyProduct } = await shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
     variables: { handle: params.product },
     country: params.country
