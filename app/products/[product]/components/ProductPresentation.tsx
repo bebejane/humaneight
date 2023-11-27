@@ -2,7 +2,7 @@
 
 import s from './ProductPresentation.module.scss'
 import cn from 'classnames'
-import React from 'react'
+import React, { useState } from 'react'
 import { StructuredContent } from 'next-dato-utils';
 import * as blocks from '@components/blocks';
 import { Image } from 'react-datocms';
@@ -18,9 +18,14 @@ export type VariantFormProps = {
 export default function ProductPresentation({ product, shopifyProduct }: VariantFormProps) {
 
   const { searchParams } = useQueryString()
+  const [metaSectionToggles, setMetaSectionToggles] = useState<{ [key: string]: boolean }>({})
   const variantId = searchParams.get('variant') ?? null
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
   const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
+
+  const metaSections = metaSectionsByType(product)
+
+  console.log(metaSectionsByType)
 
   return (
     <div className={s.presentation}>
@@ -55,6 +60,43 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
           </div>
         )
       })}
-    </div>
+      <div className={s.meta}>
+        {Object.keys(metaSections).map(k => {
+          const metaType = metaSections[k][0].metaType
+          return (
+            <>
+              {metaType?.title &&
+                <div
+                  className={s.metaType}
+                  onClick={() => setMetaSectionToggles({ ...metaSectionToggles, [k]: !metaSectionToggles[k] ? true : false })}
+                >
+                  <h4 className={s.type}>{metaType.title}</h4>
+                  <button>+</button>
+                </div>
+              }
+              <ul className={cn(metaSectionToggles[k] && s.show)}>
+                {metaSections[k].map(({ id, title, text }) =>
+                  <li key={id}>
+                    <strong>{title}</strong>
+                    <StructuredContent id={id} content={text} />
+                  </li>
+                )}
+              </ul>
+            </>
+          )
+        })}
+      </div>
+    </div >
   )
+}
+
+
+const metaSectionsByType = (product: ProductQuery['product']): { [key: string]: ProductMetaInfoRecord[] } => {
+  return product?.metaSections
+    .sort((a, b) => a.metaType.title > b.metaType.title ? 1 : -1)
+    .reduce((acc: any, metaSection) => {
+      const id = metaSection.metaType?.id
+      const sections = acc[id] ?? []
+      return { ...acc, [id]: [...sections, metaSection] }
+    }, {}) ?? null
 }

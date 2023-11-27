@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "GRAPHQL_CONFIG=datocms graphql-codegen --watch --config graphql.config.ts & NODE_OPTIONS='--inspect' next dev",
+		"dev": "GRAPHQL_CONFIG=datocms graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev",
 		"dev:shopify": "GRAPHQL_CONFIG=shopify graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev",
 		"barrel:watch": "watch 'node ./lib/scripts/barrel' ./components",
 		"build": "next build",
