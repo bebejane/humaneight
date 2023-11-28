@@ -4,10 +4,11 @@ import { FieldError, Label, Radio, RadioGroup, Text, Button, ListBox, ListBoxIte
 import useQueryString from '@lib/hooks/useQueryString'
 import s from './VariantsForm.module.scss'
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
 import useProduct from '@shopify/hooks/useProduct';
+import { useWindowSize } from 'rooks';
 
 export type VariantFormProps = {
   product: ProductQuery['product']
@@ -18,6 +19,9 @@ export type VariantFormProps = {
 export default function VariantsForm({ product, shopifyProduct, className }: VariantFormProps) {
 
   const { searchParams, setSearchParam } = useQueryString()
+  const { innerWidth } = useWindowSize()
+  const [colorSelectWidth, setColorSelectWidth] = useState(0)
+
   const [colorsOpen, setColorsOpen] = useState(false)
 
   const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id
@@ -29,6 +33,10 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
 
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setColorSelectWidth(selectButtonRef.current?.offsetWidth ?? 0)
+  }, [innerWidth])
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
@@ -55,16 +63,21 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
                 id: parseGid(v.id),
                 name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
               }))}
+              style={{ width: colorSelectWidth }}
             >
               {availableColors.map((v, idx) => {
                 const option = v.selectedOptions.find(opt => opt.name === 'Color')
                 if (!option) return null
                 return (
-                  <ListBoxItem
-                    id={parseGid(v.id)}
-                    key={idx}
-                    className={cn(s.option)}
-                  >{option?.value}</ListBoxItem>
+                  <ListBoxItem id={parseGid(v.id)} key={idx} className={s.option}>
+                    <figure>
+                      <img src={v.image?.url} alt={v.image?.altText} />
+                      <figcaption>
+                        {option?.value}
+                      </figcaption>
+                    </figure>
+
+                  </ListBoxItem>
                 )
               })}
             </ListBox>

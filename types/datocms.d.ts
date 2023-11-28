@@ -685,6 +685,32 @@ type FileFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
 };
 
+/** Block of type Fullscreen section (fullscreen_block) */
+type FullscreenBlockRecord = RecordInterface & {
+  __typename?: 'FullscreenBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  media: FileField;
+};
+
+
+/** Block of type Fullscreen section (fullscreen_block) */
+type FullscreenBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Multiple files/images field */
 type GalleryFilter = {
   /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
@@ -4013,32 +4039,6 @@ type StartEditorialBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Block of type Fullscreen section (start_fullscreen_block) */
-type StartFullscreenBlockRecord = RecordInterface & {
-  __typename?: 'StartFullscreenBlockRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-  media: FileField;
-};
-
-
-/** Block of type Fullscreen section (start_fullscreen_block) */
-type StartFullscreenBlockRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
 /** Linking fields */
 enum StartModelFieldsReferencingCollectionModel {
   start_sections = 'start_sections',
@@ -4086,7 +4086,7 @@ enum StartModelOrderBy {
   id_DESC = 'id_DESC'
 }
 
-type StartModelSectionsField = StartEditorialBlockRecord | StartFullscreenBlockRecord | StartProductBlockRecord;
+type StartModelSectionsField = FullscreenBlockRecord | StartEditorialBlockRecord | StartProductBlockRecord;
 
 /** Block of type Product section (start_product_block) */
 type StartProductBlockRecord = RecordInterface & {
@@ -4826,4 +4826,4 @@ type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: an
 type StartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, sections: Array<{ __typename: 'StartEditorialBlockRecord', id: any, headline: string, text: string, buttonText: string, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, about: { __typename?: 'AboutRecord', id: any, slug: string, title: string } } | { __typename: 'StartFullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } | { __typename: 'StartProductBlockRecord', id: any, headline: string, collection?: { __typename?: 'CollectionRecord', id: any, slug: string, title: string }, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }> } }> }> } };
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, sections: Array<{ __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } | { __typename: 'StartEditorialBlockRecord', id: any, headline: string, text: string, buttonText: string, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, about: { __typename?: 'AboutRecord', id: any, slug: string, title: string } } | { __typename: 'StartProductBlockRecord', id: any, headline: string, collection?: { __typename?: 'CollectionRecord', id: any, slug: string, title: string }, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', product: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }> } }> }> } };

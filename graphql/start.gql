@@ -3,6 +3,12 @@ query Start {
 		id
 		sections {
 			__typename
+			... on FullscreenBlockRecord {
+				id
+				media {
+					...MediaFragment
+				}
+			}
 			... on StartProductBlockRecord {
 				id
 				headline
@@ -17,12 +23,7 @@ query Start {
 					}
 				}
 			}
-			... on StartFullscreenBlockRecord {
-				id
-				media {
-					...MediaFragment
-				}
-			}
+
 			... on StartEditorialBlockRecord {
 				id
 				headline

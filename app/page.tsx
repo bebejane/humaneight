@@ -1,11 +1,12 @@
 import { CountryParams } from './[country]/layout'
 import { apiQuery, DraftMode, Block } from 'next-dato-utils';
 import { StartDocument } from '@graphql';
-import { StartEditorialBlock, StartFullscreenBlock, StartProductBlock, StartProductShortcutBlock } from '../components/blocks/start';
+import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } from './components';
+import FullscreenBlock from '@components/blocks/FullscreenBlock';
 import Newsletter from '@components/common/Newsletter';
 import s from './page.module.scss'
 
-const blocks = [StartEditorialBlock, StartFullscreenBlock, StartProductBlock, StartProductShortcutBlock]
+const blocks = [StartEditorialBlock, StartProductBlock, StartProductShortcutBlock, FullscreenBlock]
 
 export default async function Home(params: CountryParams) {
 

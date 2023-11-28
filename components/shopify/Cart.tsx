@@ -12,7 +12,6 @@ import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
 
-
 export type CartProps = {
   localization: LocalizationQuery['localization']
 }
@@ -75,36 +74,38 @@ export default function Cart({ localization }: CartProps) {
         :
         <>
           <ul className={s.items}>
-            {cart?.lines.edges.map(({ node }, idx) =>
+            {cart?.lines.edges.map(({ node: { id, quantity, cost, merchandise } }, idx) =>
               <li key={idx}>
 
                 <figure className={s.thumb}>
-                  <img src={node.merchandise.image?.url} alt={node.merchandise.image?.altText} />
+                  <Link href={`/products/${merchandise.product.handle}?variant=${parseGid(merchandise.id)}`}>
+                    <img src={merchandise.image?.url} alt={merchandise.image?.altText} />
+                  </Link>
                 </figure>
 
                 <div className={s.details}>
-                  <div>{node.merchandise.product.title}</div>
-                  <div>{node.merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
+                  <div>{merchandise.product.title}</div>
+                  <div>{merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
                   <div>
                     <button
                       className={s.minus}
-                      onClick={() => updateQuantity(node.id, node.quantity - 1)}
-                      disabled={node.quantity === 1}
+                      onClick={() => updateQuantity(id, quantity - 1)}
+                      disabled={quantity === 1}
                     >-</button>
-                    {node.quantity}
+                    {quantity}
                     <button
                       className={s.plus}
-                      onClick={() => updateQuantity(node.id, node.quantity + 1)}
+                      onClick={() => updateQuantity(id, quantity + 1)}
                     >+</button>
                   </div>
                 </div>
 
                 <div className={s.amount}>
                   <div className={s.price}>
-                    {node.merchandise.price.amount} {node.cost.totalAmount.currencyCode}
+                    {merchandise.price.amount} {cost.totalAmount.currencyCode}
                   </div>
                   <div>
-                    <button className={s.remove} onClick={() => removeFromCart(node.id)}>
+                    <button className={s.remove} onClick={() => removeFromCart(id)}>
                       Remove
                     </button>
                   </div>
@@ -121,8 +122,6 @@ export default function Cart({ localization }: CartProps) {
             </div>
           </div>
           <div className={s.extra}>Shipping and tax are added at checkout</div>
-
-
           <form action={cart?.checkoutUrl} method="GET">
             <button className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
           </form>

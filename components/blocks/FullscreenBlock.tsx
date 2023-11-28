@@ -1,13 +1,12 @@
-import s from './StartFullscreenBlock.module.scss'
+import s from './FullscreenBlock.module.scss'
 import cn from 'classnames'
 import { Image } from 'react-datocms/image'
-import Link from '@components//nav/Link'
 
 type Props = {
-  data: StartFullscreenBlockRecord
+  data: FullscreenBlockRecord
 }
 
-export default async function StartFullscreenBlock({ data: { id, media } }: Props) {
+export default async function FullscreenBlock({ data: { id, media } }: Props) {
   const isImage = media?.responsiveImage !== undefined
 
   return (

@@ -8,7 +8,6 @@ import Link from '@components//nav/Link';
 import VariantsForm from '@app/products/[product]/components/VariantsForm';
 import { parseGid } from '@shopify/utils';
 import { StructuredContent } from 'next-dato-utils';
-import * as blocks from '@components/blocks';
 
 export type Props = {
   product: ProductQuery['product']
@@ -42,7 +41,6 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
         <StructuredContent
           id={product.id}
           content={product.shortSummary}
-          blocks={blocks}
           className={cn(s.summary, "light mid")}
         />
         <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
@@ -51,7 +49,6 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
         <StructuredContent
           id={product.id}
           content={product.description}
-          blocks={blocks}
           className={cn(s.description, readMore && s.show, "light mid")}
         />
         <VariantsForm

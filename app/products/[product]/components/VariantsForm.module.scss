@@ -93,12 +93,11 @@
       }
     }
 
-    > div {
+    >div {
       flex: 1 1 auto;
     }
 
-    select {
-    }
+    select {}
   }
 
   button {
@@ -107,11 +106,13 @@
 }
 
 .colorsPopover {
-  //width: 100%;
   background-color: var(--gray);
+  margin-bottom: -6px;
+
   .options {
     display: flex;
     flex-direction: column;
+
 
     .option {
       flex: 1 1 auto;
@@ -120,9 +121,26 @@
       margin-bottom: 0.2em;
       padding: 1em;
 
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       &.disabled {
         opacity: 0.5;
         pointer-events: none;
+      }
+
+      figure {
+        display: flex;
+        flex-direction: row;
+
+        img {
+          width: 2em;
+          height: 2em;
+          object-fit: cover;
+          margin-right: 1em;
+          //background-color: var(--black);
+        }
       }
     }
   }
