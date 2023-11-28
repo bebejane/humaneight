@@ -11,39 +11,45 @@
     padding-top: 1.3rem;
   }
 
-  .metaType {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    cursor: pointer;
-    padding-top: 1rem;
-    padding-bottom: 0.8rem;
-
-    &:not(:first-of-type) {
-      border-top: 1px solid var(--gray);
+  .wrapper {
+    a {
+      scroll-margin-top: var(--navbar-height);
     }
 
-    .type {
-      flex: 1 1 100%;
+    .metaType {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      cursor: pointer;
+      padding-top: 1rem;
+      padding-bottom: 0.8rem;
+
+      &:not(:first-of-type) {
+        border-top: 1px solid var(--gray);
+      }
+
+      .type {
+        flex: 1 1 100%;
+      }
+
+      button {
+        background-color: transparent;
+      }
     }
 
-    button {
-      background-color: transparent;
+    ul {
+      list-style: none;
+      display: none;
+      padding-bottom: 1.5rem;
+      padding-left: calc(2 * var(--outer-margin));
+      padding-right: calc(2 * var(--outer-margin));
+
+      &.show {
+        display: block;
+      }
+
+      li {}
     }
   }
 
-  ul {
-    list-style: none;
-    display: none;
-    padding-bottom: 1.5rem;
-    padding-left: calc(2 * var(--outer-margin));
-    padding-right: calc(2 * var(--outer-margin));
-
-    &.show {
-      display: block;
-    }
-
-    li {
-    }
-  }
 }

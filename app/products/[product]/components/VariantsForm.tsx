@@ -27,6 +27,8 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
 
+  const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id
+
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
   return (
@@ -91,7 +93,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
           })}
           <FieldError />
         </RadioGroup>
-        <div slot="description" className={s.sizeguide}>?</div>
+        <a href={`#${sizeGuideId}`} slot="description" className={s.sizeguide}>?</a>
 
       </fieldset>
       <AddToCartButton label="Add to cart" merchandiseId={variant?.id} quantity={1} />
