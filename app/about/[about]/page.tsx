@@ -2,6 +2,8 @@
 import { AboutDocument, AllAboutsDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import { notFound } from 'next/navigation';
+import { Block } from 'next-dato-utils'
+import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 
 export async function generateStaticParams() {
   const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
@@ -24,6 +26,9 @@ export default async function About({ params }: { params: { about: string } }) {
   return (
     <>
       <h1>{title}</h1>
+      {about.sections.map((section, i) =>
+        <Block key={i} data={section} components={[AboutTwoColumnBlock]} />
+      )}
       <DraftMode url={draftUrl} tag={about.id} />
     </>
   )
