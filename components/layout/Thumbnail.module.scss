@@ -4,11 +4,15 @@
   figure {
     position: relative;
 
+
+
+
     .image {
       position: relative;
       aspect-ratio: 1/1;
       display: flex;
       background-color: var(--white);
+
 
       &.secondary {
         position: absolute !important;
@@ -16,11 +20,9 @@
         left: 0;
         display: none;
       }
-    }
 
-    &:hover {
-      .secondary {
-        display: flex !important;
+      &:hover+.secondary {
+        display: block !important;
       }
     }
 

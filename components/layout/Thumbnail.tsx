@@ -12,15 +12,13 @@ export type Props = {
 }
 export default function Thumbnail({ product }: Props) {
 
-  const { product: shopifyProduct } = useProduct({ handle: product?.slug })
-
   return (
     <Link href={`/products/${product.slug}`} className={s.thumbnail}>
       {product.image &&
         <figure>
           <Image
             data={product.image?.responsiveImage}
-            className={s.image}
+            className={cn(s.image, s.main)}
             placeholderClassName={s.picture}
             pictureClassName={s.picture}
           />
