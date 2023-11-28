@@ -44,9 +44,17 @@ type AboutModelFilter = {
   content?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
+  intro?: InputMaybe<StructuredTextFilter>;
   position?: InputMaybe<PositionFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
+};
+
+type AboutModelIntroField = {
+  __typename?: 'AboutModelIntroField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
 };
 
 enum AboutModelOrderBy {
@@ -95,6 +103,7 @@ type AboutRecord = RecordInterface & {
   content?: Maybe<AboutModelContentField>;
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
+  intro?: Maybe<AboutModelIntroField>;
   position?: Maybe<Scalars['IntType']['output']>;
   sections: Array<AboutModelSectionsField>;
   slug: Scalars['String']['output'];
