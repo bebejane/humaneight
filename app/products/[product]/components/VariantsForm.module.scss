@@ -45,6 +45,10 @@
         background-color: transparent;
         border: 1px solid var(--gray);
 
+        &:hover {
+          background-color: var(--gray);
+        }
+
         .value {
           flex: 1 1 auto;
           text-align: left;
@@ -93,11 +97,12 @@
       }
     }
 
-    >div {
+    > div {
       flex: 1 1 auto;
     }
 
-    select {}
+    select {
+    }
   }
 
   button {
@@ -107,19 +112,18 @@
 
 .colorsPopover {
   background-color: var(--gray);
-  margin-bottom: -6px;
+  margin-bottom: -8px;
 
   .options {
     display: flex;
     flex-direction: column;
-
+    padding: 1em;
 
     .option {
       flex: 1 1 auto;
       cursor: pointer;
       width: 100%;
-      margin-bottom: 0.2em;
-      padding: 1em;
+      margin-bottom: 0.5em;
 
       &:last-child {
         margin-bottom: 0;
@@ -128,6 +132,11 @@
       &.disabled {
         opacity: 0.5;
         pointer-events: none;
+      }
+
+      &:hover {
+        background-color: var(--black);
+        color: var(--white);
       }
 
       figure {

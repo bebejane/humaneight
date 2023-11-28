@@ -88,7 +88,7 @@ export default function Cart({ localization }: CartProps) {
 
                 <div className={s.details}>
                   <div>{merchandise.product.title}</div>
-                  <div>{merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
+                  <div className="light">{merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
                   <div>
                     <button
                       className={s.minus}
@@ -108,7 +108,7 @@ export default function Cart({ localization }: CartProps) {
                     {merchandise.price.amount} {cost.totalAmount.currencyCode}
                   </div>
                   <div>
-                    <button className={s.remove} onClick={() => removeFromCart(id)}>
+                    <button className={cn(s.remove, "light")} onClick={() => removeFromCart(id)}>
                       Remove
                     </button>
                   </div>
@@ -124,7 +124,7 @@ export default function Cart({ localization }: CartProps) {
               {cart?.cost.totalAmount.amount} {cart?.cost.totalAmount.currencyCode}
             </div>
           </div>
-          <div className={s.extra}>Shipping and tax are added at checkout</div>
+          <div className={cn(s.extra, "light")}>Shipping and tax are added at checkout</div>
           <form action={cart?.checkoutUrl} method="GET">
             <button className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
           </form>
