@@ -13,7 +13,7 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
     <section className={s.editorial}>
       <div>
         <h2>{headline}</h2>
-        <p>{text}</p>
+        <p className="light big">{text}</p>
         <Link href={`/about/${about.slug}`}>
           <button className="full">{buttonText}</button>
         </Link>

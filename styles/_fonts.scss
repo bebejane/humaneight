@@ -1,10 +1,18 @@
 // FONT EMBEDDING & TYPO VARIABLES
 $body-font: "Human", Sans-Serif;
+$body-font-light: "Human-Light", Sans-Serif;
 $headline-font: "StyreneA-Black", Sans-Serif;
 $headline-font-medium: Sans-Serif;
 @font-face {
     font-family: "Human";
     src: url("../public/fonts/Concern-Medium.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Human-Light";
+    src: url("../public/fonts/Concern-Regular.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }

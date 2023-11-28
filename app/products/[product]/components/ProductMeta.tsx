@@ -37,7 +37,7 @@ export default function ProductMeta({ product }: Props) {
               }
               <ul className={cn(metaSectionToggles[k] && s.show)}>
                 {metaSections[k].map(({ id, title, text }) =>
-                  <li key={id}>
+                  <li key={id} className="structured light mid">
                     <StructuredContent id={id} content={text} />
                   </li>
                 )}

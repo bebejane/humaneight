@@ -28,13 +28,13 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   return (
     <>
       <div className={cn(s.details, readMore && s.expanded)}>
-        <p className="small">
+        <p className="small light">
           <Link href="/shop">Shop</Link>
-          &nbsp;|&nbsp;
+          &nbsp;&nbsp;|&nbsp;&nbsp;
           <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>
         </p>
         <header>
-          <h1 className="body">{product.title}</h1>
+          <h1 className="big">{product.title}</h1>
           <div className={s.price}>
             <p>{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
           </div>
@@ -43,7 +43,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           id={product.id}
           content={product.shortSummary}
           blocks={blocks}
-          className={s.summary}
+          className={cn(s.summary, "light mid")}
         />
         <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
           Read more

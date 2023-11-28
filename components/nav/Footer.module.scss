@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: var(--outer-margin);
-  padding-top: 2rem;
+  padding-top: var(--space-big);
   padding-bottom: 2rem;
 
   > h2 {
@@ -54,7 +54,7 @@
           flex-direction: column;
 
           li {
-            padding-bottom: 0.3em;
+            padding-bottom: 0.5em;
           }
         }
       }

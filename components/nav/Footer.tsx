@@ -22,7 +22,7 @@ export default async function Footer({ menu, localization }: Props) {
         <ul className="grid">
           {menu.map(({ id, title, sub }) => (
             <li key={id}>
-              <h3 className="small">{title}</h3>
+              <h3 className="small light">{title}</h3>
               <ul>
                 {sub?.map(({ id, title, slug, href, localized }) => (
                   <li key={id}>
