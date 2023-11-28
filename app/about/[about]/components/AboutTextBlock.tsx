@@ -9,7 +9,7 @@ export default function AboutTextBlock({ data: { id, text } }: Props) {
 
   return (
     <section className={s.section}>
-      <StructuredContent id={id} content={text} />
+      <StructuredContent className="nav structured" id={id} content={text} />
     </section>
   )
 
