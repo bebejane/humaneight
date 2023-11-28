@@ -7,13 +7,6 @@ import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
 import FullscreenBlock from '@components/blocks/FullscreenBlock';
 
-export async function generateStaticParams() {
-  const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
-    all: true
-  })
-  return allAbouts.map(({ slug: about }) => ({ about }))
-}
-
 export default async function About({ params }: { params: { about: string } }) {
 
   const { about, draftUrl } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
@@ -28,10 +21,24 @@ export default async function About({ params }: { params: { about: string } }) {
     <>
       <div className="about">
         {about.sections.map((section, i) =>
-          <Block key={i} data={section} components={[AboutTwoColumnBlock, AboutTextBlock, FullscreenBlock]} />
+          <Block
+            key={i}
+            data={section}
+            components={{
+              AboutTwoColumnBlock,
+              AboutTextBlock,
+              FullscreenBlock
+            }} />
         )}
         <DraftMode url={draftUrl} tag={about.id} />
       </div>
     </>
   )
+}
+
+export async function generateStaticParams() {
+  const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
+    all: true
+  })
+  return allAbouts.map(({ slug: about }) => ({ about }))
 }

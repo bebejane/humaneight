@@ -8,7 +8,7 @@ type Props = {
   data: StartProductBlockRecord
 }
 
-export default async function StartProductBlock({ data: { id, headline, selectedProducts, collection } }: Props) {
+export default function StartProductBlock({ data: { id, headline, selectedProducts, collection } }: Props) {
 
   return (
     <section className={cn(s.container)}>

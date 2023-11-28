@@ -7,7 +7,7 @@ type Props = {
   data: StartEditorialBlockRecord
 }
 
-export default async function StartEditorialBlock({ data: { id, text, buttonText, headline, media, about } }: Props) {
+export default function StartEditorialBlock({ data: { id, text, buttonText, headline, media, about } }: Props) {
 
   return (
     <section className={s.editorial}>

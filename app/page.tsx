@@ -6,8 +6,6 @@ import FullscreenBlock from '@components/blocks/FullscreenBlock';
 import Newsletter from '@components/common/Newsletter';
 import s from './page.module.scss'
 
-const blocks = [StartEditorialBlock, StartProductBlock, StartProductShortcutBlock, FullscreenBlock]
-
 export default async function Home(params: CountryParams) {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
@@ -18,7 +16,16 @@ export default async function Home(params: CountryParams) {
     <>
       <div className={s.container}>
         {start?.sections.map((section, i) =>
-          <Block key={i} data={section} components={blocks} />
+          <Block
+            key={i}
+            data={section}
+            components={{
+              StartEditorialBlock,
+              StartProductBlock,
+              StartProductShortcutBlock,
+              FullscreenBlock
+            }}
+          />
         )}
         <Newsletter />
       </div>

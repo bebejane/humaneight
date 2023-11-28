@@ -6,11 +6,10 @@ type Props = {
   data: FullscreenBlockRecord
 }
 
-export default async function FullscreenBlock({ data: { id, media } }: Props) {
-  const isImage = media?.responsiveImage !== undefined
+export default function FullscreenBlock({ data: { id, media } }: Props) {
 
   return (
-    <div className={cn(s.container)}>
+    <div className={cn(s.container, s.start)}>
       {media?.responsiveImage ?
         <figure>
           <Image
