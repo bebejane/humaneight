@@ -30,13 +30,13 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
       <div className={cn(s.details, readMore && s.expanded)}>
         <p className="small light">
           <Link href="/shop">Shop</Link>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
+          &nbsp;&nbsp;›&nbsp;&nbsp;
           <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>
         </p>
         <header>
           <h1 className="big">{product.title}</h1>
           <div className={s.price}>
-            <p>{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
+            <p className="mid">{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
           </div>
         </header>
         <StructuredContent
@@ -52,7 +52,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           id={product.id}
           content={product.description}
           blocks={blocks}
-          className={cn(s.description, readMore && s.show)}
+          className={cn(s.description, readMore && s.show, "light mid")}
         />
         <VariantsForm
           product={product}

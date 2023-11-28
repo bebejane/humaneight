@@ -91,7 +91,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
           })}
           <FieldError />
         </RadioGroup>
-        <Text slot="description" className={s.sizeguide}>?</Text>
+        <div slot="description" className={s.sizeguide}>?</div>
 
       </fieldset>
       <AddToCartButton label="Add to cart" merchandiseId={variant?.id} quantity={1} />

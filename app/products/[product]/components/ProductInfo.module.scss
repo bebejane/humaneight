@@ -8,7 +8,7 @@
   padding-top: 1rem;
 
   &.expanded {
-    height: calc(200vh - var(--navbar-height));
+    //height: calc(200vh - var(--navbar-height));
   }
 
   header {
@@ -16,6 +16,7 @@
     flex-direction: row;
     padding-bottom: 1rem;
     padding-top: 1rem;
+    align-items: baseline;
 
     h1 {
       flex: 1 1 auto;
@@ -45,6 +46,7 @@
 }
 
 .formExpanded {
-  position: relative;
-  bottom: 0;
+  // sätt så att dett bara händer om det inte finns plats
+  //position: relative;
+  //bottom: 0;
 }
