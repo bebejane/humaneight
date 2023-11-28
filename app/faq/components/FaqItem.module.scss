@@ -10,12 +10,12 @@
   }
 
   .answer {
-    display: none;
-    padding-bottom: 1rem;
-    padding-right: 10%;
 
-    &.show {
-      display: block;
-    }
+    margin-bottom: 1em;
+    padding-right: 10%;
+    max-height: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
   }
 }
