@@ -1,4 +1,4 @@
-import s from './AboutTwoColumnBlock.module.scss'
+import s from './AboutTextBlock.module.scss'
 import { StructuredContent } from "next-dato-utils"
 
 export type Props = {

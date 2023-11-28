@@ -40,6 +40,12 @@ fragment AboutFragment on AboutRecord {
 				value
 			}
 		}
+		... on FullscreenBlockRecord {
+			id
+			media {
+				...MediaFragment
+			}
+		}
 	}
 
 	content {
