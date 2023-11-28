@@ -20,12 +20,15 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
   const { searchParams, setSearchParam } = useQueryString()
   const [colorsOpen, setColorsOpen] = useState(false)
 
+  const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id
   const variantId = searchParams.get('variant') ?? null
   const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
 
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
+
+  const selectButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
@@ -39,7 +42,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
           onOpenChange={(o) => setColorsOpen(o)}
         >
           <Text slot="description" className={s.description}>Color</Text>
-          <Button className={s.button}>
+          <Button className={s.button} ref={selectButtonRef}>
             <SelectValue className={s.value} key={variantId}>
               {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
             </SelectValue>
@@ -91,7 +94,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
           })}
           <FieldError />
         </RadioGroup>
-        <div slot="description" className={s.sizeguide}>?</div>
+        <a href={`#${sizeGuideId}`} slot="description" className={s.sizeguide}>?</a>
 
       </fieldset>
       <AddToCartButton label="Add to cart" merchandiseId={variant?.id} quantity={1} />

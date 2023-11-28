@@ -45,7 +45,7 @@ export const buildMenu = async (): Promise<Menu> => {
     },
     ...allCollections.map(({ id, slug, title, image }) => ({
       id,
-      title,
+      title: `${title}s`,
       image: image as FileFieldInterface,
       slug: `/shop/${slug}`
     }))],
@@ -53,7 +53,7 @@ export const buildMenu = async (): Promise<Menu> => {
     id: 'help',
     title: 'Help',
     sub: [
-      { id: 'faq', title: 'Faq', slug: '/faq', localized: false },
+      { id: 'faq', title: 'FAQ', slug: '/faq', localized: false },
       ...allFaqSections.map(({ id, title, image, slug }) => ({
         id,
         title,

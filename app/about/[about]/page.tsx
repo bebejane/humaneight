@@ -4,6 +4,7 @@ import { apiQuery, DraftMode } from 'next-dato-utils';
 import { notFound } from 'next/navigation';
 import { Block } from 'next-dato-utils'
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
+import AboutTextBlock from './components/AboutTextBlock';
 
 export async function generateStaticParams() {
   const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
@@ -31,6 +32,11 @@ export default async function About({ params }: { params: { about: string } }) {
         )}
         <DraftMode url={draftUrl} tag={about.id} />
       </div>
+      <h1>{title}</h1>
+      {about.sections.map((section, i) =>
+        <Block key={i} data={section} components={[AboutTwoColumnBlock, AboutTextBlock]} />
+      )}
+      <DraftMode url={draftUrl} tag={about.id} />
     </>
   )
 }

@@ -22,17 +22,6 @@ export default function FaqItem({ faq }: Props) {
     setSelected(hash === `#${faq.id}`);
   }, [faq.id]);
 
-  useEffect(() => {
-
-    const hashChange = () => {
-      //console.log(window.location.hash)
-      //setSelected(window.location.hash === `#${faq.id}`)
-    };
-    window.addEventListener('hashchange', hashChange)
-    return () => window.removeEventListener('hashchange', hashChange)
-  }, [faq.id]);
-
-
   return (
     <li id={faq.id} key={faq.id} className={s.faq}>
       <a
