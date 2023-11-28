@@ -16,30 +16,34 @@ export default function ProductMeta({ product }: Props) {
 
   return (
 
-    <div className={s.meta}>
-      {Object.keys(metaSections).map(k => {
-        const metaType = metaSections[k][0].metaType
-        return (
-          <>
-            {metaType?.title &&
-              <div
-                className={s.metaType}
-                onClick={() => setMetaSectionToggles({ ...metaSectionToggles, [k]: !metaSectionToggles[k] ? true : false })}
-              >
-                <h3 className={s.type}>{metaType.title}</h3>
-                <button>+</button>
-              </div>
-            }
-            <ul className={cn(metaSectionToggles[k] && s.show)}>
-              {metaSections[k].map(({ id, title, text }) =>
-                <li key={id}>
-                  <StructuredContent id={id} content={text} />
-                </li>
-              )}
-            </ul>
-          </>
-        )
-      })}
+    <div className={cn(s.meta, "grid")}>
+      <h3 className={s.header}>In detail</h3>
+
+      <div className={s.wrapper}>
+        {Object.keys(metaSections).map(k => {
+          const metaType = metaSections[k][0].metaType
+          return (
+            <>
+              {metaType?.title &&
+                <div
+                  className={s.metaType}
+                  onClick={() => setMetaSectionToggles({ ...metaSectionToggles, [k]: !metaSectionToggles[k] ? true : false })}
+                >
+                  <h3 className={s.type}>{metaType.title}</h3>
+                  <button>+</button>
+                </div>
+              }
+              <ul className={cn(metaSectionToggles[k] && s.show)}>
+                {metaSections[k].map(({ id, title, text }) =>
+                  <li key={id}>
+                    <StructuredContent id={id} content={text} />
+                  </li>
+                )}
+              </ul>
+            </>
+          )
+        })}
+      </div>
     </div>
 
   )

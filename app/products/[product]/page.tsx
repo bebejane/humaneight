@@ -42,6 +42,8 @@ export default async function Product({ params }: CountryProductParams) {
       <section className={cn(s.product, "grid")}>
         <ProductInfo product={product} shopifyProduct={shopifyProduct} />
         <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+      </section>
+      <section>
         <ProductMeta product={product} />
       </section>
       <DraftMode url={draftUrl} tag={product.id} />

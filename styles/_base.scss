@@ -3,7 +3,7 @@
 	--beige: #f6f3ee;
 	--white: #ffffff;
 	--red: #bf0000;
-	--gray: #d9d9d9;
+	--gray: #e0e0e0;
 	--outer-margin: 1.2rem;
 	--background: var(--beige);
 	--foreground: var(--black);
@@ -18,9 +18,11 @@
 	--z-cart: 1200;
 	--z-menu: 2000;
 
-	@include mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 
-	@include mq($from: tablet, $until: desktop) {}
+	@include mq($from: tablet, $until: desktop) {
+	}
 }
 
 body {
@@ -32,7 +34,6 @@ body {
 	font-family: $body-font;
 	-webkit-font-smoothing: antialiased;
 	font-feature-settings: "liga", "kern";
-
 }
 
 html {
@@ -133,9 +134,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 figcaption {

@@ -1,7 +1,15 @@
 .meta {
   width: 100%;
-  padding-top: var(--space);
-  border-bottom: 1px solid var(--black);
+  padding-top: 2rem;
+
+  .header {
+    grid-column: span 4;
+  }
+
+  .wrapper {
+    grid-column: span 8;
+    border-bottom: 1px solid var(--black);
+  }
 
   .metaType {
     display: flex;
@@ -32,6 +40,7 @@
       display: block;
     }
 
-    li {}
+    li {
+    }
   }
 }

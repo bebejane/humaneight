@@ -31,7 +31,7 @@
       margin-top: -0.1em;
     }
 
-    >button {
+    > button {
       background-color: transparent !important;
       padding: 0;
 
@@ -84,7 +84,7 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     position: relative;
     flex-direction: row;
     width: 100%;
@@ -93,10 +93,10 @@
     padding-top: 2rem;
 
     h3 {
-      padding-bottom: 1em;
+      padding-bottom: 1.5em;
     }
 
-    >li {
+    > li {
       position: relative;
       width: 25%;
 
@@ -124,7 +124,8 @@
               display: block;
             }
 
-            .picture {}
+            .picture {
+            }
           }
         }
       }

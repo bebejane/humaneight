@@ -21,7 +21,11 @@
       }
     }
 
-    div>p {
+    &:last-child p {
+      margin-bottom: calc(var(--gutter) - 0.3rem);
+    }
+
+    div > p {
       margin-top: 1rem;
       margin-bottom: 2rem;
     }
