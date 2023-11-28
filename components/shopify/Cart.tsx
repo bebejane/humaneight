@@ -11,6 +11,7 @@ import { AllCartProductsDocument } from '@graphql'
 import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
+import { usePathname } from 'next/navigation'
 
 export type CartProps = {
   localization: LocalizationQuery['localization']
@@ -30,10 +31,12 @@ export default function Cart({ localization }: CartProps) {
   const [products, setProducts] = useState<AllCartProductsQuery['allProducts'] | null>(null)
   const [showCart, setShowCart] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const pathname = usePathname()
   const isEmpty = cart?.lines.edges.length === 0
   const loading = !cart || updating
 
   useEffect(() => { !cart && createCart() }, [cart, createCart])
+  useEffect(() => { setShowCart(false) }, [pathname])
   useEffect(() => {
 
     const ids = cart?.lines.edges.map(({ node }) => parseGid(node.merchandise.product.id).toString())
