@@ -80,6 +80,7 @@
         &.selected {
           background-color: var(--black);
           color: var(--white);
+          border: 1px solid var(--black);
         }
 
         &.disabled {

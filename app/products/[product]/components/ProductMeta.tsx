@@ -18,8 +18,7 @@ export default function ProductMeta({ product }: Props) {
 
   return (
 
-    <div className={cn(s.meta, "grid")}>
-      <h3 className={s.header}>In detail</h3>
+    <div className={cn(s.meta)}>
 
       <div className={s.wrapper}>
         {Object.keys(metaSections).map(k => {
@@ -37,7 +36,7 @@ export default function ProductMeta({ product }: Props) {
               }
               <ul className={cn(metaSectionToggles[k] && s.show)}>
                 {metaSections[k].map(({ id, title, text }) =>
-                  <li key={id} className="structured light mid">
+                  <li key={id} className="structured mid light">
                     <StructuredContent id={id} content={text} />
                   </li>
                 )}

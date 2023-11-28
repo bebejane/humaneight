@@ -1,17 +1,14 @@
 .meta {
-  grid-column-start: 5;
-  grid-column-end: 14;
   width: 100%;
-  padding-top: 2rem;
+  margin-top: 2rem;
+  //margin-bottom: var(--space-big);
+  border-top: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+  grid-column-start: 5;
+  grid-column-end: 13;
 
   .header {
-    grid-column: span 4;
-    padding-top: 1rem;
-  }
-
-  .wrapper {
-    grid-column: span 8;
-    border-bottom: 1px solid var(--gray);
+    padding-top: 1.3rem;
   }
 
   .metaType {
@@ -19,9 +16,12 @@
     flex-direction: row;
     width: 100%;
     cursor: pointer;
-    border-top: 1px solid var(--gray);
     padding-top: 1rem;
     padding-bottom: 0.8rem;
+
+    &:not(:first-of-type) {
+      border-top: 1px solid var(--gray);
+    }
 
     .type {
       flex: 1 1 100%;
@@ -36,6 +36,7 @@
     list-style: none;
     display: none;
     padding-bottom: 1.5rem;
+    padding-left: calc(2 * var(--outer-margin));
     padding-right: calc(2 * var(--outer-margin));
 
     &.show {
