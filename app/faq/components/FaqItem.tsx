@@ -4,7 +4,6 @@ import s from './FaqItem.module.scss'
 import cn from 'classnames'
 import Link from 'next/Link'
 import { StructuredContent } from 'next-dato-utils';
-import * as blocks from '@components/blocks';
 import { useParams, usePathname } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
@@ -37,7 +36,7 @@ export default function FaqItem({ faq }: Props) {
         </h3>
       </a>
       <div className={cn(s.answer, selected && s.show, "light")}>
-        <StructuredContent id={faq.id} content={faq.answer} blocks={blocks} />
+        <StructuredContent id={faq.id} content={faq.answer} />
       </div>
     </li>
   )
