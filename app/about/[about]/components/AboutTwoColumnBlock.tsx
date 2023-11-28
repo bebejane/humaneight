@@ -1,6 +1,7 @@
 import s from './AboutTwoColumnBlock.module.scss'
 import { StructuredContent } from "next-dato-utils"
 import { Image } from "react-datocms"
+import cn from 'classnames'
 
 export type Props = {
   data: AboutTwoColumnBlockRecord
@@ -15,7 +16,7 @@ export default function AboutTwoColumnBlock({ data: { id, media, text } }: Props
           <Image data={media.responsiveImage} className={s.image} pictureClassName={s.picture} />
         }
       </figure>
-      <div className={s.content}>
+      <div className={cn(s.content, "structured")}>
         <StructuredContent id={id} content={text} />
       </div>
     </section>

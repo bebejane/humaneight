@@ -25,11 +25,12 @@ export default async function About({ params }: { params: { about: string } }) {
 
   return (
     <>
-      <h1>{title}</h1>
-      {about.sections.map((section, i) =>
-        <Block key={i} data={section} components={[AboutTwoColumnBlock]} />
-      )}
-      <DraftMode url={draftUrl} tag={about.id} />
+      <div className="about">
+        {about.sections.map((section, i) =>
+          <Block key={i} data={section} components={[AboutTwoColumnBlock]} />
+        )}
+        <DraftMode url={draftUrl} tag={about.id} />
+      </div>
     </>
   )
 }

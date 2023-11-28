@@ -1,19 +1,29 @@
 .section {
-
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: var(--space);
+  position: relative;
 
   &:nth-child(odd) {
     flex-direction: row-reverse;
   }
 
   figure {
-    flex: 0 0 50%
+    flex: 0 0 calc(50% - var(--half-gutter));
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    flex: 0 0 50%
+    position: sticky;
+    top: var(--navbar-height);
+    flex: 0 0 calc(50% - var(--half-gutter));
+    padding-right: var(--gutter);
+    align-self: flex-start;
+  }
+
+  h1 {
+    padding-top: 0.5em;
   }
 }
