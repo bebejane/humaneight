@@ -32,7 +32,16 @@ fragment AboutFragment on AboutRecord {
 				value
 			}
 		}
+		... on AboutTextBlockRecord {
+			id
+			text {
+				blocks
+				links
+				value
+			}
+		}
 	}
+
 	content {
 		blocks
 		links
