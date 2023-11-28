@@ -1,7 +1,10 @@
 .container {
   h1 {
+    padding-top: 0.5em;
     grid-column-start: 4;
-    grid-column-end: 12;
+    grid-column-end: 10;
+    text-align: center;
+    margin-bottom: 0;
   }
 }
 
@@ -21,7 +24,7 @@
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));
     grid-gap: var(--gutter);
-    padding-bottom: 2rem;
+    padding-top: var(--space);
 
     h3 {
       grid-column: span 2;

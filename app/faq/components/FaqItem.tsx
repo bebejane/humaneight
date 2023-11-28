@@ -42,10 +42,12 @@ export default function FaqItem({ faq }: Props) {
         onClick={(e) => { setSelected(!selected); e.preventDefault() }}
 
       >
-        <h4>{faq.question}</h4>
-        {selected ? '-' : '+'}
+        <h3>{faq.question}</h3>
+        <h3>
+          {selected ? '-' : '+'}
+        </h3>
       </a>
-      <div className={cn(s.answer, selected && s.show, "mid")}>
+      <div className={cn(s.answer, selected && s.show, "light")}>
         <StructuredContent id={faq.id} content={faq.answer} blocks={blocks} />
       </div>
     </li>

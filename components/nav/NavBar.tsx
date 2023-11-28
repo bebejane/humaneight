@@ -72,7 +72,7 @@ export default function NavBar({ menu, localization }: Props) {
             </li>
           ))}
           <li className={s.thumbnail}>
-            <h3 className="small"></h3>
+            <h3 className="small">Tip!</h3>
             {menu.slice(0, 3).map(({ sub }) => sub).filter(sub => sub).flat().map(item => (
               <figure key={`figure-${item?.id}`}>
                 {item?.image?.responsiveImage &&
@@ -89,7 +89,7 @@ export default function NavBar({ menu, localization }: Props) {
 
         <div className={s.footer}>
           <CountrySelector localization={localization} label="Change location" />
-          <div>
+          <div className="body">
             Customize our website for your needs
           </div>
         </div>
