@@ -7,6 +7,7 @@
     .image {
       position: relative;
       aspect-ratio: 1/1;
+      display: flex;
       background-color: var(--white);
 
       &.secondary {
@@ -14,34 +15,31 @@
         top: 0;
         left: 0;
         display: none;
-
       }
-
-
-
     }
 
     &:hover {
       .secondary {
-        display: block !important;
+        display: flex !important;
       }
     }
 
-    .picture {
-      object-fit: contain;
-
+    .picture,
+    img {
+      object-fit: cover;
     }
 
     figcaption {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      align-items: baseline;
     }
 
     ul {
       display: flex;
       list-style: none;
-      padding-top: 0.8rem;
+      padding-top: 0.7rem;
 
       li {
         .title {
@@ -50,7 +48,8 @@
           padding: 0.5em;
           padding-top: 0.8em;
           padding-bottom: 0.9em;
-          background-color: var(--white);
+          border: 1px solid var(--gray);
+          //background-color: var(--white);
           margin-right: 0.3em;
 
           &:hover {

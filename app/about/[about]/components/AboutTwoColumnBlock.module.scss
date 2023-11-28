@@ -16,10 +16,11 @@
   .content {
     display: flex;
     flex-direction: column;
-    position: sticky;
+    //position: sticky;
     top: var(--navbar-height);
     flex: 0 0 calc(50% - var(--half-gutter));
     padding-right: var(--gutter);
+    padding-left: var(--gutter);
     align-self: flex-start;
   }
 

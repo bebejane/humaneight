@@ -34,8 +34,8 @@ export default function Thumbnail({ product }: Props) {
             />
           }
           <figcaption>
-            <h3 className="body">{product.title}</h3>
-            <p><Price slug={product.slug} /></p>
+            <h3 className="mid">{product.title}</h3>
+            <p className="mid light"><Price slug={product.slug} /></p>
           </figcaption>
           <ul>
             {product.usp.map(({ id, title, description }) =>
