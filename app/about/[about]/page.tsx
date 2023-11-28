@@ -32,11 +32,6 @@ export default async function About({ params }: { params: { about: string } }) {
         )}
         <DraftMode url={draftUrl} tag={about.id} />
       </div>
-      <h1>{title}</h1>
-      {about.sections.map((section, i) =>
-        <Block key={i} data={section} components={[AboutTwoColumnBlock, AboutTextBlock]} />
-      )}
-      <DraftMode url={draftUrl} tag={about.id} />
     </>
   )
 }
