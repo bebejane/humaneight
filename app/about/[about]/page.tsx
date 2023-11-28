@@ -28,7 +28,7 @@ export default async function About({ params }: { params: { about: string } }) {
     <>
       <div className="about">
         {about.sections.map((section, i) =>
-          <Block key={i} data={section} components={[AboutTwoColumnBlock]} />
+          <Block key={i} data={section} components={[AboutTwoColumnBlock, AboutTextBlock]} />
         )}
         <DraftMode url={draftUrl} tag={about.id} />
       </div>
