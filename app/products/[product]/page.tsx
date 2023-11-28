@@ -12,6 +12,7 @@ import { CountryParams } from '@app/[country]/layout';
 import { CountryProductParams } from '@app/[country]/products/[product]/page';
 import shopifyQuery from '@shopify/shopify-query';
 import { ShopifyProductDocument } from '@shopify/graphql';
+import RelatedProducts from '@app/products/[product]/components/RelatedProducts';
 
 export async function generateStaticParams(params: CountryParams) {
 
@@ -49,6 +50,7 @@ export default async function Product({ params }: CountryProductParams) {
         <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
         <ProductMeta product={product} />
       </section>
+      <RelatedProducts product={product} />
       <DraftMode url={draftUrl} tag={product.id} />
     </>
   )

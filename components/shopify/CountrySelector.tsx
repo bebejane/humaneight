@@ -1,6 +1,5 @@
-
-
 'use client';
+
 import { Button, ListBox, ListBoxItem, Popover, Select, SelectValue, Key } from 'react-aria-components';
 import s from './CountrySelector.module.scss'
 import cn from 'classnames';
@@ -21,11 +20,7 @@ export default function CountrySelector({ className, label, localization, curren
   const pathname = usePathname()
   const router = useRouter()
   const country = useCountry();
-
-  const [selectOpen, setSelectOpen] = useState(false)
-
   const { availableCountries } = localization
-  const availableCurrencies = Array.from(new Set(availableCountries.map(({ currency: { isoCode } }) => isoCode)))
 
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const formData = new FormData(e.currentTarget.parentNode as HTMLFormElement)
@@ -35,14 +30,6 @@ export default function CountrySelector({ className, label, localization, curren
     router.replace(`${path}${hash}`.toLowerCase())
   }
 
-  const handleChange = (countryCode: Key) => {
-    const path = pathname.replace(`/${country.toLowerCase()}`, `/${countryCode.toString().toLowerCase()}`)
-    const hash = window.location.hash ? '#' + window.location.hash : ''
-    console.log(countryCode)
-    //router.replace(`${path}${hash}`)
-  }
-  const options = currency ? availableCurrencies.map(isoCode => isoCode) : availableCountries.map(({ isoCode }) => isoCode)
-
   return (
     <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
       {label && <label>{label}</label>}
@@ -51,8 +38,8 @@ export default function CountrySelector({ className, label, localization, curren
         defaultValue={country}
         onChange={handleChangeSelect}
       >
-        {options.map((isoCode) => (
-          <option key={isoCode} value={isoCode}>{isoCode}</option>
+        {availableCountries.map(({ isoCode, currency }) => (
+          <option key={isoCode} value={isoCode}>{isoCode} ({currency.isoCode})</option>
         ))}
       </select>
       {/* 
