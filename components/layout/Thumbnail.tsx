@@ -5,7 +5,6 @@ import { Image } from 'react-datocms';
 import Link from '@components//nav/Link';
 import cn from 'classnames';
 import Price from '@components/shopify/Price';
-import useProduct from '@shopify/hooks/useProduct';
 
 export type Props = {
   product: ProductRecord,
