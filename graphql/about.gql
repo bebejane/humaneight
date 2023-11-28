@@ -19,6 +19,20 @@ fragment AboutFragment on AboutRecord {
 	id
 	title
 	slug
+	sections {
+		__typename
+		... on AboutTwoColumnBlockRecord {
+			id
+			media {
+				...ImageFragment
+			}
+			text {
+				blocks
+				links
+				value
+			}
+		}
+	}
 	content {
 		blocks
 		links

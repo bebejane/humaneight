@@ -1,0 +1,19 @@
+.section {
+
+  display: flex;
+  flex-direction: row;
+
+  &:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+
+  figure {
+    flex: 0 0 50%
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%
+  }
+}

@@ -94,6 +94,7 @@ type AboutRecord = RecordInterface & {
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
   position?: Maybe<Scalars['IntType']['output']>;
+  sections: Array<AboutTwoColumnBlockRecord>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
 };
@@ -101,6 +102,40 @@ type AboutRecord = RecordInterface & {
 
 /** Record of type About (about) */
 type AboutRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type AboutTwoColumnBlockModelTextField = {
+  __typename?: 'AboutTwoColumnBlockModelTextField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Block of type Two column section (about_two_column_block) */
+type AboutTwoColumnBlockRecord = RecordInterface & {
+  __typename?: 'AboutTwoColumnBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  media: FileField;
+  text: AboutTwoColumnBlockModelTextField;
+};
+
+
+/** Block of type Two column section (about_two_column_block) */
+type AboutTwoColumnBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -4628,9 +4663,9 @@ type AboutQueryVariables = Exact<{
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
+type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, sections: Array<{ __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
 
-type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
+type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, sections: Array<{ __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
 
 type AllCollectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
