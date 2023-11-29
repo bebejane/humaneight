@@ -14,6 +14,7 @@
   z-index: var(--z-navbar);
 
   menu {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -38,8 +39,26 @@
       &:hover {
         color: var(--black);
       }
+
+      &.menu {
+        &.active {
+          letter-spacing: var(--letter-space);
+        }
+      }
+
+      &.close {
+        position: absolute;
+        display: flex;
+        align-items: center;
+
+        top: 0;
+        right: 0;
+        background-color: transparent !important;
+      }
     }
+
   }
+
 }
 
 .desktop {
@@ -58,23 +77,6 @@
   padding-left: var(--outer-margin);
   padding-right: var(--outer-margin);
 
-  .close,
-  .menu {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    height: var(--navbar-height);
-    top: 0;
-    right: 0;
-    padding: var(--outer-margin);
-    background-color: transparent !important;
-  }
-
-  .menu {
-    right: unset;
-    left: 0;
-    letter-spacing: var(--letter-space);
-  }
 
   &.show {
     display: flex;
