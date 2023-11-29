@@ -4,6 +4,7 @@ declare module '*/about.gql' {
   const defaultDocument: DocumentNode;
   export const AllAbouts: DocumentNode;
 export const About: DocumentNode;
+export const AboutLightFragment: DocumentNode;
 export const AboutFragment: DocumentNode;
 
   export default defaultDocument;
@@ -60,10 +61,10 @@ declare module '*/ImageFragment.gql' {
 }
     
 
-declare module '*/ImageThumnbailFragment.gql' {
+declare module '*/ImageThumbnailFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const ImageThumnbailFragment: DocumentNode;
+  export const ImageThumbnailFragment: DocumentNode;
 
   export default defaultDocument;
 }

@@ -46,10 +46,10 @@ fragment ProductLightFragment on ProductRecord {
 		slug
 	}
 	image {
-		...ImageThumnbailFragment
+		...ImageThumbnailFragment
 	}
 	imageSecondary {
-		...ImageThumnbailFragment
+		...ImageThumbnailFragment
 	}
 	usp {
 		id

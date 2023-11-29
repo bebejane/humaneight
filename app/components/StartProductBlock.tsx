@@ -1,7 +1,7 @@
 import s from './StartProductBlock.module.scss'
 import cn from 'classnames'
 import ThumbnailContainer from '@components/layout/ThumbnailContainer'
-import Thumbnail from '@components/layout/Thumbnail'
+import ProductThumbnail from '@components/layout/ProductThumbnail'
 import Link from '@components//nav/Link'
 
 type Props = {
@@ -22,7 +22,7 @@ export default function StartProductBlock({ data: { id, headline, selectedProduc
       </header>
       <ThumbnailContainer>
         {selectedProducts.map((product, i) =>
-          <Thumbnail key={i} product={product.product} />
+          <ProductThumbnail key={i} product={product.product} />
         )}
       </ThumbnailContainer>
     </section>

@@ -1,6 +1,6 @@
 'use client'
 
-import s from './Thumbnail.module.scss'
+import s from './ProductThumbnail.module.scss'
 import { Image } from 'react-datocms';
 import Link from '@components//nav/Link';
 import cn from 'classnames';
@@ -9,7 +9,7 @@ import Price from '@components/shopify/Price';
 export type Props = {
   product: ProductRecord,
 }
-export default function Thumbnail({ product }: Props) {
+export default function ProductThumbnail({ product }: Props) {
 
   return (
     <Link href={`/products/${product.slug}`} className={s.thumbnail}>
