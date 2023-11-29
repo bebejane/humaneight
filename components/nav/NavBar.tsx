@@ -15,9 +15,10 @@ import Logo from "@components/nav/Logo";
 export type Props = {
   menu: Menu
   localization: LocalizationQuery['localization']
+  tipProduct: AllProductsQuery['allProducts'][0]
 }
 
-export default function NavBar({ menu, localization }: Props) {
+export default function NavBar({ menu, localization, tipProduct }: Props) {
 
   const [showMenu, setShowMenu] = useState(false);
   const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
@@ -88,6 +89,17 @@ export default function NavBar({ menu, localization }: Props) {
                 }
               </figure>
             ))}
+            <figure key={`figure-${tipProduct?.id}`}>
+              {tipProduct?.image?.responsiveImage &&
+                <Link href={`/products/${tipProduct?.slug}`} className={s.link}>
+                  <Image
+                    data={tipProduct.image.responsiveImage}
+                    className={cn(s.image, !menuItemId && s.show)}
+                    pictureClassName={s.picture}
+                  />
+                </Link>
+              }
+            </figure>
           </li>
         </ul>
 

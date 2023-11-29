@@ -31,8 +31,8 @@ export default async function RelatedProducts({ product }: Props) {
         </Link>
       </header>
       <ThumbnailContainer>
-        {allProducts.map(p =>
-          <ProductThumbnail key={p.id} product={p as ProductRecord} />
+        {allProducts.map((p, i) =>
+          <ProductThumbnail key={p.id} product={p as ProductRecord} index={i} />
         )}
       </ThumbnailContainer>
     </section>

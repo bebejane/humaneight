@@ -17,6 +17,7 @@ query Start {
 					slug
 					title
 				}
+				columns
 				selectedProducts {
 					product {
 						...ProductLightFragment

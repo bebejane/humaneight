@@ -3,7 +3,7 @@ import Script from 'next/script';
 import NavBar from '@components/nav/NavBar';
 import Footer from '@components/nav/Footer';
 import { apiQuery } from 'next-dato-utils';
-import { GlobalDocument } from '@graphql';
+import { AllProductsDocument, GlobalDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
@@ -18,12 +18,14 @@ export default async function RootLayout({ children }: LayoutProps) {
 
   const menu = await buildMenu();
   const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument)
+  const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, { variables: { first: 100, skip: 0 }, all: true })
+  const randomProduct = allProducts[Math.floor(Math.random() * allProducts.length)]
 
   return (
     <>
       <html lang="en">
         <body id="root" >
-          <NavBar menu={menu} localization={localization} />
+          <NavBar menu={menu} localization={localization} tipProduct={randomProduct} />
           <main>
             {children}
           </main>

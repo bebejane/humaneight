@@ -10,7 +10,7 @@ export default function useQueryString() {
   const setSearchParam = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams)
     params.set(key, value)
-    router.replace(`${pathname}?${params.toString()}`)
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
   return { pathname, searchParams, setSearchParam }

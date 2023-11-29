@@ -8,7 +8,7 @@ type Props = {
   data: StartProductBlockRecord
 }
 
-export default function StartProductBlock({ data: { id, headline, selectedProducts, collection } }: Props) {
+export default function StartProductBlock({ data: { id, headline, selectedProducts, collection, columns } }: Props) {
 
   return (
     <section className={cn(s.container)}>
@@ -20,9 +20,14 @@ export default function StartProductBlock({ data: { id, headline, selectedProduc
           </Link>
         }
       </header>
-      <ThumbnailContainer>
+      <ThumbnailContainer >
         {selectedProducts.map((product, i) =>
-          <ProductThumbnail key={i} product={product.product} />
+          <ProductThumbnail
+            key={i}
+            product={product.product}
+            index={i}
+            className={cn(columns && s[columns])}
+          />
         )}
       </ThumbnailContainer>
     </section>
