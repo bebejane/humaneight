@@ -58,12 +58,13 @@ export default function ProductMeta({ product }: Props) {
                   })}
                 >
                   <h3 className={s.type}>{metaType.title}</h3>
-                  <button className="symbols big">+</button>
+                  <button className="symbols">{!metaSectionToggles[k]?.show ? '+' : '-'}</button>
                 </a>
               }
               <ul
                 id={`list-${metaType.id}`}
                 key={`list-${metaType.id}`}
+                className={cn(metaSectionToggles[k]?.show ? s.show : s.hide)}
                 style={{ maxHeight: metaSectionToggles[k]?.show ? `${metaSectionToggles[k].height}px` : '0px' }}
                 ref={metaSectionToggles[k]?.show ? metaSectionRef : undefined}
               >

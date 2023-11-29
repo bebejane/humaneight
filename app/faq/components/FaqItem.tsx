@@ -2,10 +2,8 @@
 
 import s from './FaqItem.module.scss'
 import cn from 'classnames'
-import Link from 'next/Link'
 import { StructuredContent } from 'next-dato-utils';
-import { useParams, usePathname } from 'next/navigation';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type Props = {
   faq: FaqRecord
@@ -13,7 +11,6 @@ export type Props = {
 
 export default function FaqItem({ faq }: Props) {
 
-  const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState(false)
 
@@ -36,7 +33,9 @@ export default function FaqItem({ faq }: Props) {
       </a>
       <div
         className={cn(s.answer, selected && s.show, "light")}
-        style={{ maxHeight: selected ? `${ref.current?.scrollHeight}px` : '0px' }}
+        style={{
+          maxHeight: selected ? `${ref.current?.scrollHeight}px` : '0px',
+        }}
         ref={ref}
       >
         <StructuredContent id={faq.id} content={faq.answer} />

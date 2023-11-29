@@ -2,8 +2,8 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 	allCollections(first: $first, skip: $skip) {
 		id
 		title
-		image {
-			...ImageThumnbailFragment
+		image: menuImage {
+			...ImageThumbnailFragment
 		}
 		slug
 	}
@@ -16,7 +16,7 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		title
 		slug
 		image {
-			...ImageThumnbailFragment
+			...ImageThumbnailFragment
 		}
 	}
 	_allAboutsMeta {
@@ -28,10 +28,18 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		title
 		slug
 		image {
-			...ImageThumnbailFragment
+			...ImageThumbnailFragment
 		}
 	}
 	_allFaqSectionsMeta {
+		count
+	}
+	allLegals(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allLegalsMeta {
 		count
 	}
 

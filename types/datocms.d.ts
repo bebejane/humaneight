@@ -735,20 +735,6 @@ type GalleryFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
 };
 
-type GeneralModelCookiesGdprField = {
-  __typename?: 'GeneralModelCookiesGdprField';
-  blocks: Array<Scalars['String']['output']>;
-  links: Array<Scalars['String']['output']>;
-  value: Scalars['JsonField']['output'];
-};
-
-type GeneralModelTermsConditionsField = {
-  __typename?: 'GeneralModelTermsConditionsField';
-  blocks: Array<Scalars['String']['output']>;
-  links: Array<Scalars['String']['output']>;
-  value: Scalars['JsonField']['output'];
-};
-
 /** Record of type General (general) */
 type GeneralRecord = RecordInterface & {
   __typename?: 'GeneralRecord';
@@ -765,12 +751,10 @@ type GeneralRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
-  cookiesGdpr?: Maybe<GeneralModelCookiesGdprField>;
   eMail?: Maybe<Scalars['String']['output']>;
   facebook?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   instagram?: Maybe<Scalars['String']['output']>;
-  termsConditions?: Maybe<GeneralModelTermsConditionsField>;
   twitter?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2442,6 +2426,81 @@ type JsonFilter = {
   exists?: InputMaybe<Scalars['BooleanType']['input']>;
 };
 
+type LegalModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<LegalModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<LegalModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  slug?: InputMaybe<SlugFilter>;
+  text?: InputMaybe<StructuredTextFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum LegalModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+type LegalModelTextField = {
+  __typename?: 'LegalModelTextField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type Legal (legal) */
+type LegalRecord = RecordInterface & {
+  __typename?: 'LegalRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  slug: Scalars['String']['output'];
+  text: LegalModelTextField;
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Legal (legal) */
+type LegalRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter Single-link fields */
 type LinkFilter = {
   /** Search for records with an exact match. The specified value must be a Record ID */
@@ -2512,6 +2571,76 @@ type PositionFilter = {
   lte?: InputMaybe<Scalars['IntType']['input']>;
   /** Exclude records with an exact match */
   neq?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+type ProductBrandingModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ProductBrandingModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ProductBrandingModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  smallText?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+enum ProductBrandingModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  smallText_ASC = 'smallText_ASC',
+  smallText_DESC = 'smallText_DESC',
+  text_ASC = 'text_ASC',
+  text_DESC = 'text_DESC'
+}
+
+/** Record of type Product branding (product_branding) */
+type ProductBrandingRecord = RecordInterface & {
+  __typename?: 'ProductBrandingRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  smallText?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Record of type Product branding (product_branding) */
+type ProductBrandingRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type ProductColorModelFilter = {
@@ -3405,6 +3534,10 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allFaqsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
+  _allLegalsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allProductBrandingsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
   _allProductColorsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
   _allProductLinksMeta: CollectionMetadata;
@@ -3439,6 +3572,10 @@ type Query = {
   /** Returns a collection of records */
   allFaqs: Array<FaqRecord>;
   /** Returns a collection of records */
+  allLegals: Array<LegalRecord>;
+  /** Returns a collection of records */
+  allProductBrandings: Array<ProductBrandingRecord>;
+  /** Returns a collection of records */
   allProductColors: Array<ProductColorRecord>;
   /** Returns a collection of records */
   allProductLinks: Array<ProductLinkRecord>;
@@ -3469,7 +3606,11 @@ type Query = {
   /** Returns the single instance record */
   general?: Maybe<GeneralRecord>;
   /** Returns a specific record */
+  legal?: Maybe<LegalRecord>;
+  /** Returns a specific record */
   product?: Maybe<ProductRecord>;
+  /** Returns a specific record */
+  productBranding?: Maybe<ProductBrandingRecord>;
   /** Returns a specific record */
   productColor?: Maybe<ProductColorRecord>;
   /** Returns a specific record */
@@ -3519,6 +3660,20 @@ type Query_allFaqSectionsMetaArgs = {
 /** The query root for this schema */
 type Query_allFaqsMetaArgs = {
   filter?: InputMaybe<FaqModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allLegalsMetaArgs = {
+  filter?: InputMaybe<LegalModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allProductBrandingsMetaArgs = {
+  filter?: InputMaybe<ProductBrandingModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3656,6 +3811,28 @@ type QueryallFaqsArgs = {
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FaqModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallLegalsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LegalModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<LegalModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallProductBrandingsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductBrandingModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductBrandingModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -3816,11 +3993,29 @@ type QuerygeneralArgs = {
 
 
 /** The query root for this schema */
+type QuerylegalArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<LegalModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<LegalModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
 type QueryproductArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ProductModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryproductBrandingArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductBrandingModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductBrandingModelOrderBy>>>;
 };
 
 
@@ -4115,6 +4310,7 @@ type StartProductBlockRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   collection?: Maybe<CollectionRecord>;
+  columns?: Maybe<Scalars['String']['output']>;
   headline: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
   selectedProducts: Array<StartProductShortcutBlockRecord>;
@@ -4701,16 +4897,18 @@ type AllAboutsQueryVariables = Exact<{
 }>;
 
 
-type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AboutQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
+type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
 
-type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
+type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+
+type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
 
 type AllCollectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -4769,11 +4967,11 @@ type ImageFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: st
 
 type ImageFragment = ImageFragment_FileField_ | ImageFragment_ImageFileField_;
 
-type ImageThumnbailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageThumbnailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
 
-type ImageThumnbailFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageThumbnailFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
 
-type ImageThumnbailFragment = ImageThumnbailFragment_FileField_ | ImageThumnbailFragment_ImageFileField_;
+type ImageThumbnailFragment = ImageThumbnailFragment_FileField_ | ImageThumbnailFragment_ImageFileField_;
 
 type MediaFragment = { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } };
 
@@ -4786,13 +4984,30 @@ type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 type GlobalQuery = { __typename?: 'Query', site: { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: any, content?: string, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string, siteName?: string, titleSuffix?: string, twitterAccount?: string, fallbackSeo?: { __typename?: 'SeoField', description?: string, title?: string, twitterCard?: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } } };
 
+type AllLegalsQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+}>;
+
+
+type AllLegalsQuery = { __typename?: 'Query', allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string, text: { __typename?: 'LegalModelTextField', blocks: Array<string>, links: Array<string>, value: any } }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any } };
+
+type LegalQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+type LegalQuery = { __typename?: 'Query', legal?: { __typename?: 'LegalRecord', id: any, title: string, slug: string, text: { __typename?: 'LegalModelTextField', blocks: Array<string>, links: Array<string>, value: any } } };
+
+type LegalFragment = { __typename?: 'LegalRecord', id: any, title: string, slug: string, text: { __typename?: 'LegalModelTextField', blocks: Array<string>, links: Array<string>, value: any } };
+
 type MenuQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 }>;
 
 
-type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any }, general?: { __typename?: 'GeneralRecord', instagram?: string, facebook?: string, twitter?: string } };
+type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any }, general?: { __typename?: 'GeneralRecord', instagram?: string, facebook?: string, twitter?: string } };
 
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;

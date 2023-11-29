@@ -1,8 +1,6 @@
 query AllAbouts($first: IntType = 100, $skip: IntType = 0) {
 	allAbouts(first: $first, skip: $skip) {
-		id
-		title
-		slug
+		...AboutLightFragment
 	}
 	_allAboutsMeta {
 		count
@@ -15,10 +13,22 @@ query About($slug: String!) {
 	}
 }
 
+fragment AboutLightFragment on AboutRecord {
+	id
+	title
+	slug
+	image {
+		...ImageThumbnailFragment
+	}
+}
+
 fragment AboutFragment on AboutRecord {
 	id
 	title
 	slug
+	image {
+		...ImageFragment
+	}
 	sections {
 		__typename
 		... on AboutTwoColumnBlockRecord {

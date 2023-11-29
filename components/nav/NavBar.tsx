@@ -33,16 +33,23 @@ export default function NavBar({ menu, localization }: Props) {
     <>
       <nav className={s.navbar}>
         <menu>
-          <button className="nav nav-hover" onClick={() => setShowMenu(!showMenu)}>Menu</button>
-          <h1 className="nav"><Link href="/">Humaneight</Link></h1>
-          <Cart localization={localization} />
+          <button
+            className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
+            onClick={() => setShowMenu(!showMenu)}
+          >Menu</button>
+          <h1 className="nav">
+            <Link href="/">Humaneight</Link>
+          </h1>
+          {showMenu ?
+            <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
+              Close
+            </button>
+            :
+            <Cart localization={localization} />
+          }
         </menu>
       </nav>
       <nav className={cn(s.desktop, showMenu && s.show)}>
-        <button className={cn(s.menu, 'nav', 'nav-hover')} onClick={() => setShowMenu(!showMenu)}>
-          Menu
-        </button>
-        <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>Close</button>
         <ul>
           {menu.slice(0, 3).map(({ id, title, sub, slug }) => (
             <li key={id}>
@@ -84,9 +91,11 @@ export default function NavBar({ menu, localization }: Props) {
         </ul>
 
         <div className={s.footer}>
-          <CountrySelector localization={localization} label="Change location" />
-          <div className="body">
-            Customize our website for your needs&nbsp; <span className="symbol">→</span>
+          <div className={s.locale}>
+            <CountrySelector localization={localization} label="Location" modal={true} />
+          </div>
+          <div className={cn(s.accessability, 'body')}>
+            Customize our website for your needs <span className="symbol">→</span>
           </div>
         </div>
       </nav>

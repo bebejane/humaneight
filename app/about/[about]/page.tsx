@@ -6,6 +6,7 @@ import { Block } from 'next-dato-utils'
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
 import FullscreenBlock from '@components/blocks/FullscreenBlock';
+import RelatedAbouts from '@app/about/[about]/components/RelatedAbouts';
 
 export default async function About({ params }: { params: { about: string } }) {
 
@@ -30,6 +31,7 @@ export default async function About({ params }: { params: { about: string } }) {
               FullscreenBlock
             }} />
         )}
+        <RelatedAbouts about={about} />
         <DraftMode url={draftUrl} tag={about.id} />
       </div>
     </>

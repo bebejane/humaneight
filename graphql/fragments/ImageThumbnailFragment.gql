@@ -1,4 +1,4 @@
-fragment ImageThumnbailFragment on FileFieldInterface {
+fragment ImageThumbnailFragment on FileFieldInterface {
 	format
 	id
 	mimeType
