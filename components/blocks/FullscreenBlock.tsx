@@ -4,12 +4,13 @@ import { Image } from 'react-datocms/image'
 
 type Props = {
   data: FullscreenBlockRecord
+  className?: string
 }
 
-export default function FullscreenBlock({ data: { id, media } }: Props) {
+export default function FullscreenBlock({ data: { id, media }, className }: Props) {
 
   return (
-    <div className={cn(s.container, s.start)}>
+    <div className={cn(s.container, className)}>
       {media?.responsiveImage ?
         <figure>
           <Image

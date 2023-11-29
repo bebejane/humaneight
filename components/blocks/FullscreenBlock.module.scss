@@ -1,13 +1,6 @@
 .container {
   margin-bottom: var(--space);
 
-  &.start {
-    height: calc(85vh - var(--navbar-height));
-    margin-left: calc(-1 * var(--outer-margin));
-    margin-right: calc(-1 * var(--outer-margin));
-    margin-bottom: 0;
-  }
-
   figure {
     .image {
       width: 100%;

@@ -68,7 +68,7 @@ export default function Cart({ localization }: CartProps) {
       <header>
         <h3>Cart</h3>
         <div className={s.currency}>
-          <CountrySelector localization={localization} label="Currency" currency={true} />
+          <CountrySelector localization={localization} label="Location" />
         </div>
         <div className={s.close} onClick={() => setShowCart(false)}>×</div>
       </header>

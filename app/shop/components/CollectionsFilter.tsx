@@ -20,7 +20,7 @@ export default async function CollectionsFilter({ collectionId }: Props) {
       <li className={cn(!collectionId && s.selected, "nav")}><Link href={`/shop`}>All</Link></li>
       {allCollections.map(({ id, title, slug }) => (
         <li key={slug} className={cn(id === collectionId && s.selected, "nav")}>
-          <Link href={`/shop/${slug}`}>{title}</Link>
+          <Link href={`/shop/${slug}`}>{title}s</Link>
         </li>
       ))}
     </ul>

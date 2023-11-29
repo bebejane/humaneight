@@ -20,12 +20,14 @@ export default async function Home(params: CountryParams) {
           <Block
             key={i}
             data={section}
+            className={section.__typename === 'FullscreenBlockRecord' ? s.fullscreenBlock : undefined}
             components={{
               StartEditorialBlock,
               StartProductBlock,
               StartProductShortcutBlock,
               FullscreenBlock
             }}
+
           />
         )}
         <Newsletter />

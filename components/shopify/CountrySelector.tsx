@@ -24,13 +24,19 @@ export default function CountrySelector({ className, label, modal = false, local
   const country = useCountry();
 
   const [selectOpen, setSelectOpen] = useState(false)
-  const { innerWidth } = useWindowSize()
+  const { innerWidth, innerHeight } = useWindowSize()
   const [selectWidth, setSelectWidth] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    setSelectWidth(buttonRef.current?.offsetWidth ?? 0)
-  }, [innerWidth])
+    setSelectWidth(buttonRef.current?.scrollWidth ?? 0)
+  }, [innerWidth, innerHeight])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSelectWidth(buttonRef.current?.scrollWidth ?? 0)
+    }, 100)
+  }, [])
 
   const handleChange = (val: Key) => {
     const countryCode = val.toString()
@@ -38,13 +44,13 @@ export default function CountrySelector({ className, label, modal = false, local
     const hash = window.location.hash ? '#' + window.location.hash : ''
     router.replace(`${path}${hash}`.toLowerCase())
   }
+
   return (
     <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
       <Select
         className={s.select}
         onSelectionChange={handleChange}
         onOpenChange={(o) => setSelectOpen(o)}
-
       >
         <Button className={s.button} ref={buttonRef}>
           <SelectValue className={s.value} key={country}>
