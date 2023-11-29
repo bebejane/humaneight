@@ -167,3 +167,14 @@ select {
 .error {
 	color: var(--red);
 }
+
+//Accessibily
+
+#accessiblyAppDialog.accessibly-app-widget {
+	background-color: var(--beige);
+}
+
+#accessiblyAppWidgetButton {
+	bottom: var(--outer-margin);
+	right: var(--outer-margin);
+}
