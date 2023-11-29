@@ -11,7 +11,7 @@ import { CSSProperties, use, useEffect, useState } from 'react';
 export default function Logo() {
 
   const pathname = usePathname()
-  const [style, setStyle] = useState<CSSProperties | undefined>(undefined)
+  const [style, setStyle] = useState<CSSProperties | undefined>({ opacity: 0 })
 
   const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
 
