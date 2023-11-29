@@ -32,7 +32,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
         <p className="small light">
           <Link href="/shop">Shop</Link>
           &nbsp;&nbsp;›&nbsp;&nbsp;
-          <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}</Link>
+          <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>
         </p>
         <header>
           <h1 className="big">{product.title}</h1>

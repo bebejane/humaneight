@@ -1,5 +1,5 @@
 .thumbnail {
-  grid-column: span 4;
+  grid-column: span 3;
 
   figure {
     position: relative;
@@ -17,10 +17,23 @@
     }
 
     figcaption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--white-opacity);
+
+      h3 {
+        padding-bottom: 0.2em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        text-align: center;
+      }
     }
   }
 }

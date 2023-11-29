@@ -23,7 +23,7 @@ export default function AboutThumbnail({ about }: Props) {
           />
         }
         <figcaption>
-          <h3 className="mid">{about.title}</h3>
+          <h3 className="nav">{about.title}</h3>
         </figcaption>
       </figure>
 

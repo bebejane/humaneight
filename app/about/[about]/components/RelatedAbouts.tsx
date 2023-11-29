@@ -20,12 +20,12 @@ export default async function RelatedAbouts({ about }: Props) {
     tags: ['about']
   })
 
-  const randomAllAbouts = allAbouts.sort(() => Math.random() - 0.5).slice(0, 3)
+  const randomAllAbouts = allAbouts.sort(() => Math.random() - 0.5).slice(0, 4)
 
   return (
     <section className={s.related}>
       <header>
-        <h3>More about us</h3>
+        <h3>More about Humaneight</h3>
       </header>
       <ThumbnailContainer>
         {randomAllAbouts.map(a =>

@@ -2,6 +2,7 @@
 	--black: #161616;
 	--beige: #f6f3ee;
 	--white: #ffffff;
+	--white-opacity: #ffffff25;
 	--red: #bf0000;
 	--gray: #e8e8e8;
 	--outer-margin: 1.2rem;
@@ -144,16 +145,6 @@ button {
 
 	@include mq($from: tablet) {
 	}
-}
-
-figcaption {
-	@include mq($until: tablet) {
-		padding-left: var(--outer-margin);
-		padding-right: var(--outer-margin);
-	}
-
-	line-height: var(--line-height);
-	padding-top: 1em;
 }
 
 hr {
