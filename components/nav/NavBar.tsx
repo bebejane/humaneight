@@ -91,8 +91,10 @@ export default function NavBar({ menu, localization }: Props) {
         </ul>
 
         <div className={s.footer}>
-          <CountrySelector localization={localization} label="Location" />
-          <div className="body">
+          <div className={s.locale}>
+            <CountrySelector localization={localization} label="Location" modal={true} />
+          </div>
+          <div className={cn(s.accessability, 'body')}>
             Customize our website for your needs <span className="symbol">→</span>
           </div>
         </div>

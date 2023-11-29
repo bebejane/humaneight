@@ -13,10 +13,11 @@ export type Props = {
   className?: string
   localization: LocalizationQuery['localization']
   label?: string
+  modal?: boolean
   currency?: boolean
 }
 
-export default function CountrySelector({ className, label, localization: { availableCountries } }: Props) {
+export default function CountrySelector({ className, label, modal = false, localization: { availableCountries } }: Props) {
 
   const pathname = usePathname()
   const router = useRouter()
@@ -30,14 +31,6 @@ export default function CountrySelector({ className, label, localization: { avai
   useEffect(() => {
     setSelectWidth(buttonRef.current?.offsetWidth ?? 0)
   }, [innerWidth])
-
-  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const formData = new FormData(e.currentTarget.parentNode as HTMLFormElement)
-    const countryCode = ((formData.get('countryCode') as string) ?? defaultCountry)
-    const path = `${countryCode !== defaultCountry ? `/${countryCode}` : ''}${pathname.replace(`/${country.toLowerCase()}`, ``)}`
-    const hash = window.location.hash ? '#' + window.location.hash : ''
-    router.replace(`${path}${hash}`.toLowerCase())
-  }
 
   const handleChange = (val: Key) => {
     const countryCode = val.toString()
@@ -59,7 +52,7 @@ export default function CountrySelector({ className, label, localization: { avai
           </SelectValue>
           <span aria-hidden="true" className={s.arrow}>{!selectOpen ? '▼' : '▲'}</span>
         </Button>
-        <Popover placement="top left" className={s.popover} maxHeight={100} isNonModal={true}>
+        <Popover placement="top left" className={s.popover} maxHeight={100} isNonModal={!modal}>
           <ListBox
             className={s.options}
             style={{ width: selectWidth }}

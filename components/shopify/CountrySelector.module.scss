@@ -40,6 +40,8 @@
     background-color: var(--gray);
 
     .option {
+      padding: 0.2em;
+
       @include mq($from: desktop) {
         &:hover {
           background-color: var(--black);
