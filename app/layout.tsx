@@ -1,4 +1,5 @@
 import '@styles/index.scss'
+import Script from 'next/script';
 import NavBar from '@components/nav/NavBar';
 import Footer from '@components/nav/Footer';
 import { apiQuery } from 'next-dato-utils';
@@ -27,6 +28,7 @@ export default async function RootLayout({ children }: LayoutProps) {
             {children}
           </main>
           <Footer menu={menu} localization={localization} />
+          <Script src="https://dash.accessibly.app/widget/359e5d08-890a-4fb2-9be8-e62e273a9366/autoload.js" />
         </body>
       </html >
     </>
