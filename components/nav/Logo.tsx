@@ -17,8 +17,8 @@ export default function Logo() {
 
   useEffect(() => {
     const ratio = Math.min((scrolledPosition / viewportHeight) * 2, 1)
-    const fontSize = `calc(var(--navSize) * 1.2 * ${2 - ratio})`
-    const marginTop = `calc(var(--navbar-height)) - calc(50vh * ${1 - ratio}))`
+    const fontSize = `calc(var(--font-size) * ${2 - ratio})`
+    const marginTop = `calc(calc(calc(50vh - var(--navbar-height)) * ${1 - ratio})  - 0.1em)`
 
     const style = pathname === '/' ? { fontSize, marginTop } : undefined
     setStyle(style)

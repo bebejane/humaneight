@@ -18,7 +18,9 @@
 	--space-big: 4rem;
 	--z-cart: 1200;
 	--z-menu: 2000;
+
 	--z-navbar: 2100;
+	--z-logo: 2300;
 	--z-intro: 3000;
 
 	@include mq($until: tablet) {}
