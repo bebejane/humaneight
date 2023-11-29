@@ -12,6 +12,15 @@
   background-color: transparent;
   cursor: pointer;
 
+  h1 {
+    font-size: 6rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
   &.hide {
     display: none;
   }
