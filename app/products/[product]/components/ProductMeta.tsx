@@ -58,7 +58,7 @@ export default function ProductMeta({ product }: Props) {
                   })}
                 >
                   <h3 className={s.type}>{metaType.title}</h3>
-                  <button className="symbols">+</button>
+                  <button className="symbols big">+</button>
                 </a>
               }
               <ul

@@ -86,7 +86,7 @@ export default function NavBar({ menu, localization }: Props) {
         <div className={s.footer}>
           <CountrySelector localization={localization} label="Change location" />
           <div className="body">
-            Customize our website for your needs <span className="symbol">→</span>
+            Customize our website for your needs&nbsp; <span className="symbol">→</span>
           </div>
         </div>
       </nav>
