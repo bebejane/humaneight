@@ -1,7 +1,7 @@
 import { CountryParams } from './[country]/layout'
 import { apiQuery, DraftMode, Block } from 'next-dato-utils';
 import { StartDocument } from '@graphql';
-import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } from './components';
+import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } from '@components/blocks/start';
 import FullscreenBlock from '@components/blocks/FullscreenBlock';
 import Newsletter from '@components/common/Newsletter';
 import s from './page.module.scss'
