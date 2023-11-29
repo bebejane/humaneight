@@ -10,7 +10,7 @@ export default function Intro() {
 
   const [visible, setVisible] = useState(true)
   const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
-  const ratio = Math.min((scrolledPosition / viewportHeight) * 2, 1)
+  const ratio = Math.min((scrolledPosition ?? 0 / viewportHeight) * 2, 1)
 
   useEffect(() => {
 

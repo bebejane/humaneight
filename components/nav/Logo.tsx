@@ -6,7 +6,7 @@ import cn from 'classnames';
 import { useScrollInfo } from 'next-dato-utils';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { CSSProperties, use, useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 
 export default function Logo() {
 
