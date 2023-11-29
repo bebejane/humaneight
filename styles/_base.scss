@@ -175,6 +175,6 @@ select {
 }
 
 #accessiblyAppWidgetButton {
-	bottom: var(--outer-margin);
-	right: var(--outer-margin);
+	bottom: var(--outer-margin) !important;
+	right: var(--outer-margin) !important;
 }
