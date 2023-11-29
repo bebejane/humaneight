@@ -6,6 +6,19 @@
     text-align: center;
     margin-bottom: 0;
   }
+
+  .help {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: var(--outer-margin);
+    text-align: center;
+    width: 10vw;
+    span {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .faqs {
@@ -25,6 +38,9 @@
     grid-template-columns: repeat(10, minmax(0, 1fr));
     grid-gap: var(--gutter);
     padding-top: var(--space);
+    &:first-child {
+      padding-top: 1rem;
+    }
 
     h3 {
       grid-column: span 2;

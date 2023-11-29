@@ -53,7 +53,10 @@ export default async function FaqPage(params: CountryParams) {
             </li>
           ))}
         </ul>
-      </div>
+        <div className={s.help}>
+          <img src="/images/faq.png"></img>
+          <span>Need help?<br />Contact us here!</span></div>
+      </div >
 
     </>
   )

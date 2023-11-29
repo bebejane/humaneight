@@ -28,8 +28,9 @@
 
 .readMore {
   all: unset;
-  margin-left: 1ch;
   cursor: pointer;
+  display: block;
+  padding-top: 0.4em;
 }
 
 .summary {

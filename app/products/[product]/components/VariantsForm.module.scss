@@ -56,7 +56,6 @@
 
         .arrow {
           flex: 0 0;
-          font-size: 0.7em;
           margin: 0;
         }
       }
@@ -117,16 +116,21 @@
   .options {
     display: flex;
     flex-direction: column;
-    padding: 1em;
+    padding: 0.2em;
 
     .option {
       flex: 1 1 auto;
       cursor: pointer;
       width: 100%;
-      margin-bottom: 0.5em;
+      padding: 0.5em;
+      border-bottom: 1px var(--white);
+
+      &:first-child {
+        //padding-top: 1em;
+      }
 
       &:last-child {
-        margin-bottom: 0;
+        //padding-bottom: 1em;
       }
 
       &.disabled {
@@ -142,13 +146,15 @@
       figure {
         display: flex;
         flex-direction: row;
+        border: 0;
 
         img {
           width: 2em;
           height: 2em;
           object-fit: cover;
-          margin-right: 1em;
-          //background-color: var(--black);
+          margin-right: 0.5em;
+          background-color: var(--white);
+          border: 0;
         }
       }
     }

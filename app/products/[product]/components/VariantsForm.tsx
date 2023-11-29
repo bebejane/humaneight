@@ -54,7 +54,7 @@ export default function VariantsForm({ product, shopifyProduct, className }: Var
             <SelectValue className={s.value} key={variantId}>
               {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
             </SelectValue>
-            <span aria-hidden="true" className={s.arrow}>{!colorsOpen ? '▼' : '▲'}</span>
+            <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!colorsOpen ? '▼' : '▲'}</span>
           </Button>
           <Popover placement="top left" className={s.colorsPopover}>
             <ListBox

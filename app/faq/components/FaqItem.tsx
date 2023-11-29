@@ -30,7 +30,7 @@ export default function FaqItem({ faq }: Props) {
         onClick={(e) => { setSelected(!selected); e.preventDefault() }}
       >
         <h3>{faq.question}</h3>
-        <h3>
+        <h3 className="symbol">
           {selected ? '-' : '+'}
         </h3>
       </a>
