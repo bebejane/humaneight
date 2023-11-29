@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { useKey } from 'rooks'
 import CountrySelector from "@components/shopify/CountrySelector";
 import { Image } from "react-datocms/image";
+import Logo from "@components/nav/Logo";
 
 export type Props = {
   menu: Menu
@@ -37,9 +38,7 @@ export default function NavBar({ menu, localization }: Props) {
             className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
             onClick={() => setShowMenu(!showMenu)}
           >Menu</button>
-          <h1 className="nav">
-            <Link href="/">Humaneight</Link>
-          </h1>
+          <Logo />
           {showMenu ?
             <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
               Close
