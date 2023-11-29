@@ -26,7 +26,7 @@ export default function StartProductBlock({ data: { id, headline, selectedProduc
             key={i}
             product={product.product}
             index={i}
-            className={cn(columns && s[columns])}
+            columns={columns}
           />
         )}
       </ThumbnailContainer>

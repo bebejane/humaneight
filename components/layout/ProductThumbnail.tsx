@@ -9,14 +9,14 @@ import Price from '@components/shopify/Price';
 export type Props = {
   product: ProductRecord,
   index: number
-  className?: string
+  columns?: string | undefined
 }
-export default function ProductThumbnail({ product, index, className }: Props) {
+export default function ProductThumbnail({ product, index, columns = 'three' }: Props) {
 
   const brandingInterval = 2
 
   return (
-    <Link href={`/products/${product.slug}`} className={cn(s.thumbnail, className)} data-index={index}>
+    <Link href={`/products/${product.slug}`} className={cn(s.thumbnail, s[columns])} data-index={index}>
       {product.image &&
         <figure>
           <Image
