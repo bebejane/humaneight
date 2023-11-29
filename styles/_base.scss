@@ -19,9 +19,11 @@
 	--z-menu: 2000;
 	--z-navbar: 2100;
 
-	@include mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 
-	@include mq($from: tablet, $until: desktop) {}
+	@include mq($from: tablet, $until: desktop) {
+	}
 }
 
 body {
@@ -98,11 +100,12 @@ main {
 		margin-bottom: 0.5em;
 	}
 
-	ol {
-		padding-left: 1em;
+	ol,
+	ul {
+		padding-left: 0.8em;
 
 		li {
-			padding-left: 0.5em;
+			padding-left: 0em;
 		}
 	}
 
@@ -136,9 +139,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 figcaption {

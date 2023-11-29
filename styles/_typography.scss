@@ -73,7 +73,8 @@ h4 {
 }
 
 .light,
-.about p {
+.about p,
+.legal p {
   font-family: $body-font-light;
 }
 
@@ -88,8 +89,14 @@ ol li {
 }
 
 p.small,
-.small {
+.small,
+.legal p {
   font-size: 1rem;
+}
+
+.structured p strong {
+  font-weight: normal;
+  font-family: $body-font;
 }
 
 .symbol {
