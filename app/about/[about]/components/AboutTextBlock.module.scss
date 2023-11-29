@@ -1,11 +1,10 @@
 .section {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: var(--space);
+  margin-bottom: var(--space-big);
   padding-left: var(--gutter);
+  padding-right: var(--gutter);
 
   .content {
-    display: flex;
-    flex-direction: column;
+    grid-column-start: 2;
+    grid-column-end: 11;
   }
 }

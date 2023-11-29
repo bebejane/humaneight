@@ -1,5 +1,6 @@
 import s from './AboutTextBlock.module.scss'
 import { StructuredContent } from "next-dato-utils"
+import cn from 'classnames'
 
 export type Props = {
   data: AboutTextBlockRecord
@@ -8,8 +9,10 @@ export type Props = {
 export default function AboutTextBlock({ data: { id, text } }: Props) {
 
   return (
-    <section className={s.section}>
-      <StructuredContent className="nav structured" id={id} content={text} />
+    <section className={cn(s.section, "structured grid")}>
+      <div className={s.content}>
+        <StructuredContent className="big" id={id} content={text} />
+      </div>
     </section>
   )
 
