@@ -6,7 +6,8 @@ import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
 import useCountry from '@shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useWindowSize } from 'rooks';
 
 export type Props = {
   className?: string
@@ -15,12 +16,20 @@ export type Props = {
   currency?: boolean
 }
 
-export default function CountrySelector({ className, label, localization, currency = false }: Props) {
+export default function CountrySelector({ className, label, localization: { availableCountries } }: Props) {
 
   const pathname = usePathname()
   const router = useRouter()
   const country = useCountry();
-  const { availableCountries } = localization
+
+  const [selectOpen, setSelectOpen] = useState(false)
+  const { innerWidth } = useWindowSize()
+  const [selectWidth, setSelectWidth] = useState(0)
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setSelectWidth(buttonRef.current?.offsetWidth ?? 0)
+  }, [innerWidth])
 
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const formData = new FormData(e.currentTarget.parentNode as HTMLFormElement)
@@ -30,51 +39,47 @@ export default function CountrySelector({ className, label, localization, curren
     router.replace(`${path}${hash}`.toLowerCase())
   }
 
+  const handleChange = (val: Key) => {
+    const countryCode = val.toString()
+    const path = `${countryCode !== defaultCountry ? `/${countryCode}` : ''}${pathname.replace(`/${country.toLowerCase()}`, ``)}`
+    const hash = window.location.hash ? '#' + window.location.hash : ''
+    router.replace(`${path}${hash}`.toLowerCase())
+  }
   return (
     <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
-      {label && <label>{label}</label>}
-      <select
-        name={currency ? 'currencyCode' : 'countryCode'}
-        defaultValue={country}
-        onChange={handleChangeSelect}
-      >
-        {availableCountries.map(({ isoCode, currency }) => (
-          <option key={isoCode} value={isoCode}>{isoCode} ({currency.isoCode})</option>
-        ))}
-      </select>
-      {/* 
       <Select
         className={s.select}
         onSelectionChange={handleChange}
         onOpenChange={(o) => setSelectOpen(o)}
+
       >
-        <Button className={s.button}>
+        <Button className={s.button} ref={buttonRef}>
           <SelectValue className={s.value} key={country}>
-            {label}
+            {label} {country}
           </SelectValue>
           <span aria-hidden="true" className={s.arrow}>{!selectOpen ? '▼' : '▲'}</span>
         </Button>
-        <Popover placement="top left" className={s.popover} maxHeight={100}>
+        <Popover placement="top left" className={s.popover} maxHeight={100} isNonModal={true}>
           <ListBox
             className={s.options}
-            items={options.map((isoCode, idx) => ({
+            style={{ width: selectWidth }}
+            items={availableCountries.map(({ isoCode, currency }, idx) => ({
               id: isoCode,
-              name: isoCode
+              name: `${isoCode} ${currency.isoCode}`
             }))}
           >
-            {options.map((isoCode, idx) => {
+            {availableCountries.map(({ isoCode, currency }, idx) => {
               return (
                 <ListBoxItem
                   id={isoCode}
                   key={idx}
                   className={cn(s.option)}
-                >{isoCode}</ListBoxItem>
+                >{isoCode} ({currency.isoCode})</ListBoxItem>
               )
             })}
           </ListBox>
         </Popover>
       </Select>
-          */}
     </form>
   );
 }
