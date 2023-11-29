@@ -14,10 +14,6 @@ export type Props = {
 export default async function Footer({ menu, localization }: Props) {
   return (
     <footer className={s.footer}>
-      <img src="/images/logo.svg"></img>
-      <div className={s.subheader}>
-        <h3 className="nav">Crafted for the mind. Tailored for comfort.</h3>
-      </div>
       <nav>
         <ul className="grid">
           {menu.map(({ id, title, sub }) => (
@@ -44,6 +40,13 @@ export default async function Footer({ menu, localization }: Props) {
           </li>
         </ul>
       </nav>
+      <div className={s.logo}>
+        <img src="/images/logo.svg"></img>
+        <div className={s.subheader}>
+          <h3 className="nav">Crafted for the mind. Tailored for comfort.</h3>
+        </div>
+      </div>
+
     </footer >
   );
 }
