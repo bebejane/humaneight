@@ -2,7 +2,7 @@
 
 import s from './ProductInfo.module.scss'
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import useQueryString from '@lib/hooks/useQueryString';
 import Link from '@components//nav/Link';
 import VariantsForm from '@app/products/[product]/components/VariantsForm';
@@ -20,10 +20,12 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   const { searchParams } = useQueryString()
   const variantId = searchParams.get('variant') ?? null
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
+  const descriptionRef = useRef<HTMLDivElement>(null);
 
   if (!product)
     return null
 
+  console.log(descriptionRef.current?.scrollHeight)
   return (
     <>
       <div className={cn(s.details, readMore && s.expanded)}>
@@ -44,19 +46,24 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           className={cn(s.summary, "light mid")}
         />
         <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
-          Read more
+          {readMore ? 'Read less' : 'Read more'}
         </button>
-        <StructuredContent
-          id={product.id}
-          content={product.description}
-          className={cn(s.description, readMore && s.show, "light mid")}
-        />
+        <div
+          className={cn(s.description, "light mid")}
+          style={{ maxHeight: readMore ? descriptionRef.current?.scrollHeight : 0 }}
+          ref={descriptionRef}
+        >
+          <StructuredContent
+            id={product.id}
+            content={product.description}
+          />
+        </div>
         <VariantsForm
           product={product}
           shopifyProduct={shopifyProduct}
           className={cn(readMore && s.formExpanded)}
         />
-      </div>
+      </div >
 
     </>
   )

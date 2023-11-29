@@ -64,6 +64,7 @@ export default function ProductMeta({ product }: Props) {
               <ul
                 id={`list-${metaType.id}`}
                 key={`list-${metaType.id}`}
+                className={cn(metaSectionToggles[k]?.show ? s.show : s.hide)}
                 style={{ maxHeight: metaSectionToggles[k]?.show ? `${metaSectionToggles[k].height}px` : '0px' }}
                 ref={metaSectionToggles[k]?.show ? metaSectionRef : undefined}
               >

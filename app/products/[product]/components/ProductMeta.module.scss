@@ -40,12 +40,16 @@
 
     ul {
       list-style: none;
-      margin-bottom: 1.5rem;
+
       padding-left: calc(2 * var(--outer-margin));
       padding-right: calc(2 * var(--outer-margin));
       overflow: hidden;
-      max-height: 0;
+      max-height: 0px;
       transition: max-height 0.3s ease-out;
+
+      &.show {
+        margin-bottom: 1.5rem;
+      }
     }
   }
 }

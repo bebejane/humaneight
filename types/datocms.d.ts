@@ -4115,6 +4115,7 @@ type StartProductBlockRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   collection?: Maybe<CollectionRecord>;
+  columns?: Maybe<Scalars['String']['output']>;
   headline: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
   selectedProducts: Array<StartProductShortcutBlockRecord>;
