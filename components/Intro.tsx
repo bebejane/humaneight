@@ -16,13 +16,12 @@ export default function Intro() {
 
   }, [scrolledPosition])
 
-  console.log(ratio)
-
-  const fontSize = `calc(var(--navSize) * 1.2 * ${2 - ratio})`
-  console.log(fontSize)
-
   return (
-    <div className={cn(s.intro, !visible && s.hide)} onClick={() => setVisible(false)}>
+    <div
+      className={cn(s.intro, !visible && s.hide)}
+      onClick={() => setVisible(false)}
+      style={{ opacity: 1 - ratio }}
+    >
       <h2>For a neurodiverse world.</h2>
     </div>
   )

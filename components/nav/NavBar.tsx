@@ -32,13 +32,15 @@ export default function NavBar({ menu, localization }: Props) {
 
   return (
     <>
+      <Logo />
       <nav className={s.navbar}>
+
         <menu>
           <button
             className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
             onClick={() => setShowMenu(!showMenu)}
           >Menu</button>
-          <Logo />
+
           {showMenu ?
             <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
               Close
