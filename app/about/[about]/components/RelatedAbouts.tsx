@@ -25,7 +25,7 @@ export default async function RelatedAbouts({ about }: Props) {
   return (
     <section className={s.related}>
       <header>
-        <h3>Related</h3>
+        <h3>More about us</h3>
       </header>
       <ThumbnailContainer>
         {randomAllAbouts.map(a =>

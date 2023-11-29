@@ -48,9 +48,9 @@ export default function CountrySelector({ className, label, modal = false, local
       >
         <Button className={s.button} ref={buttonRef}>
           <SelectValue className={s.value} key={country}>
-            {label} {country}
+            {label}: {country}
           </SelectValue>
-          <span aria-hidden="true" className={s.arrow}>{!selectOpen ? '▼' : '▲'}</span>
+          <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!selectOpen ? '▼' : '▲'}</span>
         </Button>
         <Popover placement="top left" className={s.popover} maxHeight={100} isNonModal={!modal}>
           <ListBox
