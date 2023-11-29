@@ -34,6 +34,14 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 	_allFaqSectionsMeta {
 		count
 	}
+	allLegals(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allLegalsMeta {
+		count
+	}
 
 	general {
 		instagram

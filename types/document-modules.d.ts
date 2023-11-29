@@ -106,6 +106,17 @@ declare module '*/global.gql' {
 }
     
 
+declare module '*/legal.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllLegals: DocumentNode;
+export const Legal: DocumentNode;
+export const LegalFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/menu.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

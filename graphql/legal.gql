@@ -1,0 +1,25 @@
+query AllLegals($first: IntType = 100, $skip: IntType = 0) {
+	allLegals(first: $first, skip: $skip) {
+		...LegalFragment
+	}
+	_allLegalsMeta {
+		count
+	}
+}
+
+query Legal($slug: String!) {
+	legal(filter: { slug: { eq: $slug } }) {
+		...LegalFragment
+	}
+}
+
+fragment LegalFragment on LegalRecord {
+	id
+	title
+	slug
+	text {
+		blocks
+		links
+		value
+	}
+}
