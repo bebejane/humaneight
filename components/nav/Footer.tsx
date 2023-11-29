@@ -38,7 +38,7 @@ export default async function Footer({ menu, localization }: Props) {
             <h3 className="small light">Settings</h3>
             <ul>
               <li>
-                <CountrySelector localization={localization} label="Change location" />
+                <CountrySelector localization={localization} label="Location" />
               </li>
             </ul>
           </li>
