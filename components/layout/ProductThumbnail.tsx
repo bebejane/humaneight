@@ -13,8 +13,6 @@ export type Props = {
 }
 export default function ProductThumbnail({ product, index, columns = 'three' }: Props) {
 
-  const brandingInterval = 2
-
   return (
     <Link href={`/products/${product.slug}`} className={cn(s.thumbnail, s[columns])} data-index={index}>
       {product.image &&
@@ -46,11 +44,6 @@ export default function ProductThumbnail({ product, index, columns = 'three' }: 
               </li>
             )}
           </ul>
-          {index % brandingInterval === 0 &&
-            <div className={s.branding}>
-              <span className="body">Branding</span>
-            </div>
-          }
         </figure>
       }
     </Link>

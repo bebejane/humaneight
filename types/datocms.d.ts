@@ -2632,7 +2632,7 @@ type ProductBrandingRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
-  image?: Maybe<FileField>;
+  image: FileField;
   smallText?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
 };
@@ -5041,6 +5041,14 @@ type AllCartProductsQueryVariables = Exact<{
 
 
 type AllCartProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+
+type AllProductBrandingQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+}>;
+
+
+type AllProductBrandingQuery = { __typename?: 'Query', allProductBrandings: Array<{ __typename?: 'ProductBrandingRecord', id: any, text?: string, smallText?: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductBrandingsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ProductLightFragment = { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, slug: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }> };
 

@@ -1,0 +1,40 @@
+.thumbnail {
+  grid-column: span 4;
+
+  &.two {
+    grid-column: span 8;
+  }
+
+  &.three {
+    grid-column: span 4;
+  }
+
+  &.four {
+    grid-column: span 3;
+  }
+
+  figure {
+    position: relative;
+
+    .image {
+      position: relative;
+      aspect-ratio: 1/1;
+      display: flex;
+      background-color: var(--white);
+
+    }
+
+    .picture,
+    img {
+      object-fit: cover;
+    }
+
+    figcaption {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 1rem;
+    }
+  }
+}
