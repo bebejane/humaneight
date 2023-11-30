@@ -50,7 +50,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
               )
             })}
             <div className="big structured">
-              <StructuredContent id={id} content={text} />
+              <StructuredContent content={text} />
             </div>
           </div>
         )

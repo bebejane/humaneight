@@ -17,7 +17,7 @@ export default function AboutTwoColumnBlock({ data: { id, media, text } }: Props
         }
       </figure>
       <div className={cn(s.content, "structured")}>
-        <StructuredContent id={id} content={text} />
+        <StructuredContent content={text} />
       </div>
     </section>
   )

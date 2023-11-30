@@ -70,7 +70,7 @@ export default function ProductMeta({ product }: Props) {
               >
                 {metaSections[k].map(({ id, title, text }) =>
                   <li key={id} className="structured mid light">
-                    <StructuredContent id={id} content={text} />
+                    <StructuredContent content={text} />
                   </li>
                 )}
               </ul>

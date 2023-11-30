@@ -2,7 +2,7 @@
 
 import { FieldError, Label, Radio, RadioGroup, Text, Button, ListBox, ListBoxItem, Popover, Select, SelectValue, Key } from 'react-aria-components';
 import useQueryString from '@lib/hooks/useQueryString'
-import s from './VariantsForm.module.scss'
+import s from './ProductVariantsForm.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
@@ -10,13 +10,13 @@ import { parseGid } from '@shopify/utils';
 import useProduct from '@shopify/hooks/useProduct';
 import { useWindowSize } from 'rooks';
 
-export type VariantFormProps = {
+export type Props = {
   product: ProductQuery['product']
   shopifyProduct: ShopifyProductQuery['product']
   className?: string
 }
 
-export default function VariantsForm({ product, shopifyProduct, className }: VariantFormProps) {
+export default function ProductVariantsForm({ product, shopifyProduct, className }: Props) {
 
   const { searchParams, setSearchParam } = useQueryString()
   const { innerWidth } = useWindowSize()

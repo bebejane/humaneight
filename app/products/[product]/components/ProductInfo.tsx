@@ -5,7 +5,7 @@ import cn from 'classnames'
 import React, { useRef, useState } from 'react'
 import useQueryString from '@lib/hooks/useQueryString';
 import Link from '@components//nav/Link';
-import VariantsForm from '@app/products/[product]/components/VariantsForm';
+import ProductVariantsForm from './ProductVariantsForm';
 import { parseGid } from '@shopify/utils';
 import { StructuredContent } from 'next-dato-utils';
 
@@ -40,11 +40,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
             <p className="mid light">{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
           </div>
         </header>
-        <StructuredContent
-          id={product.id}
-          content={product.shortSummary}
-          className={cn(s.summary, "light mid")}
-        />
+        <StructuredContent content={product.shortSummary} className={cn(s.summary, "light mid")} />
         <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
           {readMore ? 'Read less' : 'Read more'}
         </button>
@@ -53,12 +49,9 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           style={{ maxHeight: readMore ? descriptionRef.current?.scrollHeight : 0 }}
           ref={descriptionRef}
         >
-          <StructuredContent
-            id={product.id}
-            content={product.description}
-          />
+          <StructuredContent content={product.description} />
         </div>
-        <VariantsForm
+        <ProductVariantsForm
           product={product}
           shopifyProduct={shopifyProduct}
           className={cn(readMore && s.formExpanded)}

@@ -20,7 +20,7 @@ export default async function Legal({ params }: { params: { legal: string } }) {
       <section className={cn(s.legal, "grid legal structured")}>
         <div className={s.container}>
           <h3>{legal.title}</h3>
-          <StructuredContent id={legal.id} content={legal.text} />
+          <StructuredContent content={legal.text} />
         </div>
       </section >
       <DraftMode url={draftUrl} tag={legal.id} />

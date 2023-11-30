@@ -38,7 +38,7 @@ export default function FaqItem({ faq }: Props) {
         }}
         ref={ref}
       >
-        <StructuredContent id={faq.id} content={faq.answer} />
+        <StructuredContent content={faq.answer} />
       </div>
     </li>
   )

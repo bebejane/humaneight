@@ -11,7 +11,7 @@ export default function AboutTextBlock({ data: { id, text } }: Props) {
   return (
     <section className={cn(s.section, "structured grid")}>
       <div className={s.content}>
-        <StructuredContent className="big" id={id} content={text} />
+        <StructuredContent className="big" content={text} />
       </div>
     </section>
   )
