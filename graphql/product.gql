@@ -35,6 +35,20 @@ query AllCartProducts($shopifyIds: [String]!, $first: IntType = 100, $skip: IntT
 	}
 }
 
+query AllProductBranding($first: IntType = 100, $skip: IntType = 0) {
+	allProductBrandings(first: $first, skip: $skip) {
+		id
+		text
+		smallText
+		image {
+			...ImageThumbnailFragment
+		}
+	}
+	_allProductBrandingsMeta {
+		count
+	}
+}
+
 fragment ProductLightFragment on ProductRecord {
 	id
 	shopifyId

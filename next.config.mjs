@@ -17,11 +17,6 @@ const nextConfig = {
 	devIndicators: {
 		buildActivity: false,
 	},
-	logging: {
-		fetches: {
-			//fullUrl: true,
-		},
-	},
 	async headers() {
 		return [
 			{

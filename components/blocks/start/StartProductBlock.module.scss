@@ -5,8 +5,17 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+
     h3 {
       padding-bottom: 1.5rem;
     }
+  }
+
+  .three {
+    grid-column: span 4;
+  }
+
+  .four {
+    grid-column: span 3;
   }
 }

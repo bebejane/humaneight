@@ -1,0 +1,22 @@
+.logo {
+  --font-size: calc(var(--navSize) * 1.2);
+  --font-size-intro: calc(calc(var(--navSize) * 1.2) * 2);
+  font-size: var(--font-size);
+  position: fixed;
+  top: calc(var(--outer-margin) - 0.1em);
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  pointer-events: none;
+  z-index: var(--z-logo);
+  text-transform: uppercase;
+
+  a {
+    pointer-events: all;
+    line-height: 0;
+  }
+
+}

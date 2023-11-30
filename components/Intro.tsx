@@ -10,19 +10,18 @@ export default function Intro() {
 
   const [visible, setVisible] = useState(true)
   const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
-  const ratio = Math.min((scrolledPosition / viewportHeight) * 2, 1)
+  const ratio = Math.min((scrolledPosition ?? 0 / viewportHeight) * 2, 1)
 
   useEffect(() => {
 
   }, [scrolledPosition])
 
-  console.log(ratio)
-
-  const fontSize = `calc(var(--navSize) * 1.2 * ${2 - ratio})`
-  console.log(fontSize)
-
   return (
-    <div className={cn(s.intro, !visible && s.hide)} onClick={() => setVisible(false)}>
+    <div
+      className={cn(s.intro, !visible && s.hide)}
+      onClick={() => setVisible(false)}
+      style={{ opacity: 1 - ratio }}
+    >
       <h2>For a neurodiverse world.</h2>
     </div>
   )

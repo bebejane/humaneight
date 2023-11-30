@@ -31,8 +31,8 @@ export default async function Shop({ params }: CountryShopParams) {
       <CollectionsFilter collectionId={collection?.id} />
       <div className={s.container}>
         <ThumbnailContainer>
-          {allProducts?.map((product) => (
-            <ProductThumbnail key={product.id} product={product as ProductRecord} />
+          {allProducts?.map((product, i) => (
+            <ProductThumbnail key={product.id} product={product as ProductRecord} index={i} />
           ))}
         </ThumbnailContainer>
       </div>

@@ -133,6 +133,7 @@ declare module '*/product.gql' {
 export const Product: DocumentNode;
 export const AllProductByCollection: DocumentNode;
 export const AllCartProducts: DocumentNode;
+export const AllProductBranding: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
 export const ProductMediaItemFragment: DocumentNode;

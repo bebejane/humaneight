@@ -1,0 +1,428 @@
+{
+  "availableCountries": [
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "AE",
+      "name": "Förenade Arabemiraten",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "AT",
+      "name": "Österrike",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "AU",
+      "name": "Australien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "BE",
+      "name": "Belgien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "BG",
+      "name": "Bulgarien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "CA",
+      "name": "Kanada",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "CH",
+      "name": "Schweiz",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "CY",
+      "name": "Cypern",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "CZ",
+      "name": "Tjeckien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "DE",
+      "name": "Tyskland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "DK",
+      "name": "Danmark",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "EE",
+      "name": "Estland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "ES",
+      "name": "Spanien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "FI",
+      "name": "Finland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "FR",
+      "name": "Frankrike",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "GB",
+      "name": "Storbritannien",
+      "unitSystem": "IMPERIAL_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "GR",
+      "name": "Grekland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "HK",
+      "name": "Hongkong SAR",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "HR",
+      "name": "Kroatien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "HU",
+      "name": "Ungern",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "IE",
+      "name": "Irland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "IL",
+      "name": "Israel",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "IT",
+      "name": "Italien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "JP",
+      "name": "Japan",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "KR",
+      "name": "Sydkorea",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "LT",
+      "name": "Litauen",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "LU",
+      "name": "Luxemburg",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "LV",
+      "name": "Lettland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "MT",
+      "name": "Malta",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "MY",
+      "name": "Malaysia",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "NL",
+      "name": "Nederländerna",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "NO",
+      "name": "Norge",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "NZ",
+      "name": "Nya Zeeland",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "PL",
+      "name": "Polen",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "PT",
+      "name": "Portugal",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "RO",
+      "name": "Rumänien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "SE",
+      "name": "Sverige",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "SG",
+      "name": "Singapore",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "SI",
+      "name": "Slovenien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "SK",
+      "name": "Slovakien",
+      "unitSystem": "METRIC_SYSTEM"
+    },
+    {
+      "currency": {
+        "isoCode": "SEK",
+        "name": "Swedish Krona",
+        "symbol": "kr"
+      },
+      "isoCode": "US",
+      "name": "USA",
+      "unitSystem": "IMPERIAL_SYSTEM"
+    }
+  ],
+  "country": {
+    "currency": {
+      "isoCode": "SEK",
+      "name": "Swedish Krona",
+      "symbol": "kr"
+    },
+    "market": {
+      "id": "gid://shopify/Market/50772803852",
+      "handle": "se"
+    },
+    "isoCode": "SE",
+    "name": "Sverige",
+    "unitSystem": "METRIC_SYSTEM"
+  }
+}

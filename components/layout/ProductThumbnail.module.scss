@@ -1,6 +1,18 @@
 .thumbnail {
   grid-column: span 4;
 
+  &.two {
+    grid-column: span 8;
+  }
+
+  &.three {
+    grid-column: span 4;
+  }
+
+  &.four {
+    grid-column: span 3;
+  }
+
   figure {
     position: relative;
 
@@ -18,7 +30,7 @@
         pointer-events: none;
       }
 
-      &:hover + .secondary {
+      &:hover+.secondary {
         display: block !important;
       }
     }
@@ -79,6 +91,23 @@
           }
         }
       }
+    }
+
+    .branding {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 84%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      text-transform: uppercase;
+
+
     }
   }
 }
