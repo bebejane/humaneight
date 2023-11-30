@@ -13,8 +13,8 @@
 
   .logo {
     position: sticky;
-    height: 13rem;
-    top: calc(100vh - 13rem);
+    height: 13.5rem;
+    top: calc(100vh - 13.5rem - var(--outer-margin));
     img {
       width: 100%;
     }
@@ -43,7 +43,7 @@
     width: 100%;
     padding-bottom: var(--space);
     border-top: 1px solid var(--gray);
-    padding-top: var(--space);
+    padding-top: 2rem;
 
     ul {
       list-style: none;
