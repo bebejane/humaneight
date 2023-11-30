@@ -32,7 +32,7 @@
       margin-top: -0.1em;
     }
 
-    > button {
+    >button {
       background-color: transparent !important;
       padding: 0;
 
@@ -84,7 +84,7 @@
     list-style: none;
   }
 
-  > ul {
+  >ul {
     position: relative;
     flex-direction: row;
     width: 100%;
@@ -96,7 +96,7 @@
       padding-bottom: 2em;
     }
 
-    > li {
+    >li {
       position: relative;
       width: 25%;
 
@@ -127,8 +127,7 @@
               object-fit: cover;
             }
 
-            .picture {
-            }
+            .picture {}
           }
         }
       }
@@ -145,6 +144,9 @@
     bottom: 0;
 
     .locale {
+      flex: 0 0;
+      white-space: nowrap;
+      min-width: 200px;
     }
 
     .accessability {

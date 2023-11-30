@@ -27,7 +27,6 @@ export default async function Home(params: CountryParams) {
               StartProductShortcutBlock,
               FullscreenBlock
             }}
-
           />
         )}
         <Newsletter />

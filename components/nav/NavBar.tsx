@@ -35,7 +35,6 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
     <>
       <Logo />
       <nav className={s.navbar}>
-
         <menu>
           <button
             className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
@@ -57,16 +56,14 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
             <li key={id}>
               <h3 className="small">{title}</h3>
               <ul>
-                {sub?.map(({ id, title, slug, localized }, idx) => (
-                  <li
-                    key={id}
-                    onMouseEnter={() => setMenuItemId(id)}
-                    onMouseLeave={() => setMenuItemId(null)}
-                  >
+                {sub?.map(({ id, title, slug, localized }) => (
+                  <li key={id}>
                     <Link
                       href={`${slug}`}
                       localized={localized}
                       className="nav-small nav-hover"
+                      onMouseEnter={() => setMenuItemId(id)}
+                      onMouseLeave={() => setMenuItemId(null)}
                       onClick={() => setShowMenu(false)}
                     >
                       {title}
@@ -77,7 +74,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
             </li>
           ))}
           <li className={s.thumbnail}>
-            <h3 className="small">Tip!</h3>
+            {!menuItemId && <h3 className="small">Tip!</h3>}
             {menu.slice(0, 3).map(({ sub }) => sub).filter(sub => sub).flat().map(item => (
               <figure key={`figure-${item?.id}`}>
                 {item?.image?.responsiveImage &&
@@ -105,7 +102,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 
         <div className={s.footer}>
           <div className={s.locale}>
-            <CountrySelector localization={localization} label="Location" modal={true} />
+            {showMenu && <CountrySelector localization={localization} label="Location" modal={true} />}
           </div>
           <div className={cn(s.accessability, 'body')}>
             Customize our website for your needs <span className="symbol">→</span>

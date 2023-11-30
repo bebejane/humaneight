@@ -8,6 +8,7 @@ import useCountry from '@shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from 'rooks';
+import { sortSwedish } from 'next-dato-utils';
 
 export type Props = {
   className?: string
@@ -45,6 +46,7 @@ export default function CountrySelector({ className, label, modal = false, local
     router.replace(`${path}${hash}`.toLowerCase())
   }
 
+
   return (
     <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
       <Select
@@ -56,26 +58,24 @@ export default function CountrySelector({ className, label, modal = false, local
           <SelectValue className={s.value} key={country}>
             {label}: {country}
           </SelectValue>
-          <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!selectOpen ? '▼' : '▲'}</span>
+          <span aria-hidden="true" className={cn(s.arrow, "symbol")}>
+            {!selectOpen ? '▼' : '▲'}
+          </span>
         </Button>
         <Popover placement="top left" className={s.popover} maxHeight={100} isNonModal={!modal}>
           <ListBox
             className={s.options}
             style={{ width: selectWidth }}
-            items={availableCountries.map(({ isoCode, currency }, idx) => ({
+            items={sortSwedish(availableCountries, 'name').map(({ isoCode, name, currency }) => ({
               id: isoCode,
-              name: `${isoCode} ${currency.isoCode}`
+              name: `${name} ${currency.isoCode}`
             }))}
           >
-            {availableCountries.map(({ isoCode, currency }, idx) => {
-              return (
-                <ListBoxItem
-                  id={isoCode}
-                  key={idx}
-                  className={cn(s.option)}
-                >{isoCode} ({currency.isoCode})</ListBoxItem>
-              )
-            })}
+            {availableCountries.map(({ isoCode, name, currency }, idx) =>
+              <ListBoxItem id={isoCode} key={idx} className={cn(s.option)}>
+                {name} ({currency.isoCode})
+              </ListBoxItem>
+            )}
           </ListBox>
         </Popover>
       </Select>

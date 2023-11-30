@@ -1,5 +1,6 @@
 .form {
-  display: inline;
+  //display: inline;
+  width: 100%;
 
   label {
     display: inline;
@@ -12,16 +13,23 @@
   }
 
   .select {
-    display: inline;
+    //display: inline;
+    width: 100%;
 
     .button {
+      width: 100%;
       display: inline-flex !important;
       flex-direction: row;
+      text-align: left;
       align-items: center;
       padding: 0px;
       display: inline;
       background-color: transparent;
-      outline: none;
+
+      .value {
+        width: 100%;
+
+      }
 
       .arrow {
         font-size: 0.5em;
@@ -41,6 +49,9 @@
 
     .option {
       padding: 0.2em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @include mq($from: desktop) {
         &:hover {

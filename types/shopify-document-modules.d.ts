@@ -150,6 +150,7 @@ declare module '*/product.gql' {
   const defaultDocument: DocumentNode;
   export const AllShopifyProducts: DocumentNode;
 export const ShopifyProduct: DocumentNode;
+export const ShopifyVariant: DocumentNode;
 
   export default defaultDocument;
 }

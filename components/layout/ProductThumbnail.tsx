@@ -36,14 +36,16 @@ export default function ProductThumbnail({ product, index, columns = 'three' }: 
             <h3 className="mid">{product.title}</h3>
             <p className="mid light"><Price slug={product.slug} /></p>
           </figcaption>
-          <ul>
-            {product.usp.map(({ id, title, description }) =>
-              <li key={id}>
-                <span className={s.title}>{title}</span>
-                <span className={cn(s.description, "nav")} key={id}>{description}</span>
-              </li>
-            )}
-          </ul>
+          {columns !== 'four' &&
+            <ul>
+              {product.usp.map(({ id, title, description }) =>
+                <li key={id}>
+                  <span className={s.title}>{title}</span>
+                  <span className={cn(s.description, "nav")} key={id}>{description}</span>
+                </li>
+              )}
+            </ul>
+          }
         </figure>
       }
     </Link>

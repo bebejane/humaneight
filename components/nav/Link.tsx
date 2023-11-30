@@ -4,14 +4,15 @@ import { defaultCountry } from '@lib/const';
 import NextLink, { LinkProps } from 'next/link';
 import useCountry from '@shopify/hooks/useCountry';
 import { usePathname } from 'next/navigation';
+import { AnchorHTMLAttributes } from 'react';
 
-export type Props = LinkProps & {
+export type Props = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: React.ReactNode | React.ReactNode[]
   localized?: boolean | undefined
   className?: string
 }
 
-export default function Link(props: Props) {
+export default function Link<LinkProps>(props: Props) {
 
   const isLocalized = true//typeof props.localized === 'undefined' ? true : props.localized;
   const country = useCountry();
