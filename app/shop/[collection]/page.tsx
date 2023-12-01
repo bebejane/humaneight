@@ -7,6 +7,7 @@ import { apiQuery } from 'next-dato-utils';
 export async function generateStaticParams() {
   const { allCollections } = await apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
     all: true,
+    generateTags: false,
     tags: ['collection']
   })
   return allCollections.map(({ slug: collection }) => ({ collection }))

@@ -19,6 +19,7 @@ export async function generateStaticParams(params: CountryParams) {
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
     all: true,
     tags: ['product'],
+    generateTags: false,
   });
 
   return allProducts.map(({ slug }) => ({

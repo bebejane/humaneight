@@ -17,7 +17,6 @@ export default async function Shop({ params }: CountryShopParams) {
     }
   }) : { collection: undefined, draftUrl: undefined }
 
-
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     all: true,
     variables: {
@@ -25,19 +24,21 @@ export default async function Shop({ params }: CountryShopParams) {
       first: 100,
       skip: 0,
     },
+    generateTags: false,
     tags: ['product']
   })
+
   const { allProductBrandings } = await apiQuery<AllProductBrandingQuery, AllProductBrandingQueryVariables>(AllProductBrandingDocument, {
     variables: {
       first: 100,
       skip: 0
     },
+    tags: ['product_branding'],
     all: true
   })
 
   const brandingInterval = 3
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
-
 
   return (
     <>
