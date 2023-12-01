@@ -40,6 +40,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
+  console.log(availableColors)
   return (
     <form className={cn(s.form, className)}>
       <fieldset>
@@ -76,7 +77,6 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
                         {option?.value}
                       </figcaption>
                     </figure>
-
                   </ListBoxItem>
                 )
               })}

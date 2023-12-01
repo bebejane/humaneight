@@ -26,6 +26,13 @@ fragment ProductFragment on Product {
 					name
 					value
 				}
+				image {
+					id
+					url(transform: { maxWidth: 400, maxHeight: 400, crop: CENTER })
+					height
+					width
+					altText
+				}
 				price {
 					amount
 					currencyCode
