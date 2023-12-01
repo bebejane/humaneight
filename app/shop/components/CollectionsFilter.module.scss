@@ -1,15 +1,17 @@
 .filter {
   list-style: none;
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  position: relative;
 
-  li {
+
+  li,
+  span.active {
+    position: relative;
     padding-top: 0.5em;
     padding-bottom: 1em;
-    min-width: 10ch;
     text-align: center;
 
     &:first-of-type {
@@ -20,10 +22,37 @@
       text-align: right;
     }
 
-    &.selected,
-    &.selected > a,
-    &:hover {
-      letter-spacing: var(--letter-space);
+    .title {
+      &.hide {
+        opacity: 0;
+      }
+    }
+
+    &:has(.active:hover) {
+      .title {
+        opacity: 0;
+      }
+    }
+
+    .active {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      white-space: nowrap;
+      //pointer-events: none;
+      opacity: 0;
+
+      &.selected,
+      &:hover {
+        opacity: 1;
+        letter-spacing: var(--letter-space);
+      }
     }
   }
 }
