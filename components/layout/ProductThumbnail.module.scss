@@ -30,7 +30,7 @@
         pointer-events: none;
       }
 
-      &:hover+.secondary {
+      &:hover + .secondary {
         display: block !important;
       }
     }
@@ -106,8 +106,6 @@
       text-align: center;
       z-index: 2;
       text-transform: uppercase;
-
-
     }
   }
 }
