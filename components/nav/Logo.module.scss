@@ -1,7 +1,6 @@
 .logo {
-  --font-size: calc(var(--navSize) * 1.2);
-  --font-size-intro: calc(calc(var(--navSize) * 1.2) * 2);
-  font-size: var(--font-size);
+  --logo-size-intro: calc(calc(var(--logo-size) * 3.6) * 2);
+  font-size: var(--logo-size);
   position: fixed;
   top: calc(var(--outer-margin) - 0.1em);
   left: 50%;
@@ -18,5 +17,4 @@
     pointer-events: all;
     line-height: 0;
   }
-
 }
