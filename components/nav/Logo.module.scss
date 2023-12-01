@@ -1,6 +1,5 @@
 .logo {
-
-  --logo-size-max-ratio: 3.6;
+  --logo-size-max-ratio: 3.65;
   --logo-size-intro: calc(calc(var(--logo-size) * var(--logo-size-max-ratio)) * 2);
 
   position: fixed;

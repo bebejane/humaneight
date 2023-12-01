@@ -22,7 +22,9 @@ export default function Intro() {
       onClick={() => setVisible(false)}
       style={{ opacity: 1 - ratio }}
     >
-      <h2>For a neurodiverse world.</h2>
+      <div className="grid">
+        <h2><span>For</span> <span>a</span> <span>neurodiverse</span> <span>world.</span></h2>
+      </div>
     </div>
   )
 }
