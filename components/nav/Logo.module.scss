@@ -1,6 +1,6 @@
 .logo {
   position: fixed;
-  font-size: var(--logo-size);
+  //font-size: var(--logo-size);
   top: calc(var(--outer-margin) - 0.1em);
   left: 50%;
   transform: translateX(-50%);
@@ -15,6 +15,7 @@
     opacity: 0;
 
     a {
+      transition: color 0.2s ease-out;
       color: var(--beige);
 
       &:hover {
@@ -22,6 +23,15 @@
       }
     }
 
+    &.black {
+      a {
+        color: var(--black);
+
+        &:hover {
+          color: var(--black);
+        }
+      }
+    }
   }
 }
 
