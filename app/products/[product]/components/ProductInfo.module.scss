@@ -1,7 +1,6 @@
 .details {
   grid-column-start: 1;
   grid-column-end: 5;
-
   position: sticky;
   top: var(--navbar-height);
   height: calc(100vh - var(--navbar-height));

@@ -1,5 +1,7 @@
 .thumbnail {
   grid-column: span 4;
+  position: relative;
+  border-radius: 50% !important;
 
   &.two {
     grid-column: span 8;
@@ -13,28 +15,44 @@
     grid-column: span 3;
   }
 
-  figure {
+  .image {
+    border-radius: 50%;
     position: relative;
+    border: var(--outer-margin) solid var(--beige);
+    aspect-ratio: 1/1;
+    display: flex;
+    background-color: var(--white);
+  }
 
-    .image {
-      position: relative;
-      aspect-ratio: 1/1;
-      display: flex;
-      background-color: var(--white);
+  .picture,
+  img {
+    object-fit: cover;
+  }
 
-    }
+  h3 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.7em;
+    color: var(--white);
+    padding-bottom: -0.5em;
+  }
 
-    .picture,
-    img {
-      object-fit: cover;
-    }
+  figcaption {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 1rem;
+    text-align: center;
 
-    figcaption {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-top: 1rem;
+    p {
+      width: 100%;
     }
   }
 }
