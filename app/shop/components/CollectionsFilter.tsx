@@ -16,12 +16,12 @@ export default async function CollectionsFilter({ collectionId }: Props) {
     tags: ['collection']
   });
 
-  const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections)
+  const collectionsWithAll = [{ id: undefined, title: 'All', slug: '', }].concat(allCollections)
 
   return (
     <ul className={s.filter}>
       {collectionsWithAll.map(({ id, title, slug }) => {
-        const pluralTitle = `${title}${id !== 'all' ? 's' : ''}`
+        const pluralTitle = `${title}${id ? 's' : ''}`
         return (
           <li key={id} className="nav">
             <span className={cn(s.title, collectionId === id && s.hide)}>{pluralTitle}</span>
