@@ -5,7 +5,7 @@ import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } fro
 import FullscreenBlock from '@components/blocks/FullscreenBlock';
 import Newsletter from '@components/common/Newsletter';
 import s from './page.module.scss'
-import Intro from '@components/Intro';
+import Intro from '@components/common/Intro';
 
 export default async function Home(params: CountryParams) {
 
