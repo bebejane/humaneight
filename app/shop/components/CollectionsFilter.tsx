@@ -4,6 +4,7 @@ import s from './CollectionsFilter.module.scss'
 import cn from 'classnames'
 import { apiQuery } from 'next-dato-utils'
 import Link from '@components//nav/Link'
+import { useState } from 'react'
 
 export type Props = {
   collectionId?: string
@@ -15,14 +16,21 @@ export default async function CollectionsFilter({ collectionId }: Props) {
     tags: ['collection']
   });
 
+  const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections)
+
   return (
     <ul className={s.filter}>
-      <li className={cn(!collectionId && s.selected, "nav")}><Link href={`/shop`}>All</Link></li>
-      {allCollections.map(({ id, title, slug }) => (
-        <li key={slug} className={cn(id === collectionId && s.selected, "nav")}>
-          <Link href={`/shop/${slug}`}>{title}s</Link>
-        </li>
-      ))}
+      {collectionsWithAll.map(({ id, title, slug }) => {
+        const pluralTitle = `${title}${id !== 'all' ? 's' : ''}`
+        return (
+          <li key={id} className="nav">
+            <span className={cn(s.title, collectionId === id && s.hide)}>{pluralTitle}</span>
+            <span key={slug} className={cn(s.active, collectionId === id && s.selected, "nav")}>
+              <Link href={`/shop/${slug}`}>{pluralTitle}</Link>
+            </span>
+          </li>
+        )
+      })}
     </ul>
   )
 }
