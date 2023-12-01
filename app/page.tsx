@@ -10,7 +10,8 @@ import Intro from '@components/common/Intro';
 export default async function Home(params: CountryParams) {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
-    tags: ['start']
+    tags: ['start'],
+    generateTags: false
   });
 
   return (
