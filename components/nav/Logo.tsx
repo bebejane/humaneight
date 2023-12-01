@@ -45,6 +45,7 @@ export default function Logo() {
 
   }, [taglineTrigger])
 
+
   return (
     <>
       <h1
@@ -53,7 +54,7 @@ export default function Logo() {
       >
         <Link href="/">Humaneight</Link>
       </h1>
-      <div className={cn('grid', s.tagline, isHome && s.intro)}>
+      <div className={cn('grid', s.tagline, !isHome && s.hide)}>
         <h2>{tagline.map((word, i) =>
           <span
             key={i}

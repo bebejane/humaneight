@@ -42,10 +42,10 @@
   width: 100%;
   color: var(--beige);
   z-index: var(--z-logo);
-  display: none;
 
-  &.intro {
-    display: grid;
+
+  &.hide {
+    display: none !important;
   }
 
   h2 {
