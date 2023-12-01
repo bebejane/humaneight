@@ -1,7 +1,6 @@
 .logo {
   --logo-size-max-ratio: 3.65;
-  --logo-size-intro: calc(calc(var(--logo-size) * var(--logo-size-max-ratio)) * 2);
-
+  --logo-size-intro: 13.5vw;
   position: fixed;
   top: calc(var(--outer-margin) - 0.2em);
   left: 50%;
@@ -12,4 +11,23 @@
   text-align: center;
   z-index: var(--z-logo);
   text-transform: uppercase;
+  opacity: 1;
+
+}
+
+.tagline {
+  position: fixed;
+  top: 32%;
+  left: 0;
+  width: 100%;
+
+  h2 {
+    margin-top: 1rem;
+    grid-column-start: 2;
+    grid-column-end: 12;
+    padding-top: 2em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }
