@@ -1,5 +1,6 @@
 .logo {
   position: fixed;
+  font-size: var(--logo-size);
   top: calc(var(--outer-margin) - 0.1em);
   left: 50%;
   transform: translateX(-50%);
@@ -45,5 +46,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    span {
+      opacity: 1;
+      transition: opacity 0.2s ease-out;
+
+      &.hide {
+        opacity: 0;
+      }
+    }
   }
 }

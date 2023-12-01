@@ -8,11 +8,10 @@
 	--outer-margin: 1.2rem;
 	--background: var(--beige);
 	--foreground: var(--black);
-	--navSize: 2.5rem;
-	--logo-size: calc(var(--navSize) * 1.2);
-	--logo-size-intro: 13.5vw;
-	--navbar-height: calc(var(--navSize) + ((2 * var(--outer-margin)) * 0.6));
-
+	--nav-size: 2.5rem;
+	--logo-size: calc(var(--nav-size) * 1.2);
+	--logo-size-intro: 13.7vw;
+	--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
 	--gutter: 1.2rem;
 	--half-gutter: calc(var(--gutter) / 2);
 	--letter-space: 0.1em;

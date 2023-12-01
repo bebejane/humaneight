@@ -29,15 +29,20 @@ export default function Logo() {
 
   }, [pathname, scrolledPosition])
 
-
   return (
     <>
       <h1 className={cn('nav', s.logo, isHome && s.intro)} style={style}>
         <Link href="/">Humaneight</Link>
       </h1>
-      <div className={cn('grid', s.tagline, isHome && s.intro)} style={{ opacity: 1 - taglineRatio }}>
-        <h2>{tagline.map(word => <span>{word}</span>)}</h2>
-      </div>
+      <div className={cn('grid', s.tagline, isHome && s.intro)}>
+        <h2>{tagline.map(word =>
+          <span
+            className={cn(taglineRatio > 0.1 && s.hide)}
+            style={{ transitionDelay: `${Math.min(Math.random(), 0.5)}s` }} >
+            {word}
+          </span>
+        )}</h2>
+      </div >
     </>
   )
 }
