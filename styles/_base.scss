@@ -10,6 +10,7 @@
 	--foreground: var(--black);
 	--navSize: 2.5rem;
 	--logo-size: calc(var(--navSize) * 1.2);
+	--logo-size-intro: 13.5vw;
 	--navbar-height: calc(var(--navSize) + ((2 * var(--outer-margin)) * 0.6));
 
 	--gutter: 1.2rem;
@@ -24,11 +25,9 @@
 	--z-logo: 2300;
 	--z-intro: 3000;
 
-	@include mq($until: tablet) {
-	}
+	@include mq($until: tablet) {}
 
-	@include mq($from: tablet, $until: desktop) {
-	}
+	@include mq($from: tablet, $until: desktop) {}
 }
 
 body {
@@ -144,11 +143,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {
