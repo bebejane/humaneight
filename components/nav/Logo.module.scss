@@ -1,6 +1,6 @@
 .logo {
   position: fixed;
-  top: calc(var(--outer-margin) - 0.2em);
+  top: calc(var(--outer-margin) - 0.1em);
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 0;
@@ -12,6 +12,15 @@
 
   &.intro {
     opacity: 0;
+
+    a {
+      color: var(--beige);
+
+      &:hover {
+        color: var(--beige);
+      }
+    }
+
   }
 }
 
@@ -22,6 +31,7 @@
   top: calc(50vh - var(--logo-size-intro) + var(--navbar-height));
   left: 0;
   width: 100%;
+  color: var(--beige);
 
   &.intro {
     display: grid;
