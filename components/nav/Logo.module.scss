@@ -1,20 +1,16 @@
 .logo {
-  --logo-size-intro: calc(calc(var(--logo-size) * 3.6) * 2);
-  font-size: var(--logo-size);
+
+  --logo-size-max-ratio: 3.6;
+  --logo-size-intro: calc(calc(var(--logo-size) * var(--logo-size-max-ratio)) * 2);
+
   position: fixed;
-  top: calc(var(--outer-margin) - 0.1em);
+  top: calc(var(--outer-margin) - 0.2em);
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  pointer-events: none;
   z-index: var(--z-logo);
   text-transform: uppercase;
-
-  a {
-    pointer-events: all;
-    line-height: 0;
-  }
 }

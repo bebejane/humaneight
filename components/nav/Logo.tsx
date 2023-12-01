@@ -1,6 +1,5 @@
 'use client'
 
-import { set } from 'date-fns';
 import s from './Logo.module.scss';
 import cn from 'classnames';
 import { useScrollInfo } from 'next-dato-utils';
@@ -12,19 +11,18 @@ export default function Logo() {
 
   const pathname = usePathname()
   const [style, setStyle] = useState<CSSProperties | undefined>({ opacity: 0 })
-
   const { scrolledPosition, documentHeight, viewportHeight } = useScrollInfo()
 
   useEffect(() => {
     const ratio = Math.min((scrolledPosition / viewportHeight) * 2, 1)
-    const fontSize = `calc(var(--logo-size) * ${3.6 - (ratio * 2)})`
-    const marginTop = `calc(calc(calc(40vh - var(--logo-size) - var(--navbar-height)) * ${1 - ratio})  - 0.0em)`
+    const maxLogoSize = 'calc(var(--logo-size) * var(--logo-size-max-ratio))'
+    const fontSize = `calc(calc(${maxLogoSize} * ${1 - ratio}) + calc(var(--logo-size) * ${ratio})`
+    const marginTop = `calc(calc(calc(50vh - calc(${maxLogoSize} / 2 )) - calc(var(--navbar-height) / 2 )) * ${1 - ratio})`
 
     const style = pathname === '/' ? { fontSize, marginTop } : undefined
     setStyle(style)
 
   }, [pathname, scrolledPosition])
-
 
   return (
     <h1 className={cn('nav', s.logo)} style={style}>
