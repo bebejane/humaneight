@@ -33,7 +33,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 
   return (
     <>
-      <Logo />
+      <Logo showMenu={showMenu} />
       <nav className={s.navbar}>
         <menu>
           <button

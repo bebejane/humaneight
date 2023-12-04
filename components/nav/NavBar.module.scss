@@ -11,7 +11,7 @@
   padding: var(--outer-margin);
   margin: 0;
   background-color: var(--background);
-  z-index: var(--z-navbar);
+  z-index: var(--z-menu);
 
   menu {
     position: relative;
@@ -69,7 +69,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: var(--z-menu);
+  z-index: var(--z-navbar);
   background-color: var(--beige);
   padding-top: var(--navbar-height);
   padding-left: var(--outer-margin);

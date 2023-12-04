@@ -18,17 +18,14 @@
 	--space: 3rem;
 	--space-big: 4rem;
 	--z-cart: 1200;
-	--z-menu: 2000;
-
-	--z-navbar: 2100;
-	--z-logo: 2300;
+	--z-navbar: 2000;
+	--z-menu: 2100;
+	--z-logo: 2101;
 	--z-intro: 3000;
 
-	@include mq($until: tablet) {
-	}
+	@include mq($until: tablet) {}
 
-	@include mq($from: tablet, $until: desktop) {
-	}
+	@include mq($from: tablet, $until: desktop) {}
 }
 
 body {
@@ -144,11 +141,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {

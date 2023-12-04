@@ -30,16 +30,16 @@ export async function generateStaticParams(params: CountryParams) {
 
 export default async function Product({ params }: CountryProductParams) {
 
-  const { product, draftUrl } = await apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, {
-    variables: { slug: params.product },
-    //logs: true,
-    maxTags: 10
-  });
-
-  const { product: shopifyProduct } = await shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
-    variables: { handle: params.product },
-    country: params.country
-  });
+  const [{ product, draftUrl }, { product: shopifyProduct }] = await Promise.all([
+    apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, {
+      variables: { slug: params.product },
+      maxTags: 10
+    }
+    ), shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
+      variables: { handle: params.product },
+      country: params.country
+    }
+    )])
 
   if (!product || !shopifyProduct)
     return notFound();

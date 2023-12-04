@@ -7,7 +7,6 @@ import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
-import useProduct from '@shopify/hooks/useProduct';
 import { useWindowSize } from 'rooks';
 
 export type Props = {
@@ -21,18 +20,18 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   const { searchParams, setSearchParam } = useQueryString()
   const { innerWidth } = useWindowSize()
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
-
   const [colorsOpen, setColorsOpen] = useState(false)
+  const selectButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id
   const variantId = searchParams.get('variant') ?? null
   const defaultVariant = shopifyProduct?.variants.edges[0].node as ProductVariant
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? defaultVariant
 
+  const haveSizes = shopifyProduct?.variants.edges.find(({ node }) => node.selectedOptions.find(opt => opt.name === 'Size') !== undefined) !== undefined
+  const haveColors = shopifyProduct?.variants.edges.find(({ node }) => node.selectedOptions.find(opt => opt.name === 'Color') !== undefined) !== undefined
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
-
-  const selectButtonRef = React.useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setColorSelectWidth(selectButtonRef.current?.offsetWidth ?? 0)
@@ -40,10 +39,9 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
-  console.log(availableColors)
   return (
     <form className={cn(s.form, className)}>
-      <fieldset>
+      {haveColors && <fieldset>
         <Select
           key={variantId}
           className={s.colors}
@@ -84,35 +82,33 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
           </Popover>
         </Select>
       </fieldset>
+      }
+      {haveSizes &&
+        <fieldset>
+          <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variantId}>
+            <Text slot="description" className={s.description}>Size</Text>
 
-      <fieldset>
-        <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variantId}>
-          <Text slot="description" className={s.description}>Size</Text>
+            {availableSizes.map((v, idx) => {
+              const option = v.selectedOptions.find(opt => opt.name === 'Size')
+              const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && option?.value === opt.value) ? true : false
 
-          {availableSizes.map((v, idx) => {
-            const option = v.selectedOptions.find(opt => opt.name === 'Size')
-            const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && option?.value === opt.value) ? true : false
-
-            return (
-              <React.Fragment key={idx}>
-                <Radio
-                  id={parseGid(v.id)}
-                  value={parseGid(v.id)}
-                  className={cn(s.radio, selected && s.selected)}
-                >
-                  <Label className={s.label}>{option?.value}</Label>
-                </Radio>
-              </React.Fragment>
-            )
-          })}
-          <FieldError />
-        </RadioGroup>
-        <a
-          href={`#${sizeGuideId}`}
-          className={s.sizeguide}
-          aria-disabled={sizeGuideId ? 'false' : 'true'}
-        >?</a>
-      </fieldset>
+              return (
+                <React.Fragment key={idx}>
+                  <Radio
+                    id={parseGid(v.id)}
+                    value={parseGid(v.id)}
+                    className={cn(s.radio, selected && s.selected)}
+                  >
+                    <Label className={s.label}>{option?.value}</Label>
+                  </Radio>
+                </React.Fragment>
+              )
+            })}
+            <FieldError />
+          </RadioGroup>
+          <a href={`#${sizeGuideId}`} className={s.sizeguide} aria-disabled={sizeGuideId ? 'false' : 'true'}>?</a>
+        </fieldset>
+      }
       <AddToCartButton label="Add to cart" merchandiseId={variant?.id} quantity={1} />
     </form>
   )

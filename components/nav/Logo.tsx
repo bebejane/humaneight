@@ -9,15 +9,20 @@ import { CSSProperties, useEffect, useState } from 'react';
 
 const tagline = ['For', 'a', 'neurodiverse', 'world.']
 
-export default function Logo() {
+export default function Logo({ showMenu }: { showMenu: boolean }) {
 
   const pathname = usePathname()
   const [isHome, setIsHome] = useState(pathname === '/')
   const [style, setStyle] = useState<CSSProperties | undefined>({})
   const [delays, setDelays] = useState<number[]>([])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
-  const taglineTrigger = Math.min((scrolledPosition / viewportHeight), 1) > 0.02
-  const ratio = Math.min((scrolledPosition / viewportHeight) * 2, 1)
+  const [ratio, setRatio] = useState(0)
+  const taglineTrigger = Math.min((scrolledPosition / viewportHeight), 1) > 0
+
+  useEffect(() => {
+    const ratio = showMenu ? 1 : Math.min((scrolledPosition / viewportHeight) * 2, 1)
+    setRatio(ratio)
+  }, [scrolledPosition, showMenu])
 
   useEffect(() => {
 
@@ -27,7 +32,7 @@ export default function Logo() {
     const style = { fontSize, marginTop, opacity: 1 }
     setStyle(style)
 
-  }, [scrolledPosition])
+  }, [scrolledPosition, ratio])
 
   useEffect(() => {
     setIsHome(pathname === '/')
@@ -41,7 +46,7 @@ export default function Logo() {
       return Math.floor(rand * power) / power;
     }
 
-    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.5, 2)))
+    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.3, 2)))
 
   }, [taglineTrigger])
 
