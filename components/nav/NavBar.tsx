@@ -20,14 +20,16 @@ export type Props = {
 
 export default function NavBar({ menu, localization, tipProduct }: Props) {
 
-  const [showMenu, setShowMenu] = useState(false);
-  const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
   const pathname = usePathname();
+  const [showMenu, setShowMenu] = useState(false);
+  const [isShopPage, setIsShopPage] = useState(pathname.toLowerCase().startsWith('/shop'));
+  const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
 
   useKey('Escape', () => setShowMenu(false));
 
   useEffect(() => {
-    setShowMenu(false);
+    setShowMenu(false)
+    setIsShopPage(pathname.toLowerCase().startsWith('/shop'))
   }, [pathname]);
 
   return (
@@ -35,16 +37,19 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
       <Logo showMenu={showMenu} />
       <nav className={s.navbar}>
         <button
-          className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
+          className={cn(s.item, s.menu, showMenu && s.active, 'nav', 'nav-hover')}
           onClick={() => setShowMenu(!showMenu)}>Menu</button>
 
         {showMenu ?
           <button
-            className={cn(s.close, "nav", "nav-hover")}
+            className={cn(s.item, s.close, "nav", "nav-hover")}
             onClick={() => setShowMenu(false)}
           >Close</button>
           :
-          <Cart localization={localization} />
+          <>
+            <Link href="/shop" className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>Shop</Link>
+            <Cart localization={localization} />
+          </>
         }
       </nav>
       <nav className={cn(s.desktop, showMenu && s.show)}>

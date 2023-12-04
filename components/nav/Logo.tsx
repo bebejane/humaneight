@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { useScrollInfo } from 'next-dato-utils';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { CSSProperties, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const tagline = ['For', 'a', 'neurodiverse', 'world.']
 
@@ -13,31 +13,19 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
 
   const pathname = usePathname()
   const [isHome, setIsHome] = useState(pathname === '/')
-  const [style, setStyle] = useState<CSSProperties | undefined>({})
   const [delays, setDelays] = useState<number[]>([])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const [ratio, setRatio] = useState(0)
   const [taglineTrigger, setTaglineTrigger] = useState<boolean | null>(null)
 
+  useEffect(() => {
+    setIsHome(pathname === '/')
+  }, [pathname])
 
   useEffect(() => {
     const ratio = showMenu ? 1 : Math.min((scrolledPosition / viewportHeight) * 2, 1)
     setRatio(ratio)
   }, [scrolledPosition, showMenu])
-
-  useEffect(() => {
-
-    const maxLogoSize = 'var(--logo-size-intro)'
-    const fontSize = `calc(calc(calc(${maxLogoSize} - var(--logo-size)) * ${1 - ratio}) + var(--logo-size))`
-    const marginTop = `calc(calc(calc(50vh - calc(${maxLogoSize} / 2 )) - calc(var(--navbar-height) / 2 )) * ${1 - ratio})`
-    const style = { fontSize, marginTop, opacity: 1 }
-    setStyle(style)
-
-  }, [scrolledPosition, ratio])
-
-  useEffect(() => {
-    setIsHome(pathname === '/')
-  }, [pathname])
 
   useEffect(() => {
 
@@ -47,7 +35,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       return Math.floor(rand * power) / power;
     }
 
-    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.1, 2)))
+    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.2, 2)))
 
   }, [taglineTrigger])
 
@@ -55,6 +43,11 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
     const taglineTrigger = Math.min((scrolledPosition / viewportHeight), 1) > 0
     setTaglineTrigger(taglineTrigger)
   }, [scrolledPosition, viewportHeight])
+
+  const maxLogoSize = 'var(--logo-size-intro)'
+  const fontSize = `calc(calc(calc(${maxLogoSize} - var(--logo-size)) * ${1 - ratio}) + var(--logo-size))`
+  const marginTop = `calc(calc(calc(50vh - calc(${maxLogoSize} / 2 )) - calc(var(--navbar-height) / 2 )) * ${1 - ratio})`
+  const style = { fontSize, marginTop }
 
   return (
     <>
@@ -74,6 +67,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
           </span>
         )}</h2>
       </div >
+      {isHome && <div className={s.background} />}
     </>
   )
 }
