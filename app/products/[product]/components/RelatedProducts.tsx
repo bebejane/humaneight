@@ -16,7 +16,7 @@ export default async function RelatedProducts({ product }: Props) {
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     variables: {
       collectionId: product?.collection.id,
-      first: 4,
+      first: 3,
       skip: 0
     },
     tags: ['product']
