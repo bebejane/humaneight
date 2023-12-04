@@ -3,7 +3,6 @@
   margin-bottom: var(--outer-margin);
   //margin-bottom: var(--space-big);
   border-top: 1px solid var(--gray);
-  border-bottom: 1px solid var(--gray);
   grid-column-start: 5;
   grid-column-end: 13;
 
@@ -12,6 +11,9 @@
   }
 
   .wrapper {
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: 2rem;
+
     a {
       scroll-margin-top: var(--navbar-height);
     }
@@ -50,6 +52,13 @@
       &.show {
         margin-bottom: 1.5rem;
       }
+    }
+  }
+
+  .inc {
+    p {
+      width: 100%;
+      text-align: center !important;
     }
   }
 }
