@@ -42,6 +42,7 @@ type AboutModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   content?: InputMaybe<StructuredTextFilter>;
+  headline?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   intro?: InputMaybe<StructuredTextFilter>;
@@ -74,6 +75,8 @@ enum AboutModelOrderBy {
   _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
   _updatedAt_ASC = '_updatedAt_ASC',
   _updatedAt_DESC = '_updatedAt_DESC',
+  headline_ASC = 'headline_ASC',
+  headline_DESC = 'headline_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
   position_ASC = 'position_ASC',
@@ -101,6 +104,7 @@ type AboutRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   content?: Maybe<AboutModelContentField>;
+  headline?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
   intro?: Maybe<AboutModelIntroField>;
