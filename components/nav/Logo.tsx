@@ -17,7 +17,8 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
   const [delays, setDelays] = useState<number[]>([])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const [ratio, setRatio] = useState(0)
-  const taglineTrigger = Math.min((scrolledPosition / viewportHeight), 1) > 0
+  const [taglineTrigger, setTaglineTrigger] = useState<boolean | null>(null)
+
 
   useEffect(() => {
     const ratio = showMenu ? 1 : Math.min((scrolledPosition / viewportHeight) * 2, 1)
@@ -50,6 +51,10 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
 
   }, [taglineTrigger])
 
+  useEffect(() => {
+    const taglineTrigger = Math.min((scrolledPosition / viewportHeight), 1) > 0
+    setTaglineTrigger(taglineTrigger)
+  }, [scrolledPosition, viewportHeight])
 
   return (
     <>
@@ -59,7 +64,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       >
         <Link href="/">Humaneight</Link>
       </h1>
-      <div className={cn('grid', s.tagline, !isHome && s.hide)}>
+      <div className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}>
         <h2>{tagline.map((word, i) =>
           <span
             key={i}

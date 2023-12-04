@@ -30,7 +30,7 @@
         pointer-events: none;
       }
 
-      &:hover + .secondary {
+      &:hover+.secondary {
         display: block !important;
       }
     }
@@ -107,5 +107,12 @@
       z-index: 2;
       text-transform: uppercase;
     }
+  }
+
+  .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: var(--gutter);
   }
 }

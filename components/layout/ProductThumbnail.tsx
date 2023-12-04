@@ -48,6 +48,9 @@ export default function ProductThumbnail({ product, index, columns = 'three' }: 
           }
         </figure>
       }
+      {product.label &&
+        <span className={s.label}>{product.label}</span>
+      }
     </Link>
   )
 }
