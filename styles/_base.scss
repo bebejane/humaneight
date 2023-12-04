@@ -3,6 +3,7 @@
 	--beige: #f6f3ee;
 	--white: #fcfcfc;
 	--white-opacity: #ffffff25;
+	--black-opacity: #16161625;
 	--red: #bf0000;
 	--gray: #e8e8e8;
 	--outer-margin: 1.2rem;
@@ -23,9 +24,11 @@
 	--z-logo: 2101;
 	--z-intro: 3000;
 
-	@include mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 
-	@include mq($from: tablet, $until: desktop) {}
+	@include mq($from: tablet, $until: desktop) {
+	}
 }
 
 body {
@@ -141,9 +144,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
