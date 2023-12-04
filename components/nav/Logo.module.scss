@@ -16,10 +16,10 @@
 
     a {
       transition: color 0.2s ease-out;
-      color: var(--beige);
+      color: var(--white);
 
       &:hover {
-        color: var(--beige);
+        color: var(--white);
       }
     }
 
@@ -40,19 +40,17 @@
   top: calc(50vh);
   left: 0;
   width: 100%;
-  color: var(--beige);
+  color: var(--white);
   z-index: var(--z-logo);
-
 
   &.hide {
     display: none !important;
   }
 
   h2 {
-
     grid-column-start: 2;
     grid-column-end: 12;
-    padding-top: 2em;
+    padding-top: 0.5em;
     width: 100%;
     display: flex;
     justify-content: space-between;
