@@ -13,48 +13,39 @@
   background-color: var(--background);
   z-index: var(--z-menu);
 
-  menu {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    padding: 0;
+  h1 {
+    position: absolute;
     width: 100%;
-    z-index: 1;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: -1;
+    font-size: calc(var(--nav-size) * 1.2);
+    margin-top: -0.1em;
+  }
 
-    h1 {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      text-transform: uppercase;
-      z-index: -1;
-      font-size: calc(var(--nav-size) * 1.2);
-      margin-top: -0.1em;
+  >button {
+    background-color: transparent !important;
+    padding: 0;
+
+    &:hover {
+      color: var(--black);
     }
 
-    >button {
+    &.menu {
+      &.active {
+        letter-spacing: var(--letter-space);
+      }
+    }
+
+    &.close {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      top: 0;
+      right: 0;
+
       background-color: transparent !important;
-      padding: 0;
-
-      &:hover {
-        color: var(--black);
-      }
-
-      &.menu {
-        &.active {
-          letter-spacing: var(--letter-space);
-        }
-      }
-
-      &.close {
-        position: absolute;
-        display: flex;
-        align-items: center;
-
-        top: 0;
-        right: 0;
-        background-color: transparent !important;
-      }
     }
   }
 }

@@ -42,6 +42,7 @@
   width: 100%;
   color: var(--white);
   z-index: var(--z-logo);
+  pointer-events: none;
 
   &.hide {
     display: none !important;
