@@ -53,6 +53,7 @@ fragment ProductLightFragment on ProductRecord {
 	id
 	shopifyId
 	title
+	label
 	slug
 	collection {
 		id
@@ -76,6 +77,7 @@ fragment ProductFragment on ProductRecord {
 	id
 	shopifyId
 	title
+	label
 	collection {
 		id
 		title
