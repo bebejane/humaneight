@@ -31,9 +31,10 @@ export default async function About({ params }: { params: { about: string } }) {
               FullscreenBlock
             }} />
         )}
-        <RelatedAbouts about={about} />
-        <DraftMode url={draftUrl} tag={about.id} />
       </div>
+
+      <RelatedAbouts about={about} />
+      <DraftMode url={draftUrl} tag={about.id} />
     </>
   )
 }
