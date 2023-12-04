@@ -46,7 +46,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       return Math.floor(rand * power) / power;
     }
 
-    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.3, 2)))
+    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.1, 2)))
 
   }, [taglineTrigger])
 

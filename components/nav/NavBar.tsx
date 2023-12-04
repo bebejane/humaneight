@@ -30,25 +30,22 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
     setShowMenu(false);
   }, [pathname]);
 
-
   return (
     <>
       <Logo showMenu={showMenu} />
       <nav className={s.navbar}>
-        <menu>
-          <button
-            className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
-            onClick={() => setShowMenu(!showMenu)}
-          >Menu</button>
+        <button
+          className={cn(s.menu, showMenu && s.active, 'nav', 'nav-hover')}
+          onClick={() => setShowMenu(!showMenu)}>Menu</button>
 
-          {showMenu ?
-            <button className={cn(s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>
-              Close
-            </button>
-            :
-            <Cart localization={localization} />
-          }
-        </menu>
+        {showMenu ?
+          <button
+            className={cn(s.close, "nav", "nav-hover")}
+            onClick={() => setShowMenu(false)}
+          >Close</button>
+          :
+          <Cart localization={localization} />
+        }
       </nav>
       <nav className={cn(s.desktop, showMenu && s.show)}>
         <ul>
