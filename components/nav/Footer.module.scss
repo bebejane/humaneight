@@ -6,7 +6,8 @@
   padding-top: var(--space-big);
   //padding-bottom: 2rem;
   height: calc(100vh);
-  > h2 {
+
+  >h2 {
     width: 100%;
     text-align: center;
   }
@@ -15,6 +16,7 @@
     position: sticky;
     height: 12.5rem;
     top: calc(100vh - 12.5rem - var(--outer-margin));
+
     img {
       width: 100%;
     }
@@ -24,6 +26,7 @@
     display: flex;
     flex-direction: row;
     padding-bottom: 1rem;
+
     h3 {
       text-align-last: justify;
       padding-top: 1rem;
@@ -50,18 +53,19 @@
       //display: flex;
     }
 
-    a:hover {
+    a:hover,
+    a.active {
       letter-spacing: var(--letter-space);
     }
 
-    > ul {
+    >ul {
       flex-direction: row;
 
       h3 {
         padding-bottom: 0.5em;
       }
 
-      > li {
+      >li {
         grid-column: span 2;
         display: flex;
         flex-direction: column;
