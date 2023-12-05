@@ -66,7 +66,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
             {word}
           </span>
         )}</h2>
-      </div >
+      </div>
       {isHome && <div className={s.background} />}
     </>
   )

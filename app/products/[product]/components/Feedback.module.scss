@@ -1,0 +1,8 @@
+.feedback {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  background-color: var(--gray);
+  padding: var(--gutter);
+}
