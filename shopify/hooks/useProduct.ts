@@ -7,10 +7,10 @@ import { ShopifyProductDocument } from '@shopify/graphql';
 
 export type Props = {
   handle: string | undefined | null
-  initialData: ShopifyProductQuery['product'] | null
+  initialData?: ShopifyProductQuery['product'] | null
 }
 
-export default function useProduct({ handle, initialData }: Props) {
+export default function useProduct({ handle, initialData = null }: Props) {
 
   const country = useCountry();
   const [product, setProduct] = useState<ShopifyProductQuery['product'] | null>(initialData);

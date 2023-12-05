@@ -12,35 +12,35 @@
 
   .item {
     position: absolute;
+    display: flex;
+    align-items: center;
     top: 0;
-    margin: var(--outer-margin);
+    height: var(--navbar-height);
     padding: 0;
     background-color: transparent !important;
+    transition: letter-spacing 0.2s ease-in-out;
 
     &:hover {
       color: var(--black);
     }
 
     &.menu {
-      left: 0;
+      left: var(--outer-margin);
     }
 
     &.close {
-      right: 0;
+      right: var(--outer-margin);
+    }
+
+    &.shop {
+      right: calc(var(--outer-margin) + 2rem);
     }
 
     &.active {
       letter-spacing: var(--letter-space);
     }
 
-    &.shop {
-      right: 0;
-      padding-right: calc(var(--outer-margin) + 1rem);
 
-      &.active {
-        letter-spacing: var(--letter-space);
-      }
-    }
   }
 
 
