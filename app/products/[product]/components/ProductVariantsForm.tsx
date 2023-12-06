@@ -48,7 +48,6 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
           onSelectionChange={handleVariantChange}
           onOpenChange={(o) => setColorsOpen(o)}
         >
-          <Text slot="description" className={s.description}>Color</Text>
           <Button className={s.button} ref={selectButtonRef}>
             <SelectValue className={s.value} key={variantId}>
               {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
@@ -86,7 +85,6 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
       {haveSizes &&
         <fieldset>
           <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variantId}>
-            <Text slot="description" className={s.description}>Size</Text>
 
             {availableSizes.map((v, idx) => {
               const option = v.selectedOptions.find(opt => opt.name === 'Size')

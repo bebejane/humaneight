@@ -37,7 +37,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
         <header>
           <h1 className="big">{product.title}</h1>
           <div className={s.price}>
-            <p className="mid light">{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
+            <p className="mid">{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
           </div>
         </header>
         <StructuredContent content={product.shortSummary} className={cn(s.summary, "light mid")} />

@@ -22,7 +22,7 @@ export default function BrandingThumbnail({ productBranding: { text, smallText, 
       }
       <h3 className="nav">{text}</h3>
       <figcaption>
-        <p className="mid light">{smallText}</p>
+        <p className="mid">{smallText}</p>
       </figcaption>
     </figure >
   )

@@ -18,7 +18,7 @@
     height: var(--navbar-height);
     padding: 0;
     background-color: transparent !important;
-    transition: letter-spacing 0.2s ease-in-out;
+    //transition: letter-spacing 0.2s ease-in-out;
 
     &:hover {
       color: var(--black);
@@ -33,17 +33,13 @@
     }
 
     &.shop {
-      right: calc(var(--outer-margin) + 2rem);
+      right: calc(var(--outer-margin) + 2.2rem);
     }
 
     &.active {
       letter-spacing: var(--letter-space);
     }
-
-
   }
-
-
 }
 
 .desktop {
@@ -71,7 +67,7 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     position: relative;
     flex-direction: row;
     width: 100%;
@@ -83,7 +79,7 @@
       padding-bottom: 2em;
     }
 
-    >li {
+    > li {
       position: relative;
       width: 25%;
 
@@ -114,7 +110,8 @@
               object-fit: cover;
             }
 
-            .picture {}
+            .picture {
+            }
           }
         }
       }

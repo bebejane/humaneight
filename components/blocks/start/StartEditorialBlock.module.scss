@@ -3,15 +3,12 @@
   margin-top: var(--space-big);
   position: relative;
 
-  h2 {
-    padding-top: 0.5em;
-  }
-
   > div {
     position: sticky;
     top: var(--navbar-height);
     width: 50%;
-    padding-right: var(--half-gutter);
+    padding: var(--gutter);
+    padding-bottom: 0;
     align-self: flex-start;
     button {
       margin-top: 2.7rem;
