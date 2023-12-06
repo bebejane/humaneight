@@ -11,16 +11,19 @@ import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 
 export default async function Shop({ params }: CountryShopParams) {
 
-  const { collection, draftUrl } = params?.collection ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
+
+  const isAllCategory = !params?.collection
+
+  const { collection, draftUrl } = isAllCategory ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: {
-      slug: params?.collection
+      slug: params.collection
     }
   }) : { collection: undefined, draftUrl: undefined }
 
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     all: true,
     variables: {
-      collectionId: params?.collection ? collection?.id : undefined,
+      collectionId: isAllCategory ? collection?.id : undefined,
       first: 100,
       skip: 0,
     },
@@ -39,7 +42,7 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const brandingInterval = 3
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
-
+  const columns = isAllCategory ? 'three' : 'four'
   return (
     <>
       <CollectionsFilter collectionId={collection?.id} />
@@ -47,9 +50,16 @@ export default async function Shop({ params }: CountryShopParams) {
         <ThumbnailContainer>
           {allProducts?.map((product, i) => (
             <React.Fragment key={product.id}>
-              <ProductThumbnail product={product as ProductRecord} index={i} />
+              <ProductThumbnail
+                product={product as ProductRecord}
+                index={i}
+                columns={columns}
+              />
               {i % brandingInterval === 0 &&
-                <BrandingThumbnail productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord} />
+                <BrandingThumbnail
+                  productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
+                  columns={columns}
+                />
               }
             </React.Fragment>
           ))}

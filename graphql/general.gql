@@ -1,0 +1,13 @@
+query General {
+	general {
+		id
+		eMail
+		facebook
+		instagram
+		twitter
+		claims {
+			id
+			text
+		}
+	}
+}

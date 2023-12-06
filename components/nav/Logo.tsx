@@ -35,7 +35,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       return Math.floor(rand * power) / power;
     }
 
-    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.2, 2)))
+    setDelays(new Array(tagline.length).fill(0).map(() => genRand(0.0, 0.5, 2)))
 
   }, [taglineTrigger])
 
@@ -60,14 +60,13 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       <div className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}>
         <h2>{tagline.map((word, i) =>
           <span
-            key={i}
+            key={`${i}-${taglineTrigger}`}
             className={cn(taglineTrigger && s.hide)}
-            style={{ transitionDelay: `${delays?.[i] ?? 0}s` }} >
+            style={{ animationDelay: taglineTrigger === true ? '0s' : `${delays?.[i] ?? 0}s` }} >
             {word}
           </span>
         )}</h2>
       </div>
-      {isHome && <div className={s.background} />}
     </>
   )
 }

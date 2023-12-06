@@ -46,6 +46,7 @@ export default function CountrySelector({ className, label, modal = false, local
     router.replace(`${path}${hash}`.toLowerCase())
   }
 
+  const selectedCountry = availableCountries.find(({ isoCode }) => isoCode === country)
 
   return (
     <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
@@ -56,29 +57,34 @@ export default function CountrySelector({ className, label, modal = false, local
       >
         <Button className={s.button} ref={buttonRef}>
           <SelectValue className={s.value} key={country}>
-            {label}: {country}
+            {label}: {selectedCountry?.name}
           </SelectValue>
           <span aria-hidden="true" className={cn(s.arrow, "symbol")}>
             {!selectOpen ? '▼' : '▲'}
           </span>
         </Button>
-        <Popover placement="top left" className={s.popover} maxHeight={100} isNonModal={!modal}>
+        <Popover placement="top left" className={s.popover} maxHeight={200} isNonModal={!modal}>
           <ListBox
+            selectionMode={'single'}
             className={s.options}
             style={{ width: selectWidth }}
             items={sortSwedish(availableCountries, 'name').map(({ isoCode, name, currency }) => ({
               id: isoCode,
-              name: `${name} ${currency.isoCode}`
+              name: `${name} ${currency.isoCode}`,
             }))}
           >
             {availableCountries.map(({ isoCode, name, currency }, idx) =>
-              <ListBoxItem id={isoCode} key={idx} className={cn(s.option)}>
+              <ListBoxItem
+                id={isoCode}
+                key={idx}
+                className={cn(s.option, selectedCountry?.isoCode === isoCode && s.selected)}
+              >
                 {name} ({currency.isoCode})
               </ListBoxItem>
             )}
           </ListBox>
         </Popover>
       </Select>
-    </form>
+    </form >
   );
 }

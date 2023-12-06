@@ -16,7 +16,7 @@ export default async function RelatedProducts({ product }: Props) {
   const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
     variables: {
       collectionId: product?.collection.id,
-      first: 3,
+      first: 4,
       skip: 0
     },
     tags: ['product']
@@ -32,7 +32,7 @@ export default async function RelatedProducts({ product }: Props) {
       </header>
       <ThumbnailContainer>
         {allProducts.map((p, i) =>
-          <ProductThumbnail key={p.id} product={p as ProductRecord} index={i} />
+          <ProductThumbnail key={p.id} product={p as ProductRecord} index={i} columns={'four'} />
         )}
       </ThumbnailContainer>
     </section>

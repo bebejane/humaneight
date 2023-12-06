@@ -1,19 +1,22 @@
-'use client'
 
 import Link from '@components//nav/Link';
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
 import CountrySelector from "@components/shopify/CountrySelector";
-import { usePathname } from 'next/navigation';
+import { apiQuery } from 'next-dato-utils';
+import { GeneralDocument } from '@graphql';
 
 export type Props = {
   menu: Menu,
   localization: LocalizationQuery['localization']
 
+
 }
-export default function Footer({ menu, localization }: Props) {
-  const pathname = usePathname();
+export default async function Footer({ menu, localization }: Props) {
+
+  const { general } = await apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument)
+  const randomClaim = general?.claims.sort((a, b) => Math.random() > 0.5 ? 1 : -1)[0].text
 
   return (
     <footer className={s.footer}>
@@ -27,7 +30,7 @@ export default function Footer({ menu, localization }: Props) {
                   <li key={id}>
                     <Link
                       href={href ?? slug ?? ''}
-                      className={cn(slug && pathname.endsWith(slug) && s.active)}
+                      className={slug}
                       localized={localized}
                     >
                       {title}
@@ -50,10 +53,9 @@ export default function Footer({ menu, localization }: Props) {
       <div className={s.logo}>
         <img src="/images/logo.svg"></img>
         <div className={s.subheader}>
-          <h3 className="nav">Crafted for the mind. Tailored for comfort.</h3>
+          <h3 className="nav">{randomClaim}</h3>
         </div>
       </div>
-
     </footer >
   );
 }
