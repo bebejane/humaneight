@@ -97,6 +97,15 @@ declare module '*/SiteFragment.gql' {
 }
     
 
+declare module '*/general.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const General: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/global.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

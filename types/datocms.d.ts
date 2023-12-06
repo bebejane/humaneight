@@ -194,6 +194,32 @@ type BooleanFilter = {
   eq?: InputMaybe<Scalars['BooleanType']['input']>;
 };
 
+/** Block of type Claim (claim) */
+type ClaimRecord = RecordInterface & {
+  __typename?: 'ClaimRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Claim (claim) */
+type ClaimRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type CollectionMetadata = {
   __typename?: 'CollectionMetadata';
   count: Scalars['IntType']['output'];
@@ -739,7 +765,7 @@ type GalleryFilter = {
   notIn?: InputMaybe<Array<InputMaybe<Scalars['UploadId']['input']>>>;
 };
 
-/** Record of type General (general) */
+/** Record of type General Settings (general) */
 type GeneralRecord = RecordInterface & {
   __typename?: 'GeneralRecord';
   _createdAt: Scalars['DateTime']['output'];
@@ -755,6 +781,7 @@ type GeneralRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  claims: Array<ClaimRecord>;
   eMail?: Maybe<Scalars['String']['output']>;
   facebook?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
@@ -763,7 +790,7 @@ type GeneralRecord = RecordInterface & {
 };
 
 
-/** Record of type General (general) */
+/** Record of type General Settings (general) */
 type GeneralRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
@@ -4982,6 +5009,11 @@ type MediaFragment = { __typename?: 'FileField', id: any, alt?: string, basename
 type ResponsiveImageFragment = { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any };
 
 type SiteFragment = { __typename?: 'Site', favicon: Array<{ __typename?: 'Tag', attributes?: any, content?: string, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string, siteName?: string, titleSuffix?: string, twitterAccount?: string, fallbackSeo?: { __typename?: 'SeoField', description?: string, title?: string, twitterCard?: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
+
+type GeneralQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string, facebook?: string, instagram?: string, twitter?: string, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string }> } };
 
 type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 

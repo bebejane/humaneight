@@ -47,12 +47,11 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
             onClick={() => setShowMenu(false)}
           >Close</button>
           :
-          <>
-            <Link href="/shop" className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>Shop</Link>
-            <Cart localization={localization} />
-          </>
+          <Link href="/shop" className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>Shop</Link>
         }
       </nav>
+      {!showMenu && <Cart localization={localization} />}
+
       <nav className={cn(s.desktop, showMenu && s.show)}>
         <ul>
           {menu.slice(0, 3).map(({ id, title, sub, slug }) => (

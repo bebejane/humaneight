@@ -10,11 +10,23 @@
   text-align: center;
   z-index: var(--z-logo);
   text-transform: uppercase;
+  opacity: 0;
+  animation: show 0.5s ease-out forwards;
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 
   &.intro {
 
     a {
-      transition: color 0.2s ease-out;
+      //transition: color 0.2s ease-out;
       color: var(--white);
 
       &:hover {
@@ -62,39 +74,30 @@
     justify-content: space-between;
 
     span {
-      opacity: 1;
-      transition: opacity 0.1s ease-out;
+      opacity: 0;
+      animation: start 0.2s ease-out both;
+      animation-direction: normal;
+
+      @keyframes start {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
 
       &.hide {
-        opacity: 0;
+        opacity: 1;
+        animation-direction: reverse;
+        animation-delay: 0 !important;
+        animation-duration: 0s !important;
       }
 
       &.force {
         transition-delay: 0s !important;
       }
     }
-  }
-}
-
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: calc(var(--z-logo) - 1);
-  backdrop-filter: blur(10px);
-  animation: deblur 0.4s ease-out 1s forwards;
-
-  @keyframes deblur {
-    0% {
-      backdrop-filter: blur(10px);
-    }
-
-    100% {
-      backdrop-filter: blur(0px);
-      display: none;
-    }
-
   }
 }
