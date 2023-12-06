@@ -135,6 +135,10 @@
       border-top: 1px solid var(--white);
       padding-top: 1em;
 
+      &.updating {
+        opacity: 0.5;
+      }
+
       .thumb {
         width: 5rem;
         height: 5rem;
@@ -153,6 +157,7 @@
         justify-content: center;
         margin-left: 1em;
         line-height: 1.25;
+
         button.minus {
           margin-right: 0.25em;
         }
@@ -164,6 +169,7 @@
         button.minus,
         button.plus {
           width: 1em;
+
           &:hover {
             background: var(--black);
             color: var(--white);
@@ -208,7 +214,7 @@
     text-align: right;
   }
 
-  > form {
+  >form {
     display: flex;
     align-items: flex-end;
 

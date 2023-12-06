@@ -22,13 +22,13 @@ export default function Cart({ localization }: CartProps) {
     removeFromCart,
     updateQuantity,
     updating,
+    updatingId,
     cartError
-  ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updating, state.error])
+  ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updating, state.updatingId, state.error])
 
+  const pathname = usePathname()
   const [showCart, setShowCart] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const pathname = usePathname()
-
   const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true
   const loading = !cart || updating
 
@@ -65,7 +65,7 @@ export default function Cart({ localization }: CartProps) {
         <>
           <ul className={s.items}>
             {cart?.lines.edges.map(({ node: { id, quantity, cost, merchandise } }, idx) =>
-              <li key={idx}>
+              <li key={idx} className={cn(updatingId === id && s.updating)}>
 
                 <figure className={s.thumb}>
                   <Link href={`/products/${merchandise.product.handle}?variant=${parseGid(merchandise.id)}`}>

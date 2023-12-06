@@ -13,8 +13,9 @@ import {
 export interface CartState {
   cart?: Cart,
   updating: boolean,
+  updatingId: string | null,
   error: string | undefined,
-  update: (fn: () => Promise<Cart>) => void,
+  update: (id: string | null, fn: () => Promise<Cart>) => void,
   clearCart: () => void,
   createCart: () => void,
   setCart: (cart: Cart) => Promise<Cart>,
@@ -27,9 +28,10 @@ export interface CartState {
 const useCart = create<CartState>((set, get) => ({
   cart: undefined,
   updating: false,
+  updatingId: null,
   error: undefined,
   createCart: async () => {
-    get().update(async () => {
+    get().update(null, async () => {
       const id = getCookie('cart')
       let cart = null;
 
@@ -53,7 +55,7 @@ const useCart = create<CartState>((set, get) => ({
     return cart
   },
   addToCart: async (line: CartLineInput) => {
-    get().update(async () => {
+    get().update(null, async () => {
       const cart = get().cart as Cart
       const { cartLinesAdd, } = await shopifyQuery<AddItemToCartMutation, AddItemToCartMutationVariables>(AddItemToCartDocument, {
         revalidate: 0,
@@ -62,13 +64,12 @@ const useCart = create<CartState>((set, get) => ({
           lines: [line]
         }
       });
-      console.log(cart.id, line, cartLinesAdd)
       if (!cartLinesAdd?.cart) throw new Error('Cart not found')
       return cartLinesAdd.cart as Cart
     })
   },
   removeFromCart: async (id: string) => {
-    get().update(async () => {
+    get().update(id, async () => {
       const cart = get().cart as Cart
 
       const { cartLinesRemove } = await shopifyQuery<RemoveItemFromCartMutation, RemoveItemFromCartMutationVariables>(RemoveItemFromCartDocument, {
@@ -84,7 +85,7 @@ const useCart = create<CartState>((set, get) => ({
     })
   },
   updateQuantity: async (id: string, quantity: number) => {
-    get().update(async () => {
+    get().update(id, async () => {
       const cart = get().cart as Cart
       const lines = cart.lines.edges.map(l => ({ id: l.node.id, quantity: l.node.id === id ? quantity : l.node.quantity }))
       const { cartLinesUpdate } = await shopifyQuery<UpdateItemFromCartMutation, UpdateItemFromCartMutationVariables>(UpdateItemFromCartDocument, {
@@ -100,7 +101,7 @@ const useCart = create<CartState>((set, get) => ({
     })
   },
   updateBuyerIdentity: async (input: CartBuyerIdentityInput) => {
-    get().update(async () => {
+    get().update(null, async () => {
       const id = getCookie('cart') as string
       const { cartBuyerIdentityUpdate } = await shopifyQuery<CartBuyerIdentityUpdateMutation, CartBuyerIdentityUpdateMutationVariables>(CartBuyerIdentityUpdateDocument, {
         revalidate: 0,
@@ -115,12 +116,12 @@ const useCart = create<CartState>((set, get) => ({
       return cart
     })
   },
-  update: (fn) => {
-    set((state) => ({ updating: true, error: undefined }))
+  update: (id, fn) => {
+    set((state) => ({ updating: true, updatingId: id ?? null, error: undefined }))
     fn()
       .then((cart) => get().setCart(cart))
       .catch((err) => set((state) => ({ error: err.message })))
-      .finally(() => set((state) => ({ updating: false })))
+      .finally(() => set((state) => ({ updating: false, updatingId: null })))
   },
 }));
 
