@@ -1,4 +1,4 @@
-
+import type { CountryParams } from '@app/[country]/layout'
 import s from './page.module.scss'
 import cn from 'classnames';
 import { AllFaqsDocument } from '@graphql';
@@ -6,7 +6,6 @@ import { apiQuery, DraftMode } from 'next-dato-utils';
 import Link from '@components//nav/Link';
 import FaqItem from './components/FaqItem';
 import Help from './components/Help';
-import { CountryParams } from '@app/[country]/layout'
 
 export type FaqSectionWithFaqs = FaqSectionRecord & {
   faqs: FaqRecord[]

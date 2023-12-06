@@ -14,7 +14,7 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const isAllCategory = !params?.collection
 
-  const { collection, draftUrl } = isAllCategory ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
+  const { collection, draftUrl } = !isAllCategory ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: {
       slug: params.collection
     }
@@ -43,6 +43,7 @@ export default async function Shop({ params }: CountryShopParams) {
   const brandingInterval = 3
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
   const columns = isAllCategory ? 'three' : 'four'
+
   return (
     <>
       <CollectionsFilter collectionId={collection?.id} />
