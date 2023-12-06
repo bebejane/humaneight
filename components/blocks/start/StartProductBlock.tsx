@@ -21,7 +21,7 @@ export default async function StartProductBlock({ data: { id, headline, selected
         <h3>{headline}</h3>
         {collection &&
           <Link href={`/shop/${collection?.slug}`}>
-            <span className="body">View all</span>
+            <span className="big">View all</span>
           </Link>
         }
       </header>
