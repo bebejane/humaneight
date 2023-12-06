@@ -4266,6 +4266,7 @@ type StartEditorialBlockRecord = RecordInterface & {
   headline: Scalars['String']['output'];
   id: Scalars['ItemId']['output'];
   media: FileField;
+  mediaOnTop?: Maybe<FileField>;
   text: Scalars['String']['output'];
 };
 

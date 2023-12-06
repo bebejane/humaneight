@@ -8,12 +8,14 @@
   }
 
   .help {
-    display: flex;
-    flex-direction: column;
     position: fixed;
     bottom: var(--outer-margin);
+    z-index: var(--z-help);
+    display: flex;
+    flex-direction: column;
     text-align: center;
     width: 10vw;
+
     span {
       margin-top: 1rem;
       margin-bottom: 1rem;
@@ -32,12 +34,13 @@
     scroll-margin-top: var(--navbar-height);
   }
 
-  > li {
+  >li {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));
     grid-gap: var(--gutter);
     padding-top: var(--space);
+
     &:first-child {
       padding-top: 1rem;
     }

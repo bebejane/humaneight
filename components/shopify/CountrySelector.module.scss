@@ -53,6 +53,13 @@
       overflow: hidden;
       text-overflow: ellipsis;
 
+      &.selected {
+        background-color: var(--black);
+        color: var(--white);
+        cursor: normal;
+        pointer-events: none;
+      }
+
       @include mq($from: desktop) {
         &:hover {
           background-color: var(--black);
