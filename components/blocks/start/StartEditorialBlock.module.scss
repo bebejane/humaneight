@@ -3,7 +3,7 @@
   margin-top: var(--space-big);
   position: relative;
 
-  >div {
+  > div {
     position: sticky;
     top: var(--navbar-height);
     width: 50%;
@@ -21,9 +21,11 @@
     width: 50%;
     margin-left: var(--half-gutter);
 
-    .image {}
+    .image {
+    }
 
-    .picture {}
+    .picture {
+    }
 
     .video {
       position: absolute;
@@ -33,6 +35,7 @@
       height: 100%;
       object-fit: cover;
       z-index: 2;
+      mix-blend-mode: multiply;
     }
   }
 }
