@@ -33,6 +33,9 @@ query Start {
 				media {
 					...MediaFragment
 				}
+				mediaOnTop {
+					...MediaFragment
+				}
 				about {
 					id
 					slug

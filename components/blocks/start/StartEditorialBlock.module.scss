@@ -3,25 +3,36 @@
   margin-top: var(--space-big);
   position: relative;
 
-  > div {
+  >div {
     position: sticky;
     top: var(--navbar-height);
     width: 50%;
     padding: var(--gutter);
     padding-bottom: 0;
     align-self: flex-start;
+
     button {
       margin-top: 2.7rem;
     }
   }
 
   figure {
+    position: relative;
     width: 50%;
-    padding-left: var(--half-gutter);
-    .image {
-    }
+    margin-left: var(--half-gutter);
 
-    .picture {
+    .image {}
+
+    .picture {}
+
+    .video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
     }
   }
 }
