@@ -12,7 +12,6 @@
   text-transform: uppercase;
 
   &.intro {
-    opacity: 0;
 
     a {
       transition: color 0.2s ease-out;
@@ -74,5 +73,28 @@
         transition-delay: 0s !important;
       }
     }
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: calc(var(--z-logo) - 1);
+  backdrop-filter: blur(10px);
+  animation: deblur 0.4s ease-out 1s forwards;
+
+  @keyframes deblur {
+    0% {
+      backdrop-filter: blur(10px);
+    }
+
+    100% {
+      backdrop-filter: blur(0px);
+      display: none;
+    }
+
   }
 }

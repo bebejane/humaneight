@@ -1,17 +1,20 @@
-'use server'
+'use client'
 
 import Link from '@components//nav/Link';
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
 import CountrySelector from "@components/shopify/CountrySelector";
+import { usePathname } from 'next/navigation';
 
 export type Props = {
   menu: Menu,
   localization: LocalizationQuery['localization']
 
 }
-export default async function Footer({ menu, localization }: Props) {
+export default function Footer({ menu, localization }: Props) {
+  const pathname = usePathname();
+
   return (
     <footer className={s.footer}>
       <nav>
@@ -22,7 +25,11 @@ export default async function Footer({ menu, localization }: Props) {
               <ul>
                 {sub?.map(({ id, title, slug, href, localized }) => (
                   <li key={id}>
-                    <Link href={href ?? slug ?? ''} localized={localized}>
+                    <Link
+                      href={href ?? slug ?? ''}
+                      className={cn(slug && pathname.endsWith(slug) && s.active)}
+                      localized={localized}
+                    >
                       {title}
                     </Link>
                   </li>

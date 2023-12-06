@@ -4,10 +4,7 @@ import React, { useEffect, useState } from 'react'
 import s from './Cart.module.scss'
 import cn from 'classnames'
 import useCart from '@shopify/hooks/useCart'
-import { apiQuery } from 'next-dato-utils'
 import { parseGid } from '@shopify/utils'
-import { Image } from 'react-datocms'
-import { AllCartProductsDocument } from '@graphql'
 import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
@@ -28,36 +25,24 @@ export default function Cart({ localization }: CartProps) {
     cartError
   ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updating, state.error])
 
-  const [products, setProducts] = useState<AllCartProductsQuery['allProducts'] | null>(null)
   const [showCart, setShowCart] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const pathname = usePathname()
-  const isEmpty = cart?.lines.edges.length === 0
+
+  const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true
   const loading = !cart || updating
 
   useEffect(() => { !cart && createCart() }, [cart, createCart])
   useEffect(() => { setShowCart(false) }, [pathname])
-  useEffect(() => {
-
-    const ids = cart?.lines.edges.map(({ node }) => parseGid(node.merchandise.product.id).toString())
-    if (!ids) return
-
-    fetchDatoCMSProducts(ids)
-      .then(({ allProducts }) => setProducts(allProducts))
-      .catch((err) => setError(err.message))
-
-  }, [cart])
-
 
   if (!showCart) {
     return (
       <div className={s.miniCart}>
-        <h3 className="nav nav-hover"><Link href="/shop">Shop</Link></h3>
         <button className={cn(!isEmpty && s.inverted, loading && s.loading)} onClick={() => setShowCart(true)}>
           <div className={s.icon} >
             <Loader loading={true} className={s.loader} invert={!isEmpty} />
           </div>
-          <div className={s.count}>{cart?.lines.edges.length}</div>
+          <div className={s.count}>{!isEmpty && cart?.lines.edges.length}</div>
         </button>
       </div>
     )
@@ -73,7 +58,9 @@ export default function Cart({ localization }: CartProps) {
         <div className={s.close} onClick={() => setShowCart(false)}>×</div>
       </header>
       {isEmpty ?
-        <div className={s.empty}>Your cart is empty</div>
+        <div className={s.empty}>
+          Your cart is empty
+        </div>
         :
         <>
           <ul className={s.items}>
@@ -134,27 +121,4 @@ export default function Cart({ localization }: CartProps) {
       {cartError && <div className={s.error}>{cartError}</div>}
     </div>
   )
-}
-
-const ProductThumbnail = ({ product }: { product?: ProductRecord }) => {
-
-  return (
-    <figure>
-      {product?.image ?
-        <Image data={product.image.responsiveImage} />
-        :
-        <div className={s.loading}>L</div>
-      }
-    </figure>
-  )
-}
-
-const fetchDatoCMSProducts = async (shopifyIds: string[]) => {
-
-  return apiQuery<AllCartProductsQuery, AllCartProductsQueryVariables>(AllCartProductsDocument, {
-    variables: {
-      shopifyIds
-    },
-    revalidate: 60
-  })
 }
