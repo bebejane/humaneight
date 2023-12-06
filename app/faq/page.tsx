@@ -1,10 +1,11 @@
 
 import s from './page.module.scss'
-import { AllFaqSectionsDocument, AllFaqsDocument } from '@graphql';
-import { apiQuery } from 'next-dato-utils';
-import FaqItem from './components/FaqItem';
-import Link from '@components//nav/Link';
 import cn from 'classnames';
+import { AllFaqsDocument } from '@graphql';
+import { apiQuery, DraftMode } from 'next-dato-utils';
+import Link from '@components//nav/Link';
+import FaqItem from './components/FaqItem';
+import Help from './components/Help';
 import { CountryParams } from '@app/[country]/layout'
 
 export type FaqSectionWithFaqs = FaqSectionRecord & {
@@ -13,22 +14,13 @@ export type FaqSectionWithFaqs = FaqSectionRecord & {
 
 export default async function FaqPage(params: CountryParams) {
 
-  const { allFaqs, draftUrl } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {
+  const { allFaqs, allFaqSections, draftUrl } = await apiQuery<AllFaqsQuery, AllFaqsQueryVariables>(AllFaqsDocument, {
     all: true,
     variables: {
       first: 100,
       skip: 0,
     },
-    tags: ['faq']
-  })
-
-  const { allFaqSections } = await apiQuery<AllFaqSectionsQuery, AllFaqSectionsQueryVariables>(AllFaqSectionsDocument, {
-    all: true,
-    variables: {
-      first: 100,
-      skip: 0,
-    },
-    tags: ['faq_section']
+    tags: ['faq', 'faq_section']
   })
 
   const faqSections = allFaqSections.map(section => ({
@@ -53,11 +45,9 @@ export default async function FaqPage(params: CountryParams) {
             </li>
           ))}
         </ul>
-        <div className={s.help}>
-          <img src="/images/faq.png"></img>
-          <span>Need help?<br />Contact us here!</span></div>
-      </div >
-
+        <Help />
+      </div>
+      <DraftMode url={draftUrl} tag={['faq', 'faq_section']} />
     </>
   )
 }

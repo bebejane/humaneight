@@ -5,6 +5,14 @@ query AllFaqs($first: IntType, $skip: IntType) {
 	_allFaqsMeta {
 		count
 	}
+	allFaqSections(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allFaqSectionsMeta {
+		count
+	}
 }
 
 query AllFaqSections($first: IntType, $skip: IntType) {
