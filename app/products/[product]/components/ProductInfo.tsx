@@ -6,6 +6,7 @@ import React, { useRef, useState } from 'react'
 import useQueryString from '@lib/hooks/useQueryString';
 import Link from '@components//nav/Link';
 import ProductVariantsForm from './ProductVariantsForm';
+import { Image } from 'react-datocms';
 import { parseGid } from '@shopify/utils';
 import { StructuredContent } from 'next-dato-utils';
 
@@ -25,7 +26,6 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   if (!product)
     return null
 
-  console.log(descriptionRef.current?.scrollHeight)
   return (
     <>
       <div className={cn(s.details, readMore && s.expanded)}>
@@ -34,6 +34,11 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           &nbsp;&nbsp;›&nbsp;&nbsp;
           <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>
         </p>
+        {product.image?.responsiveImage &&
+          <figure className={s.mainImage}>
+            <Image data={product.image?.responsiveImage} className={s.image} pictureClassName={s.picture} />
+          </figure>
+        }
         <header>
           <h1 className="big">{product.title}</h1>
           <div className={s.price}>
