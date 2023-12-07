@@ -1,7 +1,7 @@
 
 import s from './page.module.scss'
 import CollectionsFilter from './components/CollectionsFilter';
-import { AllProductBrandingDocument, AllProductByCollectionDocument, CollectionDocument } from '@graphql';
+import { AllCollectionsDocument, AllProductBrandingDocument, AllProductByCollectionDocument, CollectionDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import ProductThumbnail from '@components/layout/ProductThumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
@@ -20,25 +20,29 @@ export default async function Shop({ params }: CountryShopParams) {
     }
   }) : { collection: undefined, draftUrl: undefined }
 
-  const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
-    all: true,
-    variables: {
-      collectionId: isAllCategory ? collection?.id : undefined,
-      first: 100,
-      skip: 0,
-    },
-    generateTags: false,
-    tags: ['product']
-  })
-
-  const { allProductBrandings } = await apiQuery<AllProductBrandingQuery, AllProductBrandingQueryVariables>(AllProductBrandingDocument, {
-    variables: {
-      first: 100,
-      skip: 0
-    },
-    tags: ['product_branding'],
-    all: true
-  })
+  const [{ allProducts }, { allProductBrandings }, { allCollections }] = await Promise.all([
+    apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
+      all: true,
+      variables: {
+        collectionId: !isAllCategory ? collection?.id : undefined,
+        first: 100,
+        skip: 0,
+      },
+      generateTags: false,
+      tags: ['product']
+    }),
+    apiQuery<AllProductBrandingQuery, AllProductBrandingQueryVariables>(AllProductBrandingDocument, {
+      variables: {
+        first: 100,
+        skip: 0
+      },
+      tags: ['product_branding'],
+      all: true
+    }),
+    apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
+      all: true,
+      tags: ['collection']
+    })])
 
   const brandingInterval = 3
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
@@ -46,7 +50,7 @@ export default async function Shop({ params }: CountryShopParams) {
 
   return (
     <>
-      <CollectionsFilter collectionId={collection?.id} />
+      <CollectionsFilter collectionId={collection?.id} allCollections={allCollections} />
       <div className={s.container}>
         <ThumbnailContainer>
           {allProducts?.map((product, i) => (

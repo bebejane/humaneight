@@ -1,3 +1,4 @@
+'use client'
 
 import { AllCollectionsDocument } from '@graphql'
 import s from './CollectionsFilter.module.scss'
@@ -8,15 +9,12 @@ import { useState } from 'react'
 
 export type Props = {
   collectionId?: string
+  allCollections?: AllCollectionsQuery['allCollections']
 }
-export default async function CollectionsFilter({ collectionId }: Props) {
+export default function CollectionsFilter({ collectionId, allCollections }: Props) {
 
-  const { allCollections } = await apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
-    all: true,
-    tags: ['collection']
-  });
-
-  const collectionsWithAll = [{ id: undefined, title: 'All', slug: '', }].concat(allCollections)
+  const [showSub, setShowSub] = useState(false)
+  const collectionsWithAll = [{ id: undefined, title: 'All', slug: '', }].concat(allCollections ?? [])
 
   return (
     <ul className={s.filter}>
@@ -27,6 +25,11 @@ export default async function CollectionsFilter({ collectionId }: Props) {
             <span className={cn(s.title, collectionId === id && s.hide)}>{pluralTitle}</span>
             <span key={slug} className={cn(s.active, collectionId === id && s.selected, "nav")}>
               <Link href={`/shop/${slug}`}>{pluralTitle}</Link>
+              {collectionId === id &&
+                <button className={s.arrow} onClick={() => setShowSub(!showSub)}>
+                  {showSub ? '▼' : '▲'}
+                </button>
+              }
             </span>
           </li>
         )
