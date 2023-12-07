@@ -9,22 +9,34 @@
 }
 
 .faqs {
-  grid-column-start: 2;
-  grid-column-end: 12;
+  @include mq($until: desktop) {
+    grid-column: span 12;
+  }
+  @include mq($from: desktop) {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
   display: flex;
   flex-direction: column;
   list-style: none;
+
+  h3 {
+    padding-bottom: 1em;
+  }
 
   li {
     scroll-margin-top: var(--navbar-height);
   }
 
-  >li {
+  > li {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(10, minmax(0, 1fr));
-    grid-gap: var(--gutter);
     padding-top: var(--space);
+
+    @include mq($from: desktop) {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      grid-gap: var(--gutter);
+    }
 
     &:first-child {
       padding-top: 1rem;
