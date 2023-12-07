@@ -7,29 +7,34 @@ type Props = {
   className?: string
 }
 
-export default function FullscreenBlock({ data: { id, media }, className }: Props) {
+export default function FullscreenBlock({ data: { id, media, altMedia }, className }: Props) {
+
+  const medias = [media, altMedia].filter(el => el)
+  const columns = medias.length > 1 ? 'two' : 'one'
 
   return (
-    <div className={cn(s.container, className)}>
-      {media?.responsiveImage ?
-        <figure>
-          <Image
-            data={media?.responsiveImage}
-            className={s.image}
-            pictureClassName={s.picture}
+    <div className={cn(s.container, className, s[columns])}>
+      {medias.map((m, i) =>
+        m?.responsiveImage ?
+          <figure key={i}>
+            <Image
+              data={m.responsiveImage}
+              className={s.image}
+              pictureClassName={s.picture}
+            />
+          </figure>
+          :
+          <video
+            key={i}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={m?.video?.thumbnailUrl}
+            //@ts-ignore
+            src={m?.video?.mp4high}
           />
-        </figure>
-        :
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={media?.video?.thumbnailUrl}
-          //@ts-ignore
-          src={media?.video?.mp4high}
-        />
-      }
+      )}
     </div>
   )
 }

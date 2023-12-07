@@ -8,6 +8,9 @@ query Start {
 				media {
 					...MediaFragment
 				}
+				altMedia {
+					...MediaFragment
+				}
 			}
 			... on StartProductBlockRecord {
 				id
