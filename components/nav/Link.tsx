@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { defaultCountry } from '@lib/const';
 import NextLink, { LinkProps } from 'next/link';
 import useCountry from '@shopify/hooks/useCountry';
@@ -10,6 +11,7 @@ export type Props = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: React.ReactNode | React.ReactNode[]
   localized?: boolean | undefined
   className?: string
+  activeClassName?: string
 }
 
 export default function Link<LinkProps>(props: Props) {
@@ -18,7 +20,16 @@ export default function Link<LinkProps>(props: Props) {
   const country = useCountry();
   const pathname = usePathname();
   const href = isLocalized ? parseHref(props.href as string, pathname, country) : props.href
-  return <NextLink {...{ ...props, href: undefined, localized: undefined }} href={href}>{props.children}</NextLink>
+
+  return <NextLink {
+    ...{
+      ...props,
+      href,
+      className: cn(props.className, pathname === href && props.activeClassName),
+      localized: undefined,
+      activeClassName: undefined
+    }}
+  >{props.children}</NextLink>
 }
 
 const parseHref = (href: string, pathname: string, country: string) => {

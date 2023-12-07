@@ -31,6 +31,7 @@ export default async function Footer({ menu, localization }: Props) {
                     <Link
                       href={href ?? slug ?? ''}
                       className={slug}
+                      activeClassName={s.active}
                       localized={localized}
                     >
                       {title}

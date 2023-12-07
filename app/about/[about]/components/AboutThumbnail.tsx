@@ -12,7 +12,6 @@ export default function AboutThumbnail({ about }: Props) {
 
   return (
     <Link href={`/about/${about.slug}`} className={s.thumbnail}>
-
       <figure>
         {about.image &&
           <Image
