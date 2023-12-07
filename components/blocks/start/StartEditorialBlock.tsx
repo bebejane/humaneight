@@ -1,13 +1,18 @@
+
 import s from './StartEditorialBlock.module.scss'
 import cn from 'classnames'
 import { Image } from 'react-datocms'
 import Link from '@components//nav/Link'
+import LottieAnimation from '@components/common/LottieAnimation'
+
 
 type Props = {
   data: StartEditorialBlockRecord
 }
 
-export default function StartEditorialBlock({ data: { id, text, buttonText, headline, media, mediaOnTop, about } }: Props) {
+export default async function StartEditorialBlock({ data: { id, text, buttonText, headline, media, mediaOnTop, lottieAnimation, about } }: Props) {
+
+  const lottieData = lottieAnimation ? await fetch(lottieAnimation.url).then((res) => res.json()) : null;
 
   return (
     <section className={s.editorial}>
@@ -22,7 +27,7 @@ export default function StartEditorialBlock({ data: { id, text, buttonText, head
         {media.responsiveImage &&
           <Image data={media.responsiveImage} className={s.image} pictureClassName={s.picture} />
         }
-        {mediaOnTop?.video &&
+        {/*mediaOnTop?.video &&
           <video
             //@ts-ignore
             src={mediaOnTop.video.mp4high}
@@ -32,6 +37,9 @@ export default function StartEditorialBlock({ data: { id, text, buttonText, head
             loop
             playsInline
           />
+      */}
+        {lottieData &&
+          <LottieAnimation animationData={lottieData} />
         }
       </figure>
     </section>
