@@ -16,9 +16,8 @@
   }
 
   .image {
-    border-radius: 50%;
     position: relative;
-    border: var(--outer-margin) solid var(--beige);
+    //border: var(--outer-margin) solid var(--beige);
     aspect-ratio: 4/5;
     display: flex;
     background-color: var(--white);
