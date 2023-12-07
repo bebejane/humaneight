@@ -1,13 +1,10 @@
 'use client'
 
-import { AllCollectionsDocument } from '@graphql'
 import s from './CollectionsFilter.module.scss'
 import cn from 'classnames'
-import { apiQuery } from 'next-dato-utils'
 import Link from '@components//nav/Link'
-import { use, useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
-import useQueryString from '../../../lib/hooks/useQueryString'
+import { useEffect, useState } from 'react'
+import useQueryString from '@lib/hooks/useQueryString'
 
 export type Props = {
   collectionId?: string

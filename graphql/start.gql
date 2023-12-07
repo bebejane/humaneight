@@ -39,6 +39,9 @@ query Start {
 				mediaOnTop {
 					...MediaFragment
 				}
+				lottieAnimation {
+					url
+				}
 				about {
 					id
 					slug
