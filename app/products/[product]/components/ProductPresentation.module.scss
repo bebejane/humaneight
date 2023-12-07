@@ -1,6 +1,13 @@
 .presentation {
-  grid-column-start: 5;
-  grid-column-end: 13;
+  @include mq($until: desktop) {
+    grid-column: span 12;
+    padding-top: var(--space);
+  }
+
+  @include mq($from: desktop) {
+    grid-column-start: 5;
+    grid-column-end: 13;
+  }
 
   .section {
     display: flex;

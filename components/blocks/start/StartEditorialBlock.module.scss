@@ -7,16 +7,15 @@
     flex-direction: column-reverse;
   }
 
-  >div {
+  > div {
     position: sticky;
     top: var(--navbar-height);
-    padding-bottom: 0;
     align-self: flex-start;
 
     @include mq($from: desktop) {
       width: 50%;
-
       padding: var(--gutter);
+      padding-bottom: 0;
     }
 
     button {
@@ -57,8 +56,10 @@
       height: 100%;
       object-fit: cover;
       z-index: 2;
+      mix-blend-mode: screen;
 
-      svg {}
+      svg {
+      }
     }
 
     .video {

@@ -1,10 +1,17 @@
 .details {
-  grid-column-start: 1;
-  grid-column-end: 5;
-  position: sticky;
-  top: var(--navbar-height);
-  height: calc(100vh - var(--navbar-height));
   padding-top: 1rem;
+
+  @include mq($until: desktop) {
+    grid-column: span 12;
+  }
+
+  @include mq($from: desktop) {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    position: sticky;
+    top: var(--navbar-height);
+    height: calc(100vh - var(--navbar-height));
+  }
 
   &.expanded {
     //height: calc(200vh - var(--navbar-height));

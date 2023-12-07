@@ -9,7 +9,7 @@
 	--outer-margin: 0.8rem;
 	--background: var(--beige);
 	--foreground: var(--black);
-	--nav-size: 2.5rem;
+	--nav-size: 1.7rem;
 	--logo-size: calc(var(--nav-size) * 1.1);
 	--logo-size-intro: 13.7vw;
 	--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
@@ -29,6 +29,7 @@
 		--outer-margin: 1.2rem;
 		--gutter: 1.2rem;
 		--space-big: 4rem;
+		--nav-size: 2.5rem;
 	}
 }
 

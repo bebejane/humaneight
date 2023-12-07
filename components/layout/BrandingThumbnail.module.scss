@@ -8,11 +8,17 @@
   }
 
   &.three {
-    grid-column: span 4;
-  }
+    grid-column: span 6;
 
-  &.four {
-    grid-column: span 3;
+    @include mq($until: desktop) {
+      &:first-child {
+        grid-column: span 12;
+      }
+    }
+
+    @include mq($from: desktop) {
+      grid-column: span 4;
+    }
   }
 
   .image {

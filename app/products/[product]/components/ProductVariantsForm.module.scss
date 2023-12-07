@@ -1,9 +1,11 @@
 .form {
-  position: absolute;
   display: flex;
   flex-direction: column;
   width: 100%;
   bottom: var(--outer-margin);
+  @include mq($from: desktop) {
+    position: absolute;
+  }
 
   fieldset {
     all: unset;
@@ -96,11 +98,12 @@
       }
     }
 
-    >div {
+    > div {
       flex: 1 1 auto;
     }
 
-    select {}
+    select {
+    }
   }
 
   button {

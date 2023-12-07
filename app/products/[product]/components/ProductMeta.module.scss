@@ -1,10 +1,14 @@
 .meta {
   width: 100%;
   margin-bottom: var(--outer-margin);
-  //margin-bottom: var(--space-big);
   border-top: 1px solid var(--gray);
-  grid-column-start: 5;
-  grid-column-end: 13;
+  @include mq($until: desktop) {
+    grid-column: span 12;
+  }
+  @include mq($from: desktop) {
+    grid-column-start: 5;
+    grid-column-end: 13;
+  }
 
   .header {
     padding-top: 1.3rem;
