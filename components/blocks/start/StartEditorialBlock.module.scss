@@ -2,15 +2,17 @@
   display: flex;
   margin-top: var(--space-big);
   position: relative;
+
   @include mq($until: desktop) {
     flex-direction: column-reverse;
   }
 
-  > div {
+  >div {
     position: sticky;
     top: var(--navbar-height);
     padding-bottom: 0;
     align-self: flex-start;
+
     @include mq($from: desktop) {
       width: 50%;
 
@@ -39,9 +41,24 @@
     }
 
     .image {
+      height: 100%;
     }
 
     .picture {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+
+      svg {}
     }
 
     .video {

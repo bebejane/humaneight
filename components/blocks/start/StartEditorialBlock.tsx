@@ -27,6 +27,9 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
         {media.responsiveImage &&
           <Image data={media.responsiveImage} className={s.image} pictureClassName={s.picture} />
         }
+        {lottieData &&
+          <LottieAnimation animationData={lottieData} className={s.animation} />
+        }
         {/*mediaOnTop?.video &&
           <video
             //@ts-ignore
@@ -38,9 +41,7 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
             playsInline
           />
       */}
-        {lottieData &&
-          <LottieAnimation animationData={lottieData} />
-        }
+
       </figure>
     </section>
   )
