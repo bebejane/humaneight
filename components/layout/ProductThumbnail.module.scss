@@ -11,7 +11,10 @@
   }
 
   &.four {
-    grid-column: span 3;
+    grid-column: span 6;
+    @include mq($from: desktop) {
+      grid-column: span 3;
+    }
   }
 
   figure {
@@ -53,6 +56,10 @@
       display: flex;
       list-style: none;
       padding-top: 0.7rem;
+
+      @include mq($until: desktop) {
+        display: none;
+      }
 
       li {
         .title {

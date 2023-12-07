@@ -6,14 +6,14 @@
 	--black-opacity: #16161625;
 	--red: #bf0000;
 	--gray: #e8e8e8;
-	--outer-margin: 1.2rem;
+	--outer-margin: 0.8rem;
 	--background: var(--beige);
 	--foreground: var(--black);
 	--nav-size: 2.5rem;
 	--logo-size: calc(var(--nav-size) * 1.1);
 	--logo-size-intro: 13.7vw;
 	--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
-	--gutter: 1.2rem;
+	--gutter: 0.6rem;
 	--half-gutter: calc(var(--gutter) / 2);
 	--letter-space: 0.1em;
 	--space: 3rem;
@@ -25,10 +25,9 @@
 	--z-help: 2300;
 	--z-cart: 3000;
 
-	@include mq($until: tablet) {
-	}
-
-	@include mq($from: tablet, $until: desktop) {
+	@include mq($from: desktop) {
+		--outer-margin: 1.2rem;
+		--gutter: 1.2rem;
 	}
 }
 

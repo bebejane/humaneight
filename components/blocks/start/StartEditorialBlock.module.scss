@@ -2,14 +2,20 @@
   display: flex;
   margin-top: var(--space-big);
   position: relative;
+  @include mq($until: desktop) {
+    flex-direction: column-reverse;
+  }
 
   > div {
     position: sticky;
     top: var(--navbar-height);
-    width: 50%;
-    padding: var(--gutter);
     padding-bottom: 0;
     align-self: flex-start;
+    @include mq($from: desktop) {
+      width: 50%;
+
+      padding: var(--gutter);
+    }
 
     button {
       margin-top: 2.7rem;
@@ -18,8 +24,10 @@
 
   figure {
     position: relative;
-    width: 50%;
-    margin-left: var(--half-gutter);
+    @include mq($from: desktop) {
+      width: 50%;
+      margin-left: var(--half-gutter);
+    }
 
     .image {
     }
