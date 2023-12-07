@@ -25,9 +25,11 @@
 	--z-help: 2300;
 	--z-cart: 3000;
 
-	@include mq($until: tablet) {}
+	@include mq($until: tablet) {
+	}
 
-	@include mq($from: tablet, $until: desktop) {}
+	@include mq($from: tablet, $until: desktop) {
+	}
 }
 
 body {
@@ -52,7 +54,7 @@ body {
 
 ::-webkit-scrollbar {
 	-webkit-appearance: none;
-	background: var(--beige-light);
+	background: var(--gray);
 }
 
 ::-webkit-scrollbar:vertical {
@@ -143,9 +145,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
