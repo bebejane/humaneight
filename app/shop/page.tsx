@@ -43,7 +43,7 @@ export default async function Shop({ params }: CountryShopParams) {
       tags: ['collection']
     })])
 
-  const brandingInterval = 3
+  const brandingInterval = 5
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
   const columns = isAllCategory ? 'three' : 'four'
 
@@ -59,7 +59,7 @@ export default async function Shop({ params }: CountryShopParams) {
                 index={i}
                 columns={columns}
               />
-              {i % brandingInterval === 0 &&
+              {(i + 1) % (brandingInterval - 1) === 0 &&
                 <BrandingThumbnail
                   productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
                   columns={columns}

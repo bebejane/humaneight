@@ -15,6 +15,10 @@
     }
   }
 
+  &.four {
+    grid-column: span 3;
+  }
+
   .image {
     position: relative;
     //border: var(--outer-margin) solid var(--beige);
