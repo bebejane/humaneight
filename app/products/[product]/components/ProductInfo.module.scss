@@ -17,6 +17,16 @@
     //height: calc(200vh - var(--navbar-height));
   }
 
+  .mainImage {
+    @include mq($from: desktop) {
+      display: none;
+    }
+
+    .image {}
+
+    .picture {}
+  }
+
   header {
     display: flex;
     flex-direction: row;
@@ -49,6 +59,7 @@
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
+
   p {
     padding-bottom: 0;
   }
