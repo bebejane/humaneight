@@ -41,7 +41,9 @@ export default async function About({ params }: { params: { about: string } }) {
 
 export async function generateStaticParams() {
   const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
-    all: true
+    all: true,
+    generateTags: false,
+    tags: ['about']
   })
   return allAbouts.map(({ slug: about }) => ({ about }))
 }
