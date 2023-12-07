@@ -11,7 +11,6 @@ import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 
 export default async function Shop({ params }: CountryShopParams) {
 
-
   const isAllCategory = !params?.collection
 
   const { collection, draftUrl } = !isAllCategory ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
