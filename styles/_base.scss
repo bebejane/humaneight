@@ -16,8 +16,8 @@
 	--gutter: 0.6rem;
 	--half-gutter: calc(var(--gutter) / 2);
 	--letter-space: 0.1em;
-	--space: 3rem;
-	--space-big: 4rem;
+	--space: 2rem;
+	--space-big: 3rem;
 
 	--z-navbar: 2000;
 	--z-menu: 2100;
@@ -28,6 +28,7 @@
 	@include mq($from: desktop) {
 		--outer-margin: 1.2rem;
 		--gutter: 1.2rem;
+		--space-big: 4rem;
 	}
 }
 
@@ -97,7 +98,11 @@ main {
 	display: grid;
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 	grid-gap: var(--gutter);
-	grid-row-gap: 2rem;
+	grid-row-gap: 1rem;
+
+	@include mq($from: desktop) {
+		grid-row-gap: 2rem;
+	}
 }
 
 .structured {
