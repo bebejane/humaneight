@@ -2,9 +2,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  bottom: var(--outer-margin);
+  position: fixed;
+  bottom: 0;
+  background-color: var(--beige);
+  z-index: 3;
+  @include mq($until: desktop) {
+    padding-top: var(--outer-margin);
+    padding-bottom: var(--outer-margin);
+  }
+
   @include mq($from: desktop) {
     position: absolute;
+    bottom: var(--outer-margin);
   }
 
   fieldset {
@@ -107,7 +116,9 @@
   }
 
   button {
-    margin-top: 1rem;
+    @include mq($from: desktop) {
+      margin-top: 1rem;
+    }
   }
 }
 
