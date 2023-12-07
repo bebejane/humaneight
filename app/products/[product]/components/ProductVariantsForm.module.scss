@@ -7,6 +7,8 @@
   background-color: var(--beige);
   z-index: 3;
   @include mq($until: desktop) {
+    width: calc(100% - 2 * var(--outer-margin));
+
     padding-top: var(--outer-margin);
     padding-bottom: var(--outer-margin);
   }

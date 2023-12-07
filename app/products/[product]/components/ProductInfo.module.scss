@@ -1,11 +1,11 @@
 .details {
-  padding-top: 1rem;
-
   @include mq($until: desktop) {
     grid-column: span 12;
   }
 
   @include mq($from: desktop) {
+    padding-top: 1rem;
+
     grid-column-start: 1;
     grid-column-end: 5;
     position: sticky;
