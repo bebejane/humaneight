@@ -55,12 +55,16 @@
     }
 
     figcaption {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
       margin-top: 0.5rem;
+      @include mq($until: desktop) {
+        text-align: center;
+      }
+
       @include mq($from: desktop) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
         margin-top: 1rem;
       }
     }
