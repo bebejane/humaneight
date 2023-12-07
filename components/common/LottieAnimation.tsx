@@ -8,9 +8,5 @@ export type Props = {
 }
 
 export default function LottieAnimation({ animationData, className }: Props) {
-  return (
-    <div className={className}>
-      <Lottie animationData={animationData} />
-    </div>
-  )
+  return <Lottie animationData={animationData} className={className} />
 }
