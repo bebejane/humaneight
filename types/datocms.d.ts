@@ -741,6 +741,7 @@ type FullscreenBlockRecord = RecordInterface & {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
+  altMedia?: Maybe<FileField>;
   id: Scalars['ItemId']['output'];
   media: FileField;
 };
