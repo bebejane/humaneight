@@ -66,7 +66,19 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
         })}
       </ul>
 
-      {subOpen &&
+      <ul
+        className={cn(s.subFilter, 'nav')}
+        style={{ left: dropDownLeft }}
+        ref={subRef}
+      >
+        {categories.map((category, i) => (
+          <li key={i} className={cn(category === searchParams.get('c') && s.selected)}>
+            <a href={`?c=${category}`}>{category}</a>
+          </li>
+        ))}
+      </ul>
+
+      {/*subOpen &&
         <ul
           className={cn(s.sub, isFarRight && s.alignRight, 'nav')}
           style={{ left: dropDownLeft }}
@@ -78,7 +90,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
             </li>
           ))}
         </ul>
-      }
+        */}
     </>
   )
 }

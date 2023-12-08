@@ -84,6 +84,25 @@
   }
 }
 
+.subFilter {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  a {
+    color: var(--gray-dark);
+
+    &.selected,
+    &:hover {
+      color: var(--black);
+    }
+  }
+
+}
+
 .sub {
   position: absolute;
   top: var(--navbar-height);
