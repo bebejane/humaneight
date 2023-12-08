@@ -67,7 +67,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
       </ul>
 
       <ul
-        className={cn(s.subFilter, 'nav')}
+        className={cn(s.subFilter, 'big')}
         ref={subRef}
       >
         {categories.map((category, i) => (
