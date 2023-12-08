@@ -45,7 +45,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
                 <Link
                   href={`/shop/${slug}`}
                   ref={collectionId === id ? activeMenuRef : undefined}
-                  onClick={(e) => {
+                  onMouseEnter={(e) => {
                     if (sub === id) {
                       setSubOpen(!subOpen)
                       e.preventDefault()
