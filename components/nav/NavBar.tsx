@@ -7,7 +7,7 @@ import Cart from "@components/shopify/Cart";
 import { useEffect, useState } from "react";
 import type { Menu } from "@lib/menu";
 import { usePathname } from "next/navigation";
-import { useKey } from 'rooks'
+import { useKey } from "react-use";
 import CountrySelector from "@components/shopify/CountrySelector";
 import { Image } from "react-datocms/image";
 import Logo from "@components/nav/Logo";

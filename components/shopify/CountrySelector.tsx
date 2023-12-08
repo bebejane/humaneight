@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import useCountry from '@shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
 import { useEffect, useRef, useState } from 'react';
-import { useWindowSize } from 'rooks';
+import { useWindowSize } from 'react-use';
 import { sortSwedish } from 'next-dato-utils';
 
 export type Props = {
@@ -25,13 +25,13 @@ export default function CountrySelector({ className, label, modal = false, local
   const country = useCountry();
 
   const [selectOpen, setSelectOpen] = useState(false)
-  const { innerWidth, innerHeight } = useWindowSize()
+  const { width, height } = useWindowSize()
   const [selectWidth, setSelectWidth] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setSelectWidth(buttonRef.current?.scrollWidth ?? 0)
-  }, [innerWidth, innerHeight])
+  }, [width, height])
 
   useEffect(() => {
     setTimeout(() => {

@@ -7,7 +7,7 @@ import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
-import { useWindowSize } from 'rooks';
+import { useWindowSize } from 'react-use';
 
 export type Props = {
   product: ProductQuery['product']
@@ -18,7 +18,7 @@ export type Props = {
 export default function ProductVariantsForm({ product, shopifyProduct, className }: Props) {
 
   const { searchParams, setSearchParam } = useQueryString()
-  const { innerWidth } = useWindowSize()
+  const { width } = useWindowSize()
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -35,7 +35,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 
   useEffect(() => {
     setColorSelectWidth(selectButtonRef.current?.offsetWidth ?? 0)
-  }, [innerWidth])
+  }, [width])
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
