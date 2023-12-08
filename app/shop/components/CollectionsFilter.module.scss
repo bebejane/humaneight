@@ -92,8 +92,10 @@
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  background-color: var(--gray);
   margin-bottom: 2rem;
+  border-top: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+  margin-top: -1rem;
 
   li {
     //border: 1px solid var(--beige);
@@ -101,9 +103,10 @@
     width: 100%;
 
     &:hover {
-      background-color: var(--black);
+      //background-color: var(--black);
       a {
-        color: var(--white);
+        color: var(--black);
+        letter-spacing: var(--letter-space);
       }
     }
 
@@ -113,7 +116,7 @@
       display: block;
 
       &:hover {
-        background-color: var(--black);
+        //background-color: var(--black);
       }
     }
 
