@@ -7,6 +7,7 @@ import useCountry from '@shopify/hooks/useCountry';
 import { usePathname } from 'next/navigation';
 import { AnchorHTMLAttributes } from 'react';
 import omit from 'object.omit';
+import { forwardRef } from 'react';
 
 export type Props = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: React.ReactNode | React.ReactNode[]
@@ -15,7 +16,7 @@ export type Props = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & {
   activeClassName?: string
 }
 
-export default function Link<LinkProps>(props: Props) {
+const Link = forwardRef<HTMLAnchorElement, Props>(function Link(props: Props, ref) {
 
   const isLocalized = true; //typeof props.localized === 'undefined' ? true : props.localized;
   const country = useCountry();
@@ -28,8 +29,12 @@ export default function Link<LinkProps>(props: Props) {
       href,
       className: cn(props.className, pathname === href && props.activeClassName),
     }}
+    passHref={true}
+    ref={ref}
   >{props.children}</NextLink>
-}
+})
+
+export default Link;
 
 const parseHref = (href: string, pathname: string, country: string) => {
 
