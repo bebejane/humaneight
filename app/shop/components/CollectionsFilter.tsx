@@ -13,7 +13,7 @@ export type Props = {
   allCollections?: AllCollectionsQuery['allCollections']
 }
 
-const categories = ['Kids', 'Fitted', 'Relaxed', 'Oversize']
+const categories = ['All', 'Kids', 'Fitted', 'Relaxed', 'Oversize']
 
 export default function CollectionsFilter({ collectionId = 'all', allCollections }: Props) {
 
@@ -68,7 +68,6 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
 
       <ul
         className={cn(s.subFilter, 'nav')}
-        style={{ left: dropDownLeft }}
         ref={subRef}
       >
         {categories.map((category, i) => (
