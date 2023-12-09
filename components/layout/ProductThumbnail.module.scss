@@ -22,6 +22,7 @@
 
   &.four {
     grid-column: span 6;
+
     @include mq($from: desktop) {
       grid-column: span 3;
     }
@@ -44,7 +45,7 @@
         pointer-events: none;
       }
 
-      &:hover + .secondary {
+      &:hover+.secondary {
         display: block !important;
       }
     }
@@ -56,6 +57,7 @@
 
     figcaption {
       margin-top: 0.5rem;
+
       @include mq($until: desktop) {
         text-align: center;
       }
@@ -141,5 +143,6 @@
     left: 0;
     margin: var(--gutter);
     z-index: 5;
+    pointer-events: none;
   }
 }

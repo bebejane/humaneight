@@ -1,5 +1,3 @@
-'use client'
-
 import s from './Feedback.module.scss'
 import cn from 'classnames'
 
@@ -7,7 +5,7 @@ export type Props = {
 
 }
 
-export default function Feedback({ }: Props) {
+export default async function Feedback({ }: Props) {
 
   return (
     <section className={s.feedback}>

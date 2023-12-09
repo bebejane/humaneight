@@ -79,14 +79,13 @@ export default function ProductMeta({ product }: Props) {
             )
           })}
         </div>
-        <section className={s.inc}><p className="light mid">Always: Free returns — Free shipping over 1000 SEK – Taxes and duties included
-
-        </p></section>
-
+        <section className={s.inc}>
+          <p className="light mid">
+            Always: Free returns — Free shipping over 1000 SEK – Taxes and duties included
+          </p>
+        </section>
       </div>
     </>
-
-
   )
 }
 

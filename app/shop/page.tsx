@@ -43,7 +43,6 @@ export default async function Shop({ params }: CountryShopParams) {
       tags: ['collection']
     })])
 
-
   const brandingInterval = 5
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
   const columns = isAllCategory ? 'three' : 'four'

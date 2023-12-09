@@ -1,5 +1,3 @@
-'use client'
-
 import s from './ProductThumbnail.module.scss'
 import { Image } from 'react-datocms';
 import Link from '@components//nav/Link';
@@ -11,7 +9,7 @@ export type Props = {
   index: number
   columns?: string | undefined
 }
-export default function ProductThumbnail({ product, index, columns = 'three' }: Props) {
+export default async function ProductThumbnail({ product, index, columns = 'three' }: Props) {
 
   return (
     <Link href={`/products/${product.slug}`} className={cn(s.thumbnail, s[columns])} data-index={index}>

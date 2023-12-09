@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   margin-left: calc(-1 * var(--outer-margin));
   margin-right: calc(-1 * var(--outer-margin));
 }

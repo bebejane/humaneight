@@ -27,6 +27,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
   const dropDownLeft = (menuLeft + subWidth) > windowWidth ? windowWidth - subWidth : menuLeft
   const isFarRight = (menuLeft + subWidth) > windowWidth
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
+  const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
 
   useEffect(() => { setSubOpen(false) }, [pathname, searchParams])
 
@@ -73,7 +74,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
         >
           {categories.map((category, i) => (
             <li key={i} className={cn(category === searchParams.get('c') && s.selected)}>
-              <a href={`?c=${category}`}>{category}</a>
+              <Link href={`/shop/${collectionSlug}/?c=${category}`}>{category}</Link>
             </li>
           ))}
         </ul>

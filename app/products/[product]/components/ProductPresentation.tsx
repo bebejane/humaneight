@@ -55,7 +55,6 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
           </div>
         )
       })}
-
-    </div >
+    </div>
   )
 }

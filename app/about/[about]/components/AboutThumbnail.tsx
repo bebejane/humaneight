@@ -1,5 +1,3 @@
-'use client'
-
 import s from './AboutThumbnail.module.scss'
 import { Image } from 'react-datocms';
 import Link from '@components//nav/Link';
@@ -8,7 +6,7 @@ import cn from 'classnames';
 export type Props = {
   about: AboutRecord,
 }
-export default function AboutThumbnail({ about }: Props) {
+export default async function AboutThumbnail({ about }: Props) {
 
   return (
     <Link href={`/about/${about.slug}`} className={s.thumbnail}>
