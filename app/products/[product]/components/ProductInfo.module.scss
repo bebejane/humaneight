@@ -15,7 +15,8 @@
   }
 
   &.expanded {
-    //height: calc(200vh - var(--navbar-height));
+    top: 0;
+    height: 100vh;
   }
 
   .mainImage {
@@ -59,7 +60,6 @@
 
 .description {
   padding-top: 1em;
-  //margin-bottom: 1em;
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
@@ -67,10 +67,4 @@
   p {
     padding-bottom: 0;
   }
-}
-
-.formExpanded {
-  // sätt så att dett bara händer om det inte finns plats
-  //position: relative;
-  //bottom: 0;
 }

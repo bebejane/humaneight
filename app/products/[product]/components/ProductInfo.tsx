@@ -45,9 +45,6 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
         </div>
       </header>
       <StructuredContent content={product.shortSummary} className={cn(s.summary, "light mid")} />
-      <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
-        {readMore ? 'Read less' : 'Read more'}
-      </button>
       <div
         className={cn(s.description, "light mid")}
         style={{ maxHeight: readMore ? descriptionRef.current?.scrollHeight : 0 }}
@@ -55,6 +52,9 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
       >
         <StructuredContent content={product.description} />
       </div>
+      <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
+        {readMore ? 'Read less' : 'Read more'}
+      </button>
       <ProductVariantsForm
         product={product}
         shopifyProduct={shopifyProduct}
