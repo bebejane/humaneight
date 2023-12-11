@@ -13,7 +13,7 @@
   padding: var(--outer-margin);
   padding-top: var(--navbar-height);
   z-index: var(--z-navbar);
-  background-color: var(--beige);
+  background-color: rgb(246, 243, 238, 0.9);
 
   &.show {
     display: flex;
