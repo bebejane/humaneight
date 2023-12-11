@@ -6,10 +6,11 @@
   flex-direction: column;
   text-align: center;
   width: 10vw;
-  opacity: 0;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 
-  &.show {
-    opacity: 1;
+  &.hide {
+    opacity: 0;
   }
 
   span {
