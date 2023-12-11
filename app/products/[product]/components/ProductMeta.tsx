@@ -48,15 +48,15 @@ export default function ProductMeta({ product }: Props) {
                   <a
                     id={metaType.id}
                     key={metaType.id}
-                    href={`#${metaType.id}`}
+                    //href={`#${metaType.id}`}
                     className={s.metaType}
-                    onClick={() => setMetaSectionToggles({
-                      ...metaSectionToggles,
+                    onClick={() => setMetaSectionToggles(prev => ({
+                      ...prev,
                       [k]: {
-                        ...metaSectionToggles[k],
-                        show: !metaSectionToggles[k]?.show ? true : false
+                        ...prev[k],
+                        show: !prev[k]?.show ? true : false
                       }
-                    })}
+                    }))}
                   >
                     <h3 className={s.type}>{metaType.title}</h3>
                     <button className="symbol big">{!metaSectionToggles[k]?.show ? '+' : '-'}</button>
