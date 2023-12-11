@@ -1,4 +1,5 @@
 .details {
+
   @include mq($until: desktop) {
     grid-column: span 12;
   }
@@ -25,11 +26,9 @@
       display: none;
     }
 
-    .image {
-    }
+    .image {}
 
-    .picture {
-    }
+    .picture {}
   }
 
   header {

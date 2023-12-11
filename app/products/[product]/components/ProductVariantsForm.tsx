@@ -4,7 +4,7 @@ import { FieldError, Label, Radio, RadioGroup, Text, Button, ListBox, ListBoxIte
 import useQueryString from '@lib/hooks/useQueryString'
 import s from './ProductVariantsForm.module.scss'
 import cn from 'classnames'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
 import { useMedia, useWindowSize } from 'react-use';
@@ -14,18 +14,19 @@ export type Props = {
   product: ProductQuery['product']
   shopifyProduct: ShopifyProductQuery['product']
   className?: string
+  mobile?: boolean
 }
 
-export default function ProductVariantsForm({ product, shopifyProduct, className }: Props) {
+export default function ProductVariantsForm({ product, shopifyProduct, className, mobile }: Props) {
 
   const { searchParams, setSearchParam } = useQueryString()
-  const { width } = useWindowSize()
+  const { width, height } = useWindowSize()
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
-  const isDesktop = useMedia('(min-width: 980px)')
-  const [formRef, { y: formTop }] = useMeasure()
-
+  const isDesktop = useMedia('(min-width: 980px)', false)
+  const [formStyles, setFormStyles] = useState<React.CSSProperties>({})
+  const formRef = useRef<HTMLFormElement>(null);
 
   const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id
   const variantId = searchParams.get('variant') ?? null
@@ -37,12 +38,25 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
 
+  const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
+
   useEffect(() => {
     setColorSelectWidth(selectButtonRef.current?.offsetWidth ?? 0)
   }, [width])
 
-  const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
-  const formStyles = isDesktop ? undefined : { position: 'sticky', top: `${formTop}px`, zIndex: 1 } as React.CSSProperties
+  useEffect(() => {
+    if (isDesktop) return
+    const form = formRef.current
+    if (!form) return
+
+    const bounds = document.getElementById('product')?.getBoundingClientRect()
+    setFormStyles({ position: 'sticky', top: `${bounds?.top}px`, zIndex: 1 })
+
+  }, [width, height, isDesktop])
+
+  const isHidden = (isDesktop && mobile) || (!isDesktop && !mobile)
+
+  if (isHidden) return null
 
   return (
     <form className={cn(s.form, className)} ref={formRef} style={formStyles}>
