@@ -11,6 +11,7 @@ import { useKey } from "react-use";
 import CountrySelector from "@components/shopify/CountrySelector";
 import { Image } from "react-datocms/image";
 import Logo from "@components/nav/Logo";
+import Hamburger from "./Hamburger";
 
 export type Props = {
   menu: Menu
@@ -35,6 +36,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
   return (
     <>
       <Logo showMenu={showMenu} />
+      <Hamburger showMenu={showMenu} setShowMenu={setShowMenu} />
       <nav className={s.navbar}>
         <button
           className={cn(s.item, s.menu, showMenu && s.active, 'nav', 'nav-hover')}

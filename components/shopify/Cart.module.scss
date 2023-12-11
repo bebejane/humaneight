@@ -98,6 +98,10 @@
   padding: var(--outer-margin);
   height: 100vh;
 
+  @include mq($until: desktop) {
+    width: 100%;
+  }
+
   header {
     display: flex;
     flex-direction: row;
