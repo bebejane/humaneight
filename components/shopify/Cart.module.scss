@@ -30,10 +30,11 @@
     padding-left: 0.7em !important;
 
     .icon {
-      position: relative;
-      width: 24px;
-      height: 33px;
-      background: url("/images/cart.svg") no-repeat center center;
+      img {
+        position: relative;
+        width: 24px;
+        height: 33px;
+      }
 
       .loader {
         position: absolute;
@@ -50,10 +51,10 @@
     }
 
     &.inverted {
-      .icon {
+      .icon>img {
         width: 31px;
         height: 43px;
-        background: url("/images/cart_inverted.svg") no-repeat center center;
+
       }
 
       &:hover {

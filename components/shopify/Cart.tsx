@@ -40,6 +40,7 @@ export default function Cart({ localization }: CartProps) {
       <div className={s.miniCart}>
         <button className={cn(!isEmpty && s.inverted, loading && s.loading)} onClick={() => setShowCart(true)}>
           <div className={s.icon} >
+            <img src={`/images/cart${!isEmpty ? '_inverted' : ''}.svg`} alt="Cart" />
             <Loader loading={true} className={s.loader} invert={!isEmpty} />
           </div>
           <div className={s.count}>{!isEmpty && cart?.lines.edges.length}</div>
