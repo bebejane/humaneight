@@ -8,7 +8,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5em;
 
-  > li,
+  >li,
   span.active {
     position: relative;
     display: flex;
@@ -97,12 +97,15 @@
   border-bottom: 1px solid var(--gray);
   margin-top: -1rem;
 
+
+
   li {
     //border: 1px solid var(--beige);
     text-align: center;
     width: 100%;
 
     &:hover {
+
       //background-color: var(--black);
       a {
         color: var(--black);
@@ -121,9 +124,29 @@
     }
 
     &.selected {
+
       a,
       a:hover {
         color: var(--black) !important;
+      }
+    }
+  }
+
+  @include mq($until: desktop) {
+    overflow-x: scroll;
+    margin-left: calc(-1 * var(--outer-margin));
+    margin-right: calc(-1 * var(--outer-margin));
+    width: calc(100% + (2 * var(--outer-margin)));
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    li {
+      width: auto;
+
+      a {
+        padding: 0;
       }
     }
   }
@@ -153,6 +176,7 @@
     }
 
     &.selected {
+
       a,
       a:hover {
         color: var(--black);

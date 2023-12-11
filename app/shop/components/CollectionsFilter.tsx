@@ -20,12 +20,6 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
   const [sub, setSub] = useState<string | null>(collectionId ?? null)
   const [subOpen, setSubOpen] = useState(false)
   const { searchParams, pathname } = useQueryString()
-  const { width: windowWidth } = useWindowSize()
-  const [activeMenuRef, { left: menuLeft }] = useMeasure();
-  const [subRef, { width: subWidth }] = useMeasure();
-
-  const dropDownLeft = (menuLeft + subWidth) > windowWidth ? windowWidth - subWidth : menuLeft
-  const isFarRight = (menuLeft + subWidth) > windowWidth
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
   const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
 
@@ -43,19 +37,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
               </span>
 
               <span className={cn(s.active, collectionId === id && s.selected, "nav")}>
-                <Link
-                  href={`/shop/${slug}`}
-                  ref={collectionId === id ? activeMenuRef : undefined}
-                  onMouseEnter={(e) => {
-                    if (sub === id) {
-                      setSubOpen(!subOpen)
-                      e.preventDefault()
-                    } else {
-                      setSubOpen(false)
-                      setSub(id)
-                    }
-                  }}
-                >
+                <Link href={`/shop/${slug}`}>
                   {pluralTitle}
                 </Link>
                 <button className={cn(s.arrow, collectionId === id && s.show)}>
@@ -68,10 +50,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
       </ul>
 
       {collectionId !== 'all' &&
-        <ul
-          className={cn(s.subFilter, 'big')}
-          ref={subRef}
-        >
+        <ul className={cn(s.subFilter, 'big')}>
           {categories.map((category, i) => (
             <li key={i} className={cn(category === searchParams.get('c') && s.selected)}>
               <Link href={`/shop/${collectionSlug}/?c=${category}`}>{category}</Link>
@@ -79,20 +58,6 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
           ))}
         </ul>
       }
-
-      {/*subOpen &&
-        <ul
-          className={cn(s.sub, isFarRight && s.alignRight, 'nav')}
-          style={{ left: dropDownLeft }}
-          ref={subRef}
-        >
-          {categories.map((category, i) => (
-            <li key={i} className={cn(category === searchParams.get('c') && s.selected)}>
-              <a href={`?c=${category}`}>{category}</a>
-            </li>
-          ))}
-        </ul>
-        */}
     </>
   )
 }
