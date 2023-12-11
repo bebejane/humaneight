@@ -7,7 +7,8 @@ import cn from 'classnames'
 import React, { useEffect, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
-import { useWindowSize } from 'react-use';
+import { useMedia, useWindowSize } from 'react-use';
+import useMeasure from 'react-use-measure';
 
 export type Props = {
   product: ProductQuery['product']
@@ -22,6 +23,9 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
+  const isDesktop = useMedia('(min-width: 980px)')
+  const [formRef, { y: formTop }] = useMeasure()
+
 
   const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id
   const variantId = searchParams.get('variant') ?? null
@@ -38,9 +42,10 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   }, [width])
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
+  const formStyles = isDesktop ? undefined : { position: 'sticky', top: `${formTop}px`, zIndex: 1 } as React.CSSProperties
 
   return (
-    <form className={cn(s.form, className)}>
+    <form className={cn(s.form, className)} ref={formRef} style={formStyles}>
       {haveColors && <fieldset>
         <Select
           key={variantId}

@@ -9,6 +9,8 @@ import ProductVariantsForm from './ProductVariantsForm';
 import { Image } from 'react-datocms';
 import { parseGid } from '@shopify/utils';
 import { StructuredContent } from 'next-dato-utils';
+import { useMedia } from 'react-use';
+import useMeasure from 'react-use-measure';
 
 export type Props = {
   product: ProductQuery['product']
@@ -61,7 +63,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           shopifyProduct={shopifyProduct}
           className={cn(readMore && s.formExpanded)}
         />
-      </div >
+      </div>
 
     </>
   )
