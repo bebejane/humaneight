@@ -1,36 +1,51 @@
 .section {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  margin-bottom: var(--space-big);
+  margin-bottom: var(--space);
   position: relative;
 
+  @include mq($from: desktop) {
+    flex-direction: row;
+    margin-bottom: var(--space-big);
+  }
+
   &:nth-child(odd) {
-    flex-direction: row-reverse;
+    @include mq($from: desktop) {
+      flex-direction: row-reverse;
+    }
   }
 
   figure {
-    flex: 0 0 calc(50% - var(--half-gutter));
+    @include mq($from: desktop) {
+      flex: 0 0 calc(50% - var(--half-gutter));
+    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: var(--navbar-height);
-    flex: 0 0 calc(50% - var(--half-gutter));
-    padding-right: var(--gutter);
-    padding-left: var(--gutter);
-    //padding: var(--gutter);
-    align-self: flex-start;
+    @include mq($from: desktop) {
+      position: sticky;
+      top: var(--navbar-height);
+      align-self: flex-start;
+      flex: 0 0 calc(50% - var(--half-gutter));
+      padding-right: var(--gutter);
+      padding-left: var(--gutter);
+    }
   }
 
   h1 {
     //padding-top: 0.5em;
   }
 
+  @include mq($until: desktop) {
+    div p:last-of-type {
+      margin-bottom: 0 !important;
+    }
+  }
+
   .centeredParagraph {
     background-color: red;
-
   }
 }

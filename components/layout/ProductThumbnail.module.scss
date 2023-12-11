@@ -10,7 +10,7 @@
     grid-column: span 6;
 
     @include mq($until: desktop) {
-      &:first-child {
+      &:nth-child(3n + 1) {
         grid-column: span 12;
       }
     }
@@ -45,7 +45,7 @@
         pointer-events: none;
       }
 
-      &:hover+.secondary {
+      &:hover + .secondary {
         display: block !important;
       }
     }
