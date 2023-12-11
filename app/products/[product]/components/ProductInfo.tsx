@@ -9,8 +9,6 @@ import ProductVariantsForm from './ProductVariantsForm';
 import { Image } from 'react-datocms';
 import { parseGid } from '@shopify/utils';
 import { StructuredContent } from 'next-dato-utils';
-import { useMedia } from 'react-use';
-import useMeasure from 'react-use-measure';
 
 export type Props = {
   product: ProductQuery['product']
@@ -21,7 +19,6 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
 
   const [readMore, setReadMore] = useState(false)
   const { searchParams } = useQueryString()
-  const isDesktop = useMedia('(min-width: 980px)')
   const variantId = searchParams.get('variant') ?? null
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
   const descriptionRef = useRef<HTMLDivElement>(null);
