@@ -15,6 +15,7 @@ import ProductMeta from './components/ProductMeta';
 import ProductPresentation from './components/ProductPresentation';
 import RelatedProducts from '@app/products/[product]/components/RelatedProducts';
 import Feedback from './components/Feedback';
+import ProductVariantsForm from './components/ProductVariantsForm';
 
 export async function generateStaticParams(params: CountryParams) {
 
@@ -48,11 +49,12 @@ export default async function Product({ params }: CountryProductParams) {
 
   return (
     <>
-      <section className={cn(s.product, "grid")}>
+      <section id="product" className={cn(s.product, "grid")}>
         <ProductInfo product={product} shopifyProduct={shopifyProduct} />
         <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
         <ProductMeta product={product} />
       </section>
+      <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
       <RelatedProducts product={product} />
       <Feedback />
       <DraftMode url={draftUrl} tag={product.id} />

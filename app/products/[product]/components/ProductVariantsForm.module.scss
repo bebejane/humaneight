@@ -6,8 +6,9 @@
   bottom: 0;
   background-color: var(--beige);
   z-index: 3;
+
   @include mq($until: desktop) {
-    width: calc(100% - 2 * var(--outer-margin));
+    width: calc(100%);
 
     padding-top: var(--outer-margin);
     padding-bottom: var(--outer-margin);
@@ -109,12 +110,11 @@
       }
     }
 
-    > div {
+    >div {
       flex: 1 1 auto;
     }
 
-    select {
-    }
+    select {}
   }
 
   button {
