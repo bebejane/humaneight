@@ -1,6 +1,10 @@
 .container {
-  grid-column-start: 2;
-  grid-column-end: 12;
+  grid-column: span 12;
+
+  @include mq($from: desktop) {
+    grid-column-start: 2;
+    grid-column-end: 12;
+  }
 
   h3 {
     padding-bottom: 1em;

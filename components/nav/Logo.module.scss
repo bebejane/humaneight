@@ -24,7 +24,6 @@
   }
 
   &.intro {
-
     a {
       //transition: color 0.2s ease-out;
       color: var(--white);
@@ -60,6 +59,12 @@
   color: var(--white);
   z-index: var(--z-logo);
   pointer-events: none;
+
+  @include mq($until: desktop) {
+    h2 {
+      font-size: 1.6rem !important;
+    }
+  }
 
   &.hide {
     display: none !important;
