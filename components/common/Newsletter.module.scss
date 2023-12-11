@@ -1,11 +1,15 @@
 .newsletter {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: column;
   width: 100%;
   margin-top: var(--space-big);
   padding: var(--space);
   background-color: var(--gray);
+
+  @include mq($from: desktop) {
+    flex-direction: row;
+  }
 
   h3 {
     flex: 0 0;

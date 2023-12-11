@@ -32,6 +32,9 @@
 
     @include mq($until: desktop) {
       margin-bottom: 1rem;
+      margin-left: var(--full-margin);
+      margin-right: var(--full-margin);
+      width: var(--full-width);
     }
 
     @include mq($from: desktop) {

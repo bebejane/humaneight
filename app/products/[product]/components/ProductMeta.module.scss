@@ -46,12 +46,14 @@
 
     ul {
       list-style: none;
-
-      padding-left: calc(2 * var(--outer-margin));
-      padding-right: calc(2 * var(--outer-margin));
       overflow: hidden;
       max-height: 0px;
       transition: max-height 0.3s ease-out;
+
+      @include mq($from: desktop) {
+        padding-left: calc(2 * var(--outer-margin));
+        padding-right: calc(2 * var(--outer-margin));
+      }
 
       &.show {
         margin-bottom: 1.5rem;

@@ -27,7 +27,7 @@ export default async function RelatedProducts({ product }: Props) {
       <header>
         <h3>Related products</h3>
         <Link href={`/shop/${product?.collection?.slug}`}>
-          <span className="body">View all</span>
+          <h3><span>View all</span></h3>
         </Link>
       </header>
       <ThumbnailContainer>

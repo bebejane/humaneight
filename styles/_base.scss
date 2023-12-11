@@ -19,6 +19,8 @@
 	--letter-space: 0.1em;
 	--space: 2rem;
 	--space-big: 3rem;
+	--full-margin: calc(-1 * var(--outer-margin));
+	--full-width: calc(100% + 2 * var(--outer-margin));
 
 	--z-navbar: 2000;
 	--z-menu: 2100;

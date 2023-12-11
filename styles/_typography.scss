@@ -46,10 +46,8 @@ h2,
   padding-top: 1rem;
 }
 
-h3,
-.big p,
-.big {
-  font-size: 1.2rem;
+h3 {
+  font-size: 1.4rem;
 }
 
 form,
@@ -101,10 +99,15 @@ h4 {
   line-height: 1.25;
 }
 
+.big p,
+.big {
+  font-size: 1.6rem;
+}
+
 .mid,
 .mid p,
 ol li {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 p.small,
