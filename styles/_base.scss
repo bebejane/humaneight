@@ -26,6 +26,7 @@
 	--z-menu: 2100;
 	--z-logo: 2200;
 	--z-help: 2300;
+	--z-hamburger: 2400;
 	--z-cart: 3000;
 
 	@include mq($from: desktop) {
@@ -153,11 +154,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {
