@@ -8,14 +8,14 @@
   padding-left: 0.5rem;
   padding-right: 0.5em;
 
-  >li,
+  > li,
   span.active {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    padding-top: 0.5em;
+    padding-top: 0.3em;
     padding-bottom: 1em;
     text-align: center;
 
@@ -97,15 +97,12 @@
   border-bottom: 1px solid var(--gray);
   margin-top: -1rem;
 
-
-
   li {
     //border: 1px solid var(--beige);
     text-align: center;
     width: 100%;
 
     &:hover {
-
       //background-color: var(--black);
       a {
         color: var(--black);
@@ -124,7 +121,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black) !important;
@@ -176,7 +172,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black);
