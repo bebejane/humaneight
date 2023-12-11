@@ -6,6 +6,7 @@ import cn from "classnames";
 import { useState } from "react";
 import type { Menu } from "@lib/menu";
 import CountrySelector from "@components/shopify/CountrySelector";
+import { usePathname } from "next/navigation";
 
 export type Props = {
   menu: Menu
@@ -15,13 +16,14 @@ export type Props = {
 
 export default function MenuMobile({ menu, localization, showMenu }: Props) {
 
+  const pathname = usePathname();
   const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
   const [toggles, setToggles] = useState<{ [key: MenuItem['id']]: boolean }>({})
 
   return (
     <nav className={cn(s.menuMobile, showMenu && s.show)}>
       <ul>
-        {menu.map(({ id, title, sub, slug }) => (
+        {menu.map(({ id, title, sub }) => (
           <li key={id}>
             <header onClick={() => setMenuItemId(menuItemId === id ? null : id)}>
               <h3 className="small">{title}</h3>
@@ -33,7 +35,7 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
             </header>
             <ul className={cn(menuItemId === id && s.show)}>
               {sub?.map(({ id, title, localized, slug }) => (
-                <li key={id} className={"nav"}>
+                <li key={id} className={cn('nav', pathname.endsWith(slug as string) && s.selected)}>
                   <Link
                     href={`${slug}`}
                     localized={localized}

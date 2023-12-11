@@ -7,7 +7,7 @@
         "symbol": "kr"
       },
       "isoCode": "AE",
-      "name": "Förenade Arabemiraten",
+      "name": "United Arab Emirates",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -17,7 +17,7 @@
         "symbol": "kr"
       },
       "isoCode": "AT",
-      "name": "Österrike",
+      "name": "Austria",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -27,7 +27,7 @@
         "symbol": "kr"
       },
       "isoCode": "AU",
-      "name": "Australien",
+      "name": "Australia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -37,7 +37,7 @@
         "symbol": "kr"
       },
       "isoCode": "BE",
-      "name": "Belgien",
+      "name": "Belgium",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -47,7 +47,7 @@
         "symbol": "kr"
       },
       "isoCode": "BG",
-      "name": "Bulgarien",
+      "name": "Bulgaria",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -57,7 +57,7 @@
         "symbol": "kr"
       },
       "isoCode": "CA",
-      "name": "Kanada",
+      "name": "Canada",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -67,7 +67,7 @@
         "symbol": "kr"
       },
       "isoCode": "CH",
-      "name": "Schweiz",
+      "name": "Switzerland",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -77,7 +77,7 @@
         "symbol": "kr"
       },
       "isoCode": "CY",
-      "name": "Cypern",
+      "name": "Cyprus",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -87,7 +87,7 @@
         "symbol": "kr"
       },
       "isoCode": "CZ",
-      "name": "Tjeckien",
+      "name": "Czechia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -97,7 +97,7 @@
         "symbol": "kr"
       },
       "isoCode": "DE",
-      "name": "Tyskland",
+      "name": "Germany",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -107,7 +107,7 @@
         "symbol": "kr"
       },
       "isoCode": "DK",
-      "name": "Danmark",
+      "name": "Denmark",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -117,7 +117,7 @@
         "symbol": "kr"
       },
       "isoCode": "EE",
-      "name": "Estland",
+      "name": "Estonia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -127,7 +127,7 @@
         "symbol": "kr"
       },
       "isoCode": "ES",
-      "name": "Spanien",
+      "name": "Spain",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -147,7 +147,7 @@
         "symbol": "kr"
       },
       "isoCode": "FR",
-      "name": "Frankrike",
+      "name": "France",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -157,7 +157,7 @@
         "symbol": "kr"
       },
       "isoCode": "GB",
-      "name": "Storbritannien",
+      "name": "United Kingdom",
       "unitSystem": "IMPERIAL_SYSTEM"
     },
     {
@@ -167,7 +167,7 @@
         "symbol": "kr"
       },
       "isoCode": "GR",
-      "name": "Grekland",
+      "name": "Greece",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -177,7 +177,7 @@
         "symbol": "kr"
       },
       "isoCode": "HK",
-      "name": "Hongkong SAR",
+      "name": "Hong Kong SAR",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -187,7 +187,7 @@
         "symbol": "kr"
       },
       "isoCode": "HR",
-      "name": "Kroatien",
+      "name": "Croatia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -197,7 +197,7 @@
         "symbol": "kr"
       },
       "isoCode": "HU",
-      "name": "Ungern",
+      "name": "Hungary",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -207,7 +207,7 @@
         "symbol": "kr"
       },
       "isoCode": "IE",
-      "name": "Irland",
+      "name": "Ireland",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -227,7 +227,7 @@
         "symbol": "kr"
       },
       "isoCode": "IT",
-      "name": "Italien",
+      "name": "Italy",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -247,7 +247,7 @@
         "symbol": "kr"
       },
       "isoCode": "KR",
-      "name": "Sydkorea",
+      "name": "South Korea",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -257,7 +257,7 @@
         "symbol": "kr"
       },
       "isoCode": "LT",
-      "name": "Litauen",
+      "name": "Lithuania",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -267,7 +267,7 @@
         "symbol": "kr"
       },
       "isoCode": "LU",
-      "name": "Luxemburg",
+      "name": "Luxembourg",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -277,7 +277,7 @@
         "symbol": "kr"
       },
       "isoCode": "LV",
-      "name": "Lettland",
+      "name": "Latvia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -307,7 +307,7 @@
         "symbol": "kr"
       },
       "isoCode": "NL",
-      "name": "Nederländerna",
+      "name": "Netherlands",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -317,7 +317,7 @@
         "symbol": "kr"
       },
       "isoCode": "NO",
-      "name": "Norge",
+      "name": "Norway",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -327,7 +327,7 @@
         "symbol": "kr"
       },
       "isoCode": "NZ",
-      "name": "Nya Zeeland",
+      "name": "New Zealand",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -337,7 +337,7 @@
         "symbol": "kr"
       },
       "isoCode": "PL",
-      "name": "Polen",
+      "name": "Poland",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -357,7 +357,7 @@
         "symbol": "kr"
       },
       "isoCode": "RO",
-      "name": "Rumänien",
+      "name": "Romania",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -367,7 +367,7 @@
         "symbol": "kr"
       },
       "isoCode": "SE",
-      "name": "Sverige",
+      "name": "Sweden",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -387,7 +387,7 @@
         "symbol": "kr"
       },
       "isoCode": "SI",
-      "name": "Slovenien",
+      "name": "Slovenia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -397,7 +397,7 @@
         "symbol": "kr"
       },
       "isoCode": "SK",
-      "name": "Slovakien",
+      "name": "Slovakia",
       "unitSystem": "METRIC_SYSTEM"
     },
     {
@@ -407,7 +407,7 @@
         "symbol": "kr"
       },
       "isoCode": "US",
-      "name": "USA",
+      "name": "United States",
       "unitSystem": "IMPERIAL_SYSTEM"
     }
   ],
@@ -418,11 +418,11 @@
       "symbol": "kr"
     },
     "market": {
-      "id": "gid://shopify/Market/50772803852",
-      "handle": "se"
+      "id": "gid://shopify/Market/50772869388",
+      "handle": "international"
     },
-    "isoCode": "SE",
-    "name": "Sverige",
-    "unitSystem": "METRIC_SYSTEM"
+    "isoCode": "US",
+    "name": "United States",
+    "unitSystem": "IMPERIAL_SYSTEM"
   }
 }
