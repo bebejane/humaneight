@@ -2348,6 +2348,9 @@ type InverseRelationshipFieldFilterBetweenProductLinkAndProduct = {
 
 /** Specifies how to filter by linking fields */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e654611 (ja)
 type InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<ShopifyProductModelFieldsReferencingShopifyCollectionModel>>;
@@ -2356,8 +2359,11 @@ type InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection = {
 };
 
 /** Specifies how to filter by linking fields */
+<<<<<<< HEAD
 =======
 >>>>>>> aff839b (sync)
+=======
+>>>>>>> e654611 (ja)
 type InverseRelationshipFieldFilterBetweenStartAndCollection = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<StartModelFieldsReferencingCollectionModel>>;
@@ -2399,6 +2405,9 @@ type InverseRelationshipFilterBetweenProductLinkAndProduct = {
 
 /** Specifies how to filter linking records */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e654611 (ja)
 type InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection>;
@@ -2407,8 +2416,11 @@ type InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection = {
 };
 
 /** Specifies how to filter linking records */
+<<<<<<< HEAD
 =======
 >>>>>>> aff839b (sync)
+=======
+>>>>>>> e654611 (ja)
 type InverseRelationshipFilterBetweenStartAndCollection = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenStartAndCollection>;
@@ -4078,11 +4090,17 @@ enum ShopifyCollectionModelOrderBy {
 type ShopifyCollectionRecord = RecordInterface & {
   __typename?: 'ShopifyCollectionRecord';
 <<<<<<< HEAD
+<<<<<<< HEAD
   _allReferencingShopifyProducts: Array<ShopifyProductRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingShopifyProductsMeta: CollectionMetadata;
 =======
 >>>>>>> aff839b (sync)
+=======
+  _allReferencingShopifyProducts: Array<ShopifyProductRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingShopifyProductsMeta: CollectionMetadata;
+>>>>>>> e654611 (ja)
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -4107,6 +4125,9 @@ type ShopifyCollectionRecord = RecordInterface & {
 
 /** Record of type Shopify Collection (shopify_collection) */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e654611 (ja)
 type ShopifyCollectionRecord_allReferencingShopifyProductsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ShopifyProductModelFilter>;
@@ -4127,20 +4148,29 @@ type ShopifyCollectionRecord_allReferencingShopifyProductsMetaArgs = {
 
 
 /** Record of type Shopify Collection (shopify_collection) */
+<<<<<<< HEAD
 =======
 >>>>>>> aff839b (sync)
+=======
+>>>>>>> e654611 (ja)
 type ShopifyCollectionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e654611 (ja)
 /** Linking fields */
 enum ShopifyProductModelFieldsReferencingShopifyCollectionModel {
   shopifyProduct_collections = 'shopifyProduct_collections'
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> aff839b (sync)
+=======
+>>>>>>> e654611 (ja)
 type ShopifyProductModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<ShopifyProductModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ShopifyProductModelFilter>>>;
@@ -4158,10 +4188,14 @@ type ShopifyProductModelFilter = {
   image?: InputMaybe<FileFilter>;
   shopifyId?: InputMaybe<StringFilter>;
 <<<<<<< HEAD
+<<<<<<< HEAD
   tags?: InputMaybe<StringFilter>;
 =======
   tags?: InputMaybe<LinksFilter>;
 >>>>>>> aff839b (sync)
+=======
+  tags?: InputMaybe<StringFilter>;
+>>>>>>> e654611 (ja)
   title?: InputMaybe<StringFilter>;
 };
 
@@ -4187,10 +4221,15 @@ enum ShopifyProductModelOrderBy {
   shopifyId_ASC = 'shopifyId_ASC',
   shopifyId_DESC = 'shopifyId_DESC',
 <<<<<<< HEAD
+<<<<<<< HEAD
   tags_ASC = 'tags_ASC',
   tags_DESC = 'tags_DESC',
 =======
 >>>>>>> aff839b (sync)
+=======
+  tags_ASC = 'tags_ASC',
+  tags_DESC = 'tags_DESC',
+>>>>>>> e654611 (ja)
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
@@ -4217,10 +4256,14 @@ type ShopifyProductRecord = RecordInterface & {
   image?: Maybe<FileField>;
   shopifyId: Scalars['String']['output'];
 <<<<<<< HEAD
+<<<<<<< HEAD
   tags?: Maybe<Scalars['String']['output']>;
 =======
   tags: Array<ShopifyTagRecord>;
 >>>>>>> aff839b (sync)
+=======
+  tags?: Maybe<Scalars['String']['output']>;
+>>>>>>> e654611 (ja)
   title: Scalars['String']['output'];
 };
 

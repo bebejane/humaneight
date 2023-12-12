@@ -17,6 +17,9 @@ const nextConfig = {
 	devIndicators: {
 		buildActivity: false,
 	},
+	experimental: {
+		ppr: true,
+	},
 	async headers() {
 		return [
 			{
