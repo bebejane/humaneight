@@ -28,6 +28,7 @@ const objects: ObjectMap[] = [
       title: 'title',
       handle: 'handle',
       image: 'image',
+      tags: 'tags',
     }
   },
   {
