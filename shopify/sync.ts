@@ -2,49 +2,53 @@
 
 import client from './datocms-client'
 import shopify from './rest-client'
+import asyncPromiseBatch from 'async-promise-batch';
 import { isDeepStrictEqual } from 'util';
 import { itemTypeId } from '@lib/utils';
 import { IProduct, ISmartCollection, ICustomCollection } from 'shopify-api-node';
-import asyncPromiseBatch from 'async-promise-batch';
 import { Item } from '@datocms/cma-client/dist/types/generated/SimpleSchemaTypes';
 import { ItemInstancesHrefSchema } from '@datocms/cma-client/dist/types/generated/SchemaTypes';
 
 type ObjectType = IProduct | ISmartCollection | ICustomCollection
 
 type ObjectMap = {
-  model: 'product' | 'collection'
+  dato_model: 'shopify_product' | 'shopify_collection'
+  shopify_model: 'product' | 'collection'
   path: 'product' | 'smartCollection' | 'customCollection'
   fields: { [key: string]: string }
 }
 
 const objects: ObjectMap[] = [
   {
-    model: 'product',
+    dato_model: 'shopify_product',
+    shopify_model: 'product',
     path: 'product',
     fields: {
       shopify_id: 'id',
       title: 'title',
-      slug: 'handle',
-      //image: 'image',
+      handle: 'handle',
+      image: 'image',
     }
   },
   {
-    model: 'collection',
+    dato_model: 'shopify_collection',
+    shopify_model: 'collection',
     path: 'smartCollection',
     fields: {
       shopify_id: 'id',
       title: 'title',
-      slug: 'handle',
+      handle: 'handle',
       products: 'products'
     }
   },
   {
-    model: 'collection',
+    dato_model: 'shopify_collection',
+    shopify_model: 'collection',
     path: 'customCollection',
     fields: {
       shopify_id: 'id',
       title: 'title',
-      slug: 'handle',
+      handle: 'handle',
       products: 'products'
     }
   }
@@ -53,7 +57,6 @@ const objects: ObjectMap[] = [
 export const syncAll = async () => {
   console.log('sync started...')
   console.time('sync all')
-  console.log(process.env.DATOCMS_API_TOKEN)
 
   for (let i = 0; i < objects.length; i++) {
     const data = await shopify[objects[i].path].list({ limit: 250 })
@@ -70,35 +73,52 @@ export const syncObjects = async (data: ObjectType[] | ObjectType, concurrency =
   if (records.length === 0)
     return
 
-  const model = dataToObjectModel(records[0])?.model
-  const object = objects.find((o) => o.model === model) as ObjectMap
+  const model = dataToObjectModel(records[0])?.dato_model
+  const object = objects.find((o) => o.dato_model === model) as ObjectMap
 
-  if (typeof object === 'undefined')
+  if (typeof object === 'undefined') {
     throw new Error('Invalid data')
+  }
 
-  const itemType = await itemTypeId(object.model)
+  const itemType = await itemTypeId(object.dato_model)
   const reqs = records.map((item) => () => upsertObject(object, itemType, item))
 
-  console.time(`sync ${object.model} ${reqs.length}`)
+  console.time(`sync ${object.dato_model} ${reqs.length}`)
   const response = await asyncPromiseBatch(reqs, concurrency)
-  console.timeEnd(`sync ${object.model} ${reqs.length}`)
+  console.timeEnd(`sync ${object.dato_model} ${reqs.length}`)
   return response
 
 }
 
 export const upsertObject = async (object: ObjectMap, itemType: string, data: any) => {
 
-  console.log('sync', object.model, data.id)
+  console.log('sync', object.dato_model, data.id)
 
   data.id = String(data.id)
 
   let record = (await client.items.list({ version: 'latest', filter: { type: itemType, fields: { shopify_id: { eq: data.id } } } }))[0]
   const item = { ...data }
 
-  if (object.model === 'collection') {
+  if (object.dato_model === 'shopify_collection') {
     const products = await shopify.collection.products(data.id, { limit: 250 })
-    const datoProducts = (await Promise.all(products.map(({ id }) => client.items.list({ version: 'latest', filter: { type: 'product', fields: { shopify_id: { eq: id } } } }))))
+    const datoProducts = (await Promise.all(products.map(({ id }) => client.items.list({ version: 'latest', filter: { type: 'shopify_product', fields: { shopify_id: { eq: id } } } }))))
     data.products = datoProducts.map((p) => p[0].id)
+  }
+
+  if (data.image?.src) {
+    const url = data.image.src.split('?')[0]
+    console.log('upload image', url)
+    try {
+      const upload = await client.uploads.createFromUrl({
+        url,
+        skipCreationIfAlreadyExists: true
+      })
+      data.image = { upload_id: upload.id }
+      console.log('uploaded image', data.image.upload_id)
+    } catch (error) {
+      console.log('error uploading image')
+      delete data.image
+    }
   }
 
   if (!record)
@@ -106,9 +126,7 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
   else
     record = await client.items.update(record.id, mapObject(object, data, item));
 
-  if (object.model === 'product')
-    await syncProductVariants(data)
-
+  //if (object.dato_model === 'shopify_product') await syncProductVariants(data)
 
   if (item.status === 'draft')
     await client.items.unpublish(record.id)
@@ -121,13 +139,13 @@ const mapObject = (object: ObjectMap, data: any, item: ObjectType): any => {
   Object.keys(object.fields).forEach((key) => {
     mapped[key] = data[object.fields[key]]
   })
-  mapped.shopify_data = JSON.stringify(item)
+  //mapped.shopify_data = JSON.stringify(item)
   return mapped
 }
 
 const dataToObjectModel = (data: any): ObjectMap | undefined => {
-  const shopifyType = data.admin_graphql_api_id.replace('gid://shopify/', '').split('/')[0].toLowerCase()
-  return objects.find((o) => o.model === shopifyType)
+  const model = data.admin_graphql_api_id.replace('gid://shopify/', '').split('/')[0].toLowerCase()
+  return objects.find((o) => o.shopify_model === model)
 }
 
 
@@ -143,7 +161,7 @@ export const syncDatoCMSObject = async (item: Item) => {
 
   try {
     const itemType = await client.itemTypes.find(item.item_type.id)
-    const object = objects.find((o) => o.model === itemType.api_key) as ObjectMap
+    const object = objects.find((o) => o.dato_model === itemType.api_key) as ObjectMap
 
     const data: any = {}
     Object.keys(object.fields).forEach((key) => {

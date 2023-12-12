@@ -2347,6 +2347,7 @@ type InverseRelationshipFieldFilterBetweenProductLinkAndProduct = {
 };
 
 /** Specifies how to filter by linking fields */
+<<<<<<< HEAD
 type InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<ShopifyProductModelFieldsReferencingShopifyCollectionModel>>;
@@ -2355,6 +2356,8 @@ type InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection = {
 };
 
 /** Specifies how to filter by linking fields */
+=======
+>>>>>>> aff839b (sync)
 type InverseRelationshipFieldFilterBetweenStartAndCollection = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<StartModelFieldsReferencingCollectionModel>>;
@@ -2395,6 +2398,7 @@ type InverseRelationshipFilterBetweenProductLinkAndProduct = {
 };
 
 /** Specifies how to filter linking records */
+<<<<<<< HEAD
 type InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection>;
@@ -2403,6 +2407,8 @@ type InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection = {
 };
 
 /** Specifies how to filter linking records */
+=======
+>>>>>>> aff839b (sync)
 type InverseRelationshipFilterBetweenStartAndCollection = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenStartAndCollection>;
@@ -4071,9 +4077,12 @@ enum ShopifyCollectionModelOrderBy {
 /** Record of type Shopify Collection (shopify_collection) */
 type ShopifyCollectionRecord = RecordInterface & {
   __typename?: 'ShopifyCollectionRecord';
+<<<<<<< HEAD
   _allReferencingShopifyProducts: Array<ShopifyProductRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingShopifyProductsMeta: CollectionMetadata;
+=======
+>>>>>>> aff839b (sync)
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -4097,6 +4106,7 @@ type ShopifyCollectionRecord = RecordInterface & {
 
 
 /** Record of type Shopify Collection (shopify_collection) */
+<<<<<<< HEAD
 type ShopifyCollectionRecord_allReferencingShopifyProductsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ShopifyProductModelFilter>;
@@ -4117,15 +4127,20 @@ type ShopifyCollectionRecord_allReferencingShopifyProductsMetaArgs = {
 
 
 /** Record of type Shopify Collection (shopify_collection) */
+=======
+>>>>>>> aff839b (sync)
 type ShopifyCollectionRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+<<<<<<< HEAD
 /** Linking fields */
 enum ShopifyProductModelFieldsReferencingShopifyCollectionModel {
   shopifyProduct_collections = 'shopifyProduct_collections'
 }
 
+=======
+>>>>>>> aff839b (sync)
 type ShopifyProductModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<ShopifyProductModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ShopifyProductModelFilter>>>;
@@ -4142,7 +4157,11 @@ type ShopifyProductModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   shopifyId?: InputMaybe<StringFilter>;
+<<<<<<< HEAD
   tags?: InputMaybe<StringFilter>;
+=======
+  tags?: InputMaybe<LinksFilter>;
+>>>>>>> aff839b (sync)
   title?: InputMaybe<StringFilter>;
 };
 
@@ -4167,8 +4186,11 @@ enum ShopifyProductModelOrderBy {
   id_DESC = 'id_DESC',
   shopifyId_ASC = 'shopifyId_ASC',
   shopifyId_DESC = 'shopifyId_DESC',
+<<<<<<< HEAD
   tags_ASC = 'tags_ASC',
   tags_DESC = 'tags_DESC',
+=======
+>>>>>>> aff839b (sync)
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
@@ -4194,7 +4216,11 @@ type ShopifyProductRecord = RecordInterface & {
   id: Scalars['ItemId']['output'];
   image?: Maybe<FileField>;
   shopifyId: Scalars['String']['output'];
+<<<<<<< HEAD
   tags?: Maybe<Scalars['String']['output']>;
+=======
+  tags: Array<ShopifyTagRecord>;
+>>>>>>> aff839b (sync)
   title: Scalars['String']['output'];
 };
 
