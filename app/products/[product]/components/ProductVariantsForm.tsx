@@ -42,7 +42,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 
   useEffect(() => {
     setColorSelectWidth(selectButtonRef.current?.offsetWidth ?? 0)
-  }, [width])
+  }, [width, colorsOpen])
 
   useEffect(() => {
     if (isDesktop) return
