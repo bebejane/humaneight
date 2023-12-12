@@ -1,9 +1,9 @@
 .hamburger {
-  --line-height: 0.15rem;
+  --line-height: 0.13rem;
   --line-height-half: calc(var(--line-height) / 2);
   --line-height-middle: calc(var(--line-height) / 4);
-  --height: calc(var(--navbar-height) - (var(--outer-margin) * 2));
-  --width: 22px;
+  --height: calc(var(--navbar-height) - (var(--outer-margin) * 2.2));
+  --width: 21px;
 
   position: fixed;
   z-index: var(--z-hamburger);
@@ -21,7 +21,7 @@
   }
 
   .wrap {
-    margin-top: -1px;
+    //margin-top: -1px;
 
     position: relative;
     width: 100%;
