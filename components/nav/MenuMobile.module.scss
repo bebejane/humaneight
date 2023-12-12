@@ -22,12 +22,12 @@
     list-style: none;
   }
 
-  > ul {
+  >ul {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    > li {
+    >li {
       //height: 2rem;
 
       header {
@@ -38,6 +38,10 @@
         h3 {
           flex: 1 1 auto;
           padding-top: 1.5rem;
+
+          &.active {
+            letter-spacing: var(--letter-space);
+          }
         }
 
         button {
@@ -60,7 +64,7 @@
           }
         }
 
-        > li {
+        >li {
           &.selected {
             a {
               letter-spacing: var(--letter-space);

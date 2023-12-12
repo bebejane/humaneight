@@ -2347,19 +2347,11 @@ type InverseRelationshipFieldFilterBetweenProductLinkAndProduct = {
 };
 
 /** Specifies how to filter by linking fields */
-type InverseRelationshipFieldFilterBetweenProductVariantAndProduct = {
+type InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection = {
   /** Filter linking records that reference current record in at least one of the specified fields */
-  anyIn?: InputMaybe<Array<ProductVariantModelFieldsReferencingProductModel>>;
+  anyIn?: InputMaybe<Array<ShopifyProductModelFieldsReferencingShopifyCollectionModel>>;
   /** Filter linking records that do not reference current record in any of the specified fields */
-  notIn?: InputMaybe<Array<ProductVariantModelFieldsReferencingProductModel>>;
-};
-
-/** Specifies how to filter by linking fields */
-type InverseRelationshipFieldFilterBetweenProductVariantOptionAndProduct = {
-  /** Filter linking records that reference current record in at least one of the specified fields */
-  anyIn?: InputMaybe<Array<ProductVariantOptionModelFieldsReferencingProductModel>>;
-  /** Filter linking records that do not reference current record in any of the specified fields */
-  notIn?: InputMaybe<Array<ProductVariantOptionModelFieldsReferencingProductModel>>;
+  notIn?: InputMaybe<Array<ShopifyProductModelFieldsReferencingShopifyCollectionModel>>;
 };
 
 /** Specifies how to filter by linking fields */
@@ -2403,17 +2395,9 @@ type InverseRelationshipFilterBetweenProductLinkAndProduct = {
 };
 
 /** Specifies how to filter linking records */
-type InverseRelationshipFilterBetweenProductVariantAndProduct = {
+type InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection = {
   /** Specifies how to filter by linking fields */
-  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenProductVariantAndProduct>;
-  /** Specifies how to filter by linking locales */
-  locales?: InputMaybe<LinkingLocalesFilter>;
-};
-
-/** Specifies how to filter linking records */
-type InverseRelationshipFilterBetweenProductVariantOptionAndProduct = {
-  /** Specifies how to filter by linking fields */
-  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenProductVariantOptionAndProduct>;
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenShopifyProductAndShopifyCollection>;
   /** Specifies how to filter by linking locales */
   locales?: InputMaybe<LinkingLocalesFilter>;
 };
@@ -3112,6 +3096,7 @@ type ProductModelFilter = {
   mouseOverText?: InputMaybe<StringFilter>;
   shopifyData?: InputMaybe<JsonFilter>;
   shopifyId?: InputMaybe<StringFilter>;
+  shopifyProduct?: InputMaybe<LinkFilter>;
   shortSummary?: InputMaybe<StructuredTextFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
@@ -3163,12 +3148,6 @@ type ProductRecord = RecordInterface & {
   _allReferencingProductLinks: Array<ProductLinkRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingProductLinksMeta: CollectionMetadata;
-  _allReferencingProductVariantOptions: Array<ProductVariantOptionRecord>;
-  /** Returns meta information regarding a record collection */
-  _allReferencingProductVariantOptionsMeta: CollectionMetadata;
-  _allReferencingProductVariants: Array<ProductVariantRecord>;
-  /** Returns meta information regarding a record collection */
-  _allReferencingProductVariantsMeta: CollectionMetadata;
   _allReferencingStarts: Array<StartRecord>;
   /** Returns meta information regarding a record collection */
   _allReferencingStartsMeta: CollectionMetadata;
@@ -3196,6 +3175,7 @@ type ProductRecord = RecordInterface & {
   sections: Array<ProductMediaBlockRecord>;
   shopifyData?: Maybe<Scalars['JsonField']['output']>;
   shopifyId?: Maybe<Scalars['String']['output']>;
+  shopifyProduct?: Maybe<ShopifyProductRecord>;
   shortSummary?: Maybe<ProductModelShortSummaryField>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
@@ -3240,46 +3220,6 @@ type ProductRecord_allReferencingProductLinksMetaArgs = {
   filter?: InputMaybe<ProductLinkModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   through?: InputMaybe<InverseRelationshipFilterBetweenProductLinkAndProduct>;
-};
-
-
-/** Record of type Product (product) */
-type ProductRecord_allReferencingProductVariantOptionsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductVariantOptionModelFilter>;
-  first?: InputMaybe<Scalars['IntType']['input']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductVariantOptionModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']['input']>;
-  through?: InputMaybe<InverseRelationshipFilterBetweenProductVariantOptionAndProduct>;
-};
-
-
-/** Record of type Product (product) */
-type ProductRecord_allReferencingProductVariantOptionsMetaArgs = {
-  filter?: InputMaybe<ProductVariantOptionModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  through?: InputMaybe<InverseRelationshipFilterBetweenProductVariantOptionAndProduct>;
-};
-
-
-/** Record of type Product (product) */
-type ProductRecord_allReferencingProductVariantsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductVariantModelFilter>;
-  first?: InputMaybe<Scalars['IntType']['input']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductVariantModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']['input']>;
-  through?: InputMaybe<InverseRelationshipFilterBetweenProductVariantAndProduct>;
-};
-
-
-/** Record of type Product (product) */
-type ProductRecord_allReferencingProductVariantsMetaArgs = {
-  filter?: InputMaybe<ProductVariantModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-  through?: InputMaybe<InverseRelationshipFilterBetweenProductVariantAndProduct>;
 };
 
 
@@ -3376,166 +3316,6 @@ type ProductUspRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
-/** Linking fields */
-enum ProductVariantModelFieldsReferencingProductModel {
-  productVariant_product = 'productVariant_product'
-}
-
-type ProductVariantModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ProductVariantModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<ProductVariantModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  product?: InputMaybe<LinkFilter>;
-  productShopifyId?: InputMaybe<StringFilter>;
-  shopifyId?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-enum ProductVariantModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
-  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  productShopifyId_ASC = 'productShopifyId_ASC',
-  productShopifyId_DESC = 'productShopifyId_DESC',
-  shopifyId_ASC = 'shopifyId_ASC',
-  shopifyId_DESC = 'shopifyId_DESC',
-  title_ASC = 'title_ASC',
-  title_DESC = 'title_DESC'
-}
-
-/** Linking fields */
-enum ProductVariantOptionModelFieldsReferencingProductModel {
-  productVariantOption_product = 'productVariantOption_product'
-}
-
-type ProductVariantOptionModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ProductVariantOptionModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<ProductVariantOptionModelFilter>>>;
-  _createdAt?: InputMaybe<CreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
-  _isValid?: InputMaybe<BooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _publishedAt?: InputMaybe<PublishedAtFilter>;
-  _status?: InputMaybe<StatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
-  _updatedAt?: InputMaybe<UpdatedAtFilter>;
-  id?: InputMaybe<ItemIdFilter>;
-  name?: InputMaybe<StringFilter>;
-  product?: InputMaybe<LinkFilter>;
-  productShopifyId?: InputMaybe<StringFilter>;
-  shopifyId?: InputMaybe<StringFilter>;
-  values?: InputMaybe<JsonFilter>;
-};
-
-enum ProductVariantOptionModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
-  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  name_ASC = 'name_ASC',
-  name_DESC = 'name_DESC',
-  productShopifyId_ASC = 'productShopifyId_ASC',
-  productShopifyId_DESC = 'productShopifyId_DESC',
-  shopifyId_ASC = 'shopifyId_ASC',
-  shopifyId_DESC = 'shopifyId_DESC'
-}
-
-/** Record of type Product variant option (product_variant_option) */
-type ProductVariantOptionRecord = RecordInterface & {
-  __typename?: 'ProductVariantOptionRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-  name: Scalars['String']['output'];
-  product: ProductRecord;
-  productShopifyId: Scalars['String']['output'];
-  shopifyId: Scalars['String']['output'];
-  values: Scalars['JsonField']['output'];
-};
-
-
-/** Record of type Product variant option (product_variant_option) */
-type ProductVariantOptionRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
-/** Record of type Product variant (product_variant) */
-type ProductVariantRecord = RecordInterface & {
-  __typename?: 'ProductVariantRecord';
-  _createdAt: Scalars['DateTime']['output'];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
-  _isValid: Scalars['BooleanType']['output'];
-  _modelApiKey: Scalars['String']['output'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  /** Generates SEO and Social card meta tags to be used in your frontend */
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _updatedAt: Scalars['DateTime']['output'];
-  id: Scalars['ItemId']['output'];
-  product: ProductRecord;
-  productShopifyId: Scalars['String']['output'];
-  shopifyId: Scalars['String']['output'];
-  title: Scalars['String']['output'];
-};
-
-
-/** Record of type Product variant (product_variant) */
-type ProductVariantRecord_seoMetaTagsArgs = {
-  locale?: InputMaybe<SiteLocale>;
-};
-
 /** Specifies how to filter by publication datetime */
 type PublishedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -3582,11 +3362,13 @@ type Query = {
   /** Returns meta information regarding a record collection */
   _allProductUspsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
-  _allProductVariantOptionsMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
-  _allProductVariantsMeta: CollectionMetadata;
-  /** Returns meta information regarding a record collection */
   _allProductsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allShopifyCollectionsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allShopifyProductsMeta: CollectionMetadata;
+  /** Returns meta information regarding a record collection */
+  _allShopifyTagsMeta: CollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: CollectionMetadata;
   /** Returns meta information regarding a record collection */
@@ -3620,11 +3402,13 @@ type Query = {
   /** Returns a collection of records */
   allProductUsps: Array<ProductUspRecord>;
   /** Returns a collection of records */
-  allProductVariantOptions: Array<ProductVariantOptionRecord>;
-  /** Returns a collection of records */
-  allProductVariants: Array<ProductVariantRecord>;
-  /** Returns a collection of records */
   allProducts: Array<ProductRecord>;
+  /** Returns a collection of records */
+  allShopifyCollections: Array<ShopifyCollectionRecord>;
+  /** Returns a collection of records */
+  allShopifyProducts: Array<ShopifyProductRecord>;
+  /** Returns a collection of records */
+  allShopifyTags: Array<ShopifyTagRecord>;
   /** Returns a collection of assets */
   allUploads: Array<FileField>;
   /** Returns a collection of records */
@@ -3656,9 +3440,11 @@ type Query = {
   /** Returns a specific record */
   productUsp?: Maybe<ProductUspRecord>;
   /** Returns a specific record */
-  productVariant?: Maybe<ProductVariantRecord>;
+  shopifyCollection?: Maybe<ShopifyCollectionRecord>;
   /** Returns a specific record */
-  productVariantOption?: Maybe<ProductVariantOptionRecord>;
+  shopifyProduct?: Maybe<ShopifyProductRecord>;
+  /** Returns a specific record */
+  shopifyTag?: Maybe<ShopifyTagRecord>;
   /** Returns the single instance record */
   start?: Maybe<StartRecord>;
   /** Returns a specific asset */
@@ -3753,22 +3539,29 @@ type Query_allProductUspsMetaArgs = {
 
 
 /** The query root for this schema */
-type Query_allProductVariantOptionsMetaArgs = {
-  filter?: InputMaybe<ProductVariantOptionModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
-type Query_allProductVariantsMetaArgs = {
-  filter?: InputMaybe<ProductVariantModelFilter>;
-  locale?: InputMaybe<SiteLocale>;
-};
-
-
-/** The query root for this schema */
 type Query_allProductsMetaArgs = {
   filter?: InputMaybe<ProductModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allShopifyCollectionsMetaArgs = {
+  filter?: InputMaybe<ShopifyCollectionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allShopifyProductsMetaArgs = {
+  filter?: InputMaybe<ShopifyProductModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** The query root for this schema */
+type Query_allShopifyTagsMetaArgs = {
+  filter?: InputMaybe<ShopifyTagModelFilter>;
   locale?: InputMaybe<SiteLocale>;
 };
 
@@ -3936,34 +3729,45 @@ type QueryallProductUspsArgs = {
 
 
 /** The query root for this schema */
-type QueryallProductVariantOptionsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductVariantOptionModelFilter>;
-  first?: InputMaybe<Scalars['IntType']['input']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductVariantOptionModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']['input']>;
-};
-
-
-/** The query root for this schema */
-type QueryallProductVariantsArgs = {
-  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductVariantModelFilter>;
-  first?: InputMaybe<Scalars['IntType']['input']>;
-  locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductVariantModelOrderBy>>>;
-  skip?: InputMaybe<Scalars['IntType']['input']>;
-};
-
-
-/** The query root for this schema */
 type QueryallProductsArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
   filter?: InputMaybe<ProductModelFilter>;
   first?: InputMaybe<Scalars['IntType']['input']>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallShopifyCollectionsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShopifyCollectionModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallShopifyProductsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShopifyProductModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyProductModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+};
+
+
+/** The query root for this schema */
+type QueryallShopifyTagsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShopifyTagModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyTagModelOrderBy>>>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
 };
 
@@ -4106,20 +3910,29 @@ type QueryproductUspArgs = {
 
 
 /** The query root for this schema */
-type QueryproductVariantArgs = {
+type QueryshopifyCollectionArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductVariantModelFilter>;
+  filter?: InputMaybe<ShopifyCollectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductVariantModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelOrderBy>>>;
 };
 
 
 /** The query root for this schema */
-type QueryproductVariantOptionArgs = {
+type QueryshopifyProductArgs = {
   fallbackLocales?: InputMaybe<Array<SiteLocale>>;
-  filter?: InputMaybe<ProductVariantOptionModelFilter>;
+  filter?: InputMaybe<ShopifyProductModelFilter>;
   locale?: InputMaybe<SiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ProductVariantOptionModelOrderBy>>>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyProductModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryshopifyTagArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShopifyTagModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyTagModelOrderBy>>>;
 };
 
 
@@ -4209,6 +4022,250 @@ type SeoField = {
   image?: Maybe<FileField>;
   title?: Maybe<Scalars['String']['output']>;
   twitterCard?: Maybe<Scalars['String']['output']>;
+};
+
+type ShopifyCollectionModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  handle?: InputMaybe<SlugFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  products?: InputMaybe<LinksFilter>;
+  shopifyId?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum ShopifyCollectionModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  shopifyId_ASC = 'shopifyId_ASC',
+  shopifyId_DESC = 'shopifyId_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Shopify Collection (shopify_collection) */
+type ShopifyCollectionRecord = RecordInterface & {
+  __typename?: 'ShopifyCollectionRecord';
+  _allReferencingShopifyProducts: Array<ShopifyProductRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingShopifyProductsMeta: CollectionMetadata;
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  handle: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  products: Array<ShopifyProductRecord>;
+  shopifyId: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Shopify Collection (shopify_collection) */
+type ShopifyCollectionRecord_allReferencingShopifyProductsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShopifyProductModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyProductModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection>;
+};
+
+
+/** Record of type Shopify Collection (shopify_collection) */
+type ShopifyCollectionRecord_allReferencingShopifyProductsMetaArgs = {
+  filter?: InputMaybe<ShopifyProductModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenShopifyProductAndShopifyCollection>;
+};
+
+
+/** Record of type Shopify Collection (shopify_collection) */
+type ShopifyCollectionRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Linking fields */
+enum ShopifyProductModelFieldsReferencingShopifyCollectionModel {
+  shopifyProduct_collections = 'shopifyProduct_collections'
+}
+
+type ShopifyProductModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ShopifyProductModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ShopifyProductModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  collections?: InputMaybe<LinksFilter>;
+  handle?: InputMaybe<SlugFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  image?: InputMaybe<FileFilter>;
+  shopifyId?: InputMaybe<StringFilter>;
+  tags?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum ShopifyProductModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  shopifyId_ASC = 'shopifyId_ASC',
+  shopifyId_DESC = 'shopifyId_DESC',
+  tags_ASC = 'tags_ASC',
+  tags_DESC = 'tags_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Shopify Product (shopify_product) */
+type ShopifyProductRecord = RecordInterface & {
+  __typename?: 'ShopifyProductRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  collections: Array<ShopifyCollectionRecord>;
+  handle: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<FileField>;
+  shopifyId: Scalars['String']['output'];
+  tags?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Shopify Product (shopify_product) */
+type ShopifyProductRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+type ShopifyTagModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ShopifyTagModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ShopifyTagModelFilter>>>;
+  _createdAt?: InputMaybe<CreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<PublishedAtFilter>;
+  _isValid?: InputMaybe<BooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _publishedAt?: InputMaybe<PublishedAtFilter>;
+  _status?: InputMaybe<StatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
+  _updatedAt?: InputMaybe<UpdatedAtFilter>;
+  id?: InputMaybe<ItemIdFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+enum ShopifyTagModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _unpublishingScheduledAt_ASC = '_unpublishingScheduledAt_ASC',
+  _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+/** Record of type Shopify Tag (shopify_tag) */
+type ShopifyTagRecord = RecordInterface & {
+  __typename?: 'ShopifyTagRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Shopify Tag (shopify_tag) */
+type ShopifyTagRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type Site = {

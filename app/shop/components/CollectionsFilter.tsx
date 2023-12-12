@@ -22,6 +22,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
   const { searchParams, pathname } = useQueryString()
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
   const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
+  const categoryId = searchParams.get('category') ?? 'All'
 
   useEffect(() => { setSubOpen(false) }, [pathname, searchParams])
 
@@ -48,8 +49,8 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
       {collectionId !== 'all' &&
         <ul className={cn(s.subFilter, 'mid')}>
           {categories.map((category, i) => (
-            <li key={i} className={cn(category === searchParams.get('c') && s.selected)}>
-              <Link href={`/shop/${collectionSlug}/?c=${category}`}>{category}</Link>
+            <li key={i} className={cn(category === categoryId && s.selected)}>
+              <Link href={`/shop/${collectionSlug}/?category=${category}`}>{category}</Link>
             </li>
           ))}
         </ul>
