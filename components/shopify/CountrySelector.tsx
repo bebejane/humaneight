@@ -8,7 +8,6 @@ import useCountry from '@shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from 'react-use';
-import { sortSwedish } from 'next-dato-utils';
 
 export type Props = {
   className?: string
@@ -68,7 +67,7 @@ export default function CountrySelector({ className, label, modal = false, local
             selectionMode={'single'}
             className={s.options}
             style={{ width: selectWidth }}
-            items={sortSwedish(availableCountries, 'name').map(({ isoCode, name, currency }) => ({
+            items={availableCountries.map(({ isoCode, name, currency }) => ({
               id: isoCode,
               name: `${name} ${currency.isoCode}`,
             }))}

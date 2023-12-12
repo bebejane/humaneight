@@ -18,7 +18,10 @@ export default async function RootLayout({ children }: LayoutProps) {
 
   const [menu, { localization }, { allProducts }] = await Promise.all([
     buildMenu(),
-    shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument),
+    shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
+      variables: { language: 'EN' as LanguageCode },
+      country: 'US'
+    }),
     apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, { variables: { first: 100, skip: 0 }, all: true })
   ])
 

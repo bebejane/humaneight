@@ -8140,6 +8140,7 @@ type UserErrorsFragment = { __typename: 'UserError', field?: Array<string>, mess
 
 type LocalizationQueryVariables = Exact<{
   country?: InputMaybe<CountryCode>;
+  language?: InputMaybe<LanguageCode>;
 }>;
 
 

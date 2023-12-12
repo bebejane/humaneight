@@ -1,4 +1,5 @@
-query Localization($country: CountryCode = SE) @inContext(country: $country) {
+query Localization($country: CountryCode = SE, $language: LanguageCode = EN)
+@inContext(country: $country, language: $language) {
 	localization {
 		availableCountries {
 			currency {

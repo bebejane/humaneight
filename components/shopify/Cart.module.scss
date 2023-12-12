@@ -30,6 +30,8 @@
     padding-left: 0.7em !important;
 
     .icon {
+      position: relative;
+
       img {
         position: relative;
         width: 24px;
@@ -38,15 +40,15 @@
 
       .loader {
         position: absolute;
+        display: none;
         z-index: 2;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
-        display: none;
         align-items: center;
         justify-content: center;
-        margin-top: 4px;
+        margin-top: 2px;
       }
     }
 
@@ -54,7 +56,6 @@
       .icon>img {
         width: 31px;
         height: 43px;
-
       }
 
       &:hover {
