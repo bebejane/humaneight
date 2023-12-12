@@ -1,6 +1,6 @@
 'use client'
 
-import s from './global-error.module.css'
+import s from './global-error.module.scss'
 
 export default function GlobalError({ error, reset }: {
   error: Error & { digest?: string }
