@@ -50,7 +50,7 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
       </ul>
 
       {collectionId !== 'all' &&
-        <ul className={cn(s.subFilter, 'big')}>
+        <ul className={cn(s.subFilter, 'mid')}>
           {categories.map((category, i) => (
             <li key={i} className={cn(category === searchParams.get('c') && s.selected)}>
               <Link href={`/shop/${collectionSlug}/?c=${category}`}>{category}</Link>

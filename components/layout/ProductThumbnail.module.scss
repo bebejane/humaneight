@@ -101,8 +101,9 @@
           position: absolute;
           top: 0;
           left: 0;
-          height: 84%;
+          //height: 84%;
           width: 100%;
+          aspect-ratio: 4/5;
           display: none;
           flex-direction: column;
           align-items: center;
@@ -118,21 +119,6 @@
           }
         }
       }
-    }
-
-    .branding {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 88%; //Fult, kan nog göras bättre
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 2;
-      text-transform: uppercase;
     }
   }
 
