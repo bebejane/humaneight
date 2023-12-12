@@ -1,10 +1,22 @@
-<svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Lager_1" clip-path="url(#clip0_7_35)">
-<path id="Vector" d="M18.0192 6.00637L18.1589 6.84148H19.0056H23V32.0062H1V6.84148H4.99444H5.84114L5.98075 6.00637C6.45235 3.18537 8.96127 1 12.0032 1C15.044 1 17.5475 3.18428 18.0192 6.00637ZM16.6672 6.84148H17.9485L17.6372 5.59854C17.0112 3.09866 14.7179 1.25439 12.0032 1.25439C9.2885 1.25439 6.9952 3.09866 6.36912 5.59854L6.05783 6.84148H7.33916H16.6672ZM21.7061 31.7518H22.7061V30.7518V30.7456V8.08964V7.08964H21.7061H19.1136H18.1136V8.08964V9.46858H17.8133V8.08964V7.08964H16.8133H7.19936H6.19936V8.08964V9.46858H5.89913V8.08964V7.08964H4.89913H2.30024H1.30024V8.08964V30.7518V31.7518H2.30024H21.7061Z" fill="black" stroke="black" stroke-width="2"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 28 33" style="enable-background:new 0 0 28 33;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_00000005241598041799791200000003151578184318043532_);}
+	.st1{stroke:#000000;stroke-width:2;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" y="0" width="28" height="33"/>
+	</defs>
+	<clipPath id="SVGID_00000034768391186954389550000018104936676276029852_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g id="Lager_1" style="clip-path:url(#SVGID_00000034768391186954389550000018104936676276029852_);">
+		<path id="Vector" class="st1" d="M20,6l0.1,0.8H21h6V32H1V6.8h6h0.8L8,6c0.5-2.8,3-5,6-5C17,1,19.5,3.2,20,6z M18.7,6.8h1.3
+			l-0.3-1.2C19,3.1,16.7,1.3,14,1.3S9,3.1,8.4,5.6L8.1,6.8h1.3H18.7z M7.9,8.1v-1h-1H2.3h-1v1v22.7v1h1h23.4h1v-1v0V8.1v-1h-1h-4.6
+			h-1v1 M19.8,8.1v-1h-1H9.2h-1v1"/>
+	</g>
 </g>
-<defs>
-<clipPath id="clip0_7_35">
-<rect width="24" height="33" fill="white"/>
-</clipPath>
-</defs>
 </svg>

@@ -1,5 +1,5 @@
 .hamburger {
-  --line-height: 3px;
+  --line-height: 0.15rem;
   --line-height-half: calc(var(--line-height) / 2);
   --line-height-middle: calc(var(--line-height) / 4);
   --height: calc(var(--navbar-height) - (var(--outer-margin) * 2));

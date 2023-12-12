@@ -50,13 +50,13 @@
       ul {
         display: none;
         flex-direction: column;
-        padding-top: 0.5rem;
+        padding-top: 0.8rem;
 
         &.show {
           display: flex;
 
           li {
-            padding-bottom: 0.3em;
+            padding-bottom: 0.5em;
           }
         }
 

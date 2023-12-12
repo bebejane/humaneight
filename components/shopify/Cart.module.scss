@@ -31,11 +31,15 @@
 
     .icon {
       position: relative;
+      margin-top: -0.1rem;
 
       img {
         position: relative;
-        width: 24px;
-        height: 33px;
+        height: 24px;
+
+        @include mq($from: desktop) {
+          height: 33px;
+        }
       }
 
       .loader {
@@ -53,9 +57,10 @@
     }
 
     &.inverted {
-      .icon>img {
-        width: 31px;
-        height: 43px;
+      .icon > img {
+        @include mq($from: desktop) {
+          height: 43px;
+        }
       }
 
       &:hover {
@@ -72,7 +77,10 @@
       justify-content: center;
       height: 100%;
       width: 100%;
-      top: 0.2em;
+      top: 0.1em;
+      @include mq($until: desktop) {
+        font-size: 0.7rem;
+      }
     }
 
     &.loading {
@@ -220,7 +228,7 @@
     text-align: right;
   }
 
-  >form {
+  > form {
     display: flex;
     align-items: flex-end;
 

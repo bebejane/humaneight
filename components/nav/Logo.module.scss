@@ -1,7 +1,7 @@
 .logo {
   position: fixed;
   font-size: var(--logo-size);
-  top: calc(var(--outer-margin) - 0.24em);
+  top: calc(var(--outer-margin) - 0.17em);
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 0;
@@ -12,6 +12,10 @@
   text-transform: uppercase;
   opacity: 0;
   animation: show 0.5s ease-out forwards;
+
+  @include mq($from: desktop) {
+    top: calc(var(--outer-margin) - 0.24em);
+  }
 
   @keyframes show {
     0% {

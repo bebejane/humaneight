@@ -13,7 +13,7 @@
 	--nav-size: 1.7rem;
 	--logo-size: calc(var(--nav-size) * 1.1);
 	--logo-size-intro: 13.7vw;
-	--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
+	--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.7));
 	--gutter: 0.6rem;
 	--half-gutter: calc(var(--gutter) / 2);
 	--letter-space: 0.1em;
@@ -30,6 +30,7 @@
 	--z-cart: 3000;
 
 	@include mq($from: desktop) {
+		--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
 		--outer-margin: 1.2rem;
 		--gutter: 1.2rem;
 		--space-big: 4rem;
@@ -154,9 +155,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
