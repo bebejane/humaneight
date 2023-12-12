@@ -26,10 +26,10 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
         {menu.map(({ id, title, sub }) => (
           <li key={id}>
             <header onClick={() => setMenuItemId(menuItemId === id ? null : id)}>
-              <h3 className="small">{title}</h3>
+              <h3 className="big">{title}</h3>
               {sub &&
-                <button className={cn(menuItemId === id && s.active)}  >
-                  {menuItemId === id ? '-' : '+'}
+                <button className={cn(menuItemId === id && s.active), "big symbol"}  >
+                  {menuItemId === id ? '–' : '+'}
                 </button>
               }
             </header>
@@ -39,7 +39,7 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
                   <Link
                     href={`${slug}`}
                     localized={localized}
-                    className="nav-small nav-hover"
+                    className="big nav-hover"
                   >
                     {title}
                   </Link>
@@ -48,7 +48,7 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
             </ul>
           </li>
         ))}
-        <li>
+        <li className={s.country}>
           {showMenu && <CountrySelector localization={localization} label="Location" modal={true} />}
         </li>
       </ul>
