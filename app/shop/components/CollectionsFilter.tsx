@@ -1,30 +1,20 @@
-'use client'
-
 import s from './CollectionsFilter.module.scss'
 import cn from 'classnames'
 import Link from '@components//nav/Link'
-import { useEffect, useState } from 'react'
-import useQueryString from '@lib/hooks/useQueryString'
-import { useWindowSize } from 'react-use'
-import useMeasure from 'react-use-measure'
 
 export type Props = {
   collectionId?: string
   allCollections?: AllCollectionsQuery['allCollections']
+  searchParams?: any
 }
 
 const categories = ['All', 'Kids', 'Fitted', 'Relaxed', 'Oversize']
 
-export default function CollectionsFilter({ collectionId = 'all', allCollections }: Props) {
+export default function CollectionsFilter({ collectionId = 'all', allCollections, searchParams }: Props) {
 
-  const [sub, setSub] = useState<string | null>(collectionId ?? null)
-  const [subOpen, setSubOpen] = useState(false)
-  const { searchParams, pathname } = useQueryString()
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
   const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
-  const categoryId = searchParams.get('category') ?? 'All'
-
-  useEffect(() => { setSubOpen(false) }, [pathname, searchParams])
+  const categoryId = searchParams?.category ?? 'All'
 
   return (
     <>
@@ -50,7 +40,9 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
         <ul className={cn(s.subFilter, 'mid')}>
           {categories.map((category, i) => (
             <li key={i} className={cn(category === categoryId && s.selected)}>
-              <Link href={`/shop/${collectionSlug}/?category=${category}`}>{category}</Link>
+              <Link href={`/shop/${collectionSlug}/?category=${category}`} replace={true}>
+                {category}
+              </Link>
             </li>
           ))}
         </ul>

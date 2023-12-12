@@ -9,7 +9,7 @@ import { CountryShopParams } from '@app/[country]/shop/page';
 import React from 'react';
 import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 
-export default async function Shop({ params }: CountryShopParams) {
+export default async function Shop({ params, searchParams }: CountryShopParams) {
 
   const isAllCategory = !params?.collection
 
@@ -49,7 +49,11 @@ export default async function Shop({ params }: CountryShopParams) {
 
   return (
     <>
-      <CollectionsFilter collectionId={collection?.id} allCollections={allCollections} />
+      <CollectionsFilter
+        collectionId={collection?.id}
+        allCollections={allCollections}
+        searchParams={searchParams}
+      />
       <div className={s.container}>
         <ThumbnailContainer>
           {allProducts?.map((product, i) => (

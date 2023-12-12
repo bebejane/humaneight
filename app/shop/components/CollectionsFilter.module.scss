@@ -120,7 +120,6 @@
 
     &:hover {
 
-      //background-color: var(--black);
       a {
         color: var(--black);
         letter-spacing: var(--letter-space);
@@ -131,10 +130,6 @@
       color: var(--gray-dark);
       padding: 1rem;
       display: block;
-
-      &:hover {
-        //background-color: var(--black);
-      }
     }
 
     &.selected {

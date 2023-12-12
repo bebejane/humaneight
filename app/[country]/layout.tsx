@@ -1,7 +1,7 @@
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
 
-export type CountryParams = { params: { country: string } } | undefined
+export type CountryParams = { params: { country: string }, searchParams: any } | undefined
 
 export type LayoutProps = {
   children: React.ReactNode
