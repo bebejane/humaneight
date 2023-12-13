@@ -43,6 +43,13 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       tags: ['collection']
     })])
 
+  const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag))
+  const tags = allProducts?.reduce((acc, product) => {
+    const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
+    productTags.forEach(tag => !acc.includes(tag) && acc.push(tag))
+    return acc
+  }, ['all'] as string[])
+
   const brandingInterval = 5
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
   const columns = isAllCategory ? 'three' : 'four'
@@ -53,10 +60,11 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
         collectionId={collection?.id}
         allCollections={allCollections}
         searchParams={searchParams}
+        tags={tags}
       />
       <div className={s.container}>
         <ThumbnailContainer>
-          {allProducts?.map((product, i) => (
+          {filteredProducts?.map((product, i) => (
             <React.Fragment key={product.id}>
               <ProductThumbnail
                 product={product as ProductRecord}
