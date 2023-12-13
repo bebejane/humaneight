@@ -8,7 +8,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5em;
 
-  > li,
+  >li,
   span.active {
     position: relative;
     display: flex;
@@ -37,6 +37,10 @@
       &.hide {
         opacity: 0;
       }
+
+      @include mq($until: desktop) {
+        display: none;
+      }
     }
 
     &:has(.active:hover) {
@@ -45,7 +49,7 @@
       }
     }
 
-    .active {
+    .titleActive {
       position: absolute;
       top: 0;
       left: 0;
@@ -55,7 +59,6 @@
       white-space: nowrap;
       opacity: 1;
       color: var(--black);
-      //transition: letter-spacing 0.2s ease-in-out;
 
       &.selected {
         opacity: 1;
@@ -77,19 +80,8 @@
         }
       }
 
-      .arrow {
-        all: unset;
-        font-size: 1rem;
-        user-select: none;
-        margin-top: 0.3em;
-        margin-left: 0.1em;
-        cursor: pointer;
-        opacity: 0;
-        display: none;
-
-        &.show {
-          opacity: 1;
-        }
+      @include mq($until: desktop) {
+        position: relative;
       }
     }
   }
@@ -98,6 +90,7 @@
     overflow-x: scroll;
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));
+    margin-bottom: 1rem;
     width: calc(100% + (2 * var(--outer-margin)));
 
     &::-webkit-scrollbar {
@@ -125,7 +118,6 @@
   margin-top: -1rem;
 
   li {
-    //border: 1px solid var(--beige);
     text-align: center;
     width: 100%;
 
@@ -144,6 +136,7 @@
     }
 
     &.selected {
+
       a,
       a:hover {
         color: var(--black) !important;
@@ -153,6 +146,8 @@
 
   @include mq($until: desktop) {
     overflow-x: scroll;
+
+    margin-top: 0;
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));
     width: calc(100% + (2 * var(--outer-margin)));
@@ -195,6 +190,7 @@
     }
 
     &.selected {
+
       a,
       a:hover {
         color: var(--black);

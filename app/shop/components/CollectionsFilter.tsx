@@ -25,7 +25,7 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
               <span className={cn(s.title, collectionId === id && s.hide)}>
                 {pluralTitle}
               </span>
-              <span className={cn(s.active, collectionId === id && s.selected, "nav")}>
+              <span className={cn(s.titleActive, collectionId === id && s.selected, "nav")}>
                 <Link href={`/shop/${slug}`}>
                   {pluralTitle}
                 </Link>
