@@ -18,7 +18,7 @@ const nextConfig = {
 		buildActivity: false,
 	},
 	experimental: {
-		//ppr: true,
+		ppr: true,
 	},
 	async headers() {
 		return [
