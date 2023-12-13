@@ -56,7 +56,7 @@
     }
 
     figcaption {
-      margin-top: 0.5rem;
+      margin-top: 0.6rem;
 
       @include mq($until: desktop) {
         text-align: center;
