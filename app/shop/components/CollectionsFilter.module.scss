@@ -8,7 +8,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5em;
 
-  >li,
+  > li,
   span.active {
     position: relative;
     display: flex;
@@ -57,13 +57,23 @@
       color: var(--black);
       //transition: letter-spacing 0.2s ease-in-out;
 
-      &.selected,
-      &:hover {
+      &.selected {
         opacity: 1;
         letter-spacing: var(--letter-space);
 
         a {
           color: var(--black);
+        }
+      }
+
+      @include mq($from: desktop) {
+        &:hover {
+          opacity: 1;
+          letter-spacing: var(--letter-space);
+
+          a {
+            color: var(--black);
+          }
         }
       }
 
@@ -85,7 +95,6 @@
   }
 
   @include mq($until: desktop) {
-
     overflow-x: scroll;
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));
@@ -97,6 +106,8 @@
 
     li {
       flex: 0 0;
+      padding-right: 1em;
+      padding-bottom: 0;
     }
   }
 }
@@ -119,11 +130,9 @@
     width: 100%;
 
     &:hover {
-
       a {
         color: var(--black);
         letter-spacing: var(--letter-space);
-
       }
     }
 
@@ -135,7 +144,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black) !important;
@@ -187,7 +195,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black);
