@@ -123,6 +123,7 @@
       a {
         color: var(--black);
         letter-spacing: var(--letter-space);
+
       }
     }
 
@@ -130,6 +131,7 @@
       color: var(--gray-dark);
       padding: 1rem;
       display: block;
+      text-transform: capitalize;
     }
 
     &.selected {

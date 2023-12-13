@@ -71,6 +71,9 @@ fragment ProductLightFragment on ProductRecord {
 		title
 		description
 	}
+	shopifyProduct {
+		...ShopifyProductFragment
+	}
 }
 
 fragment ProductFragment on ProductRecord {
@@ -154,5 +157,20 @@ fragment ProductMediaItemFragment on ProductMediaModelRecord {
 		media {
 			...ImageFragment
 		}
+	}
+}
+
+fragment ShopifyProductFragment on ShopifyProductRecord {
+	id
+	shopifyId
+	title
+	tags
+	collections {
+		id
+		title
+		handle
+	}
+	image {
+		...ImageFragment
 	}
 }

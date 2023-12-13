@@ -20,18 +20,6 @@ type ObjectMap = {
 
 const objects: ObjectMap[] = [
   {
-    dato_model: 'shopify_product',
-    shopify_model: 'product',
-    path: 'product',
-    fields: {
-      shopify_id: 'id',
-      title: 'title',
-      handle: 'handle',
-      image: 'image',
-      tags: 'tags',
-    }
-  },
-  {
     dato_model: 'shopify_collection',
     shopify_model: 'collection',
     path: 'smartCollection',
@@ -51,6 +39,19 @@ const objects: ObjectMap[] = [
       title: 'title',
       handle: 'handle',
       products: 'products'
+    }
+  },
+  {
+    dato_model: 'shopify_product',
+    shopify_model: 'product',
+    path: 'product',
+    fields: {
+      shopify_id: 'id',
+      title: 'title',
+      handle: 'handle',
+      collections: 'collections',
+      image: 'image',
+      tags: 'tags',
     }
   }
 ]
@@ -104,6 +105,14 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
     const products = await shopify.collection.products(data.id, { limit: 250 })
     const datoProducts = (await Promise.all(products.map(({ id }) => client.items.list({ version: 'latest', filter: { type: 'shopify_product', fields: { shopify_id: { eq: id } } } }))))
     data.products = datoProducts.map((p) => p[0].id)
+  }
+
+  if (object.dato_model === 'shopify_product') {
+    const smartCollections = await shopify.smartCollection.list({ product_id: data.id, limit: 250 })
+    const customCollections = await shopify.customCollection.list({ product_id: data.id, limit: 250 })
+    const collections = [...smartCollections, ...customCollections]
+    const datoCollections = (await Promise.all(collections.map(({ id }) => client.items.list({ version: 'latest', filter: { type: 'shopify_collection', fields: { shopify_id: { eq: id } } } }))))
+    data.collections = datoCollections.map((p) => p[0].id)
   }
 
   if (data.image?.src) {

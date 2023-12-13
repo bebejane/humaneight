@@ -4,17 +4,16 @@ import Link from '@components//nav/Link'
 
 export type Props = {
   collectionId?: string
+  tags?: string[]
   allCollections?: AllCollectionsQuery['allCollections']
   searchParams?: any
 }
 
-const categories = ['All', 'Kids', 'Fitted', 'Relaxed', 'Oversize']
-
-export default function CollectionsFilter({ collectionId = 'all', allCollections, searchParams }: Props) {
+export default function CollectionsFilter({ tags, collectionId = 'all', allCollections, searchParams }: Props) {
 
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
   const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
-  const categoryId = searchParams?.category ?? 'All'
+  const tag = searchParams?.tag ?? 'all'
 
   return (
     <>
@@ -38,10 +37,10 @@ export default function CollectionsFilter({ collectionId = 'all', allCollections
 
       {collectionId !== 'all' &&
         <ul className={cn(s.subFilter, 'mid')}>
-          {categories.map((category, i) => (
-            <li key={i} className={cn(category === categoryId && s.selected)}>
-              <Link href={`/shop/${collectionSlug}/?category=${category}`} replace={true}>
-                {category}
+          {tags?.map((t, i) => (
+            <li key={i} className={cn(tag === t && s.selected)}>
+              <Link href={`/shop/${collectionSlug}/?tag=${t}`} replace={true}>
+                {t}
               </Link>
             </li>
           ))}

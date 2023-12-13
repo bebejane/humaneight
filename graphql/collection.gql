@@ -21,3 +21,28 @@ fragment CollectionFragment on CollectionRecord {
 		...ProductLightFragment
 	}
 }
+
+query AllShopifyCollections($first: IntType = 100, $skip: IntType = 0) {
+	allShopifyCollections(first: $first, skip: $skip) {
+		...ShopifyCollectionFragment
+	}
+	_allShopifyCollectionsMeta {
+		count
+	}
+}
+
+query ShopifyCollection($handle: String) {
+	shopifyCollection(filter: { handle: { eq: $handle } }) {
+		...ShopifyCollectionFragment
+	}
+}
+
+fragment ShopifyCollectionFragment on ShopifyCollectionRecord {
+	id
+	title
+	handle
+	shopifyId
+	products {
+		...ShopifyProductFragment
+	}
+}

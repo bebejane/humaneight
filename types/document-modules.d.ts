@@ -17,6 +17,9 @@ declare module '*/collection.gql' {
   export const AllCollections: DocumentNode;
 export const Collection: DocumentNode;
 export const CollectionFragment: DocumentNode;
+export const AllShopifyCollections: DocumentNode;
+export const ShopifyCollection: DocumentNode;
+export const ShopifyCollectionFragment: DocumentNode;
 
   export default defaultDocument;
 }
@@ -146,6 +149,7 @@ export const AllProductBranding: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
 export const ProductMediaItemFragment: DocumentNode;
+export const ShopifyProductFragment: DocumentNode;
 
   export default defaultDocument;
 }
