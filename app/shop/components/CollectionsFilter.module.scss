@@ -8,7 +8,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5em;
 
-  >li,
+  > li,
   span.active {
     position: relative;
     display: flex;
@@ -136,7 +136,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black) !important;
@@ -158,6 +157,7 @@
 
     li {
       width: auto;
+      padding: 0.5em;
 
       a {
         padding: 0;
@@ -190,7 +190,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black);
