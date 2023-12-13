@@ -31,8 +31,8 @@ export default async function ProductThumbnail({ product, index, columns = 'thre
             />
           }
           <figcaption>
-            <h3 className="mid">{product.title}</h3>
-            <p className="mid"><Price slug={product.slug} /></p>
+            <h3 className="mid-small">{product.title}</h3>
+            <p className="mid-small"><Price slug={product.slug} /></p>
           </figcaption>
           {columns !== 'four' &&
             <ul>
