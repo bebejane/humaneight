@@ -45,7 +45,7 @@
         pointer-events: none;
       }
 
-      &:hover + .secondary {
+      &:hover+.secondary {
         display: block !important;
       }
     }
@@ -128,7 +128,7 @@
     top: 0;
     left: 0;
     margin: var(--gutter);
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
   }
 }

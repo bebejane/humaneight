@@ -22,6 +22,7 @@
 	--full-margin: calc(-1 * var(--outer-margin));
 	--full-width: calc(100% + 2 * var(--outer-margin));
 
+	--z-variants-form: 1900;
 	--z-navbar: 2000;
 	--z-menu: 2100;
 	--z-logo: 2200;
@@ -155,11 +156,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {

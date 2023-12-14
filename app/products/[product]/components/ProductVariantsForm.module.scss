@@ -3,13 +3,14 @@
   flex-direction: column;
   width: 100%;
   position: fixed;
+  z-index: var(--z-variants-form);
   bottom: 0;
   background-color: var(--beige);
   z-index: 3;
 
   @include mq($until: desktop) {
-    width: calc(100%);
 
+    width: calc(100%);
     padding-top: var(--outer-margin);
     padding-bottom: var(--outer-margin);
   }
@@ -17,6 +18,12 @@
   @include mq($from: desktop) {
     position: absolute;
     bottom: var(--outer-margin);
+  }
+
+  transition: transform 0.5s ease-in-out;
+
+  &.hidden {
+    transform: translateY(100%);
   }
 
   fieldset {

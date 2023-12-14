@@ -7,8 +7,9 @@ import cn from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
-import { useMedia, useWindowSize } from 'react-use';
+import { useMedia, useWindowSize, useWindowScroll } from 'react-use';
 import useMeasure from 'react-use-measure';
+import { useScrollInfo } from 'next-dato-utils';
 
 export type Props = {
   product: ProductQuery['product']
@@ -21,6 +22,8 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 
   const { searchParams, setSearchParam } = useQueryString()
   const { width, height } = useWindowSize()
+  const { scrolledPosition } = useScrollInfo()
+
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -55,11 +58,12 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   }, [width, height, isDesktop])
 
   const isHidden = (isDesktop && mobile) || (!isDesktop && !mobile)
+  const isMobileHidden = !isDesktop && scrolledPosition < 100
 
   if (isHidden) return null
 
   return (
-    <form className={cn(s.form, className)} ref={formRef} style={formStyles}>
+    <form className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
       {haveColors && <fieldset>
         <Select
           key={variantId}
