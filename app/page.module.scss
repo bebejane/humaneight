@@ -4,11 +4,7 @@
   }
 
   .fullscreenBlock {
-    height: calc(65vh - var(--navbar-height));
-
-    @include mq($from: desktop) {
-      height: calc(85vh - var(--navbar-height));
-    }
+    height: var(--hero-height);
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));
     margin-bottom: 0;

@@ -11,6 +11,7 @@ import Logo from "@components/nav/Logo";
 import Hamburger from "./Hamburger";
 import MenuDesktop from "./MenuDesktop";
 import MenuMobile from "./MenuMobile";
+import { useMedia } from "react-use";
 
 export type Props = {
   menu: Menu
@@ -23,6 +24,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState(false);
   const [isShopPage, setIsShopPage] = useState(pathname.toLowerCase().startsWith('/shop'));
+  const isDesktop = useMedia('(min-width: 980px)', false)
 
   useEffect(() => {
     setShowMenu(false)
@@ -45,7 +47,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
           <Link href="/shop" className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>Shop</Link>
         }
       </nav>
-      {!showMenu &&
+      {(!showMenu || !isDesktop) &&
         <Cart localization={localization} />
       }
       <MenuDesktop

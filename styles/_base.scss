@@ -14,8 +14,10 @@
 	--logo-size: calc(var(--nav-size) * 1.1);
 	--logo-size-intro: 13.7vw;
 	--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.7));
+	--hero-height: calc(65vh - var(--navbar-height));
 	--gutter: 0.6rem;
 	--half-gutter: calc(var(--gutter) / 2);
+
 	--letter-space: 0.1em;
 	--space: 2rem;
 	--space-big: 3rem;
@@ -32,6 +34,7 @@
 
 	@include mq($from: desktop) {
 		--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
+		--hero-height: calc(85vh - var(--navbar-height));
 		--outer-margin: 1.2rem;
 		--gutter: 1.2rem;
 		--space-big: 4rem;

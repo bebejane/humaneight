@@ -1,6 +1,6 @@
 import s from './RelatedProducts.module.scss'
 import { apiQuery } from 'next-dato-utils'
-import { AllProductByCollectionDocument } from '@graphql'
+import { AllProductByCollectionDocument, AllProductsDocument } from '@graphql'
 import Link from 'next/link'
 import ThumbnailContainer from '@components/layout/ThumbnailContainer'
 import ProductThumbnail from '@components/layout/ProductThumbnail'
@@ -13,14 +13,25 @@ export default async function RelatedProducts({ product }: Props) {
 
   if (!product?.collection.id) return null
 
-  const { allProducts } = await apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
+  const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
     variables: {
-      collectionId: product?.collection.id,
-      first: 4,
+      first: 100,
       skip: 0
     },
     tags: ['product']
   })
+
+  const sortByTags = (a: AllProductsQuery['allProducts'][0], b: AllProductsQuery['allProducts'][0]) => {
+    const tags = product?.shopifyProduct?.tags?.split(',') ?? []
+    const aTags = a?.shopifyProduct?.tags?.split(',') ?? []
+    const bTags = b?.shopifyProduct?.tags?.split(',') ?? []
+    return aTags.find(t => tags.includes(t)) && bTags.find(t => tags.includes(t)) ? 0 : aTags.find(t => tags.includes(t)) && !bTags.find(t => tags.includes(t)) ? 1 : -1
+  }
+
+  const relatedProducts = allProducts
+    .sort((a, b) => a.collection.id === product?.collection.id ? 1 : -1)
+    .sort(sortByTags)
+    .slice(0, 4)
 
   return (
     <section className={s.related}>
@@ -31,7 +42,7 @@ export default async function RelatedProducts({ product }: Props) {
         </Link>
       </header>
       <ThumbnailContainer>
-        {allProducts.map((p, i) =>
+        {relatedProducts.map((p, i) =>
           <ProductThumbnail key={p.id} product={p as ProductRecord} index={i} columns={'four'} />
         )}
       </ThumbnailContainer>

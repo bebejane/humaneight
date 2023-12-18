@@ -6,6 +6,8 @@ import { useScrollInfo } from 'next-dato-utils';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useMedia } from 'react-use';
+import useMeasure from 'react-use-measure';
 
 const tagline = ['For', 'a', 'neurodiverse', 'world.']
 
@@ -17,6 +19,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const [ratio, setRatio] = useState(0)
   const [taglineTrigger, setTaglineTrigger] = useState<boolean | null>(null)
+  const [ref, { bottom: logoBottom }] = useMeasure()
 
   useEffect(() => {
     setIsHome(pathname === '/')
@@ -45,8 +48,10 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
   }, [scrolledPosition, viewportHeight])
 
   const maxLogoSize = 'var(--logo-size-intro)'
+  const heroHeight = 'calc(var(--hero-height) / 2)'
   const fontSize = `calc(calc(calc(${maxLogoSize} - var(--logo-size)) * ${1 - ratio}) + var(--logo-size))`
-  const marginTop = `calc(calc(calc(50vh - calc(${maxLogoSize} / 2 )) - calc(var(--navbar-height) / 2 )) * ${1 - ratio})`
+  const marginTop = `calc(calc(calc(${heroHeight} - calc(${maxLogoSize} / 2 )) + var(--navbar-height)) * ${1 - ratio})`
+  const marginTopTagline = `calc(${marginTop} + ${maxLogoSize} - var(--navbar-height) + var(--outer-margin))`
   const style = { fontSize, marginTop }
 
   return (
@@ -54,10 +59,11 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       <h1
         className={cn(s.logo, isHome && s.intro, ratio > 0.9 && s.black)}
         style={isHome ? style : undefined}
+        ref={ref}
       >
         <Link href="/">Humaneight</Link>
       </h1>
-      <div className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}>
+      <div style={{ top: logoBottom }} className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}>
         <h2>{tagline.map((word, i) =>
           <span
             key={`${i}-${taglineTrigger}`}

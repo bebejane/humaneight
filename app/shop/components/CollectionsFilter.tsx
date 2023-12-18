@@ -9,6 +9,8 @@ export type Props = {
   searchParams?: any
 }
 
+const tagSortOrder = ['all', 'kids', 'fitted', 'relaxed', 'oversized']
+
 export default function CollectionsFilter({ tags, collectionId = 'all', allCollections, searchParams }: Props) {
 
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
@@ -35,17 +37,17 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
         })}
       </ul>
 
-      {collectionId !== 'all' &&
-        <ul className={cn(s.subFilter, 'mid')}>
-          {tags?.map((t, i) => (
-            <li key={i} className={cn(tag === t && s.selected)}>
-              <Link href={`/shop/${collectionSlug}/?tag=${t}`} replace={true}>
-                {t}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      }
+
+      <ul className={cn(s.subFilter, 'mid')}>
+        {tags?.sort((a, b) => tagSortOrder.findIndex(t => t === a) > tagSortOrder.findIndex(t => t === b) ? 1 : -1).map((t, i) => (
+          <li key={i} className={cn(tag === t && s.selected)}>
+            <Link href={`/shop/${collectionSlug}/?tag=${t}`} replace={true}>
+              {t}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
     </>
   )
 }
