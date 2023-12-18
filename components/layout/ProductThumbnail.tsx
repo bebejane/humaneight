@@ -32,7 +32,7 @@ export default async function ProductThumbnail({ product, index, columns = 'thre
           }
           <figcaption>
             <h3 className="mid-small">{product.title}</h3>
-            <p className="mid-small"><Price slug={product.slug} /></p>
+            <p className="mid-small"><Price slug={product.shopifyProduct.handle} /></p>
           </figcaption>
           {columns !== 'four' &&
             <ul>

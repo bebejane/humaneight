@@ -2339,11 +2339,27 @@ type InverseRelationshipFieldFilterBetweenProductAndCollection = {
 };
 
 /** Specifies how to filter by linking fields */
+type InverseRelationshipFieldFilterBetweenProductAndShopifyProduct = {
+  /** Filter linking records that reference current record in at least one of the specified fields */
+  anyIn?: InputMaybe<Array<ProductModelFieldsReferencingShopifyProductModel>>;
+  /** Filter linking records that do not reference current record in any of the specified fields */
+  notIn?: InputMaybe<Array<ProductModelFieldsReferencingShopifyProductModel>>;
+};
+
+/** Specifies how to filter by linking fields */
 type InverseRelationshipFieldFilterBetweenProductLinkAndProduct = {
   /** Filter linking records that reference current record in at least one of the specified fields */
   anyIn?: InputMaybe<Array<ProductLinkModelFieldsReferencingProductModel>>;
   /** Filter linking records that do not reference current record in any of the specified fields */
   notIn?: InputMaybe<Array<ProductLinkModelFieldsReferencingProductModel>>;
+};
+
+/** Specifies how to filter by linking fields */
+type InverseRelationshipFieldFilterBetweenShopifyCollectionAndShopifyProduct = {
+  /** Filter linking records that reference current record in at least one of the specified fields */
+  anyIn?: InputMaybe<Array<ShopifyCollectionModelFieldsReferencingShopifyProductModel>>;
+  /** Filter linking records that do not reference current record in any of the specified fields */
+  notIn?: InputMaybe<Array<ShopifyCollectionModelFieldsReferencingShopifyProductModel>>;
 };
 
 /** Specifies how to filter by linking fields */
@@ -2387,9 +2403,25 @@ type InverseRelationshipFilterBetweenProductAndCollection = {
 };
 
 /** Specifies how to filter linking records */
+type InverseRelationshipFilterBetweenProductAndShopifyProduct = {
+  /** Specifies how to filter by linking fields */
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenProductAndShopifyProduct>;
+  /** Specifies how to filter by linking locales */
+  locales?: InputMaybe<LinkingLocalesFilter>;
+};
+
+/** Specifies how to filter linking records */
 type InverseRelationshipFilterBetweenProductLinkAndProduct = {
   /** Specifies how to filter by linking fields */
   fields?: InputMaybe<InverseRelationshipFieldFilterBetweenProductLinkAndProduct>;
+  /** Specifies how to filter by linking locales */
+  locales?: InputMaybe<LinkingLocalesFilter>;
+};
+
+/** Specifies how to filter linking records */
+type InverseRelationshipFilterBetweenShopifyCollectionAndShopifyProduct = {
+  /** Specifies how to filter by linking fields */
+  fields?: InputMaybe<InverseRelationshipFieldFilterBetweenShopifyCollectionAndShopifyProduct>;
   /** Specifies how to filter by linking locales */
   locales?: InputMaybe<LinkingLocalesFilter>;
 };
@@ -3073,6 +3105,11 @@ type ProductModelDescriptionField = {
 /** Linking fields */
 enum ProductModelFieldsReferencingCollectionModel {
   product_collection = 'product_collection'
+}
+
+/** Linking fields */
+enum ProductModelFieldsReferencingShopifyProductModel {
+  product_shopifyProduct = 'product_shopifyProduct'
 }
 
 type ProductModelFilter = {
@@ -3991,6 +4028,11 @@ type SeoField = {
   twitterCard?: Maybe<Scalars['String']['output']>;
 };
 
+/** Linking fields */
+enum ShopifyCollectionModelFieldsReferencingShopifyProductModel {
+  shopifyCollection_products = 'shopifyCollection_products'
+}
+
 type ShopifyCollectionModelFilter = {
   AND?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelFilter>>>;
@@ -4143,6 +4185,12 @@ enum ShopifyProductModelOrderBy {
 /** Record of type Shopify Product (shopify_product) */
 type ShopifyProductRecord = RecordInterface & {
   __typename?: 'ShopifyProductRecord';
+  _allReferencingProducts: Array<ProductRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingProductsMeta: CollectionMetadata;
+  _allReferencingShopifyCollections: Array<ShopifyCollectionRecord>;
+  /** Returns meta information regarding a record collection */
+  _allReferencingShopifyCollectionsMeta: CollectionMetadata;
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
@@ -4163,6 +4211,46 @@ type ShopifyProductRecord = RecordInterface & {
   shopifyId: Scalars['String']['output'];
   tags?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
+};
+
+
+/** Record of type Shopify Product (shopify_product) */
+type ShopifyProductRecord_allReferencingProductsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ProductModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ProductModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenProductAndShopifyProduct>;
+};
+
+
+/** Record of type Shopify Product (shopify_product) */
+type ShopifyProductRecord_allReferencingProductsMetaArgs = {
+  filter?: InputMaybe<ProductModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenProductAndShopifyProduct>;
+};
+
+
+/** Record of type Shopify Product (shopify_product) */
+type ShopifyProductRecord_allReferencingShopifyCollectionsArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  filter?: InputMaybe<ShopifyCollectionModelFilter>;
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  locale?: InputMaybe<SiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<ShopifyCollectionModelOrderBy>>>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenShopifyCollectionAndShopifyProduct>;
+};
+
+
+/** Record of type Shopify Product (shopify_product) */
+type ShopifyProductRecord_allReferencingShopifyCollectionsMetaArgs = {
+  filter?: InputMaybe<ShopifyCollectionModelFilter>;
+  locale?: InputMaybe<SiteLocale>;
+  through?: InputMaybe<InverseRelationshipFilterBetweenShopifyCollectionAndShopifyProduct>;
 };
 
 
@@ -5039,6 +5127,13 @@ type ProductQueryVariables = Exact<{
 
 
 type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, label?: string, slug: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }>, metaSections: Array<{ __typename?: 'ProductMetaInfoRecord', id: any, title: string, metaType: { __typename?: 'ProductMetaTypeRecord', id: any, title: string }, text: { __typename?: 'ProductMetaInfoModelTextField', blocks: Array<string>, value: any, links: Array<string> } }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
+
+type ProductByIdQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ItemId']['input']>;
+}>;
+
+
+type ProductByIdQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, label?: string, slug: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }>, metaSections: Array<{ __typename?: 'ProductMetaInfoRecord', id: any, title: string, metaType: { __typename?: 'ProductMetaTypeRecord', id: any, title: string }, text: { __typename?: 'ProductMetaInfoModelTextField', blocks: Array<string>, value: any, links: Array<string> } }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
 
 type AllProductByCollectionQueryVariables = Exact<{
   collectionId?: InputMaybe<Scalars['ItemId']['input']>;

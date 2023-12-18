@@ -13,6 +13,12 @@ query Product($slug: String) {
 	}
 }
 
+query ProductById($id: ItemId) {
+	product(filter: { shopifyProduct: { eq: $id } }) {
+		...ProductFragment
+	}
+}
+
 query AllProductByCollection($collectionId: ItemId, $first: IntType = 100, $skip: IntType = 0) {
 	allProducts(first: $first, skip: $skip, filter: { collection: { eq: $collectionId } }) {
 		...ProductLightFragment
