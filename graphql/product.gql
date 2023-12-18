@@ -13,7 +13,7 @@ query Product($slug: String) {
 	}
 }
 
-query AllProductByCollection($collectionId: ItemId!, $first: IntType = 100, $skip: IntType = 0) {
+query AllProductByCollection($collectionId: ItemId, $first: IntType = 100, $skip: IntType = 0) {
 	allProducts(first: $first, skip: $skip, filter: { collection: { eq: $collectionId } }) {
 		...ProductLightFragment
 	}
