@@ -12,7 +12,7 @@ export type Props = {
 export default async function ProductThumbnail({ product, index, columns = 'three' }: Props) {
 
   return (
-    <Link href={`/products/${product.slug}`} className={cn(s.thumbnail, s[columns])} data-index={index}>
+    <Link href={`/products/${product.shopifyProduct.handle}`} className={cn(s.thumbnail, s[columns])} data-index={index}>
       {product.image &&
         <figure>
           <Image

@@ -25,8 +25,8 @@ export async function generateStaticParams(params: CountryParams) {
     generateTags: false,
   });
 
-  return allProducts.map(({ slug }) => ({
-    product: slug,
+  return allProducts.map(({ shopifyProduct }) => ({
+    product: shopifyProduct?.handle,
     country: params?.params?.country
   }))
 }
