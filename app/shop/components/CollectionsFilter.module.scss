@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: center;
     padding-top: 0.3em;
-    padding-bottom: 1em;
+    padding-bottom: 0.4em;
     text-align: center;
 
     a {
@@ -113,9 +113,8 @@
   justify-content: space-around;
   width: 100%;
   border-top: 1px solid var(--gray);
-  border-bottom: 1px solid var(--gray);
   margin-top: -1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   li {
     text-align: center;
@@ -145,7 +144,7 @@
 
   @include mq($until: desktop) {
     overflow-x: scroll;
-    margin-bottom: 1rem;
+    //margin-bottom: 1rem;
     margin-top: 0;
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));

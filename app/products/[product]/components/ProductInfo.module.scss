@@ -1,5 +1,4 @@
 .details {
-
   @include mq($until: desktop) {
     grid-column: span 12;
   }
@@ -27,9 +26,11 @@
       display: none;
     }
 
-    .image {}
+    .image {
+    }
 
-    .picture {}
+    .picture {
+    }
   }
 
   header {
@@ -51,20 +52,22 @@
   all: unset;
   cursor: pointer;
   display: block;
-  padding-top: 0.5em;
+  //padding-top: 0.5em;
 }
 
 .summary {
-  display: inline;
+  display: inline-block;
+  //padding-bottom: 1em;
 }
 
 .description {
-  padding-top: 1em;
+  margin-bottom: 1em;
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
 
   p {
     padding-bottom: 0;
+    text-indent: 1em;
   }
 }

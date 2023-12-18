@@ -22,13 +22,15 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    >li {
+    > li {
       //height: 2rem;
+      border-bottom: 1px solid var(--gray);
+      padding-bottom: 1.5rem;
 
       header {
         display: flex;
@@ -54,8 +56,8 @@
       ul {
         display: none;
         flex-direction: column;
-        padding-top: 0.8rem;
-
+        padding-top: 1.5rem;
+        padding-left: var(--outer-margin);
         &.show {
           display: flex;
 
@@ -64,7 +66,7 @@
           }
         }
 
-        >li {
+        > li {
           &.selected {
             a {
               letter-spacing: var(--letter-space);
@@ -77,5 +79,6 @@
 
   .country {
     padding-top: 4rem;
+    border-bottom: 0;
   }
 }

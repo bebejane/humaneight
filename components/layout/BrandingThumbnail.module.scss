@@ -16,7 +16,11 @@
   }
 
   &.four {
-    grid-column: span 3;
+    grid-column: span 6;
+
+    @include mq($from: desktop) {
+      grid-column: span 3;
+    }
   }
 
   .image {

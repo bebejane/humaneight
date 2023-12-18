@@ -46,10 +46,16 @@
     background-color: var(--gray);
 
     .option {
-      padding: 0.2em;
+      padding: 0.4em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      &:first-of-type {
+        padding-top: 0.7em;
+      }
+      &:last-of-type {
+        padding-bottom: 0.8em;
+      }
 
       &.selected {
         background-color: var(--black);

@@ -9,7 +9,6 @@
   z-index: 3;
 
   @include mq($until: desktop) {
-
     width: calc(100%);
     padding-top: var(--outer-margin);
     padding-bottom: var(--outer-margin);
@@ -36,16 +35,23 @@
     margin: 0;
     margin-bottom: 0.5em;
 
+    @include mq($from: desktop) {
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
     .description,
     .sizeguide {
       flex: 0 0 3em;
     }
 
     .sizeguide {
+      display: none;
       text-align: center;
       border: 1px solid var(--gray);
       height: 2rem;
-      display: flex;
+      //display: flex;
       justify-content: center;
       align-items: center;
 
@@ -68,6 +74,7 @@
         width: 100%;
         border: 0;
         margin: 0;
+        height: 2.1rem;
         background-color: transparent;
         border: 1px solid var(--gray);
 
@@ -97,11 +104,15 @@
         align-items: center;
         justify-content: center;
         flex: 1 1 1em;
-        height: 2em;
+        height: 2.1em;
         border: 0px;
         background: transparent;
         border: 1px solid var(--gray);
-        border-right: 0px;
+        border-right: 0px solid var(--gray);
+
+        &:last-of-type {
+          border-right: 1px solid var(--gray);
+        }
 
         cursor: pointer;
 
@@ -117,16 +128,17 @@
       }
     }
 
-    >div {
+    > div {
       flex: 1 1 auto;
     }
 
-    select {}
+    select {
+    }
   }
 
   button {
     @include mq($from: desktop) {
-      margin-top: 1rem;
+      margin-top: var(--outer-margin);
     }
   }
 }
