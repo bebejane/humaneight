@@ -9,7 +9,6 @@ import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
 import { usePathname } from 'next/navigation'
-import { HamburgerClose } from '../nav/Hamburger'
 
 export type CartProps = {
   localization: LocalizationQuery['localization']
@@ -59,7 +58,12 @@ export default function Cart({ localization }: CartProps) {
             <CountrySelector localization={localization} label="Location" />
           </div>
           <div className={s.close} onClick={() => setShowCart(false)}>
-            <HamburgerClose onClick={() => setShowCart(false)} />
+            <button className={s.close} onClick={() => setShowCart(false)} >
+              <div className={s.wrap}>
+                <div />
+                <div />
+              </div>
+            </button>
           </div>
         </div>
       </header>

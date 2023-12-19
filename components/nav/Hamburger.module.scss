@@ -21,6 +21,7 @@
   }
 
   &.closeOnly {
+    display: flex;
     left: unset;
     right: 0;
   }

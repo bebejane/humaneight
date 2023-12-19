@@ -35,25 +35,3 @@ export default function Hamburger({ showMenu, setShowMenu }: Props) {
     </div>
   )
 }
-
-export type CloseProps = {
-  onClick: () => void
-}
-
-export function HamburgerClose({ onClick }: CloseProps) {
-
-  return (
-    <div className={cn(s.hamburger, s.closeOnly)} onClick={onClick}>
-      <div className={s.wrap}>
-        {new Array(3).fill(0).map((_, i) =>
-          <div
-            id={`l${i + 1}`}
-            key={`l${i + 1}`}
-            className={cn(s.init, s.closed)}
-          ></div>
-        )}
-      </div>
-    </div>
-  )
-}
-

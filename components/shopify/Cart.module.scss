@@ -57,7 +57,7 @@
     }
 
     &.inverted {
-      .icon > img {
+      .icon>img {
         @include mq($from: desktop) {
           height: 43px;
         }
@@ -78,6 +78,7 @@
       height: 100%;
       width: 100%;
       top: 0.1em;
+
       @include mq($until: desktop) {
         top: 0em;
         font-size: 0.7rem;
@@ -235,7 +236,7 @@
     text-align: right;
   }
 
-  > form {
+  >form {
     display: flex;
     align-items: flex-end;
 
@@ -258,4 +259,48 @@
 
 .error {
   color: var(--red);
+}
+
+
+.close {
+  --line-height: 0.13rem;
+  --line-height-half: calc(var(--line-height) / 2);
+  --line-height-middle: calc(var(--line-height) / 4);
+  --height: calc(var(--navbar-height) - (var(--outer-margin) * 2.2));
+  --width: 21px;
+
+  all: unset;
+  position: fixed;
+  z-index: 10000000;
+  top: 0;
+  right: 0;
+  margin: var(--outer-margin);
+  width: var(--width);
+  max-width: var(--width);
+  min-height: var(--height);
+  pointer-events: all;
+
+  cursor: pointer;
+
+  .wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    >div {
+      position: absolute;
+      width: 100%;
+      height: var(--line-height);
+      background-color: var(--black);
+
+      &:nth-child(1) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+
+    }
+  }
 }
