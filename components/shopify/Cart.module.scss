@@ -119,6 +119,12 @@
     align-items: center;
 
     h3 {
+      width: 6rem;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
       flex: 1 1 auto;
     }
 

@@ -53,10 +53,12 @@ export default function Cart({ localization }: CartProps) {
     <div id="cart" className={cn(s.cart, showCart && s.show, updating && s.updating)} >
       <header>
         <h3>Cart</h3>
-        <div className={s.currency}>
-          <CountrySelector localization={localization} label="Location" />
+        <div className={s.wrapper}>
+          <div className={s.currency}>
+            <CountrySelector localization={localization} label="Location" />
+          </div>
+          <div className={s.close} onClick={() => setShowCart(false)}>×</div>
         </div>
-        <div className={s.close} onClick={() => setShowCart(false)}>×</div>
       </header>
       {isEmpty ?
         <div className={s.empty}>

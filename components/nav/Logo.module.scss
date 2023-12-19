@@ -14,7 +14,6 @@
   animation: show 0.5s ease-out forwards;
 
   @include mq($from: desktop) {
-
     top: calc(var(--outer-margin) - 0.24em);
   }
 
@@ -80,7 +79,7 @@
   h2 {
     grid-column-start: 2;
     grid-column-end: 12;
-    padding-top: 0.5em;
+    //padding-top: 0.5em;
     width: 100%;
     display: flex;
     justify-content: space-between;

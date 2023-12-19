@@ -45,8 +45,10 @@
         pointer-events: none;
       }
 
-      &:hover+.secondary {
-        display: block !important;
+      &:hover + .secondary {
+        @include mq($from: desktop) {
+          display: block !important;
+        }
       }
     }
 

@@ -37,17 +37,15 @@
     }
 
     &.shop {
-      right: calc(var(--outer-margin) + 2.2rem);
+      right: calc(var(--outer-margin) + 2.5rem);
 
       @include mq($until: desktop) {
         display: none;
       }
     }
 
-
     &.active {
       letter-spacing: var(--letter-space);
     }
   }
-
 }
