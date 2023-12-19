@@ -5,7 +5,6 @@
 
   @include mq($from: desktop) {
     padding-top: 1rem;
-
     grid-column-start: 1;
     grid-column-end: 5;
     position: sticky;
@@ -15,7 +14,7 @@
 
   &.expanded {
     top: 0;
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .mainImage {
@@ -26,11 +25,9 @@
       display: none;
     }
 
-    .image {
-    }
+    .image {}
 
-    .picture {
-    }
+    .picture {}
   }
 
   header {

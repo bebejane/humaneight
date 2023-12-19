@@ -13,6 +13,7 @@
   opacity: 0;
   animation: show 0.5s ease-out forwards;
 
+
   @include mq($from: desktop) {
     top: calc(var(--outer-margin) - 0.24em);
   }
@@ -57,18 +58,19 @@
 
 .tagline {
   position: fixed;
-  top: calc(calc(var(--hero-height) / 2) + var(--navbar-height));
+  top: 0; //calc(calc(var(--hero-height) / 2) + var(--navbar-height) - 0.5em);
   left: 0;
   width: 100%;
   color: var(--white);
   z-index: var(--z-logo);
+  margin-top: 1em;
   pointer-events: none;
 
   @include mq($until: desktop) {
-    top: calc(65vh / 2);
 
     h2 {
       font-size: 1.6rem !important;
+
     }
   }
 
@@ -79,15 +81,18 @@
   h2 {
     grid-column-start: 2;
     grid-column-end: 12;
-    //padding-top: 0.5em;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
 
     span {
-      opacity: 0;
+      opacity: 1;
       animation: start 0.2s ease-out both;
       animation-direction: normal;
+      line-height: 0;
 
       @keyframes start {
         0% {

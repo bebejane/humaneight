@@ -51,7 +51,6 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
   const heroHeight = 'calc(var(--hero-height) / 2)'
   const fontSize = `calc(calc(calc(${maxLogoSize} - var(--logo-size)) * ${1 - ratio}) + var(--logo-size))`
   const marginTop = `calc(calc(calc(${heroHeight} - calc(${maxLogoSize} / 1.8 )) + var(--navbar-height)) * ${1 - ratio})`
-  const marginTopTagline = `calc(${marginTop} + ${maxLogoSize} - var(--navbar-height) + var(--outer-margin))`
   const style = { fontSize, marginTop }
 
   return (

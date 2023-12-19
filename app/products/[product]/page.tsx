@@ -17,20 +17,6 @@ import RelatedProducts from '@app/products/[product]/components/RelatedProducts'
 import Feedback from './components/Feedback';
 import ProductVariantsForm from './components/ProductVariantsForm';
 
-export async function generateStaticParams(params: CountryParams) {
-
-  const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
-    all: true,
-    tags: ['product'],
-    generateTags: false,
-  });
-
-  return allProducts.map(({ shopifyProduct }) => ({
-    product: shopifyProduct?.handle,
-    country: params?.params?.country
-  }))
-}
-
 export default async function Product({ params }: CountryProductParams) {
 
   const [{ product, draftUrl }, { product: shopifyProduct }] = await Promise.all([
@@ -60,4 +46,18 @@ export default async function Product({ params }: CountryProductParams) {
       <DraftMode url={draftUrl} tag={product.id} />
     </>
   )
+}
+
+export async function generateStaticParams(params: CountryParams) {
+
+  const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
+    all: true,
+    tags: ['product'],
+    generateTags: false,
+  });
+
+  return allProducts.map(({ shopifyProduct }) => ({
+    product: shopifyProduct?.handle,
+    country: params?.params?.country
+  }))
 }
