@@ -16,6 +16,7 @@ export default function LottieAnimation({ url, className }: Props) {
   }, [url])
 
   error && console.error(error)
+
   if (!value) return null
 
   return <Lottie animationData={value} className={className} />
