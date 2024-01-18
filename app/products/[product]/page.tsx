@@ -3,7 +3,7 @@
 import s from './page.module.scss'
 import cn from 'classnames';
 import { notFound } from 'next/navigation';
-import { AllProductsDocument, ProductDocument } from '@graphql';
+import { AllProductsDocument, ProductDocument, ShopifyProductDataDocument } from '@graphql';
 import { DraftMode, apiQuery } from 'next-dato-utils';
 import { CountryParams } from '@app/[country]/layout';
 import { CountryProductParams } from '@app/[country]/products/[product]/page';
@@ -19,16 +19,24 @@ import ProductVariantsForm from './components/ProductVariantsForm';
 
 export default async function Product({ params }: CountryProductParams) {
 
-  const [{ product, draftUrl }, { product: shopifyProduct }] = await Promise.all([
+  const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
+    variables: { handle: params.product },
+  })
+
+  if (!shopifyProductData)
+    return notFound();
+
+  const [
+    { product, draftUrl },
+    { product: shopifyProduct }
+  ] = await Promise.all([
     apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, {
-      variables: { slug: params.product },
-      maxTags: 10
-    }
-    ), shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
+      variables: { slug: shopifyProductData.handle }
+    }),
+    shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
       variables: { handle: params.product },
       country: params.country
-    }
-    )])
+    })])
 
   if (!product || !shopifyProduct)
     return notFound();
@@ -52,8 +60,7 @@ export async function generateStaticParams(params: CountryParams) {
 
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
     all: true,
-    tags: ['product'],
-    generateTags: false,
+    tags: ['product']
   });
 
   return allProducts.map(({ shopifyProduct }) => ({

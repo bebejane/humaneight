@@ -37,10 +37,12 @@ const useCart = create<CartState>((set, get) => ({
 
       if (id)
         cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id } })).cart
-      else
+
+      if (!cart)
         cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0 }))?.cartCreate?.cart;
 
-      if (!cart) throw new Error('Cart not found')
+      if (!cart)
+        throw new Error('Cart not found')
 
       return cart as Cart
     })

@@ -5123,6 +5123,13 @@ type AllProductsQueryVariables = Exact<{
 
 type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, shopifyId?: string, title: string, label?: string, slug: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
+type ShopifyProductDataQueryVariables = Exact<{
+  handle?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+type ShopifyProductDataQuery = { __typename?: 'Query', shopifyProduct?: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, tags?: string, handle: string, title: string } };
+
 type ProductQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
