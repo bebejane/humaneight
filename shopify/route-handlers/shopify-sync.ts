@@ -10,7 +10,7 @@ export default async function shopifyToDatoCMSSync(req: NextRequest) {
     if (!event)
       return NextResponse.json({ success: false, error: 'event type not found in headers' })
 
-    const data: any = req.body
+    const data: any = await req.json()
 
     if (!data)
       return NextResponse.json({ success: false, error: 'item not found' })
