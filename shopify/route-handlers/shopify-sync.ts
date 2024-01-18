@@ -7,8 +7,6 @@ export default async function shopifyToDatoCMSSync(req: NextRequest) {
 
     const event = (req.headers.get('x-shopify-topic') as string)?.split('/')?.[1]
 
-    console.log('sync', event)
-
     if (!event)
       return NextResponse.json({ success: false, error: 'event type not found in headers' })
 
@@ -18,7 +16,7 @@ export default async function shopifyToDatoCMSSync(req: NextRequest) {
       return NextResponse.json({ success: false, error: 'item not found' })
 
     console.log('sync', event, data.id, data.title)
-
+    console.log(data)
     if (['create', 'update'].includes(event))
       await syncObjects(data)
     //else if (event === 'delete')
