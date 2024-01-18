@@ -7,6 +7,8 @@ export default async function shopifyToDatoCMSSync(req: NextRequest) {
 
     const event = (req.headers.get('x-shopify-topic') as string)?.split('/')?.[1]
 
+    console.log('sync', event)
+
     if (!event)
       return NextResponse.json({ success: false, error: 'event type not found in headers' })
 
