@@ -27,7 +27,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
-  const isDesktop = useMedia('(min-width: 980px)', false)
+  const isDesktop = useMedia('(min-width: 980px)', true)
   const [formStyles, setFormStyles] = useState<React.CSSProperties>({})
   const formRef = useRef<HTMLFormElement>(null);
 
