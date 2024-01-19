@@ -12,7 +12,6 @@ export async function generateStaticParams() {
     variables: { language: 'EN' as LanguageCode },
     country: 'US'
   })
-  localization.availableCountries = [{ country: { isoCode: 'SV' } }]
   return localization.availableCountries.map((country) => ({ country: country.isoCode }))
 }
 
