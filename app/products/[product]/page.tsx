@@ -16,6 +16,7 @@ import ProductPresentation from './components/ProductPresentation';
 import RelatedProducts from '@app/products/[product]/components/RelatedProducts';
 import Feedback from './components/Feedback';
 import ProductVariantsForm from './components/ProductVariantsForm';
+import { Suspense } from 'react';
 
 export default async function Product({ params }: CountryProductParams) {
 
@@ -42,7 +43,7 @@ export default async function Product({ params }: CountryProductParams) {
     return notFound();
 
   return (
-    <>
+    <Suspense>
       <section id="product" className={cn(s.product, "grid")}>
         <ProductInfo product={product} shopifyProduct={shopifyProduct} />
         <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
@@ -52,7 +53,7 @@ export default async function Product({ params }: CountryProductParams) {
       <RelatedProducts product={product} />
       <Feedback />
       <DraftMode url={draftUrl} tag={product.id} />
-    </>
+    </Suspense>
   )
 }
 
