@@ -18,6 +18,7 @@ export default async function Footer({ menu, localization }: Props) {
   const { general } = await apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument)
   const randomClaim = general?.claims.sort((a, b) => Math.random() > 0.5 ? 1 : -1)[0].text
 
+  return null
   return (
     <footer className={s.footer}>
       <nav>
