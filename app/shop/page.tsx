@@ -9,6 +9,8 @@ import { CountryShopParams } from '@app/[country]/shop/page';
 import React from 'react';
 import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 
+export const runtime = 'edge'
+
 export default async function Shop({ params, searchParams }: CountryShopParams) {
 
   const isAllCategory = !params?.collection
