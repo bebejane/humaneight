@@ -89,6 +89,9 @@ dependencies:
   shopify-api-node:
     specifier: ^3.12.7
     version: 3.12.7
+  swiper:
+    specifier: ^11.0.5
+    version: 11.0.5
   type-fest:
     specifier: ^4.8.1
     version: 4.8.1
@@ -7886,6 +7889,11 @@ packages:
     dependencies:
       tslib: 2.6.2
     dev: true
+
+  /swiper@11.0.5:
+    resolution: {integrity: sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /table@6.8.1:
     resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
