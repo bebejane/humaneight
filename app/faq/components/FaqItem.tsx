@@ -2,7 +2,7 @@
 
 import s from './FaqItem.module.scss'
 import cn from 'classnames'
-import { StructuredContent } from 'next-dato-utils';
+import Content from '@components/content/Content'
 import { useEffect, useRef, useState } from 'react';
 
 export type Props = {
@@ -38,7 +38,7 @@ export default function FaqItem({ faq }: Props) {
         }}
         ref={ref}
       >
-        <StructuredContent content={faq.answer} />
+        <Content content={faq.answer} />
       </div>
     </li>
   )

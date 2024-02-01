@@ -3,7 +3,7 @@
 import s from './ProductPresentation.module.scss'
 import cn from 'classnames'
 import React, { useState } from 'react'
-import { StructuredContent } from 'next-dato-utils';
+import Content from '@components/content/Content'
 import { Image } from 'react-datocms';
 import useQueryString from '@lib/hooks/useQueryString';
 import { parseGid } from '@shopify/utils';
@@ -55,7 +55,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                 )
               })}
               <div className="big structured">
-                <StructuredContent content={text} />
+                <Content content={text} />
               </div>
             </div>
           )

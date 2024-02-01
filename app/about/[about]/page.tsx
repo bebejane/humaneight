@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Block } from 'next-dato-utils'
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
-import FullscreenBlock from '@components/blocks/FullscreenBlock';
+import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
 import RelatedAbouts from '@app/about/[about]/components/RelatedAbouts';
 
 export default async function About({ params }: { params: { about: string } }) {

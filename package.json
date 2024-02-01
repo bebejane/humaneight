@@ -30,7 +30,7 @@
     "graphql": "^16.8.1",
     "is-integer": "^1.0.7",
     "lottie-react": "^2.4.0",
-    "next": "14.1.1-canary.1",
+    "next": "14.1.1-canary.27",
     "next-dato-utils": "github:bebejane/next-dato-utils",
     "object-traversal": "^1.0.1",
     "object.omit": "^3.0.0",

@@ -1,5 +1,5 @@
 import s from './AboutTwoColumnBlock.module.scss'
-import { StructuredContent } from "next-dato-utils"
+import Content from '@components/content/Content'
 import { Image } from "react-datocms"
 import cn from 'classnames'
 
@@ -17,7 +17,7 @@ export default function AboutTwoColumnBlock({ data: { id, media, text } }: Props
         }
       </figure>
       <div className={cn(s.content, "structured")}>
-        <StructuredContent content={text} styles={{ 'red-pargraph': s.centeredParagraph }} />
+        <Content content={text} />
       </div>
     </section>
   )
