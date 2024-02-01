@@ -7,11 +7,12 @@ import FullscreenBlock from './blocks/FullscreenBlock'
 export type Props = {
   id?: string
   content: any
+  styles?: any
   className?: string
   onClick?: (imageId: string) => void
 }
 
-export default function Content({ id, content, className, onClick }: Props) {
+export default function Content({ id, content, styles, className, onClick }: Props) {
 
   if (!content)
     return null
@@ -21,6 +22,7 @@ export default function Content({ id, content, className, onClick }: Props) {
       blocks={{ ...StartBlocks, FullscreenBlock }}
       className={className}
       styles={{
+        ...styles,
         'purple': 'purple',
         'small-text': 'small-text',
         'page-title': 'page-title',
