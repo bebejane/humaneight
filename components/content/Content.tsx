@@ -22,10 +22,10 @@ export default function Content({ id, content, styles, className, onClick }: Pro
       blocks={{ ...StartBlocks, FullscreenBlock }}
       className={className}
       styles={{
-        ...styles,
         'purple': 'purple',
         'small-text': 'small-text',
         'page-title': 'page-title',
+        ...styles,
       }}
       content={content}
       onClick={onClick}
