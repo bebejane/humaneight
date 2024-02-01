@@ -89,6 +89,7 @@ h4 {
   font-size: 1.2rem;
   line-height: 1.25em;
   margin-bottom: 0;
+
   @include mq($from: desktop) {
     font-size: 1.4rem;
   }
@@ -107,6 +108,7 @@ h4 {
 .big p,
 .big {
   font-size: 1.4rem;
+
   @include mq($from: desktop) {
     font-size: 1.6rem;
   }
@@ -126,6 +128,7 @@ p.small,
 
 .mid-small {
   font-size: 1rem;
+
   @include mq($from: desktop) {
     font-size: 1.2rem;
   }

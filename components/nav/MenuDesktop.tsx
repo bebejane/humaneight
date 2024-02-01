@@ -3,11 +3,12 @@
 import Link from "@components//nav/Link";
 import s from './MenuDesktop.module.scss'
 import cn from "classnames";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Menu } from "@lib/menu";
 import CountrySelector from "@components/shopify/CountrySelector";
 import { Image } from "react-datocms/image";
 import { useKey } from "react-use";
+import { usePathname } from "next/navigation";
 
 export type Props = {
   menu: Menu
@@ -20,6 +21,10 @@ export type Props = {
 export default function MenuDesktop({ menu, localization, tipProduct, showMenu, setShowMenu }: Props) {
 
   const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
+  const pathname = usePathname()
+
+  const isSamePath = (slug: string | undefined): boolean => (!slug || !pathname.endsWith(slug)) ? false : true
+
   useKey('Escape', () => setShowMenu(false));
 
   return (
@@ -37,7 +42,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
                     className="nav-small nav-hover"
                     onMouseEnter={() => setMenuItemId(id)}
                     onMouseLeave={() => setMenuItemId(null)}
-                    onClick={() => setShowMenu(false)}
+                    onClick={() => isSamePath(slug) && setShowMenu(false)}
                   >
                     {title}
                   </Link>
