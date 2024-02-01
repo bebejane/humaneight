@@ -139,3 +139,13 @@ p.small,
 .symbol {
   font-family: $symbol-font;
 }
+
+.page-title {
+  padding-top: 1rem;
+  font-size: 1rem;
+  font-family: $body-font !important;
+}
+
+.small-text {
+  font-size: 1.2rem;
+}
