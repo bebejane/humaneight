@@ -3,7 +3,7 @@
 import s from './ProductMeta.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
-import { StructuredContent } from 'next-dato-utils';
+import Content from '@components/content/Content'
 
 export type Props = {
   product: ProductQuery['product']
@@ -71,7 +71,7 @@ export default function ProductMeta({ product }: Props) {
                 >
                   {metaSections[k].map(({ id, title, text }) =>
                     <li key={id} className="structured mid light">
-                      <StructuredContent content={text} />
+                      <Content content={text} />
                     </li>
                   )}
                 </ul>

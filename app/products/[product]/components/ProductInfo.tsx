@@ -8,7 +8,7 @@ import Link from '@components//nav/Link';
 import ProductVariantsForm from './ProductVariantsForm';
 import { Image } from 'react-datocms';
 import { parseGid } from '@shopify/utils';
-import { StructuredContent } from 'next-dato-utils';
+import Content from '@components/content/Content'
 
 export type Props = {
   product: ProductQuery['product']
@@ -44,13 +44,13 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           <p className="mid">{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
         </div>
       </header>
-      <StructuredContent content={product.shortSummary} className={cn(s.summary, "light mid")} />
+      <Content content={product.shortSummary} className={cn(s.summary, "light mid")} />
       <div
         className={cn(s.description, "light mid")}
         style={{ maxHeight: readMore ? descriptionRef.current?.scrollHeight : 0 }}
         ref={descriptionRef}
       >
-        <StructuredContent content={product.description} />
+        <Content content={product.description} />
       </div>
       <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
         {readMore ? 'Read less' : 'Read more'}
