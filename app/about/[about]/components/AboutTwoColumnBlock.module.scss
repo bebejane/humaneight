@@ -45,7 +45,18 @@
     }
   }
 
-  .centeredParagraph {
-    background-color: red;
+  .pageTitle {
+    padding-top: 1rem;
+    font-size: 1rem;
+    font-family: $body-font;
+  }
+
+  .smallText {
+    font-size: 1.2rem;
+  }
+
+  .twoColumns {
+    column-span: 2;
+    column-gap: var(--gutter);
   }
 }

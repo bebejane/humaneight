@@ -1,5 +1,4 @@
 .menuDesktop {
-
   @include mq($until: desktop) {
     display: none !important;
   }
@@ -28,19 +27,19 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     position: relative;
     flex-direction: row;
     width: 100%;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-right: var(--gutter);
+    padding-top: var(--gutter);
 
     h3 {
       padding-bottom: 2em;
     }
 
-    >li {
+    > li {
       position: relative;
       width: 25%;
 
@@ -71,7 +70,8 @@
               object-fit: cover;
             }
 
-            .picture {}
+            .picture {
+            }
           }
         }
       }

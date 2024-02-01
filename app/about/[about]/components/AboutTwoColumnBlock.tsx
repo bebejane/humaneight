@@ -17,7 +17,7 @@ export default function AboutTwoColumnBlock({ data: { id, media, text } }: Props
         }
       </figure>
       <div className={cn(s.content, "structured")}>
-        <StructuredContent content={text} styles={{ 'red-pargraph': s.centeredParagraph }} />
+        <StructuredContent content={text} styles={{ 'page-title': s.pageTitle, 'small-text': s.smallText, 'two-columns': s.twoColumns }} />
       </div>
     </section>
   )
