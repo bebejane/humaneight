@@ -155,7 +155,7 @@ type AboutTextBlockRecord_seoMetaTagsArgs = {
 
 type AboutTwoColumnBlockModelTextField = {
   __typename?: 'AboutTwoColumnBlockModelTextField';
-  blocks: Array<Scalars['String']['output']>;
+  blocks: Array<ContactFormRecord>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -381,6 +381,32 @@ type ColorField = {
   green: Scalars['IntType']['output'];
   hex: Scalars['String']['output'];
   red: Scalars['IntType']['output'];
+};
+
+/** Block of type Contact form (contact_form) */
+type ContactFormRecord = RecordInterface & {
+  __typename?: 'ContactFormRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  message?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Contact form (contact_form) */
+type ContactFormRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by creation datetime */
@@ -4988,11 +5014,11 @@ type AboutQueryVariables = Exact<{
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
+type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
 
 type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
 
-type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
+type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutTextBlockRecord', id: any, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
 
 type AllCollectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;

@@ -37,7 +37,6 @@ fragment AboutFragment on AboutRecord {
 				...ImageFragment
 			}
 			text {
-				blocks
 				links
 				value
 			}
@@ -45,7 +44,6 @@ fragment AboutFragment on AboutRecord {
 		... on AboutTextBlockRecord {
 			id
 			text {
-				blocks
 				links
 				value
 			}
