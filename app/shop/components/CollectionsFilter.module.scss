@@ -8,8 +8,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5em;
 
-  >li,
-  span.active {
+  .title {
     position: relative;
     display: flex;
     align-items: center;
@@ -17,12 +16,6 @@
     justify-content: center;
     padding-top: 0.3em;
     padding-bottom: 1em;
-    text-align: center;
-    width: 100%;
-
-    a {
-      color: var(--gray-dark);
-    }
 
     &:first-of-type {
       text-align: left;
@@ -32,38 +25,24 @@
       text-align: right;
     }
 
-    .title {
+    &.hide {
       opacity: 0;
-
-      &.hide {
-        opacity: 0;
-      }
-
-      @include mq($until: desktop) {
-        display: none;
-      }
     }
 
-    &:has(.active:hover) {
-      .title {
-        opacity: 0;
-      }
-    }
-
-    .titleActive {
+    &.active {
       position: absolute;
       top: 0;
       left: 0;
       z-index: 2;
-      width: 100%;
-      text-align: center;
+      opacity: 0;
+      letter-spacing: var(--letter-space);
       white-space: nowrap;
-      opacity: 1;
       color: var(--black);
+      pointer-events: none;
 
       &.selected {
         opacity: 1;
-        letter-spacing: var(--letter-space);
+        pointer-events: all;
 
         a {
           color: var(--black);
@@ -83,9 +62,12 @@
 
       @include mq($until: desktop) {
         position: relative;
+
       }
     }
   }
+
+
 
   @include mq($until: desktop) {
     overflow-x: scroll;
