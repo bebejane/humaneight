@@ -19,6 +19,9 @@
   figure {
     @include mq($from: desktop) {
       flex: 0 0 calc(50% - var(--half-gutter));
+      position: sticky;
+      top: var(--navbar-height);
+      align-self: flex-start;
     }
   }
 
