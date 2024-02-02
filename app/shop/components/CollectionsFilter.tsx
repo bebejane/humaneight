@@ -32,9 +32,10 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
       const position = title.getAttribute('data-position')
       const activeRect = hover.getBoundingClientRect()
       const titleRect = title.getBoundingClientRect()
+
       return {
         id,
-        left: position === 'left' ? titleRect.left : position === 'right' ? titleRect.right - activeRect.width : titleRect.left - ((activeRect.width - titleRect.width)),
+        left: position === 'left' ? 0 : position === 'right' ? titleRect.right - activeRect.width : titleRect.left - ((activeRect.width - titleRect.width)),
         top: title.offsetTop
       }
     })
@@ -68,9 +69,7 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
                 className={cn(s.title, s.active, isActive && s.selected, "nav")}
                 style={pos ? { left: `${pos.left}px`, top: `${pos.top}px` } : undefined}
                 onMouseLeave={() => setHoverId(null)}
-              >
-                {pluralTitle}
-              </Link>
+              >{pluralTitle}</Link>
             </li>
           )
         })}

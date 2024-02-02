@@ -32,7 +32,6 @@ export default async function About({ params }: { params: { about: string } }) {
             }} />
         )}
       </div>
-
       <RelatedAbouts about={about} />
       <DraftMode url={draftUrl} tag={about.id} />
     </>
