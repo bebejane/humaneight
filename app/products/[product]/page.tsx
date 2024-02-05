@@ -43,17 +43,19 @@ export default async function Product({ params }: CountryProductParams) {
     return notFound();
 
   return (
-    <Suspense>
-      <section id="product" className={cn(s.product, "grid")}>
-        <ProductInfo product={product} shopifyProduct={shopifyProduct} />
-        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
-        <ProductMeta product={product} />
-      </section>
-      <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
-      <RelatedProducts product={product} />
-      <Feedback />
+    <>
+      <Suspense>
+        <section id="product" className={cn(s.product, "grid")}>
+          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
+          <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+          <ProductMeta product={product} />
+        </section>
+        <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
+        <RelatedProducts product={product} />
+        <Feedback />
+      </Suspense>
       <DraftMode url={draftUrl} tag={product.id} />
-    </Suspense>
+    </>
   )
 }
 

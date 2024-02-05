@@ -35,7 +35,7 @@ export default function ProductMeta({ product }: Props) {
   }, [])
 
   if (!metaSections) return null
-  console.log(metaSectionToggles)
+
   return (
     <>
       <div className={cn(s.meta)}>

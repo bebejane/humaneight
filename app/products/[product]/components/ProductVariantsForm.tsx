@@ -63,7 +63,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   if (isHidden) return null
 
   return (
-    <form className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
+    <form id="product-variant-form" className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
       {haveColors && <fieldset>
         <Select
           key={variantId}
