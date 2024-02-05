@@ -7,17 +7,17 @@ export type Props = {
   content: any
   styles?: any
   className?: string
-  onClick?: (imageId: string) => void
+  blocks?: any
 }
 
-export default function Content({ id, content, styles, className, onClick }: Props) {
+export default function Content({ id, content, styles, blocks, className }: Props) {
 
   if (!content)
     return null
 
   return (
     <StructuredContent
-      blocks={{ ...StartBlocks, ...Blocks }}
+      blocks={{ ...StartBlocks, ...Blocks, ...blocks }}
       className={className}
       styles={{
         'purple': 'purple',
@@ -26,7 +26,6 @@ export default function Content({ id, content, styles, className, onClick }: Pro
         ...styles,
       }}
       content={content}
-      onClick={onClick}
     />
   )
 }

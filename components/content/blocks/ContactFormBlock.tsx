@@ -21,6 +21,7 @@ export default function ContactFormBlock({ data: { id, message }, className }: P
         :
         <form action={formAction}>
           <input id="email" name="email" type="text" placeholder="E-mail..." />
+          <textarea id="message" name="message" placeholder="Message..."></textarea>
           <SubmitButton />
         </form>
       }

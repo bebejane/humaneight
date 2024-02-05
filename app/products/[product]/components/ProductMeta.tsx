@@ -35,7 +35,7 @@ export default function ProductMeta({ product }: Props) {
   }, [])
 
   if (!metaSections) return null
-
+  console.log(metaSectionToggles)
   return (
     <>
       <div className={cn(s.meta)}>
@@ -69,7 +69,7 @@ export default function ProductMeta({ product }: Props) {
                   style={{ maxHeight: metaSectionToggles[k]?.show ? `${metaSectionToggles[k].height}px` : '0px' }}
                   ref={metaSectionToggles[k]?.show ? metaSectionRef : undefined}
                 >
-                  {metaSections[k].map(({ id, title, text }) =>
+                  {metaSections[k].map(({ id, text }) =>
                     <li key={id} className="structured mid light">
                       <Content content={text} />
                     </li>
