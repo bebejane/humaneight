@@ -121,6 +121,7 @@
     }
 
     &.selected {
+      letter-spacing: var(--letter-space);
 
       a,
       a:hover {
