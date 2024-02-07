@@ -91,7 +91,7 @@ export default function ProductMeta({ product }: Props) {
 
 
 const metaSectionsByType = (product: ProductQuery['product']): { [key: string]: ProductMetaInfoRecord[] } => {
-  return product?.metaSections?.sort((a, b) => a.metaType.title > b.metaType.title ? 1 : -1)
+  return product?.metaSections?.sort((a, b) => a.metaType.position > b.metaType.position ? 1 : -1)
     .reduce((acc: any, metaSection) => {
       const id = metaSection.metaType?.id
       const sections = acc[id] ?? []
