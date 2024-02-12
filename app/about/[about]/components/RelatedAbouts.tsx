@@ -27,7 +27,7 @@ export default async function RelatedAbouts({ about }: Props) {
       <header>
         <h3>More about Humaneight</h3>
       </header>
-      <ThumbnailContainer>
+      <ThumbnailContainer className={s.thumbs}>
         {randomAllAbouts.map(a =>
           <AboutThumbnail key={a.id} about={a as AboutRecord} />
         )}

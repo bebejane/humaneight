@@ -7,6 +7,10 @@
 
     h3 {
       padding-bottom: 1.5rem;
+      hyphens: auto;
     }
+  }
+  .thumbs {
+    grid-row-gap: var(--gutter);
   }
 }

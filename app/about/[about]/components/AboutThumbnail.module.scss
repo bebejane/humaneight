@@ -1,5 +1,8 @@
 .thumbnail {
-  grid-column: span 3;
+  grid-column: span 6;
+  @include mq($from: desktop) {
+    grid-column: span 3;
+  }
 
   figure {
     position: relative;
@@ -36,6 +39,9 @@
         padding-right: 0.5em;
         text-align: center;
         color: var(--white);
+        @include mq($until: tablet) {
+          font-size: 1.4rem;
+        }
       }
     }
   }

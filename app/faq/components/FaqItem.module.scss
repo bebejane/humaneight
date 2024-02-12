@@ -8,19 +8,18 @@
   .answer {
     padding-right: 10%;
     //margin-top: -0.5em;
-
     max-height: 0;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.3s ease-out;
 
     @include mq($from: desktop) {
-      margin-bottom: 1em;
+      //margin-bottom: 1em;
     }
 
     p {
       z-index: 2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       margin-top: -0.2em;
     }
   }

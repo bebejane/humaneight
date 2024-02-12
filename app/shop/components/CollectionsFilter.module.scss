@@ -66,7 +66,6 @@
 
       @include mq($until: desktop) {
         position: relative;
-
       }
     }
   }
@@ -98,9 +97,8 @@
   justify-content: space-around;
   width: 100%;
   border-top: 1px solid var(--gray);
-  border-bottom: 1px solid var(--gray);
   margin-top: -1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   li {
     text-align: center;
@@ -177,7 +175,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black);

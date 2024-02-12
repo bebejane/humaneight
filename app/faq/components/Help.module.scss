@@ -1,4 +1,8 @@
 .help {
+  @include mq($until: desktop) {
+    display: none;
+  }
+
   position: fixed;
   bottom: var(--outer-margin);
   z-index: var(--z-help);

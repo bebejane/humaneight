@@ -447,6 +447,7 @@ type FaqModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   answer?: InputMaybe<StructuredTextFilter>;
   id?: InputMaybe<ItemIdFilter>;
+  position?: InputMaybe<PositionFilter>;
   question?: InputMaybe<StringFilter>;
   section?: InputMaybe<LinkFilter>;
 };
@@ -470,6 +471,8 @@ enum FaqModelOrderBy {
   _updatedAt_DESC = '_updatedAt_DESC',
   id_ASC = 'id_ASC',
   id_DESC = 'id_DESC',
+  position_ASC = 'position_ASC',
+  position_DESC = 'position_DESC',
   question_ASC = 'question_ASC',
   question_DESC = 'question_DESC'
 }
@@ -492,6 +495,7 @@ type FaqRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   answer: FaqModelAnswerField;
   id: Scalars['ItemId']['output'];
+  position?: Maybe<Scalars['IntType']['output']>;
   question: Scalars['String']['output'];
   section: FaqSectionRecord;
 };
