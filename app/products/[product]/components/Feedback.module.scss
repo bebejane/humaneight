@@ -1,9 +1,42 @@
 .feedback {
-  display: flex;
-  flex-direction: row;
   width: 100%;
-  align-items: center;
   background-color: var(--gray);
   padding: calc(2 * var(--gutter));
   margin-top: var(--space-big);
+
+  h3 {
+    padding: 0;
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+    margin-bottom: 0.2em;
+  }
+
+  .wrapper {
+    grid-column-start: 6;
+    grid-column-end: 13;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    button {
+      background: var(--background);
+    }
+  }
+
+  form {
+    border-top: 1px solid var(--background);
+    margin-top: var(--space);
+    padding-top: var(--space);
+    p {
+      padding-right: 4rem;
+    }
+    input {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      width: 100%;
+    }
+  }
 }
