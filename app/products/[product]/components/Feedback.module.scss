@@ -22,21 +22,11 @@
 
     button {
       background: var(--background);
-    }
-  }
 
-  form {
-    border-top: 1px solid var(--background);
-    margin-top: var(--space);
-    padding-top: var(--space);
-    p {
-      padding-right: 4rem;
-    }
-    input {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      padding: 1rem;
-      width: 100%;
+      &.active {
+        background: var(--foreground);
+        color: var(--background)
+      }
     }
   }
 }

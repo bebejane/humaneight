@@ -16,16 +16,18 @@ export type LayoutProps = {
 
 export default async function RootLayout({ children }: LayoutProps) {
 
-  const [menu, { localization }, { allProducts }] = await Promise.all([
+  const [menu, { localization }, { allProducts }, { general }] = await Promise.all([
     buildMenu(),
     shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
       variables: { language: 'EN' as LanguageCode },
       country: 'US'
     }),
-    apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, { variables: { first: 100, skip: 0 }, all: true })
+    apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, { variables: { first: 100, skip: 0 }, all: true }),
+    apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument)
   ])
 
   const randomProduct = allProducts[Math.floor(Math.random() * allProducts.length)]
+  const randomClaim = general?.claims.sort((a, b) => Math.random() > 0.5 ? 1 : -1)[0].text
 
   return (
     <>
@@ -42,6 +44,8 @@ export default async function RootLayout({ children }: LayoutProps) {
           <Footer
             menu={menu}
             localization={localization}
+            general={general}
+            randomClaim={randomClaim}
           />
           <Script src="https://dash.accessibly.app/widget/359e5d08-890a-4fb2-9be8-e62e273a9366/autoload.js" />
         </body>

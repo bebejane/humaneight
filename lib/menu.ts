@@ -11,6 +11,7 @@ export type MenuItem = {
   localized?: boolean,
   image?: FileFieldInterface
   sub?: MenuItem[],
+  footer?: boolean
 }
 
 export type Menu = MenuItem[]
@@ -78,6 +79,7 @@ export const buildMenu = async (): Promise<Menu> => {
       { id: 'instagram', title: 'Instagram', href: general?.instagram, localized: false },
       { id: 'facebook', title: 'Facebook', href: general?.facebook, localized: false },
       { id: 'twitter', title: 'Twitter', href: general?.twitter, localized: false },
+      { id: 'newsletter', title: 'Newsletter', href: '#newsletter', localized: false, footer: true },
     ]
   }]
   return menu

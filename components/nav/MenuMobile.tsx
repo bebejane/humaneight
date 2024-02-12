@@ -34,7 +34,7 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
               }
             </header>
             <ul className={cn(menuItemId === id && s.show)}>
-              {sub?.map(({ id, title, localized, slug }) => (
+              {sub?.filter(({ footer }) => !footer).map(({ id, title, localized, slug }) => (
                 <li key={id} className={cn('nav', pathname.endsWith(slug as string) && s.selected)}>
                   <Link
                     href={`${slug}`}

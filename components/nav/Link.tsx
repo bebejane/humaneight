@@ -23,12 +23,14 @@ const Link = forwardRef<HTMLAnchorElement, Props>(function Link(props: Props, re
   const pathname = usePathname();
   const href = isLocalized ? parseHref(props.href as string, pathname, country) : props.href
 
-  return <NextLink {
-    ...{
-      ...omit(props, ['localized', 'activeClassName', 'className', 'href']),
-      href,
-      className: cn(props.className, pathname === href && props.activeClassName),
-    }}
+  const mergedProps = {
+    ...omit(props, ['localized', 'activeClassName', 'className', 'href']),
+    href,
+    className: cn(props.className, pathname === href && props.activeClassName),
+  }
+
+  return <NextLink
+    {...mergedProps}
     passHref={true}
     ref={ref}
   >{props.children}</NextLink>

@@ -34,7 +34,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
           <li key={id}>
             <h3 className="small">{title}</h3>
             <ul>
-              {sub?.map(({ id, title, slug, localized }) => (
+              {sub?.filter(({ footer }) => !footer).map(({ id, title, slug, localized }) => (
                 <li key={id}>
                   <Link
                     href={`${slug}`}

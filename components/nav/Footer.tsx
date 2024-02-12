@@ -1,22 +1,30 @@
+'use client'
 
 import Link from '@components//nav/Link';
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
 import CountrySelector from "@components/shopify/CountrySelector";
-import { apiQuery } from 'next-dato-utils';
-import { GeneralDocument } from '@graphql';
+import NewsletterPopup from '../common/NewsletterPopup';
+import { useState } from 'react';
 
 export type Props = {
   menu: Menu,
   localization: LocalizationQuery['localization']
+  general: GeneralQuery['general']
+  randomClaim: string | undefined
 
 
 }
-export default async function Footer({ menu, localization }: Props) {
+export default function Footer({ menu, localization, general, randomClaim }: Props) {
 
-  const { general } = await apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument)
-  const randomClaim = general?.claims.sort((a, b) => Math.random() > 0.5 ? 1 : -1)[0].text
+
+  const [showNewsletterPopup, setShowNewsletterPopup] = useState(false)
+
+  const handleNewsletterPopup = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowNewsletterPopup(!showNewsletterPopup)
+  }
 
   return (
     <footer className={s.footer}>
@@ -28,14 +36,18 @@ export default async function Footer({ menu, localization }: Props) {
               <ul>
                 {sub?.map(({ id, title, slug, href, localized }) => (
                   <li key={id}>
-                    <Link
-                      href={href ?? slug ?? ''}
-                      className={slug}
-                      activeClassName={s.active}
-                      localized={localized}
-                    >
-                      {title}
-                    </Link>
+                    {id !== 'newsletter' ?
+                      <Link
+                        href={href ?? slug ?? ''}
+                        className={slug}
+                        activeClassName={s.active}
+                        localized={localized}
+                      >
+                        {title}
+                      </Link>
+                      :
+                      <a href="#newsletter" onClick={handleNewsletterPopup}>Newsletter</a>
+                    }
                   </li>
                 ))}
               </ul>
@@ -57,6 +69,7 @@ export default async function Footer({ menu, localization }: Props) {
           <h3 className="nav">{randomClaim}</h3>
         </div>
       </div>
+      <NewsletterPopup show={showNewsletterPopup} onClose={() => setShowNewsletterPopup(false)} />
     </footer >
   );
 }
