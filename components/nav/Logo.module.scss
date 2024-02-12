@@ -13,7 +13,6 @@
   opacity: 0;
   animation: show 0.5s ease-out forwards;
 
-
   @include mq($from: desktop) {
     top: calc(var(--outer-margin) - 0.24em);
   }

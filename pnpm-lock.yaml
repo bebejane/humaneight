@@ -9,11 +9,11 @@ dependencies:
     specifier: 3.0.5
     version: 3.0.5
   '@datocms/cma-client-browser':
-    specifier: 3.0.5
-    version: 3.0.5
+    specifier: 3.1.2
+    version: 3.1.2
   '@datocms/cma-client-node':
-    specifier: 3.0.5
-    version: 3.0.5
+    specifier: 3.1.2
+    version: 3.1.2
   '@datocms/rest-client-utils':
     specifier: 3.0.5
     version: 3.0.5
@@ -30,8 +30,8 @@ dependencies:
     specifier: ^1.0.5
     version: 1.0.5
   classnames:
-    specifier: ^2.3.2
-    version: 2.3.2
+    specifier: ^2.5.1
+    version: 2.5.1
   cookies-next:
     specifier: ^4.1.0
     version: 4.1.0
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^2.30.0
     version: 2.30.0
   datocms-structured-text-utils:
-    specifier: ^2.0.4
-    version: 2.0.4
+    specifier: ^3.0.0
+    version: 3.0.0
   graphql:
     specifier: ^16.8.1
     version: 16.8.1
@@ -52,10 +52,10 @@ dependencies:
     version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: 14.1.1-canary.27
-    version: 14.1.1-canary.27(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+    version: 14.1.1-canary.27(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
   next-dato-utils:
     specifier: github:bebejane/next-dato-utils
-    version: github.com/bebejane/next-dato-utils/c40e76be22e0a54af29e48fe2ad2817a9e579775(@datocms/cma-client-browser@3.0.5)(@datocms/cma-client-node@3.0.5)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-structured-text-utils@2.0.4)(graphql@16.8.1)(react-datocms@4.1.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+    version: github.com/bebejane/next-dato-utils/d8e92696a47cbe1ac3962209db67f170d6719e53(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(react-datocms@4.1.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
   object-traversal:
     specifier: ^1.0.1
     version: 1.0.1
@@ -78,14 +78,14 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-use:
-    specifier: ^17.4.2
-    version: 17.4.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^17.5.0
+    version: 17.5.0(react-dom@18.2.0)(react@18.2.0)
   react-use-measure:
     specifier: ^2.1.1
     version: 2.1.1(react-dom@18.2.0)(react@18.2.0)
   sass:
-    specifier: ^1.69.5
-    version: 1.69.5
+    specifier: ^1.70.0
+    version: 1.70.0
   shopify-api-node:
     specifier: ^3.12.7
     version: 3.12.7
@@ -99,8 +99,8 @@ dependencies:
     specifier: ^5.3.2
     version: 5.3.2
   zustand:
-    specifier: ^4.4.7
-    version: 4.4.7(@types/react@18.2.22)(react@18.2.0)
+    specifier: ^4.5.0
+    version: 4.5.0(@types/react@18.2.22)(react@18.2.0)
 
 devDependencies:
   '@graphql-codegen/cli':
@@ -146,8 +146,8 @@ devDependencies:
     specifier: 18.2.22
     version: 18.2.22
   '@types/react-dom':
-    specifier: 18.2.7
-    version: 18.2.7
+    specifier: 18.2.15
+    version: 18.2.15
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -776,17 +776,17 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  /@datocms/cma-client-browser@3.0.5:
-    resolution: {integrity: sha512-x1J5V/unPUB1atWnNh4AuzQKXnCRYWB3QUSemkW+PE30J7N9Vgh8ED3utuc3X/XWbDbevGFpWbXVQVBnT4/9Eg==}
+  /@datocms/cma-client-browser@3.1.2:
+    resolution: {integrity: sha512-T7WUvnS9pHjKeeYtGhj8oMDBz0fWwB8DABNSOTYcvqvwalzXSI3v2E738VAFPkuPrMNhBzUNvs+wzgQImmd0Pg==}
     dependencies:
-      '@datocms/cma-client': 3.0.5
+      '@datocms/cma-client': 3.1.2
       '@datocms/rest-client-utils': 3.0.5
     dev: false
 
-  /@datocms/cma-client-node@3.0.5:
-    resolution: {integrity: sha512-QV8xX/Kc7lDNuuB27kZ2SUXh7t6TdIoTLI8I12O+XWgm3DWFQU/5o1oOnVkegBQZ9P/2sqvSP84CErW+UHi/2g==}
+  /@datocms/cma-client-node@3.1.2:
+    resolution: {integrity: sha512-9kTnkuMtD2oSIoEIddRhMHlOmGuQKm3LoWiQfZnhrSDj5PaBFr0T2qzOul3XSJesQwEczTPT5sZE3GafyWIMDw==}
     dependencies:
-      '@datocms/cma-client': 3.0.5
+      '@datocms/cma-client': 3.1.2
       '@datocms/rest-client-utils': 3.0.5
       got: 11.8.6
       mime-types: 2.1.35
@@ -795,6 +795,13 @@ packages:
 
   /@datocms/cma-client@3.0.5:
     resolution: {integrity: sha512-+GMMssLJKdyTKDJLI/OYNp5Fe4jA8gabEuYekMOCX1JeHVMr9GoA8v4EX/LX9o3Fp95qqOmQEPVYHA+acjqpEQ==}
+    dependencies:
+      '@datocms/rest-client-utils': 3.0.5
+      uuid: 9.0.1
+    dev: false
+
+  /@datocms/cma-client@3.1.2:
+    resolution: {integrity: sha512-NJ8lOHNM2H+aP3eRHqfP0b1n4WWuOJnMCgMKvLiFHfXRVooLutjADg4XX1ataFGg+n/MCjxSqKiJ8n7doGGsyA==}
     dependencies:
       '@datocms/rest-client-utils': 3.0.5
       uuid: 9.0.1
@@ -3318,8 +3325,8 @@ packages:
   /@types/prop-types@15.7.6:
     resolution: {integrity: sha512-RK/kBbYOQQHLYj9Z95eh7S6t7gq4Ojt/NT8HTk8bWVhA5DaF+5SMnxHKkP4gPNN3wAZkKP+VjAf0ebtYzf+fxg==}
 
-  /@types/react-dom@18.2.7:
-    resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
+  /@types/react-dom@18.2.15:
+    resolution: {integrity: sha512-HWMdW+7r7MR5+PZqJF6YFNSCtjz1T0dsvo/f1BV6HkV+6erD/nA7wd9NM00KVG83zf2nJ7uATPO9ttdIPvi3gg==}
     dependencies:
       '@types/react': 18.2.22
 
@@ -3794,7 +3801,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001564
+      caniuse-lite: 1.0.30001582
       electron-to-chromium: 1.4.527
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.21.11)
@@ -3859,12 +3866,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /caniuse-lite@1.0.30001564:
-    resolution: {integrity: sha512-DqAOf+rhof+6GVx1y+xzbFPeOumfQnhYzVnZD6LAXijR77yPtm9mfOcqOnT3mpnJiZVT+kwLAFnRlZcIz+c6bg==}
-
   /caniuse-lite@1.0.30001582:
     resolution: {integrity: sha512-vsJG3V5vgfduaQGVxL53uSX/HUzxyr2eA8xCo36OLal7sRcSZbibJtLeh0qja4sFOr/QQGt4opB4tOy+eOgAxg==}
-    dev: false
 
   /capital-case@1.0.4:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
@@ -3975,8 +3978,8 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /classnames@2.3.2:
-    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+  /classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
     dev: false
 
   /clean-stack@2.2.0:
@@ -4199,6 +4202,12 @@ packages:
 
   /datocms-structured-text-utils@2.0.4:
     resolution: {integrity: sha512-JxDdJaipm3FePOli9s82MRrBDnlPP9GYhqajQJaYEu4V1jwUSZzbVkYVKMfVHUfP0Gh0VSCxPHjAGGAN1nWMJg==}
+    dependencies:
+      array-flatten: 3.0.0
+    dev: false
+
+  /datocms-structured-text-utils@3.0.0:
+    resolution: {integrity: sha512-1mo78UD4Sz+fhiwBMUqNls/jgm+33/MxZe5eHYjKuklSdQPE7KslIWqD3hWi6W641rpeU0rEW+RFwQlduqEvIQ==}
     dependencies:
       array-flatten: 3.0.0
     dev: false
@@ -6619,7 +6628,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next@14.1.1-canary.27(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
+  /next@14.1.1-canary.27(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0):
     resolution: {integrity: sha512-DedZm3VgO4i4Owt6xVeSs6VbwspdxyEXPzCE+gWz7c3QJSBa/0J3hV+uPETeZ2YexdVvWYAj5YxJMNTfLTKTqw==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -6642,7 +6651,7 @@ packages:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.69.5
+      sass: 1.70.0
       styled-jsx: 5.1.1(@babel/core@7.22.20)(react@18.2.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.1.1-canary.27
@@ -7262,8 +7271,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-use@17.4.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-1jPtmWLD8OJJNYCdYLJEH/HM+bPDfJuyGwCYeJFgPmWY8ttwpgZnW5QnzgM55CYUByUiTjHxsGOnEpLl6yQaoQ==}
+  /react-use@17.5.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-PbfwSPMwp/hoL847rLnm/qkjg3sTRCvn6YhUZiHaUa3FA6/aNoFX79ul5Xt70O1rK+9GxSVqkY0eTwMdsR/bWg==}
     peerDependencies:
       react: '*'
       react-dom: '*'
@@ -7536,8 +7545,8 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sass@1.69.5:
-    resolution: {integrity: sha512-qg2+UCJibLr2LCVOt3OlPhr/dqVHWOa9XtZf2OjbLs/T4VPSJ00udtgJxH3neXZm+QqX8B+3cU7RaLqp1iVfcQ==}
+  /sass@1.70.0:
+    resolution: {integrity: sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -8469,12 +8478,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zustand@4.4.7(@types/react@18.2.22)(react@18.2.0):
-    resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
+  /zustand@4.5.0(@types/react@18.2.22)(react@18.2.0):
+    resolution: {integrity: sha512-zlVFqS5TQ21nwijjhJlx4f9iGrXSL0o/+Dpy4txAP22miJ8Ti6c1Ol1RLNN98BMib83lmDH/2KmLwaNXpjrO1A==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       '@types/react': '>=16.8'
-      immer: '>=9.0'
+      immer: '>=9.0.6'
       react: '>=16.8'
     peerDependenciesMeta:
       '@types/react':
@@ -8493,11 +8502,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/next-dato-utils/c40e76be22e0a54af29e48fe2ad2817a9e579775(@datocms/cma-client-browser@3.0.5)(@datocms/cma-client-node@3.0.5)(@types/react-dom@18.2.7)(@types/react@18.2.22)(datocms-structured-text-utils@2.0.4)(graphql@16.8.1)(react-datocms@4.1.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/c40e76be22e0a54af29e48fe2ad2817a9e579775}
-    id: github.com/bebejane/next-dato-utils/c40e76be22e0a54af29e48fe2ad2817a9e579775
+  github.com/bebejane/next-dato-utils/d8e92696a47cbe1ac3962209db67f170d6719e53(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(react-datocms@4.1.3)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0):
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/d8e92696a47cbe1ac3962209db67f170d6719e53}
+    id: github.com/bebejane/next-dato-utils/d8e92696a47cbe1ac3962209db67f170d6719e53
     name: next-dato-utils
-    version: 1.0.494
+    version: 1.0.495
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:
@@ -8512,14 +8521,14 @@ packages:
       react-dom: '>=18.2.0'
       sass: '>=1.69.0'
     dependencies:
-      '@datocms/cma-client-browser': 3.0.5
-      '@datocms/cma-client-node': 3.0.5
+      '@datocms/cma-client-browser': 3.1.2
+      '@datocms/cma-client-node': 3.1.2
       '@types/is-integer': 1.0.2
       '@types/react': 18.2.22
-      '@types/react-dom': 18.2.7
+      '@types/react-dom': 18.2.15
       commander: 11.1.0
       datocms-listen: 0.1.15(graphql@16.8.1)
-      datocms-structured-text-utils: 2.0.4
+      datocms-structured-text-utils: 3.0.0
       dedent-js: 1.0.1
       dotenv: 16.3.1
       graphql: 16.8.1
@@ -8532,7 +8541,7 @@ packages:
       react-markdown: 9.0.1(@types/react@18.2.22)(react@18.2.0)
       remark-breaks: 4.0.0
       remark-gfm: 4.0.0
-      sass: 1.69.5
+      sass: 1.70.0
       table: 6.8.1
     transitivePeerDependencies:
       - supports-color

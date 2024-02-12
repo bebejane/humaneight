@@ -3,6 +3,7 @@ import { AboutDocument, AllAboutsDocument } from '@graphql';
 import { apiQuery, DraftMode } from 'next-dato-utils';
 import { notFound } from 'next/navigation';
 import { Block } from 'next-dato-utils'
+
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
@@ -32,7 +33,6 @@ export default async function About({ params }: { params: { about: string } }) {
             }} />
         )}
       </div>
-
       <RelatedAbouts about={about} />
       <DraftMode url={draftUrl} tag={about.id} />
     </>

@@ -20,7 +20,7 @@ export default async function RelatedAbouts({ about }: Props) {
     tags: ['about']
   })
 
-  const randomAllAbouts = allAbouts.sort(() => Math.random() - 0.5).slice(0, 4)
+  const randomAllAbouts = allAbouts.filter(a => a.id !== about?.id).sort(() => Math.random() - 0.5).slice(0, 4)
 
   return (
     <section className={s.related}>

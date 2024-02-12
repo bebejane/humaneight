@@ -65,6 +65,17 @@ query AllProductBranding($first: IntType = 100, $skip: IntType = 0) {
 	}
 }
 
+query AllProductMetaTypes($first: IntType = 100, $skip: IntType = 0) {
+	allProductMetaTypes(first: $first, skip: $skip) {
+		id
+		position
+		title
+	}
+	_allProductMetaTypesMeta {
+		count
+	}
+}
+
 fragment ProductLightFragment on ProductRecord {
 	id
 	shopifyId
@@ -147,6 +158,7 @@ fragment ProductFragment on ProductRecord {
 		title
 		metaType {
 			id
+			position
 			title
 		}
 		text {

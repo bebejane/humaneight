@@ -69,7 +69,7 @@ export default function ProductMeta({ product }: Props) {
                   style={{ maxHeight: metaSectionToggles[k]?.show ? `${metaSectionToggles[k].height}px` : '0px' }}
                   ref={metaSectionToggles[k]?.show ? metaSectionRef : undefined}
                 >
-                  {metaSections[k].map(({ id, title, text }) =>
+                  {metaSections[k].map(({ id, text }) =>
                     <li key={id} className="structured mid light">
                       <Content content={text} />
                     </li>
@@ -91,7 +91,7 @@ export default function ProductMeta({ product }: Props) {
 
 
 const metaSectionsByType = (product: ProductQuery['product']): { [key: string]: ProductMetaInfoRecord[] } => {
-  return product?.metaSections?.sort((a, b) => a.metaType.title > b.metaType.title ? 1 : -1)
+  return product?.metaSections?.sort((a, b) => a.metaType.position > b.metaType.position ? 1 : -1)
     .reduce((acc: any, metaSection) => {
       const id = metaSection.metaType?.id
       const sections = acc[id] ?? []

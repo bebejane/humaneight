@@ -1,24 +1,23 @@
-//import StructuredContent from './StructuredContent'
 import { StructuredContent } from 'next-dato-utils'
 import * as StartBlocks from './blocks/start'
-import FullscreenBlock from './blocks/FullscreenBlock'
+import * as Blocks from './blocks/index'
 
 export type Props = {
   id?: string
   content: any
   styles?: any
   className?: string
-  onClick?: (imageId: string) => void
+  blocks?: any
 }
 
-export default function Content({ id, content, styles, className, onClick }: Props) {
+export default function Content({ id, content, styles, blocks, className }: Props) {
 
   if (!content)
     return null
 
   return (
     <StructuredContent
-      blocks={{ ...StartBlocks, FullscreenBlock }}
+      blocks={{ ...StartBlocks, ...Blocks, ...blocks }}
       className={className}
       styles={{
         'purple': 'purple',
@@ -27,7 +26,6 @@ export default function Content({ id, content, styles, className, onClick }: Pro
         ...styles,
       }}
       content={content}
-      onClick={onClick}
     />
   )
 }

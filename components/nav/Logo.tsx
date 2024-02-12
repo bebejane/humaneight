@@ -6,7 +6,6 @@ import { useScrollInfo } from 'next-dato-utils';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useMedia } from 'react-use';
 import useMeasure from 'react-use-measure';
 
 const tagline = ['For', 'a', 'neurodiverse', 'world.']
@@ -19,7 +18,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
   const { scrolledPosition, viewportHeight } = useScrollInfo()
   const [ratio, setRatio] = useState(0)
   const [taglineTrigger, setTaglineTrigger] = useState<boolean | null>(null)
-  const [ref, { bottom: logoBottom }] = useMeasure()
+  const [ref, { bottom: logoBottom }] = useMeasure({ scroll: true })
 
   useEffect(() => {
     setIsHome(pathname === '/')
@@ -62,16 +61,20 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
       >
         <Link href="/">Humaneight</Link>
       </h1>
-      <div style={{ top: logoBottom }} className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}>
+      <div
+        className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}
+        style={{ top: logoBottom }}
+      >
         <h2>{tagline.map((word, i) =>
           <span
             key={`${i}-${taglineTrigger}`}
             className={cn(taglineTrigger && s.hide)}
-            style={{ animationDelay: taglineTrigger === true ? '0s' : `${delays?.[i] ?? 0}s` }} >
+            style={{ animationDelay: taglineTrigger === true ? '0s' : `${delays?.[i] ?? 0}s` }}
+          >
             {word}
           </span>
         )}</h2>
-      </div>
+      </div >
     </>
   )
 }

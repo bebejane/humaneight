@@ -22,12 +22,24 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   const variantId = searchParams.get('variant') ?? null
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
   const descriptionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const readMoreRef = useRef<HTMLButtonElement>(null);
+
+  const descriptionFitViewport = () => {
+    if (!containerRef.current) return false
+
+    const form = document.getElementById('product-variant-form')
+    const ah = (form?.getBoundingClientRect().top ?? 0) - (readMoreRef.current?.getBoundingClientRect().bottom ?? 0)
+    return ah >= (descriptionRef.current?.scrollHeight ?? 0)
+  }
+
+  const needsExpansion = readMore && !descriptionFitViewport()
 
   if (!product)
     return null
 
   return (
-    <div className={cn(s.details, readMore && s.expanded)}>
+    <div className={cn(s.details, needsExpansion && s.expanded)} ref={containerRef}>
       <p className="small light">
         <Link href="/shop">Shop</Link>
         &nbsp;&nbsp;›&nbsp;&nbsp;
@@ -35,7 +47,11 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
       </p>
       {product.image?.responsiveImage &&
         <figure className={s.mainImage}>
-          <Image data={product.image?.responsiveImage} className={s.image} pictureClassName={s.picture} />
+          <Image
+            data={product.image?.responsiveImage}
+            className={s.image}
+            pictureClassName={s.picture}
+          />
         </figure>
       }
       <header>
@@ -52,13 +68,12 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
       >
         <Content content={product.description} />
       </div>
-      <button className={s.readMore} onClick={() => setReadMore(!readMore)}>
+      <button className={s.readMore} onClick={() => setReadMore(!readMore)} ref={readMoreRef}>
         {readMore ? 'Read less' : 'Read more'}
       </button>
       <ProductVariantsForm
         product={product}
         shopifyProduct={shopifyProduct}
-        className={cn(readMore && s.formExpanded)}
         mobile={false}
       />
     </div>

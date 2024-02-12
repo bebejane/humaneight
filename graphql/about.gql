@@ -37,6 +37,13 @@ fragment AboutFragment on AboutRecord {
 				...ImageFragment
 			}
 			text {
+				blocks {
+					id
+					__typename
+					... on ContactFormBlockRecord {
+						message
+					}
+				}
 				links
 				value
 			}

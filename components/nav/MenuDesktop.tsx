@@ -58,6 +58,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
               {item?.image?.responsiveImage &&
                 <Image
                   data={item.image.responsiveImage}
+                  lazyLoad={false}
                   className={cn(s.image, item.id === menuItemId && s.show)}
                   pictureClassName={s.picture}
                 />
@@ -69,6 +70,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
               <Link href={`/products/${tipProduct?.slug}`} className={s.link}>
                 <Image
                   data={tipProduct.image.responsiveImage}
+                  lazyLoad={false}
                   className={cn(s.image, !menuItemId && s.show)}
                   pictureClassName={s.picture}
                 />

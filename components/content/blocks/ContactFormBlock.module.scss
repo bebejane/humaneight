@@ -1,0 +1,11 @@
+.contactForm {
+  form {
+    button[disabled] {
+      opacity: 0.5;
+    }
+  }
+
+  .error {
+    color: var(--red);
+  }
+}

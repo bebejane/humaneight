@@ -2,9 +2,11 @@
   width: 100%;
   margin-bottom: var(--outer-margin);
   border-top: 1px solid var(--gray);
+
   @include mq($until: desktop) {
     grid-column: span 12;
   }
+
   @include mq($from: desktop) {
     grid-column-start: 5;
     grid-column-end: 13;
@@ -47,7 +49,6 @@
     ul {
       list-style: none;
       overflow: hidden;
-      max-height: 0px;
       transition: max-height 0.3s ease-out;
 
       @include mq($from: desktop) {
