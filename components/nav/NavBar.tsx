@@ -38,7 +38,8 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
       <nav className={s.navbar}>
         <button
           className={cn(s.item, s.menu, showMenu && s.active, 'nav', 'nav-hover')}
-          onClick={() => setShowMenu(!showMenu)}>
+          onClick={() => setShowMenu(!showMenu)}
+        >
           Menu</button>
 
         {showMenu ?

@@ -1,9 +1,9 @@
 'use client'
 
-import Link from '@components//nav/Link';
 import s from './Footer.module.scss'
 import cn from "classnames";
 import type { Menu } from "@lib/menu";
+import Link from '@components//nav/Link';
 import CountrySelector from "@components/shopify/CountrySelector";
 import NewsletterPopup from '../common/NewsletterPopup';
 import { useState } from 'react';

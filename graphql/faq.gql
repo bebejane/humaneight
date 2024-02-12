@@ -9,6 +9,7 @@ query AllFaqs($first: IntType, $skip: IntType) {
 		id
 		title
 		slug
+		inMenu
 	}
 	_allFaqSectionsMeta {
 		count
@@ -20,6 +21,7 @@ query AllFaqSections($first: IntType, $skip: IntType) {
 		id
 		title
 		slug
+		inMenu
 	}
 	_allFaqSectionsMeta {
 		count

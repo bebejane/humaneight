@@ -55,12 +55,13 @@ export const buildMenu = async (): Promise<Menu> => {
     title: 'Help',
     sub: [
       { id: 'faq', title: 'FAQ', slug: '/faq', localized: false },
-      ...allFaqSections.map(({ id, title, image, slug }) => ({
+      ...allFaqSections.map(({ id, title, image, slug, inMenu }) => ({
         id,
         title,
         image: image as FileFieldInterface,
         slug: `/faq#${slug}`,
-        localized: false
+        localized: false,
+        footer: !inMenu
       }))
     ],
   }, {

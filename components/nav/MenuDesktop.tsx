@@ -76,6 +76,9 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
                 />
               </Link>
             }
+            {tipProduct?.title && !menuItemId &&
+              <figcaption>{tipProduct.title}</figcaption>
+            }
           </figure>
         </li>
       </ul>
@@ -90,5 +93,4 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
       </div>
     </nav>
   )
-
 }
