@@ -35,6 +35,15 @@ export const ProductColorFragment: DocumentNode;
 }
     
 
+declare module '*/contact.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Contact: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/faq.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

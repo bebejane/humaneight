@@ -409,6 +409,44 @@ type ContactFormBlockRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+type ContactModelContentField = {
+  __typename?: 'ContactModelContentField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type Contact (contact) */
+type ContactRecord = RecordInterface & {
+  __typename?: 'ContactRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  contactFormMessage: Scalars['String']['output'];
+  content: ContactModelContentField;
+  headline: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  image?: Maybe<ImageFileField>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Contact (contact) */
+type ContactRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 /** Specifies how to filter by creation datetime */
 type CreatedAtFilter = {
   /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
@@ -3486,6 +3524,8 @@ type Query = {
   allVariants: Array<VariantRecord>;
   /** Returns a specific record */
   collection?: Maybe<CollectionRecord>;
+  /** Returns the single instance record */
+  contact?: Maybe<ContactRecord>;
   /** Returns a specific record */
   faq?: Maybe<FaqRecord>;
   /** Returns a specific record */
@@ -3851,6 +3891,13 @@ type QuerycollectionArgs = {
   filter?: InputMaybe<CollectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<CollectionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerycontactArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -5075,6 +5122,11 @@ type AllProductColorsQueryVariables = Exact<{
 type AllProductColorsQuery = { __typename?: 'Query', allProductColors: Array<{ __typename?: 'ProductColorRecord', id: any, title: string }>, _allProductColorsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ProductColorFragment = { __typename?: 'ProductColorRecord', id: any, title: string };
+
+type ContactQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ContactQuery = { __typename?: 'Query', contact?: { __typename?: 'ContactRecord', id: any, headline: string, contactFormMessage: string, slug?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, content: { __typename?: 'ContactModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
 
 type AllFaqsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
