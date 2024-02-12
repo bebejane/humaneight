@@ -6,12 +6,20 @@
   width: 100%;
   justify-content: space-between;
 
-  //padding-left: 0.5rem;
-  //padding-right: 0.5em;
   li {
     &:last-child {
       .title {
         text-align: right;
+      }
+    }
+
+    &:last-child {
+      .title {
+        text-align: right;
+
+        &.active {
+          padding-right: calc(var(--outer-margin) - var(--letter-space));
+        }
       }
     }
   }
@@ -25,13 +33,14 @@
     padding-top: 0.3em;
     padding-bottom: 1em;
     opacity: 1;
-
-    &:first-of-type {
-      text-align: left;
-    }
+    white-space: nowrap;
 
     &.hide {
       opacity: 0;
+    }
+
+    &.selected {
+      letter-spacing: var(--letter-space);
     }
 
     &.active {
@@ -43,15 +52,10 @@
       letter-spacing: var(--letter-space);
       white-space: nowrap;
       color: var(--black);
-      pointer-events: none;
 
       &.selected {
-        opacity: 1;
         pointer-events: all;
-
-        a {
-          color: var(--black);
-        }
+        opacity: 1;
       }
 
       @include mq($from: desktop) {
@@ -66,14 +70,19 @@
 
       @include mq($until: desktop) {
         position: relative;
+
       }
     }
   }
 
   @include mq($until: desktop) {
+
     overflow-x: scroll;
+
     margin-left: calc(-1 * var(--outer-margin));
     margin-right: calc(-1 * var(--outer-margin));
+    padding-left: var(--outer-margin);
+    padding-right: var(--outer-margin);
     margin-bottom: 1rem;
     width: calc(100% + (2 * var(--outer-margin)));
 
@@ -85,6 +94,10 @@
       flex: 0 0;
       padding-right: 0.5em;
       padding-bottom: 0;
+
+      &:last-child {
+        padding-right: 0;
+      }
     }
   }
 }
@@ -175,6 +188,7 @@
     }
 
     &.selected {
+
       a,
       a:hover {
         color: var(--black);
