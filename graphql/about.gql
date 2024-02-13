@@ -40,6 +40,7 @@ fragment AboutFragment on AboutRecord {
 				blocks {
 					__typename
 					... on ContactFormBlockRecord {
+						id
 						message
 					}
 					... on TwoColumnBlockRecord {
@@ -65,7 +66,6 @@ fragment AboutFragment on AboutRecord {
 			}
 		}
 	}
-
 	content {
 		blocks
 		links
