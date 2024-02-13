@@ -15,10 +15,10 @@ export default function NewsletterPopup({ show, onClose }: Props) {
   return (
     <div className={cn(s.newsletterPopup, show && s.show)} >
       <div className={s.popup}>
-        <h3>Join our community</h3>
+        <h2>Join our community. Sign up for our newsletter.</h2>
         <form>
           <input type="email" placeholder="Your email" />
-          <button type="submit">Subscribe</button>
+          <button className={s.submit} type="submit">Subscribe</button>
         </form>
         <button className={s.close} type="button" onClick={onClose}>Close</button>
       </div>

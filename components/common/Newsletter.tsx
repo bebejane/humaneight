@@ -9,7 +9,7 @@ export default function Newsletter({ className }: Props) {
 
   return (
     <section className={cn(s.newsletter, className)} >
-      <h3>Join our community</h3>
+      <h3>Join our community. Sign up for our newsletter.</h3>
       <form>
         <input type="email" placeholder="Your email" />
         <button>Subscribe</button>

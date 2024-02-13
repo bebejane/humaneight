@@ -13,18 +13,33 @@
     display: flex;
   }
 
-
   .popup {
     position: relative;
-    padding: var(--outer-margin);
+    padding: calc(var(--outer-margin) * 2);
     width: 50%;
     background-color: var(--white);
 
+    input {
+      background-color: var(--beige);
+      padding: 0.5em;
+      padding-bottom: 0.6em;
+      padding-left: 0.8em;
+      margin-right: 1rem;
+      min-width: 70%;
+    }
+
+    .submit {
+      &:hover {
+        background: var(--black) !important;
+        color: var(--white);
+      }
+    }
+
     .close {
       position: absolute;
-      top: 0;
+      top: 0.5rem;
       right: 0;
+      background-color: var(--white);
     }
   }
-
 }

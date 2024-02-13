@@ -3,29 +3,45 @@
   background-color: var(--gray);
   padding: calc(2 * var(--gutter));
   margin-top: var(--space-big);
+  @include mq($until: desktop) {
+    display: block;
+  }
 
   h3 {
     padding: 0;
-    grid-column-start: 1;
-    grid-column-end: 5;
+    grid-column: span 12;
+    margin-bottom: 0.4em;
 
-    margin-bottom: 0.2em;
+    @include mq($from: desktop) {
+      grid-column-start: 1;
+      grid-column-end: 5;
+      margin-bottom: 0.2em;
+    }
   }
 
   .wrapper {
-    grid-column-start: 6;
-    grid-column-end: 13;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+    grid-column: span 12;
+    @include mq($from: desktop) {
+      grid-column-start: 6;
+      grid-column-end: 13;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
 
     button {
-      background: var(--background);
+      margin-top: 1rem;
+      background: var(--white);
 
       &.active {
         background: var(--foreground);
-        color: var(--background)
+        color: var(--background);
+      }
+
+      &:hover {
+        background-color: var(--black);
+        color: var(--white);
       }
     }
   }
