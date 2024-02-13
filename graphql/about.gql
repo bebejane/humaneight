@@ -38,10 +38,13 @@ fragment AboutFragment on AboutRecord {
 			}
 			text {
 				blocks {
-					id
 					__typename
 					... on ContactFormBlockRecord {
 						message
+					}
+					... on TwoColumnBlockRecord {
+						id
+						text
 					}
 				}
 				links
