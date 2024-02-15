@@ -24,7 +24,7 @@ export default function SizeGuideBlock({ data: { id, image, table }, className }
         </figure>
       }
       {tableData &&
-        <table>
+        <table className="small">
           <tbody>
             <tr>
               {tableData.columns.map((column, idx) => <th key={idx}>{column}</th>)}

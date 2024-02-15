@@ -1,9 +1,23 @@
 .sizeGuide {
-  .image {}
+  figure {
+    width: 25%;
+    margin-bottom: var(--space);
+    margin-top: var(--space);
+  }
+  .image {
+  }
 
   table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    border: 1px solid var(--gray);
+
+    td,
+    th {
+      font-weight: normal;
+      padding: 0.5em;
+      border: 1px solid var(--gray);
+    }
   }
 }
