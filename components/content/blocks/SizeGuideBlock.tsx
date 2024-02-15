@@ -15,7 +15,7 @@ type SizeTable = {
 export default function SizeGuideBlock({ data: { id, image, table }, className }: Props) {
 
   const tableData: SizeTable = table
-  console.log(image)
+
   return (
     <div className={s.sizeGuide}>
       {image &&
