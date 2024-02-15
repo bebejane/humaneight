@@ -162,7 +162,16 @@ fragment ProductFragment on ProductRecord {
 			title
 		}
 		text {
-			blocks
+			blocks {
+				__typename
+				... on SizeGuideBlockRecord {
+					id
+					image {
+						...ImageFragment
+					}
+					table
+				}
+			}
 			value
 			links
 		}
