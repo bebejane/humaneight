@@ -16,12 +16,6 @@ query ShopifyProductData($handle: String) {
 	}
 }
 
-query Product($slug: String) {
-	product(filter: { slug: { eq: $slug } }) {
-		...ProductFragment
-	}
-}
-
 query ProductById($id: ItemId) {
 	product(filter: { shopifyProduct: { eq: $id } }) {
 		...ProductFragment
@@ -66,7 +60,6 @@ fragment ProductLightFragment on ProductRecord {
 	id
 	title
 	label
-	slug
 	collection {
 		id
 		title
@@ -112,7 +105,6 @@ fragment ProductFragment on ProductRecord {
 		value
 		links
 	}
-	slug
 	image {
 		...ImageFragment
 	}
