@@ -48,4 +48,11 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		facebook
 		twitter
 	}
+	contact {
+		title
+		slug
+		image {
+			...ImageThumbnailFragment
+		}
+	}
 }

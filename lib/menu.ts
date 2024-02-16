@@ -17,7 +17,7 @@ export type MenuItem = {
 export type Menu = MenuItem[]
 
 export const buildMenu = async (): Promise<Menu> => {
-  const { allCollections, allFaqSections, allAbouts, allLegals, general } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
+  const { allCollections, allFaqSections, allAbouts, allLegals, general, contact } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
     all: true,
     variables: {
       first: 100,
@@ -35,7 +35,13 @@ export const buildMenu = async (): Promise<Menu> => {
       slug: `/about/${slug}`,
       image: image as FileFieldInterface,
       localized: false
-    })),
+    })).concat([{
+      id: 'contact',
+      title: 'Contact',
+      slug: '/contact',
+      image: contact?.image as FileFieldInterface ?? null,
+      localized: false
+    }]),
   }, {
     id: 'shop',
     title: 'Shop',
