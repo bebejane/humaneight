@@ -11,7 +11,7 @@ export default function StartProductShortcutBlock({ data: { id, product } }: Pro
 
   return (
     <section className={cn(s.container)}>
-      <Link href={`/products/${product.slug}`}>
+      <Link href={`/products/${product.shopifyProduct.handle}`}>
         <p>{product.title} Shortcut </p>
         {product.image &&
           <figure>
