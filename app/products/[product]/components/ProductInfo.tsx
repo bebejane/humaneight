@@ -11,7 +11,7 @@ import { parseGid } from '@shopify/utils';
 import Content from '@components/content/Content'
 
 export type Props = {
-  product: ProductQuery['product']
+  product: ProductByIdQuery['product']
   shopifyProduct: ShopifyProductQuery['product']
 }
 

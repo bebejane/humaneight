@@ -2,6 +2,7 @@
 
 import s from './Help.module.scss'
 import cn from 'classnames'
+import Link from '@components/nav/Link'
 import { useScrollInfo } from 'next-dato-utils';
 
 export default function Help() {
@@ -11,8 +12,10 @@ export default function Help() {
 
   return (
     <div className={cn(s.help, footerTrigger && s.hide)}>
-      <img src="/images/faq.png" />
-      <span>Need help?<br />Contact us here!</span>
+      <Link href={'/contact'}>
+        <img src="/images/faq.png" />
+        <span>Need help?<br />Contact us here!</span>
+      </Link>
     </div>
   )
 }

@@ -1,0 +1,16 @@
+query Feedback {
+	feedback {
+		id
+		headline
+		intro {
+			blocks
+			value
+			links
+		}
+		questions {
+			id
+			headline
+			text(markdown: false)
+		}
+	}
+}

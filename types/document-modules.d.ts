@@ -55,6 +55,15 @@ export const FaqFragment: DocumentNode;
 }
     
 
+declare module '*/feedback.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Feedback: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageCartThumbnailFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

@@ -628,6 +628,74 @@ enum FaviconType {
   msApplication = 'msApplication'
 }
 
+type FeedbackModelIntroField = {
+  __typename?: 'FeedbackModelIntroField';
+  blocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Block of type Feedback question (feedback_question_block) */
+type FeedbackQuestionBlockRecord = RecordInterface & {
+  __typename?: 'FeedbackQuestionBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  headline?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  text: Scalars['String']['output'];
+};
+
+
+/** Block of type Feedback question (feedback_question_block) */
+type FeedbackQuestionBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Block of type Feedback question (feedback_question_block) */
+type FeedbackQuestionBlockRecordtextArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Record of type Feedback (feedback) */
+type FeedbackRecord = RecordInterface & {
+  __typename?: 'FeedbackRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  headline: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  intro: FeedbackModelIntroField;
+  questions: Array<FeedbackQuestionBlockRecord>;
+};
+
+
+/** Record of type Feedback (feedback) */
+type FeedbackRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
 type FileField = FileFieldInterface & {
   __typename?: 'FileField';
   _createdAt: Scalars['DateTime']['output'];
@@ -3527,6 +3595,8 @@ type Query = {
   /** Returns a specific record */
   faqSection?: Maybe<FaqSectionRecord>;
   /** Returns the single instance record */
+  feedback?: Maybe<FeedbackRecord>;
+  /** Returns the single instance record */
   general?: Maybe<GeneralRecord>;
   /** Returns a specific record */
   legal?: Maybe<LegalRecord>;
@@ -3912,6 +3982,13 @@ type QueryfaqSectionArgs = {
   filter?: InputMaybe<FaqSectionModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<FaqSectionModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QueryfeedbackArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 
@@ -5227,6 +5304,11 @@ type AllFaqSectionsQueryVariables = Exact<{
 type AllFaqSectionsQuery = { __typename?: 'Query', allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type FaqFragment = { __typename?: 'FaqRecord', id: any, question: string, answer: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } };
+
+type FeedbackQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type FeedbackQuery = { __typename?: 'Query', feedback?: { __typename?: 'FeedbackRecord', id: any, headline: string, intro: { __typename?: 'FeedbackModelIntroField', blocks: Array<string>, value: any, links: Array<string> }, questions: Array<{ __typename?: 'FeedbackQuestionBlockRecord', id: any, headline?: string, text: string }> } };
 
 type ImageCartThumbnailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
 

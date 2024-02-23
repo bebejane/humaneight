@@ -13,6 +13,10 @@
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
 
+  img {
+    width: 10vw;
+  }
+
   &.hide {
     opacity: 0;
   }

@@ -27,22 +27,6 @@ export const buildMenu = async (): Promise<Menu> => {
   })
 
   const menu: Menu = [{
-    id: 'about',
-    title: 'About',
-    sub: allAbouts.map(({ id, slug, title, image }) => ({
-      id,
-      title,
-      slug: `/about/${slug}`,
-      image: image as FileFieldInterface,
-      localized: false
-    })).concat([{
-      id: 'contact',
-      title: 'Contact',
-      slug: '/contact',
-      image: contact?.image as FileFieldInterface ?? null,
-      localized: false
-    }]),
-  }, {
     id: 'shop',
     title: 'Shop',
     sub: [{
@@ -56,6 +40,16 @@ export const buildMenu = async (): Promise<Menu> => {
       image: image as FileFieldInterface,
       slug: `/shop/${slug}`
     }))],
+  }, {
+    id: 'about',
+    title: 'About',
+    sub: allAbouts.map(({ id, slug, title, image }) => ({
+      id,
+      title,
+      slug: `/about/${slug}`,
+      image: image as FileFieldInterface,
+      localized: false
+    })),
   }, {
     id: 'help',
     title: 'Help',
@@ -87,6 +81,7 @@ export const buildMenu = async (): Promise<Menu> => {
       { id: 'facebook', title: 'Facebook', href: general?.facebook, localized: false },
       { id: 'twitter', title: 'Twitter', href: general?.twitter, localized: false },
       { id: 'newsletter', title: 'Newsletter', href: '#newsletter', localized: false, footer: true },
+      { id: 'contact', title: 'Contact', slug: '/contact', image: contact?.image as FileFieldInterface ?? null, localized: false, footer: true }
     ]
   }]
   return menu

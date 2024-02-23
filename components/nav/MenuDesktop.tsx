@@ -23,7 +23,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
   const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
   const pathname = usePathname()
 
-  const isSamePath = (slug: string | undefined): boolean => (!slug || !pathname.endsWith(slug)) ? false : true
+  const isSamePath = (slug: string | undefined): boolean => (!slug?.split('#')[0] || !pathname.endsWith(slug.split('#')[0])) ? false : true
 
   useKey('Escape', () => setShowMenu(false));
 
@@ -67,7 +67,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
           ))}
           <figure key={`figure-${tipProduct?.id}`}>
             {tipProduct?.image?.responsiveImage &&
-              <Link href={`/products/${tipProduct?.slug}`} className={s.link}>
+              <Link href={`/products/${tipProduct?.shopifyProduct.handle}`} className={s.link}>
                 <Image
                   data={tipProduct.image.responsiveImage}
                   lazyLoad={false}
