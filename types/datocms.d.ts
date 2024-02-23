@@ -2776,6 +2776,7 @@ type ProductBrandingModelFilter = {
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
+  link?: InputMaybe<LinkFilter>;
   smallText?: InputMaybe<StringFilter>;
   text?: InputMaybe<StringFilter>;
 };
@@ -2823,6 +2824,7 @@ type ProductBrandingRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   id: Scalars['ItemId']['output'];
   image: FileField;
+  link?: Maybe<AboutRecord>;
   smallText?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
 };

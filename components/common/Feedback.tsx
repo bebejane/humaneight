@@ -43,7 +43,7 @@ export default function Feedback({ feedback }: Props) {
               <h3 className="mid">
                 {headline}
               </h3>
-              <Markdown className="light small" content={text} />
+              <Markdown className="light mid" content={text} />
               <textarea id={id} name={id} rows={3} ref={i === 0 ? firstInputRef : undefined} />
             </React.Fragment>
           )}

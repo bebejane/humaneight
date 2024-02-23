@@ -65,6 +65,7 @@ h5 {
 form,
 input,
 select,
+textarea,
 button {
   font-family: $body-font;
   line-height: 1;
@@ -129,6 +130,7 @@ ol li {
 
 p.small,
 .small,
+.small p,
 .legal p {
   font-size: 1rem;
 }
