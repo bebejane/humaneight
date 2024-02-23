@@ -31,10 +31,13 @@
     flex-direction: row;
     justify-content: center;
     padding-top: 0.3em;
-    padding-bottom: 1em;
     opacity: 1;
     white-space: nowrap;
     color: var(--gray-dark);
+
+    @include mq($from: desktop) {
+      padding-bottom: 1em;
+    }
 
     &.hide {
       opacity: 0;
@@ -58,7 +61,6 @@
       &.selected {
         pointer-events: all;
         opacity: 1;
-
       }
 
       @include mq($from: desktop) {
@@ -73,13 +75,11 @@
 
       @include mq($until: desktop) {
         position: relative;
-
       }
     }
   }
 
   @include mq($until: desktop) {
-
     overflow-x: scroll;
 
     margin-left: calc(-1 * var(--outer-margin));
@@ -191,7 +191,6 @@
     }
 
     &.selected {
-
       a,
       a:hover {
         color: var(--black);
