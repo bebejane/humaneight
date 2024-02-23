@@ -39,6 +39,14 @@ query AllProductBranding($first: IntType = 100, $skip: IntType = 0) {
 		image {
 			...ImageThumbnailFragment
 		}
+		link {
+			... on AboutRecord {
+				__typename
+				id
+				title
+				slug
+			}
+		}
 	}
 	_allProductBrandingsMeta {
 		count
