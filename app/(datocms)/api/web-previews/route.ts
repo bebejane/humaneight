@@ -32,6 +32,8 @@ export async function POST(req: NextRequest) {
         break;
       case 'about':
         path = `/about/${slug}`
+      case 'feedback':
+        path = `/contact`
       default:
         break;
     }
