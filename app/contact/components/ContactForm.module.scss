@@ -1,6 +1,6 @@
 .contactForm {
   form {
-    margin-top: var(--space-big);
+    margin-top: var(--space);
     display: flex;
     flex-direction: column;
     button[disabled] {
@@ -14,6 +14,10 @@
 
   .error {
     color: var(--red);
+  }
+
+  label {
+    padding-bottom: 1em;
   }
 
   input,

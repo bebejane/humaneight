@@ -19,8 +19,10 @@ export default function ContactForm({ message }: Props) {
         <p>{message}</p>
         :
         <form action={formAction}>
-          <input id="email" name="email" type="text" placeholder="E-mail..." />
-          <textarea id="message" name="message" placeholder="Message..."></textarea>
+          <label>Email</label>
+          <input id="email" name="email" type="text" />
+          <label>Message</label>
+          <textarea id="message" name="message"></textarea>
           <SubmitButton />
         </form>
       }
