@@ -26,7 +26,7 @@ export default function Feedback({ feedback }: Props) {
 
   useEffect(() => {
     if (showForm && isDesktop)
-      firstInputRef.current?.focus()
+      setTimeout(() => firstInputRef.current?.focus(), 200)
   }, [isDesktop, showForm])
 
   return (
