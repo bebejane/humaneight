@@ -7,8 +7,8 @@ export type Props = {
   productBranding: ProductBrandingRecord,
   columns?: string | undefined
 }
-export default function BrandingThumbnail({ productBranding: { text, smallText, image, link }, columns = 'three' }: Props) {
 
+export default function BrandingThumbnail({ productBranding: { text, smallText, image, link }, columns = 'three' }: Props) {
 
   return (
     <Link className={s.thumbnail} href={`/about/${link?.slug}`}>

@@ -75,6 +75,9 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
           >
             <Button className={s.button} ref={selectButtonRef}>
               <SelectValue className={s.value} key={variantId}>
+                <figure>
+                  <img src={variant?.image?.url} alt={variant?.image?.altText} />
+                </figure>
                 {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
               </SelectValue>
               <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!colorsOpen ? '▼' : '▲'}</span>
