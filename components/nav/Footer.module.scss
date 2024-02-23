@@ -7,7 +7,6 @@
   //padding-bottom: 2rem;
   @include mq($from: desktop) {
     flex-direction: column;
-
     height: calc(100vh);
   }
 
@@ -19,8 +18,9 @@
   .logo {
     position: sticky;
     @include mq($from: desktop) {
-      height: 12.5rem;
-      top: calc(100vh - 12.5rem - var(--outer-margin));
+      $height: calc((100vw - (2 * var(--outer-margin))) * 0.115);
+      height: $height;
+      top: calc(100vh - #{$height} - 3.5rem - var(--outer-margin));
     }
 
     img {
