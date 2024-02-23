@@ -4,7 +4,8 @@ import s from './page.module.scss'
 import cn from 'classnames';
 import { notFound } from 'next/navigation';
 import { AllProductsDocument, FeedbackDocument, ProductByIdDocument, ShopifyProductDataDocument } from '@graphql';
-import { DraftMode, apiQuery } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import { CountryParams } from '@app/[country]/layout';
 import { CountryProductParams } from '@app/[country]/products/[product]/page';
 import { ShopifyProductDocument } from '@shopify/graphql';

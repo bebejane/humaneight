@@ -1,8 +1,8 @@
 
 import { AboutDocument, AllAboutsDocument } from '@graphql';
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
 import { notFound } from 'next/navigation';
-import { Block } from 'next-dato-utils'
+import { Block, DraftMode } from 'next-dato-utils/components'
 
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';

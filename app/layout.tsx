@@ -2,7 +2,7 @@ import '@styles/index.scss'
 import Script from 'next/script';
 import NavBar from '@components/nav/NavBar';
 import Footer from '@components/nav/Footer';
-import { apiQuery } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
 import { AllProductsDocument, GlobalDocument, GeneralDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';

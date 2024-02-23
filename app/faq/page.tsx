@@ -2,7 +2,8 @@ import type { CountryParams } from '@app/[country]/layout'
 import s from './page.module.scss'
 import cn from 'classnames';
 import { AllFaqsDocument } from '@graphql';
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import Link from '@components//nav/Link';
 import FaqItem from './components/FaqItem';
 import Help from './components/Help';

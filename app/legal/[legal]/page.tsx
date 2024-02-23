@@ -1,8 +1,8 @@
 import s from './page.module.scss';
 import { LegalDocument, AllLegalsDocument } from '@graphql';
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode, StructuredContent } from 'next-dato-utils/components';
 import { notFound } from 'next/navigation';
-import { StructuredContent } from 'next-dato-utils'
 import cn from 'classnames';
 
 export default async function Legal({ params }: { params: { legal: string } }) {

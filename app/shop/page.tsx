@@ -3,7 +3,8 @@ import { CountryShopParams } from '@app/[country]/shop/page';
 import s from './page.module.scss'
 import CollectionsFilter from './components/CollectionsFilter';
 import { AllCollectionsDocument, AllProductBrandingDocument, AllProductByCollectionDocument, CollectionDocument } from '@graphql';
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import ProductThumbnail from '@components/layout/ProductThumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
 import React from 'react';

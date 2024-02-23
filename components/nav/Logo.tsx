@@ -2,7 +2,7 @@
 
 import s from './Logo.module.scss';
 import cn from 'classnames';
-import { useScrollInfo } from 'next-dato-utils';
+import { useScrollInfo } from 'next-dato-utils/hooks';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';

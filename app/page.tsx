@@ -1,5 +1,6 @@
 import { CountryParams } from './[country]/layout'
-import { apiQuery, DraftMode, Block } from 'next-dato-utils';
+import { DraftMode, Block } from 'next-dato-utils/components';
+import { apiQuery } from 'next-dato-utils/api';
 import { StartDocument } from '@graphql';
 import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } from '@components/content/blocks/start';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';

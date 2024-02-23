@@ -1,7 +1,8 @@
 
 import s from './page.module.scss'
 import { ContactDocument, FeedbackDocument } from '@graphql';
-import { apiQuery, DraftMode } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
+import { DraftMode } from 'next-dato-utils/components';
 import { notFound } from 'next/navigation';
 import Content from '@components/content/Content';
 import ContactForm from './components/ContactForm';

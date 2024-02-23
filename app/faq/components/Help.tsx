@@ -3,7 +3,7 @@
 import s from './Help.module.scss'
 import cn from 'classnames'
 import Link from '@components/nav/Link'
-import { useScrollInfo } from 'next-dato-utils';
+import { useScrollInfo } from 'next-dato-utils/hooks';
 
 export default function Help() {
 

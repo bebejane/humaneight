@@ -1,5 +1,5 @@
 import s from './RelatedAbouts.module.scss'
-import { apiQuery } from 'next-dato-utils'
+import { apiQuery } from 'next-dato-utils/api'
 import { AllAboutsDocument } from '@graphql'
 import Link from 'next/link'
 import ThumbnailContainer from '@components/layout/ThumbnailContainer'

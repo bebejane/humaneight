@@ -8,11 +8,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
 import { useMedia, useWindowSize, useWindowScroll } from 'react-use';
-import useMeasure from 'react-use-measure';
-import { useScrollInfo } from 'next-dato-utils';
+import { useScrollInfo } from 'next-dato-utils/hooks';
 
 export type Props = {
-  product: ProductQuery['product']
+  product: ProductByIdQuery['product']
   shopifyProduct: ShopifyProductQuery['product']
   className?: string
   mobile?: boolean
