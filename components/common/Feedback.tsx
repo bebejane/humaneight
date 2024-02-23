@@ -6,6 +6,7 @@ import s from './Feedback.module.scss'
 import cn from 'classnames'
 import Content from '../content/Content'
 import React from 'react'
+import useIsDesktop from '@lib/hooks/useIsDesktop'
 
 export type Props = {
   feedback: FeedbackQuery['feedback']
@@ -16,10 +17,17 @@ export default function Feedback({ feedback }: Props) {
   const [showForm, setShowForm] = useState(false)
   const [maxHeight, setMaxHeight] = useState(0)
   const formRef = useRef<HTMLFormElement | null>(null)
+  const firstInputRef = useRef<HTMLTextAreaElement | null>(null)
+  const isDesktop = useIsDesktop()
 
   useEffect(() => {
     setMaxHeight(formRef.current?.scrollHeight ?? 0);
   }, [])
+
+  useEffect(() => {
+    if (showForm && isDesktop)
+      firstInputRef.current?.focus()
+  }, [isDesktop, showForm])
 
   return (
     <section className={cn(s.feedback, "grid")}>
@@ -36,7 +44,7 @@ export default function Feedback({ feedback }: Props) {
                 {headline}
               </h3>
               <Markdown className="light small" content={text} />
-              <textarea id={id} name={id} rows={3} />
+              <textarea id={id} name={id} rows={3} ref={i === 0 ? firstInputRef : undefined} />
             </React.Fragment>
           )}
           <button className="full" type="submit">Send</button>

@@ -12,6 +12,7 @@ import Hamburger from "./Hamburger";
 import MenuDesktop from "./MenuDesktop";
 import MenuMobile from "./MenuMobile";
 import { useMedia } from "react-use";
+import useIsDesktop from "@lib/hooks/useIsDesktop";
 
 export type Props = {
   menu: Menu
@@ -24,7 +25,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState(false);
   const [isShopPage, setIsShopPage] = useState(pathname.toLowerCase().startsWith('/shop'));
-  const isDesktop = useMedia('(min-width: 980px)', false)
+  const isDesktop = useIsDesktop(false)
 
   useEffect(() => {
     setShowMenu(false)

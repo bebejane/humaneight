@@ -9,6 +9,7 @@ import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
 import { useMedia, useWindowSize, useWindowScroll } from 'react-use';
 import { useScrollInfo } from 'next-dato-utils/hooks';
+import useIsDesktop from '@lib/hooks/useIsDesktop';
 
 export type Props = {
   product: ProductByIdQuery['product']
@@ -26,7 +27,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
-  const isDesktop = useMedia('(min-width: 980px)', true)
+  const isDesktop = useIsDesktop()
   const [formStyles, setFormStyles] = useState<React.CSSProperties>({})
   const formRef = useRef<HTMLFormElement>(null);
 

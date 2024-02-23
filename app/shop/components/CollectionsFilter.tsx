@@ -5,6 +5,7 @@ import cn from 'classnames'
 import Link from '@components//nav/Link'
 import { useEffect, useState } from 'react'
 import { useWindowSize, useMedia } from 'react-use'
+import useIsDesktop from '@lib/hooks/useIsDesktop'
 
 export type Props = {
   collectionId?: string
@@ -20,7 +21,7 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
   const [hoverId, setHoverId] = useState<string | null>(null)
   const [hoverPos, setHoverPos] = useState<{ id: string, left: number, top: number }[] | null>(null)
   const { width, height } = useWindowSize()
-  const isDesktop = useMedia('(min-width: 980px)', true)
+  const isDesktop = useIsDesktop()
   const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
   const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
   const tag = searchParams?.tag ?? 'all'
