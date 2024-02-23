@@ -9,7 +9,7 @@ type Props = {
 export default function TwoColumnBlock({ data: { id, text }, className }: Props) {
 
   return (
-    <p className={cn(s.twoColumn, className)}>
+    <p className={cn(s.twoColumn, className, "mid")}>
       {text}
     </p>
   )
