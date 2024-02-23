@@ -123,7 +123,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
                   >
                     <Label className={s.label}>
                       <figure>
-                        <img src={v.image?.url} alt={v.image?.altText} />
+                        <img src={v.image?.url} alt={option?.value} title={option?.value} />
                       </figure>
                     </Label>
                   </Radio>
