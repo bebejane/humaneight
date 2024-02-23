@@ -1,4 +1,5 @@
 import s from './TwoColumnBlock.module.scss'
+import { Markdown } from 'next-dato-utils/components'
 import cn from 'classnames'
 
 type Props = {
@@ -6,11 +7,9 @@ type Props = {
   className?: string
 }
 
-export default function TwoColumnBlock({ data: { id, text }, className }: Props) {
+export default function TwoColumnBlock({ data: { text }, className }: Props) {
 
   return (
-    <p className={cn(s.twoColumn, className, "mid")}>
-      {text}
-    </p>
+    <Markdown className={cn(s.twoColumn, className, "mid")} content={text} />
   )
 }
