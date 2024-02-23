@@ -29,6 +29,10 @@
     th,
     td:first-of-type {
       font-family: $body-font;
+    }
+
+    td:first-of-type,
+    th:first-of-type {
       text-align: left;
     }
   }
