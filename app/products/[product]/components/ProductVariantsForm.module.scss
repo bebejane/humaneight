@@ -128,17 +128,42 @@
       }
     }
 
-    > div {
+    >div {
       flex: 1 1 auto;
     }
 
-    select {
-    }
+    select {}
   }
 
   button {
     @include mq($from: desktop) {
       margin-top: var(--outer-margin);
+    }
+  }
+}
+
+.colorsDesktop {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .radio {
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    &.selected {
+      border: 1px solid var(--black);
+    }
+
+    .label {
+      figure {
+        img {
+          width: 2em;
+          height: 2em;
+          object-fit: cover;
+          border: 1px solid var(--gray);
+        }
+      }
     }
   }
 }
