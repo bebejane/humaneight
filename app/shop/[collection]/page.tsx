@@ -1,7 +1,7 @@
 import { CountryShopParams } from '@app/[country]/shop/page';
 import storePage from '../page'
 import { AllCollectionsDocument } from '@graphql';
-import { apiQuery } from 'next-dato-utils';
+import { apiQuery } from 'next-dato-utils/api';
 
 export const runtime = 'edge'
 

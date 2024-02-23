@@ -5,7 +5,7 @@ import ProductThumbnail from '@components/layout/ProductThumbnail'
 import BrandingThumbnail from '@components/layout/BrandingThumbnail'
 import Link from '@components//nav/Link'
 import React from 'react'
-import { apiQuery } from 'next-dato-utils'
+import { apiQuery } from 'next-dato-utils/api'
 import { AllProductBrandingDocument } from '@graphql'
 
 type Props = {

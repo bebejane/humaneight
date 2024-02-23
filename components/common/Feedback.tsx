@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Markdown } from 'next-dato-utils'
+import { Markdown } from 'next-dato-utils/components'
 import s from './Feedback.module.scss'
 import cn from 'classnames'
 import Content from '../content/Content'
@@ -35,7 +35,7 @@ export default function Feedback({ feedback }: Props) {
               <h3 className="mid">
                 {headline}
               </h3>
-              <p>{text}</p>
+              <Markdown className="light small" content={text} />
               <textarea id={id} name={id} rows={3} />
             </React.Fragment>
           )}
