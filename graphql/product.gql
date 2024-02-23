@@ -10,16 +10,9 @@ query AllProducts($first: IntType = 100, $skip: IntType = 0) {
 query ShopifyProductData($handle: String) {
 	shopifyProduct(filter: { handle: { eq: $handle } }) {
 		id
-		shopifyId
 		tags
 		handle
 		title
-	}
-}
-
-query Product($slug: String) {
-	product(filter: { slug: { eq: $slug } }) {
-		...ProductFragment
 	}
 }
 
@@ -34,19 +27,6 @@ query AllProductByCollection($collectionId: ItemId, $first: IntType = 100, $skip
 		...ProductLightFragment
 	}
 	_allProductsMeta(filter: { collection: { eq: $collectionId } }) {
-		count
-	}
-}
-
-query AllCartProducts($shopifyIds: [String]!, $first: IntType = 100, $skip: IntType = 0) {
-	allProducts(first: $first, skip: $skip, filter: { shopifyId: { in: $shopifyIds } }) {
-		id
-		shopifyId
-		image {
-			...ImageCartThumbnailFragment
-		}
-	}
-	_allProductsMeta(filter: { shopifyId: { in: $shopifyIds } }) {
 		count
 	}
 }
@@ -78,10 +58,8 @@ query AllProductMetaTypes($first: IntType = 100, $skip: IntType = 0) {
 
 fragment ProductLightFragment on ProductRecord {
 	id
-	shopifyId
 	title
 	label
-	slug
 	collection {
 		id
 		title
@@ -105,7 +83,6 @@ fragment ProductLightFragment on ProductRecord {
 
 fragment ProductFragment on ProductRecord {
 	id
-	shopifyId
 	title
 	label
 	collection {
@@ -128,7 +105,6 @@ fragment ProductFragment on ProductRecord {
 		value
 		links
 	}
-	slug
 	image {
 		...ImageFragment
 	}

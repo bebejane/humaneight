@@ -6,7 +6,7 @@ import ThumbnailContainer from '@components/layout/ThumbnailContainer'
 import ProductThumbnail from '@components/layout/ProductThumbnail'
 
 export type Props = {
-  product: ProductQuery['product']
+  product: ProductByIdQuery['product']
 }
 
 export default async function RelatedProducts({ product }: Props) {

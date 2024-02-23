@@ -3,7 +3,7 @@
 import s from './page.module.scss'
 import cn from 'classnames';
 import { notFound } from 'next/navigation';
-import { AllProductsDocument, ProductDocument, ShopifyProductDataDocument } from '@graphql';
+import { AllProductsDocument, ProductByIdDocument, ShopifyProductDataDocument } from '@graphql';
 import { DraftMode, apiQuery } from 'next-dato-utils';
 import { CountryParams } from '@app/[country]/layout';
 import { CountryProductParams } from '@app/[country]/products/[product]/page';
@@ -31,8 +31,8 @@ export default async function Product({ params }: CountryProductParams) {
     { product, draftUrl },
     { product: shopifyProduct }
   ] = await Promise.all([
-    apiQuery<ProductQuery, ProductQueryVariables>(ProductDocument, {
-      variables: { slug: shopifyProductData.handle }
+    apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
+      variables: { id: shopifyProductData.id }
     }),
     shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
       variables: { handle: params.product },
