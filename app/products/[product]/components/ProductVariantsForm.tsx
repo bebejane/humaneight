@@ -10,6 +10,7 @@ import { parseGid } from '@shopify/utils';
 import { useMedia, useWindowSize, useWindowScroll } from 'react-use';
 import { useScrollInfo } from 'next-dato-utils/hooks';
 import useIsDesktop from '@lib/hooks/useIsDesktop';
+import { is } from 'date-fns/locale';
 
 export type Props = {
   product: ProductByIdQuery['product']
@@ -64,46 +65,75 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 
   return (
     <form id="product-variant-form" className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
-      {haveColors && <fieldset>
-        <Select
-          key={variantId}
-          className={s.colors}
-          onSelectionChange={handleVariantChange}
-          onOpenChange={(o) => setColorsOpen(o)}
-        >
-          <Button className={s.button} ref={selectButtonRef}>
-            <SelectValue className={s.value} key={variantId}>
-              {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
-            </SelectValue>
-            <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!colorsOpen ? '▼' : '▲'}</span>
-          </Button>
-          <Popover placement="top left" className={s.colorsPopover}>
-            <ListBox
-              className={s.options}
-              items={availableColors.map((v, idx) => ({
-                id: parseGid(v.id),
-                name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
-              }))}
-              style={{ width: colorSelectWidth }}
-            >
-              {availableColors.map((v, idx) => {
-                const option = v.selectedOptions.find(opt => opt.name === 'Color')
-                if (!option) return null
-                return (
-                  <ListBoxItem id={parseGid(v.id)} key={idx} className={s.option}>
-                    <figure>
-                      <img src={v.image?.url} alt={v.image?.altText} />
-                      <figcaption>
-                        {option?.value}
-                      </figcaption>
-                    </figure>
-                  </ListBoxItem>
-                )
-              })}
-            </ListBox>
-          </Popover>
-        </Select>
-      </fieldset>
+      {haveColors && !isDesktop &&
+        <fieldset>
+          <Select
+            key={variantId}
+            className={s.colors}
+            onSelectionChange={handleVariantChange}
+            onOpenChange={(o) => setColorsOpen(o)}
+          >
+            <Button className={s.button} ref={selectButtonRef}>
+              <SelectValue className={s.value} key={variantId}>
+                {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
+              </SelectValue>
+              <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!colorsOpen ? '▼' : '▲'}</span>
+            </Button>
+            <Popover placement="top left" className={s.colorsPopover}>
+              <ListBox
+                className={s.options}
+                items={availableColors.map((v, idx) => ({
+                  id: parseGid(v.id),
+                  name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
+                }))}
+                style={{ width: colorSelectWidth }}
+              >
+                {availableColors.map((v, idx) => {
+                  const option = v.selectedOptions.find(opt => opt.name === 'Color')
+                  if (!option) return null
+                  return (
+                    <ListBoxItem id={parseGid(v.id)} key={idx} className={s.option}>
+                      <figure>
+                        <img src={v.image?.url} alt={v.image?.altText} />
+                        <figcaption>
+                          {option?.value}
+                        </figcaption>
+                      </figure>
+                    </ListBoxItem>
+                  )
+                })}
+              </ListBox>
+            </Popover>
+          </Select>
+        </fieldset>
+      }
+      {haveColors && isDesktop &&
+        <fieldset>
+          <RadioGroup onChange={handleVariantChange} className={s.colorsDesktop} key={variantId}>
+            {availableColors.map((v, idx) => {
+              const option = v.selectedOptions.find(opt => opt.name === 'Color')
+              const selected = variant?.selectedOptions.find(opt => opt.name === 'Color' && option?.value === opt.value) ? true : false
+
+              return (
+                <React.Fragment key={idx}>
+                  <Radio
+                    id={parseGid(v.id)}
+                    value={parseGid(v.id)}
+                    className={cn(s.radio, selected && s.selected)}
+                  >
+                    <Label className={s.label}>
+                      <figure>
+                        <img src={v.image?.url} alt={v.image?.altText} />
+                      </figure>
+                    </Label>
+                  </Radio>
+                </React.Fragment>
+              )
+            })}
+            <FieldError />
+          </RadioGroup>
+        </fieldset>
+
       }
       {haveSizes &&
         <fieldset>
