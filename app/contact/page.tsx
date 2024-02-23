@@ -6,6 +6,8 @@ import Content from '@components/content/Content';
 import ContactForm from './components/ContactForm';
 import { Image } from 'react-datocms';
 import FeedbackForm from '@components/common/FeedbackForm';
+import s from './page.module.scss'
+
 
 export default async function Contact() {
 
@@ -16,13 +18,18 @@ export default async function Contact() {
   return (
     <>
       <div className="about">
-        <Content content={contact.content} />
-        <figure>
-          {contact.image &&
-            <Image data={contact.image.responsiveImage} />
-          }
-        </figure>
-        <ContactForm message={contact.contactFormMessage} />
+        <div className={s.twoCols}>
+          <div className={s.left}>          <Content content={contact.content} />
+            <ContactForm message={contact.contactFormMessage} />
+          </div>
+          <div className={s.right}>
+            <figure>
+              {contact.image &&
+                <Image data={contact.image.responsiveImage} />
+              }
+            </figure>
+          </div>
+        </div>
         <FeedbackForm show={true} />
       </div>
       <DraftMode url={draftUrl} tag={contact.id} />

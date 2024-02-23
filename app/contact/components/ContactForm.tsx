@@ -31,5 +31,5 @@ export default function ContactForm({ message }: Props) {
 
 function SubmitButton() {
   const status = useFormStatus();
-  return <button type="submit" disabled={status.pending}>Send</button>
+  return <button type="submit" className="full" disabled={status.pending}>Send</button>
 }

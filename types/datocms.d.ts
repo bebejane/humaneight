@@ -4983,13 +4983,34 @@ type UploadUpdatedAtFilter = {
 
 type UploadVideoField = {
   __typename?: 'UploadVideoField';
+  alt?: Maybe<Scalars['String']['output']>;
+  blurUpThumb?: Maybe<Scalars['String']['output']>;
+  blurhash?: Maybe<Scalars['String']['output']>;
   duration?: Maybe<Scalars['Int']['output']>;
   framerate?: Maybe<Scalars['Int']['output']>;
+  height: Scalars['IntType']['output'];
   mp4Url?: Maybe<Scalars['String']['output']>;
   muxAssetId: Scalars['String']['output'];
   muxPlaybackId: Scalars['String']['output'];
   streamingUrl: Scalars['String']['output'];
+  thumbhash?: Maybe<Scalars['String']['output']>;
   thumbnailUrl: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+  width: Scalars['IntType']['output'];
+};
+
+
+type UploadVideoFieldaltArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+type UploadVideoFieldblurUpThumbArgs = {
+  imgixParams?: InputMaybe<ImgixParams>;
+  punch?: Scalars['Float']['input'];
+  quality?: Scalars['Int']['input'];
+  size?: Scalars['Int']['input'];
 };
 
 
@@ -5001,6 +5022,12 @@ type UploadVideoFieldmp4UrlArgs = {
 
 type UploadVideoFieldthumbnailUrlArgs = {
   format?: InputMaybe<MuxThumbnailFormatType>;
+};
+
+
+type UploadVideoFieldtitleArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 /** Specifies how to filter by width */

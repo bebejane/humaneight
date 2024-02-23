@@ -1,0 +1,14 @@
+.twoCols {
+  display: flex;
+  justify-content: space-between;
+
+  .left,
+  .right {
+    width: calc(50% - 0.5 * var(--gutter));
+  }
+
+  .left {
+    padding-right: var(--gutter);
+    padding-left: var(--gutter);
+  }
+}
