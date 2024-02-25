@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   margin-top: var(--space-big);
   padding: var(--space);
@@ -9,6 +10,13 @@
 
   @include mq($from: desktop) {
     flex-direction: row;
+  }
+
+  @include mq($from: desktop) {
+    h3,
+    form {
+      max-width: 50%;
+    }
   }
 
   h3 {
@@ -23,7 +31,6 @@
 
     input {
       flex: 1 1 auto;
-      margin-left: 1em;
       padding: 0.8rem;
     }
   }
