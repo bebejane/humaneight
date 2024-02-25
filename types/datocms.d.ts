@@ -5408,7 +5408,7 @@ type AllProductBrandingQueryVariables = Exact<{
 }>;
 
 
-type AllProductBrandingQuery = { __typename?: 'Query', allProductBrandings: Array<{ __typename?: 'ProductBrandingRecord', id: any, text?: string, smallText?: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allProductBrandingsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductBrandingQuery = { __typename?: 'Query', allProductBrandings: Array<{ __typename?: 'ProductBrandingRecord', id: any, text?: string, smallText?: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, link?: { __typename: 'AboutRecord', id: any, title: string, slug: string } }>, _allProductBrandingsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllProductMetaTypesQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
