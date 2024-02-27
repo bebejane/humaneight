@@ -1,16 +1,19 @@
 'use client'
 
 import { FieldError, Label, Radio, RadioGroup, Text, Button, ListBox, ListBoxItem, Popover, Select, SelectValue, Key } from 'react-aria-components';
-import useQueryString from '@lib/hooks/useQueryString'
 import s from './ProductVariantsForm.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 import AddToCartButton from '@components/shopify/AddToCartButton'
 import { parseGid } from '@shopify/utils';
-import { useMedia, useWindowSize, useWindowScroll } from 'react-use';
+import { useWindowSize } from 'react-use';
 import { useScrollInfo } from 'next-dato-utils/hooks';
+import useQueryString from '@lib/hooks/useQueryString'
 import useIsDesktop from '@lib/hooks/useIsDesktop';
-import { is } from 'date-fns/locale';
+import { ShopifyProductDocument } from '@shopify/graphql';
+import shopifyQuery from '@shopify/shopify-query';
+import { ca } from 'date-fns/locale';
+import useProduct from '../../../../shopify/hooks/useProduct';
 
 export type Props = {
   product: ProductByIdQuery['product']
@@ -19,12 +22,13 @@ export type Props = {
   mobile?: boolean
 }
 
-export default function ProductVariantsForm({ product, shopifyProduct, className, mobile }: Props) {
+export default function ProductVariantsForm({ product, shopifyProduct: _shopifyProduct, className, mobile }: Props) {
+
+  const { product: shopifyProduct, loading, error } = useProduct({ handle: product?.shopifyProduct.handle, initialData: _shopifyProduct })
 
   const { searchParams, setSearchParam } = useQueryString()
   const { width, height } = useWindowSize()
   const { scrolledPosition } = useScrollInfo()
-
   const [colorSelectWidth, setColorSelectWidth] = useState(0)
   const [colorsOpen, setColorsOpen] = useState(false)
   const selectButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -62,6 +66,7 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
   const isMobileHidden = !isDesktop && scrolledPosition < 100
 
   if (isHidden) return null
+
 
   return (
     <form id="product-variant-form" className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
@@ -171,8 +176,8 @@ export default function ProductVariantsForm({ product, shopifyProduct, className
 const availableVariants = (product: Product, name: string | undefined, value: string | undefined): ProductVariant[] => {
   if (!name || !value) return product?.variants?.edges.map(({ node }) => node)
 
-  return product.variants.edges.filter(({ node: { selectedOptions } }) => {
-    return selectedOptions.find(opt => opt.name === name && opt.value === value) !== undefined
+  return product.variants.edges.filter(({ node: { selectedOptions, availableForSale, quantityAvailable } }) => {
+    return availableForSale && quantityAvailable && selectedOptions.find(opt => opt.name === name && opt.value === value) !== undefined
   }).map(({ node }) => node)
 
 }
