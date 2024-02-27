@@ -133,9 +133,11 @@
           border: 1px solid var(--black);
         }
 
-        &.disabled {
-          opacity: 0.5;
-        }
+      }
+
+      label[data-disabled="true"] {
+        opacity: 0.3;
+        cursor: not-allowed;
       }
     }
 

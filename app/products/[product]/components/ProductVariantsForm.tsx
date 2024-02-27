@@ -10,10 +10,7 @@ import { useWindowSize } from 'react-use';
 import { useScrollInfo } from 'next-dato-utils/hooks';
 import useQueryString from '@lib/hooks/useQueryString'
 import useIsDesktop from '@lib/hooks/useIsDesktop';
-import { ShopifyProductDocument } from '@shopify/graphql';
-import shopifyQuery from '@shopify/shopify-query';
-import { ca } from 'date-fns/locale';
-import useProduct from '../../../../shopify/hooks/useProduct';
+import useProduct from '@shopify/hooks/useProduct';
 
 export type Props = {
   product: ProductByIdQuery['product']
@@ -45,6 +42,8 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
   const haveColors = shopifyProduct?.variants.edges.find(({ node }) => node.selectedOptions.find(opt => opt.name === 'Color') !== undefined) !== undefined
   const availableSizes = availableVariants(shopifyProduct as Product, 'Color', variant?.selectedOptions.find(opt => opt.name === 'Color')?.value)
   const availableColors = availableVariants(shopifyProduct as Product, 'Size', variant?.selectedOptions.find(opt => opt.name === 'Size')?.value)
+  const sizeOptions = shopifyProduct?.variants.edges.map(({ node }) => node.selectedOptions.find(opt => opt.name === 'Size')?.value).reduce<string[]>((acc, val) => typeof val === 'undefined' ? acc : acc.includes(val) ? acc : [...acc, val], [])
+  const colorOptions = shopifyProduct?.variants.edges.map(({ node }) => node.selectedOptions.find(opt => opt.name === 'Color')?.value).reduce<string[]>((acc, val) => typeof val === 'undefined' ? acc : acc.includes(val) ? acc : [...acc, val], [])
 
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
@@ -66,7 +65,6 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
   const isMobileHidden = !isDesktop && scrolledPosition < 100
 
   if (isHidden) return null
-
 
   return (
     <form id="product-variant-form" className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
@@ -141,24 +139,24 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
             <FieldError />
           </RadioGroup>
         </fieldset>
-
       }
       {haveSizes &&
         <fieldset>
           <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variantId}>
-
-            {availableSizes.map((v, idx) => {
-              const option = v.selectedOptions.find(opt => opt.name === 'Size')
+            {sizeOptions?.map((size, idx) => {
+              const v = availableSizes.find(v => v.selectedOptions.find(opt => opt.name === 'Size' && opt.value === size))
+              const option = v?.selectedOptions.find(opt => opt.name === 'Size')
               const selected = variant?.selectedOptions.find(opt => opt.name === 'Size' && option?.value === opt.value) ? true : false
 
               return (
                 <React.Fragment key={idx}>
                   <Radio
-                    id={parseGid(v.id)}
-                    value={parseGid(v.id)}
+                    id={v ? parseGid(v.id) : 'unavailable'}
+                    value={v ? parseGid(v.id) : 'unavailable'}
                     className={cn(s.radio, selected && s.selected)}
+                    isDisabled={!v}
                   >
-                    <Label className={s.label}>{option?.value}</Label>
+                    <Label className={s.label}>{size}</Label>
                   </Radio>
                 </React.Fragment>
               )
@@ -172,6 +170,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
     </form>
   )
 }
+
 
 const availableVariants = (product: Product, name: string | undefined, value: string | undefined): ProductVariant[] => {
   if (!name || !value) return product?.variants?.edges.map(({ node }) => node)
