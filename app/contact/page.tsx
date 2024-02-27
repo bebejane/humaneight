@@ -11,10 +11,11 @@ import Feedback from '@components/common/Feedback';
 
 export default async function Contact() {
 
-  const { contact, draftUrl } = await apiQuery<ContactQuery, ContactQueryVariables>(ContactDocument)
-  const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument)
+  const { contact, draftUrl } = await apiQuery<ContactQuery, ContactQueryVariables>(ContactDocument, { tags: ['contact'] })
+  const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument, { tags: ['feedback'] })
 
-  if (!contact) return notFound();
+  if (!contact)
+    return notFound();
 
   return (
     <>

@@ -1,5 +1,7 @@
 import { NextRequest } from 'next/server';
 import { webPreviews, cors } from 'next-dato-utils/route-handlers'
+import { apiQuery } from 'next-dato-utils/api';
+import { ProductByIdDocument } from '../../../../graphql';
 
 export const runtime = "edge"
 
@@ -9,7 +11,7 @@ export async function POST(req: NextRequest) {
 
     let path = null;
 
-    const { id } = item
+    const { id, shopify_product } = item
     const { slug } = item.attributes
     const { api_key } = itemType.attributes
 
@@ -24,16 +26,31 @@ export async function POST(req: NextRequest) {
       case 'faq_section':
         path = `/faq/${slug}`
         break;
-      case 'product':
-        path = `/products/${slug}`
+      case 'product': {
+        const { product } = await apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, { variables: { id: shopify_product } })
+        path = `/products/${product?.shopifyProduct.handle}`
         break;
+      }
+      case 'shopify_product': {
+        const { product } = await apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, { variables: { id } })
+        path = `/products/${product?.shopifyProduct.handle}`
+        break;
+      }
       case 'collection':
         path = `/shop/${slug}`
         break;
       case 'about':
         path = `/about/${slug}`
-      case 'feedback':
+        break;
+      case 'feedback': case 'contact':
         path = `/contact`
+        break;
+      case 'legal':
+        path = `/legal/${slug}`
+        break;
+      case 'product_branding':
+        path = `/shop`
+        break;
       default:
         break;
     }
