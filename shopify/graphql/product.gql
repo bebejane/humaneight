@@ -25,6 +25,7 @@ query ShopifyVariant($country: CountryCode = SE, $id: ID!) @inContext(country: $
 			title
 			weight
 			availableForSale
+			quantityAvailable
 			selectedOptions {
 				name
 				value
