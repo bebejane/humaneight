@@ -85,6 +85,7 @@ fragment AboutFragment on AboutRecord {
 				links
 				value
 			}
+			layout
 		}
 		... on FullscreenBlockRecord {
 			id
