@@ -77,7 +77,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
               </Link>
             }
             {tipProduct?.title && !menuItemId &&
-              <figcaption>{tipProduct.title}</figcaption>
+              <figcaption><h3 className="nav">{tipProduct.title}</h3></figcaption>
             }
           </figure>
         </li>

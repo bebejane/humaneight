@@ -27,7 +27,7 @@
     list-style: none;
   }
 
-  >ul {
+  > ul {
     position: relative;
     flex-direction: row;
     width: 100%;
@@ -39,7 +39,7 @@
       padding-bottom: 2em;
     }
 
-    >li {
+    > li {
       position: relative;
       width: 25%;
 
@@ -70,7 +70,8 @@
               object-fit: cover;
             }
 
-            .picture {}
+            .picture {
+            }
           }
 
           figcaption {
@@ -79,7 +80,16 @@
             left: 0;
             width: 100%;
             z-index: 2;
-
+            display: flex;
+            justify-content: center;
+            padding: 2em;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            color: var(--white);
+            h3 {
+              padding-bottom: 0.4em;
+            }
           }
         }
       }
