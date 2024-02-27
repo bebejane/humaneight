@@ -4,4 +4,11 @@
   justify-content: space-between;
   margin-bottom: var(--space);
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-gap: var(--gutter);
+
+  figure {
+    grid-column: span 4;
+  }
 }
