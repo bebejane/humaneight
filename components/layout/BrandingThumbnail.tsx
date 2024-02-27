@@ -21,7 +21,7 @@ export default function BrandingThumbnail({ productBranding: { text, smallText, 
             pictureClassName={s.picture}
           />
         }
-        <h3 className="nav">{text}</h3>
+        <h2 className="">{text}</h2>
         <figcaption>
           <p className="mid-small">{smallText}</p>
         </figcaption>

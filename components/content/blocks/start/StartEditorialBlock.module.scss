@@ -2,6 +2,7 @@
   display: flex;
   margin-top: var(--space-big);
   position: relative;
+  justify-content: space-between;
 
   @include mq($until: desktop) {
     flex-direction: column-reverse;
@@ -10,10 +11,11 @@
   > div {
     position: sticky;
     top: var(--navbar-height);
-    align-self: flex-start;
+    //align-self: flex-start;
+    background-color: var(--white);
 
     @include mq($from: desktop) {
-      width: 50%;
+      width: calc(50% - var(--half-gutter));
       padding: var(--gutter);
       padding-bottom: 0;
     }
@@ -23,6 +25,7 @@
 
       @include mq($from: desktop) {
         margin-top: 2.7rem;
+        align-self: flex-end;
       }
     }
   }
@@ -38,7 +41,7 @@
     }
 
     @include mq($from: desktop) {
-      width: 50%;
+      width: calc(50% - var(--half-gutter));
       margin-left: var(--half-gutter);
     }
 
