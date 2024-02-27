@@ -5,6 +5,13 @@
     margin-bottom: var(--space-big);
   }
 
+  &.full .content {
+    @include mq($from: desktop) {
+      grid-column-start: 1;
+      grid-column-end: 13;
+    }
+  }
+
   .content {
     grid-column: span 12;
     @include mq($from: desktop) {

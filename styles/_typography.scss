@@ -34,16 +34,21 @@ h2 {
   }
 }
 
-h1,
-h2,
-h3 {
-  &.veryBig {
-    @include mq($from: desktop) {
-      font-size: 4.3rem;
-      margin-bottom: 0.3em;
-      text-align: justify;
-    }
+h1.veryBig,
+h2.veryBig,
+h3.veryBig,
+.very-big {
+  @include mq($from: desktop) {
+    font-size: 4.3rem !important;
+    margin-bottom: 0.3em !important;
+    text-align: justify;
+    text-align-last: justify;
+    font-family: $body-font !important;
   }
+}
+
+.about .very-big {
+  margin-bottom: -0.25em !important;
 }
 
 h2,

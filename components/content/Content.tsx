@@ -21,6 +21,7 @@ export default function Content({ id, content, styles, blocks, className }: Prop
       className={className}
       styles={{
         'purple': 'purple',
+        'very-big': 'very-big',
         'small-text': 'small-text',
         'page-title': 'page-title',
         ...styles,
