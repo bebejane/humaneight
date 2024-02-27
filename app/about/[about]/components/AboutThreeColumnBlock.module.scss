@@ -1,0 +1,7 @@
+.threeColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: var(--space);
+  position: relative;
+}

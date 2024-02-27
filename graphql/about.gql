@@ -52,6 +52,33 @@ fragment AboutFragment on AboutRecord {
 				value
 			}
 		}
+		... on AboutThreeColumnBlockRecord {
+			id
+			c1Media {
+				...MediaFragment
+			}
+			c1Text {
+				links
+				value
+				blocks
+			}
+			c2Media {
+				...MediaFragment
+			}
+			c2Text {
+				links
+				value
+				blocks
+			}
+			c3Media {
+				...MediaFragment
+			}
+			c3Text {
+				links
+				value
+				blocks
+			}
+		}
 		... on AboutTextBlockRecord {
 			id
 			text {

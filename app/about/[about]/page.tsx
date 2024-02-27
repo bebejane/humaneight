@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Block, DraftMode } from 'next-dato-utils/components'
 
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
+import AboutThreeColumnBlock from "./components/AboutThreeColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
 import RelatedAbouts from '@app/about/[about]/components/RelatedAbouts';
@@ -28,6 +29,7 @@ export default async function About({ params }: { params: { about: string } }) {
             data={section}
             components={{
               AboutTwoColumnBlock,
+              AboutThreeColumnBlock,
               AboutTextBlock,
               FullscreenBlock
             }} />
