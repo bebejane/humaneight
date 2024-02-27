@@ -31,7 +31,7 @@ export default function Feedback({ feedback }: Props) {
 
   return (
     <section className={cn(s.feedback, "grid")}>
-      <h3 className="nav">{feedback?.headline}</h3>
+      <h2 >{feedback?.headline}</h2>
       <div className={s.wrapper}>
         <Content content={feedback?.intro} />
         <button className={cn(showForm && s.active)} type="button" onClick={() => setShowForm(!showForm)}>

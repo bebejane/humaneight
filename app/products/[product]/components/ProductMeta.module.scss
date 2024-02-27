@@ -8,8 +8,8 @@
   }
 
   @include mq($from: desktop) {
-    grid-column-start: 5;
-    grid-column-end: 13;
+    grid-column-start: 1;
+    grid-column-end: 9;
   }
 
   .header {

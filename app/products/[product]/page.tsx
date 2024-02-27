@@ -50,8 +50,8 @@ export default async function Product({ params }: CountryProductParams) {
     <>
       <Suspense>
         <section id="product" className={cn(s.product, "grid")}>
-          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
           <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
           <ProductMeta product={product} />
         </section>
         <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />

@@ -5,8 +5,8 @@
 
   @include mq($from: desktop) {
     padding-top: 1rem;
-    grid-column-start: 1;
-    grid-column-end: 5;
+    grid-column-start: 9;
+    grid-column-end: 13;
     position: sticky;
     top: var(--navbar-height);
     height: calc(100vh - var(--navbar-height));
@@ -25,9 +25,11 @@
       display: none;
     }
 
-    .image {}
+    .image {
+    }
 
-    .picture {}
+    .picture {
+    }
   }
 
   header {

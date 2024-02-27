@@ -40,7 +40,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
 
   return (
     <div className={cn(s.details, needsExpansion && s.expanded)} ref={containerRef}>
-      <p className="small light">
+      <p className="small">
         <Link href="/shop">Shop</Link>
         &nbsp;&nbsp;›&nbsp;&nbsp;
         <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>

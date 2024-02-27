@@ -65,7 +65,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
         className={cn('grid', s.tagline, (!isHome || showMenu || taglineTrigger === null) && s.hide)}
         style={{ top: logoBottom }}
       >
-        <h2>{tagline.map((word, i) =>
+        <h2 className="veryBig">{tagline.map((word, i) =>
           <span
             key={`${i}-${taglineTrigger}`}
             className={cn(taglineTrigger && s.hide)}
