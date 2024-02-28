@@ -45,7 +45,7 @@
         pointer-events: none;
       }
 
-      &:hover + .secondary {
+      &:hover+.secondary {
         @include mq($from: desktop) {
           display: block !important;
         }
@@ -83,15 +83,23 @@
       }
 
       li {
+        white-space: nowrap;
+
+
         .title {
           display: block;
           font-size: 0.85em;
           padding: 0.5em;
           padding-top: 0.8em;
           padding-bottom: 0.9em;
-          //border: 1px solid var(--gray);
           background-color: var(--white);
           margin-right: 0.3em;
+
+          &.hidden {
+            opacity: 0;
+          }
+
+
 
           &:hover {
             background-color: var(--black);
