@@ -4,7 +4,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { StartDocument } from '@graphql';
 import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } from '@components/content/blocks/start';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
-import Newsletter from '@components/common/Newsletter';
+import NewsletterSection from '@components/common/NewsletterSection';
 import s from './page.module.scss'
 
 export default async function Home(params: CountryParams) {
@@ -30,7 +30,7 @@ export default async function Home(params: CountryParams) {
             }}
           />
         )}
-        <Newsletter />
+        <NewsletterSection />
       </div>
       <DraftMode url={draftUrl} tag={start?.id} />
     </>

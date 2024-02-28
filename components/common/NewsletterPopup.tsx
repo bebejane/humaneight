@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import s from './NewsletterPopup.module.scss'
 import cn from 'classnames'
+import NewsletterForm from './NewsletterForm'
 
 export type Props = {
   className?: string
@@ -16,10 +16,7 @@ export default function NewsletterPopup({ show, onClose }: Props) {
     <div className={cn(s.newsletterPopup, show && s.show)} >
       <div className={s.popup}>
         <h2>Join our community. Sign up for our newsletter.</h2>
-        <form>
-          <input type="email" placeholder="Your email" />
-          <button className={s.submit} type="submit">Subscribe</button>
-        </form>
+        <NewsletterForm key={show ? 'true' : 'false'} />
         <button className={s.close} type="button" onClick={onClose}>Close</button>
       </div>
     </div>
