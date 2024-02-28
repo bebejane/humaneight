@@ -83,12 +83,11 @@
 
     textarea {
       margin-top: 1rem;
-
       padding: 1rem;
       width: 100%;
       @include mq($from: desktop) {
         margin-bottom: 1rem;
-
+        height: 7rem;
         margin-top: 3rem;
       }
     }
