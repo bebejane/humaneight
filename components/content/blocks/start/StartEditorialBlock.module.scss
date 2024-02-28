@@ -12,11 +12,12 @@
     position: sticky;
     top: var(--navbar-height);
     //align-self: flex-start;
-    background-color: var(--white);
 
     @include mq($from: desktop) {
       width: calc(50% - var(--half-gutter));
       padding: var(--gutter);
+      background-color: var(--white);
+
       padding-bottom: 0;
     }
 

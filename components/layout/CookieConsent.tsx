@@ -59,7 +59,7 @@ export default function CookieConsent({ }: Props) {
         </h2>
       </header>
       <div>
-        <p>
+        <p className="default-small">
           This website uses cookies to ensure you get the best experience on our website.
           To learn more about the cookies we use please read our Cookie Policy.
         </p>

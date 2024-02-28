@@ -11,8 +11,8 @@ export type Props = {
 export default function BrandingThumbnail({ productBranding: { text, smallText, image, link }, columns = 'three' }: Props) {
 
   return (
-    <Link className={s.thumbnail} href={`/about/${link?.slug}`}>
-      <figure className={cn(s[columns])}>
+    <Link className={cn(s[columns], s.thumbnail)} href={`/about/${link?.slug}`}>
+      <figure>
         {image?.responsiveImage &&
           <Image
             data={image.responsiveImage}

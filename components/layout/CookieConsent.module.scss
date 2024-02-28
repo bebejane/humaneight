@@ -1,13 +1,16 @@
 .cookieConsent {
   position: fixed;
   display: flex;
-  flex-direction: row;
   bottom: 0;
   height: auto;
   width: 100%;
   background-color: var(--white);
   z-index: var(--z-menu);
   flex-wrap: wrap;
+
+  @include mq($from: desktop) {
+    flex-direction: row;
+  }
 
   header {
     width: 100%;
@@ -20,19 +23,30 @@
 
   > div,
   form {
-    width: calc(50% - var(--half-gutter));
     padding: var(--outer-margin);
     padding-top: 0;
+    @include mq($from: desktop) {
+      width: calc(50% - var(--half-gutter));
+    }
   }
 
   .scopes {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     border: 0;
     padding-top: 0.3rem;
 
     label {
-      width: 25%;
+      width: 50%;
+
+      @include mq($until: desktop) {
+        padding-bottom: 0.2em;
+      }
+
+      @include mq($from: desktop) {
+        width: 25%;
+      }
     }
   }
 }
@@ -70,7 +84,7 @@
   font-size: 1rem;
   color: var(--text-color);
   forced-color-adjust: none;
-  margin-right: 1em;
+  //margin-right: 1em;
 
   .indicator {
     width: 2rem;
