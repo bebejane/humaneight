@@ -1,4 +1,4 @@
-.newsletter {
+.newsletterSection {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -13,6 +13,7 @@
   }
 
   @include mq($from: desktop) {
+
     h3,
     form {
       max-width: 50%;
@@ -24,10 +25,11 @@
     white-space: nowrap;
   }
 
-  form {
+  .form {
     flex: 1 1;
     display: flex;
     flex-direction: row;
+    width: 100%;
 
     input {
       flex: 1 1 auto;

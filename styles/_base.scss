@@ -32,8 +32,9 @@
 	--z-help: 2300;
 	--z-hamburger: 2400;
 	--z-cart: 3000;
-	--z-newsletter-popup: 3500;
-	--z-cookies: 4000;
+	--z-newsletter-popup: 4000;
+	--z-cookies: 5000;
+
 
 
 	@include mq($from: desktop) {
