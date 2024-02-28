@@ -1,6 +1,7 @@
 .details {
   @include mq($until: desktop) {
     grid-column: span 12;
+    order: -1;
   }
 
   @include mq($from: desktop) {

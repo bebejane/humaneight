@@ -59,7 +59,10 @@
 
     .text,
     .textarea {
-      width: calc(50% - var(--half-gutter));
+      width: 100%;
+      @include mq($from: desktop) {
+        width: calc(50% - var(--half-gutter));
+      }
     }
 
     p {
@@ -69,17 +72,25 @@
     }
 
     h3 {
-      margin-top: 3rem;
-
       //margin-bottom: 0.5em !important;
       line-height: 1.25;
+      margin-top: 1rem;
+
+      @include mq($from: desktop) {
+        margin-top: 3rem;
+      }
     }
 
     textarea {
-      margin-top: 3rem;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
+
       padding: 1rem;
       width: 100%;
+      @include mq($from: desktop) {
+        margin-bottom: 1rem;
+
+        margin-top: 3rem;
+      }
     }
 
     button {

@@ -1,6 +1,11 @@
 .product {
   width: 100%;
 
+  @include mq($until: desktop) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .presentation {
     width: 60%;
     height: 100vh;
