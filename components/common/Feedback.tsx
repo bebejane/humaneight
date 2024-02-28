@@ -37,19 +37,24 @@ export default function Feedback({ feedback }: Props) {
         <button className={cn(showForm && s.active)} type="button" onClick={() => setShowForm(!showForm)}>
           Submit your view
         </button>
-        <form className={cn(s.form)} ref={formRef} style={{ maxHeight: showForm ? maxHeight : 0 }}>
-          {feedback?.questions.map(({ id, headline, text }, i) =>
-            <React.Fragment key={i}>
-              <h3 className="mid">
+      </div >
+      <form className={cn(s.form)} ref={formRef} style={{ maxHeight: showForm ? maxHeight : 0 }}>
+        {feedback?.questions.map(({ id, headline, text }, i) =>
+          <React.Fragment key={i}>
+            <div className={s.text}>
+              <h3 className="small">
                 {headline}
               </h3>
-              <Markdown className="light mid" content={text} />
+              <Markdown className="light small" content={text} />
+            </div>
+            <div className={s.textarea}>
               <textarea id={id} name={id} rows={3} ref={i === 0 ? firstInputRef : undefined} />
-            </React.Fragment>
-          )}
-          <button className="full" type="submit">Send</button>
-        </form>
-      </div >
+            </div>
+          </React.Fragment>
+        )}
+        <button className="full" type="submit">Send</button>
+      </form>
+
     </section >
   )
 }

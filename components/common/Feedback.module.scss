@@ -3,6 +3,7 @@
   background-color: var(--gray);
   padding: calc(2 * var(--gutter));
   margin-top: var(--space-big);
+  grid-row-gap: 0;
 
   @include mq($until: desktop) {
     display: block;
@@ -50,34 +51,44 @@
   }
 
   .form {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    grid-column: span 12;
+    //margin-top: var(--space);
+
+    .text,
+    .textarea {
+      width: calc(50% - var(--half-gutter));
+    }
 
     p {
       @include mq($from: desktop) {
-        padding-right: 20%;
+        padding-right: 10%;
       }
     }
 
     h3 {
+      margin-top: 3rem;
+
       //margin-bottom: 0.5em !important;
       line-height: 1.25;
-
-      &:first-of-type {
-        border-top: 1px solid var(--background);
-        margin-top: var(--space);
-        padding-top: var(--space);
-      }
     }
 
     textarea {
-      margin-top: 1.25rem;
-      margin-bottom: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
       padding: 1rem;
       width: 100%;
     }
 
     button {
-      //background-color: var(--white) !important;
+      margin-top: var(--space);
+      background-color: var(--white) !important;
+
+      &:hover {
+        background-color: var(--black) !important;
+      }
     }
 
     max-height: 0px;

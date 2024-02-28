@@ -157,7 +157,7 @@ button {
 		&:hover {
 			letter-spacing: var(--letter-space);
 			color: var(--white);
-			background-color: var(--black);
+			background-color: var(--black) !important;
 		}
 	}
 
