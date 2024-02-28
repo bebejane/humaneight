@@ -1,12 +1,14 @@
 .cookieConsent {
   position: fixed;
   display: flex;
+  justify-content: space-between;
   bottom: 0;
   height: auto;
   width: 100%;
   background-color: var(--white);
   z-index: var(--z-menu);
   flex-wrap: wrap;
+  padding: var(--outer-margin);
 
   @include mq($from: desktop) {
     flex-direction: row;
@@ -16,14 +18,13 @@
     width: 100%;
     h2 {
       text-align-last: justify;
-      padding: var(--outer-margin);
-      margin-bottom: 0;
+      //padding: var(--outer-margin);
+      margin-bottom: var(--outer-margin);
     }
   }
 
   > div,
   form {
-    padding: var(--outer-margin);
     padding-top: 0;
     @include mq($from: desktop) {
       width: calc(50% - var(--half-gutter));
