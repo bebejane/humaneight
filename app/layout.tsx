@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: LayoutProps) {
             randomClaim={randomClaim}
           />
           <CookieConsent />
-          <Script src="https://dash.accessibly.app/widget/359e5d08-890a-4fb2-9be8-e62e273a9366/autoload.js" />
+          <Script src="https://ac.onthemapmarketing.com/widget/3b24ef8d-6704-4361-886d-da817089839e/autoload.js" />
         </body>
       </html >
     </>
