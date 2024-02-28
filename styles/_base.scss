@@ -35,8 +35,6 @@
 	--z-newsletter-popup: 4000;
 	--z-cookies: 5000;
 
-
-
 	@include mq($from: desktop) {
 		--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
 		--hero-height: calc(85vh - var(--navbar-height));
@@ -164,9 +162,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
@@ -203,6 +203,7 @@ fieldset {
 }
 
 #accessiblyAppWidgetButton {
+	top: auto;
 	bottom: var(--outer-margin) !important;
 	right: var(--outer-margin) !important;
 }
