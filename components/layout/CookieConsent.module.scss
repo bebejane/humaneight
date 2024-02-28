@@ -7,16 +7,50 @@
   width: 100%;
   background-color: var(--white);
   z-index: var(--z-menu);
+  flex-wrap: wrap;
 
-  >div,
+  header {
+    width: 100%;
+    h2 {
+      text-align-last: justify;
+      padding: var(--outer-margin);
+      margin-bottom: 0;
+    }
+  }
+
+  > div,
   form {
+    width: calc(50% - var(--half-gutter));
     padding: var(--outer-margin);
+    padding-top: 0;
   }
 
   .scopes {
     display: flex;
     flex-direction: row;
     border: 0;
+    padding-top: 0.3rem;
+
+    label {
+      width: 25%;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  button {
+    padding-top: 0.7em;
+    padding-bottom: 0.8em;
+    width: 30%;
+    //font-size: 1.4rem;
+    &:hover {
+      background-color: var(--black);
+      color: var(--white);
+      letter-spacing: var(--letter-space);
+    }
   }
 }
 
@@ -33,7 +67,7 @@
   display: flex;
   align-items: center;
   gap: 0.571rem;
-  font-size: 1.143rem;
+  font-size: 1rem;
   color: var(--text-color);
   forced-color-adjust: none;
   margin-right: 1em;
@@ -46,9 +80,9 @@
     transition: all 200ms;
 
     &:before {
-      content: '';
+      content: "";
       display: block;
-      margin: 0.143rem;
+      margin: 0.1rem;
       width: 0.857rem;
       height: 0.857rem;
       background: var(--highlight-background);

@@ -53,13 +53,15 @@ export default function CookieConsent({ }: Props) {
 
   return (
     <section aria-labelledby="cookie_heading" className={cn(s.cookieConsent)}>
-      <div>
+      <header>
         <h2 id="cookie_heading">
-          WE CARE ABOUT YOUR PRIVACY
+          We care about your privacy.
         </h2>
+      </header>
+      <div>
         <p>
           This website uses cookies to ensure you get the best experience on our website.
-          To learn more about the cookies we use please read our Cookie Policy
+          To learn more about the cookies we use please read our Cookie Policy.
         </p>
       </div>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -79,9 +81,11 @@ export default function CookieConsent({ }: Props) {
             </Switch>
           )}
         </fieldset>
-        <button data-allow="all" type="button" onClick={handleClick}>Allow all</button>
-        <button data-allow="selection" type="button" onClick={handleClick}>Allow selection</button>
-        <button data-allow="deny" type="button" onClick={handleClick}>Deny</button>
+        <div className={s.buttons}>
+          <button data-allow="all" type="button" onClick={handleClick}>Allow all</button>
+          <button data-allow="selection" type="button" onClick={handleClick}>Allow selection</button>
+          <button data-allow="deny" type="button" onClick={handleClick}>Deny</button>
+        </div>
       </form>
     </section>
   )

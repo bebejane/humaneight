@@ -160,9 +160,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
@@ -181,6 +183,11 @@ select {
 	&:focus {
 		outline: none;
 	}
+}
+
+fieldset {
+	padding: 0;
+	margin: 0;
 }
 
 .error {
