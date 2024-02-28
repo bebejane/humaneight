@@ -1,12 +1,11 @@
 'use client'
 
 import s from './Footer.module.scss'
-import cn from "classnames";
 import type { Menu } from "@lib/menu";
 import Link from '@components//nav/Link';
 import CountrySelector from "@components/shopify/CountrySelector";
 import NewsletterPopup from '../common/NewsletterPopup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type Props = {
   menu: Menu,
@@ -16,8 +15,8 @@ export type Props = {
 
 
 }
-export default function Footer({ menu, localization, general, randomClaim }: Props) {
 
+export default function Footer({ menu, localization, general, randomClaim }: Props) {
 
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false)
 
@@ -25,6 +24,11 @@ export default function Footer({ menu, localization, general, randomClaim }: Pro
     e.preventDefault();
     setShowNewsletterPopup(!showNewsletterPopup)
   }
+
+  useEffect(() => {
+    const to = setTimeout(() => setShowNewsletterPopup(true), 1500)
+    return () => clearTimeout(to)
+  }, [])
 
   return (
     <footer className={s.footer}>

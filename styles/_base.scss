@@ -27,12 +27,14 @@
 	--z-variants-form: 1900;
 	--z-navbar: 2000;
 	--z-menu: 2100;
-	--z-newsletter-popup: 2110;
+
 	--z-logo: 2200;
 	--z-help: 2300;
 	--z-hamburger: 2400;
 	--z-cart: 3000;
+	--z-newsletter-popup: 3500;
 	--z-cookies: 4000;
+
 
 	@include mq($from: desktop) {
 		--navbar-height: calc(var(--nav-size) + ((2 * var(--outer-margin)) * 0.6));
@@ -161,11 +163,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {
