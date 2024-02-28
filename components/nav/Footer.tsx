@@ -25,11 +25,6 @@ export default function Footer({ menu, localization, general, randomClaim }: Pro
     setShowNewsletterPopup(!showNewsletterPopup)
   }
 
-  useEffect(() => {
-    const to = setTimeout(() => setShowNewsletterPopup(true), 15000)
-    return () => clearTimeout(to)
-  }, [])
-
   return (
     <footer className={s.footer}>
       <nav>
