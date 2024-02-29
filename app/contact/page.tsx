@@ -1,5 +1,6 @@
 
 import s from './page.module.scss'
+import { CountryContactParams } from '../[country]/contact/page';
 import { ContactDocument, FeedbackDocument } from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
@@ -8,8 +9,9 @@ import Content from '@components/content/Content';
 import ContactForm from './components/ContactForm';
 import { Image } from 'react-datocms';
 import Feedback from '@components/common/Feedback';
+import { CountryParams } from '../[country]/layout';
 
-export default async function Contact() {
+export default async function Contact(params: CountryParams) {
 
   const { contact, draftUrl } = await apiQuery<ContactQuery, ContactQueryVariables>(ContactDocument, { tags: ['contact'] })
   const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument, { tags: ['feedback'] })
