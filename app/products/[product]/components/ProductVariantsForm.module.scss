@@ -138,16 +138,16 @@
         span {
           opacity: 0.3;
         }
+
         cursor: not-allowed;
       }
     }
 
-    > div {
+    >div {
       flex: 1 1 auto;
     }
 
-    select {
-    }
+    select {}
   }
 
   button {
@@ -168,6 +168,12 @@
     margin-right: 0.25rem;
     border: 2px solid transparent;
 
+    &[data-disabled="true"] {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed !important;
+    }
+
     &.selected {
       border: 2px solid var(--black);
       background-color: var(--white);
@@ -178,8 +184,11 @@
         img {
           width: 3em;
           height: 3em;
+          max-width: 3em;
+          max-height: 3em;
+          min-width: 3em;
+          min-height: 3em;
           object-fit: cover;
-          //border: 2px solid transparent;
         }
       }
     }

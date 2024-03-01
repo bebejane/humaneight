@@ -1,5 +1,6 @@
 'use client'
 
+import s from './AddToCartButton.module.scss'
 import React, { useEffect } from 'react'
 import useCart from '@shopify/hooks/useCart'
 import cn from 'classnames'
@@ -23,7 +24,7 @@ export default function AddToCartButton({ className, label, merchandiseId, quant
 
   return (
     <button
-      className={cn(className, "full")}
+      className={cn(s.button, className, "full")}
       onClick={handleAddToCart}
       disabled={disabled ?? undefined}
       type="button"
