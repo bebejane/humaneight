@@ -15,7 +15,7 @@
     "utils:unlink": "pnpm unlink /Users/bebejane/Projects/next-dato-utils && pnpm up dato-next-utils"
   },
   "dependencies": {
-    "@datocms/cma-client": "3.0.5",
+    "@datocms/cma-client": "3.1.2",
     "@datocms/cma-client-browser": "3.1.2",
     "@datocms/cma-client-node": "3.1.2",
     "@datocms/rest-client-utils": "3.0.5",
@@ -36,7 +36,7 @@
     "object-traversal": "^1.0.1",
     "object.omit": "^3.0.0",
     "react": "18.2.0",
-    "react-aria": "^3.31.0",
+    "react-aria": "^3.32.1",
     "react-aria-components": "1.1.1",
     "react-datocms": "4.2.0",
     "react-dom": "18.2.0",

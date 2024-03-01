@@ -1,6 +1,5 @@
 'use server'
 
-import { sleep } from 'next-dato-utils/utils'
 import { apiQuery } from 'next-dato-utils/api'
 import { FeedbackDocument } from '@graphql'
 import { ZodError, z } from 'zod'
@@ -16,7 +15,7 @@ export default async function addFeedback(prevState: any, formData: FormData): P
     for (const [id, value] of formData.entries())
       feedbackData[id] = value as string
 
-    await sleep(1000)
+    //await sleep(1000)
     //throw new Error(`Please answer the question!`)
 
     feedback?.questions.forEach(({ id, headline }) => {
@@ -31,7 +30,6 @@ export default async function addFeedback(prevState: any, formData: FormData): P
     } catch (e) {
       //throw new Error("Invalid e-mail address")
     }
-    //throw new Error("Invalid e-mail address")
 
     return { success: true }
 
