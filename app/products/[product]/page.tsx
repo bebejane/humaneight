@@ -15,7 +15,7 @@ import ProductInfo from './components/ProductInfo';
 import ProductMeta from './components/ProductMeta';
 import ProductPresentation from './components/ProductPresentation';
 import RelatedProducts from '@app/products/[product]/components/RelatedProducts';
-import Feedback from '@components/common/Feedback';
+import FeedbackForm from '@components/forms/FeedbackForm';
 import ProductVariantsForm from './components/ProductVariantsForm';
 import { Suspense } from 'react';
 
@@ -56,7 +56,7 @@ export default async function Product({ params }: CountryProductParams) {
         </section>
         <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
         <RelatedProducts product={product} />
-        <Feedback feedback={feedback} />
+        <FeedbackForm feedback={feedback} />
       </Suspense>
       <DraftMode url={draftUrl} tag={product.id} />
     </>
