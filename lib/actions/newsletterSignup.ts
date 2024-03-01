@@ -1,6 +1,5 @@
 'use server'
 
-import { sleep } from 'next-dato-utils/utils'
 import { ZodError, z } from 'zod'
 
 export default async function newslewtterSignup(prevState: any, formData: FormData): Promise<{ success: boolean, error?: string }> {

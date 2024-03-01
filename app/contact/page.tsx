@@ -6,12 +6,11 @@ import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import { notFound } from 'next/navigation';
 import Content from '@components/content/Content';
-import ContactForm from './components/ContactForm';
+import ContactForm from '@components/forms/ContactForm';
 import { Image } from 'react-datocms';
-import Feedback from '@components/common/Feedback';
-import { CountryParams } from '../[country]/layout';
+import FeedbackForm from '@components/forms/FeedbackForm';
 
-export default async function Contact(params: CountryParams) {
+export default async function Contact(params: CountryContactParams) {
 
   const { contact, draftUrl } = await apiQuery<ContactQuery, ContactQueryVariables>(ContactDocument, { tags: ['contact'] })
   const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument, { tags: ['feedback'] })
@@ -35,7 +34,7 @@ export default async function Contact(params: CountryParams) {
             </figure>
           </div>
         </div>
-        <Feedback feedback={feedback} />
+        <FeedbackForm feedback={feedback} />
       </div>
       <DraftMode url={draftUrl} tag={contact.id} />
     </>

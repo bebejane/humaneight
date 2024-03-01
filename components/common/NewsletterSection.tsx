@@ -1,4 +1,4 @@
-import NewsletterForm from './NewsletterForm'
+import NewsletterForm from '@components/forms/NewsletterForm'
 import s from './NewsletterSection.module.scss'
 import cn from 'classnames'
 

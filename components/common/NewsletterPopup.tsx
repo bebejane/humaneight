@@ -2,7 +2,7 @@
 
 import s from './NewsletterPopup.module.scss'
 import cn from 'classnames'
-import NewsletterForm from './NewsletterForm'
+import NewsletterForm from '@components/forms/NewsletterForm'
 import { useEffect, useRef, useState } from 'react'
 
 export type Props = {

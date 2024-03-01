@@ -1,18 +1,26 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { Markdown } from 'next-dato-utils/components'
-import s from './Feedback.module.scss'
+import s from './FeedbackForm.module.scss'
 import cn from 'classnames'
+import { useEffect, useRef, useState } from 'react'
+import { useFormState } from 'react-dom'
+import { Markdown } from 'next-dato-utils/components'
+
 import Content from '../content/Content'
 import React from 'react'
 import useIsDesktop from '@lib/hooks/useIsDesktop'
+import addFeedback from '@lib/actions/addFeedback'
+import SubmitButton from './SubmitButton'
 
 export type Props = {
   feedback: FeedbackQuery['feedback']
 }
 
-export default function Feedback({ feedback }: Props) {
+export default function FeedbackForm({ feedback }: Props) {
+
+  const [state, formAction] = useFormState(addFeedback, { success: false, error: undefined })
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<boolean | null>(null)
 
   const [showForm, setShowForm] = useState(false)
   const [maxHeight, setMaxHeight] = useState(0)
@@ -22,23 +30,36 @@ export default function Feedback({ feedback }: Props) {
 
   useEffect(() => {
     setMaxHeight(formRef.current?.scrollHeight ?? 0);
-  }, [])
-
-  useEffect(() => {
     if (showForm && isDesktop)
       setTimeout(() => firstInputRef.current?.focus(), 200)
   }, [isDesktop, showForm])
 
+  useEffect(() => {
+    if (state.success) {
+      formRef.current?.reset()
+      setSuccess(true)
+      setTimeout(() => setSuccess(false), 3000)
+    }
+    setError(state.error ?? null)
+
+  }, [state])
+
   return (
     <section className={cn(s.feedback, "grid")}>
-      <h2 >{feedback?.headline}</h2>
+      <h2>{feedback?.headline}</h2>
       <div className={s.wrapper}>
         <Content content={feedback?.intro} />
         <button className={cn(showForm && s.active)} type="button" onClick={() => setShowForm(!showForm)}>
           Submit your view
         </button>
       </div >
-      <form className={cn(s.form)} ref={formRef} style={{ maxHeight: showForm ? maxHeight : 0 }}>
+
+      <form
+        action={formAction}
+        className={s.form}
+        ref={formRef}
+        style={{ maxHeight: showForm ? maxHeight : 0 }}
+      >
         {feedback?.questions.map(({ id, headline, text }, i) =>
           <React.Fragment key={i}>
             <div className={s.text}>
@@ -48,13 +69,18 @@ export default function Feedback({ feedback }: Props) {
               <Markdown className="light small" content={text} />
             </div>
             <div className={s.textarea}>
-              <textarea id={id} name={id} rows={3} ref={i === 0 ? firstInputRef : undefined} />
+              <textarea id={id} name={id} rows={3} required={false} ref={i === 0 ? firstInputRef : undefined} />
             </div>
           </React.Fragment>
         )}
-        <button className="full" type="submit">Send</button>
+        <SubmitButton label="Send" loading="Sending..." />
+        {success &&
+          <div className={cn(s.success, "small")}>
+            <p className={s.message}>Thank you for your feedback!</p>
+          </div>
+        }
       </form>
-
-    </section >
+      {state.error && <p className={cn(s.error, "error small")}>{state.error}</p>}
+    </section>
   )
 }
