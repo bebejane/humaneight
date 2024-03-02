@@ -3,7 +3,7 @@
 import s from './NewsletterForm.module.scss'
 import cn from 'classnames'
 import SubmitButton from './SubmitButton'
-import newsletterSignup from '@lib/actions/newsletterSignup'
+import campaignMonitorNewsletterSignup from 'next-dato-utils/server-actions/campaignMonitorNewsletterSignup'
 import { useFormState } from 'react-dom'
 import { useEffect, useState } from 'react'
 
@@ -13,7 +13,7 @@ export type Props = {
 
 export default function NewsletterForm({ className }: Props) {
 
-  const [state, formAction] = useFormState(newsletterSignup, { success: false, error: undefined })
+  const [state, formAction] = useFormState(campaignMonitorNewsletterSignup, { success: false, error: undefined })
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<boolean | null>(null)
 

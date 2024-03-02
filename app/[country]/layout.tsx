@@ -8,7 +8,7 @@ export type LayoutProps = {
 }
 
 export async function generateStaticParams() {
-  let { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
+  const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
     variables: { language: 'EN' as LanguageCode },
     country: 'US'
   })
