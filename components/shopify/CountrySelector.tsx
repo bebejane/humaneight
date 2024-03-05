@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import useCountry from '@shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
 import { useEffect, useRef, useState } from 'react';
-import { useWindowSize } from 'react-use';
+import { useWindowSize, useClickAway } from 'react-use';
 
 export type Props = {
   className?: string
@@ -27,6 +27,8 @@ export default function CountrySelector({ className, label, modal = false, local
   const { width, height } = useWindowSize()
   const [selectWidth, setSelectWidth] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  useClickAway(formRef, () => setSelectOpen(false))
 
   useEffect(() => {
     setSelectWidth(buttonRef.current?.scrollWidth ?? 0)
@@ -40,7 +42,7 @@ export default function CountrySelector({ className, label, modal = false, local
 
   const handleChange = (val: Key) => {
     const countryCode = val.toString()
-    const path = `${countryCode !== defaultCountry ? `/${countryCode}` : ''}${pathname.replace(`/${country.toLowerCase()}`, ``)}`
+    const path = `${countryCode !== defaultCountry ? `/${countryCode}` : ''}${pathname.replace(`/${country.toLowerCase()}`, `/`)}`
     const hash = window.location.hash ? '#' + window.location.hash : ''
     router.replace(`${path}${hash}`.toLowerCase())
   }
@@ -48,10 +50,11 @@ export default function CountrySelector({ className, label, modal = false, local
   const selectedCountry = availableCountries.find(({ isoCode }) => isoCode === country)
 
   return (
-    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
+    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }} ref={formRef}>
       <Select
         className={s.select}
         onSelectionChange={handleChange}
+        isOpen={selectOpen}
         onOpenChange={(o) => setSelectOpen(o)}
       >
         <Button className={s.button} ref={buttonRef}>
@@ -72,7 +75,7 @@ export default function CountrySelector({ className, label, modal = false, local
               name: `${name} ${currency.isoCode}`,
             }))}
           >
-            {availableCountries.map(({ isoCode, name, currency }, idx) =>
+            {availableCountries.sort((a, b) => a.name > b.name ? 1 : -1).map(({ isoCode, name, currency }, idx) =>
               <ListBoxItem
                 id={isoCode}
                 key={idx}

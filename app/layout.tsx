@@ -2,7 +2,7 @@ import '@styles/index.scss'
 import Script from 'next/script';
 import NavBar from '@components/nav/NavBar';
 import Footer from '@components/nav/Footer';
-import CookieConsent from '@components/layout/CookieConsent';
+import CookieConsent from '@components/common/CookieConsent';
 import { apiQuery } from 'next-dato-utils/api';
 import { AllProductsDocument, GlobalDocument, GeneralDocument } from '@graphql';
 import { Metadata } from 'next';

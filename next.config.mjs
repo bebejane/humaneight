@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	sassOptions: {
-		includePaths: ["./components", "./app"],
+		includePaths: ["./components", "./app", "./styles"],
 		prependData: `
     	@use "sass:math";
-    	@import "./styles/mediaqueries"; 
-    	@import "./styles/fonts";
+    	@import "mediaqueries";
+    	@import "fonts";
   	`,
 	},
 	typescript: {
@@ -20,6 +20,7 @@ const nextConfig = {
 	experimental: {
 		ppr: false,
 	},
+
 	async headers() {
 		return [
 			{
