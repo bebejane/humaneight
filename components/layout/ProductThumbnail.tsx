@@ -57,6 +57,7 @@ export default function ProductThumbnail({ product, index, columns = 'three' }: 
             className={cn(s.image, s.main)}
             placeholderClassName={s.picture}
             pictureClassName={s.picture}
+            intersectionMargin={`0px 0px 100% 0px`}
           />
         }
         {product.imageSecondary &&

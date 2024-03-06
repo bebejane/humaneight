@@ -83,10 +83,9 @@
       }
 
       li {
-        white-space: nowrap;
-
 
         .title {
+          white-space: nowrap;
           display: block;
           font-size: 0.85em;
           padding: 0.5em;
@@ -133,6 +132,7 @@
   }
 
   .label {
+
     position: absolute;
     display: flex;
     top: 0;

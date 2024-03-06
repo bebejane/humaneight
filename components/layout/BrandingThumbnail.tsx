@@ -19,6 +19,7 @@ export default function BrandingThumbnail({ productBranding: { text, smallText, 
             className={cn(s.image)}
             placeholderClassName={s.picture}
             pictureClassName={s.picture}
+            intersectionMargin={`0px 0px 100% 0px`}
           />
         }
         <h2 className="">{text}</h2>

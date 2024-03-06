@@ -11,11 +11,11 @@ export default function StartProductShortcutBlock({ data: { id, product } }: Pro
 
   return (
     <section className={cn(s.container)}>
-      <Link href={`/products/${product.shopifyProduct.handle}`}>
+      <Link href={`/products/${product.shopifyProduct?.handle}`}>
         <p>{product.title} Shortcut </p>
         {product.image &&
           <figure>
-            <Image data={product.image.responsiveImage} />
+            <Image data={product.image.responsiveImage} intersectionMargin={`0px 0px 100% 0px`} />
           </figure>
         }
       </Link>

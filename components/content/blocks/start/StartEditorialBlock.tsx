@@ -22,7 +22,12 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
       </div>
       <figure>
         {media.responsiveImage &&
-          <Image data={media.responsiveImage} className={s.image} pictureClassName={s.picture} />
+          <Image
+            data={media.responsiveImage}
+            className={s.image}
+            pictureClassName={s.picture}
+            intersectionMargin={`0px 0px 100% 0px`}
+          />
         }
         {lottieAnimation?.url &&
           <LottieAnimation url={lottieAnimation.url} className={s.animation} />
