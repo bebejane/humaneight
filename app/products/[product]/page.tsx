@@ -20,6 +20,7 @@ import ProductPresentation from './components/ProductPresentation';
 import RelatedProducts from '@app/products/[product]/components/RelatedProducts';
 import FeedbackForm from '@components/forms/FeedbackForm';
 import ProductVariantsForm from './components/ProductVariantsForm';
+import { Suspense } from 'react';
 
 export default async function Product({ params }: CountryProductParams) {
 
@@ -53,15 +54,17 @@ export default async function Product({ params }: CountryProductParams) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-      <section id="product" className={cn(s.product, "grid")}>
-        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
-        <ProductInfo product={product} shopifyProduct={shopifyProduct} />
-        <ProductMeta product={product} />
-      </section>
-      <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
-      <RelatedProducts product={product} />
-      <FeedbackForm feedback={feedback} />
-      <DraftMode url={draftUrl} tag={product.id} />
+      <Suspense>
+        <section id="product" className={cn(s.product, "grid")}>
+          <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
+          <ProductMeta product={product} />
+        </section>
+        <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
+        <RelatedProducts product={product} />
+        <FeedbackForm feedback={feedback} />
+        <DraftMode url={draftUrl} tag={product.id} />
+      </Suspense>
     </>
   )
 }
