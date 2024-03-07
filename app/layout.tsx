@@ -23,8 +23,14 @@ export default async function RootLayout({ children }: LayoutProps) {
       variables: { language: 'EN' as LanguageCode },
       country: 'US'
     }),
-    apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, { variables: { first: 100, skip: 0 }, all: true }),
-    apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument)
+    apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
+      variables: { first: 100, skip: 0 },
+      all: true,
+      tags: ['product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp']
+    }),
+    apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument, {
+      tags: ['general', 'product_branding']
+    })
   ])
 
   const randomProduct = allProducts[Math.floor(Math.random() * allProducts.length)]

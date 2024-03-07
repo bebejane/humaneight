@@ -26,6 +26,7 @@ export default async function Product({ params }: CountryProductParams) {
 
   const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
     variables: { handle: params.product },
+    tags: ['product', 'shopify_product']
   })
 
   if (!shopifyProductData)
@@ -38,12 +39,14 @@ export default async function Product({ params }: CountryProductParams) {
 
   ] = await Promise.all([
     apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
-      variables: { id: shopifyProductData.id }
+      variables: { id: shopifyProductData.id },
+      tags: ['product', 'shopify_product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp']
     }),
     apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument),
     shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
       variables: { handle: params.product },
-      country: params.country
+      country: params.country,
+      tags: ['product', 'shopify_product']
     })])
 
   if (!product || !shopifyProduct)

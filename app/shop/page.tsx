@@ -17,9 +17,8 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
   const isAllCategory = !params?.collection
 
   const { collection, draftUrl } = !isAllCategory ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
-    variables: {
-      slug: params.collection
-    }
+    variables: { slug: params.collection },
+    tags: ['collection', 'product', 'shopify_product']
   }) : { collection: undefined, draftUrl: undefined }
 
   const [{ allProducts }, { allProductBrandings }, { allCollections }] = await Promise.all([
@@ -31,19 +30,19 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
         skip: 0,
       },
       generateTags: false,
-      tags: ['product']
+      tags: ['product', 'shopify_product']
     }),
     apiQuery<AllProductBrandingQuery, AllProductBrandingQueryVariables>(AllProductBrandingDocument, {
       variables: {
         first: 100,
         skip: 0
       },
-      tags: ['product_branding'],
+      tags: ['product_branding', 'product_usp'],
       all: true
     }),
     apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
       all: true,
-      tags: ['collection']
+      tags: ['product', 'shopify_product', 'collection']
     })])
 
   const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag))

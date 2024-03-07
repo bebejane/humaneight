@@ -10,7 +10,7 @@ import s from './page.module.scss'
 export default async function Home(params: CountryParams) {
 
   const { start, draftUrl } = await apiQuery<StartQuery, StartQueryVariables>(StartDocument, {
-    tags: ['start'],
+    tags: ['start', 'product', 'product_category', 'about'],
     generateTags: false
   });
 

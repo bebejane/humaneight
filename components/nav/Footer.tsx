@@ -16,7 +16,7 @@ export type Props = {
 
 }
 
-export default function Footer({ menu, localization, general, randomClaim }: Props) {
+export default function Footer({ menu, localization, randomClaim }: Props) {
 
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false)
 

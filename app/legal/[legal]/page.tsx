@@ -12,9 +12,8 @@ export type LegalParams = {
 export default async function Legal({ params }: LegalParams) {
 
   const { legal, draftUrl } = await apiQuery<LegalQuery, LegalQueryVariables>(LegalDocument, {
-    variables: {
-      slug: params.legal
-    }
+    variables: { slug: params.legal },
+    tags: ['legal']
   })
 
   if (!legal) return notFound();
@@ -34,7 +33,8 @@ export default async function Legal({ params }: LegalParams) {
 
 export async function generateStaticParams() {
   const { allLegals } = await apiQuery<AllLegalsQuery, AllLegalsQueryVariables>(AllLegalsDocument, {
-    all: true
+    all: true,
+    tags: ['legal']
   })
   return allLegals.map(({ slug: legal }) => ({ legal }))
 }
@@ -42,9 +42,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: LegalParams) {
 
   const { legal } = await apiQuery<LegalQuery, LegalQueryVariables>(LegalDocument, {
-    variables: {
-      slug: params.legal
-    }
+    variables: { slug: params.legal },
+    tags: ['legal']
   })
 
   return {

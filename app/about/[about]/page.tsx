@@ -17,9 +17,8 @@ export type AboutParams = {
 export default async function About({ params }: AboutParams) {
 
   const { about, draftUrl } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
-    variables: {
-      slug: params.about
-    }
+    variables: { slug: params.about },
+    tags: ['about']
   })
 
   if (!about) return notFound();
@@ -48,7 +47,6 @@ export default async function About({ params }: AboutParams) {
 export async function generateStaticParams() {
   const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
     all: true,
-    generateTags: false,
     tags: ['about']
   })
   return allAbouts.map(({ slug: about }) => ({ about }))
@@ -57,9 +55,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: AboutParams) {
 
   const { about } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
-    variables: {
-      slug: params.about
-    }
+    variables: { slug: params.about },
+    tags: ['about']
   })
 
   return {
