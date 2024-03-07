@@ -36,7 +36,7 @@ export default function NewsletterPopup({ show: _show, onClose }: Props) {
     <div className={cn(s.newsletterPopup, show && s.show)} >
       <div className={s.popup}>
         <h2>Join our community. Sign up for our newsletter.</h2>
-        <NewsletterForm key={show ? 'true' : 'false'} />
+        <NewsletterForm key={show ? 'true' : 'false'} className={s.form} />
         <button className={s.close} type="button" onClick={handleClose}>Close</button>
       </div>
     </div>

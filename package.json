@@ -28,6 +28,7 @@
     "classnames": "^2.5.1",
     "cookies-next": "^4.1.0",
     "date-fns": "^2.30.0",
+    "datocms-structured-text-to-plain-text": "^3.0.2",
     "datocms-structured-text-utils": "^3.0.0",
     "graphql": "^16.8.1",
     "is-integer": "^1.0.7",

@@ -1,7 +1,7 @@
 #import "./ImageFragment.graphql"
 
 fragment SiteFragment on Site {
-	favicon: faviconMetaTags {
+	faviconMetaTags {
 		attributes
 		content
 		tag

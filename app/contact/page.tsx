@@ -40,3 +40,9 @@ export default async function Contact(params: CountryContactParams) {
     </>
   )
 }
+
+export async function generateMetadata() {
+  return {
+    title: 'Contact',
+  }
+}

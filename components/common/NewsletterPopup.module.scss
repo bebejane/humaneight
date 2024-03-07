@@ -41,5 +41,21 @@
       right: 0;
       background-color: var(--white);
     }
+
+    @include mq($until: desktop) {
+      width: 80%;
+
+      input {
+        width: 100%;
+      }
+
+      .form {
+        button {
+          width: 100%;
+          margin-top: 0.5em;
+        }
+      }
+    }
+
   }
 }

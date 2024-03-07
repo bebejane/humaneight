@@ -1,6 +1,6 @@
 import page from '@app/legal/[legal]/page';
 import { CountryParams } from '@app/[country]/layout';
-export { generateStaticParams } from '@app/legal/[legal]/page';
+export { generateStaticParams, generateMetadata } from '@app/legal/[legal]/page';
 
 export type CountryAboutParams = CountryParams & { params: { legal: string; } };
 

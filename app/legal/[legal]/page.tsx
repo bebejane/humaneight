@@ -5,7 +5,11 @@ import { DraftMode, StructuredContent } from 'next-dato-utils/components';
 import { notFound } from 'next/navigation';
 import cn from 'classnames';
 
-export default async function Legal({ params }: { params: { legal: string } }) {
+export type LegalParams = {
+  params: { legal: string }
+}
+
+export default async function Legal({ params }: LegalParams) {
 
   const { legal, draftUrl } = await apiQuery<LegalQuery, LegalQueryVariables>(LegalDocument, {
     variables: {
@@ -33,4 +37,17 @@ export async function generateStaticParams() {
     all: true
   })
   return allLegals.map(({ slug: legal }) => ({ legal }))
+}
+
+export async function generateMetadata({ params }: LegalParams) {
+
+  const { legal } = await apiQuery<LegalQuery, LegalQueryVariables>(LegalDocument, {
+    variables: {
+      slug: params.legal
+    }
+  })
+
+  return {
+    title: legal?.title,
+  }
 }

@@ -10,7 +10,11 @@ import AboutTextBlock from './components/AboutTextBlock';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
 import RelatedAbouts from '@app/about/[about]/components/RelatedAbouts';
 
-export default async function About({ params }: { params: { about: string } }) {
+export type AboutParams = {
+  params: { about: string }
+}
+
+export default async function About({ params }: AboutParams) {
 
   const { about, draftUrl } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
     variables: {
@@ -48,4 +52,17 @@ export async function generateStaticParams() {
     tags: ['about']
   })
   return allAbouts.map(({ slug: about }) => ({ about }))
+}
+
+export async function generateMetadata({ params }: AboutParams) {
+
+  const { about } = await apiQuery<AboutQuery, AboutQueryVariables>(AboutDocument, {
+    variables: {
+      slug: params.about
+    }
+  })
+
+  return {
+    title: about?.title,
+  }
 }

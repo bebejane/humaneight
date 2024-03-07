@@ -98,3 +98,9 @@ function generateRandomBranding<T>(brandingCount: number, allProductBrandings: T
   }
   return randomBrandings
 }
+
+export async function generateMetadata() {
+  return {
+    title: 'Shop',
+  }
+}

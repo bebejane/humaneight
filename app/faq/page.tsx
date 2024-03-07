@@ -51,3 +51,9 @@ export default async function FaqPage(params: CountryParams) {
     </>
   )
 }
+
+export async function generateMetadata() {
+  return {
+    title: 'FAQ',
+  }
+}

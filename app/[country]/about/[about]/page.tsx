@@ -1,6 +1,6 @@
 import page from '@app/about/[about]/page';
 import { CountryParams } from '@app/[country]/layout';
-export { generateStaticParams } from '@app/about/[about]/page';
+export { generateStaticParams, generateMetadata } from '@app/about/[about]/page';
 
 export type CountryAboutParams = CountryParams & { params: { about: string; } };
 

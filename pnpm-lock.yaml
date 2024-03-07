@@ -41,6 +41,9 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
+  datocms-structured-text-to-plain-text:
+    specifier: ^3.0.2
+    version: 3.0.2
   datocms-structured-text-utils:
     specifier: ^3.0.0
     version: 3.0.0
@@ -4277,6 +4280,19 @@ packages:
     resolution: {integrity: sha512-Rv5Y1eC9NZXNSz3FHvHGFvGnKEEbvG1kQWlylpCSoeDBZPBwSWAFD/ixIAOfa8Yk1EVpmoQd3KQd725WKYJwRQ==}
     dependencies:
       datocms-structured-text-utils: 2.0.4
+    dev: false
+
+  /datocms-structured-text-generic-html-renderer@3.0.0:
+    resolution: {integrity: sha512-wkE/0HFJ0oW6AQzRnNLiXNj2yTH9TDU9xtNCDxobEkppVI7HxI5a3AdJvXUJsNsTAQHRWtBZSPBqRLjx/LIlpw==}
+    dependencies:
+      datocms-structured-text-utils: 3.0.0
+    dev: false
+
+  /datocms-structured-text-to-plain-text@3.0.2:
+    resolution: {integrity: sha512-C+Rff/sw4H26+W6MwsHIQOQYEsXlP5l1b5hRcvOFcFVJKfMB5SxCayVnEZ4SbXkRwgg8X7piyZ1WYsNwPZKVHw==}
+    dependencies:
+      datocms-structured-text-generic-html-renderer: 3.0.0
+      datocms-structured-text-utils: 3.0.0
     dev: false
 
   /datocms-structured-text-utils@2.0.4:
