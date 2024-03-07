@@ -63,8 +63,8 @@ export default async function Product({ params }: CountryProductParams) {
         <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
         <RelatedProducts product={product} />
         <FeedbackForm feedback={feedback} />
-        <DraftMode url={draftUrl} tag={product.id} />
       </Suspense>
+      <DraftMode url={draftUrl} tag={product.id} />
     </>
   )
 }
