@@ -8,11 +8,10 @@ import { Image } from "react-datocms"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useRef, useEffect } from 'react';
 import type { Swiper as SwiperType } from 'swiper'
-//import { Loader } from '@components'
 
 export type GalleryProps = {
   images: FileField[]
-  onClose: (event?: React.MouseEvent) => void,
+  onClose: Function,
   id: string | null,
   show: boolean,
   padImagesWithTitle?: boolean
@@ -36,7 +35,7 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
 
   useEffect(() => {
     const index = images?.findIndex(image => image.id === id) > -1 ? images.findIndex(image => image.id === id) : 0
-    swiperRef.current?.slideTo(index, 0)
+    swiperRef.current?.slideTo(index, 0, false)
     setRealIndex(index)
     console.log(id, index)
   }, [id])
@@ -101,7 +100,7 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
       </div>
       <div className={styles.forward} onClick={() => swiperRef.current?.slideNext()}><img src="/images/arrow-light.svg" className={styles.arrow} /></div>
       <div className={styles.caption}>{title && <p className="medium">{title}</p>}</div>
-      <div className={styles.close} onClick={onClose}>×</div>
+      <div className={styles.close} onClick={() => onClose()}>×</div>
     </div>
   )
 }
