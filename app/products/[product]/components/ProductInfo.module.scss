@@ -14,8 +14,8 @@
   }
 
   &.expanded {
-    top: 0;
-    min-height: 100vh;
+    //height: 120vh;
+    //top: -100px;
   }
 
   .mainImage {
@@ -26,11 +26,9 @@
       display: none;
     }
 
-    .image {
-    }
+    .image {}
 
-    .picture {
-    }
+    .picture {}
   }
 
   header {

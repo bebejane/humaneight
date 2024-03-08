@@ -19,7 +19,7 @@
     bottom: var(--outer-margin);
   }
 
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.2s ease-out;
 
   &.hidden {
     transform: translateY(100%);
