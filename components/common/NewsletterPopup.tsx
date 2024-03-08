@@ -22,6 +22,7 @@ export default function NewsletterPopup({ show: _show, onClose }: Props) {
   }
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'development') return
     autoShowRef.current = setTimeout(() => setShow(true), 15000)
     return () => clearTimeout(autoShowRef.current)
   }, [])
