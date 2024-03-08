@@ -48,8 +48,8 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
     <div
       className={cn(s.details, needsExpansion && s.expanded)}
       style={{
-        top: needsExpansion ? `calc(-1 * calc(${formHeight}px - var(--navbar-height) - var(--outer-margin)))` : 0,
-        height: needsExpansion ? `calc(100vh + var(--navbar-height) + ${descriptionRef.current?.scrollHeight}px - ${formHeight}px)` : undefined
+        top: needsExpansion ? `calc(-1 * calc(${formHeight}px - var(--navbar-height) - var(--outer-margin)))` : undefined,
+        height: needsExpansion ? `calc(100vh + var(--navbar-height) - var(--outer-margin) + ${descriptionRef.current?.scrollHeight}px - ${formHeight}px)` : undefined
       }}
     >
       <div className={s.info} ref={contentRef}>
