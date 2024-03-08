@@ -13,12 +13,12 @@ import type { Swiper as SwiperType } from 'swiper'
 export type GalleryProps = {
   images: FileField[]
   onClose: (event?: React.MouseEvent) => void,
-  index: number | null,
+  id: string | null,
   show: boolean,
   padImagesWithTitle?: boolean
 }
 
-export default function ProductGallery({ images, onClose, index = 0, show, padImagesWithTitle = false }: GalleryProps) {
+export default function ProductGallery({ images, onClose, id, show, padImagesWithTitle = false }: GalleryProps) {
 
   const swiperRef = useRef<SwiperType | undefined>()
   const [realIndex, setRealIndex] = useState(0)
@@ -26,7 +26,7 @@ export default function ProductGallery({ images, onClose, index = 0, show, padIm
   const [loaded, setLoaded] = useState<{ [key: string]: boolean }>({})
   const [initLoaded, setInitLoaded] = useState(false)
   const isSingleSlide = images?.length === 1
-  const isHidden = !images || !show || index === null;
+  const isHidden = !images || !show || id === null;
 
   useEffect(() => {
     if (images)
@@ -35,8 +35,11 @@ export default function ProductGallery({ images, onClose, index = 0, show, padIm
   }, [realIndex, images, setTitle])
 
   useEffect(() => {
-    setRealIndex(index === null ? 0 : index)
-  }, [index])
+    const index = images?.findIndex(image => image.id === id) ?? 0
+    setRealIndex(index)
+    swiperRef.current?.slideTo(index, 0)
+
+  }, [id])
 
   useEffect(() => { // handle  keys
     const handleKeys = (e: KeyboardEvent) => {
@@ -66,7 +69,7 @@ export default function ProductGallery({ images, onClose, index = 0, show, padIm
           spaceBetween={500}
           simulateTouch={!isSingleSlide}
           slidesPerView={1}
-          initialSlide={index}
+          initialSlide={realIndex}
           onSlideChange={({ realIndex }) => setRealIndex(realIndex)}
           onSwiper={(swiper) => swiperRef.current = swiper}
         >

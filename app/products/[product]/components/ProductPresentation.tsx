@@ -10,7 +10,7 @@ import { parseGid } from '@shopify/utils';
 import ProductGallery from './ProductGallery';
 
 export type VariantFormProps = {
-  product: ProductQuery['product']
+  product: ProductByIdQuery['product']
   shopifyProduct: ShopifyProductQuery['product']
 }
 
@@ -18,7 +18,7 @@ export type VariantFormProps = {
 export default function ProductPresentation({ product, shopifyProduct }: VariantFormProps) {
 
   const { searchParams } = useQueryString()
-  const [galleryId, setGalleryId] = useState<number | null>(null)
+  const [galleryId, setGalleryId] = useState<string | null>(null)
 
   const variantId = searchParams.get('variant') ?? null
   const variant = shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant ?? shopifyProduct?.variants.edges[0].node as ProductVariant
@@ -40,8 +40,12 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                 if (mediaCount === 0)
                   return <figure key={id}>No images in color {color}</figure>
 
-                return media.map(({ media: { id, responsiveImage } },) =>
-                  <figure className={cn(mediaCount > 1 && s.double)} key={id} onClick={() => setGalleryId(i)}>
+                return media.map(({ media: { id, responsiveImage } }) =>
+                  <figure
+                    key={id}
+                    className={cn(mediaCount > 1 && s.double)}
+                    onClick={() => setGalleryId(id)}
+                  >
                     {responsiveImage &&
                       <Image
                         key={id}
@@ -64,7 +68,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
       <ProductGallery
         images={images as FileField[]}
         show={galleryId !== null}
-        index={galleryId}
+        id={galleryId}
         onClose={() => setGalleryId(null)}
       />
     </>
