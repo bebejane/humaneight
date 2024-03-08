@@ -35,10 +35,10 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
   }, [realIndex, images, setTitle])
 
   useEffect(() => {
-    const index = images?.findIndex(image => image.id === id) ?? 0
-    setRealIndex(index)
+    const index = images?.findIndex(image => image.id === id) > -1 ? images.findIndex(image => image.id === id) : 0
     swiperRef.current?.slideTo(index, 0)
-
+    setRealIndex(index)
+    console.log(id, index)
   }, [id])
 
   useEffect(() => { // handle  keys
@@ -62,14 +62,14 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
   return (
     <div className={cn(styles.gallery, images.length <= 1 && styles.noArrows, isSingleSlide && styles.noArrows)}>
       <div className={styles.back} onClick={() => swiperRef.current?.slidePrev()}><img src="/images/arrow-light.svg" className={styles.arrow} /></div>
-      <div className={styles.images} onClick={() => !isSingleSlide && swiperRef?.current?.slideNext()}>
+      <div className={styles.images}>
         <Swiper
           id={`main-gallery`}
           loop={true}
           spaceBetween={500}
           simulateTouch={!isSingleSlide}
           slidesPerView={1}
-          initialSlide={realIndex}
+          initialSlide={0}
           onSlideChange={({ realIndex }) => setRealIndex(realIndex)}
           onSwiper={(swiper) => swiperRef.current = swiper}
         >
