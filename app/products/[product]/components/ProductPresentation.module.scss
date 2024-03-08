@@ -25,6 +25,16 @@
 
       &.double {
         flex: 0 0 calc(50% - (var(--gutter) / 2));
+        background-color: #e1e1e1; //Temp!
+
+        div {
+          aspect-ratio: 4/5;
+          display: flex;
+
+          img {
+            object-fit: cover;
+          }
+        }
       }
     }
 
@@ -32,9 +42,14 @@
       margin-bottom: calc(var(--gutter) - 0.3rem);
     }
 
+    div {
+      width: 100%;
+      min-height: var(--gutter);
+    }
+
     div > p {
       margin-top: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
   }
 }
