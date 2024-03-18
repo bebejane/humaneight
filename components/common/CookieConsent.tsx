@@ -53,40 +53,42 @@ export default function CookieConsent({ }: Props) {
 
   return (
     <section aria-labelledby="cookie_heading" className={cn(s.cookieConsent)}>
-      <header>
-        <h2 id="cookie_heading">
-          We care about your privacy.
-        </h2>
-      </header>
-      <div>
-        <p className="default-small">
-          This website uses cookies to ensure you get the best experience on our website.
-          To learn more about the cookies we use please read our Cookie Policy.
-        </p>
-      </div>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <fieldset className={s.scopes}>
-          {scopes.map(({ id, label, selected }) =>
-            <Switch
-              id={id}
-              key={id}
-              className={s.switch}
-              aria-label={label}
-              isDisabled={id === 'necessary'}
-              isSelected={selected ? true : false}
-              onChange={(val) => setScopes((s) => s.map(scope => scope.id === id ? { ...scope, selected: val } : scope))}
-            >
-              <div className={s.indicator} />
-              {label}
-            </Switch>
-          )}
-        </fieldset>
-        <div className={s.buttons}>
-          <button data-allow="all" type="button" onClick={handleClick}>Allow all</button>
-          <button data-allow="selection" type="button" onClick={handleClick}>Allow selection</button>
-          <button data-allow="deny" type="button" onClick={handleClick}>Deny</button>
+      <div className={s.box}>
+        <header>
+          <h2 id="cookie_heading">
+            We care about your privacy.
+          </h2>
+        </header>
+        <div>
+          <p className="default-small">
+            This website uses cookies to ensure you get the best experience on our website.
+            To learn more about the cookies we use please read our Cookie Policy.
+          </p>
         </div>
-      </form>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <fieldset className={s.scopes}>
+            {scopes.map(({ id, label, selected }) =>
+              <Switch
+                id={id}
+                key={id}
+                className={s.switch}
+                aria-label={label}
+                isDisabled={id === 'necessary'}
+                isSelected={selected ? true : false}
+                onChange={(val) => setScopes((s) => s.map(scope => scope.id === id ? { ...scope, selected: val } : scope))}
+              >
+                <div className={s.indicator} />
+                {label}
+              </Switch>
+            )}
+          </fieldset>
+          <div className={s.buttons}>
+            <button data-allow="all" type="button" onClick={handleClick}>Allow all</button>
+            <button data-allow="selection" type="button" onClick={handleClick}>Allow selection</button>
+            <button data-allow="deny" type="button" onClick={handleClick}>Deny</button>
+          </div>
+        </form>
+      </div>
     </section>
   )
 }
