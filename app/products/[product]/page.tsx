@@ -32,12 +32,7 @@ export default async function Product({ params }: CountryProductParams) {
   if (!shopifyProductData)
     return notFound();
 
-  const [
-    { product, draftUrl },
-    { feedback },
-    { product: shopifyProduct },
-
-  ] = await Promise.all([
+  const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
     apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
       variables: { id: shopifyProductData.id },
       tags: ['product', 'shopify_product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp']
