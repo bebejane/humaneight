@@ -21,6 +21,8 @@ export default function FullscreenBlock({ data: { id, media, altMedia }, classNa
               data={m.responsiveImage}
               className={s.image}
               pictureClassName={s.picture}
+              lazyLoad={false}
+              priority={true}
             />
           </figure>
           :
@@ -30,9 +32,8 @@ export default function FullscreenBlock({ data: { id, media, altMedia }, classNa
             muted
             loop
             playsInline
-            poster={m?.video?.thumbnailUrl}
-            //@ts-ignore
-            src={m?.video?.mp4high}
+            poster={`${m?.video?.thumbnailUrl}?time=0`}
+            src={m?.video?.mp4Url}
           />
       )}
     </div>
