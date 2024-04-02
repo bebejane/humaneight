@@ -40,8 +40,8 @@ export type Props = {
 export default function CookieConsent({ }: Props) {
 
   const [scopes, setScopes] = React.useState<Scope[]>(allScopes)
-  //const [show, setShow] = React.useState(process.env.NODE_ENV === 'development' ? false : true)
-  const [show, setShow] = React.useState(true)
+  //const [show, setShow] = React.useState(true)
+  const [show, setShow] = React.useState(false)
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.dataset.allow)

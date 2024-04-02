@@ -2932,7 +2932,7 @@ enum ProductColorModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-/** Record of type Product color (product_color) */
+/** Record of type Variants (product_color) */
 type ProductColorRecord = RecordInterface & {
   __typename?: 'ProductColorRecord';
   _createdAt: Scalars['DateTime']['output'];
@@ -2953,7 +2953,7 @@ type ProductColorRecord = RecordInterface & {
 };
 
 
-/** Record of type Product color (product_color) */
+/** Record of type Variants (product_color) */
 type ProductColorRecord_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
