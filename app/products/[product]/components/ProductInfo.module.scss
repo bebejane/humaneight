@@ -17,6 +17,10 @@
   .mainImage {
     margin-top: 1rem;
 
+    @include mq($until: desktop) {
+      display: none;
+    }
+
     @include mq($from: desktop) {
       display: none;
       aspect-ratio: 4/5;

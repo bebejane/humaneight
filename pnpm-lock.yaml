@@ -102,8 +102,8 @@ dependencies:
     specifier: ^3.12.7
     version: 3.12.7
   swiper:
-    specifier: ^11.0.5
-    version: 11.0.5
+    specifier: ^11.1.1
+    version: 11.1.1
   type-fest:
     specifier: ^4.8.1
     version: 4.8.1
@@ -8107,8 +8107,8 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /swiper@11.0.5:
-    resolution: {integrity: sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==}
+  /swiper@11.1.1:
+    resolution: {integrity: sha512-jGmEA/fNz1lACIcY4/40ggm1Gcyv+EUivmgV/Jd2WFPsEJhbWXnRAwzZR8OPjkBLtDxmzcoYG/iiAMWfRs0YKQ==}
     engines: {node: '>= 4.7.0'}
     dev: false
 
