@@ -33,13 +33,13 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
     if (!contentRef.current) return false
 
     const form = document.getElementById('product-variant-form')
-    console.log(contentRef.current.scrollHeight)
     const ah = (form?.getBoundingClientRect().top ?? 0) - (readMoreRef.current?.getBoundingClientRect().bottom ?? 0)
 
     return ah >= (descriptionRef.current?.scrollHeight ?? 0)
   }
   useEffect(() => {
-    setFormHeight(document.getElementById('product-variant-form')?.scrollHeight ?? 0)
+    if (!readMore)
+      setFormHeight(document.getElementById('product-variant-form')?.scrollHeight ?? 0)
   }, [readMore])
 
   const needsExpansion = readMore && !descriptionFitViewport()
