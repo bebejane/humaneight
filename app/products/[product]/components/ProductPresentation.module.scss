@@ -1,5 +1,6 @@
 .presentation {
   @include mq($until: desktop) {
+    display: none;
     grid-column: span 12;
     //padding-top: var(--space);
   }

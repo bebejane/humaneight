@@ -9,6 +9,7 @@ import ProductVariantsForm from './ProductVariantsForm';
 import { Image } from 'react-datocms';
 import { parseGid } from '@shopify/utils';
 import Content from '@components/content/Content'
+import ProductGalleryMobile from './ProductGalleryMobile';
 
 export type Props = {
   product: ProductByIdQuery['product']
@@ -25,18 +26,20 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   const descriptionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const readMoreRef = useRef<HTMLButtonElement>(null);
+  const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
+  const images = product?.sections.map(({ productMedia }) => productMedia.map(({ variation }) => variation).flat().filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())).flat().filter(v => v.media).map(({ media }) => media).flat()
 
   const descriptionFitViewport = () => {
     if (!contentRef.current) return false
 
     const form = document.getElementById('product-variant-form')
-    console.log(contentRef.current.scrollHeight)
     const ah = (form?.getBoundingClientRect().top ?? 0) - (readMoreRef.current?.getBoundingClientRect().bottom ?? 0)
 
     return ah >= (descriptionRef.current?.scrollHeight ?? 0)
   }
   useEffect(() => {
-    setFormHeight(document.getElementById('product-variant-form')?.scrollHeight ?? 0)
+    if (!readMore)
+      setFormHeight(document.getElementById('product-variant-form')?.scrollHeight ?? 0)
   }, [readMore])
 
   const needsExpansion = readMore && !descriptionFitViewport()
@@ -58,15 +61,8 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           &nbsp;&nbsp;›&nbsp;&nbsp;
           <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>
         </p>
-        {product.image?.responsiveImage &&
-          <figure className={s.mainImage}>
-            <Image
-              data={product.image?.responsiveImage}
-              className={s.image}
-              pictureClassName={s.picture}
-            />
-          </figure>
-        }
+
+        <ProductGalleryMobile images={images as FileField[]} />
         <header>
           <h1 className="big">{product.title}</h1>
           <div className={s.price}>

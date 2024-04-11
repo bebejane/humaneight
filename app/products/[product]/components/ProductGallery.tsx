@@ -71,6 +71,7 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
           initialSlide={0}
           onSlideChange={({ realIndex }) => setRealIndex(realIndex)}
           onSwiper={(swiper) => swiperRef.current = swiper}
+          onClick={() => swiperRef.current?.slideNext()}
         >
           {images.map((image, idx) =>
             <SwiperSlide key={idx} className={cn(styles.slide, padImagesWithTitle && image.title && styles.padded)}>

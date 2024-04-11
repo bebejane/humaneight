@@ -4,6 +4,7 @@ import s from './FaqItem.module.scss'
 import cn from 'classnames'
 import Content from '@components/content/Content'
 import { useEffect, useRef, useState } from 'react';
+import useSmoothScroll from '@lib/hooks/useSmoothScroll';
 
 export type Props = {
   faq: FaqRecord
@@ -11,8 +12,11 @@ export type Props = {
 
 export default function FaqItem({ faq }: Props) {
 
+  useSmoothScroll()
+
   const ref = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState(false)
+
 
   useEffect(() => {
     const hash = window.location.hash;

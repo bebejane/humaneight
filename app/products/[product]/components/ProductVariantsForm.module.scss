@@ -66,6 +66,7 @@
       flex-direction: row;
       align-items: center;
 
+
       .button {
         display: flex;
         flex-direction: row;
@@ -82,9 +83,11 @@
           background-color: var(--gray);
         }
 
-        .value {
+        .value,
+        .option {
           display: flex;
           flex-direction: row;
+          align-items: center;
           flex: 1 1 auto;
           text-align: left;
 
@@ -93,7 +96,7 @@
               width: 2em;
               height: 2em;
               object-fit: cover;
-              //border: 1px solid var(--gray);
+              margin-right: 0.5em;
             }
           }
         }
