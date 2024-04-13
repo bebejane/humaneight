@@ -99,4 +99,6 @@ fragment AboutFragment on AboutRecord {
 		links
 		value
 	}
+	metaTitle
+	metaDescription
 }

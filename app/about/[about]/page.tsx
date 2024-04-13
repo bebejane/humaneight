@@ -60,6 +60,7 @@ export async function generateMetadata({ params }: AboutParams) {
   })
 
   return {
-    title: about?.title,
+    title: about?.metaTitle ?? about?.title,
+    description: about?.metaDescription,
   }
 }
