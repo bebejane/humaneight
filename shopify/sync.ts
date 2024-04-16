@@ -166,6 +166,8 @@ export const deleteObject = async (data: any) => {
 
 export const syncDatoCMSObject = async (item: Item) => {
 
+  throw new Error('syncDatoCMSObject is not implemented')
+
   if (!item || !item.shopify_data)
     throw new Error('Invalid item')
 

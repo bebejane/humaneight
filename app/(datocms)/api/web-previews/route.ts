@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
 
     let path = null;
 
-    const { id, shopify_product } = item
-    const { slug } = item.attributes
+    const { id } = item
+    const { slug, shopify_product } = item.attributes
     const { api_key } = itemType.attributes
 
     switch (api_key) {
