@@ -100,9 +100,9 @@ export async function generateMetadata({ params }: CountryProductParams) {
   if (!product) return {};
 
   return {
-    title: product?.title,
+    title: product.metaTitle ?? product.title,
     //@ts-ignore
-    description: structuredToText(product.description),
+    description: product.metaDescription ?? structuredToText(product.description),
   } as Metadata
 }
 

@@ -119,6 +119,8 @@ fragment ProductFragment on ProductRecord {
 	imageSecondary {
 		...ImageFragment
 	}
+	metaTitle
+	metaDescription
 	usp {
 		id
 		title
