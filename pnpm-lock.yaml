@@ -25,7 +25,7 @@ dependencies:
     version: 2.3.3(@types/react-dom@18.2.15)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
   '@next/third-parties':
     specifier: ^14.1.3
-    version: 14.1.3(next@14.2.0-canary.64)(react@18.2.0)
+    version: 14.1.3(next@14.2.3)(react@18.2.0)
   '@shopify/shopify-api':
     specifier: ^7.7.0
     version: 7.7.0
@@ -60,11 +60,11 @@ dependencies:
     specifier: ^2.4.0
     version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
   next:
-    specifier: 14.2.0-canary.64
-    version: 14.2.0-canary.64(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)
+    specifier: 14.2.3
+    version: 14.2.3(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)
   next-dato-utils:
     specifier: github:bebejane/next-dato-utils
-    version: github.com/bebejane/next-dato-utils/da1f3516c5076e61c03e5fd9f9d7c70b9d1c5137(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)(zod@3.22.4)
+    version: github.com/bebejane/next-dato-utils/6b691f66d8bbf52c1ada76ff732105c3914c3d5c(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)(zod@3.22.4)
   object-traversal:
     specifier: ^1.0.1
     version: 1.0.1
@@ -1710,8 +1710,8 @@ packages:
     resolution: {integrity: sha512-irQnbMLbUNQpP1wcE5NstJtbuA/69kRfzBrpAD7Gsn8zm/CY6YQYc3HQBz8QPxwISG26tIm5afvvVbu508oBeQ==}
     dev: true
 
-  /@next/env@14.2.0-canary.64:
-    resolution: {integrity: sha512-+wcKyLnzLw4Li5EOlDr0I4Y+KwjStwqaQ9i/sCv8ZnZSaOisRDh8CwjBBnZoxTwVwUk3u/5Gj8EuNsLhfHHUPQ==}
+  /@next/env@14.2.3:
+    resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
     dev: false
 
   /@next/eslint-plugin-next@13.5.2:
@@ -1720,8 +1720,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /@next/swc-darwin-arm64@14.2.0-canary.64:
-    resolution: {integrity: sha512-TFGdehG97x0EAU0nUsoNAZ1/qRB7E00X7b9xlO9X8FpEFXNFRmvOf0dK3FR6lOy18DM8oU59kKurDTXt3LwhXw==}
+  /@next/swc-darwin-arm64@14.2.3:
+    resolution: {integrity: sha512-3pEYo/RaGqPP0YzwnlmPN2puaF2WMLM3apt5jLW2fFdXD9+pqcoTzRk+iZsf8ta7+quAe4Q6Ms0nR0SFGFdS1A==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -1729,8 +1729,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-darwin-x64@14.2.0-canary.64:
-    resolution: {integrity: sha512-dxRGpOIwCeA0Vr7/q7lIpQDN7caDc/ax6pc3IRlxCU7MBoepTuCUweIM0cUrjBw1/zHNPvm/W7dxIAglVwqRmQ==}
+  /@next/swc-darwin-x64@14.2.3:
+    resolution: {integrity: sha512-6adp7waE6P1TYFSXpY366xwsOnEXM+y1kgRpjSRVI2CBDOcbRjsJ67Z6EgKIqWIue52d2q/Mx8g9MszARj8IEA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -1738,8 +1738,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-arm64-gnu@14.2.0-canary.64:
-    resolution: {integrity: sha512-26RmJj3ETjdq4PL9yQ28nzpMaa7cZPeHqwNm3EuWSIcH0Ybs2S8wJHUWWYMyUXciyn+pMSNNkmzDwb2asmEoug==}
+  /@next/swc-linux-arm64-gnu@14.2.3:
+    resolution: {integrity: sha512-cuzCE/1G0ZSnTAHJPUT1rPgQx1w5tzSX7POXSLaS7w2nIUJUD+e25QoXD/hMfxbsT9rslEXugWypJMILBj/QsA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1747,8 +1747,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-arm64-musl@14.2.0-canary.64:
-    resolution: {integrity: sha512-GO3HlEglhPOb6W/3skJGZZEfTjLKV5U5qeRp40/bcWbExCMSWPZhja5aGCEdozCxVDr7R+IqBlSNW0yrKJzBOg==}
+  /@next/swc-linux-arm64-musl@14.2.3:
+    resolution: {integrity: sha512-0D4/oMM2Y9Ta3nGuCcQN8jjJjmDPYpHX9OJzqk42NZGJocU2MqhBq5tWkJrUQOQY9N+In9xOdymzapM09GeiZw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -1756,8 +1756,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-x64-gnu@14.2.0-canary.64:
-    resolution: {integrity: sha512-lxM3AIQd/cz9GQlXBqML9DdYj4jM3x9QgoD79WegriJ6Zb1KaHsUexOcG29BpPQub9MNm+X9RrvWcvWSfRQPJg==}
+  /@next/swc-linux-x64-gnu@14.2.3:
+    resolution: {integrity: sha512-ENPiNnBNDInBLyUU5ii8PMQh+4XLr4pG51tOp6aJ9xqFQ2iRI6IH0Ds2yJkAzNV1CfyagcyzPfROMViS2wOZ9w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1765,8 +1765,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-x64-musl@14.2.0-canary.64:
-    resolution: {integrity: sha512-vG66fQz+BlQUuc8LEqyfW/1JrLnmBMsp3NXcjCFBF4BD19eDOXeyponOpfsZYNnPf9Ex8wWauy3lhowk4levUg==}
+  /@next/swc-linux-x64-musl@14.2.3:
+    resolution: {integrity: sha512-BTAbq0LnCbF5MtoM7I/9UeUu/8ZBY0i8SFjUMCbPDOLv+un67e2JgyN4pmgfXBwy/I+RHu8q+k+MCkDN6P9ViQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -1774,8 +1774,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-arm64-msvc@14.2.0-canary.64:
-    resolution: {integrity: sha512-lXgX67oanH+Ek6/V3iUX/B/u057jyszYON8rdWYBYnCl+Z4MYiLh3FgBDWXoKLE1Xqp53ILPTLrP07c3TfhtCg==}
+  /@next/swc-win32-arm64-msvc@14.2.3:
+    resolution: {integrity: sha512-AEHIw/dhAMLNFJFJIJIyOFDzrzI5bAjI9J26gbO5xhAKHYTZ9Or04BesFPXiAYXDNdrwTP2dQceYA4dL1geu8A==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -1783,8 +1783,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-ia32-msvc@14.2.0-canary.64:
-    resolution: {integrity: sha512-5Cx33kU7zcJg0GZD7fJOfmePyfwt414Tnf45VjQYuaMytFFp+zcxAu/1TLLYziHQ/+p5JW9zodfLGnkNbMZeDg==}
+  /@next/swc-win32-ia32-msvc@14.2.3:
+    resolution: {integrity: sha512-vga40n1q6aYb0CLrM+eEmisfKCR45ixQYXuBXxOOmmoV8sYST9k7E3US32FsY+CkkF7NtzdcebiFT4CHuMSyZw==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -1792,8 +1792,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-x64-msvc@14.2.0-canary.64:
-    resolution: {integrity: sha512-l0qkK2hTcN1t3z6KOlTOEQV1xqtu2IuqvjOJpcMtZGS6Z4deSkw1vKzwvz3AQMs6xStOcQBujd7lfRscE76hUg==}
+  /@next/swc-win32-x64-msvc@14.2.3:
+    resolution: {integrity: sha512-Q1/zm43RWynxrO7lW4ehciQVj+5ePBhOK+/K2P7pLFX3JaJ/IZVC69SHidrmZSOkqz7ECIOhhy7XhAFG4JYyHA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -1801,13 +1801,13 @@ packages:
     dev: false
     optional: true
 
-  /@next/third-parties@14.1.3(next@14.2.0-canary.64)(react@18.2.0):
+  /@next/third-parties@14.1.3(next@14.2.3)(react@18.2.0):
     resolution: {integrity: sha512-c3l0JnJzB5L2xXWK9DbH6nFpV1Z9vPFCiFan5l/pbwHjWGKxS8Q532MLAOW6EHB00vhCre8F/okBjGyPAGYpnw==}
     peerDependencies:
       next: ^13.0.0 || ^14.0.0
       react: ^18.2.0
     dependencies:
-      next: 14.2.0-canary.64(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)
+      next: 14.2.3(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)
       react: 18.2.0
       third-party-capital: 1.0.20
     dev: false
@@ -6793,8 +6793,8 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /next@14.2.0-canary.64(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1):
-    resolution: {integrity: sha512-VoyjSuui2SactVw3yizNg4eM6ts803mrFm+i1nXCgb3bK4w6zb5GA/WKv5NZrOg50+EAhLjj3NEsFc0hMRp1Cw==}
+  /next@14.2.3(@babel/core@7.22.20)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1):
+    resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -6811,7 +6811,7 @@ packages:
       sass:
         optional: true
     dependencies:
-      '@next/env': 14.2.0-canary.64
+      '@next/env': 14.2.3
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001608
@@ -6822,15 +6822,15 @@ packages:
       sass: 1.71.1
       styled-jsx: 5.1.1(@babel/core@7.22.20)(react@18.2.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.0-canary.64
-      '@next/swc-darwin-x64': 14.2.0-canary.64
-      '@next/swc-linux-arm64-gnu': 14.2.0-canary.64
-      '@next/swc-linux-arm64-musl': 14.2.0-canary.64
-      '@next/swc-linux-x64-gnu': 14.2.0-canary.64
-      '@next/swc-linux-x64-musl': 14.2.0-canary.64
-      '@next/swc-win32-arm64-msvc': 14.2.0-canary.64
-      '@next/swc-win32-ia32-msvc': 14.2.0-canary.64
-      '@next/swc-win32-x64-msvc': 14.2.0-canary.64
+      '@next/swc-darwin-arm64': 14.2.3
+      '@next/swc-darwin-x64': 14.2.3
+      '@next/swc-linux-arm64-gnu': 14.2.3
+      '@next/swc-linux-arm64-musl': 14.2.3
+      '@next/swc-linux-x64-gnu': 14.2.3
+      '@next/swc-linux-x64-musl': 14.2.3
+      '@next/swc-win32-arm64-msvc': 14.2.3
+      '@next/swc-win32-ia32-msvc': 14.2.3
+      '@next/swc-win32-x64-msvc': 14.2.3
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -8723,11 +8723,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/next-dato-utils/da1f3516c5076e61c03e5fd9f9d7c70b9d1c5137(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)(zod@3.22.4):
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/da1f3516c5076e61c03e5fd9f9d7c70b9d1c5137}
-    id: github.com/bebejane/next-dato-utils/da1f3516c5076e61c03e5fd9f9d7c70b9d1c5137
+  github.com/bebejane/next-dato-utils/6b691f66d8bbf52c1ada76ff732105c3914c3d5c(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)(zod@3.22.4):
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/6b691f66d8bbf52c1ada76ff732105c3914c3d5c}
+    id: github.com/bebejane/next-dato-utils/6b691f66d8bbf52c1ada76ff732105c3914c3d5c
     name: next-dato-utils
-    version: 1.0.525
+    version: 1.0.529
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:

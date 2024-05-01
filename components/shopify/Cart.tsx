@@ -31,6 +31,7 @@ export default function Cart({ localization }: CartProps) {
   const [error, setError] = useState<string | null>(null)
   const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true
   const loading = !cart || updating
+  const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0)
 
   useEffect(() => { !cart && createCart() }, [cart, createCart])
   useEffect(() => { setShowCart(false) }, [pathname])
@@ -43,7 +44,7 @@ export default function Cart({ localization }: CartProps) {
             <img src={`/images/cart${!isEmpty ? '_inverted' : ''}.svg`} alt="Cart" />
             <Loader loading={true} className={s.loader} invert={!isEmpty} />
           </div>
-          <div className={s.count}>{!isEmpty && cart?.lines.edges.length}</div>
+          <div className={s.count}>{!isEmpty && totalItems}</div>
         </button>
       </div>
     )
