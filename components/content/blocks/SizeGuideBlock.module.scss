@@ -3,15 +3,28 @@
   justify-content: space-between;
   margin-top: var(--space);
 
+  @include mq($until: desktop) {
+    margin-top: 0;
+
+    flex-direction: column;
+  }
+
   figure {
-    width: 20%;
-    margin-bottom: var(--space);
+    width: 50%;
+    margin-bottom: var(--space-small);
+
+    @include mq($from: desktop) {
+      width: 20%;
+      margin-bottom: var(--space);
+    }
   }
   .image {
   }
 
   table {
-    width: 75%;
+    @include mq($from: desktop) {
+      width: 75%;
+    }
     margin-bottom: var(--space);
     //width: 100%;
     border-collapse: collapse;

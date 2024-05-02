@@ -21,6 +21,7 @@
 	--letter-space: 0.1em;
 	--space: 2rem;
 	--space-big: 3rem;
+	--space-small: 1rem;
 	--full-margin: calc(-1 * var(--outer-margin));
 	--full-width: calc(100% + 2 * var(--outer-margin));
 
@@ -162,9 +163,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {

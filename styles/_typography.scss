@@ -44,6 +44,11 @@ h3.veryBig,
     text-align: justify;
     text-align-last: justify;
     font-family: $body-font !important;
+    line-height: 0.95em;
+  }
+
+  & + p {
+    margin-top: 2rem !important;
   }
 }
 
