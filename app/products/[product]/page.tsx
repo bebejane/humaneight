@@ -4,7 +4,7 @@ import s from './page.module.scss'
 import cn from 'classnames';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { AllProductsDocument, FeedbackDocument, ProductByIdDocument, ShopifyProductDataDocument } from '@graphql';
+import { AllProductsDocument, FeedbackDocument, GlobalDocument, ProductByIdDocument, ShopifyProductDataDocument } from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import { CountryParams } from '@app/[country]/layout';
@@ -80,32 +80,6 @@ export async function generateStaticParams(params: CountryParams) {
   }))
 }
 
-export async function generateMetadata({ params }: CountryProductParams) {
-
-  const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
-    variables: { handle: params.product },
-  })
-
-  if (!shopifyProductData)
-    return {};
-
-  const [
-    { product },
-  ] = await Promise.all([
-    apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
-      variables: { id: shopifyProductData.id }
-    }),
-  ])
-
-  if (!product) return {};
-
-  return {
-    title: product.metaTitle ?? product.title,
-    //@ts-ignore
-    description: product.metaDescription ?? structuredToText(product.description),
-  } as Metadata
-}
-
 const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: ShopifyProductQuery['product']): any => {
 
   if (!product || !shopifyProduct) return {};
@@ -128,4 +102,62 @@ const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: Sh
       lowPrice: shopifyProduct.variants.edges[0]?.node.price.amount
     }
   }
+}
+
+export async function generateMetadata({ params }: CountryProductParams) {
+
+  const { site: { globalSeo } } = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument)
+  const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
+    variables: { handle: params.product },
+  })
+
+  if (!shopifyProductData)
+    return {};
+
+  const [
+    { product },
+  ] = await Promise.all([
+    apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
+      variables: { id: shopifyProductData.id }
+    }),
+  ])
+
+  if (!product) return {};
+
+  const title = product.metaTitle || product.title
+  //@ts-ignore
+  const description = product.metaDescription || structuredToText(product.description)
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${params.country}/products/${params.product}`,
+      siteName: globalSeo?.siteName,
+      images: [
+        {
+          url: `${product.image?.url}?w=1200&h=630&fit=fill&q=80`,
+          width: 800,
+          height: 600,
+          alt: globalSeo?.siteName
+        },
+        {
+          url: `${product.image?.url}?w=1600&h=800&fit=fill&q=80`,
+          width: 1600,
+          height: 800,
+          alt: globalSeo?.siteName
+        },
+        {
+          url: `${product.image?.url}?w=790&h=627&fit=crop&q=80`,
+          width: 790,
+          height: 627,
+          alt: globalSeo?.siteName
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+  } as Metadata
 }
