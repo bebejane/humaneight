@@ -50,8 +50,9 @@ const objects: ObjectMap[] = [
       title: 'title',
       handle: 'handle',
       collections: 'collections',
+      variants: 'variants',
       image: 'image',
-      tags: 'tags',
+      tags: 'tags'
     }
   }
 ]
@@ -113,6 +114,7 @@ export const upsertObject = async (object: ObjectMap, itemType: string, data: an
     const collections = [...smartCollections, ...customCollections]
     const datoCollections = (await Promise.all(collections.map(({ id }) => client.items.list({ version: 'latest', filter: { type: 'shopify_collection', fields: { shopify_id: { eq: id } } } }))))
     data.collections = datoCollections.map((p) => p[0].id)
+    data.variants = JSON.stringify(data.variants)
   }
 
   if (data.image?.src) {
@@ -149,7 +151,7 @@ const mapObject = (object: ObjectMap, data: any, item: ObjectType): any => {
   Object.keys(object.fields).forEach((key) => {
     mapped[key] = data[object.fields[key]]
   })
-  //mapped.shopify_data = JSON.stringify(item)
+
   return mapped
 }
 

@@ -2,7 +2,13 @@
 import { CountryShopParams } from '@app/[country]/shop/page';
 import s from './page.module.scss'
 import CollectionsFilter from './components/CollectionsFilter';
-import { AllCollectionsDocument, AllProductBrandingDocument, AllProductByCollectionDocument, CollectionDocument } from '@graphql';
+import {
+  AllCollectionsDocument,
+  AllProductBrandingDocument,
+  AllProductByCollectionDocument,
+  AllProductColorsDocument,
+  CollectionDocument
+} from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import ProductThumbnail from '@components/layout/ProductThumbnail';
@@ -21,7 +27,7 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
     tags: ['collection', 'product', 'shopify_product']
   }) : { collection: undefined, draftUrl: undefined }
 
-  const [{ allProducts }, { allProductBrandings }, { allCollections }] = await Promise.all([
+  const [{ allProducts }, { allProductBrandings }, { allCollections }, { allProductColors }] = await Promise.all([
     apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
       all: true,
       variables: {
@@ -43,9 +49,15 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
     apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
       all: true,
       tags: ['product', 'shopify_product', 'collection']
-    })])
+    }),
+    apiQuery<AllProductColorsQuery, AllProductColorsQueryVariables>(AllProductColorsDocument, {
+      all: true,
+      tags: ['product', 'shopify_product', 'product_color']
+    })
+  ])
 
   const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag))
+
   const tags = allProducts?.reduce((acc, product) => {
     const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
     productTags.forEach(tag => !acc.includes(tag) && acc.push(tag))
@@ -66,21 +78,38 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       />
       <div className={s.container}>
         <ThumbnailContainer>
-          {filteredProducts?.map((product, i) => (
-            <React.Fragment key={product.id}>
-              <ProductThumbnail
-                product={product as ProductRecord}
-                index={i}
-                columns={columns}
-              />
-              {(i + 1) % (brandingInterval - 1) === 0 &&
-                <BrandingThumbnail
-                  productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
+          {filteredProducts?.map((product, i) => {
+
+            const productColorVariants = product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
+              let v: any;
+              for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+                const productColor = allProductColors.find(c => c.title === variant[`option${i}`])
+                if (!productColor) continue
+                if (!acc.find((v: any) => v.id === variant.id))
+                  acc.push({ color: productColor.title, variant })
+                break;
+              }
+
+              return acc
+            }, [] as { color: string, variant: any }[])
+
+            return (
+              <React.Fragment key={product.id}>
+                <ProductThumbnail
+                  index={i}
+                  product={product as ProductRecord}
                   columns={columns}
                 />
-              }
-            </React.Fragment>
-          ))}
+
+                {(i + 1) % (brandingInterval - 1) === 0 &&
+                  <BrandingThumbnail
+                    productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
+                    columns={columns}
+                  />
+                }
+              </React.Fragment>
+            )
+          })}
         </ThumbnailContainer>
       </div>
       <DraftMode url={draftUrl} tag={collection?.id} />

@@ -7,15 +7,15 @@ import cn from 'classnames';
 import Price from '@components/shopify/Price';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from 'react-use'
-import { max } from 'date-fns';
 
 export type Props = {
   product: ProductRecord,
   index: number
   columns?: string | undefined
+  variantId?: string
 }
 
-export default function ProductThumbnail({ product, index, columns = 'three' }: Props) {
+export default function ProductThumbnail({ product, variantId, index, columns = 'three' }: Props) {
 
   const [maxUsps, setMaxUsps] = useState(4)
   const { width, height } = useWindowSize()
@@ -42,6 +42,9 @@ export default function ProductThumbnail({ product, index, columns = 'three' }: 
     setMaxUsps(maxUsps)
 
   }, [width, height])
+
+  const variant = product.shopifyProduct.variants?.find((v: any) => v.id === variantId)
+
 
 
   return (

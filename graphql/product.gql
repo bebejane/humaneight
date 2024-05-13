@@ -200,4 +200,5 @@ fragment ShopifyProductFragment on ShopifyProductRecord {
 	image {
 		...ImageFragment
 	}
+	variants
 }
