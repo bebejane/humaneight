@@ -38,7 +38,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                 const media = selectedVariation.map(({ media }) => ({ media })).flat()
 
                 if (mediaCount === 0)
-                  return <figure key={id}>No images in color {color}</figure>
+                  return <figure key={id}></figure>
 
                 return media.map(({ media: { id, responsiveImage } }) =>
                   <figure
@@ -52,7 +52,6 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                         className={s.image}
                         pictureClassName={s.picture}
                         data={{ ...responsiveImage, alt }}
-
                       />
                     }
                   </figure>

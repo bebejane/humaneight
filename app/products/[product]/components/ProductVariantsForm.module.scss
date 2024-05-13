@@ -68,6 +68,7 @@
 
 
       .button {
+        all: unset;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -75,9 +76,11 @@
         width: 100%;
         border: 0;
         margin: 0;
+        padding: 0.5em;
+        padding-left: 0.7em;
+        padding-right: 0.7em;
         height: 2.1rem;
-        background-color: var(--white);
-        //border: 1px solid var(--gray);
+        background-color: var(--white) !important;
 
         &:hover {
           background-color: var(--gray);

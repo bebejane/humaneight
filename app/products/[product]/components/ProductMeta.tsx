@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Content from '@components/content/Content'
 
 export type Props = {
-  product: ProductQuery['product']
+  product: ProductByIdQuery['product']
 }
 
 export default function ProductMeta({ product }: Props) {
@@ -90,7 +90,7 @@ export default function ProductMeta({ product }: Props) {
 }
 
 
-const metaSectionsByType = (product: ProductQuery['product']): { [key: string]: ProductMetaInfoRecord[] } => {
+const metaSectionsByType = (product: ProductByIdQuery['product']): { [key: string]: ProductMetaInfoRecord[] } => {
   return product?.metaSections?.sort((a, b) => a.metaType.position > b.metaType.position ? 1 : -1)
     .reduce((acc: any, metaSection) => {
       const id = metaSection.metaType?.id

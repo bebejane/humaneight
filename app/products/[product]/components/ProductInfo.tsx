@@ -62,7 +62,16 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>
         </p>
 
-        <ProductGalleryMobile images={images as FileField[]} />
+        {product.image?.responsiveImage &&
+          <figure className={s.mainImage}>
+            <Image
+              data={product.image?.responsiveImage}
+              className={s.image}
+              pictureClassName={s.picture}
+            />
+          </figure>
+        }
+
         <header>
           <h1 className="big">{product.title}</h1>
           <div className={s.price}>
