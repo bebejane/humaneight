@@ -12,6 +12,8 @@ export function middleware(request: NextRequest) {
       request.nextUrl.pathname = `/${country}`
       return NextResponse.redirect(request.nextUrl)
     }
+    else
+      return NextResponse.next()
   }
 }
 
