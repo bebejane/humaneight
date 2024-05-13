@@ -12,9 +12,10 @@
   text-transform: uppercase;
   opacity: 0;
   animation: show 0.5s ease-out forwards;
+  font-family: "Human-Logo", sans-serif;
 
   @include mq($from: desktop) {
-    top: calc(var(--outer-margin) - 0.24em);
+    top: calc(var(--outer-margin) - 0.2em);
   }
 
   @keyframes show {
@@ -66,10 +67,8 @@
   pointer-events: none;
 
   @include mq($until: desktop) {
-
     h2 {
       font-size: 1.6rem !important;
-
     }
   }
 

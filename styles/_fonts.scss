@@ -23,3 +23,10 @@ $symbol-font: "Human-Symbol", Sans-Serif;
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: "Human-Logo";
+    src: url("../public/fonts/Logo.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
