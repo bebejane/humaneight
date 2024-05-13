@@ -42,7 +42,7 @@ export default function CountrySelector({ className, label, modal = false, local
 
   const handleChange = (val: Key) => {
     const countryCode = val.toString()
-    const path = `${countryCode !== defaultCountry ? `/${countryCode}` : ''}${pathname.replace(`/${country.toLowerCase()}`, `/`)}`
+    const path = `/${countryCode}${pathname.replace(`/${country.toLowerCase()}`, `/`)}`
     const hash = window.location.hash ? '#' + window.location.hash : ''
     router.replace(`${path}${hash}`.toLowerCase())
   }
