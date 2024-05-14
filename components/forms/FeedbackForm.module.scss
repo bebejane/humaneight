@@ -94,13 +94,15 @@
 
       @include mq($from: desktop) {
         margin-bottom: 1rem;
-        height: 7rem;
+        height: 8rem;
         margin-top: 3rem;
       }
     }
 
     button {
       margin-top: var(--space);
+      width: 100%;
+      padding: 1rem;
       background-color: var(--white) !important;
 
       &:hover {

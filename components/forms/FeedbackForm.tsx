@@ -66,7 +66,7 @@ export default function FeedbackForm({ feedback }: Props) {
               <h3 className="small">
                 {headline}
               </h3>
-              <Markdown className="light small" content={text} />
+              <Markdown className="light mid" content={text} />
             </div>
             <div className={s.textarea}>
               <textarea id={id} name={id} rows={3} required={false} ref={i === 0 ? firstInputRef : undefined} />
