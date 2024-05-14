@@ -1,8 +1,6 @@
 .presentation {
   @include mq($until: desktop) {
-    display: none;
     grid-column: span 12;
-    //padding-top: var(--space);
   }
 
   @include mq($from: desktop) {
@@ -49,7 +47,7 @@
       min-height: var(--gutter);
     }
 
-    div > p {
+    div>p {
       margin-top: 1rem;
       margin-bottom: 1rem;
     }

@@ -9,7 +9,6 @@ import ProductVariantsForm from './ProductVariantsForm';
 import { Image } from 'react-datocms';
 import { parseGid } from '@shopify/utils';
 import Content from '@components/content/Content'
-import ProductGalleryMobile from './ProductGalleryMobile';
 
 export type Props = {
   product: ProductByIdQuery['product']
