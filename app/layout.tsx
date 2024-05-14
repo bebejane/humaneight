@@ -28,7 +28,9 @@ export default async function RootLayout({ children }: LayoutProps) {
     apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
       variables: { first: 100, skip: 0 },
       all: true,
-      tags: ['product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp']
+      tags: ['product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp'],
+      generateTags: false
+
     }),
     apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument, {
       tags: ['general', 'product_branding']

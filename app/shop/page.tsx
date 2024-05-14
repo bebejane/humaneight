@@ -18,20 +18,87 @@ import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 
 export const runtime = 'edge'
 
+const brandingInterval = 5
+
 export default async function Shop({ params, searchParams }: CountryShopParams) {
 
-  const isAllCategory = !params?.collection
+  const all = !params?.collection
 
-  const { collection, draftUrl } = !isAllCategory ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
+  const { collection, draftUrl } = !all ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: { slug: params.collection },
     tags: ['collection', 'product', 'shopify_product']
   }) : { collection: undefined, draftUrl: undefined }
+
+  const { allProducts, allProductBrandings, allCollections, allProductColors } = await getPageData(all, collection?.id)
+  const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag))
+
+  const tags = allProducts?.reduce((acc, product) => {
+    const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
+    productTags.forEach(tag => !acc.includes(tag) && acc.push(tag))
+    return acc
+  }, ['all'] as string[])
+
+  const columns = all ? 'three' : 'four'
+
+  return (
+    <>
+      <CollectionsFilter
+        collectionId={collection?.id}
+        allCollections={allCollections}
+        searchParams={searchParams}
+        tags={tags}
+      />
+      <div className={s.container}>
+        <ThumbnailContainer>
+          {filteredProducts?.map((product, i) => {
+
+            const isFiltered = filteredProducts.find(p => p.id === product.id)
+            const productColorVariants = product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
+              for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+                const color = allProductColors.find(c => c.title === variant[`option${i}`])?.title
+                if (!color) continue
+                if (!acc.find((v: any) => v.color === color))
+                  acc.push({ color, variant })
+                break;
+              }
+              return acc
+            }, []) as { color: string, variant: any }[]
+
+            const thumbnails = [{ product }].concat(productColorVariants.map(({ color, variant }) => ({ product, color, variant }))) as any[]
+            const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(thumbnails.length / brandingInterval), allProductBrandings)
+
+            return thumbnails?.map(({ product, color, variant }, i) =>
+              <React.Fragment key={i}>
+                <ProductThumbnail
+                  index={i}
+                  product={product as ProductRecord}
+                  color={color}
+                  variantId={variant?.id}
+                  columns={columns}
+                />
+                {(i + 1) % (brandingInterval - 1) === 0 &&
+                  <BrandingThumbnail
+                    productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
+                    columns={columns}
+                  />
+                }
+              </React.Fragment>
+            )
+          })}
+        </ThumbnailContainer>
+      </div>
+      <DraftMode url={draftUrl} tag={collection?.id} />
+    </>
+  )
+}
+
+async function getPageData(all: boolean, collectionId?: string) {
 
   const [{ allProducts }, { allProductBrandings }, { allCollections }, { allProductColors }] = await Promise.all([
     apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
       all: true,
       variables: {
-        collectionId: !isAllCategory ? collection?.id : undefined,
+        collectionId: !all ? collectionId : undefined,
         first: 100,
         skip: 0,
       },
@@ -55,66 +122,7 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       tags: ['product', 'shopify_product', 'product_color']
     })
   ])
-
-  const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag))
-
-  const tags = allProducts?.reduce((acc, product) => {
-    const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
-    productTags.forEach(tag => !acc.includes(tag) && acc.push(tag))
-    return acc
-  }, ['all'] as string[])
-
-  const brandingInterval = 5
-  const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.floor(allProducts.length / brandingInterval), allProductBrandings)
-  const columns = isAllCategory ? 'three' : 'four'
-
-  return (
-    <>
-      <CollectionsFilter
-        collectionId={collection?.id}
-        allCollections={allCollections}
-        searchParams={searchParams}
-        tags={tags}
-      />
-      <div className={s.container}>
-        <ThumbnailContainer>
-          {filteredProducts?.map((product, i) => {
-
-            const productColorVariants = product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
-              let v: any;
-              for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
-                const productColor = allProductColors.find(c => c.title === variant[`option${i}`])
-                if (!productColor) continue
-                if (!acc.find((v: any) => v.id === variant.id))
-                  acc.push({ color: productColor.title, variant })
-                break;
-              }
-
-              return acc
-            }, [] as { color: string, variant: any }[])
-
-            return (
-              <React.Fragment key={product.id}>
-                <ProductThumbnail
-                  index={i}
-                  product={product as ProductRecord}
-                  columns={columns}
-                />
-
-                {(i + 1) % (brandingInterval - 1) === 0 &&
-                  <BrandingThumbnail
-                    productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
-                    columns={columns}
-                  />
-                }
-              </React.Fragment>
-            )
-          })}
-        </ThumbnailContainer>
-      </div>
-      <DraftMode url={draftUrl} tag={collection?.id} />
-    </>
-  )
+  return { allProducts, allProductBrandings, allCollections, allProductColors }
 }
 
 function generateRandomBranding<T>(brandingCount: number, allProductBrandings: T[]): T[] {
