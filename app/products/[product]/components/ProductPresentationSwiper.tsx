@@ -49,6 +49,15 @@ export default function ProductPresentationSwiper({ images, className }: Gallery
           </SwiperSlide>
         )}
       </Swiper>
+      <div className={s.pagination}>
+        {images.map((_i, idx) =>
+          <button
+            key={idx}
+            className={cn(s.dot, { [s.active]: idx === realIndex })}
+            onClick={() => swiperRef.current?.slideTo(idx)}
+          />
+        )}
+      </div>
     </div>
   )
 }
