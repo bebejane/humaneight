@@ -23,6 +23,7 @@
 
     button {
       margin-top: 1rem;
+      margin-bottom: 1rem;
 
       @include mq($from: desktop) {
         margin-top: 2.7rem;

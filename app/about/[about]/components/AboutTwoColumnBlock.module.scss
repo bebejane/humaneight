@@ -36,6 +36,17 @@
       padding-right: var(--gutter);
       padding-left: var(--gutter);
     }
+
+    @include mq($until: desktop) {
+      p {
+        margin-top: 1rem;
+      }
+
+      h1 + p,
+      h2 + p {
+        margin-top: 0rem;
+      }
+    }
   }
 
   h1 {

@@ -9,6 +9,10 @@
   grid-gap: var(--gutter);
 
   figure {
-    grid-column: span 4;
+    grid-column: span 12;
+
+    @include mq($from: desktop) {
+      grid-column: span 4;
+    }
   }
 }

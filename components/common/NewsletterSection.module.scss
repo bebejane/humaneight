@@ -5,24 +5,26 @@
   justify-content: space-between;
   width: 100%;
   margin-top: var(--space-big);
-  padding: var(--space);
+  padding: var(--space-small);
   background-color: var(--gray);
 
   @include mq($from: desktop) {
+    padding: var(--space);
+
     flex-direction: row;
   }
 
   @include mq($from: desktop) {
-
     h3,
     form {
-      max-width: 50%;
+      max-width: calc(50% - (0.5 * var(--gutter)));
     }
   }
 
   h3 {
-    flex: 0 0;
-    white-space: nowrap;
+    @include mq($until: tablet) {
+      padding-bottom: 1rem;
+    }
   }
 
   .form {
