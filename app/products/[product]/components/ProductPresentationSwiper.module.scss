@@ -1,0 +1,21 @@
+.gallery {
+  @include mq($from: desktop) {
+    display: none;
+  }
+
+  position: relative;
+  max-width: calc(100vw - calc(var(--outer-margin) *2));
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  .slide {
+    width: 100%;
+
+    .image {
+      width: 100%;
+    }
+  }
+
+}

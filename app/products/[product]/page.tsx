@@ -35,7 +35,7 @@ export default async function Product({ params }: CountryProductParams) {
   const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
     apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
       variables: { id: shopifyProductData.id },
-      tags: ['product', 'shopify_product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp']
+      tags: ['product', 'shopify_product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp'],
     }),
     apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument),
     shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
@@ -71,7 +71,7 @@ export async function generateStaticParams(params: CountryParams) {
 
   const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
     all: true,
-    tags: ['product']
+    tags: ['product'],
   });
 
   return allProducts.map(({ shopifyProduct }) => ({
@@ -108,7 +108,7 @@ export async function generateMetadata({ params }: CountryProductParams) {
 
   const { site: { globalSeo } } = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument)
   const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
-    variables: { handle: params.product },
+    variables: { handle: params.product }
   })
 
   if (!shopifyProductData)
