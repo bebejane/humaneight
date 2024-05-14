@@ -25,7 +25,7 @@
 
       &.double {
         flex: 0 0 calc(50% - (var(--gutter) / 2));
-        background-color: #efefe9; //Temp!
+        background-color: var(--gray-image); //Temp!
 
         div {
           aspect-ratio: 4/5;
@@ -47,7 +47,7 @@
       min-height: var(--gutter);
     }
 
-    div>p {
+    div > p {
       margin-top: 1rem;
       margin-bottom: 1rem;
     }
