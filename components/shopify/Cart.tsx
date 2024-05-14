@@ -42,7 +42,7 @@ export default function Cart({ localization }: CartProps) {
         <button className={cn(!isEmpty && s.inverted, loading && s.loading)} onClick={() => setShowCart(true)}>
           <div className={s.icon} >
             <img src={`/images/cart${!isEmpty ? '_inverted' : ''}.svg`} alt="Cart" />
-            <Loader loading={true} className={s.loader} invert={!isEmpty} />
+            {updating && <Loader loading={true} className={s.loader} invert={!isEmpty} />}
           </div>
           <div className={s.count}>{!isEmpty && totalItems}</div>
         </button>
@@ -54,18 +54,16 @@ export default function Cart({ localization }: CartProps) {
     <div id="cart" className={cn(s.cart, showCart && s.show, updating && s.updating)} >
       <header>
         <h3>Cart</h3>
-        <div className={s.wrapper}>
-          <div className={s.currency}>
-            <CountrySelector localization={localization} label="Location" />
-          </div>
-          <div className={s.close} onClick={() => setShowCart(false)}>
-            <button className={s.close} onClick={() => setShowCart(false)} >
-              <div className={s.wrap}>
-                <div />
-                <div />
-              </div>
-            </button>
-          </div>
+        <div className={s.currency}>
+          <CountrySelector localization={localization} label="Location" className={s.form} />
+        </div>
+        <div className={s.close} onClick={() => setShowCart(false)}>
+          <button className={s.close} onClick={() => setShowCart(false)} >
+            <div className={s.wrap}>
+              <div />
+              <div />
+            </div>
+          </button>
         </div>
       </header>
       {isEmpty ?

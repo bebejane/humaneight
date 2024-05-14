@@ -1,7 +1,7 @@
-
+// clean up code
 import { CountryShopParams } from '@app/[country]/shop/page';
 import s from './page.module.scss'
-import CollectionsFilter from './components/CollectionsFilter';
+import React from 'react';
 import {
   AllCollectionsDocument,
   AllProductBrandingDocument,
@@ -11,9 +11,9 @@ import {
 } from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
+import CollectionsFilter from './components/CollectionsFilter';
 import ProductThumbnail from '@components/layout/ProductThumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
-import React from 'react';
 import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 
 export const runtime = 'edge'
@@ -38,8 +38,6 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
     return acc
   }, ['all'] as string[])
 
-  const columns = all ? 'three' : 'four'
-
   return (
     <>
       <CollectionsFilter
@@ -51,8 +49,6 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       <div className={s.container}>
         <ThumbnailContainer>
           {filteredProducts?.map((product, i) => {
-
-            const isFiltered = filteredProducts.find(p => p.id === product.id)
             const productColorVariants = product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
               for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
                 const color = allProductColors.find(c => c.title === variant[`option${i}`])?.title
@@ -74,12 +70,12 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
                   product={product as ProductRecord}
                   color={color}
                   variantId={variant?.id}
-                  columns={columns}
+                  columns={all ? 'three' : 'four'}
                 />
                 {(i + 1) % (brandingInterval - 1) === 0 &&
                   <BrandingThumbnail
                     productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
-                    columns={columns}
+                    columns={all ? 'three' : 'four'}
                   />
                 }
               </React.Fragment>
