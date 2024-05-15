@@ -5,10 +5,8 @@ import s from './CountrySelector.module.scss'
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
 import useCountry from '@shopify/hooks/useCountry';
-import { defaultCountry } from '@lib/const';
-import { useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { useWindowSize, useClickAway } from 'react-use';
-import { set } from 'date-fns';
 
 export type Props = {
   className?: string
@@ -28,9 +26,9 @@ export default function CountrySelector({ className, label, modal = false, local
   const { width, height } = useWindowSize()
   const [selectWidth, setSelectWidth] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
 
-  useClickAway(formRef, (e) => setSelectOpen(false))
 
   useEffect(() => {
     setSelectWidth(buttonRef.current?.scrollWidth ?? 0)
@@ -52,12 +50,11 @@ export default function CountrySelector({ className, label, modal = false, local
   const selectedCountry = availableCountries.find(({ isoCode }) => isoCode === country)
 
   return (
-    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
+    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }} ref={formRef}>
       <Select
         className={s.select}
         onSelectionChange={handleChange}
-        isOpen={selectOpen}
-        onOpenChange={(o) => setSelectOpen(o)}
+        defaultOpen={false}
       >
         <Button className={s.button} ref={buttonRef}>
           <SelectValue className={s.value} key={country}>
@@ -67,7 +64,7 @@ export default function CountrySelector({ className, label, modal = false, local
             {!selectOpen ? '▼' : '▲'}
           </span>
         </Button>
-        <Popover placement="top left" className={s.popover} maxHeight={200} isNonModal={!modal} ref={formRef}>
+        <Popover placement="top left" className={s.popover} maxHeight={200} ref={popupRef}>
           <ListBox
             selectionMode={'single'}
             className={s.options}
