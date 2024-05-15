@@ -9,3 +9,25 @@ export const parseDatoError = (err: any): string => {
 export const itemTypeId = async (type: string) => (await client.itemTypes.list()).find((t) => t.api_key === type)?.id as string
 
 export const isServer = typeof window === 'undefined'
+
+export function getDefaultProductColorVariant(product: ProductRecord) {
+  const v = product.shopifyProduct?.variants?.find((variant: any) => {
+    for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+      if (variant[`option${i}`] === product.defaultColor?.title) return true
+    }
+    return false
+  })
+  return v ?? product.shopifyProduct?.variants?.[0]
+}
+
+export function getProductColorVariants(product: ProductRecord) {
+  return product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
+    for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+      const color = variant[`option${i}`]
+      if (!acc.find((v: any) => v.color === color))
+        acc.push({ color, variant })
+      break;
+    }
+    return acc
+  }, []) as { color: string, variant: any }[]
+}
