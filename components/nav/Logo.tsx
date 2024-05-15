@@ -79,7 +79,7 @@ export default function Logo({ showMenu, localization }: Props) {
             {word}
           </span>
         )}</h2>
-      </div >
+      </div>
     </>
   )
 }

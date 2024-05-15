@@ -18,20 +18,21 @@
     top: calc(var(--outer-margin) - 0.2em);
   }
 
+  animation: show 0.5s ease-out forwards;
 
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 
   &.intro {
-    animation: show 0.5s ease-out forwards;
 
-    @keyframes show {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
+    animation-delay: 0.2s;
 
     a {
       //transition: color 0.2s ease-out;
