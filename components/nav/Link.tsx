@@ -1,7 +1,7 @@
 'use client';
 
 import cn from 'classnames';
-import { defaultCountry } from '@lib/const';
+import { defaultCountry } from '@lib/constants';
 import NextLink, { LinkProps } from 'next/link';
 import useCountry from '@shopify/hooks/useCountry';
 import { usePathname } from 'next/navigation';

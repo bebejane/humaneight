@@ -5,6 +5,7 @@ import cn from 'classnames'
 import Link from '@components//nav/Link'
 import { useEffect, useState } from 'react'
 import { useWindowSize, useMedia } from 'react-use'
+import { tags as tagSortOrder } from '@lib/constants'
 import useIsDesktop from '@lib/hooks/useIsDesktop'
 
 export type Props = {
@@ -13,8 +14,6 @@ export type Props = {
   allCollections?: AllCollectionsQuery['allCollections']
   searchParams?: any
 }
-
-const tagSortOrder = ['all', 'kids', 'fitted', 'relaxed', 'oversized']
 
 export default function CollectionsFilter({ tags, collectionId = 'all', allCollections, searchParams }: Props) {
 

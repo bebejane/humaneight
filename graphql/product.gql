@@ -73,6 +73,10 @@ fragment ProductLightFragment on ProductRecord {
 		title
 		slug
 	}
+	defaultColor {
+		id
+		title
+	}
 	image {
 		...ImageThumbnailFragment
 	}
@@ -117,6 +121,10 @@ fragment ProductFragment on ProductRecord {
 		id
 		title
 		slug
+	}
+	defaultColor {
+		id
+		title
 	}
 	description {
 		blocks

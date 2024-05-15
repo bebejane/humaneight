@@ -15,6 +15,7 @@ import CollectionsFilter from './components/CollectionsFilter';
 import ProductThumbnail from '@components/layout/ProductThumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
 import BrandingThumbnail from '@components/layout/BrandingThumbnail';
+import { tags } from '@lib/constants';
 
 export const runtime = 'edge'
 
@@ -30,7 +31,7 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
   }) : { collection: undefined, draftUrl: undefined }
 
   const { allProducts, allProductBrandings, allCollections, allProductColors } = await getPageData(all, collection?.id)
-  const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag))
+  const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag)).sort(sortByTag)
 
   const tags = allProducts?.reduce((acc, product) => {
     const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
@@ -49,18 +50,10 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       <div className={s.container}>
         <ThumbnailContainer>
           {filteredProducts?.map((product, i) => {
-            const productColorVariants = product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
-              for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
-                const color = allProductColors.find(c => c.title === variant[`option${i}`])?.title
-                if (!color) continue
-                if (!acc.find((v: any) => v.color === color))
-                  acc.push({ color, variant })
-                break;
-              }
-              return acc
-            }, []) as { color: string, variant: any }[]
 
-            const thumbnails = all ? [{ product }] : productColorVariants.map(({ color, variant }) => ({ product, color, variant })) as any[]
+            const productColorVariants = getProductColorVariants(product)
+            const defaultProductColorVariant = getDefaultProductColorVariant(product)
+            const thumbnails = all ? [{ product, variant: defaultProductColorVariant }] : productColorVariants.map(({ color, variant }) => ({ product, color, variant })) as any[]
             const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(thumbnails.length / brandingInterval), allProductBrandings)
 
             return thumbnails?.map(({ product, color, variant }, i) =>
@@ -86,6 +79,36 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       <DraftMode url={draftUrl} tag={collection?.id} />
     </>
   )
+}
+
+function getDefaultProductColorVariant(product: AllProductByCollectionQuery['allProducts'][0]) {
+  const v = product.shopifyProduct?.variants?.find((variant: any) => {
+    for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+      if (variant[`option${i}`] === product.defaultColor?.title) return true
+    }
+    return false
+  })
+  return v ?? product.shopifyProduct?.variants?.[0]
+}
+
+function getProductColorVariants(product: AllProductByCollectionQuery['allProducts'][0]) {
+  return product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
+    for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+      const color = variant[`option${i}`]
+      if (!acc.find((v: any) => v.color === color))
+        acc.push({ color, variant })
+      break;
+    }
+    return acc
+  }, []) as { color: string, variant: any }[]
+}
+
+function sortByTag(a: AllProductByCollectionQuery['allProducts'][0], b: AllProductByCollectionQuery['allProducts'][0]) {
+  const aTags = a?.shopifyProduct?.tags?.split(',') ?? []
+  const bTags = b?.shopifyProduct?.tags?.split(',') ?? []
+  const aTag = tags.findIndex(tag => aTags.includes(tag))
+  const bTag = tags.findIndex(tag => bTags.includes(tag))
+  return aTag - bTag
 }
 
 async function getPageData(all: boolean, collectionId?: string) {

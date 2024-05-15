@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { defaultCountry } from "./lib/const";
+import { defaultCountry } from "./lib/constants";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
