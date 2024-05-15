@@ -34,7 +34,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 
   return (
     <>
-      <Logo showMenu={showMenu} />
+      <Logo showMenu={showMenu} localization={localization} />
       <Hamburger showMenu={showMenu} setShowMenu={setShowMenu} />
       <nav className={s.navbar}>
         <button

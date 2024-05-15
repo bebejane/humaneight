@@ -11,24 +11,28 @@
   z-index: var(--z-logo);
   text-transform: uppercase;
   opacity: 0;
-  animation: show 0.5s ease-out forwards;
+
   font-family: "Human-Logo", sans-serif;
 
   @include mq($from: desktop) {
     top: calc(var(--outer-margin) - 0.2em);
   }
 
-  @keyframes show {
-    0% {
-      opacity: 0;
-    }
 
-    100% {
-      opacity: 1;
-    }
-  }
 
   &.intro {
+    animation: show 0.5s ease-out forwards;
+
+    @keyframes show {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
     a {
       //transition: color 0.2s ease-out;
       color: var(--white);
@@ -83,6 +87,7 @@
     @include mq($until: desktop) {
       font-size: 1.6rem;
     }
+
     font-size: 4.3rem;
 
     span {
