@@ -8,6 +8,7 @@ import useCountry from '@shopify/hooks/useCountry';
 import { defaultCountry } from '@lib/const';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize, useClickAway } from 'react-use';
+import { set } from 'date-fns';
 
 export type Props = {
   className?: string
@@ -27,8 +28,9 @@ export default function CountrySelector({ className, label, modal = false, local
   const { width, height } = useWindowSize()
   const [selectWidth, setSelectWidth] = useState(0)
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-  useClickAway(formRef, () => setSelectOpen(false))
+  const formRef = useRef<HTMLDivElement>(null);
+
+  useClickAway(formRef, (e) => setSelectOpen(false))
 
   useEffect(() => {
     setSelectWidth(buttonRef.current?.scrollWidth ?? 0)
@@ -50,7 +52,7 @@ export default function CountrySelector({ className, label, modal = false, local
   const selectedCountry = availableCountries.find(({ isoCode }) => isoCode === country)
 
   return (
-    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }} ref={formRef}>
+    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }}>
       <Select
         className={s.select}
         onSelectionChange={handleChange}
@@ -65,7 +67,7 @@ export default function CountrySelector({ className, label, modal = false, local
             {!selectOpen ? '▼' : '▲'}
           </span>
         </Button>
-        <Popover placement="top left" className={s.popover} maxHeight={200} isNonModal={!modal}>
+        <Popover placement="top left" className={s.popover} maxHeight={200} isNonModal={!modal} ref={formRef}>
           <ListBox
             selectionMode={'single'}
             className={s.options}

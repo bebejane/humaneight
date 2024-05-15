@@ -115,24 +115,25 @@
   }
 
   header {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
 
     h3 {
-      width: 6rem;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
-    .wrapper {
-      display: flex;
-      justify-content: space-between;
-      flex: 1 1 auto;
-    }
 
     .currency {
-      display: flex;
-      flex-direction: row;
-      margin-right: 0.5em;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 0.95em;
+
     }
 
     .close {

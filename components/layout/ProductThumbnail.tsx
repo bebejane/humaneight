@@ -12,10 +12,11 @@ export type Props = {
   product: ProductRecord,
   index: number
   columns?: string | undefined
+  color?: string
   variantId?: string
 }
 
-export default function ProductThumbnail({ product, variantId, index, columns = 'three' }: Props) {
+export default function ProductThumbnail({ product, color, variantId, index, columns = 'three' }: Props) {
 
   const [maxUsps, setMaxUsps] = useState(4)
   const { width, height } = useWindowSize()
@@ -43,29 +44,30 @@ export default function ProductThumbnail({ product, variantId, index, columns = 
 
   }, [width, height])
 
-  const variant = product.shopifyProduct.variants?.find((v: any) => v.id === variantId)
-
-
+  const colorMedia = product.thumbnailForVariations?.variation.find((v: any) => v.color.title === color)?.media
+  const href = `/products/${product.shopifyProduct.handle}${variantId ? `?variant=${variantId}` : ''}`
+  const image = colorMedia ?? product.image
+  const imageSecondary = product.imageSecondary
 
   return (
     <Link
-      href={`/products/${product.shopifyProduct.handle}`}
+      href={href}
       className={cn(s.thumbnail, s[columns])}
       data-index={index}
     >
       <figure ref={figureRef}>
-        {product.image &&
+        {image?.responsiveImage &&
           <Image
-            data={product.image?.responsiveImage}
+            data={image?.responsiveImage}
             className={cn(s.image, s.main)}
             placeholderClassName={s.picture}
             pictureClassName={s.picture}
             intersectionMargin={`0px 0px 100% 0px`}
           />
         }
-        {product.imageSecondary &&
+        {imageSecondary &&
           <Image
-            data={product.imageSecondary?.responsiveImage}
+            data={imageSecondary.responsiveImage}
             className={cn(s.image, s.secondary)}
             pictureClassName={s.picture}
             usePlaceholder={false}

@@ -31,21 +31,19 @@ const useCart = create<CartState>((set, get) => ({
   updatingId: null,
   error: undefined,
   createCart: async () => {
-    get().update(null, async () => {
-      const id = getCookie('cart')
-      let cart = null;
+    const id = getCookie('cart')
+    let cart = null;
 
-      if (id)
-        cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id } })).cart
+    if (id)
+      cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id } })).cart
 
-      if (!cart)
-        cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0 }))?.cartCreate?.cart;
+    if (!cart)
+      cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0 }))?.cartCreate?.cart;
 
-      if (!cart)
-        throw new Error('Cart not found')
+    if (!cart)
+      throw new Error('Cart not found')
 
-      return cart as Cart
-    })
+    return get().setCart(cart as Cart)
   },
   clearCart: () => {
     set((state) => ({ cart: undefined }))

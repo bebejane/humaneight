@@ -79,6 +79,19 @@ fragment ProductLightFragment on ProductRecord {
 	imageSecondary {
 		...ImageThumbnailFragment
 	}
+	thumbnailForVariations {
+		id
+		variation {
+			id
+			media {
+				...ImageThumbnailFragment
+			}
+			color {
+				id
+				title
+			}
+		}
+	}
 	usp {
 		id
 		title
