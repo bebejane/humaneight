@@ -3349,6 +3349,7 @@ type ProductModelFilter = {
   metaSections?: InputMaybe<LinksFilter>;
   metaTitle?: InputMaybe<StringFilter>;
   mouseOverText?: InputMaybe<StringFilter>;
+  secondaryForVariations?: InputMaybe<LinkFilter>;
   shopifyProduct?: InputMaybe<LinkFilter>;
   shortSummary?: InputMaybe<StructuredTextFilter>;
   thumbnailForVariations?: InputMaybe<LinkFilter>;
@@ -3430,6 +3431,7 @@ type ProductRecord = RecordInterface & {
   metaSections: Array<ProductMetaInfoRecord>;
   metaTitle?: Maybe<Scalars['String']['output']>;
   mouseOverText?: Maybe<Scalars['String']['output']>;
+  secondaryForVariations?: Maybe<ProductMediaModelRecord>;
   sections: Array<ProductMediaBlockRecord>;
   shopifyProduct: ShopifyProductRecord;
   shortSummary?: Maybe<ProductModelShortSummaryField>;
