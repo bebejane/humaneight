@@ -10,7 +10,7 @@
   text-align: center;
   z-index: var(--z-logo);
   text-transform: uppercase;
-  opacity: 0;
+  opacity: 1;
 
   font-family: "Human-Logo", sans-serif;
 
@@ -18,17 +18,7 @@
     top: calc(var(--outer-margin) - 0.2em);
   }
 
-  animation: show 0.5s ease-out forwards;
 
-  @keyframes show {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
 
   &.intro {
 

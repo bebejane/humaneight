@@ -21,18 +21,18 @@ export default function Logo({ showMenu, localization }: Props) {
   const [isHome, setIsHome] = useState(false)
   const [delays, setDelays] = useState<number[]>([])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
-  const [ratio, setRatio] = useState(0)
+  const [ratio, setRatio] = useState(-1)
   const [taglineTrigger, setTaglineTrigger] = useState<boolean | null>(null)
   const [ref, { bottom: logoBottom }] = useMeasure({ scroll: true })
-
-  useEffect(() => {
-    setIsHome(pathname === '/' || localization.availableCountries.some(({ isoCode }) => pathname === `/${isoCode.toLowerCase()}`))
-  }, [pathname])
 
   useEffect(() => {
     const ratio = showMenu ? 1 : Math.min((scrolledPosition / viewportHeight) * 2, 1)
     setRatio(ratio)
   }, [scrolledPosition, showMenu])
+
+  useEffect(() => {
+    setIsHome(pathname === '/' || localization.availableCountries.some(({ isoCode }) => pathname === `/${isoCode.toLowerCase()}`))
+  }, [pathname])
 
   useEffect(() => {
 
