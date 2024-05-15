@@ -29,15 +29,13 @@ export default function CountrySelector({ className, label, modal = false, local
   const formRef = useRef<HTMLFormElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
 
-  const getScrollbarWidth = () => popupRef.current?.offsetWidth ? popupRef.current?.offsetWidth - popupRef.current?.clientWidth : 0
-
   useEffect(() => {
-    setSelectWidth(buttonRef.current?.scrollWidth ? buttonRef.current?.scrollWidth - getScrollbarWidth() : 0)
+    setSelectWidth(buttonRef.current?.scrollWidth ? buttonRef.current?.scrollWidth - 10 : 0)
   }, [width, height])
 
   useEffect(() => {
     setTimeout(() => {
-      setSelectWidth(buttonRef.current?.scrollWidth ? buttonRef.current?.scrollWidth - getScrollbarWidth() : 0)
+      setSelectWidth(buttonRef.current?.scrollWidth ? buttonRef.current?.scrollWidth - 10 : 0)
     }, 100)
   }, [])
 
