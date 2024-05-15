@@ -166,6 +166,7 @@ export const AllProductByCollection: DocumentNode;
 export const AllProductBranding: DocumentNode;
 export const AllProductMetaTypes: DocumentNode;
 export const ProductLightFragment: DocumentNode;
+export const VariationThumbnailFragment: DocumentNode;
 export const ProductFragment: DocumentNode;
 export const ProductMediaItemFragment: DocumentNode;
 export const ShopifyProductFragment: DocumentNode;

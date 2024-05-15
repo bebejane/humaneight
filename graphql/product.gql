@@ -80,17 +80,10 @@ fragment ProductLightFragment on ProductRecord {
 		...ImageThumbnailFragment
 	}
 	thumbnailForVariations {
-		id
-		variation {
-			id
-			media {
-				...ImageThumbnailFragment
-			}
-			color {
-				id
-				title
-			}
-		}
+		...VariationThumbnailFragment
+	}
+	secondaryForVariations {
+		...VariationThumbnailFragment
 	}
 	usp {
 		id
@@ -99,6 +92,20 @@ fragment ProductLightFragment on ProductRecord {
 	}
 	shopifyProduct {
 		...ShopifyProductFragment
+	}
+}
+
+fragment VariationThumbnailFragment on ProductMediaModelRecord {
+	id
+	variation {
+		id
+		media {
+			...ImageThumbnailFragment
+		}
+		color {
+			id
+			title
+		}
 	}
 }
 

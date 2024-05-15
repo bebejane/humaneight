@@ -45,9 +45,10 @@ export default function ProductThumbnail({ product, color, variantId, index, col
   }, [width, height])
 
   const colorMedia = product.thumbnailForVariations?.variation.find((v: any) => v.color.title === color)?.media
+  const colorMediaSecondary = product.secondaryForVariations?.variation.find((v: any) => v.color.title === color)?.media
   const href = `/products/${product.shopifyProduct.handle}${variantId ? `?variant=${variantId}` : ''}`
   const image = colorMedia ?? product.image
-  const imageSecondary = product.imageSecondary
+  const imageSecondary = colorMediaSecondary ?? product.imageSecondary
 
   return (
     <Link
@@ -65,7 +66,7 @@ export default function ProductThumbnail({ product, color, variantId, index, col
             intersectionMargin={`0px 0px 100% 0px`}
           />
         }
-        {imageSecondary &&
+        {imageSecondary?.responsiveImage &&
           <Image
             data={imageSecondary.responsiveImage}
             className={cn(s.image, s.secondary)}
