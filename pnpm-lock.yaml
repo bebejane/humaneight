@@ -64,7 +64,7 @@ dependencies:
     version: 14.2.3(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.1)
   next-dato-utils:
     specifier: github:bebejane/next-dato-utils
-    version: github.com/bebejane/next-dato-utils/ba8dfcb2489e0417e9e7bb13ef23a10d8e3e7989(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.1)(zod@3.23.8)
+    version: github.com/bebejane/next-dato-utils/ba01a3cb9b778c700681a7adb46f4cc969a0faaa(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.1)(zod@3.23.8)
   next-intl:
     specifier: ^3.13.0
     version: 3.13.0(next@14.2.3)(react@18.2.0)
@@ -8974,11 +8974,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/next-dato-utils/ba8dfcb2489e0417e9e7bb13ef23a10d8e3e7989(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.1)(zod@3.23.8):
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/ba8dfcb2489e0417e9e7bb13ef23a10d8e3e7989}
-    id: github.com/bebejane/next-dato-utils/ba8dfcb2489e0417e9e7bb13ef23a10d8e3e7989
+  github.com/bebejane/next-dato-utils/ba01a3cb9b778c700681a7adb46f4cc969a0faaa(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.2.22)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.2)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.1)(zod@3.23.8):
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/ba01a3cb9b778c700681a7adb46f4cc969a0faaa}
+    id: github.com/bebejane/next-dato-utils/ba01a3cb9b778c700681a7adb46f4cc969a0faaa
     name: next-dato-utils
-    version: 1.0.531
+    version: 1.0.532
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:

@@ -36,7 +36,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
 
           return (
             <div className={s.section} key={id}>
-              {isDesktop ? productMedia.map(({ variation, altText: alt }) => {
+              {isDesktop ? productMedia.map(({ variation, altText: alt }, idx) => {
 
                 const mediaCount = mediaByVariation.length
                 const selectedVariation = variation.filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
@@ -45,7 +45,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                 if (mediaCount === 0)
                   return null
 
-                return media.map(({ media: { id, responsiveImage } }) =>
+                return media.map(({ media: { id, responsiveImage } }, i) =>
 
                   <figure
                     key={id}
@@ -74,6 +74,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
         })}
       </div >
       <ProductGallery
+        key={galleryId}
         images={images as FileField[]}
         show={galleryId !== null}
         id={galleryId}
