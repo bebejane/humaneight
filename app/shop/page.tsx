@@ -60,7 +60,7 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
               return acc
             }, []) as { color: string, variant: any }[]
 
-            const thumbnails = [{ product }].concat(productColorVariants.map(({ color, variant }) => ({ product, color, variant }))) as any[]
+            const thumbnails = [{ product }].concat(!all ? productColorVariants.map(({ color, variant }) => ({ product, color, variant })) : []) as any[]
             const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(thumbnails.length / brandingInterval), allProductBrandings)
 
             return thumbnails?.map(({ product, color, variant }, i) =>
