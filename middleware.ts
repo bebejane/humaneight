@@ -21,7 +21,7 @@ export const config = {
   matcher: [
     // Skip all internal paths (_next)
     '/((?!api|_next|_vercel|.*\\..*).*)',
-    // Optional: only run on root (/) URL
+    // Optional: Only run on root (/) URL
     '/'
   ],
 }
