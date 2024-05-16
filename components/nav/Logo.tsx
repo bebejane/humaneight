@@ -10,24 +10,29 @@ import useMeasure from 'react-use-measure';
 
 const tagline = ['For', 'a', 'neurodiverse', 'world.']
 
-export default function Logo({ showMenu }: { showMenu: boolean }) {
+type Props = {
+  showMenu: boolean,
+  localization: LocalizationQuery['localization']
+}
+
+export default function Logo({ showMenu, localization }: Props) {
 
   const pathname = usePathname()
-  const [isHome, setIsHome] = useState(pathname === '/')
+  const [isHome, setIsHome] = useState(false)
   const [delays, setDelays] = useState<number[]>([])
   const { scrolledPosition, viewportHeight } = useScrollInfo()
-  const [ratio, setRatio] = useState(0)
+  const [ratio, setRatio] = useState(-1)
   const [taglineTrigger, setTaglineTrigger] = useState<boolean | null>(null)
   const [ref, { bottom: logoBottom }] = useMeasure({ scroll: true })
-
-  useEffect(() => {
-    setIsHome(pathname === '/')
-  }, [pathname])
 
   useEffect(() => {
     const ratio = showMenu ? 1 : Math.min((scrolledPosition / viewportHeight) * 2, 1)
     setRatio(ratio)
   }, [scrolledPosition, showMenu])
+
+  useEffect(() => {
+    setIsHome(pathname === '/' || localization.availableCountries.some(({ isoCode }) => pathname === `/${isoCode.toLowerCase()}`))
+  }, [pathname])
 
   useEffect(() => {
 
@@ -74,7 +79,7 @@ export default function Logo({ showMenu }: { showMenu: boolean }) {
             {word}
           </span>
         )}</h2>
-      </div >
+      </div>
     </>
   )
 }

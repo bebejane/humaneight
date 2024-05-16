@@ -34,14 +34,13 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 
   return (
     <>
-      <Logo showMenu={showMenu} />
+      <Logo key={pathname} showMenu={showMenu} localization={localization} />
       <Hamburger showMenu={showMenu} setShowMenu={setShowMenu} />
       <nav className={s.navbar}>
         <button
           className={cn(s.item, s.menu, showMenu && s.active, 'nav', 'nav-hover')}
           onClick={() => setShowMenu(!showMenu)}
-        >
-          Menu</button>
+        >Menu</button>
 
         {showMenu ?
           <button className={cn(s.item, s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>Close</button>

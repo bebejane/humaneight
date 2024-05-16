@@ -37,7 +37,6 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
     const index = images?.findIndex(image => image.id === id) > -1 ? images.findIndex(image => image.id === id) : 0
     swiperRef.current?.slideTo(index, 0, false)
     setRealIndex(index)
-    console.log(id, index)
   }, [id])
 
   useEffect(() => { // handle  keys

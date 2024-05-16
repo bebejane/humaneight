@@ -32,15 +32,9 @@ const allScopes: Scope[] = [{
   selected: true
 }]
 
-export type Props = {
-
-}
-
-
-export default function CookieConsent({ }: Props) {
+export default function CookieConsent() {
 
   const [scopes, setScopes] = React.useState<Scope[]>(allScopes)
-  //const [show, setShow] = React.useState(true)
   const [show, setShow] = React.useState(false)
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,7 +46,7 @@ export default function CookieConsent({ }: Props) {
   if (!show) return null
 
   return (
-    <section aria-labelledby="cookie_heading" className={cn(s.cookieConsent)}>
+    <section aria-labelledby="cookie_heading" className={s.cookieConsent}>
       <div className={s.box}>
         <header>
           <h2 id="cookie_heading">
