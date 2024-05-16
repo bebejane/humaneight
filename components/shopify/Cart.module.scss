@@ -143,10 +143,13 @@
   }
 
   ul.items {
-    padding-top: 1.6rem;
+    padding-top: 1.2rem;
     list-style: none;
     display: flex;
     flex-direction: column;
+    @include mq($from: desktop) {
+      padding-top: 1.6rem;
+    }
 
     button {
       padding: 0;
