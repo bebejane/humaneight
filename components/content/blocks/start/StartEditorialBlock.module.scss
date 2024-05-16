@@ -6,18 +6,26 @@
 
   @include mq($until: desktop) {
     flex-direction: column-reverse;
+    background-color: var(--white);
+    margin-left: calc(-1 * var(--outer-margin));
+    padding-left: var(--outer-margin);
+    margin-right: calc(-1 * var(--outer-margin));
+    padding-right: var(--outer-margin);
   }
 
   > div {
     position: sticky;
     top: var(--navbar-height);
     //align-self: flex-start;
+    background-color: var(--white);
+
+    @include mq($until: desktop) {
+    }
 
     @include mq($from: desktop) {
       width: calc(50% - var(--half-gutter));
       padding: var(--gutter);
       background-color: var(--white);
-
       padding-bottom: 0;
     }
 
