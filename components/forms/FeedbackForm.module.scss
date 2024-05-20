@@ -4,7 +4,6 @@
   padding: calc(2 * var(--gutter));
   margin-top: var(--space-big);
   grid-row-gap: 0;
-  padding-bottom: 0;
 
   @include mq($until: desktop) {
     display: block;
@@ -104,6 +103,7 @@
       margin-top: var(--space);
       width: 100%;
       padding: 1rem;
+      padding-bottom: var(--outer-margin);
       background-color: var(--white) !important;
 
       &:hover {
