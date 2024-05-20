@@ -20,6 +20,9 @@
     background-color: var(--white);
 
     @include mq($until: desktop) {
+      p {
+        padding-left: 0.1rem;
+      }
     }
 
     @include mq($from: desktop) {
