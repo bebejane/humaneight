@@ -27,6 +27,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   const readMoreRef = useRef<HTMLButtonElement>(null);
   const color = variant?.selectedOptions.find(opt => opt.name === 'Color')?.value ?? null
   const images = product?.sections.map(({ productMedia }) => productMedia.map(({ variation }) => variation).flat().filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())).flat().filter(v => v.media).map(({ media }) => media).flat()
+  const mainImage = images?.[0] ?? product?.image;
 
   const descriptionFitViewport = () => {
     if (!contentRef.current) return false
@@ -61,10 +62,10 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
           <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>
         </p>
 
-        {product.image?.responsiveImage &&
+        {mainImage?.responsiveImage &&
           <figure className={s.mainImage}>
             <Image
-              data={product.image?.responsiveImage}
+              data={mainImage?.responsiveImage}
               className={s.image}
               pictureClassName={s.picture}
             />

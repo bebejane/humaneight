@@ -16,7 +16,6 @@ export type VariantFormProps = {
   shopifyProduct: ShopifyProductQuery['product']
 }
 
-
 export default function ProductPresentation({ product, shopifyProduct }: VariantFormProps) {
 
   const { searchParams } = useQueryString()
@@ -32,7 +31,12 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
       <div className={s.presentation}>
         {product?.sections.map(({ id, productMedia, text }, i) => {
 
-          const mediaByVariation = productMedia.map(({ variation }) => variation).flat().filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase()).map(({ media }) => media)
+          const mediaByVariation = productMedia
+            .map(({ variation }) => variation)
+            .flat()
+            .filter(v => v.color?.title?.toLowerCase() === color?.toLowerCase())
+            .map(({ media }) => media)
+            .slice(i === 0 && !isDesktop ? 1 : undefined) // Skip first image on mobile
 
           return (
             <div className={s.section} key={id}>

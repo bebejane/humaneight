@@ -6,7 +6,7 @@ import cn from 'classnames'
 import React from 'react'
 import { Image } from "react-datocms"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import type { Swiper as SwiperType } from 'swiper'
 
 export type GalleryProps = {
@@ -49,15 +49,17 @@ export default function ProductPresentationSwiper({ images, className }: Gallery
           </SwiperSlide>
         )}
       </Swiper>
-      <div className={s.pagination}>
-        {images.map((_i, idx) =>
-          <button
-            key={idx}
-            className={cn(s.dot, { [s.active]: idx === realIndex })}
-            onClick={() => swiperRef.current?.slideTo(idx)}
-          />
-        )}
-      </div>
+      {images.length > 1 &&
+        <div className={s.pagination}>
+          {images.map((_i, idx) =>
+            <button
+              key={idx}
+              className={cn(s.dot, { [s.active]: idx === realIndex })}
+              onClick={() => swiperRef.current?.slideTo(idx)}
+            />
+          )}
+        </div>
+      }
     </div>
   )
 }
