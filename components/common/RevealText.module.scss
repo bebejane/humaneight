@@ -1,0 +1,23 @@
+.word {
+  opacity: 0;
+  animation: start 0.2s ease-out both;
+  animation-direction: normal;
+  line-height: 0;
+
+  @keyframes start {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.hide {
+  opacity: 1;
+  animation-direction: reverse;
+  animation-delay: 0 !important;
+  animation-duration: 0s !important;
+}
