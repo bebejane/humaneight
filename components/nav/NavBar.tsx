@@ -17,7 +17,7 @@ import useIsDesktop from "@lib/hooks/useIsDesktop";
 export type Props = {
   menu: Menu
   localization: LocalizationQuery['localization']
-  tipProduct: AllProductsQuery['allProducts'][0]
+  tipProduct: AllProductsForMenuQuery['allProducts'][0]
 }
 
 export default function NavBar({ menu, localization, tipProduct }: Props) {

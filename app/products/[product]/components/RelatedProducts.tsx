@@ -1,6 +1,6 @@
 import s from './RelatedProducts.module.scss'
 import { apiQuery } from 'next-dato-utils/api'
-import { AllProductByCollectionDocument, AllProductsDocument } from '@graphql'
+import { AllProductsDocument } from '@graphql'
 import Link from 'next/link'
 import ThumbnailContainer from '@components/layout/ThumbnailContainer'
 import ProductThumbnail from '@components/layout/ProductThumbnail'

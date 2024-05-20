@@ -82,6 +82,15 @@ declare module '*/ImageFragment.gql' {
 }
     
 
+declare module '*/ImageSquareFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ImageSquareFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageThumbnailFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -165,6 +174,7 @@ export const ProductById: DocumentNode;
 export const AllProductByCollection: DocumentNode;
 export const AllProductBranding: DocumentNode;
 export const AllProductMetaTypes: DocumentNode;
+export const AllProductsForMenu: DocumentNode;
 export const ProductLightFragment: DocumentNode;
 export const VariationThumbnailFragment: DocumentNode;
 export const ProductFragment: DocumentNode;

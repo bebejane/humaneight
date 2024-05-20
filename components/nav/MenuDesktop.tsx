@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 export type Props = {
   menu: Menu
   localization: LocalizationQuery['localization']
-  tipProduct: AllProductsQuery['allProducts'][0]
+  tipProduct: AllProductsForMenuQuery['allProducts'][0]
   showMenu: boolean
   setShowMenu: (showMenu: boolean) => void
 }

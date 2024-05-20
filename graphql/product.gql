@@ -64,6 +64,32 @@ query AllProductMetaTypes($first: IntType = 100, $skip: IntType = 0) {
 	}
 }
 
+query AllProductsForMenu($first: IntType = 100, $skip: IntType = 0) {
+	allProducts(first: $first, skip: $skip) {
+		id
+		title
+		label
+		collection {
+			id
+			title
+			slug
+		}
+		defaultColor {
+			id
+			title
+		}
+		image {
+			...ImageSquareFragment
+		}
+		shopifyProduct {
+			...ShopifyProductFragment
+		}
+	}
+	_allProductsMeta {
+		count
+	}
+}
+
 fragment ProductLightFragment on ProductRecord {
 	id
 	title

@@ -6,7 +6,7 @@ import CookieConsent from '@components/common/CookieConsent';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { apiQuery } from 'next-dato-utils/api';
-import { AllProductsDocument, GlobalDocument, GeneralDocument } from '@graphql';
+import { AllProductsForMenuDocument, GlobalDocument, GeneralDocument } from '@graphql';
 import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
@@ -25,12 +25,11 @@ export default async function RootLayout({ children }: LayoutProps) {
       variables: { language: 'EN' as LanguageCode },
       country: 'US'
     }),
-    apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
+    apiQuery<AllProductsForMenuQuery, AllProductsForMenuQueryVariables>(AllProductsForMenuDocument, {
       variables: { first: 100, skip: 0 },
       all: true,
       tags: ['product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp'],
       generateTags: false
-
     }),
     apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument, {
       tags: ['general', 'product_branding']

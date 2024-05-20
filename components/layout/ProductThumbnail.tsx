@@ -64,6 +64,8 @@ export default function ProductThumbnail({ product, color, variantId, index, col
             className={cn(s.image, s.main)}
             placeholderClassName={s.picture}
             pictureClassName={s.picture}
+            fadeInDuration={0}
+            usePlaceholder={false}
             intersectionMargin={`0px 0px 100% 0px`}
           />
         }
