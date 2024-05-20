@@ -23,11 +23,16 @@
       top: var(--navbar-height);
       align-self: flex-start;
     }
+
+    .video {
+      width: 100%;
+    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
+
     @include mq($from: desktop) {
       position: sticky;
       top: var(--navbar-height);
@@ -42,8 +47,8 @@
         margin-top: 1rem;
       }
 
-      h1 + p,
-      h2 + p {
+      h1+p,
+      h2+p {
         margin-top: 0rem;
       }
     }

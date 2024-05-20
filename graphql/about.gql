@@ -34,7 +34,7 @@ fragment AboutFragment on AboutRecord {
 		... on AboutTwoColumnBlockRecord {
 			id
 			media {
-				...ImageFragment
+				...MediaFragment
 			}
 			text {
 				blocks {
