@@ -9,7 +9,7 @@ import AboutThreeColumnBlock from "./components/AboutThreeColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
 import RelatedAbouts from '@app/about/[about]/components/RelatedAbouts';
-import RevealText from '../../../components/common/RevealText';
+import RevealText from './components/RevealText';
 
 export type AboutParams = {
   params: { about: string }
@@ -26,7 +26,7 @@ export default async function About({ params }: AboutParams) {
 
   return (
     <>
-      <RevealText />
+      <RevealText key={about.id} />
       <div className="about">
         {about.sections.map((section, i) =>
           <Block

@@ -3,7 +3,7 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		id
 		title
 		image: menuImage {
-			...ImageThumbnailFragment
+			...ImageSquareFragment
 		}
 		slug
 	}
@@ -16,7 +16,7 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		title
 		slug
 		image {
-			...ImageThumbnailFragment
+			...ImageSquareFragment
 		}
 	}
 	_allAboutsMeta {
@@ -29,7 +29,7 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		slug
 		inMenu
 		image {
-			...ImageThumbnailFragment
+			...ImageSquareFragment
 		}
 	}
 	_allFaqSectionsMeta {
@@ -52,7 +52,7 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 		title
 		slug
 		image {
-			...ImageThumbnailFragment
+			...ImageSquareFragment
 		}
 	}
 }

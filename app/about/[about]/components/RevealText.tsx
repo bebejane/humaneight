@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import s from './RevealText.module.scss'
 
-
 export default function RevealText() {
 
   useEffect(() => {
@@ -17,14 +16,17 @@ export default function RevealText() {
     const paragraph = document.querySelector('p.very-big')
     if (!paragraph) return
 
-    const text = paragraph.textContent
+    const text = paragraph.textContent?.trim()
+    if (!text) return
     paragraph.textContent = ''
 
-    const delays = new Array(text?.length).fill(0).map(() => genRand(0.0, 0.5, 2))
+    const words = text.split(' ')
+    const delays = new Array(words.length).fill(0).map(() => genRand(0.2, words.length / 5, 2))
+    delays[genRand(0, words.length - 1, 0)] = 0
 
-    text?.split('').forEach((word, i) => {
+    words.forEach((word, i) => {
       const node = paragraph.appendChild(document.createElement('span'))
-      node.textContent = word
+      node.textContent = word + ' '
       node.classList.add(s.word)
       node.style.animationDelay = `${delays?.[i] ?? 0}s`
     })
