@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import s from './Cart.module.scss'
 import cn from 'classnames'
 import useCart from '@shopify/hooks/useCart'
@@ -35,6 +35,9 @@ export default function Cart({ localization }: CartProps) {
 
   useEffect(() => { !cart && createCart() }, [cart, createCart])
   useEffect(() => { setShowCart(false) }, [pathname])
+  useEffect(() => { // Toggle Accessibly App widget button
+    document.getElementById('accessiblyAppWidgetButton')?.style.setProperty('display', showCart ? 'none' : 'block')
+  }, [showCart])
 
   if (!showCart) {
     return (
