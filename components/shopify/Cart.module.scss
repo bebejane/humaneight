@@ -146,6 +146,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
+
     @include mq($from: desktop) {
       padding-top: 1.6rem;
     }
@@ -266,11 +267,6 @@
 }
 
 .close {
-  --line-height: 0.13rem;
-  --line-height-half: calc(var(--line-height) / 2);
-  --line-height-middle: calc(var(--line-height) / 4);
-  --height: calc(var(--navbar-height) - (var(--outer-margin) * 2.2));
-  --width: 21px;
 
   all: unset;
   position: fixed;
@@ -278,31 +274,9 @@
   top: 0;
   right: 0;
   margin: var(--outer-margin);
-  width: var(--width);
-  max-width: var(--width);
-  min-height: var(--height);
   pointer-events: all;
-
   cursor: pointer;
+  width: 1rem;
+  line-height: 0;
 
-  .wrap {
-    position: relative;
-    width: 100%;
-    height: 100%;
-
-    >div {
-      position: absolute;
-      width: 100%;
-      height: var(--line-height);
-      background-color: var(--black);
-
-      &:nth-child(1) {
-        transform: rotate(45deg);
-      }
-
-      &:nth-child(2) {
-        transform: rotate(-45deg);
-      }
-    }
-  }
 }

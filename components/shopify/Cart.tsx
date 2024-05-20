@@ -57,14 +57,11 @@ export default function Cart({ localization }: CartProps) {
         <div className={s.currency}>
           <CountrySelector localization={localization} label="Location" className={s.form} />
         </div>
-        <div className={s.close} onClick={() => setShowCart(false)}>
-          <button className={s.close} onClick={() => setShowCart(false)} >
-            <div className={s.wrap}>
-              <div />
-              <div />
-            </div>
-          </button>
-        </div>
+
+        <button className={s.close} onClick={() => setShowCart(false)} >
+          <img src="/images/close.svg" alt="Close" />
+        </button>
+
       </header>
       {isEmpty ?
         <div className={s.empty}>
