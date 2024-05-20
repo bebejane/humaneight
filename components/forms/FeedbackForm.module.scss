@@ -4,6 +4,7 @@
   padding: calc(2 * var(--gutter));
   margin-top: var(--space-big);
   grid-row-gap: 0;
+  padding-bottom: 0;
 
   @include mq($until: desktop) {
     display: block;
