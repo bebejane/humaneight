@@ -1,4 +1,3 @@
-// clean up code
 import { CountryShopParams } from '@app/[country]/shop/page';
 import s from './page.module.scss'
 import React from 'react';
@@ -6,7 +5,6 @@ import {
   AllCollectionsDocument,
   AllProductBrandingDocument,
   AllProductByCollectionDocument,
-  AllProductColorsDocument,
   CollectionDocument
 } from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
@@ -16,23 +14,24 @@ import ProductThumbnail from '@components/layout/ProductThumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
 import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 import { tags } from '@lib/constants';
-import { getDefaultProductColorVariant, getProductColorVariants } from '@lib/utils';
+import { getProductColorVariants } from '@lib/utils';
 
 export const runtime = 'edge'
 
 const brandingInterval = 5
 
-export default async function Shop({ params, searchParams }: CountryShopParams) {
+export default async function Shop({ params }: CountryShopParams) {
 
   const all = !params?.collection
+  const tag = params?.tag ?? 'all'
 
   const { collection, draftUrl } = !all ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: { slug: params.collection },
     tags: ['collection', 'product', 'shopify_product']
   }) : { collection: undefined, draftUrl: undefined }
 
-  const { allProducts, allProductBrandings, allCollections, allProductColors } = await getPageData(all, collection?.id)
-  const filteredProducts = allProducts?.filter(product => !searchParams?.tag || searchParams?.tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(searchParams?.tag)).sort(sortByTag)
+  const { allProducts, allProductBrandings, allCollections } = await getPageData(all, collection?.id)
+  const filteredProducts = allProducts?.filter(product => !tag || tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(tag)).sort(sortByTag)
 
   const tags = allProducts?.reduce((acc, product) => {
     const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
@@ -45,7 +44,7 @@ export default async function Shop({ params, searchParams }: CountryShopParams) 
       <CollectionsFilter
         collectionId={collection?.id}
         allCollections={allCollections}
-        searchParams={searchParams}
+        tag={tag}
         tags={tags}
       />
       <div className={s.container}>
@@ -91,7 +90,7 @@ function sortByTag(a: AllProductByCollectionQuery['allProducts'][0], b: AllProdu
 
 async function getPageData(all: boolean, collectionId?: string) {
 
-  const [{ allProducts }, { allProductBrandings }, { allCollections }, { allProductColors }] = await Promise.all([
+  const [{ allProducts }, { allProductBrandings }, { allCollections }] = await Promise.all([
     apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
       all: true,
       variables: {
@@ -113,13 +112,9 @@ async function getPageData(all: boolean, collectionId?: string) {
     apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
       all: true,
       tags: ['product', 'shopify_product', 'collection']
-    }),
-    apiQuery<AllProductColorsQuery, AllProductColorsQueryVariables>(AllProductColorsDocument, {
-      all: true,
-      tags: ['product', 'shopify_product', 'product_color']
     })
   ])
-  return { allProducts, allProductBrandings, allCollections, allProductColors }
+  return { allProducts, allProductBrandings, allCollections }
 }
 
 function generateRandomBranding<T>(brandingCount: number, allProductBrandings: T[]): T[] {

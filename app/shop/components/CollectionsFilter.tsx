@@ -13,17 +13,18 @@ export type Props = {
   tags?: string[]
   allCollections?: AllCollectionsQuery['allCollections']
   searchParams?: any
+  tag: string
 }
 
-export default function CollectionsFilter({ tags, collectionId = 'all', allCollections, searchParams }: Props) {
+export default function CollectionsFilter({ tags, collectionId = 'all', allCollections, searchParams, tag }: Props) {
 
   const [hoverId, setHoverId] = useState<string | null>(null)
   const [hoverPos, setHoverPos] = useState<{ id: string, left: number, top: number }[] | null>(null)
   const { width, height } = useWindowSize()
   const isDesktop = useIsDesktop()
-  const collectionsWithAll = [{ id: 'all', title: 'All', slug: '', }].concat(allCollections ?? [])
+  const collectionsWithAll = [{ id: 'all', title: 'All', slug: 'all', }].concat(allCollections ?? [])
   const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
-  const tag = searchParams?.tag ?? 'all'
+  //const tag = searchParams?.tag ?? 'all'
 
   useEffect(() => {
 
@@ -82,7 +83,7 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
       <ul className={cn(s.subFilter, 'mid')}>
         {tags?.sort((a, b) => tagSortOrder.findIndex(t => t === a) > tagSortOrder.findIndex(t => t === b) ? 1 : -1).map((t, i) => (
           <li key={i} className={cn(tag === t && s.selected)}>
-            <Link href={`/shop/${collectionSlug}/?tag=${t}`} replace={true}>
+            <Link href={`/shop/${collectionSlug}/${t}`}>
               {t}
             </Link>
           </li>
