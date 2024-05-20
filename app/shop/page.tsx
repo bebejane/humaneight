@@ -16,7 +16,7 @@ import BrandingThumbnail from '@components/layout/BrandingThumbnail';
 import { tags } from '@lib/constants';
 import { getProductColorVariants } from '@lib/utils';
 
-export const runtime = 'edge'
+export const dynamic = 'force-static'
 
 const brandingInterval = 5
 
@@ -24,6 +24,7 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const all = !params?.collection
   const tag = params?.tag ?? 'all'
+  //console.log(params?.collection, tag)
 
   const { collection, draftUrl } = !all ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: { slug: params.collection },
