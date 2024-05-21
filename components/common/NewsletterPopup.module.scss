@@ -35,6 +35,8 @@
     }
 
     .submit {
+      padding-bottom: 0.8em;
+      padding-top: 0.7em;
       &:hover {
         background: var(--black) !important;
         color: var(--white);
@@ -50,6 +52,7 @@
 
     @include mq($until: desktop) {
       width: 80%;
+      padding-top: 2.5rem;
 
       input {
         width: 100%;
