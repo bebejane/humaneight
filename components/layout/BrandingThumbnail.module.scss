@@ -65,6 +65,9 @@
     align-items: baseline;
     margin-top: 0.6rem;
     text-align: center;
+    @include mq($from: desktop) {
+      margin-top: 1rem;
+    }
 
     p {
       width: 100%;
