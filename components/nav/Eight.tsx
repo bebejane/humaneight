@@ -21,8 +21,10 @@ export default function Footer({ general }: Props) {
 
   useEffect(() => {
     const image = general?.eights.sort(_ => Math.random() > 0.5 ? 1 : -1)?.[0]
-    const style = {}
-    setRandomEight({ image, style })
+    if (!isPageBottom)
+      setRandomEight(({ image, style: { opacity: 0 } }))
+    else
+      setRandomEight((prev) => prev ? ({ ...prev, style: { opacity: 1 } }) : null)
   }, [pathname, isPageBottom])
 
   useEffect(() => {
@@ -36,8 +38,7 @@ export default function Footer({ general }: Props) {
       left: `${Math.min(Math.max(padding, left), (width - imageWidth - padding))}px`,
     }
     setRandomEight((prev) => prev ? ({ ...prev, style }) : null)
-  }, [pathname, width, height, isPageBottom])
-
+  }, [isPageBottom, width, height])
 
   if (!randomEight?.image?.responsiveImage) return null
 
