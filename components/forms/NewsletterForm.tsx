@@ -6,6 +6,7 @@ import SubmitButton from './SubmitButton'
 import campaignMonitorNewsletterSignup from 'next-dato-utils/server-actions/campaignMonitorNewsletterSignup'
 import { useFormState } from 'react-dom'
 import { useEffect, useState } from 'react'
+import { el } from 'date-fns/locale'
 
 export type Props = {
   className?: string
@@ -21,6 +22,14 @@ export default function NewsletterForm({ className }: Props) {
     setError(state?.error ? state.error : null)
     setSuccess(state?.success ? true : false)
   }, [state])
+
+  useEffect(() => {
+    if (success)
+      localStorage.setItem('newsletter_subscribed', '1')
+    else if (error)
+      localStorage.removeItem('newsletter_subscribed')
+
+  }, [error, success])
 
   return (
     <>

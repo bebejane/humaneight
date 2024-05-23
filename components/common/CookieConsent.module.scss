@@ -25,6 +25,7 @@
 
     header {
       width: 100%;
+
       h2 {
         text-align-last: justify;
         //padding: var(--outer-margin);
@@ -33,9 +34,10 @@
       }
     }
 
-    > div,
+    >div,
     form {
       padding-top: 0;
+
       @include mq($from: desktop) {
         width: 100%;
       }
@@ -67,15 +69,22 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1.3rem;
+
   button {
     padding-top: 0.7em;
     padding-bottom: 0.8em;
     width: 32%;
-    //font-size: 1.4rem;
+    white-space: nowrap;
+
     &:hover {
       background-color: var(--black);
       color: var(--white);
       letter-spacing: var(--letter-space);
+    }
+
+    &[disabled] {
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
 }

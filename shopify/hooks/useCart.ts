@@ -15,13 +15,14 @@ export interface CartState {
   updating: boolean,
   updatingId: string | null,
   error: string | undefined,
+  country: string,
   update: (id: string | null, fn: () => Promise<Cart>) => void,
   clearCart: () => void,
-  createCart: () => void,
+  createCart: (country: string) => void,
   setCart: (cart: Cart) => Promise<Cart>,
-  addToCart: (lines: CartLineInput) => void,
+  addToCart: (lines: CartLineInput, country: string) => void,
   removeFromCart: (id: string) => void,
-  updateQuantity: (id: string, quantity: number) => void,
+  updateQuantity: (id: string, quantity: number, country: string) => void,
   updateBuyerIdentity: (input: CartBuyerIdentityInput) => void,
 }
 
@@ -30,15 +31,16 @@ const useCart = create<CartState>((set, get) => ({
   updating: false,
   updatingId: null,
   error: undefined,
-  createCart: async () => {
+  country: 'SE',
+  createCart: async (country: string) => {
     const id = getCookie('cart')
     let cart = null;
-
+    console.log('createCart', id, country)
     if (id)
-      cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id } })).cart
+      cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country })).cart
 
     if (!cart)
-      cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0 }))?.cartCreate?.cart;
+      cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0, country }))?.cartCreate?.cart;
 
     if (!cart)
       throw new Error('Cart not found')
@@ -54,7 +56,7 @@ const useCart = create<CartState>((set, get) => ({
     setCookie('cart', cart.id)
     return cart
   },
-  addToCart: async (line: CartLineInput) => {
+  addToCart: async (line: CartLineInput, country: string) => {
     get().update(null, async () => {
       const cart = get().cart as Cart
       const { cartLinesAdd, } = await shopifyQuery<AddItemToCartMutation, AddItemToCartMutationVariables>(AddItemToCartDocument, {
@@ -62,7 +64,8 @@ const useCart = create<CartState>((set, get) => ({
         variables: {
           cartId: cart.id,
           lines: [line]
-        }
+        },
+        country
       });
       if (!cartLinesAdd?.cart) throw new Error('Cart not found')
       return cartLinesAdd.cart as Cart
@@ -84,7 +87,7 @@ const useCart = create<CartState>((set, get) => ({
       return cartLinesRemove.cart as Cart
     })
   },
-  updateQuantity: async (id: string, quantity: number) => {
+  updateQuantity: async (id: string, quantity: number, country: string) => {
     get().update(id, async () => {
       const cart = get().cart as Cart
       const lines = cart.lines.edges.map(l => ({ id: l.node.id, quantity: l.node.id === id ? quantity : l.node.quantity }))
@@ -93,7 +96,9 @@ const useCart = create<CartState>((set, get) => ({
         variables: {
           cartId: cart?.id,
           lines
-        }
+        },
+        country
+
       });
       if (!cartLinesUpdate?.cart) throw new Error('Cart not found')
       return cartLinesUpdate.cart as Cart

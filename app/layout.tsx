@@ -3,7 +3,6 @@ import Script from 'next/script';
 import NavBar from '@components/nav/NavBar';
 import Footer from '@components/nav/Footer';
 import CookieConsent from '@components/common/CookieConsent';
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { apiQuery } from 'next-dato-utils/api';
 import { AllProductsForMenuDocument, GlobalDocument, GeneralDocument } from '@graphql';
@@ -59,7 +58,6 @@ export default async function RootLayout({ children }: LayoutProps) {
           />
           <CookieConsent />
           <Script src="https://ac.onthemapmarketing.com/widget/3b24ef8d-6704-4361-886d-da817089839e/autoload.js" />
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
         </body>
       </html >
     </>

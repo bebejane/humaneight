@@ -1,0 +1,10 @@
+fragment ImageEightFragment on FileFieldInterface {
+	format
+	id
+	mimeType
+	url
+	title
+	responsiveImage(imgixParams: { w: 1500, auto: format }) {
+		...ResponsiveImageFragment
+	}
+}

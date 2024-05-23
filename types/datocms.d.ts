@@ -987,6 +987,7 @@ type GeneralRecord = RecordInterface & {
   _updatedAt: Scalars['DateTime']['output'];
   claims: Array<ClaimRecord>;
   eMail?: Maybe<Scalars['String']['output']>;
+  eights: Array<FileField>;
   facebook?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   instagram?: Maybe<Scalars['String']['output']>;
@@ -5399,6 +5400,12 @@ type ImageCartThumbnailFragment_ImageFileField_ = { __typename?: 'ImageFileField
 
 type ImageCartThumbnailFragment = ImageCartThumbnailFragment_FileField_ | ImageCartThumbnailFragment_ImageFileField_;
 
+type ImageEightFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+
+type ImageEightFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+
+type ImageEightFragment = ImageEightFragment_FileField_ | ImageEightFragment_ImageFileField_;
+
 type ImageFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
 
 type ImageFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
@@ -5426,7 +5433,7 @@ type SiteFragment = { __typename?: 'Site', faviconMetaTags: Array<{ __typename?:
 type GeneralQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string, facebook?: string, instagram?: string, twitter?: string, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string }> } };
+type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string, facebook?: string, instagram?: string, twitter?: string, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }> } };
 
 type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
