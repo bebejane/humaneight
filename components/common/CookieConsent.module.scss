@@ -34,11 +34,11 @@
       }
     }
 
-    >div,
+    > div,
     form {
       padding-top: 0;
 
-      @include mq($from: desktop) {
+      @include mq($from: tablet) {
         width: 100%;
       }
     }
@@ -69,12 +69,23 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1.3rem;
+  @include mq($until: tablet) {
+    flex-wrap: wrap;
+  }
 
   button {
     padding-top: 0.7em;
     padding-bottom: 0.8em;
     width: 32%;
     white-space: nowrap;
+
+    @include mq($until: tablet) {
+      width: calc(50% - 0.25em);
+      &:first-of-type {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+    }
 
     &:hover {
       background-color: var(--black);

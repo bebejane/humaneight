@@ -8,7 +8,11 @@
     margin-top: 1em;
   }
 
-  >div {
+  .submit {
+    padding-top: 0.8re;
+  }
+
+  > div {
     display: flex;
     flex-direction: column;
   }
