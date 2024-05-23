@@ -89,6 +89,7 @@ const dedupedFetch = async (options: DedupeOptions) => {
     body,
     next: {
       revalidate,
+      cache: 'no-store',
       tags: Array.isArray(tags) ? tags : undefined
     }
   } as RequestInit);

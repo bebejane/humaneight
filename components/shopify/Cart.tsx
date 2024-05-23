@@ -22,10 +22,11 @@ export default function Cart({ localization }: CartProps) {
     createCart,
     removeFromCart,
     updateQuantity,
+    updateBuyerIdentity,
     updating,
     updatingId,
     cartError
-  ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updating, state.updatingId, state.error])
+  ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updateBuyerIdentity, state.updating, state.updatingId, state.error])
 
   const country = useCountry()
   const pathname = usePathname()
@@ -38,7 +39,12 @@ export default function Cart({ localization }: CartProps) {
   useEffect(() => {
     if (!cart)
       createCart(country)
-  }, [country, cart, createCart])
+  }, [cart, createCart])
+
+  useEffect(() => {
+    if (cart?.buyerIdentity.countryCode !== country)
+      updateBuyerIdentity({ countryCode: country } as CartBuyerIdentityInput)
+  }, [country, cart])
 
   useEffect(() => { setShowCart(false) }, [pathname])
   useEffect(() => { // Toggle Accessibly App widget button

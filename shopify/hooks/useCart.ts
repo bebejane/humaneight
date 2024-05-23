@@ -35,9 +35,10 @@ const useCart = create<CartState>((set, get) => ({
   createCart: async (country: string) => {
     const id = getCookie('cart')
     let cart = null;
-    console.log('createCart', id, country)
-    if (id)
+
+    if (id) {
       cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country })).cart
+    }
 
     if (!cart)
       cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0, country }))?.cartCreate?.cart;
@@ -105,15 +106,14 @@ const useCart = create<CartState>((set, get) => ({
 
     })
   },
-  updateBuyerIdentity: async (input: CartBuyerIdentityInput) => {
+  updateBuyerIdentity: async (buyerIdentity: CartBuyerIdentityInput) => {
     get().update(null, async () => {
       const id = getCookie('cart') as string
       const { cartBuyerIdentityUpdate } = await shopifyQuery<CartBuyerIdentityUpdateMutation, CartBuyerIdentityUpdateMutationVariables>(CartBuyerIdentityUpdateDocument, {
         revalidate: 0,
-        //@ts-ignore
         variables: {
           cartId: id,
-          ...input
+          buyerIdentity
         }
       });
       const cart = cartBuyerIdentityUpdate?.cart as Cart

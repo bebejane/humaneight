@@ -39,7 +39,7 @@ const Link = forwardRef<HTMLAnchorElement, Props>(function Link(props: Props, re
 export default Link;
 
 const parseHref = (href: string, pathname: string, country: string) => {
-
+  if (!href) return ''
   if (href.startsWith('http')) return href;
   if (href.startsWith('#'))
     return `${pathname}${href}`;
