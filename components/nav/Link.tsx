@@ -26,7 +26,7 @@ const Link = forwardRef<HTMLAnchorElement, Props>(function Link(props: Props, re
   const mergedProps = {
     ...omit(props, ['localized', 'activeClassName', 'className', 'href']),
     href,
-    className: cn(props.className, pathname === href && props.activeClassName),
+    className: cn(props.className, (pathname && pathname === href) && props.activeClassName),
   }
 
   return <NextLink

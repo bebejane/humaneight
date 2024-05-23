@@ -58,8 +58,7 @@ export default async function RootLayout({ children }: LayoutProps) {
             randomClaim={randomClaim}
           />
           <CookieConsent />
-          <Script src="https://ac.onthemapmarketing.com/widget/3b24ef8d-6704-4361-886d-da817089839e/autoload.js" />
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
+
         </body>
       </html >
     </>

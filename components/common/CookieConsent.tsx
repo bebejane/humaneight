@@ -1,51 +1,86 @@
 'use client'
 
+import { GoogleAnalytics } from '@next/third-parties/google'
 import s from './CookieConsent.module.scss'
-import cn from 'classnames'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch } from 'react-aria-components'
 
 export type Scope = {
   id: string
   label: string
-  selected?: boolean
+  selected?: boolean,
 }
 
 const allScopes: Scope[] = [{
   id: 'necessary',
   label: 'Necessary',
-  selected: true
+  selected: false
 },
 {
   id: 'functional',
   label: 'Functional',
-  selected: true
+  selected: false
 },
 {
   id: 'performance',
   label: 'Performance',
-  selected: true
+  selected: false,
 },
 {
   id: 'marketing',
   label: 'Marketing',
-  selected: true
+  selected: false
 }]
 
 export default function CookieConsent() {
 
   const [scopes, setScopes] = React.useState<Scope[]>(allScopes)
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] = React.useState<boolean | null>(null)
+  const allScopesSelected = scopes.every(scope => scope.selected)
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e.currentTarget.dataset.allow)
-    console.log('submit')
-    setShow(false)
+  const updateScopes = (consent: string) => {
+    const selectedScopes = consent.split(',')
+    const scopes = allScopes.map(scope => ({ ...scope, selected: selectedScopes.includes(scope.id) }))
+    setScopes(scopes)
   }
 
-  if (!show) return null
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const consent = e.currentTarget.dataset.allow
+    if (!consent) return
+    localStorage.setItem('cookie_consent', consent)
+    updateScopes(consent)
+    setShow(false)
+
+  }
+
+  useEffect(() => {
+    if (typeof localStorage === 'undefined') return setShow(false)
+
+    const consent = localStorage?.getItem('cookie_consent')
+    if (!consent) {
+      setScopes(allScopes.map(scope => ({ ...scope, selected: true })))
+      setShow(true)
+      return
+    }
+    updateScopes(consent)
+    setShow(false)
+
+  }, [show])
+
+  if (show === false) {
+    const allowGoogleAnalytics = scopes.find(s => s.id === 'marketing' && s.selected) !== undefined && show === false;
+    return (
+      <>
+        {allowGoogleAnalytics &&
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+        }
+      </>
+    )
+  }
+  else if (show === null) return null
 
   return (
+
     <section aria-labelledby="cookie_heading" className={s.cookieConsent}>
       <div className={s.box}>
         <header>
@@ -77,9 +112,9 @@ export default function CookieConsent() {
             )}
           </fieldset>
           <div className={s.buttons}>
-            <button data-allow="all" type="button" onClick={handleClick}>Allow all</button>
-            <button data-allow="selection" type="button" onClick={handleClick}>Allow selection</button>
-            <button data-allow="deny" type="button" onClick={handleClick}>Deny</button>
+            <button data-allow={allScopes.map(s => s.id).join(',')} type="button" disabled={!allScopesSelected} onClick={handleClick}>Allow all</button>
+            <button data-allow={scopes.filter(s => s.selected).map(s => s.id).join(',')} autoFocus={true} type="button" onClick={handleClick}>Allow selection</button>
+            <button data-allow="necessary" type="button" onClick={handleClick}>Deny</button>
           </div>
         </form>
       </div>
