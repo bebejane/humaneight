@@ -37,7 +37,7 @@ export default function Cart({ localization }: CartProps) {
   const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0)
 
   const formatAmount = (amount: number) => {
-    return (Math.round(amount * 100) / 100).toFixed(2);
+    return !amount ? '' : (Math.round(amount * 100) / 100).toFixed(2);
   }
 
   useEffect(() => {
@@ -132,7 +132,7 @@ export default function Cart({ localization }: CartProps) {
           <div className={s.total}>
             <div>Total</div>
             <div className={s.price}>
-              {cart?.cost.totalAmount.amount} {cart?.cost.totalAmount.currencyCode}
+              {formatAmount(cart?.cost.totalAmount.amount)} {cart?.cost.totalAmount.currencyCode}
             </div>
           </div>
           <div className={cn(s.extra, "light")}>Shipping and tax are added at checkout</div>
