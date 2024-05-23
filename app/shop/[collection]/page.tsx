@@ -4,7 +4,6 @@ import { AllCollectionsDocument } from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
 
 export const dynamic = 'force-static'
-//export const runtime = 'edge'
 
 export default async function Collection(params: CountryShopParams) {
   return storePage(params)
