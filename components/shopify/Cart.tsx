@@ -1,6 +1,6 @@
 'use client'
 
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './Cart.module.scss'
 import cn from 'classnames'
 import useCart from '@shopify/hooks/useCart'
@@ -9,6 +9,7 @@ import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
 import { usePathname } from 'next/navigation'
+import useCountry from '../../shopify/hooks/useCountry'
 
 export type CartProps = {
   localization: LocalizationQuery['localization']
@@ -26,6 +27,7 @@ export default function Cart({ localization }: CartProps) {
     cartError
   ] = useCart((state) => [state.cart, state.createCart, state.removeFromCart, state.updateQuantity, state.updating, state.updatingId, state.error])
 
+  const country = useCountry()
   const pathname = usePathname()
   const [showCart, setShowCart] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -33,7 +35,11 @@ export default function Cart({ localization }: CartProps) {
   const loading = !cart || updating
   const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0)
 
-  useEffect(() => { !cart && createCart() }, [cart, createCart])
+  useEffect(() => {
+    if (!cart)
+      createCart(country)
+  }, [country, cart, createCart])
+
   useEffect(() => { setShowCart(false) }, [pathname])
   useEffect(() => { // Toggle Accessibly App widget button
     document.getElementById('accessiblyAppWidgetButton')?.style.setProperty('display', showCart ? 'none' : 'block')
@@ -88,13 +94,13 @@ export default function Cart({ localization }: CartProps) {
                   <div>
                     <button
                       className={s.minus}
-                      onClick={() => updateQuantity(id, quantity - 1)}
+                      onClick={() => updateQuantity(id, quantity - 1, country)}
                       disabled={quantity === 1}
                     >-</button>
                     {quantity}
                     <button
                       className={s.plus}
-                      onClick={() => updateQuantity(id, quantity + 1)}
+                      onClick={() => updateQuantity(id, quantity + 1, country)}
                     >+</button>
                   </div>
                 </div>

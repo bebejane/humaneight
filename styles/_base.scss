@@ -29,7 +29,7 @@
 	--z-variants-form: 1900;
 	--z-navbar: 2000;
 	--z-menu: 2100;
-
+	--z-eight: 2200;
 	--z-logo: 2200;
 	--z-help: 2300;
 	--z-hamburger: 2400;
@@ -164,11 +164,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {

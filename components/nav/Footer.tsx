@@ -6,6 +6,11 @@ import Link from '@components//nav/Link';
 import CountrySelector from "@components/shopify/CountrySelector";
 import NewsletterPopup from '../common/NewsletterPopup';
 import { useEffect, useState } from 'react';
+import { Image } from 'react-datocms';
+import { usePathname } from 'next/navigation';
+import { useWindowSize } from 'react-use';
+import { set } from 'date-fns';
+import Eight from './Eight';
 
 export type Props = {
   menu: Menu,
@@ -16,7 +21,7 @@ export type Props = {
 
 }
 
-export default function Footer({ menu, localization, randomClaim }: Props) {
+export default function Footer({ menu, localization, randomClaim, general }: Props) {
 
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false)
 
@@ -69,6 +74,7 @@ export default function Footer({ menu, localization, randomClaim }: Props) {
         </div>
       </div>
       <NewsletterPopup show={showNewsletterPopup} onClose={() => setShowNewsletterPopup(false)} />
+      <Eight general={general} />
     </footer >
   );
 }

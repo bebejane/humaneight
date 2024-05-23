@@ -9,5 +9,8 @@ query General {
 			id
 			text
 		}
+		eights {
+			...ImageEightFragment
+		}
 	}
 }

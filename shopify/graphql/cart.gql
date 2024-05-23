@@ -27,7 +27,8 @@ mutation CartBuyerIdentityUpdate($cartId: ID!, $buyerIdentity: CartBuyerIdentity
 	}
 }
 
-mutation AddItemToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+mutation AddItemToCart($country: CountryCode = SE, $cartId: ID!, $lines: [CartLineInput!]!)
+@inContext(country: $country) {
 	cartLinesAdd(cartId: $cartId, lines: $lines) {
 		cart {
 			...CartFragment
@@ -49,7 +50,11 @@ mutation RemoveItemFromCart($cartId: ID!, $lineIds: [ID!]!) {
 	}
 }
 
-mutation UpdateItemFromCart($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+mutation UpdateItemFromCart(
+	$country: CountryCode = SE
+	$cartId: ID!
+	$lines: [CartLineUpdateInput!]!
+) @inContext(country: $country) {
 	cartLinesUpdate(cartId: $cartId, lines: $lines) {
 		cart {
 			...CartFragment
