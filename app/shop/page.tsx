@@ -32,7 +32,7 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const { allProducts, allProductBrandings, allCollections } = await getPageData(all, collection?.id)
   const filteredProducts = allProducts?.filter(product => !tag || tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(tag)).sort(sortByTag)
-  let totalProductsWithVariantsCount = filteredProducts?.reduce((acc, product) => acc + getProductColorVariants(product as ProductRecord).length, 0)
+  const totalProductsWithVariantsCount = filteredProducts?.reduce((acc, product) => acc + getProductColorVariants(product as ProductRecord).length, 0) + filteredProducts?.length
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(totalProductsWithVariantsCount / brandingInterval), allProductBrandings)
 
   const tags = allProducts?.reduce((acc, product) => {
