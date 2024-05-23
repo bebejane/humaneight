@@ -71,6 +71,9 @@
 
     p {
       width: 100%;
+      @include mq($until: desktop) {
+        line-height: 1 !important;
+      }
     }
   }
 }
