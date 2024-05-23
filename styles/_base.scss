@@ -181,6 +181,7 @@ hr {
 input,
 textarea,
 select {
+	border-radius: 0;
 	border: none;
 	background-color: var(--white);
 
