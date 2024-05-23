@@ -24,7 +24,6 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const all = !params?.collection
   const tag = params?.tag ?? 'all'
-  //console.log(params?.collection, tag)
 
   const { collection, draftUrl } = !all ? await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
     variables: { slug: params.collection },
@@ -33,12 +32,16 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const { allProducts, allProductBrandings, allCollections } = await getPageData(all, collection?.id)
   const filteredProducts = allProducts?.filter(product => !tag || tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(tag)).sort(sortByTag)
+  let totalProductsWithVariantsCount = filteredProducts?.reduce((acc, product) => acc + getProductColorVariants(product as ProductRecord).length, 0)
+  const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(totalProductsWithVariantsCount / brandingInterval), allProductBrandings)
 
   const tags = allProducts?.reduce((acc, product) => {
     const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
     productTags.forEach(tag => !acc.includes(tag) && acc.push(tag))
     return acc
   }, ['all'] as string[])
+
+  let count = 0
 
   return (
     <>
@@ -54,7 +57,6 @@ export default async function Shop({ params }: CountryShopParams) {
 
             const productColorVariants = getProductColorVariants(product as ProductRecord)
             const thumbnails = all ? [{ product }] : productColorVariants.map(({ color, variant }) => ({ product, color, variant })) as any[]
-            const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(thumbnails.length / brandingInterval), allProductBrandings)
 
             return thumbnails?.map(({ product, color, variant }, i) =>
               <React.Fragment key={i}>
@@ -65,7 +67,7 @@ export default async function Shop({ params }: CountryShopParams) {
                   variantId={variant?.id}
                   columns={all ? 'three' : 'four'}
                 />
-                {(i + 1) % (brandingInterval - 1) === 0 &&
+                {(count++ + 1) % (brandingInterval - 1) === 0 &&
                   <BrandingThumbnail
                     productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
                     columns={all ? 'three' : 'four'}

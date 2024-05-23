@@ -36,6 +36,10 @@ export default function Cart({ localization }: CartProps) {
   const loading = !cart || updating
   const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0)
 
+  const formatAmount = (amount: number) => {
+    return (Math.round(amount * 100) / 100).toFixed(2);
+  }
+
   useEffect(() => {
     if (!cart)
       createCart(country)
@@ -113,7 +117,7 @@ export default function Cart({ localization }: CartProps) {
 
                 <div className={s.amount}>
                   <div className={s.price}>
-                    {merchandise.price.amount} {cost.totalAmount.currencyCode}
+                    {formatAmount(merchandise.price.amount)} {cost.totalAmount.currencyCode}
                   </div>
                   <div>
                     <button className={cn(s.remove, "light")} onClick={() => removeFromCart(id)}>
