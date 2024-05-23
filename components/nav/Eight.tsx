@@ -1,11 +1,11 @@
 'use client'
 
 import s from './Eight.module.scss'
-import type { Menu } from "@lib/menu";
 import { useEffect, useRef, useState } from 'react';
 import { Image } from 'react-datocms';
 import { usePathname } from 'next/navigation';
 import { useWindowSize } from 'react-use';
+import { useScrollInfo } from 'next-dato-utils/hooks';
 
 export type Props = {
   general: GeneralQuery['general']
@@ -17,22 +17,26 @@ export default function Footer({ general }: Props) {
   const [randomEight, setRandomEight] = useState<{ image: any, style: any } | null>(null)
   const pathname = usePathname()
   const { width, height } = useWindowSize()
+  const { isPageBottom } = useScrollInfo()
 
   useEffect(() => {
     const image = general?.eights.sort(_ => Math.random() > 0.5 ? 1 : -1)?.[0]
     const style = {}
     setRandomEight({ image, style })
-  }, [pathname])
+  }, [pathname, isPageBottom])
 
   useEffect(() => {
-    console.log('setstyle')
+    const padding = 50;
+    const imageWidth = eightRef.current?.clientWidth ?? 0
+    const left = (Math.random() * width)
+
     const style = {
+      opacity: !isPageBottom ? 0 : 1,
       bottom: `${20 + (Math.random() * 10)}%`,
-      left: `${(Math.random() * width)}px`,
-      //transform: `rotate(${(Math.random() * 30)}deg)`
+      left: `${Math.min(Math.max(padding, left), (width - imageWidth - padding))}px`,
     }
     setRandomEight((prev) => prev ? ({ ...prev, style }) : null)
-  }, [pathname, width, height])
+  }, [pathname, width, height, isPageBottom])
 
 
   if (!randomEight?.image?.responsiveImage) return null
