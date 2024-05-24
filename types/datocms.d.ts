@@ -302,8 +302,6 @@ type CollectionModelFilter = {
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
   position?: InputMaybe<PositionFilter>;
-  shopifyData?: InputMaybe<JsonFilter>;
-  shopifyId?: InputMaybe<StringFilter>;
   slug?: InputMaybe<SlugFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -329,8 +327,6 @@ enum CollectionModelOrderBy {
   id_DESC = 'id_DESC',
   position_ASC = 'position_ASC',
   position_DESC = 'position_DESC',
-  shopifyId_ASC = 'shopifyId_ASC',
-  shopifyId_DESC = 'shopifyId_DESC',
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC'
 }
@@ -360,8 +356,6 @@ type CollectionRecord = RecordInterface & {
   id: Scalars['ItemId']['output'];
   image?: Maybe<FileField>;
   position?: Maybe<Scalars['IntType']['output']>;
-  shopifyData: Scalars['JsonField']['output'];
-  shopifyId: Scalars['String']['output'];
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
 };
