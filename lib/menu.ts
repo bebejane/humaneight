@@ -17,7 +17,7 @@ export type MenuItem = {
 export type Menu = MenuItem[]
 
 export const buildMenu = async (): Promise<Menu> => {
-  const { allCollections, allFaqSections, allAbouts, allLegals, general, contact } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
+  const { allCollections, allFaqSections, allAbouts, allLegals, general, contact, faqConfig } = await apiQuery<MenuQuery, MenuQueryVariables>(MenuDocument, {
     all: true,
     variables: {
       first: 100,
@@ -49,7 +49,13 @@ export const buildMenu = async (): Promise<Menu> => {
     id: 'help',
     title: 'Help',
     sub: [
-      { id: 'faq', title: 'FAQ', slug: '/faq', localized: false },
+      {
+        id: 'faq',
+        title: 'FAQ',
+        slug: '/faq',
+        image: faqConfig?.menuImage as FileFieldInterface,
+        localized: false
+      },
       ...allFaqSections.filter(({ inMenu }) => inMenu).map(({ id, title, image, slug, inMenu }) => ({
         id,
         title,

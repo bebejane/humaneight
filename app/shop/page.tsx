@@ -18,8 +18,6 @@ import { getProductColorVariants } from '@lib/utils';
 
 export const dynamic = 'force-static'
 
-const brandingInterval = 5
-
 export default async function Shop({ params }: CountryShopParams) {
 
   const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
@@ -32,16 +30,17 @@ export default async function Shop({ params }: CountryShopParams) {
 
   const { allProducts, allProductBrandings, allCollections } = await getPageData(all, collection?.id)
   const filteredProducts = allProducts?.filter(product => !tag || tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(tag)).sort(sortByTag)
-  const totalProductsWithVariantsCount = filteredProducts?.reduce((acc, product) => acc + getProductColorVariants(product as ProductRecord).length, 0) + filteredProducts?.length
-  const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(totalProductsWithVariantsCount / brandingInterval), allProductBrandings)
+  const totalVariantsCount = filteredProducts?.reduce((acc, product) => acc + getProductColorVariants(product as ProductRecord).length, 0) + filteredProducts?.length
+  const brandingInterval = 5
+  const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(totalVariantsCount / brandingInterval), allProductBrandings)
+  const brandingIndex = Array.from({ length: Math.ceil(totalVariantsCount / brandingInterval) }, (_, i) => Math.floor(Math.random() * totalVariantsCount))
+  let brandingCount = 0
 
   const tags = allProducts?.reduce((acc, product) => {
     const productTags = product?.shopifyProduct?.tags?.split(',') ?? []
     productTags.forEach(tag => !acc.includes(tag) && acc.push(tag))
     return acc
   }, ['all'] as string[])
-
-  let count = 0
 
   return (
     <>
@@ -67,7 +66,7 @@ export default async function Shop({ params }: CountryShopParams) {
                   variantId={variant?.id}
                   columns={all ? 'three' : 'four'}
                 />
-                {(count++ + 1) % (brandingInterval - 1) === 0 &&
+                {brandingIndex.includes(brandingCount++) &&
                   <BrandingThumbnail
                     productBranding={brandings.splice(0, 1)[0] as ProductBrandingRecord}
                     columns={all ? 'three' : 'four'}
