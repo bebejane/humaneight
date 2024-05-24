@@ -34,7 +34,7 @@ export default function Footer({ general }: Props) {
 
     const style = {
       opacity: !isPageBottom ? 0 : 1,
-      bottom: `${20 + (Math.random() * 10)}%`,
+      bottom: `${10 + (Math.random() * 20)}%`,
       left: `${Math.min(Math.max(padding, left), (width - imageWidth - padding))}px`,
     }
     setRandomEight((prev) => prev ? ({ ...prev, style }) : null)
