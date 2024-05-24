@@ -16,21 +16,21 @@ export type Props = {
   tag: string
 }
 
-export default function CollectionsFilter({ tags, collectionId = 'all', allCollections, searchParams, tag }: Props) {
+export default function CollectionsFilter({ tags, collectionId, allCollections, searchParams, tag }: Props) {
+
+  if (!allCollections) return null
 
   const [hoverId, setHoverId] = useState<string | null>(null)
   const [hoverPos, setHoverPos] = useState<{ id: string, left: number, top: number }[] | null>(null)
   const { width, height } = useWindowSize()
   const isDesktop = useIsDesktop()
-  const collectionsWithAll = [{ id: 'all', title: 'All', slug: 'all', }].concat(allCollections ?? [])
-  const collectionSlug = collectionsWithAll.find(({ id }) => id === collectionId)?.slug
-  //const tag = searchParams?.tag ?? 'all'
+  const collectionSlug = allCollections.find(({ id }) => id === collectionId)?.slug
 
   useEffect(() => {
 
     if (!isDesktop) return
 
-    const positions = collectionsWithAll.map(({ id }) => {
+    const positions = allCollections.map(({ id }) => {
       const title = document.getElementById(`c-${id}`) as HTMLElement
       const hover = document.getElementById(`ch-${id}`) as HTMLElement
       const position = title.getAttribute('data-position')
@@ -51,9 +51,9 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
   return (
     <>
       <ul className={s.filter}>
-        {collectionsWithAll.map(({ id, title, slug }, idx) => {
+        {allCollections.map(({ id, titlePlural, slug }, idx) => {
 
-          const pluralTitle = `${title}${id !== 'all' ? 's' : ''}`
+          slug = slug === 'all' ? '' : slug
           const isSelected = [collectionId, hoverId].includes(id)
           const pos = hoverPos?.find(p => p.id === id)
 
@@ -63,8 +63,8 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
                 id={`c-${id}`}
                 href={`/shop/${slug}`}
                 className={cn(s.title, (isSelected && isDesktop) ? s.hide : isSelected ? s.selected : false)}
-                data-position={idx === 0 ? 'left' : idx === collectionsWithAll.length - 1 ? 'right' : 'center'}
-              >{pluralTitle}</Link>
+                data-position={idx === 0 ? 'left' : idx === allCollections.length - 1 ? 'right' : 'center'}
+              >{titlePlural}</Link>
               {isDesktop &&
                 <Link
                   id={`ch-${id}`}
@@ -73,7 +73,7 @@ export default function CollectionsFilter({ tags, collectionId = 'all', allColle
                   style={pos ? { left: `${pos.left}px`, top: `${pos.top}px` } : undefined}
                   onMouseEnter={() => setHoverId(id)}
                   onMouseLeave={() => setHoverId(null)}
-                >{pluralTitle}</Link>
+                >{titlePlural}</Link>
               }
             </li>
           )
