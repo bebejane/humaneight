@@ -91,6 +91,15 @@ declare module '*/ImageFragment.gql' {
 }
     
 
+declare module '*/ImageMenuFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ImageMenuFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ImageSquareFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

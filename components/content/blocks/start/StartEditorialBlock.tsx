@@ -12,9 +12,9 @@ type Props = {
 export default async function StartEditorialBlock({ data: { id, text, buttonText, headline, media, mediaOnTop, lottieAnimation, about } }: Props) {
 
   return (
-    <section className={s.editorial}>
+    <section id={id} className={s.editorial} aria-labelledby={`${id}-heading`}>
       <div>
-        <h2 className="veryBig">{headline}</h2>
+        <h2 id={`${id}-heading`} className="veryBig">{headline}</h2>
         <p className="">{text}</p>
         <Link href={`/about/${about.slug}`}>
           <button className="full">{buttonText}</button>

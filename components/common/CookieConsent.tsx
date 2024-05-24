@@ -81,10 +81,10 @@ export default function CookieConsent() {
 
   return (
 
-    <section aria-labelledby="cookie_heading" className={s.cookieConsent}>
+    <div role="dialog" aria-labelledby="cookie-heading" className={s.cookieConsent}>
       <div className={s.box}>
         <header>
-          <h2 id="cookie_heading">
+          <h2 id="cookie-heading">
             We care about your privacy.
           </h2>
         </header>
@@ -118,6 +118,6 @@ export default function CookieConsent() {
           </div>
         </form>
       </div>
-    </section>
+    </div>
   )
 }

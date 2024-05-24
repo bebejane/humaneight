@@ -1,0 +1,10 @@
+fragment ImageMenuFragment on FileFieldInterface {
+	format
+	id
+	mimeType
+	url
+	title
+	responsiveImage(imgixParams: { ar: "4:5", fit: crop, w: 800, h: 800, auto: format }) {
+		...ResponsiveImageFragment
+	}
+}

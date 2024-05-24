@@ -16,9 +16,9 @@ export default async function StartProductBlock({ data: { id, headline, selected
 
 
   return (
-    <section className={cn(s.container)}>
+    <section id={id} className={cn(s.container)} aria-labelledby={`${id}-heading`}>
       <header>
-        <h3>{headline}</h3>
+        <h3 id={`${id}-heading`}>{headline}</h3>
         {collection &&
           <Link href={`/shop/${collection?.slug}`}>
             <h3><span>View all</span></h3>

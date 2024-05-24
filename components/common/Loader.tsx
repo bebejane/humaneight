@@ -11,7 +11,7 @@ export default function Loader({ loading = true, invert = false, className }: Pr
   if (!loading) return null
 
   return (
-    <div className={cn(s.loader, invert && s.invert, className)} >
+    <div role="alert" aria-busy="true" className={cn(s.loader, invert && s.invert, className)} >
       <span className={s.spinner} />
     </div>
   )

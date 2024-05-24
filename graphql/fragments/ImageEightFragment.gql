@@ -4,7 +4,7 @@ fragment ImageEightFragment on FileFieldInterface {
 	mimeType
 	url
 	title
-	responsiveImage(imgixParams: { w: 1500, auto: format }) {
+	responsiveImage(imgixParams: { w: 800, auto: format }) {
 		...ResponsiveImageFragment
 	}
 }

@@ -44,12 +44,18 @@ export default function FeedbackForm({ feedback }: Props) {
 
   }, [state])
 
+  if (!feedback) return null
+
   return (
-    <section className={cn(s.feedback, "grid")}>
-      <h2>{feedback?.headline}</h2>
+    <section id={feedback.id} className={cn(s.feedback, "grid")} aria-labelledby={`${feedback.id}-heading`}>
+      <h2 id={`${feedback.id}-heading`}>{feedback?.headline}</h2>
       <div className={s.wrapper}>
         <Content content={feedback?.intro} />
-        <button className={cn(showForm && s.active)} type="button" onClick={() => setShowForm(!showForm)}>
+        <button
+          className={cn(showForm && s.active)}
+          type="button"
+          onClick={() => setShowForm(!showForm)}
+        >
           Submit your view
         </button>
       </div >
@@ -69,7 +75,14 @@ export default function FeedbackForm({ feedback }: Props) {
               <Markdown className="light mid" content={text} />
             </div>
             <div className={s.textarea}>
-              <textarea id={id} name={id} rows={3} required={false} ref={i === 0 ? firstInputRef : undefined} />
+              <textarea
+                id={id}
+                name={id}
+                rows={3}
+                required={true}
+                aria-errormessage={`feedback-error`}
+                ref={i === 0 ? firstInputRef : undefined}
+              />
             </div>
           </React.Fragment>
         )}
@@ -80,7 +93,7 @@ export default function FeedbackForm({ feedback }: Props) {
           </div>
         }
       </form>
-      {state.error && <p className={cn(s.error, "error small")}>{state.error}</p>}
+      {state.error && <p id={`feedback-error`} className={cn(s.error, "error small")}>{state.error}</p>}
     </section>
   )
 }

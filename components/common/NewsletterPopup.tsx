@@ -37,9 +37,9 @@ export default function NewsletterPopup({ show: _show, onClose }: Props) {
   }, [_show])
 
   return (
-    <div className={cn(s.newsletterPopup, show && s.show)} >
+    <div role="dialog" className={cn(s.newsletterPopup, show && s.show)} aria-labelledby="newsletterpopup-heading">
       <div className={s.popup}>
-        <h2>Join our community. Sign up for our newsletter.</h2>
+        <h2 id="newsletterpopup-heading">Join our community. Sign up for our newsletter.</h2>
         <NewsletterForm key={show ? 'true' : 'false'} className={s.form} />
         <button className={s.close} type="button" onClick={handleClose}>Close</button>
       </div>

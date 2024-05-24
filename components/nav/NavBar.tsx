@@ -39,14 +39,21 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
       <Hamburger showMenu={showMenu} setShowMenu={setShowMenu} />
       <nav className={s.navbar}>
         <button
+          aria-pressed={showMenu}
           className={cn(s.item, s.menu, showMenu && s.active, 'nav', 'nav-hover')}
           onClick={() => setShowMenu(!showMenu)}
         >Menu</button>
-
         {showMenu ?
-          <button className={cn(s.item, s.close, "nav", "nav-hover")} onClick={() => setShowMenu(false)}>Close</button>
+          <button
+            className={cn(s.item, s.close, "nav", "nav-hover")}
+            onClick={() => setShowMenu(false)}
+          >
+            Close
+          </button>
           :
-          <Link href="/shop" className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>Shop</Link>
+          <Link href="/shop" className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>
+            Shop
+          </Link>
         }
       </nav>
       {(!showMenu || !isDesktop) &&
