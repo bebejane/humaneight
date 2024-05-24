@@ -79,7 +79,7 @@ query AllProductsForMenu($first: IntType = 100, $skip: IntType = 0) {
 			title
 		}
 		image {
-			...ImageSquareFragment
+			...ImageMenuFragment
 		}
 		shopifyProduct {
 			...ShopifyProductFragment

@@ -16,6 +16,7 @@ query Collection($slug: String) {
 fragment CollectionFragment on CollectionRecord {
 	id
 	title
+	titlePlural
 	slug
 	_allReferencingProducts(first: 100) {
 		...ProductLightFragment

@@ -29,17 +29,12 @@ export const buildMenu = async (): Promise<Menu> => {
   const menu: Menu = [{
     id: 'shop',
     title: 'Shop',
-    sub: [{
-      id: 'all',
-      title: 'All',
-      slug: '/shop'
-    },
-    ...allCollections.map(({ id, slug, title, image }) => ({
+    sub: allCollections.map(({ id, slug, titlePlural, image }) => ({
       id,
-      title: `${title}s`,
+      title: titlePlural,
       image: image as FileFieldInterface,
       slug: `/shop/${slug}`
-    }))],
+    })),
   }, {
     id: 'about',
     title: 'About',
