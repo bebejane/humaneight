@@ -13,6 +13,7 @@ export type Props = {
 
 export default function Footer({ general }: Props) {
 
+  return null
   const eightRef = useRef<HTMLDivElement>(null)
   const [randomEight, setRandomEight] = useState<{ image: any, style: any } | null>(null)
   const pathname = usePathname()
@@ -43,7 +44,7 @@ export default function Footer({ general }: Props) {
   if (!randomEight?.image?.responsiveImage) return null
 
   return (
-    <figure className={s.eight} key={pathname} style={randomEight.style} ref={eightRef}>
+    <figure className={s.eight} key={pathname} style={randomEight?.style} ref={eightRef}>
       <Image data={randomEight?.image?.responsiveImage} usePlaceholder={false} lazyLoad={false} />
     </figure>
   );
