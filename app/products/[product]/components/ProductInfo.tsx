@@ -50,17 +50,18 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
   return (
     <div
       className={s.details}
+      aria-label="Product details"
       style={{
         top: needsExpansion ? `calc(-1 * calc(${formHeight}px - var(--navbar-height) + var(--outer-margin) + 1rem))` : undefined,
         height: needsExpansion ? `calc(100vh + var(--navbar-height) - var(--outer-margin) + ${descriptionRef.current?.scrollHeight}px - ${formHeight}px)` : undefined
       }}
     >
       <div className={s.info} ref={contentRef}>
-        <p className="small">
+        <nav className="small" aria-label="Breadcrumb">
           <Link href="/shop">Shop</Link>
           &nbsp;&nbsp;›&nbsp;&nbsp;
-          <Link href={`/shop/${product.collection.slug}`}>{product.collection.title}s</Link>
-        </p>
+          <Link href={`/shop/${product.collection.slug}`}>{product.collection.titlePlural}</Link>
+        </nav>
 
         {mainImage?.responsiveImage &&
           <figure className={s.mainImage}>
@@ -74,19 +75,27 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
 
         <header>
           <h1 className="big">{product.title}</h1>
-          <div className={s.price}>
-            <p className="mid">{parseFloat(variant?.price.amount).toFixed(0)} {variant?.price.currencyCode}</p>
+          <div className={s.price} aria-label="Price">
+            <p className="mid">{parseFloat(variant?.price.amount).toFixed(2)} {variant?.price.currencyCode}</p>
           </div>
         </header>
         <Content content={product.shortSummary} className={cn(s.summary, "light mid")} />
-        <div
+        <section
+          id={`${product.id}-description`}
           className={cn(s.description, "light mid")}
           style={{ maxHeight: readMore ? descriptionRef.current?.scrollHeight : 0 }}
+          aria-expanded={readMore}
+          aria-hidden={!readMore}
           ref={descriptionRef}
         >
           <Content content={product.description} />
-        </div>
-        <button className={s.readMore} onClick={() => setReadMore(!readMore)} ref={readMoreRef}>
+        </section>
+        <button
+          className={s.readMore}
+          onClick={() => setReadMore(!readMore)}
+          aria-controls={`${product.id}-description`}
+          ref={readMoreRef}
+        >
           {readMore ? 'Read less' : 'Read more'}
         </button>
       </div>

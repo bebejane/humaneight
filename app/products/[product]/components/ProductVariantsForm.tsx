@@ -72,54 +72,9 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 
   return (
     <form id="product-variant-form" className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
-      {haveColors && !isDesktop &&
-        <fieldset>
-          <Select
-            key={variant.id}
-            className={s.colors}
-            onSelectionChange={handleVariantChange}
-            onOpenChange={(o) => setColorsOpen(o)}
-          >
-            <Button className={s.button} ref={selectButtonRef}>
-              <SelectValue className={s.value} key={variant.id}>
-                <figure>
-                  <img src={variant?.image?.url} alt={variant?.image?.altText} />
-                </figure>
-                {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
-              </SelectValue>
-              <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!colorsOpen ? '▼' : '▲'}</span>
-            </Button>
-            <Popover placement="top left" className={s.colorsPopover}>
-              <ListBox
-                className={s.options}
-                items={availableColors.map((v, idx) => ({
-                  id: parseGid(v.id),
-                  name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
-                }))}
-                style={{ width: colorSelectWidth }}
-              >
-                {availableColors.map((v, idx) => {
-                  const option = v.selectedOptions.find(opt => opt.name === 'Color')
-                  if (!option) return null
-                  return (
-                    <ListBoxItem id={parseGid(v.id)} key={idx} className={s.option}>
-                      <figure>
-                        <img src={v.image?.url} alt={v.image?.altText} />
-                        <figcaption>
-                          {option?.value}
-                        </figcaption>
-                      </figure>
-                    </ListBoxItem>
-                  )
-                })}
-              </ListBox>
-            </Popover>
-          </Select>
-        </fieldset>
-      }
       {haveColors && isDesktop &&
-        <fieldset>
-          <RadioGroup onChange={handleVariantChange} className={s.colorsDesktop} key={variant.id}>
+        <div>
+          <RadioGroup aria-label="Colors" onChange={handleVariantChange} className={s.colorsDesktop} key={variant.id}>
             {colorOptions?.map((c, idx) => {
               const color = shopifyProduct?.variants.edges.find(({ node }) => optionValue(node.selectedOptions, 'Color') === c)?.node
               const v = availableColors.find(v => optionValue(v.selectedOptions, 'Color') === c)
@@ -133,23 +88,70 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
                     value={v ? parseGid(v.id) : 'unavailable'}
                     className={cn(s.radio, selected && s.selected)}
                     isDisabled={!v}
+                    aria-label={option?.value}
                   >
-                    <Label className={s.label}>
+                    <div className={s.label}>
                       <figure>
-                        <img src={color?.image?.url} alt={option?.value} title={option?.value} />
+                        <img role="icon" src={color?.image?.url} alt={option?.value} />
                       </figure>
-                    </Label>
+                    </div>
                   </Radio>
                 </React.Fragment>
               )
             })}
             <FieldError />
           </RadioGroup>
-        </fieldset>
+        </div>
       }
+      {haveColors && !isDesktop &&
+        <div>
+          <Select
+            key={variant.id}
+            className={s.colors}
+            onSelectionChange={handleVariantChange}
+            onOpenChange={(o) => setColorsOpen(o)}
+            aria-label={'Colors'}
+          >
+            <Button className={s.button} ref={selectButtonRef}>
+              <SelectValue className={s.value} key={variant.id}>
+                <figure>
+                  <img role="icon" src={variant?.image?.url} alt={variant?.image?.altText} />
+                </figure>
+                {variant?.selectedOptions.find(opt => opt.name === 'Color')?.value}
+              </SelectValue>
+              <span aria-hidden="true" className={cn(s.arrow, "symbol")}>{!colorsOpen ? '▼' : '▲'}</span>
+            </Button>
+            <Popover placement="top left" className={s.colorsPopover}>
+              <ListBox
+                className={s.options}
+                items={availableColors.map((v, idx) => ({
+                  id: parseGid(v.id),
+                  name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
+                }))}
+                style={{ width: colorSelectWidth }}
+
+              >
+                {availableColors.map((v, idx) => {
+                  const option = v.selectedOptions.find(opt => opt.name === 'Color')
+                  if (!option) return null
+                  return (
+                    <ListBoxItem id={parseGid(v.id)} key={idx} className={s.option} aria-label={option?.value}>
+                      <figure>
+                        <img role="icon" src={v.image?.url} alt={v.image?.altText} />
+                        <Label>{option?.value}</Label>
+                      </figure>
+                    </ListBoxItem>
+                  )
+                })}
+              </ListBox>
+            </Popover>
+          </Select>
+        </div>
+      }
+
       {haveSizes &&
-        <fieldset>
-          <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variant.id}>
+        <div>
+          <RadioGroup onChange={handleVariantChange} className={s.sizes} key={variant.id} aria-label={'Sizes'}>
             {sizeOptions?.map((size, idx) => {
               const v = availableSizes.find(v => v.selectedOptions.find(opt => opt.name === 'Size' && opt.value === size))
               const option = v?.selectedOptions.find(opt => opt.name === 'Size')
@@ -162,6 +164,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
                     value={v ? parseGid(v.id) : 'unavailable'}
                     className={cn(s.radio, selected && s.selected)}
                     isDisabled={!v}
+                    aria-label={size}
                   >
                     <Label className={s.label}>{size}</Label>
                   </Radio>
@@ -171,7 +174,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
             <FieldError />
           </RadioGroup>
           <a href={`#${sizeGuideId}`} className={s.sizeguide} aria-disabled={sizeGuideId ? 'false' : 'true'}>?</a>
-        </fieldset>
+        </div>
       }
       <AddToCartButton
         label="Add to cart"

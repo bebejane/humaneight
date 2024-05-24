@@ -20,12 +20,12 @@ export default async function Legal({ params }: LegalParams) {
 
   return (
     <>
-      <section className={cn(s.legal, "grid legal structured")}>
+      <article className={cn(s.legal, "grid legal structured")}>
         <div className={s.container}>
           <h3>{legal.title}</h3>
           <StructuredContent content={legal.text} />
         </div>
-      </section >
+      </article>
       <DraftMode url={draftUrl} tag={legal.id} />
     </>
   )

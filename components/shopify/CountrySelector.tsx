@@ -49,13 +49,13 @@ export default function CountrySelector({ className, label, modal = false, local
   const selectedCountry = availableCountries.find(({ isoCode }) => isoCode === country)
 
   return (
-    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }} ref={formRef}>
+    <form className={cn(s.form, className)} onSubmit={(e) => { e.preventDefault() }} ref={formRef} aria-label={"Select country"}>
       <Select
         className={s.select}
         onSelectionChange={handleChange}
         defaultOpen={false}
       >
-        <Button className={s.button} ref={buttonRef}>
+        <Button className={s.button} ref={buttonRef} >
           <SelectValue className={s.value} key={country}>
             {selectedCountry?.name}
           </SelectValue>
@@ -72,6 +72,7 @@ export default function CountrySelector({ className, label, modal = false, local
               id: isoCode,
               name: `${name} ${currency.isoCode}`,
             }))}
+
           >
             {availableCountries.sort((a, b) => a.name > b.name ? 1 : -1).map(({ isoCode, name, currency }, idx) =>
               <ListBoxItem

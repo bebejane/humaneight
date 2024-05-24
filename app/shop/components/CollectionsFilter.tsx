@@ -50,7 +50,7 @@ export default function CollectionsFilter({ tags, collectionId, allCollections, 
 
   return (
     <>
-      <ul className={s.filter}>
+      <nav className={s.filter}>
         {allCollections.map(({ id, titlePlural, slug }, idx) => {
 
           slug = slug === 'all' ? '' : slug
@@ -78,9 +78,9 @@ export default function CollectionsFilter({ tags, collectionId, allCollections, 
             </li>
           )
         })}
-      </ul>
+      </nav>
 
-      <ul className={cn(s.subFilter, 'mid')}>
+      <nav className={cn(s.subFilter, 'mid')}>
         {tags?.sort((a, b) => tagSortOrder.findIndex(t => t === a) > tagSortOrder.findIndex(t => t === b) ? 1 : -1).map((t, i) => (
           <li key={i} className={cn(tag === t && s.selected)}>
             <Link href={`/shop/${collectionSlug}/${t}`}>
@@ -88,7 +88,7 @@ export default function CollectionsFilter({ tags, collectionId, allCollections, 
             </Link>
           </li>
         ))}
-      </ul>
+      </nav>
     </>
   )
 }

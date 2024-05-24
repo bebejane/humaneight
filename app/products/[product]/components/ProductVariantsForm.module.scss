@@ -25,7 +25,7 @@
     transform: translateY(100%);
   }
 
-  fieldset {
+  >div {
     all: unset;
     display: flex;
     flex-direction: row;
@@ -148,12 +148,11 @@
       }
     }
 
-    > div {
+    >div {
       flex: 1 1 auto;
     }
 
-    select {
-    }
+    select {}
   }
 
   button {

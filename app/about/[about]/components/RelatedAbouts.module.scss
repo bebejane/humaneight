@@ -1,6 +1,7 @@
 .related {
   margin-top: 6rem;
-  header {
+
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -10,6 +11,7 @@
       hyphens: auto;
     }
   }
+
   .thumbs {
     grid-row-gap: var(--gutter);
   }

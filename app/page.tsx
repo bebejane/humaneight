@@ -16,7 +16,7 @@ export default async function Home(params: CountryParams) {
 
   return (
     <>
-      <div className={s.container}>
+      <article className={s.container}>
         {start?.sections.map((section, i) =>
           <Block
             key={i}
@@ -31,7 +31,7 @@ export default async function Home(params: CountryParams) {
           />
         )}
         <NewsletterSection />
-      </div>
+      </article>
       <DraftMode url={draftUrl} tag={start?.id} />
     </>
   )

@@ -157,10 +157,12 @@ button {
 	&.full {
 		width: 100%;
 
-		&:hover {
-			letter-spacing: var(--letter-space);
-			color: var(--white);
-			background-color: var(--black) !important;
+		@include mq($from: desktop) {
+			&:hover {
+				letter-spacing: var(--letter-space);
+				color: var(--white);
+				background-color: var(--black) !important;
+			}
 		}
 	}
 
@@ -197,7 +199,7 @@ fieldset {
 	color: var(--red);
 }
 
-//Accessibily
+// Accessibily
 
 #accessiblyAppDialog.accessibly-app-widget {
 	background-color: var(--beige);

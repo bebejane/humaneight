@@ -27,7 +27,7 @@ export default async function About({ params }: AboutParams) {
   return (
     <>
       <RevealText key={about.id} />
-      <div className="about">
+      <article className="about">
         {about.sections.map((section, i) =>
           <Block
             key={i}
@@ -39,7 +39,7 @@ export default async function About({ params }: AboutParams) {
               FullscreenBlock
             }} />
         )}
-      </div>
+      </article>
       <RelatedAbouts about={about} />
       <DraftMode url={draftUrl} tag={about.id} />
     </>

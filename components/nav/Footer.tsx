@@ -68,7 +68,7 @@ export default function Footer({ menu, localization, randomClaim, general }: Pro
         </ul>
       </nav>
       <div className={s.logo}>
-        <img src="/images/logo.svg"></img>
+        <img src="/images/logo.svg" alt="Logo" />
         <div className={s.subheader}>
           <h3 className="nav">{randomClaim}</h3>
         </div>

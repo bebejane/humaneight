@@ -13,7 +13,7 @@ export default function Help() {
   return (
     <div className={cn(s.help, footerTrigger && s.hide)}>
       <Link href={'/contact'}>
-        <img src="/images/faq.png" />
+        <img role="icon" src="/images/faq.png" />
         <span>Need help?<br />Contact us here!</span>
       </Link>
     </div>

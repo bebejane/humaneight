@@ -18,7 +18,6 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
 
   const pathname = usePathname();
   const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
-  const [toggles, setToggles] = useState<{ [key: MenuItem['id']]: boolean }>({})
 
   return (
     <nav className={cn(s.menuMobile, showMenu && s.show)}>

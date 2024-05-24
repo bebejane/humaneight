@@ -59,7 +59,7 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
 
   return (
     <div className={cn(styles.gallery, images.length <= 1 && styles.noArrows, isSingleSlide && styles.noArrows)}>
-      <div className={styles.back} onClick={() => swiperRef.current?.slidePrev()}><img src="/images/arrow-light.svg" className={styles.arrow} /></div>
+      <div role="button" aria-label="Previous image" className={styles.back} onClick={() => swiperRef.current?.slidePrev()}><img src="/images/arrow-light.svg" className={styles.arrow} /></div>
       <div className={styles.images}>
         <Swiper
           id={`main-gallery`}
@@ -98,9 +98,9 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
           )}
         </Swiper>
       </div>
-      <div className={styles.forward} onClick={() => swiperRef.current?.slideNext()}><img src="/images/arrow-light.svg" className={styles.arrow} /></div>
+      <div role="button" aria-label="Next image" className={styles.forward} onClick={() => swiperRef.current?.slideNext()}><img src="/images/arrow-light.svg" className={styles.arrow} /></div>
       <div className={styles.caption}>{title && <p className="medium">{title}</p>}</div>
-      <div className={styles.close} onClick={() => onClose()}><img src="/images/close.svg" alt="Close" /></div>
+      <div role="button" className={styles.close} onClick={() => onClose()}><img src="/images/close.svg" alt="Close" /></div>
     </div>
   )
 }

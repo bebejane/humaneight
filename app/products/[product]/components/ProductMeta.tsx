@@ -39,7 +39,7 @@ export default function ProductMeta({ product }: Props) {
   return (
     <>
       <div className={cn(s.meta)}>
-        <div className={s.wrapper}>
+        <div className={s.wrapper} aria-label="Product specifications">
           {Object.keys(metaSections).map((k, idx) => {
             const metaType = metaSections[k][0].metaType
             return (
@@ -48,18 +48,21 @@ export default function ProductMeta({ product }: Props) {
                   <a
                     id={metaType.id}
                     key={metaType.id}
-                    //href={`#${metaType.id}`}
                     className={s.metaType}
+                    role="button"
+                    aria-controls={`list-${metaType.id}`}
+                    aria-expanded={metaSectionToggles[k]?.show ? true : false}
                     onClick={() => setMetaSectionToggles(prev => ({
                       ...prev,
-                      [k]: {
-                        ...prev[k],
-                        show: !prev[k]?.show ? true : false
-                      }
+                      [k]: { ...prev[k], show: !prev[k]?.show ? true : false }
                     }))}
                   >
                     <h3 className={s.type}>{metaType.title}</h3>
-                    <button className="symbol big">{!metaSectionToggles[k]?.show ? '+' : '-'}</button>
+                    <button
+                      aria-controls={`list-${metaType.id}`}
+                      aria-expanded={metaSectionToggles[k]?.show ? true : false}
+                      className="symbol big"
+                    >{!metaSectionToggles[k]?.show ? '+' : '-'}</button>
                   </a>
                 }
                 <ul
@@ -68,6 +71,7 @@ export default function ProductMeta({ product }: Props) {
                   className={cn(metaSectionToggles[k]?.show ? s.show : s.hide)}
                   style={{ maxHeight: metaSectionToggles[k]?.show ? `${metaSectionToggles[k].height}px` : '0px' }}
                   ref={metaSectionToggles[k]?.show ? metaSectionRef : undefined}
+                  aria-label={metaType.title}
                 >
                   {metaSections[k].map(({ id, text }) =>
                     <li key={id} className="structured mid light">

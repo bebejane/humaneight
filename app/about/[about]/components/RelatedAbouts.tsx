@@ -11,6 +11,7 @@ export type Props = {
 
 export default async function RelatedAbouts({ about }: Props) {
 
+  if (!about) return null
 
   const { allAbouts } = await apiQuery<AllAboutsQuery, AllAboutsQueryVariables>(AllAboutsDocument, {
     variables: {
@@ -23,10 +24,10 @@ export default async function RelatedAbouts({ about }: Props) {
   const randomAllAbouts = allAbouts.filter(a => a.id !== about?.id).sort(() => Math.random() - 0.5).slice(0, 4)
 
   return (
-    <section className={s.related}>
-      <header>
-        <h3>More about Humaneight</h3>
-      </header>
+    <section className={s.related} aria-labelledby={`${about.id}-header`}>
+      <div className={s.header}>
+        <h3 id={`${about.id}-header`}>More about Humaneight</h3>
+      </div>
       <ThumbnailContainer className={s.thumbs}>
         {randomAllAbouts.map(a =>
           <AboutThumbnail key={a.id} about={a as AboutRecord} />

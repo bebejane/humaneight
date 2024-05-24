@@ -18,14 +18,11 @@
     top: calc(var(--outer-margin) - 0.2em);
   }
 
-
-
   &.intro {
 
     animation-delay: 0.2s;
 
     a {
-      //transition: color 0.2s ease-out;
       color: var(--white);
 
       &:hover {
@@ -46,14 +43,17 @@
     }
   }
 
-  &:hover {
-    letter-spacing: var(--letter-space);
+  @include mq($from: desktop) {
+    &:hover {
+      letter-spacing: var(--letter-space);
+    }
   }
+
 }
 
 .tagline {
   position: fixed;
-  top: 0; //calc(calc(var(--hero-height) / 2) + var(--navbar-height) - 0.5em);
+  top: 0;
   left: 0;
   width: 100%;
   color: var(--white);

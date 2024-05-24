@@ -146,6 +146,7 @@ fragment ProductFragment on ProductRecord {
 	collection {
 		id
 		title
+		titlePlural
 		slug
 	}
 	defaultColor {

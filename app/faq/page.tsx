@@ -29,15 +29,15 @@ export default async function FaqPage(params: CountryParams) {
 
   return (
     <>
-      <div className={cn("grid", s.container)}>
-        <h1>FAQ</h1>
+      <article className={cn("grid", s.container)}>
+        <h1 id="faq-header">FAQ</h1>
         <ul className={s.faqs}>
           {faqSections.map(section => (
-            <li id={section.slug} key={section.id} className={s.section} >
+            <li id={section.slug} key={section.id} className={s.section} aria-label={section.title}>
               <h3 >
                 <Link href={`/faq#${section.slug}`}>{section.title}</Link>
               </h3>
-              <ul className="structured">
+              <ul className="structured" aria-label="Questions">
                 {section.faqs.map(faq =>
                   <FaqItem key={faq.id} faq={faq} />
                 )}
@@ -46,7 +46,7 @@ export default async function FaqPage(params: CountryParams) {
           ))}
         </ul>
         <Help />
-      </div>
+      </article>
       <DraftMode url={draftUrl} tag={['faq', 'faq_section']} />
     </>
   )

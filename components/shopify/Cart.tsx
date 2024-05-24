@@ -58,12 +58,12 @@ export default function Cart({ localization }: CartProps) {
   if (!showCart) {
     return (
       <div className={s.miniCart}>
-        <button className={cn(!isEmpty && s.inverted, loading && s.loading)} onClick={() => setShowCart(true)}>
-          <div className={s.icon} >
-            <img src={`/images/cart${!isEmpty ? '_inverted' : ''}.svg`} alt="Cart" />
+        <button aria-label="Open cart" className={cn(!isEmpty && s.inverted, loading && s.loading)} onClick={() => setShowCart(true)}>
+          <div className={s.icon}>
+            <img src={`/images/cart${!isEmpty ? '_inverted' : ''}.svg`} alt="Open cart" />
             {updating && <Loader loading={true} className={s.loader} invert={!isEmpty} />}
           </div>
-          <div className={s.count}>{!isEmpty && totalItems}</div>
+          <div className={s.count} aria-label={`${totalItems} items in cart`}>{!isEmpty && totalItems}</div>
         </button>
       </div>
     )
@@ -77,7 +77,7 @@ export default function Cart({ localization }: CartProps) {
           <CountrySelector localization={localization} label="Location" className={s.form} />
         </div>
 
-        <button className={s.close} onClick={() => setShowCart(false)} >
+        <button aria-label="Close cart" className={s.close} onClick={() => setShowCart(false)} >
           <img src="/images/close.svg" alt="Close" />
         </button>
 
@@ -88,20 +88,19 @@ export default function Cart({ localization }: CartProps) {
         </div>
         :
         <>
-          <ul className={s.items}>
+          <ul className={s.items} aria-label="Cart items">
             {cart?.lines.edges.map(({ node: { id, quantity, cost, merchandise } }, idx) =>
-              <li key={idx} className={cn(updatingId === id && s.updating)}>
-
+              <li key={idx} className={cn(updatingId === id && s.updating)} aria-labelledby={id}>
                 <figure className={s.thumb}>
                   <Link href={`/products/${merchandise.product.handle}?variant=${parseGid(merchandise.id)}`}>
-                    <img src={merchandise.image?.url} alt={merchandise.image?.altText} />
+                    <img role="icon" src={merchandise.image?.url} alt={merchandise.image?.altText} />
                   </Link>
                 </figure>
 
                 <div className={s.details}>
-                  <div>{merchandise.product.title}</div>
+                  <div id={id}>{merchandise.product.title}</div>
                   <div className="light">{merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
-                  <div>
+                  <div aria-label="Quantity">
                     <button
                       className={s.minus}
                       onClick={() => updateQuantity(id, quantity - 1, country)}
@@ -116,7 +115,7 @@ export default function Cart({ localization }: CartProps) {
                 </div>
 
                 <div className={s.amount}>
-                  <div className={s.price}>
+                  <div className={s.price} aria-label={"Total"}>
                     {formatAmount(merchandise.price.amount)} {cost.totalAmount.currencyCode}
                   </div>
                   <div>

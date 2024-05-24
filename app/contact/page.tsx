@@ -20,7 +20,7 @@ export default async function Contact(params: CountryContactParams) {
 
   return (
     <>
-      <div className="about">
+      <article className="about">
         <div className={s.twoCols}>
           <div className={s.left}>
             <Content content={contact.content} />
@@ -35,7 +35,7 @@ export default async function Contact(params: CountryContactParams) {
           </div>
         </div>
         <FeedbackForm feedback={feedback} />
-      </div>
+      </article>
       <DraftMode url={draftUrl} tag={contact.id} />
     </>
   )

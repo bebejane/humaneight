@@ -52,7 +52,8 @@ h3.veryBig,
 
 .about .very-big {
   margin-bottom: -0.25em !important;
-  & + p {
+
+  &+p {
     margin-top: 2rem !important;
   }
 }
@@ -68,6 +69,7 @@ h2,
 .about h2 {
   margin-bottom: 0.6rem;
   padding-top: 1rem;
+
   @include mq($from: desktop) {
     margin-bottom: 1rem;
   }
@@ -108,9 +110,14 @@ button {
   margin-bottom: 0.5em;
 }
 
-.nav-hover:hover {
-  letter-spacing: var(--letter-space);
+.nav-hover {
+  @include mq($from: desktop) {
+    &:hover {
+      letter-spacing: var(--letter-space);
+    }
+  }
 }
+
 
 .nav-small {
   font-size: calc(var(--nav-size) * 0.8);

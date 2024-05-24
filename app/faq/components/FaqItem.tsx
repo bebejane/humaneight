@@ -24,22 +24,26 @@ export default function FaqItem({ faq }: Props) {
   }, [faq.id]);
 
   return (
-    <li id={faq.id} key={faq.id} className={s.faq}>
+    <li id={faq.id} key={faq.id} className={s.faq} aria-labelledby={`${faq.id}-header`}>
       <a
         className={cn('body', s.question)}
         href={`#${faq.id}`}
+        role="button"
+        aria-controls={`${faq.id}-answer`}
+        aria-expanded={selected}
         onClick={(e) => { setSelected(!selected); e.preventDefault() }}
       >
-        <h3>{faq.question}</h3>
+        <h3 id={`${faq.id}-header`}>{faq.question}</h3>
         <h3 className="symbol">
           {selected ? '-' : '+'}
         </h3>
       </a>
       <div
+        id={`${faq.id}-answer`}
+        role="region"
+        aria-hidden={!selected}
         className={cn(s.answer, selected && s.show, "light")}
-        style={{
-          maxHeight: selected ? `${ref.current?.scrollHeight}px` : '0px',
-        }}
+        style={{ maxHeight: selected ? `${ref.current?.scrollHeight}px` : '0px' }}
         ref={ref}
       >
         <Content content={faq.answer} />

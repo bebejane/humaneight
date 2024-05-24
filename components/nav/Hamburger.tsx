@@ -22,7 +22,7 @@ export default function Hamburger({ showMenu, setShowMenu }: Props) {
   }
 
   return (
-    <div className={s.hamburger} onClick={handleClick}>
+    <div role="button" aria-expanded={showMenu} className={s.hamburger} onClick={handleClick}>
       <div className={s.wrap}>
         {new Array(3).fill(0).map((_, i) =>
           <div
