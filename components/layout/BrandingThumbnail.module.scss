@@ -1,7 +1,6 @@
 .thumbnail {
   grid-column: span 4;
   position: relative;
-  border-radius: 50% !important;
 
   &.two {
     grid-column: span 8;
@@ -34,12 +33,13 @@
     //border: var(--outer-margin) solid var(--beige);
     aspect-ratio: 4/5;
     display: flex;
-    background-color: var(--white);
+    background-color: var(--black);
   }
 
-  .picture,
+  picture,
   img {
     object-fit: cover;
+    opacity: 0.9;
   }
 
   h2 {
