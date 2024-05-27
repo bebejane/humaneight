@@ -51,9 +51,9 @@ h3.veryBig,
 }
 
 .about .very-big {
-  margin-bottom: -0.25em !important;
+  margin-bottom: -0.45em !important;
 
-  &+p {
+  & + p {
     margin-top: 2rem !important;
   }
 }
@@ -117,7 +117,6 @@ button {
     }
   }
 }
-
 
 .nav-small {
   font-size: calc(var(--nav-size) * 0.8);
