@@ -15,11 +15,13 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
   return (
     <section id={id} className={s.editorial} aria-labelledby={`${id}-heading`}>
       <div>
-        <h2 id={`${id}-heading`} className="veryBig">{headline}</h2>
-        <p className="">{text}</p>
-        <Link href={`/about/${about.slug}`}>
-          <button className="full">{buttonText}</button>
-        </Link>
+        <article>
+          <h2 id={`${id}-heading`} className="veryBig">{headline}</h2>
+          <p className="">{text}</p>
+          <Link href={`/about/${about.slug}`}>
+            <button className="full">{buttonText}</button>
+          </Link>
+        </article>
       </div>
       <figure>
         {media.responsiveImage &&

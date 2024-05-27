@@ -16,8 +16,13 @@
   > div {
     position: sticky;
     top: var(--navbar-height);
-    //align-self: flex-start;
     background-color: var(--white);
+
+    article {
+      align-self: flex-start;
+      position: sticky;
+      top: calc(var(--outer-margin) + var(--navbar-height));
+    }
 
     @include mq($until: desktop) {
       p {
@@ -34,7 +39,7 @@
 
     button {
       margin-top: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: var(--outer-margin);
 
       @include mq($from: desktop) {
         margin-top: 2.7rem;
