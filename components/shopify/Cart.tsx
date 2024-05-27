@@ -11,6 +11,7 @@ import Link from '@components//nav/Link'
 import { usePathname } from 'next/navigation'
 import { formatPrice } from '@lib/utils'
 import useCountry from '../../shopify/hooks/useCountry'
+import { Checkbox } from 'react-aria-components'
 
 export type CartProps = {
   localization: LocalizationQuery['localization']
@@ -132,6 +133,8 @@ export default function Cart({ localization }: CartProps) {
             </div>
           </div>
           <div className={cn(s.extra, "light")}>Shipping and tax are added at checkout</div>
+          <div className={cn(s.check, "light")}>
+            I accept the terms & conditions and I have read and understood the privacy policy.</div>
           <form action={cart?.checkoutUrl} method="GET">
             <button className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
           </form>

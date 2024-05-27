@@ -57,7 +57,7 @@
     }
 
     &.inverted {
-      .icon>img {
+      .icon > img {
         @include mq($from: desktop) {
           height: 43px;
         }
@@ -241,7 +241,11 @@
     text-align: right;
   }
 
-  >form {
+  .check {
+    padding-bottom: 1em;
+  }
+
+  > form {
     display: flex;
     align-items: flex-end;
 
@@ -267,7 +271,6 @@
 }
 
 .close {
-
   all: unset;
   position: fixed;
   z-index: 10000000;
@@ -278,5 +281,4 @@
   cursor: pointer;
   width: 1rem;
   line-height: 0;
-
 }
