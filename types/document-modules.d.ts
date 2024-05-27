@@ -127,6 +127,15 @@ declare module '*/MediaFragment.gql' {
 }
     
 
+declare module '*/MediaPortraitFragment.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const MediaPortraitFragment: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ResponsiveImageFragment.gql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

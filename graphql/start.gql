@@ -8,8 +8,14 @@ query Start {
 				media {
 					...MediaFragment
 				}
+				mediaMobile: media {
+					...MediaPortraitFragment
+				}
 				altMedia {
 					...MediaFragment
+				}
+				altMediaMobile: altMedia {
+					...MediaPortraitFragment
 				}
 			}
 			... on StartProductBlockRecord {

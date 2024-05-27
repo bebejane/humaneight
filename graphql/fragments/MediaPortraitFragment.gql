@@ -1,4 +1,4 @@
-fragment MediaFragment on FileField {
+fragment MediaPortraitFragment on FileField {
 	id
 	alt
 	basename
@@ -9,7 +9,7 @@ fragment MediaFragment on FileField {
 	url
 	width
 	height
-	responsiveImage(imgixParams: { auto: format, fit: crop, crop: focalpoint }) {
+	responsiveImage(imgixParams: { ar: "1:2", auto: format, fit: crop, crop: focalpoint }) {
 		...ResponsiveImageFragment
 	}
 	video {

@@ -49,6 +49,11 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
   const sizeOptions = shopifyProduct?.variants.edges.map(({ node }) => optionValue(node.selectedOptions, 'Size')).reduce<string[]>((acc, val) => val === null ? acc : acc.includes(val) ? acc : [...acc, val], [])
   const colorOptions = shopifyProduct?.variants.edges.map(({ node }) => optionValue(node.selectedOptions, 'Color')).reduce<string[]>((acc, val) => val === null ? acc : acc.includes(val) ? acc : [...acc, val], [])
 
+  const handleColorChange = (value: Key) => {
+    handleVariantChange(value)
+    setTimeout(() => window.scrollTo({ top: 0 }), 100)
+  }
+
   const handleVariantChange = (value: Key) => setSearchParam('variant', value.toString())
 
   useEffect(() => {
@@ -74,7 +79,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
     <form id="product-variant-form" className={cn(s.form, className, isMobileHidden && s.hidden)} ref={formRef} style={formStyles}>
       {haveColors && isDesktop &&
         <div>
-          <RadioGroup aria-label="Colors" onChange={handleVariantChange} className={s.colorsDesktop} key={variant.id}>
+          <RadioGroup aria-label="Colors" onChange={handleColorChange} className={s.colorsDesktop} key={variant.id}>
             {colorOptions?.map((c, idx) => {
               const color = shopifyProduct?.variants.edges.find(({ node }) => optionValue(node.selectedOptions, 'Color') === c)?.node
               const v = availableColors.find(v => optionValue(v.selectedOptions, 'Color') === c)
@@ -108,7 +113,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
           <Select
             key={variant.id}
             className={s.colors}
-            onSelectionChange={handleVariantChange}
+            onSelectionChange={handleColorChange}
             onOpenChange={(o) => setColorsOpen(o)}
             aria-label={'Colors'}
           >
@@ -129,7 +134,6 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
                   name: v.selectedOptions.find(opt => opt.name === 'Color')?.value
                 }))}
                 style={{ width: colorSelectWidth }}
-
               >
                 {availableColors.map((v, idx) => {
                   const option = v.selectedOptions.find(opt => opt.name === 'Color')

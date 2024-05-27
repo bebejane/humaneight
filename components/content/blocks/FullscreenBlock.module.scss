@@ -3,6 +3,18 @@
   flex-direction: row;
   margin-bottom: var(--space);
 
+  .desktop {
+    @include mq($until: desktop) {
+      display: none;
+    }
+  }
+
+  .mobile {
+    @include mq($from: desktop) {
+      display: none;
+    }
+  }
+
   figure {
 
     .image {
