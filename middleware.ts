@@ -5,6 +5,8 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const acceptLanguage = request.headers.get('accept-language')
 
+  console.log(request.geo?.country)
+
   if (pathname === '/') {
     const country = acceptLanguage?.split(',')[0].split('-')[1]?.toLowerCase()
 
