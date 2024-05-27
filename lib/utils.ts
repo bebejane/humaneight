@@ -31,3 +31,7 @@ export function getProductColorVariants(product: ProductRecord) {
     return acc
   }, []) as { color: string, variant: any }[]
 }
+
+export const formatPrice = (amount: number) => {
+  return !amount ? '' : (Math.round(amount * 100) / 100).toFixed(0);
+}

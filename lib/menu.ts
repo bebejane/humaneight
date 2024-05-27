@@ -79,8 +79,8 @@ export const buildMenu = async (): Promise<Menu> => {
     title: 'Social',
     sub: [
       { id: 'instagram', title: 'Instagram', href: general?.instagram, localized: false },
-      { id: 'facebook', title: 'Facebook', href: general?.facebook, localized: false },
-      { id: 'twitter', title: 'Twitter', href: general?.twitter, localized: false },
+      { id: 'tiktok', title: 'Facebook', href: general?.tiktok, localized: false },
+      { id: 'pinterest', title: 'Pinterest', href: general?.pinterest, localized: false },
       { id: 'newsletter', title: 'Newsletter', href: '#newsletter', localized: false, footer: true },
       { id: 'contact', title: 'Contact', slug: '/contact', image: contact?.image as FileFieldInterface ?? null, localized: false, footer: true }
     ]
