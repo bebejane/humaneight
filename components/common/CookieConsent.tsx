@@ -68,7 +68,7 @@ export default function CookieConsent() {
   }, [show])
 
   if (show === false) {
-    const allowGoogleAnalytics = scopes.find(s => s.id === 'marketing' && s.selected) !== undefined && show === false;
+    const allowGoogleAnalytics = scopes.find(s => s.id === 'performance' && s.selected) !== undefined && show === false;
     return (
       <>
         {allowGoogleAnalytics &&
