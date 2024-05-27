@@ -35,9 +35,11 @@
       a {
         color: var(--black);
 
-        &:hover {
-          color: var(--black);
-          letter-spacing: var(--letter-space);
+        @include mq($from: desktop) {
+          &:hover {
+            color: var(--black);
+            letter-spacing: var(--letter-space);
+          }
         }
       }
     }
