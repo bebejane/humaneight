@@ -3,7 +3,7 @@
   background-color: var(--gray);
   padding: calc(2 * var(--gutter));
   margin-top: var(--space-big);
-  grid-row-gap: 0;
+  grid-row-gap: 0 !important;
 
   @include mq($until: desktop) {
     display: block;
