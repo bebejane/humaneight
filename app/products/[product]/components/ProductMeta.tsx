@@ -4,6 +4,7 @@ import s from './ProductMeta.module.scss'
 import cn from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 import Content from '@components/content/Content'
+import { useWindowSize } from 'react-use'
 
 export type Props = {
   product: ProductByIdQuery['product']
@@ -15,6 +16,7 @@ export default function ProductMeta({ product }: Props) {
   const defaultMetaSectionToggles = Object.keys(metaSections).reduce((acc, k) => ({ ...acc, [k]: { show: false, height: 0 } }), {})
   const [metaSectionToggles, setMetaSectionToggles] = useState<{ [key: string]: { show: boolean, height?: number } }>(defaultMetaSectionToggles)
   const metaSectionRef = useRef<HTMLUListElement>(null);
+  const { width, height } = useWindowSize()
 
   useEffect(() => {
     const hashChange = () => {
@@ -32,7 +34,7 @@ export default function ProductMeta({ product }: Props) {
       toggles[k].height = document.getElementById(`list-${k}`)?.scrollHeight ?? 0
     )
     setMetaSectionToggles(toggles)
-  }, [])
+  }, [width, height])
 
   if (!metaSections) return null
 
