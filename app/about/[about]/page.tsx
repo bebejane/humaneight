@@ -4,6 +4,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { notFound } from 'next/navigation';
 import { Block, DraftMode } from 'next-dato-utils/components'
 
+import AboutFeedbackFormBlock from './components/AboutFeedbackFormBlock';
 import AboutTwoColumnBlock from "./components/AboutTwoColumnBlock"
 import AboutThreeColumnBlock from "./components/AboutThreeColumnBlock"
 import AboutTextBlock from './components/AboutTextBlock';
@@ -33,6 +34,7 @@ export default async function About({ params }: AboutParams) {
             key={i}
             data={section}
             components={{
+              AboutFeedbackFormBlock,
               AboutTwoColumnBlock,
               AboutThreeColumnBlock,
               AboutTextBlock,

@@ -93,6 +93,9 @@ fragment AboutFragment on AboutRecord {
 				...MediaFragment
 			}
 		}
+		... on AboutFeedbackFormBlockRecord {
+			id
+		}
 	}
 	content {
 		blocks

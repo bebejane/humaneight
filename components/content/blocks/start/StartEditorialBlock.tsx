@@ -1,9 +1,10 @@
 
 import s from './StartEditorialBlock.module.scss'
+import cn from 'classnames'
 import { Image } from 'react-datocms'
 import Link from '@components//nav/Link'
 import LottieAnimation from '@components/common/LottieAnimation'
-
+import { VideoPlayer } from 'next-dato-utils/components'
 
 type Props = {
   data: StartEditorialBlockRecord
@@ -29,20 +30,15 @@ export default async function StartEditorialBlock({ data: { id, text, buttonText
             intersectionMargin={`0px 0px 100% 0px`}
           />
         }
+        {media?.video &&
+          <VideoPlayer
+            data={media}
+            className={cn(s.video, s.image)}
+          />
+        }
         {lottieAnimation?.url &&
           <LottieAnimation url={lottieAnimation.url} className={s.animation} />
         }
-        {/*mediaOnTop?.video &&
-          <video
-            //@ts-ignore
-            src={mediaOnTop.video.mp4high}
-            className={cn(s.video, s.image)}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-      */}
       </figure>
     </section>
   )
