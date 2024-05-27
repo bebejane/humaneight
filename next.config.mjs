@@ -20,7 +20,6 @@ const nextConfig = {
 	experimental: {
 		ppr: false,
 	},
-
 	async headers() {
 		return [
 			{

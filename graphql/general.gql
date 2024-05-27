@@ -2,9 +2,9 @@ query General {
 	general {
 		id
 		eMail
-		facebook
+		tiktok
 		instagram
-		twitter
+		pinterest
 		claims {
 			id
 			text

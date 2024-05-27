@@ -9,6 +9,7 @@ import CountrySelector from './CountrySelector'
 import Loader from '@components/common/Loader'
 import Link from '@components//nav/Link'
 import { usePathname } from 'next/navigation'
+import { formatPrice } from '@lib/utils'
 import useCountry from '../../shopify/hooks/useCountry'
 
 export type CartProps = {
@@ -35,10 +36,6 @@ export default function Cart({ localization }: CartProps) {
   const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true
   const loading = !cart || updating
   const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0)
-
-  const formatAmount = (amount: number) => {
-    return !amount ? '' : (Math.round(amount * 100) / 100).toFixed(2);
-  }
 
   useEffect(() => {
     if (!cart)
@@ -116,7 +113,7 @@ export default function Cart({ localization }: CartProps) {
 
                 <div className={s.amount}>
                   <div className={s.price} aria-label={"Total"}>
-                    {formatAmount(merchandise.price.amount)} {cost.totalAmount.currencyCode}
+                    {formatPrice(merchandise.price.amount)} {cost.totalAmount.currencyCode}
                   </div>
                   <div>
                     <button className={cn(s.remove, "light")} onClick={() => removeFromCart(id)}>
@@ -131,7 +128,7 @@ export default function Cart({ localization }: CartProps) {
           <div className={s.total}>
             <div>Total</div>
             <div className={s.price}>
-              {formatAmount(cart?.cost.totalAmount.amount)} {cart?.cost.totalAmount.currencyCode}
+              {formatPrice(cart?.cost.totalAmount.amount)} {cart?.cost.totalAmount.currencyCode}
             </div>
           </div>
           <div className={cn(s.extra, "light")}>Shipping and tax are added at checkout</div>

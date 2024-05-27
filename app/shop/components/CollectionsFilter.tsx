@@ -81,13 +81,19 @@ export default function CollectionsFilter({ tags, collectionId, allCollections, 
       </nav>
 
       <nav className={cn(s.subFilter, 'mid')}>
-        {tags?.sort((a, b) => tagSortOrder.findIndex(t => t === a) > tagSortOrder.findIndex(t => t === b) ? 1 : -1).map((t, i) => (
-          <li key={i} className={cn(tag === t && s.selected)}>
-            <Link href={`/shop/${collectionSlug}/${t}`}>
-              {t}
-            </Link>
-          </li>
-        ))}
+        {tags?.sort((a, b) => tagSortOrder.findIndex(t => t === a) > tagSortOrder.findIndex(t => t === b) ? 1 : -1).map((t, i) => {
+
+          const isShopHome = collectionSlug === 'all' && t === 'all'
+          const href = `/shop/${isShopHome ? '' : `${collectionSlug}/${t}`}`
+
+          return (
+            <li key={i} className={cn(tag === t && s.selected)}>
+              <Link href={href}>
+                {t}
+              </Link>
+            </li>
+          )
+        })}
       </nav>
     </>
   )

@@ -46,8 +46,8 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 	}
 	general {
 		instagram
-		facebook
-		twitter
+		tiktok
+		pinterest
 	}
 	contact {
 		title
