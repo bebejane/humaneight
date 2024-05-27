@@ -57,7 +57,7 @@
     }
 
     &.inverted {
-      .icon > img {
+      .icon>img {
         @include mq($from: desktop) {
           height: 43px;
         }
@@ -245,8 +245,9 @@
     padding-bottom: 1em;
   }
 
-  > form {
+  >form {
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
 
     button.checkout {
@@ -254,6 +255,11 @@
       width: 100%;
       background-color: var(--black) !important;
       color: var(--white);
+
+      &[disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+      }
     }
   }
 }

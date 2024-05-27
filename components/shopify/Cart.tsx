@@ -37,6 +37,7 @@ export default function Cart({ localization }: CartProps) {
   const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true
   const loading = !cart || updating
   const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0)
+  const [terms, setTerms] = useState(false)
 
   useEffect(() => {
     if (!cart)
@@ -133,15 +134,18 @@ export default function Cart({ localization }: CartProps) {
             </div>
           </div>
           <div className={cn(s.extra, "light")}>Shipping and tax are added at checkout</div>
-          <div className={cn(s.check, "light")}>
-            I accept the terms & conditions and I have read and understood the privacy policy.</div>
+
           <form action={cart?.checkoutUrl} method="GET">
-            <button className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
+            <div className={cn(s.check, "light")}>
+              <input type="checkbox" name="terms" required onChange={(e) => setTerms(e.target.checked)} />
+              &nbsp;I accept the terms & conditions and I have read and understood the privacy policy.
+            </div>
+            <button disabled={!terms} className={cn(s.checkout, 'full')} type="submit">Checkout & pay</button>
           </form>
         </>
       }
       {error && <div className={s.error}>{error}</div>}
       {cartError && <div className={s.error}>{cartError}</div>}
-    </div>
+    </div >
   )
 }
