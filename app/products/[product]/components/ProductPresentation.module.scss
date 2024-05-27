@@ -18,6 +18,7 @@
       width: 100%;
       flex: 1 1 100%;
       cursor: pointer;
+      background-color: var(--gray-image); //Temp!
 
       .image {
         width: 100%;
@@ -25,7 +26,6 @@
 
       &.double {
         flex: 0 0 calc(50% - (var(--gutter) / 2));
-        background-color: var(--gray-image); //Temp!
 
         div {
           aspect-ratio: 4/5;
