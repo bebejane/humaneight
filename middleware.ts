@@ -6,8 +6,8 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (pathname === '/') {
-    const country = request.geo?.country
-    const available = localization.availableCountries.find((c) => c.isoCode.toLowerCase() === country?.toLowerCase()) !== undefined
+    const country = request.geo?.country?.toLowerCase()
+    const available = localization.availableCountries.find((c) => c.isoCode.toLowerCase() === country) !== undefined
 
     if (available && country !== defaultCountry.toLowerCase()) {
       request.nextUrl.pathname = `/${country}`
