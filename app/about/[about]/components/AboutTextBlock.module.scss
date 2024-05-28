@@ -14,6 +14,7 @@
 
   .content {
     grid-column: span 12;
+
     @include mq($from: desktop) {
       grid-column-start: 3;
       grid-column-end: 11;
@@ -28,7 +29,18 @@
 
   .scroll {
     position: absolute;
+    opacity: 0;
     bottom: calc(2 * var(--outer-margin));
     right: calc(2 * var(--outer-margin));
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+
+    &.visible {
+      opacity: 1;
+    }
+
+    @include mq($until: desktop) {
+      display: none;
+    }
   }
 }
