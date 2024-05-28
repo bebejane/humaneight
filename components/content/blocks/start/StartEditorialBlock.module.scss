@@ -39,9 +39,10 @@
 
     button {
       margin-top: 1rem;
-      margin-bottom: var(--outer-margin);
+      margin-bottom: 1.4rem;
 
       @include mq($from: desktop) {
+        margin-bottom: var(--outer-margin);
         margin-top: 2.7rem;
         align-self: flex-end;
       }
