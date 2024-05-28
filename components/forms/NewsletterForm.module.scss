@@ -1,6 +1,37 @@
 .form {
   position: relative;
 
+  .agree {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+
+    .desktop,
+    .mobile {
+      display: none;
+    }
+
+    .desktop {
+      @include mq($from: desktop) {
+        display: inline;
+      }
+    }
+
+    .mobile {
+      @include mq($until: desktop) {
+        display: inline;
+      }
+    }
+
+    input {
+      width: 0.8rem;
+      min-width: 0.8rem;
+      margin-right: 0.5rem;
+    }
+  }
+
   .error {
     position: absolute;
     top: 1.5rem;

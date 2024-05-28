@@ -10,32 +10,65 @@
 
   @include mq($from: desktop) {
     padding: var(--space);
-
     flex-direction: row;
+    align-items: flex-end;
   }
 
   @include mq($from: desktop) {
-    h3,
+    h2,
     form {
+      width: calc(50% - (0.5 * var(--gutter)));
       max-width: calc(50% - (0.5 * var(--gutter)));
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      padding-right: 1em;
     }
   }
 
-  h3 {
+  h2 {
     @include mq($until: tablet) {
-      padding-bottom: 1rem;
+      //padding-bottom: 1rem;
     }
   }
 
   .form {
     flex: 1 1;
     display: flex;
-    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
     width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+
+    @include mq($from: desktop) {
+      margin-bottom: 1rem;
+    }
 
     input {
       flex: 1 1 auto;
       padding: 0.8rem;
+      width: 70%;
+
+      @include mq($until: wide) {
+        width: 100%;
+      }
+
+      @include mq($from: desktop) {
+        padding: 1rem;
+      }
+    }
+  }
+
+  button {
+    background-color: var(--gray-dark);
+    padding: 1rem;
+
+    @include mq($until: newsletter) {
+      margin-top: 0.5rem;
+      padding: 1rem;
+
+      width: 100%;
     }
   }
 }

@@ -51,7 +51,7 @@
     }
 
     @include mq($until: desktop) {
-      width: 80%;
+      width: calc(100% - (4 * var(--outer-margin)));
       padding-top: 2.5rem;
 
       input {

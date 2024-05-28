@@ -37,10 +37,12 @@ export default function NewsletterForm({ className }: Props) {
         <p className={cn(s.success, "success small")}>Thank you for subscribing!</p>
         :
         <form action={formAction} className={cn(s.form, className)}>
+          <div className={s.agree}>
+            <input type="checkbox" /> I have read <span className={s.mobile}>&nbsp;&&nbsp;</span> <span className={s.desktop}>&nbsp;and&nbsp;</span> understood the privacy policy</div>
           <input name="email" type="email" placeholder="Your email" required={true} aria-errormessage="newsletter-error" />
           {error && <p id="newsletter-error" className={cn(s.error, "error small")}>{error}</p>}
           <SubmitButton label="Subscribe" loading="Subscribing..." />
-        </form>
+        </form >
       }
     </>
   )
