@@ -12,6 +12,7 @@ export default function AboutTextBlock({ data: { id, text, layout } }: Props) {
     <section className={cn(s.section, layout && s[layout], "structured grid")}>
       <div className={s.content}>
         <Content className="big" content={text} />
+        <div className={cn("mid", s.scroll)}>Scroll down</div>
       </div>
     </section>
   )

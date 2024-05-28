@@ -57,7 +57,7 @@
     }
 
     &.inverted {
-      .icon>img {
+      .icon > img {
         @include mq($from: desktop) {
           height: 43px;
         }
@@ -242,10 +242,27 @@
   }
 
   .check {
+    display: flex;
     padding-bottom: 1em;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+    a {
+      border-bottom: 1px solid var(--black);
+    }
+
+    input {
+      margin-right: 0.8rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      line-height: 1;
+      //margin-top: -0.25em;
+    }
   }
 
-  >form {
+  > form {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -280,7 +297,7 @@
   all: unset;
   position: fixed;
   z-index: 10000000;
-  top: 0;
+  top: 0.15rem;
   right: 0;
   margin: var(--outer-margin);
   pointer-events: all;

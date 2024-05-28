@@ -25,4 +25,10 @@
       }
     }
   }
+
+  .scroll {
+    position: absolute;
+    bottom: calc(2 * var(--outer-margin));
+    right: calc(2 * var(--outer-margin));
+  }
 }
