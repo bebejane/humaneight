@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { defaultCountry } from "./lib/constants";
+import localization from './localization.json'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const acceptLanguage = request.headers.get('accept-language')
 
   if (pathname === '/') {
-    const country = acceptLanguage?.split(',')[0].split('-')[1]?.toLowerCase()
+    const country = request.geo?.country?.toLowerCase()
+    const available = localization.availableCountries.find((c) => c.isoCode.toLowerCase() === country) !== undefined
 
-    if (country !== defaultCountry.toLowerCase()) {
+    if (available && country !== defaultCountry.toLowerCase()) {
       request.nextUrl.pathname = `/${country}`
       return NextResponse.redirect(request.nextUrl)
     }
