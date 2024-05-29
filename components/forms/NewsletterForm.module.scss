@@ -29,6 +29,10 @@
       width: 0.8rem;
       min-width: 0.8rem;
       margin-right: 0.5rem;
+
+      @include mq($until: tablet) {
+        width: 10px;
+      }
     }
   }
 
@@ -41,7 +45,7 @@
     padding-top: 0.8re;
   }
 
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
   }
