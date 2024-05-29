@@ -15,7 +15,6 @@
   }
 
   @include mq($from: desktop) {
-
     h2,
     form {
       width: calc(50% - (0.5 * var(--gutter)));
@@ -65,6 +64,7 @@
   button {
     background-color: var(--gray-dark);
     padding: 1rem;
+    color: var(--white);
 
     @include mq($until: newsletter) {
       margin-top: 0.5rem;
