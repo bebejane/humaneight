@@ -1,0 +1,43 @@
+query Sitemap($first: IntType = 0, $skip: IntType = 0) {
+	allCollections(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allCollectionsMeta {
+		count
+	}
+
+	allAbouts(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allAboutsMeta {
+		count
+	}
+	allLegals(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+	_allLegalsMeta {
+		count
+	}
+	allProducts(filter: { shopifyProduct: { exists: true } }, first: $first, skip: $skip) {
+		id
+		title
+		shopifyProduct {
+			id
+			handle
+		}
+	}
+	_allProductsMeta(filter: { shopifyProduct: { exists: true } }) {
+		count
+	}
+	allCollections(first: $first, skip: $skip) {
+		id
+		title
+		slug
+	}
+}

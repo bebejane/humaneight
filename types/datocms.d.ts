@@ -5762,6 +5762,14 @@ type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: an
 
 type ShopifyProductFragment = { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
 
+type SitemapQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['IntType']['input']>;
+  skip?: InputMaybe<Scalars['IntType']['input']>;
+}>;
+
+
+type SitemapQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, slug: string }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any }, allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, handle: string } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+
 type StartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
