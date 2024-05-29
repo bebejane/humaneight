@@ -55,7 +55,7 @@ export default async function Shop({ params }: CountryShopParams) {
           {filteredProducts?.map((product, i) => {
 
             const productColorVariants = getProductColorVariants(product as ProductRecord)
-            const thumbnails = all ? [{ product }] : productColorVariants.map(({ color, variant }) => ({ product, color, variant })) as any[]
+            const thumbnails = productColorVariants.map(({ color, variant }) => ({ product, color, variant })) as any[]
 
             return thumbnails?.map(({ product, color, variant }, i) =>
               <React.Fragment key={i}>
