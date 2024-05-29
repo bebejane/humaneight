@@ -61,6 +61,7 @@ export default function ProductPresentation({ product, shopifyProduct }: Variant
                         key={id}
                         className={s.image}
                         pictureClassName={s.picture}
+                        intersectionMargin={'0px 0px 100% 0px'}
                         data={{ ...responsiveImage, alt }}
                       />
                     }

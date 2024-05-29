@@ -6,7 +6,7 @@ export type Props = {
   className?: string
 }
 
-export default function Newsletter({ className }: Props) {
+export default function NewsletterSection({ className }: Props) {
 
   return (
     <section className={cn(s.newsletterSection, className)} aria-labelledby="newsletter-section-header">

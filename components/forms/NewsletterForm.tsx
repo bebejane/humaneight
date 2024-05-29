@@ -38,7 +38,11 @@ export default function NewsletterForm({ className }: Props) {
         :
         <form action={formAction} className={cn(s.form, className)}>
           <div className={s.agree}>
-            <input type="checkbox" required={true} /><div>I have read <span className={s.mobile}>&nbsp;&&nbsp;</span> <span className={s.desktop}>&nbsp;and&nbsp;</span> understood the privacy policy</div></div>
+            <input type="checkbox" required={true} />
+            <div>
+              I have read <span className={s.mobile}>&nbsp;&&nbsp;</span> <span className={s.desktop}>&nbsp;and&nbsp;</span> understood the privacy policy
+            </div>
+          </div>
           <input name="email" type="email" placeholder="Your email" required={true} aria-errormessage="newsletter-error" />
 
           <SubmitButton label="Subscribe" loading="Subscribing..." />
