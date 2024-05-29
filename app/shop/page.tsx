@@ -29,7 +29,7 @@ export default async function Shop({ params }: CountryShopParams) {
   const tag = params?.tag ?? 'all'
 
   const { allProducts, allProductBrandings, allCollections } = await getPageData(all, collection?.id)
-  const filteredProducts = allProducts?.filter(product => !tag || tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(tag)).sort(sortByTag)
+  const filteredProducts = allProducts?.filter(product => !tag || tag === 'all' || product?.shopifyProduct?.tags?.split(',').includes(tag)).sort(sortByTag).sort(sortByCollectionOrder)
   const totalVariantsCount = filteredProducts?.reduce((acc, product) => acc + getProductColorVariants(product as ProductRecord).length, 0) + filteredProducts?.length
   const brandingInterval = 5
   const brandings = generateRandomBranding<AllProductBrandingQuery['allProductBrandings'][0]>(Math.ceil(totalVariantsCount / brandingInterval), allProductBrandings)
@@ -87,7 +87,11 @@ function sortByTag(a: AllProductByCollectionQuery['allProducts'][0], b: AllProdu
   const bTags = b?.shopifyProduct?.tags?.split(',') ?? []
   const aTag = tags.findIndex(tag => aTags.includes(tag))
   const bTag = tags.findIndex(tag => bTags.includes(tag))
-  return aTag - bTag
+  return aTag > bTag ? -1 : 1
+}
+
+function sortByCollectionOrder(a: AllProductByCollectionQuery['allProducts'][0], b: AllProductByCollectionQuery['allProducts'][0]) {
+  return a.collection?.position > b.collection?.position ? 1 : -1
 }
 
 async function getPageData(all: boolean, collectionId?: string) {
