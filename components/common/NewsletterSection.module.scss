@@ -15,12 +15,14 @@
   }
 
   @include mq($from: desktop) {
+
     h2,
     form {
       width: calc(50% - (0.5 * var(--gutter)));
       max-width: calc(50% - (0.5 * var(--gutter)));
       margin-bottom: 0.5rem;
     }
+
     h2 {
       padding-right: 1em;
     }

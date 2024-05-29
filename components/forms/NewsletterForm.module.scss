@@ -4,6 +4,7 @@
   .agree {
     display: flex;
     flex-direction: row;
+
     margin-bottom: 1rem;
     justify-content: flex-start;
     align-items: center;
@@ -26,6 +27,7 @@
     }
 
     input {
+      flex: 0 0 !important;
       width: 0.8rem;
       min-width: 0.8rem;
       margin-right: 0.5rem;
