@@ -67,6 +67,15 @@ body {
 	padding-top: var(--navbar-height);
 }
 
+body.maintenance {
+	padding-top: 0;
+
+	main {
+		margin: 0;
+	}
+}
+
+
 ::-webkit-scrollbar {
 	-webkit-appearance: none;
 	background: var(--gray);
@@ -166,11 +175,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {

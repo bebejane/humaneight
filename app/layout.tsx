@@ -11,12 +11,15 @@ import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument } from '@shopify/graphql';
+import MaintainanceLayout from './maintenance';
 
 export type LayoutProps = {
   children: React.ReactNode
 }
 
 export default async function RootLayout({ children }: LayoutProps) {
+
+  //return MaintainanceLayout({ children });
 
   const [menu, { localization }, { allProducts }, { general }] = await Promise.all([
     buildMenu(),
