@@ -2,6 +2,7 @@
 
 import { apiQuery } from 'next-dato-utils/api'
 import { FeedbackDocument } from '@graphql'
+import { sendPostmarkEmail } from 'next-dato-utils/utils'
 import { ZodError, z } from 'zod'
 
 export default async function addFeedback(prevState: any, formData: FormData): Promise<{ success: boolean, error?: string }> {
@@ -9,6 +10,7 @@ export default async function addFeedback(prevState: any, formData: FormData): P
   try {
 
     const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument, { revalidate: 0 })
+
 
     const feedbackData: { [key: string]: string } = {}
 
@@ -20,6 +22,16 @@ export default async function addFeedback(prevState: any, formData: FormData): P
         throw new Error(`Please answer the question: ${headline}`)
       else
         console.log(`Question ${headline} answered: ${feedbackData[id]}`)
+    })
+    const data = {
+      questions: feedback?.questions.map(({ id, headline }) => ({ question: headline, answer: feedbackData[id] }))
+    }
+
+    console.log(data)
+    await sendPostmarkEmail({
+      subject: 'New feedback received',
+      template: 'feedback-form',
+      templateData: data
     })
 
     return { success: true }
