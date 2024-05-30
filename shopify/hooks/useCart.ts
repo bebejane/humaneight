@@ -34,6 +34,7 @@ const useCart = create<CartState>((set, get) => ({
   country: 'SE',
   createCart: async (country: string) => {
     const id = getCookie('cart')
+    console.log(id)
     let cart = null;
 
     if (id) {
