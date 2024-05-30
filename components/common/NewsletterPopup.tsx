@@ -23,6 +23,7 @@ export default function NewsletterPopup({ show: _show, onClose }: Props) {
   }
 
   useEffect(() => {
+    return
     if (localStorage.getItem('newsletter_subscribed') || localStorage.getItem('newsletter_closed'))
       return setShow(false)
 

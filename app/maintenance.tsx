@@ -1,4 +1,4 @@
-import '@styles/index.scss'
+import s from './maintenance.module.scss'
 import { apiQuery } from 'next-dato-utils/api';
 import { GlobalDocument, } from '@graphql';
 import { Metadata } from 'next';
@@ -14,7 +14,7 @@ export default async function MaintainanceLayout({ children }: LayoutProps) {
     <>
       <html lang="en">
         <body id="root" className={'maintenance'}>
-          <main >
+          <main className={s.main}>
             Maintainance
           </main>
         </body>
