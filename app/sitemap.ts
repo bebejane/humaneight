@@ -67,6 +67,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     })),
   ]
-  console.log(routes)
   return routes as MetadataRoute.Sitemap
 }
