@@ -44,6 +44,7 @@ export default function FeedbackForm({ feedback }: Props) {
 
   }, [state])
 
+  console.log(state)
   if (!feedback) return null
 
   return (
@@ -87,12 +88,13 @@ export default function FeedbackForm({ feedback }: Props) {
           </React.Fragment>
         )}
         <SubmitButton label="Send" loading="Sending..." />
-        {success &&
-          <div className={cn(s.success, "small")}>
-            <p className={s.message}>Thank you for your feedback!</p>
-          </div>
-        }
+
       </form>
+      {success &&
+        <div className={cn(s.success, "small")}>
+          <p className={s.message}>Thank you for your message!</p>
+        </div>
+      }
       {state.error && <p id={`feedback-error`} className={cn(s.error, "error small")}>{state.error}</p>}
     </section>
   )
