@@ -43,7 +43,7 @@ export default function NewsletterForm({ className }: Props) {
               I have read <span className={s.mobile}> &</span> <span className={s.desktop}>and</span> understood the privacy policy
             </div>
           </div>
-          <input name="email" type="email" placeholder="Your email" required={true} aria-errormessage="newsletter-error" />
+          <input name="email" type="email" placeholder="Your e-mail..." required={true} aria-errormessage="newsletter-error" />
 
           <SubmitButton label="Subscribe" loading="Subscribing..." />
           {error &&
