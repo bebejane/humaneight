@@ -75,7 +75,6 @@ body.maintenance {
 	}
 }
 
-
 ::-webkit-scrollbar {
 	-webkit-appearance: none;
 	background: var(--gray);
@@ -175,9 +174,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
@@ -200,7 +201,7 @@ select {
 }
 
 input[type="checkbox"] {
-	accent-color: var(--gray);
+	accent-color: var(--gray-dark);
 }
 
 fieldset {

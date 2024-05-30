@@ -15,7 +15,8 @@ export default async function MaintainanceLayout({ children }: LayoutProps) {
       <html lang="en">
         <body id="root" className={'maintenance'}>
           <main className={s.main}>
-            Maintainance
+            <h1>HUMANEIGHT</h1>
+            <h1>Coming soon.</h1>
           </main>
         </body>
       </html >
