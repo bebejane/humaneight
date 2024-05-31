@@ -225,5 +225,6 @@ fieldset {
 	bottom: calc(var(--outer-margin) - var(--border)) !important;
 	right: calc(var(--outer-margin) - var(--border)) !important;
 	--border: 10px;
+	border-radius: 50%;
 	border: solid var(--border) var(--beige);
 }
