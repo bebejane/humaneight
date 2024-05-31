@@ -222,6 +222,8 @@ fieldset {
 #accessiblyAppWidgetButton {
 	top: auto !important;
 	transform: none !important;
-	bottom: var(--outer-margin) !important;
-	right: var(--outer-margin) !important;
+	bottom: calc(var(--outer-margin) - var(--border)) !important;
+	right: calc(var(--outer-margin) - var(--border)) !important;
+	--border: 10px;
+	border: solid var(--border) var(--beige);
 }
