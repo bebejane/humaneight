@@ -174,9 +174,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
@@ -220,13 +222,15 @@ fieldset {
 #accessiblyAppWidgetButton {
 	top: auto !important;
 	transform: none !important;
-	bottom: calc(var(--outer-margin) - var(--border)) !important;
-	right: calc(var(--outer-margin) - var(--border)) !important;
+	bottom: var(--outer-margin) !important;
+	right: var(--outer-margin) !important;
 	--border: 10px;
 	border-radius: 50%;
 	border: none;
 
 	&.border {
 		border: solid var(--border) var(--beige);
+		bottom: calc(var(--outer-margin) - var(--border)) !important;
+		right: calc(var(--outer-margin) - var(--border)) !important;
 	}
 }
