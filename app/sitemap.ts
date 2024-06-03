@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next'
 import { apiQuery } from 'next-dato-utils/api';
 import { SitemapDocument } from '../graphql';
 import { tags } from '@lib/constants';
-import { tag } from 'type-fest/source/opaque';
 
 const staticRoutes: MetadataRoute.Sitemap = [
   {
@@ -34,6 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     tags: ['product', 'about', 'legal', 'collection', 'shopify_product']
   });
+
   const routes = [
     ...staticRoutes,
     ...allProducts.map(({ shopifyProduct }) => ({
@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1,
-    })).flat()),
+    })).flat()).flat(),
     ...allLegals.map(({ slug }) => ({
       url: `${process.env.NEXT_PUBLIC_SITE_URL}/legal/${slug}`,
       lastModified: new Date(),

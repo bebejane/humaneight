@@ -19,7 +19,7 @@ export type LayoutProps = {
 
 export default async function RootLayout({ children }: LayoutProps) {
 
-  //return MaintainanceLayout({ children });
+  //  return MaintainanceLayout({ children });
 
   const [menu, { localization }, { allProducts }, { general }] = await Promise.all([
     buildMenu(),
