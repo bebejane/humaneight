@@ -71,8 +71,8 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
   }, [width, height, isDesktop])
 
   useEffect(() => {
-    document.getElementById('accessiblyAppWidgetButton')?.classList.add('noborder')
-    return () => document.getElementById('accessiblyAppWidgetButton')?.classList.remove('noborder')
+    document.getElementById('accessiblyAppWidgetButton')?.classList.add('border')
+    return () => document.getElementById('accessiblyAppWidgetButton')?.classList.remove('border')
   }, [isDesktop])
 
   const isHidden = (isDesktop && mobile) || (!isDesktop && !mobile)
