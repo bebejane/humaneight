@@ -174,11 +174,9 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {
-	}
+	@include mq($until: desktop) {}
 
-	@include mq($from: tablet) {
-	}
+	@include mq($from: tablet) {}
 }
 
 hr {
@@ -227,4 +225,8 @@ fieldset {
 	--border: 10px;
 	border-radius: 50%;
 	border: solid var(--border) var(--beige);
+
+	&.noborder {
+		border: none;
+	}
 }
