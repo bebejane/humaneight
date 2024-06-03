@@ -71,6 +71,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
   }, [width, height, isDesktop])
 
   useEffect(() => {
+    if (!isDesktop) return
     document.getElementById('accessiblyAppWidgetButton')?.classList.add('border')
     return () => document.getElementById('accessiblyAppWidgetButton')?.classList.remove('border')
   }, [isDesktop])
