@@ -24,10 +24,22 @@ export default function AddToCartButton({ className, label, merchandiseId, quant
     }
   }
 
+  const handleMouseOver = (e: React.MouseEvent) => {
+    const accessability = document.getElementById('accessiblyAppWidgetButton');
+
+    if (e.type === 'mouseenter') {
+      accessability?.setAttribute('aria-hidden', e.type === 'mouseenter' ? 'true' : 'false')
+      accessability?.style.setProperty('display', e.type === 'mouseenter' ? 'none' : 'block')
+    }
+
+  }
+
   return (
     <button
       className={cn(s.button, className, "full")}
       onClick={handleAddToCart}
+      onMouseEnter={handleMouseOver}
+      onMouseLeave={handleMouseOver}
       disabled={disabled ?? undefined}
       type="button"
     >
