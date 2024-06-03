@@ -224,9 +224,9 @@ fieldset {
 	right: calc(var(--outer-margin) - var(--border)) !important;
 	--border: 10px;
 	border-radius: 50%;
-	border: solid var(--border) var(--beige);
+	border: none;
 
-	&.noborder {
-		border: none;
+	&.border {
+		border: solid var(--border) var(--beige);
 	}
 }
