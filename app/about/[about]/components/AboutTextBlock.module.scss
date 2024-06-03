@@ -30,9 +30,12 @@
   .scroll {
     position: absolute;
     opacity: 0;
-    bottom: calc(2 * var(--outer-margin));
-    right: calc(50vw - (4 * var(--outer-margin)) - (2.5 * var(--gutter)));
+    bottom: calc(1 * var(--outer-margin));
+    right: calc(50vw - (4 * var(--outer-margin)) - (3.7 * var(--gutter)));
     transition: opacity 0.3s ease-in-out;
+    padding: var(--outer-margin);
+    background-color: var(--beige);
+    z-index: 1000;
     cursor: pointer;
 
     &.visible {
