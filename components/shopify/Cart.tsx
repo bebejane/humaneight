@@ -11,7 +11,6 @@ import Link from '@components//nav/Link'
 import { usePathname } from 'next/navigation'
 import { formatPrice } from '@lib/utils'
 import useCountry from '../../shopify/hooks/useCountry'
-import { Checkbox } from 'react-aria-components'
 
 export type CartProps = {
   localization: LocalizationQuery['localization']

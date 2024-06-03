@@ -25,7 +25,7 @@ export type DefaultApiQueryOptions = ApiQueryOptions & {
 
 const defaultOptions: DefaultApiQueryOptions = {
   variables: undefined,
-  revalidate: isInteger(process.env.REVALIDATE_TIME) ? parseInt(process.env.REVALIDATE_TIME as string) : 3600,
+  revalidate: 0,
   tags: undefined,
   logs: false,
   all: false

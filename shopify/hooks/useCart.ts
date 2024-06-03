@@ -34,11 +34,10 @@ const useCart = create<CartState>((set, get) => ({
   country: 'SE',
   createCart: async (country: string) => {
     const id = getCookie('cart')
-    console.log(id)
     let cart = null;
 
     if (id) {
-      cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country })).cart
+      cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country }))?.cart
     }
 
     if (!cart)
