@@ -53,8 +53,8 @@ const useCart = create<CartState>((set, get) => ({
     deleteCookie('cart')
   },
   setCart: async (cart: Cart) => {
-    set((state) => ({ cart }))
     setCookie('cart', cart.id)
+    set((state) => ({ cart }))
     return cart
   },
   addToCart: async (line: CartLineInput, country: string) => {

@@ -3,7 +3,7 @@
 import s from './CollectionsFilter.module.scss'
 import cn from 'classnames'
 import Link from '@components//nav/Link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useOptimistic } from 'react'
 import { useWindowSize, useMedia } from 'react-use'
 import { tags as tagSortOrder } from '@lib/constants'
 import useIsDesktop from '@lib/hooks/useIsDesktop'
@@ -16,10 +16,11 @@ export type Props = {
   tag: string
 }
 
-export default function CollectionsFilter({ tags, collectionId, allCollections, searchParams, tag }: Props) {
+export default function CollectionsFilter({ tags, collectionId: _collectionId, allCollections, searchParams, tag: _tag }: Props) {
 
   if (!allCollections) return null
-
+  const [collectionId, setCollectionId] = useOptimistic<string | null>(_collectionId ?? null)
+  const [tag, setTag] = useOptimistic<string | null>(_tag ?? null)
   const [hoverId, setHoverId] = useState<string | null>(null)
   const [hoverPos, setHoverPos] = useState<{ id: string, left: number, top: number }[] | null>(null)
   const { width, height } = useWindowSize()
@@ -64,6 +65,7 @@ export default function CollectionsFilter({ tags, collectionId, allCollections, 
                 href={`/shop/${slug}`}
                 className={cn(s.title, (isSelected && isDesktop) ? s.hide : isSelected ? s.selected : false)}
                 data-position={idx === 0 ? 'left' : idx === allCollections.length - 1 ? 'right' : 'center'}
+                onClick={() => setCollectionId(id)}
               >{titlePlural}</Link>
               {isDesktop &&
                 <Link
@@ -88,7 +90,7 @@ export default function CollectionsFilter({ tags, collectionId, allCollections, 
 
           return (
             <li key={i} className={cn(tag === t && s.selected)}>
-              <Link href={href}>
+              <Link href={href} onClick={() => setTag(t)}>
                 {t}
               </Link>
             </li>
