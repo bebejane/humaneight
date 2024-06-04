@@ -1,6 +1,7 @@
 import { revalidate } from 'next-dato-utils/route-handlers'
 import { apiQuery } from 'next-dato-utils/api'
 import { ProductByIdDocument } from '@graphql'
+
 export const runtime = "edge"
 export const dynamic = "force-dynamic"
 
@@ -47,6 +48,10 @@ export async function POST(req: Request) {
         break;
       case 'legal':
         paths.push(`/legal/${slug}`)
+        break;
+      case 'site':
+        paths.push(`/`)
+        break;
       default:
         break;
     }
