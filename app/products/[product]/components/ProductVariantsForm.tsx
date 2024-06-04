@@ -76,6 +76,10 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
     return () => document.getElementById('accessiblyAppWidgetButton')?.classList.remove('border')
   }, [isDesktop])
 
+  useEffect(() => {
+    setTimeout(() => window.scrollTo({ top: 0 }), 100)
+  }, [])
+
   const isHidden = (isDesktop && mobile) || (!isDesktop && !mobile)
   const isMobileHidden = !isDesktop && scrolledPosition < 100
 
