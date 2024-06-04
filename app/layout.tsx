@@ -71,7 +71,8 @@ export async function generateMetadata() {
 
   const { site: { globalSeo, faviconMetaTags } } = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument, {
     variables: {},
-    revalidate: 60 * 60
+    revalidate: 60 * 60,
+    tags: ['site']
   });
 
   return {
