@@ -54,26 +54,17 @@ export default async function Product({ params }: CountryProductParams) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-      <Suspense fallback={<Loading />}>
-        <section id="product" className={cn(s.product, "grid")}>
-          <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
-          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
-          <ProductMeta product={product} />
-        </section>
-        <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
-        <RelatedProducts product={product} />
-        <FeedbackForm feedback={feedback} />
-      </Suspense>
+      <section id="product" className={cn(s.product, "grid")}>
+        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+        <ProductInfo product={product} shopifyProduct={shopifyProduct} />
+        <ProductMeta product={product} />
+      </section>
+      <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
+      <RelatedProducts product={product} />
+      <FeedbackForm feedback={feedback} />
       <DraftMode url={draftUrl} tag={product.id} />
     </>
   )
-}
-
-const Loading = () => {
-  return (
-    <div className={s.loading} />
-  )
-
 }
 
 export async function generateStaticParams(params: CountryParams) {
