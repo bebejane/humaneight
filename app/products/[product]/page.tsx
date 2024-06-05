@@ -71,7 +71,7 @@ export default async function Product({ params }: CountryProductParams) {
 
 const Loading = () => {
   return (
-    <div className={s.loading}>Loading...</div>
+    <div className={s.loading} />
   )
 
 }
