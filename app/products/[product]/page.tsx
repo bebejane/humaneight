@@ -54,12 +54,17 @@ export default async function Product({ params }: CountryProductParams) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+
       <section id="product" className={cn(s.product, "grid")}>
-        <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
-        <ProductInfo product={product} shopifyProduct={shopifyProduct} />
+        <Suspense>
+          <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
+        </Suspense>
         <ProductMeta product={product} />
       </section>
-      <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
+      <Suspense>
+        <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
+      </Suspense>
       <RelatedProducts product={product} />
       <FeedbackForm feedback={feedback} />
       <DraftMode url={draftUrl} tag={product.id} />
