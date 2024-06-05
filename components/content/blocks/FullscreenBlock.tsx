@@ -31,8 +31,6 @@ export default function FullscreenBlock({ data: { id, media, altMedia, mediaMobi
               data={m.responsiveImage}
               className={s.image}
               pictureClassName={s.picture}
-              lazyLoad={false}
-              priority={true}
             />
           </figure>
           :
@@ -54,8 +52,8 @@ export default function FullscreenBlock({ data: { id, media, altMedia, mediaMobi
               data={m.responsiveImage}
               className={s.image}
               pictureClassName={s.picture}
-              lazyLoad={false}
-              priority={true}
+            //lazyLoad={false}
+            //priority={true}
             />
           </figure>
           :
