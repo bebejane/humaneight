@@ -56,6 +56,7 @@ export default function ProductThumbnail({ product, color, variantId, index, col
       href={href}
       className={cn(s.thumbnail, s[columns])}
       data-index={index}
+      scroll={true}
     >
       <figure ref={figureRef}>
         {image?.responsiveImage &&

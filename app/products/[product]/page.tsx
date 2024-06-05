@@ -54,7 +54,7 @@ export default async function Product({ params }: CountryProductParams) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-      <Suspense>
+      <Suspense fallback={<Loading />}>
         <section id="product" className={cn(s.product, "grid")}>
           <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
           <ProductInfo product={product} shopifyProduct={shopifyProduct} />
@@ -67,6 +67,13 @@ export default async function Product({ params }: CountryProductParams) {
       <DraftMode url={draftUrl} tag={product.id} />
     </>
   )
+}
+
+const Loading = () => {
+  return (
+    <div className={s.loading}>Loading...</div>
+  )
+
 }
 
 export async function generateStaticParams(params: CountryParams) {
