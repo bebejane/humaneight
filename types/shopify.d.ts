@@ -1319,7 +1319,12 @@ type CartWalletPaymentMethodInput = {
   shopPayWalletContent?: InputMaybe<ShopPayWalletContentInput>;
 };
 
-/** A container for all the information required to checkout items and pay. */
+/**
+ * A container for all the information required to checkout items and pay.
+ *
+ * The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+ *
+ */
 type Checkout = Node & {
   __typename?: 'Checkout';
   /** The gift cards used on the checkout. */
@@ -1417,7 +1422,12 @@ type Checkout = Node & {
 };
 
 
-/** A container for all the information required to checkout items and pay. */
+/**
+ * A container for all the information required to checkout items and pay.
+ *
+ * The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+ *
+ */
 type CheckoutdiscountApplicationsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1427,7 +1437,12 @@ type CheckoutdiscountApplicationsArgs = {
 };
 
 
-/** A container for all the information required to checkout items and pay. */
+/**
+ * A container for all the information required to checkout items and pay.
+ *
+ * The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+ *
+ */
 type CheckoutlineItemsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -3133,7 +3148,10 @@ type Customer = HasMetafields & {
   firstName?: Maybe<Scalars['String']['output']>;
   /** A unique ID for the customer. */
   id: Scalars['ID']['output'];
-  /** The customer's most recently updated, incomplete checkout. */
+  /**
+   * The customer's most recently updated, incomplete checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   lastIncompleteCheckout?: Maybe<Checkout>;
   /** The customer’s last name. */
   lastName?: Maybe<Scalars['String']['output']>;
@@ -4529,7 +4547,7 @@ type MailingAddress = Node & {
   /** The region of the address, such as the province, state, or district. */
   province?: Maybe<Scalars['String']['output']>;
   /**
-   * The two-letter code for the region.
+   * The alphanumeric code for the region.
    *
    * For example, ON.
    *
@@ -5189,41 +5207,95 @@ type Mutation = {
   cartSelectedDeliveryOptionsUpdate?: Maybe<CartSelectedDeliveryOptionsUpdatePayload>;
   /** Submit the cart for checkout completion. */
   cartSubmitForCompletion?: Maybe<CartSubmitForCompletionPayload>;
-  /** Updates the attributes of a checkout if `allowPartialAddresses` is `true`. */
+  /**
+   * Updates the attributes of a checkout if `allowPartialAddresses` is `true`.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutAttributesUpdateV2?: Maybe<CheckoutAttributesUpdateV2Payload>;
-  /** Completes a checkout without providing payment information. You can use this mutation for free items or items whose purchase price is covered by a gift card. */
+  /**
+   * Completes a checkout without providing payment information. You can use this mutation for free items or items whose purchase price is covered by a gift card.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutCompleteFree?: Maybe<CheckoutCompleteFreePayload>;
-  /** Completes a checkout using a credit card token from Shopify's card vault. Before you can complete checkouts using CheckoutCompleteWithCreditCardV2, you need to  [_request payment processing_](https://shopify.dev/apps/channels/getting-started#request-payment-processing). */
+  /**
+   * Completes a checkout using a credit card token from Shopify's card vault. Before you can complete checkouts using CheckoutCompleteWithCreditCardV2, you need to  [_request payment processing_](https://shopify.dev/apps/channels/getting-started#request-payment-processing).
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutCompleteWithCreditCardV2?: Maybe<CheckoutCompleteWithCreditCardV2Payload>;
-  /** Completes a checkout with a tokenized payment. */
+  /**
+   * Completes a checkout with a tokenized payment.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutCompleteWithTokenizedPaymentV3?: Maybe<CheckoutCompleteWithTokenizedPaymentV3Payload>;
-  /** Creates a new checkout. */
+  /**
+   * Creates a new checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutCreate?: Maybe<CheckoutCreatePayload>;
-  /** Associates a customer to the checkout. */
+  /**
+   * Associates a customer to the checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutCustomerAssociateV2?: Maybe<CheckoutCustomerAssociateV2Payload>;
-  /** Disassociates the current checkout customer from the checkout. */
+  /**
+   * Disassociates the current checkout customer from the checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutCustomerDisassociateV2?: Maybe<CheckoutCustomerDisassociateV2Payload>;
-  /** Applies a discount to an existing checkout using a discount code. */
+  /**
+   * Applies a discount to an existing checkout using a discount code.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutDiscountCodeApplyV2?: Maybe<CheckoutDiscountCodeApplyV2Payload>;
-  /** Removes the applied discounts from an existing checkout. */
+  /**
+   * Removes the applied discounts from an existing checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutDiscountCodeRemove?: Maybe<CheckoutDiscountCodeRemovePayload>;
-  /** Updates the email on an existing checkout. */
+  /**
+   * Updates the email on an existing checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutEmailUpdateV2?: Maybe<CheckoutEmailUpdateV2Payload>;
-  /** Removes an applied gift card from the checkout. */
+  /**
+   * Removes an applied gift card from the checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutGiftCardRemoveV2?: Maybe<CheckoutGiftCardRemoveV2Payload>;
-  /** Appends gift cards to an existing checkout. */
+  /**
+   * Appends gift cards to an existing checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutGiftCardsAppend?: Maybe<CheckoutGiftCardsAppendPayload>;
-  /** Adds a list of line items to a checkout. */
+  /**
+   * Adds a list of line items to a checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutLineItemsAdd?: Maybe<CheckoutLineItemsAddPayload>;
-  /** Removes line items from an existing checkout. */
+  /**
+   * Removes line items from an existing checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutLineItemsRemove?: Maybe<CheckoutLineItemsRemovePayload>;
-  /** Sets a list of line items to a checkout. */
+  /**
+   * Sets a list of line items to a checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutLineItemsReplace?: Maybe<CheckoutLineItemsReplacePayload>;
-  /** Updates line items on a checkout. */
+  /**
+   * Updates line items on a checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutLineItemsUpdate?: Maybe<CheckoutLineItemsUpdatePayload>;
-  /** Updates the shipping address of an existing checkout. */
+  /**
+   * Updates the shipping address of an existing checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutShippingAddressUpdateV2?: Maybe<CheckoutShippingAddressUpdateV2Payload>;
-  /** Updates the shipping lines on an existing checkout. */
+  /**
+   * Updates the shipping lines on an existing checkout.
+   * @deprecated The Storefront GraphQL Checkout API is deprecated and will be removed in a future version. Please see https://shopify.dev/changelog/deprecation-of-checkout-apis for more information.
+   */
   checkoutShippingLineUpdate?: Maybe<CheckoutShippingLineUpdatePayload>;
   /**
    * Creates a customer access token.
@@ -8034,6 +8106,7 @@ type CartBuyerIdentityUpdateMutationVariables = Exact<{
 type CartBuyerIdentityUpdateMutation = { __typename?: 'Mutation', cartBuyerIdentityUpdate?: { __typename?: 'CartBuyerIdentityUpdatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode, email?: string, phone?: string, walletPreferences: Array<string>, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string, lastName?: string, email?: string, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string, lastName?: string, name?: string, phone?: string, province?: string, provinceCode?: string, zip?: string, address2?: string, company?: string, country?: string, countryCodeV2?: CountryCode, firstName?: string, formatted: Array<string>, formattedArea?: string } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } } }> } } }> } } }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string }, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string }, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> } }, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string>, message: string, code?: CartErrorCode }> } };
 
 type AddItemToCartMutationVariables = Exact<{
+  country?: InputMaybe<CountryCode>;
   cartId: Scalars['ID']['input'];
   lines: Array<CartLineInput> | CartLineInput;
 }>;
@@ -8050,6 +8123,7 @@ type RemoveItemFromCartMutationVariables = Exact<{
 type RemoveItemFromCartMutation = { __typename?: 'Mutation', cartLinesRemove?: { __typename?: 'CartLinesRemovePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode, email?: string, phone?: string, walletPreferences: Array<string>, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string, lastName?: string, email?: string, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string, lastName?: string, name?: string, phone?: string, province?: string, provinceCode?: string, zip?: string, address2?: string, company?: string, country?: string, countryCodeV2?: CountryCode, firstName?: string, formatted: Array<string>, formattedArea?: string } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } } }> } } }> } } }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string }, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string }, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> } }, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string>, message: string, code?: CartErrorCode }> } };
 
 type UpdateItemFromCartMutationVariables = Exact<{
+  country?: InputMaybe<CountryCode>;
   cartId: Scalars['ID']['input'];
   lines: Array<CartLineUpdateInput> | CartLineUpdateInput;
 }>;

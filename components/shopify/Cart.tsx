@@ -44,6 +44,10 @@ export default function Cart({ localization }: CartProps) {
   }, [cart, createCart])
 
   useEffect(() => {
+    createCart(country)
+  }, [pathname])
+
+  useEffect(() => {
     if (cart && country && cart?.buyerIdentity.countryCode !== country)
       updateBuyerIdentity({ countryCode: country } as CartBuyerIdentityInput)
   }, [country, cart])

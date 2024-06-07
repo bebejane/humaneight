@@ -36,12 +36,19 @@ const useCart = create<CartState>((set, get) => ({
     const id = getCookie('cart')
     let cart = null;
 
+    console.log('cartID', id)
+
     if (id) {
-      cart = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country }))?.cart
+      console.log('fetching exsisting cart')
+      const res = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country }))
+      cart = res.cart?.checkoutUrl ? res?.cart as Cart : null
+      console.log('exsisting cart', res.cart?.checkoutUrl, cart)
     }
 
-    if (!cart)
+    if (!cart) {
+      console.log('creating new cart')
       cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0, country }))?.cartCreate?.cart;
+    }
 
     if (!cart)
       throw new Error('Cart not found')
@@ -53,6 +60,7 @@ const useCart = create<CartState>((set, get) => ({
     deleteCookie('cart')
   },
   setCart: async (cart: Cart) => {
+    console.log('setcart cookie', cart.id)
     setCookie('cart', cart.id)
     set((state) => ({ cart }))
     return cart
