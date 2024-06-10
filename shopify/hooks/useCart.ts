@@ -45,7 +45,7 @@ const useCart = create<CartState>((set, get) => ({
       console.log('exsisting cart', res.cart?.checkoutUrl, cart)
     }
 
-    if (!cart) {
+    if (!cart || !cart?.checkoutUrl) {
       console.log('creating new cart')
       cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0, country }))?.cartCreate?.cart;
     }
