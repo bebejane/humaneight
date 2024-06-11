@@ -71,6 +71,7 @@ export default function Cart({ localization }: CartProps) {
     )
   }
 
+
   return (
     <div id="cart" className={cn(s.cart, showCart && s.show, updating && s.updating)} >
       <header>

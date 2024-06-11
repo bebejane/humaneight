@@ -67,8 +67,9 @@ const useCart = create<CartState>((set, get) => ({
   },
   addToCart: async (line: CartLineInput, country: string) => {
     get().update(null, async () => {
+
       const cart = get().cart as Cart
-      const { cartLinesAdd, } = await shopifyQuery<AddItemToCartMutation, AddItemToCartMutationVariables>(AddItemToCartDocument, {
+      const { cartLinesAdd } = await shopifyQuery<AddItemToCartMutation, AddItemToCartMutationVariables>(AddItemToCartDocument, {
         revalidate: 0,
         variables: {
           cartId: cart.id,
@@ -76,7 +77,13 @@ const useCart = create<CartState>((set, get) => ({
         },
         country
       });
-      if (!cartLinesAdd?.cart) throw new Error('Cart not found')
+
+      if (cartLinesAdd?.userErrors)
+        throw new Error(cartLinesAdd?.userErrors.map(e => e.message).join('. '))
+
+      if (!cartLinesAdd?.cart)
+        throw new Error('Cart not found')
+
       return cartLinesAdd.cart as Cart
     })
   },

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   return await revalidate(req, async (payload, revalidate) => {
 
     const { api_key, entity, event_type, entity_type } = payload;
-    const { id, attributes: { slug, shopify_product } } = entity
+    const { id, attributes: { slug, shopify_product, handle } } = entity
     const paths: string[] = []
     const tags: string[] = [id]
 
@@ -33,8 +33,7 @@ export async function POST(req: Request) {
         break;
       }
       case 'shopify_product': {
-        const { product } = await apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, { variables: { id } })
-        paths.push(`/products/${product?.shopifyProduct.handle}`)
+        paths.push(`/products/${handle}`)
         break;
       }
       case 'collection':
