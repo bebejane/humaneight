@@ -1,14 +1,5 @@
 .container {
-  grid-column: span 12;
-
-  @include mq($from: desktop) {
-    grid-column-start: 2;
-    grid-column-end: 12;
-  }
-
-  h3 {
-    padding-bottom: 1em;
-    padding-top: 1em;
-    text-align: center;
+  button {
+    white-space: nowrap;
   }
 }

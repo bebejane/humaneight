@@ -13,6 +13,7 @@ export default function Test({ params }: LegalParams) {
 
   const [addToCart, cart] = useCart((state) => [state.addToCart, state.cart])
   const country = useCountry()
+
   const handleAddToCart = () => {
     const merchandiseId = "gid://shopify/ProductVariant/45738050191628"
     addToCart({ merchandiseId, quantity: 1 }, country);
@@ -20,8 +21,10 @@ export default function Test({ params }: LegalParams) {
 
   return (
     <>
-      <article className={cn(s.legal, "grid legal structured")}>
-        <button onClick={handleAddToCart}>Add test product</button>
+      <article className={cn(s.container, "grid legal structured")}>
+        <p>
+          <button onClick={handleAddToCart}>Add test product</button>
+        </p>
       </article>
     </>
   )
