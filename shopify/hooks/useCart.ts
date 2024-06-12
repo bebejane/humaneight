@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import shopifyQuery from '../shopify-query'
 import { setCookie, getCookie, deleteCookie } from 'cookies-next';
+import { cartCookieOptions } from '../utils'
 import {
   CreateCartDocument,
   CartDocument,
@@ -33,19 +34,19 @@ const useCart = create<CartState>((set, get) => ({
   error: undefined,
   country: 'SE',
   createCart: async (country: string) => {
-    const id = getCookie('cart')
+    //deleteCookie('cart')
+    const id = getCookie('cart', cartCookieOptions)
     let cart = null;
 
-    console.log('cartID', id)
+    console.log('useCart > createCart', 'cartID', id)
 
     if (id) {
-      console.log('fetching exsisting cart')
+      console.log('fetching existing cart')
       const res = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country }))
       cart = res.cart?.checkoutUrl ? res?.cart as Cart : null
-      console.log('exsisting cart', res.cart?.checkoutUrl, cart)
     }
 
-    if (!cart || !cart?.checkoutUrl) {
+    if (!cart) {
       console.log('creating new cart')
       cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0, country }))?.cartCreate?.cart;
     }
@@ -57,11 +58,10 @@ const useCart = create<CartState>((set, get) => ({
   },
   clearCart: () => {
     set((state) => ({ cart: undefined }))
-    deleteCookie('cart')
+    deleteCookie('cart', cartCookieOptions)
   },
   setCart: async (cart: Cart) => {
-    console.log('setcart cookie', cart.id)
-    setCookie('cart', cart.id)
+    setCookie('cart', cart.id, cartCookieOptions)
     set((state) => ({ cart }))
     return cart
   },
@@ -123,7 +123,7 @@ const useCart = create<CartState>((set, get) => ({
   },
   updateBuyerIdentity: async (buyerIdentity: CartBuyerIdentityInput) => {
     get().update(null, async () => {
-      const id = getCookie('cart') as string
+      const id = getCookie('cart', cartCookieOptions) as string
       const { cartBuyerIdentityUpdate } = await shopifyQuery<CartBuyerIdentityUpdateMutation, CartBuyerIdentityUpdateMutationVariables>(CartBuyerIdentityUpdateDocument, {
         revalidate: 0,
         variables: {

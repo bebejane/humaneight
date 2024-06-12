@@ -15,3 +15,10 @@ export const shopifyGraphqlError = (errors: CustomerUserError[]): string | undef
   return errors.map((e) => e.message).join('\n')
 }
 
+export const cartCookieOptions = {
+  path: '/',
+  secure: false,
+  maxAge: 60 * 60 * 24,
+  sameSite: true,
+  domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'humaneight.com'
+}
