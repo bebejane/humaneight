@@ -1,4 +1,4 @@
-import "dotenv/config"
+import * as dotenv from "dotenv"; dotenv.config();
 import type { IGraphQLConfig } from 'graphql-config'
 
 const environment: string = process.env.GRAPHQL_CONFIG ?? "datocms";
@@ -39,7 +39,7 @@ const shopifyConfig: IGraphQLConfig = {
 };
 
 const environmentConfig = environment === "datocms" ? datocmsConfig : shopifyConfig
-
+console.log(environment)
 const paths = {
 	operations: environment === "datocms" ? "types/datocms.d.ts" : "types/shopify.d.ts",
 	documentnode: environment === "datocms" ? "graphql/index.ts" : "shopify/graphql/index.ts",

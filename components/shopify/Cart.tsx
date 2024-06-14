@@ -138,7 +138,8 @@ export default function Cart({ localization }: CartProps) {
           </div>
           <div className={cn(s.extra, "light")}>Shipping and tax are added at checkout</div>
 
-          <form action={cart?.checkoutUrl} method="GET">
+          <form action={cart?.checkoutUrl.split('?')[0]} method="GET">
+            <input type="hidden" name="key" id="key" value={cart?.checkoutUrl.split('?key=')[1]} />
             <div className={cn(s.check, "light")}>
               <input type="checkbox" name="terms" required onChange={(e) => setTerms(e.target.checked)} /><span>I accept the <Link href="/legal/terms-conditions">terms & conditions</Link> and I have read and understood the <Link href="/legal/privacy-policy">privacy policy</Link>.</span>
             </div>

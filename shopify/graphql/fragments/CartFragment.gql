@@ -82,4 +82,8 @@ fragment CartFragment on Cart {
 			currencyCode
 		}
 	}
+	attributes {
+		key
+		value
+	}
 }

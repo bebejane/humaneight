@@ -43,7 +43,7 @@ const useCart = create<CartState>((set, get) => ({
     if (id) {
       console.log('fetching existing cart')
       const res = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country }))
-      cart = res.cart?.checkoutUrl ? res?.cart as Cart : null
+      cart = res.cart ?? null
     }
 
     if (!cart) {
