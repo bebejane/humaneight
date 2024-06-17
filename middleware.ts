@@ -4,7 +4,7 @@ import localization from './localization.json'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-
+  console.log('middleware')
   if (pathname === '/') {
     const country = request.geo?.country?.toLowerCase()
     const available = localization.availableCountries.find((c) => c.isoCode.toLowerCase() === country) !== undefined
@@ -21,7 +21,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Skip all internal paths (_next)
-    '/((?!api|_next|_vercel|favicon.ico|sitemap.xml|manifest.webmanifest|robots.txt|.*\\..*).*)',
+    //'/((?!api|_next|_vercel|favicon.ico|sitemap.xml|manifest.webmanifest|robots.txt|.*\\..*).*)',
     // Optional: Only run on root (/) URL
     '/'
   ],

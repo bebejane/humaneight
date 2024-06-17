@@ -34,22 +34,17 @@ const useCart = create<CartState>((set, get) => ({
   error: undefined,
   country: 'SE',
   createCart: async (country: string) => {
-    //deleteCookie('cart')
     const id = getCookie('cart', cartCookieOptions)
     let cart = null;
 
-    console.log('useCart > createCart', 'cartID', id)
-
     if (id) {
-      console.log('fetching existing cart')
       const res = (await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, { revalidate: 0, variables: { id }, country }))
       cart = res.cart ?? null
     }
 
-    if (!cart) {
-      console.log('creating new cart')
+    if (!cart)
       cart = (await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, { revalidate: 0, country }))?.cartCreate?.cart;
-    }
+
 
     if (!cart)
       throw new Error('Cart not found')
