@@ -20,6 +20,18 @@ export function getDefaultProductColorVariant(product: ProductRecord) {
   return v ?? product.shopifyProduct?.variants?.[0]
 }
 
+export function getProductColorVariant(product: ProductRecord, color?: string) {
+  if (!color) return getDefaultProductColorVariant(product)
+
+  const v = product.shopifyProduct?.variants?.find((variant: any) => {
+    for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {
+      if (variant[`option${i}`] === color) return true
+    }
+    return false
+  })
+  return v ?? getDefaultProductColorVariant(product)
+}
+
 export function getProductColorVariants(product: ProductRecord) {
   return product.shopifyProduct?.variants?.reduce((acc: any, variant: any) => {
     for (let i = 1; typeof variant[`option${i}`] !== 'undefined'; i++) {

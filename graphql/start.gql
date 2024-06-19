@@ -28,8 +28,19 @@ query Start {
 				}
 				columns
 				selectedProducts {
+					id
 					product {
 						...ProductLightFragment
+					}
+					image {
+						...ImageThumbnailFragment
+					}
+					imageSecondary {
+						...ImageThumbnailFragment
+					}
+					color {
+						id
+						title
 					}
 				}
 			}

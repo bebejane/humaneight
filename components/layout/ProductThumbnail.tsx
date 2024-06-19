@@ -7,17 +7,19 @@ import cn from 'classnames';
 import Price from '@components/shopify/Price';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from 'react-use'
-import { getDefaultProductColorVariant } from '@lib/utils';
+import { getProductColorVariant } from '@lib/utils';
 
 export type Props = {
   product: ProductRecord,
+  image?: ImageFileField,
+  imageSecondary?: ImageFileField,
   index: number
   columns?: string | undefined
   color?: string
   variantId?: string
 }
 
-export default function ProductThumbnail({ product, color, variantId, index, columns = 'three' }: Props) {
+export default function ProductThumbnail({ product, image: _image, imageSecondary: _imageSecondary, color, variantId, index, columns = 'three' }: Props) {
 
   const [maxUsps, setMaxUsps] = useState(4)
   const { width, height } = useWindowSize()
@@ -47,9 +49,10 @@ export default function ProductThumbnail({ product, color, variantId, index, col
 
   const colorMedia = product.thumbnailForVariations?.variation.find((v: any) => v.color.title === color)?.media
   const colorMediaSecondary = product.secondaryForVariations?.variation.find((v: any) => v.color.title === color)?.media
-  const href = `/products/${product.shopifyProduct.handle}?variant=${variantId ? `${variantId}` : getDefaultProductColorVariant(product)?.id}`
-  const image = colorMedia ?? product.image
-  const imageSecondary = colorMediaSecondary ?? product.imageSecondary
+  const vId = variantId ?? getProductColorVariant(product, color)?.id
+  const href = `/products/${product.shopifyProduct.handle}?variant=${vId}`
+  const image = _image ?? colorMedia ?? product.image
+  const imageSecondary = _imageSecondary ?? colorMediaSecondary ?? product.imageSecondary
 
   return (
     <Link
