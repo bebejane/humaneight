@@ -23,10 +23,10 @@
     animation-delay: 0.2s;
 
     a {
-      color: var(--white);
+      color: var(--logo-color);
 
       &:hover {
-        color: var(--white);
+        color: var(--logo-color);
         letter-spacing: 0;
       }
     }
@@ -58,7 +58,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  color: var(--white);
+  color: var(--logo-color);
   z-index: var(--z-logo);
   margin-top: 1em;
   pointer-events: none;

@@ -1,0 +1,82 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: var(--hero-height);
+  margin-left: calc(-1 * var(--outer-margin));
+  margin-right: calc(-1 * var(--outer-margin));
+  margin-bottom: 0;
+
+  .desktop {
+    @include mq($until: desktop) {
+      display: none;
+    }
+  }
+
+  .mobile {
+    @include mq($from: desktop) {
+      display: none;
+    }
+  }
+
+  figure {
+    @include mq($until: desktop) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+
+      &.visible {
+        opacity: 1;
+      }
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &.one {
+
+    figure,
+    video {
+      flex: 0 0 100%;
+    }
+  }
+
+  &.two {
+
+    figure,
+    video {
+      flex: 0 0 50%;
+    }
+
+    .image,
+    .picture,
+    video {
+      width: 50%;
+    }
+  }
+
+
+
+
+
+}

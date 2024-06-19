@@ -4,7 +4,7 @@ import localization from './localization.json'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  console.log('middleware')
+
   if (pathname === '/') {
     const country = request.geo?.country?.toLowerCase()
     const available = localization.availableCountries.find((c) => c.isoCode.toLowerCase() === country) !== undefined

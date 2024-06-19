@@ -6,6 +6,7 @@ import { StartDocument } from '@graphql';
 import { StartEditorialBlock, StartProductBlock, StartProductShortcutBlock } from '@components/content/blocks/start';
 import FullscreenBlock from '@components/content/blocks/FullscreenBlock';
 import NewsletterSection from '@components/common/NewsletterSection';
+import HomeSplash from '../components/common/HomeSplash';
 
 export default async function Home(params: CountryParams) {
 
@@ -14,9 +15,12 @@ export default async function Home(params: CountryParams) {
     generateTags: false
   });
 
+  if (!start) return null
+
   return (
     <>
       <article className={s.container}>
+        <HomeSplash data={start} />
         {start?.sections.map((section, i) =>
           <Block
             key={i}
