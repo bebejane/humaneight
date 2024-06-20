@@ -8,7 +8,7 @@ import {
   CollectionDocument
 } from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
-import { DraftMode } from 'next-dato-utils/components';
+//import { DraftMode } from 'next-dato-utils/components';
 import CollectionsFilter from './components/CollectionsFilter';
 import ProductThumbnail from '@components/layout/ProductThumbnail';
 import ThumbnailContainer from '@components/layout/ThumbnailContainer';
@@ -17,6 +17,7 @@ import { tags } from '@lib/constants';
 import { getProductColorVariants } from '@lib/utils';
 
 export const dynamic = 'force-static'
+export const dynamicParams = false
 
 export default async function Shop({ params }: CountryShopParams) {
 
@@ -77,7 +78,7 @@ export default async function Shop({ params }: CountryShopParams) {
           })}
         </ThumbnailContainer>
       </div>
-      <DraftMode url={draftUrl} tag={collection?.id} />
+
     </>
   )
 }

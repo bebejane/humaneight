@@ -60,6 +60,7 @@ export default function ProductThumbnail({ product, image: _image, imageSecondar
       className={cn(s.thumbnail, s[columns])}
       data-index={index}
       scroll={true}
+      prefetch={true}
     >
       <figure ref={figureRef}>
         {image?.responsiveImage &&

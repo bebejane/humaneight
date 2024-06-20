@@ -16,7 +16,7 @@ export type Props = {
   tag: string
 }
 
-export default function CollectionsFilter({ tags, collectionId: _collectionId, allCollections, searchParams, tag: _tag }: Props) {
+export default function CollectionsFilter({ tags, collectionId: _collectionId, allCollections, tag: _tag }: Props) {
 
   if (!allCollections) return null
   const [collectionId, setCollectionId] = useOptimistic<string | null>(_collectionId ?? null)

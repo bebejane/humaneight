@@ -262,9 +262,9 @@
     },
     {
       "currency": {
-        "isoCode": "USD",
-        "name": "United States Dollar",
-        "symbol": "$"
+        "isoCode": "EUR",
+        "name": "Euro",
+        "symbol": "€"
       },
       "isoCode": "NO",
       "name": "Norway",
@@ -348,8 +348,8 @@
       "symbol": "$"
     },
     "market": {
-      "id": "gid://shopify/Market/50772869388",
-      "handle": "international"
+      "id": "gid://shopify/Market/64719061260",
+      "handle": "united"
     },
     "isoCode": "US",
     "name": "United States",

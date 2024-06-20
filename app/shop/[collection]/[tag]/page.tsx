@@ -6,7 +6,7 @@ export { generateMetadata } from '../../page';
 
 export const dynamic = 'force-static'
 
-export default async function Collection(params: CountryShopParams) {
+export default async function CollectionByTag(params: CountryShopParams) {
   return storePage(params)
 }
 
