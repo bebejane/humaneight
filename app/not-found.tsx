@@ -4,7 +4,7 @@ import s from './not-found.module.scss'
 export default function NotFound() {
   return (
     <div className={s.container}>
-      <strong>404 Not Found</strong>
+      <h3>404 Not Found</h3><br />
       <Link href="/">Return Home</Link>
     </div>
   )
