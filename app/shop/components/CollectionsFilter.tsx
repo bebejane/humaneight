@@ -4,7 +4,7 @@ import s from './CollectionsFilter.module.scss'
 import cn from 'classnames'
 import Link from '@components//nav/Link'
 import { useEffect, useState, useOptimistic } from 'react'
-import { useWindowSize, useMedia } from 'react-use'
+import { useWindowSize } from 'react-use'
 import { tags as tagSortOrder } from '@lib/constants'
 import useIsDesktop from '@lib/hooks/useIsDesktop'
 
@@ -66,6 +66,7 @@ export default function CollectionsFilter({ tags, collectionId: _collectionId, a
                 className={cn(s.title, (isSelected && isDesktop) ? s.hide : isSelected ? s.selected : false)}
                 data-position={idx === 0 ? 'left' : idx === allCollections.length - 1 ? 'right' : 'center'}
                 onClick={() => setCollectionId(id)}
+                prefetch={true}
               >{titlePlural}</Link>
               {isDesktop &&
                 <Link
@@ -75,6 +76,7 @@ export default function CollectionsFilter({ tags, collectionId: _collectionId, a
                   style={pos ? { left: `${pos.left}px`, top: `${pos.top}px` } : undefined}
                   onMouseEnter={() => setHoverId(id)}
                   onMouseLeave={() => setHoverId(null)}
+                  prefetch={true}
                 >{titlePlural}</Link>
               }
             </li>
@@ -90,7 +92,7 @@ export default function CollectionsFilter({ tags, collectionId: _collectionId, a
 
           return (
             <li key={i} className={cn(tag === t && s.selected)}>
-              <Link href={href} onClick={() => setTag(t)}>
+              <Link href={href} onClick={() => setTag(t)} prefetch={true}>
                 {t}
               </Link>
             </li>
