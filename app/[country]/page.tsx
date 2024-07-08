@@ -4,6 +4,6 @@ import { CountryParams } from '@app/[country]/layout'
 export { generateStaticParams } from './layout'
 
 export const dynamic = 'force-static'
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 export default async (params: CountryParams) => page(params)

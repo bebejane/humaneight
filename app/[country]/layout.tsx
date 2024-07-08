@@ -8,7 +8,7 @@ export type LayoutProps = {
 }
 
 export const dynamic = 'force-static'
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {

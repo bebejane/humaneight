@@ -17,7 +17,7 @@ import { tags } from '@lib/constants';
 import { getProductColorVariants } from '@lib/utils';
 
 export const dynamic = 'force-static'
-export const dynamicParams = false
+export const dynamicParams = true
 
 export default async function Shop({ params }: CountryShopParams) {
 
