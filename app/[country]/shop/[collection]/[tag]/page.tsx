@@ -1,4 +1,4 @@
-export { generateStaticParams, } from '@app/shop/[collection]/page';
+export { generateStaticParams } from '@app/shop/[collection]/[tag]/page';
 import page from '@app/shop/[collection]/page';
 import { CountryShopParams } from '../../page';
 
