@@ -14,7 +14,7 @@ export default function AboutTwoColumnBlock({ data: { id, media, text } }: Props
     <section className={s.section}>
       <figure>
         {media.responsiveImage ?
-          <Image data={media.responsiveImage} className={s.image} pictureClassName={s.picture} />
+          <Image data={media.responsiveImage} className={s.image} imgClassName={s.picture} />
           : media.video ?
             <VideoPlayer data={media} className={s.video} />
             : null

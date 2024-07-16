@@ -20,7 +20,7 @@ export default function AbouThreeColumnBlock({ data: { c1Media, c1Text, c2Media,
       {columns.map(({ media, text }, i) => (
         <figure key={i}>
           {media.responsiveImage ?
-            <Image data={media.responsiveImage} className={s.image} pictureClassName={s.picture} />
+            <Image data={media.responsiveImage} className={s.image} imgClassName={s.picture} />
             : media.video ?
               <video src={media.video.mp4Url} autoPlay loop muted playsInline className={s.video} />
               : null}

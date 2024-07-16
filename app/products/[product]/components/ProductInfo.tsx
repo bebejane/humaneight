@@ -2,7 +2,7 @@
 
 import s from './ProductInfo.module.scss'
 import cn from 'classnames'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import useQueryString from '@lib/hooks/useQueryString';
 import Link from '@components//nav/Link';
 import ProductVariantsForm from './ProductVariantsForm';
@@ -48,7 +48,7 @@ export default function ProductInfo({ product, shopifyProduct }: Props) {
             <Image
               data={mainImage?.responsiveImage}
               className={s.image}
-              pictureClassName={s.picture}
+              imgClassName={s.picture}
             />
           </figure>
         }

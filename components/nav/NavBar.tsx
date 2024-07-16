@@ -29,6 +29,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
   useEffect(() => {
     setShowMenu(false)
     setIsShopPage(pathname.toLowerCase().startsWith('/shop'))
+
   }, [pathname]);
 
   return (

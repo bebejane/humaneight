@@ -76,7 +76,7 @@ export default function ProductGallery({ images, onClose, id, show, padImagesWit
             <SwiperSlide key={idx} className={cn(styles.slide, padImagesWithTitle && image.title && styles.padded)}>
               {image.responsiveImage ?
                 <Image
-                  pictureClassName={styles.image}
+                  imgClassName={styles.image}
                   data={image.responsiveImage}
                   lazyLoad={false}
                   usePlaceholder={false}

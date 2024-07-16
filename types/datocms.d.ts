@@ -5711,6 +5711,7 @@ type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'C
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
   skip?: InputMaybe<Scalars['IntType']['input']>;
+  collectionId?: InputMaybe<Scalars['ItemId']['input']>;
 }>;
 
 

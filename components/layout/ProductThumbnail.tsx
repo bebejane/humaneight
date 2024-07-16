@@ -68,7 +68,7 @@ export default function ProductThumbnail({ product, image: _image, imageSecondar
             data={image?.responsiveImage}
             className={cn(s.image, s.main)}
             placeholderClassName={s.picture}
-            pictureClassName={s.picture}
+            imgClassName={s.picture}
             fadeInDuration={0}
             usePlaceholder={false}
             intersectionMargin={`0px 0px 100% 0px`}
@@ -78,7 +78,7 @@ export default function ProductThumbnail({ product, image: _image, imageSecondar
           <Image
             data={imageSecondary.responsiveImage}
             className={cn(s.image, s.secondary)}
-            pictureClassName={s.picture}
+            imgClassName={s.picture}
             usePlaceholder={false}
             placeholderClassName={s.picture}
           />

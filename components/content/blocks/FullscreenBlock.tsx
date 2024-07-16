@@ -30,7 +30,7 @@ export default function FullscreenBlock({ data: { id, media, altMedia, mediaMobi
             <Image
               data={m.responsiveImage}
               className={s.image}
-              pictureClassName={s.picture}
+              imgClassName={s.picture}
             />
           </figure>
           :
@@ -51,7 +51,7 @@ export default function FullscreenBlock({ data: { id, media, altMedia, mediaMobi
             <Image
               data={m.responsiveImage}
               className={s.image}
-              pictureClassName={s.picture}
+              imgClassName={s.picture}
             //lazyLoad={false}
             //priority={true}
             />

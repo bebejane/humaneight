@@ -60,7 +60,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
                   data={item.image.responsiveImage}
                   lazyLoad={false}
                   className={cn(s.image, item.id === menuItemId && s.show)}
-                  pictureClassName={s.picture}
+                  imgClassName={s.picture}
                 />
               }
             </figure>
@@ -72,7 +72,7 @@ export default function MenuDesktop({ menu, localization, tipProduct, showMenu, 
                   data={tipProduct.image.responsiveImage}
                   lazyLoad={false}
                   className={cn(s.image, !menuItemId && s.show)}
-                  pictureClassName={s.picture}
+                  imgClassName={s.picture}
                 />
               </Link>
             }

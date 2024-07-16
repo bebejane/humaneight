@@ -16,7 +16,7 @@ export default async function AboutThumbnail({ about }: Props) {
             data={about.image?.responsiveImage}
             className={cn(s.image, s.main)}
             placeholderClassName={s.picture}
-            pictureClassName={s.picture}
+            imgClassName={s.picture}
           />
         }
         <figcaption>

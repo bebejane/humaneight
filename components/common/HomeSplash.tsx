@@ -34,7 +34,7 @@ export default function HomeSplash({ data: { blackLogo, media, altMedia, mediaMo
             <Image
               data={m.responsiveImage}
               className={s.image}
-              pictureClassName={s.picture}
+              imgClassName={s.picture}
             />
           </figure>
           :
@@ -55,7 +55,7 @@ export default function HomeSplash({ data: { blackLogo, media, altMedia, mediaMo
             <Image
               data={m.responsiveImage}
               className={s.image}
-              pictureClassName={s.picture}
+              imgClassName={s.picture}
             />
           </figure>
           :

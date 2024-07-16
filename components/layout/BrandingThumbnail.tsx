@@ -18,7 +18,7 @@ export default function BrandingThumbnail({ productBranding: { text, smallText, 
             data={image.responsiveImage}
             className={cn(s.image)}
             placeholderClassName={s.picture}
-            pictureClassName={s.picture}
+            imgClassName={s.picture}
             intersectionMargin={`0px 0px 100% 0px`}
           />
         }

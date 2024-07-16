@@ -1,8 +1,8 @@
-query AllProducts($first: IntType = 100, $skip: IntType = 0) {
-	allProducts(first: $first, skip: $skip) {
+query AllProducts($first: IntType = 100, $skip: IntType = 0, $collectionId: ItemId) {
+	allProducts(first: $first, skip: $skip, filter: { collection: { eq: $collectionId } }) {
 		...ProductLightFragment
 	}
-	_allProductsMeta {
+	_allProductsMeta(filter: { collection: { eq: $collectionId } }) {
 		count
 	}
 }

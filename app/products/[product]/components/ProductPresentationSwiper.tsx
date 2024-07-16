@@ -38,7 +38,7 @@ export default function ProductPresentationSwiper({ images, className }: Gallery
             {image.responsiveImage &&
               <figure>
                 <Image
-                  pictureClassName={s.image}
+                  imgClassName={s.image}
                   data={image.responsiveImage}
                   lazyLoad={false}
                   usePlaceholder={false}

@@ -23,6 +23,9 @@ dependencies:
   '@mux/mux-player-react':
     specifier: ^2.3.3
     version: 2.7.0(@types/react-dom@18.2.15)(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0)
+  '@next/bundle-analyzer':
+    specifier: ^14.2.4
+    version: 14.2.4
   '@next/third-parties':
     specifier: ^14.1.3
     version: 14.2.3(next@14.2.3)(react@18.2.0)
@@ -64,7 +67,7 @@ dependencies:
     version: 14.2.3(@babel/core@7.24.6)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.4)
   next-dato-utils:
     specifier: github:bebejane/next-dato-utils
-    version: github.com/bebejane/next-dato-utils/391ed25e29b624637a397a36e920efc57d263ab4(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.4)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.4)(zod@3.23.8)
+    version: github.com/bebejane/next-dato-utils/391ed25e29b624637a397a36e920efc57d263ab4(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.4)(react-datocms@7.0.1)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.4)(zod@3.23.8)
   next-intl:
     specifier: ^3.13.0
     version: 3.14.1(next@14.2.3)(react@18.2.0)
@@ -84,8 +87,8 @@ dependencies:
     specifier: 1.2.0
     version: 1.2.0(react-dom@18.2.0)(react@18.2.0)
   react-datocms:
-    specifier: 4.2.0
-    version: 4.2.0(@mux/mux-player-react@2.7.0)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 7.0.1
+    version: 7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
@@ -812,6 +815,11 @@ packages:
     resolution: {integrity: sha512-BoyfQ8vT8X84V8x0MKuM8SXwUh+Vi3Xd1bJg7rDExsfGIEYaNVoDlAXnuJNMsX5Y/d2oZRPdQdpb4n4YQ4GfLA==}
     dependencies:
       async-scheduler: 1.4.4
+    dev: false
+
+  /@discoveryjs/json-ext@0.5.7:
+    resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
+    engines: {node: '>=10.0.0'}
     dev: false
 
   /@esbuild/aix-ppc64@0.20.2:
@@ -1959,6 +1967,15 @@ packages:
       mux-embed: 5.2.1
     dev: false
 
+  /@next/bundle-analyzer@14.2.4:
+    resolution: {integrity: sha512-ydSDikSgGhYmBlnvzS4tgdGyn40SCFI9uWDldbkRSwXS60tg4WBJR4qJoTSERTmdAFb1PeUYCyFdfC80i2WL1w==}
+    dependencies:
+      webpack-bundle-analyzer: 4.10.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
   /@next/env@14.2.3:
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
 
@@ -2244,6 +2261,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@polka/url@1.0.0-next.25:
+    resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
+    dev: false
 
   /@react-aria/breadcrumbs@3.5.13(react@18.2.0):
     resolution: {integrity: sha512-G1Gqf/P6kVdfs94ovwP18fTWuIxadIQgHsXS08JEVcFVYMjb9YjqnEBaohUxD1tq2WldMbYw53ahQblT4NTG+g==}
@@ -3863,11 +3884,17 @@ packages:
       acorn: 8.11.3
     dev: true
 
+  /acorn-walk@8.3.3:
+    resolution: {integrity: sha512-MxXdReSRhGO7VlFe1bRG/oI7/mdLV9B9JJT0N8vZOhF7gFRR5l3M8W9G8JxmKV+JC5mGqJ0QvqfSOLsCPa4nUw==}
+    engines: {node: '>=0.4.0'}
+    dependencies:
+      acorn: 8.11.3
+    dev: false
+
   /acorn@8.11.3:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-    dev: true
 
   /agent-base@7.1.1:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
@@ -4510,6 +4537,11 @@ packages:
     engines: {node: '>=16'}
     dev: false
 
+  /commander@7.2.0:
+    resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
+    engines: {node: '>= 10'}
+    dev: false
+
   /common-tags@1.8.2:
     resolution: {integrity: sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==}
     engines: {node: '>=4.0.0'}
@@ -4667,16 +4699,16 @@ packages:
       - graphql
     dev: false
 
-  /datocms-structured-text-generic-html-renderer@2.1.12:
-    resolution: {integrity: sha512-1Vj/24iaKUcNm3xG9kD09EHz00rIVIQVD6RSGNBvi+BQPPJGdGfFUcPME9xQv3KZrcw/pyNkAkBXO2q4wqEslw==}
-    dependencies:
-      datocms-structured-text-utils: 2.1.12
-    dev: false
-
   /datocms-structured-text-generic-html-renderer@3.0.0:
     resolution: {integrity: sha512-wkE/0HFJ0oW6AQzRnNLiXNj2yTH9TDU9xtNCDxobEkppVI7HxI5a3AdJvXUJsNsTAQHRWtBZSPBqRLjx/LIlpw==}
     dependencies:
       datocms-structured-text-utils: 3.0.0
+    dev: false
+
+  /datocms-structured-text-generic-html-renderer@4.0.1:
+    resolution: {integrity: sha512-umEWXyBHP3fo1YsOL7AhFxWrmb2LNxiRV26+C8NMkwoBZ/RbF9+dBaGIBv1D/NeasCjq560hBdm7jqChxxIi/A==}
+    dependencies:
+      datocms-structured-text-utils: 4.0.1
     dev: false
 
   /datocms-structured-text-to-plain-text@3.0.2:
@@ -4686,14 +4718,14 @@ packages:
       datocms-structured-text-utils: 3.0.0
     dev: false
 
-  /datocms-structured-text-utils@2.1.12:
-    resolution: {integrity: sha512-tZtiPN/sEjl+4Z6igojPdap6Miy0Z6VO6Afor3vcyY/8PIwKVGbTsdd5trD+skWPCPRZVNzKpfYoAVziXWTL8Q==}
+  /datocms-structured-text-utils@3.0.0:
+    resolution: {integrity: sha512-1mo78UD4Sz+fhiwBMUqNls/jgm+33/MxZe5eHYjKuklSdQPE7KslIWqD3hWi6W641rpeU0rEW+RFwQlduqEvIQ==}
     dependencies:
       array-flatten: 3.0.0
     dev: false
 
-  /datocms-structured-text-utils@3.0.0:
-    resolution: {integrity: sha512-1mo78UD4Sz+fhiwBMUqNls/jgm+33/MxZe5eHYjKuklSdQPE7KslIWqD3hWi6W641rpeU0rEW+RFwQlduqEvIQ==}
+  /datocms-structured-text-utils@4.0.1:
+    resolution: {integrity: sha512-2rK4bZfzKpdKw2AZhnnD043QkGOUaJDOUGPrQHo5w4hvU4jTBGGxoaTg4KIb3Q5Yo+XUFvreb+U0+86xdh7I+Q==}
     dependencies:
       array-flatten: 3.0.0
     dev: false
@@ -4844,6 +4876,10 @@ packages:
     resolution: {integrity: sha512-20TuZZHCEZ2O71q9/+8BwKwZ0QtD9D8ObhrihJPr+vLLYlSuAU3/zL4cSlgbfeoGHTjCSJBa7NGcrF9/Bx/WJQ==}
     engines: {node: '>=4'}
     dev: true
+
+  /duplexer@0.1.2:
+    resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
+    dev: false
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -5040,7 +5076,6 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
-    dev: true
 
   /escape-string-regexp@5.0.0:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
@@ -5801,6 +5836,13 @@ packages:
     resolution: {integrity: sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
+  /gzip-size@6.0.0:
+    resolution: {integrity: sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==}
+    engines: {node: '>=10'}
+    dependencies:
+      duplexer: 0.1.2
+    dev: false
+
   /has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
     dev: true
@@ -5877,6 +5919,10 @@ packages:
 
   /hls.js@1.5.10:
     resolution: {integrity: sha512-/6TVPMq6aZvX8Pv6qhU2I5OSe7LeEpkyl/GUQUCYsuRpNYyWW8SrRHxd/935HGYbLJiMc1koll1CQTF8HkJTRQ==}
+    dev: false
+
+  /html-escaper@2.0.2:
+    resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: false
 
   /html-url-attributes@3.0.0:
@@ -6223,6 +6269,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       isobject: 3.0.1
+    dev: false
+
+  /is-plain-object@5.0.0:
+    resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
   /is-regex@1.1.4:
@@ -7170,6 +7221,11 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     dev: true
 
+  /mrmime@2.0.0:
+    resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
+    engines: {node: '>=10'}
+    dev: false
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -7426,6 +7482,11 @@ packages:
     dependencies:
       mimic-fn: 2.1.0
     dev: true
+
+  /opener@1.5.2:
+    resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
+    hasBin: true
+    dev: false
 
   /optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -7791,23 +7852,23 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-datocms@4.2.0(@mux/mux-player-react@2.7.0)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-bYmaeqXBDH0g1oHKAnbJdPcfHD4x6n/NDbZ5mueBfAzOOawsT9RVi9XOlVDLjMANV3GIBQS7mJOkefmC9LvJHQ==}
+  /react-datocms@7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qyVZ/36DDoBrRcG8As/U5OaH833M+M7Xkg44B6/t7EbG+YXs4bHwV3c0rUREzvnkNtHeUxhkB4NkZ8Epp4/hUg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
-      '@mux/mux-player-react': '*'
       react: '>= 16.12.0'
     dependencies:
       '@mux/mux-player-react': 2.7.0(@types/react-dom@18.2.15)(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0)
       datocms-listen: 0.1.15(graphql@16.8.1)
-      datocms-structured-text-generic-html-renderer: 2.1.12
-      datocms-structured-text-utils: 2.1.12
+      datocms-structured-text-generic-html-renderer: 4.0.1
+      datocms-structured-text-utils: 4.0.1
       react: 18.2.0
       react-intersection-observer: 9.10.2(react-dom@18.2.0)(react@18.2.0)
       react-string-replace: 1.1.1
-      universal-base64: 2.1.0
       use-deep-compare-effect: 1.8.1(react@18.2.0)
     transitivePeerDependencies:
+      - '@types/react'
+      - '@types/react-dom'
       - graphql
       - react-dom
     dev: false
@@ -8345,6 +8406,15 @@ packages:
     resolution: {integrity: sha512-6+eerH9fEnNmi/hyM1DXcRK3pWdoMQtlkQ+ns0ntzunjKqp5i3sKCc80ym8Fib3iaYhdJUOPdhlJWj1tvge2Ww==}
     dev: true
 
+  /sirv@2.0.4:
+    resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
+    engines: {node: '>= 10'}
+    dependencies:
+      '@polka/url': 1.0.0-next.25
+      mrmime: 2.0.0
+      totalist: 3.0.1
+    dev: false
+
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -8668,6 +8738,11 @@ packages:
     resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
     dev: false
 
+  /totalist@3.0.1:
+    resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
+    engines: {node: '>=6'}
+    dev: false
+
   /tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
@@ -8868,10 +8943,6 @@ packages:
       unist-util-visit-parents: 6.0.1
     dev: false
 
-  /universal-base64@2.1.0:
-    resolution: {integrity: sha512-WeOkACVnIXJZr/qlv7++Rl1zuZOHN96v2yS5oleUuv8eJOs5j9M5U3xQEIoWqn1OzIuIcgw0fswxWnUVGDfW6g==}
-    dev: false
-
   /unixify@1.0.0:
     resolution: {integrity: sha512-6bc58dPYhCMHHuwxldQxO3RRNZ4eCogZ/st++0+fcC1nr0jiGUtAdBJ2qzmLQWSxbtz42pWt4QQMiZ9HvZf5cg==}
     engines: {node: '>=0.10.0'}
@@ -9014,6 +9085,29 @@ packages:
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
+  /webpack-bundle-analyzer@4.10.1:
+    resolution: {integrity: sha512-s3P7pgexgT/HTUSYgxJyn28A+99mmLq4HsJepMPzu0R8ImJc52QNqaFYW1Z2z2uIb1/J3eYgaAWVpaC+v/1aAQ==}
+    engines: {node: '>= 10.13.0'}
+    hasBin: true
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      acorn: 8.11.3
+      acorn-walk: 8.3.3
+      commander: 7.2.0
+      debounce: 1.2.1
+      escape-string-regexp: 4.0.0
+      gzip-size: 6.0.0
+      html-escaper: 2.0.2
+      is-plain-object: 5.0.0
+      opener: 1.5.2
+      picocolors: 1.0.1
+      sirv: 2.0.4
+      ws: 7.5.10
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
   /whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
     dependencies:
@@ -9115,6 +9209,19 @@ packages:
 
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  /ws@7.5.10:
+    resolution: {integrity: sha512-+dbF1tHwZpXcbOJdVOkzLDxZP1ailvSxM6ZweXTegylPny803bFhA+vqBYw4s31NSAk4S2Qz+AKXK9a4wkdjcQ==}
+    engines: {node: '>=8.3.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
 
   /ws@8.17.0:
     resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
@@ -9227,7 +9334,7 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/bebejane/next-dato-utils/391ed25e29b624637a397a36e920efc57d263ab4(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.4)(react-datocms@4.2.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.4)(zod@3.23.8):
+  github.com/bebejane/next-dato-utils/391ed25e29b624637a397a36e920efc57d263ab4(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@3.0.0)(graphql@16.8.1)(postmark@4.0.4)(react-datocms@7.0.1)(react-dom@18.2.0)(react@18.2.0)(sass@1.77.4)(zod@3.23.8):
     resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/391ed25e29b624637a397a36e920efc57d263ab4}
     id: github.com/bebejane/next-dato-utils/391ed25e29b624637a397a36e920efc57d263ab4
     name: next-dato-utils
@@ -9266,7 +9373,7 @@ packages:
       postmark: 4.0.4
       pretty-bytes: 6.1.1
       react: 18.2.0
-      react-datocms: 4.2.0(@mux/mux-player-react@2.7.0)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
+      react-datocms: 7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
       react-markdown: 9.0.1(@types/react@18.3.3)(react@18.2.0)
       remark-breaks: 4.0.0
