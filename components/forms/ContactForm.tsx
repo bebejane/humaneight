@@ -1,7 +1,6 @@
 'use client'
 
 import s from './ContactForm.module.scss'
-import cn from 'classnames'
 import sendPostmarkEmail from 'next-dato-utils/server-actions/sendPostmarkEmail'
 import { useFormState } from 'react-dom'
 import SubmitButton from './SubmitButton'
