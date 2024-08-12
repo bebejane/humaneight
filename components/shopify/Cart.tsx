@@ -118,7 +118,7 @@ export default function Cart({ localization }: CartProps) {
 
                 <div className={s.amount}>
                   <div className={s.price} aria-label={"Total"}>
-                    {formatPrice(merchandise.price.amount)} {cost.totalAmount.currencyCode}
+                    {formatPrice(cost.subtotalAmount.amount)} {cost.subtotalAmount.currencyCode}
                   </div>
                   <div>
                     <button className={cn(s.remove, "light")} onClick={() => removeFromCart(id)}>
