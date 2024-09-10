@@ -1,6 +1,6 @@
 'use client'
 
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import s from './CookieConsent.module.scss'
 import React, { useEffect } from 'react'
 import { Switch } from 'react-aria-components'
@@ -72,7 +72,10 @@ export default function CookieConsent() {
     return (
       <>
         {allowGoogleAnalytics &&
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+          <>
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
+          </>
         }
       </>
     )
