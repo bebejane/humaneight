@@ -1,9 +1,12 @@
 'use client'
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+
 import s from './CookieConsent.module.scss'
 import React, { useEffect } from 'react'
 import { Switch } from 'react-aria-components'
+import FacebookPixel from './FacebookPixel'
+import TiktokPixel from './TiktokPixel'
 
 export type Scope = {
   id: string
@@ -69,14 +72,16 @@ export default function CookieConsent() {
 
   if (show === false) {
     const allowGoogleAnalytics = scopes.find(s => s.id === 'performance' && s.selected) !== undefined && show === false;
+    const allowGoogleTagManager = scopes.find(s => s.id === 'performance' && s.selected) !== undefined && show === false;
+    const allowFacebookPixel = scopes.find(s => s.id === 'marketing' && s.selected) !== undefined && show === false;
+    const allowTiktokPixel = scopes.find(s => s.id === 'marketing' && s.selected) !== undefined && show === false;
+
     return (
       <>
-        {allowGoogleAnalytics &&
-          <>
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
-            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
-          </>
-        }
+        {allowGoogleAnalytics && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />}
+        {allowGoogleTagManager && <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />}
+        {allowFacebookPixel && <FacebookPixel />}
+        {allowTiktokPixel && <TiktokPixel />}
       </>
     )
   }
