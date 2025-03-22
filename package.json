@@ -36,7 +36,7 @@
 		"graphql": "^16.8.1",
 		"is-integer": "^1.0.7",
 		"lottie-react": "^2.4.0",
-		"next": "14.2.3",
+		"next": "14.2.25",
 		"next-dato-utils": "github:bebejane/next-dato-utils#main",
 		"next-intl": "^3.13.0",
 		"object-traversal": "^1.0.1",
