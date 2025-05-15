@@ -1,10 +1,16 @@
-'use server'
+'use server';
 
-import s from './page.module.scss'
+import s from './page.module.scss';
 import cn from 'classnames';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { AllProductsDocument, FeedbackDocument, GlobalDocument, ProductByIdDocument, ShopifyProductDataDocument } from '@graphql';
+import {
+	AllProductsDocument,
+	FeedbackDocument,
+	GlobalDocument,
+	ProductByIdDocument,
+	ShopifyProductDataDocument,
+} from '@graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import { CountryParams } from '@app/[country]/layout';
@@ -23,149 +29,168 @@ import ProductVariantsForm from './components/ProductVariantsForm';
 import { Suspense } from 'react';
 
 export default async function Product({ params }: CountryProductParams) {
+	const { shopifyProduct: shopifyProductData } = await apiQuery<
+		ShopifyProductDataQuery,
+		ShopifyProductDataQueryVariables
+	>(ShopifyProductDataDocument, {
+		variables: { handle: params.product },
+		tags: ['product', 'shopify_product'],
+		generateTags: false,
+	});
 
-  const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
-    variables: { handle: params.product },
-    tags: ['product', 'shopify_product'],
-    generateTags: false
-  })
+	if (!shopifyProductData) return notFound();
 
-  if (!shopifyProductData)
-    return notFound();
+	const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
+		apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
+			variables: { id: shopifyProductData.id },
+			tags: [
+				'product',
+				'shopify_product',
+				'collection',
+				'product_color',
+				'product_link',
+				'product_media_model',
+				'product_meta_info',
+				'product_meta_type',
+				'product_usp',
+			],
+			generateTags: false,
+		}),
+		apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument),
+		shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
+			variables: { handle: params.product },
+			country: params.country,
+			tags: ['product', 'shopify_product'],
+		}),
+	]);
 
-  const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
-    apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
-      variables: { id: shopifyProductData.id },
-      tags: ['product', 'shopify_product', 'collection', 'product_color', 'product_link', 'product_media_model', 'product_meta_info', 'product_meta_type', 'product_usp'],
-      generateTags: false
-    }),
-    apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument),
-    shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
-      variables: { handle: params.product },
-      country: params.country,
-      tags: ['product', 'shopify_product']
-    })])
+	if (!product || !shopifyProduct) return notFound();
 
-  if (!product || !shopifyProduct)
-    return notFound();
+	const productJsonLd = generateLDJson(product, shopifyProduct);
 
-  const productJsonLd = generateLDJson(product, shopifyProduct);
+	return (
+		<>
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+			/>
 
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-
-      <section id="product" className={cn(s.product, "grid")}>
-        <Suspense>
-          <ProductPresentation product={product} shopifyProduct={shopifyProduct} />
-          <ProductInfo product={product} shopifyProduct={shopifyProduct} />
-        </Suspense>
-        <ProductMeta product={product} />
-      </section>
-      <Suspense>
-        <ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
-      </Suspense>
-      <RelatedProducts product={product} />
-      <FeedbackForm feedback={feedback} />
-      <DraftMode url={draftUrl} tag={product.id} />
-    </>
-  )
+			<section id='product' className={cn(s.product, 'grid')}>
+				<Suspense>
+					<ProductPresentation product={product} shopifyProduct={shopifyProduct} />
+					<ProductInfo product={product} shopifyProduct={shopifyProduct} />
+				</Suspense>
+				<ProductMeta product={product} />
+			</section>
+			<Suspense>
+				<ProductVariantsForm product={product} shopifyProduct={shopifyProduct} mobile={true} />
+			</Suspense>
+			<RelatedProducts product={product} />
+			<FeedbackForm feedback={feedback} />
+			<DraftMode url={draftUrl} tag={product.id} />
+		</>
+	);
 }
 
 export async function generateStaticParams(params: CountryParams) {
+	const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(
+		AllProductsDocument,
+		{
+			all: true,
+			tags: ['product'],
+			generateTags: false,
+		}
+	);
 
-  const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
-    all: true,
-    tags: ['product'],
-    generateTags: false
-  });
-
-  return allProducts.map(({ shopifyProduct }) => ({
-    product: shopifyProduct?.handle,
-    country: params?.params?.country
-  }))
+	return allProducts.map(({ shopifyProduct }) => ({
+		product: shopifyProduct?.handle,
+		country: params?.params?.country,
+	}));
 }
 
-const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: ShopifyProductQuery['product']): any => {
+const generateLDJson = (
+	product: ProductByIdQuery['product'],
+	shopifyProduct: ShopifyProductQuery['product']
+): any => {
+	if (!product || !shopifyProduct) return {};
 
-  if (!product || !shopifyProduct) return {};
+	const availableForSale = shopifyProduct.variants.edges.some(({ node }) => node.availableForSale);
 
-  const availableForSale = shopifyProduct.variants.edges.some(({ node }) => node.availableForSale);
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: product.title,
-    description: product.description,
-    image: product.image?.url,
-    offers: {
-      '@type': 'AggregateOffer',
-      availability: availableForSale
-        ? 'https://schema.org/InStock'
-        : 'https://schema.org/OutOfStock',
-      priceCurrency: shopifyProduct.variants.edges[0]?.node.price.currencyCode,
-      highPrice: shopifyProduct.variants.edges[0]?.node.price.amount,
-      lowPrice: shopifyProduct.variants.edges[0]?.node.price.amount
-    }
-  }
-}
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'Product',
+		name: product.title,
+		description: product.description,
+		image: product.image?.url,
+		offers: {
+			'@type': 'AggregateOffer',
+			availability: availableForSale
+				? 'https://schema.org/InStock'
+				: 'https://schema.org/OutOfStock',
+			priceCurrency: shopifyProduct.variants.edges[0]?.node.price.currencyCode,
+			highPrice: shopifyProduct.variants.edges[0]?.node.price.amount,
+			lowPrice: shopifyProduct.variants.edges[0]?.node.price.amount,
+		},
+	};
+};
 
 export async function generateMetadata({ params }: CountryProductParams) {
+	const {
+		site: { globalSeo },
+	} = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument);
+	const { shopifyProduct: shopifyProductData } = await apiQuery<
+		ShopifyProductDataQuery,
+		ShopifyProductDataQueryVariables
+	>(ShopifyProductDataDocument, {
+		variables: { handle: params.product },
+		generateTags: false,
+	});
 
-  const { site: { globalSeo } } = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument)
-  const { shopifyProduct: shopifyProductData } = await apiQuery<ShopifyProductDataQuery, ShopifyProductDataQueryVariables>(ShopifyProductDataDocument, {
-    variables: { handle: params.product },
-    generateTags: false
-  })
+	if (!shopifyProductData) return {};
 
-  if (!shopifyProductData)
-    return {};
+	const [{ product }] = await Promise.all([
+		apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
+			variables: { id: shopifyProductData.id },
+			generateTags: false,
+		}),
+	]);
 
-  const [
-    { product },
-  ] = await Promise.all([
-    apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
-      variables: { id: shopifyProductData.id },
-      generateTags: false
-    }),
-  ])
+	if (!product) return {};
 
-  if (!product) return {};
+	const title = product.metaTitle || product.title;
+	//@ts-ignore
+	const description = product.metaDescription || structuredToText(product.description);
 
-  const title = product.metaTitle || product.title
-  //@ts-ignore
-  const description = product.metaDescription || structuredToText(product.description)
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}/${params.country}/products/${params.product}`,
-      siteName: globalSeo?.siteName,
-      images: [
-        {
-          url: `${product.image?.url}?w=1200&h=630&fit=fill&q=80`,
-          width: 800,
-          height: 600,
-          alt: globalSeo?.siteName
-        },
-        {
-          url: `${product.image?.url}?w=1600&h=800&fit=fill&q=80`,
-          width: 1600,
-          height: 800,
-          alt: globalSeo?.siteName
-        },
-        {
-          url: `${product.image?.url}?w=790&h=627&fit=crop&q=80`,
-          width: 790,
-          height: 627,
-          alt: globalSeo?.siteName
-        },
-      ],
-      locale: 'en_US',
-      type: 'website',
-    },
-  } as Metadata
+	return {
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/${params.country}/products/${params.product}`,
+			siteName: globalSeo?.siteName,
+			images: [
+				{
+					url: `${product.image?.url}?w=1200&h=630&fit=fill&q=80`,
+					width: 800,
+					height: 600,
+					alt: globalSeo?.siteName,
+				},
+				{
+					url: `${product.image?.url}?w=1600&h=800&fit=fill&q=80`,
+					width: 1600,
+					height: 800,
+					alt: globalSeo?.siteName,
+				},
+				{
+					url: `${product.image?.url}?w=790&h=627&fit=crop&q=80`,
+					width: 790,
+					height: 627,
+					alt: globalSeo?.siteName,
+				},
+			],
+			locale: 'en_US',
+			type: 'website',
+		},
+	} as Metadata;
 }
