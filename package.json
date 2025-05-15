@@ -4,8 +4,6 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbo & npm run codegen",
-		"dev:shopify": "GRAPHQL_CONFIG=shopify graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev",
-		"dev:turbo": "GRAPHQL_CONFIG=datocms graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev --turbo",
 		"barrel:watch": "watch 'node ./lib/scripts/barrel' ./components",
 		"build": "npm run prebuild && next build",
 		"prebuild": "tsx prebuild",
@@ -39,7 +37,7 @@
 		"graphql": "^16.8.1",
 		"is-integer": "^1.0.7",
 		"lottie-react": "^2.4.0",
-		"next": "14.2.25",
+		"next": "14.2.28",
 		"next-dato-utils": "github:bebejane/next-dato-utils#main",
 		"next-intl": "^3.13.0",
 		"object-traversal": "^1.0.1",

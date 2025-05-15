@@ -8765,7 +8765,7 @@ type LocalizationQueryVariables = Exact<{
 }>;
 
 
-type LocalizationQuery = { __typename?: 'QueryRoot', localization: { __typename?: 'Localization', availableCountries: Array<{ __typename?: 'Country', isoCode: CountryCode, name: string, unitSystem: UnitSystem, currency: { __typename?: 'Currency', isoCode: CurrencyCode, name: string, symbol: string } }>, country: { __typename?: 'Country', isoCode: CountryCode, name: string, unitSystem: UnitSystem, currency: { __typename?: 'Currency', isoCode: CurrencyCode, name: string, symbol: string }, market?: { __typename?: 'Market', id: string, handle: string } | null } } };
+type LocalizationQuery = { __typename?: 'QueryRoot', localization: { __typename?: 'Localization', availableCountries: Array<{ __typename?: 'Country', isoCode: CountryCode, name: string, unitSystem: UnitSystem, currency: { __typename?: 'Currency', isoCode: CurrencyCode, name: string, symbol: string } }>, country: { __typename?: 'Country', isoCode: CountryCode, name: string, unitSystem: UnitSystem, currency: { __typename?: 'Currency', isoCode: CurrencyCode, name: string, symbol: string } } } };
 
 type AllShopifyProductsQueryVariables = Exact<{
   country?: InputMaybe<CountryCode>;
