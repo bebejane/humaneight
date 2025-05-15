@@ -100,6 +100,7 @@ const dedupedFetch = async (options: DedupeOptions) => {
     throw new Error(`${response.status} ${response.statusText}: ${JSON.stringify(responseBody)}`);
 
   if (responseBody.errors) {
+    console.error(responseBody.errors)
     const message = responseBody.errors.map(({ message }: { message: string }) => message).join('. ')
     throw new Error(message);
   }

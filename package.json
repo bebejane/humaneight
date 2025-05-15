@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "GRAPHQL_CONFIG=datocms graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev",
+		"dev": "next dev --turbo & npm run codegen",
 		"dev:shopify": "GRAPHQL_CONFIG=shopify graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev",
 		"dev:turbo": "GRAPHQL_CONFIG=datocms graphql-codegen --watch --config graphql.config.ts & sleep 1 && next dev --turbo",
 		"barrel:watch": "watch 'node ./lib/scripts/barrel' ./components",
@@ -14,7 +14,10 @@
 		"reset": "rm -rf .next node_modules pnpm-lock.yaml ; pnpm i",
 		"preview": "next build && next start",
 		"utils:link": "pnpm link /Users/bebejane/Projects/next-dato-utils",
-		"utils:unlink": "pnpm unlink /Users/bebejane/Projects/next-dato-utils && pnpm up dato-next-utils"
+		"utils:unlink": "pnpm unlink /Users/bebejane/Projects/next-dato-utils && pnpm up dato-next-utils",
+		"codegen": "chokidar \"./graphql/**/*.gql\" -c \"pnpm codegen:website\" & chokidar \"./shopify/graphql/**/*.gql\" -c \"pnpm codegen:shopify\"",
+		"codegen:website": "graphql-codegen --config graphql.config.ts --project default",
+		"codegen:shopify": "graphql-codegen --config graphql.config.ts --project shopify"
 	},
 	"dependencies": {
 		"@datocms/cma-client": "3.1.2",
@@ -76,6 +79,7 @@
 		"@types/object.omit": "^3.0.3",
 		"@types/react": "^18.2.37",
 		"@types/react-dom": "^18.2.15",
+		"chokidar-cli": "^3.0.0",
 		"dotenv": "^16.3.1",
 		"eslint": "8.49.0",
 		"eslint-config-next": "13.5.2",

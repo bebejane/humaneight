@@ -1,5 +1,5 @@
-type Maybe<T> = T;
-type InputMaybe<T> = T;
+type Maybe<T> = T | null;
+type InputMaybe<T> = Maybe<T>;
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -29,11 +29,11 @@ type AboutFeedbackFormBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -51,6 +51,7 @@ type AboutFeedbackFormBlockRecord_seoMetaTagsArgs = {
 type AboutModelContentField = {
   __typename?: 'AboutModelContentField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -81,6 +82,7 @@ type AboutModelFilter = {
 type AboutModelIntroField = {
   __typename?: 'AboutModelIntroField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -124,11 +126,11 @@ type AboutRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -156,6 +158,7 @@ type AboutRecord_seoMetaTagsArgs = {
 type AboutTextBlockModelTextField = {
   __typename?: 'AboutTextBlockModelTextField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -166,11 +169,11 @@ type AboutTextBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -190,6 +193,7 @@ type AboutTextBlockRecord_seoMetaTagsArgs = {
 type AboutThreeColumnBlockModelC1TextField = {
   __typename?: 'AboutThreeColumnBlockModelC1TextField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -197,6 +201,7 @@ type AboutThreeColumnBlockModelC1TextField = {
 type AboutThreeColumnBlockModelC2TextField = {
   __typename?: 'AboutThreeColumnBlockModelC2TextField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -204,6 +209,7 @@ type AboutThreeColumnBlockModelC2TextField = {
 type AboutThreeColumnBlockModelC3TextField = {
   __typename?: 'AboutThreeColumnBlockModelC3TextField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -214,11 +220,11 @@ type AboutThreeColumnBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -244,6 +250,7 @@ type AboutTwoColumnBlockModelTextBlocksField = ContactFormBlockRecord | TwoColum
 type AboutTwoColumnBlockModelTextField = {
   __typename?: 'AboutTwoColumnBlockModelTextField';
   blocks: Array<AboutTwoColumnBlockModelTextBlocksField>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -254,11 +261,11 @@ type AboutTwoColumnBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -288,11 +295,11 @@ type ClaimRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -371,11 +378,11 @@ type CollectionRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -466,11 +473,11 @@ type ContactFormBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -489,6 +496,7 @@ type ContactFormBlockRecord_seoMetaTagsArgs = {
 type ContactModelContentField = {
   __typename?: 'ContactModelContentField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -499,11 +507,11 @@ type ContactRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -548,11 +556,11 @@ type FaqConfigRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -571,6 +579,7 @@ type FaqConfigRecord_seoMetaTagsArgs = {
 type FaqModelAnswerField = {
   __typename?: 'FaqModelAnswerField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -624,11 +633,11 @@ type FaqRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -699,11 +708,11 @@ type FaqSectionRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -732,6 +741,7 @@ enum FaviconType {
 type FeedbackModelIntroField = {
   __typename?: 'FeedbackModelIntroField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -742,11 +752,11 @@ type FeedbackQuestionBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -775,11 +785,11 @@ type FeedbackRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -974,11 +984,11 @@ type FullscreenBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -1015,11 +1025,11 @@ type GeneralRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -1136,7 +1146,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/ar)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/aspect-ratio)
    */
   ar?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1144,7 +1154,7 @@ type ImgixParams = {
    *
    * Applies automatic enhancements to images.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/auto)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/automatic)
    */
   auto?: InputMaybe<Array<ImgixParamsAuto>>;
   /**
@@ -1152,7 +1162,7 @@ type ImgixParams = {
    *
    * Colors the background of padded and partially-transparent images.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/bg)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/background-color)
    */
   bg?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1160,7 +1170,7 @@ type ImgixParams = {
    *
    * Removes background from image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-remove)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal)
    */
   bgRemove?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1168,23 +1178,41 @@ type ImgixParams = {
    *
    * Overrides default fallback behavior for bg-remove failures.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-remove)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal-fallback)
    */
   bgRemoveFallback?: InputMaybe<Scalars['BooleanType']['input']>;
+  /**
+   * Background Removal Foreground Type
+   *
+   * Specifies the image foreground type for background removal.
+   *
+   * Depends on: `bg-remove=true`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal-foreground-type)
+   */
+  bgRemoveFgType?: InputMaybe<Array<ImgixParamsBgRemoveFgType>>;
+  /**
+   * Background Removal Semi Transparency
+   *
+   * Enables background removal while retaining semi-transparent areas.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-removal-semi-transparency)
+   */
+  bgRemoveSemiTransparency?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Background Replacement
    *
    * Replaces background from image using a string based prompt.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-replacement)
    */
   bgReplace?: InputMaybe<Scalars['String']['input']>;
   /**
-   * Background Removal Fallback
+   * Background Replace Fallback
    *
    * Overrides default fallback behavior for bg-replace failures.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-replace-fallback)
    */
   bgReplaceFallback?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1192,7 +1220,7 @@ type ImgixParams = {
    *
    * Provides a negative text suggestion for background replacement.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/bg-replace-neg-prompt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/background/background-replacement-negative-prompt)
    */
   bgReplaceNegPrompt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1200,7 +1228,7 @@ type ImgixParams = {
    *
    * Specifies the location of the blend image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend)
    */
   blend?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1210,7 +1238,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-align)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-align)
    */
   blendAlign?: InputMaybe<Array<ImgixParamsBlendAlign>>;
   /**
@@ -1220,7 +1248,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-alpha)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-alpha)
    */
   blendAlpha?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1228,7 +1256,7 @@ type ImgixParams = {
    *
    * Specifies a color to use when applying the blend.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-color)
    */
   blendColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1238,7 +1266,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-crop)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-crop)
    */
   blendCrop?: InputMaybe<Array<ImgixParamsBlendCrop>>;
   /**
@@ -1248,7 +1276,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-fit)
    */
   blendFit?: InputMaybe<ImgixParamsBlendFit>;
   /**
@@ -1258,7 +1286,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-h)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-height)
    */
   blendH?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1268,7 +1296,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-mode)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-mode)
    */
   blendMode?: InputMaybe<ImgixParamsBlendMode>;
   /**
@@ -1278,7 +1306,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-padding)
    */
   blendPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1288,7 +1316,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-size)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-size)
    */
   blendSize?: InputMaybe<ImgixParamsBlendSize>;
   /**
@@ -1298,7 +1326,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-w)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-width)
    */
   blendW?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1308,7 +1336,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-x-position)
    */
   blendX?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1318,7 +1346,7 @@ type ImgixParams = {
    *
    * Depends on: `blend`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/blending/blend-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/blending/blend-y-position)
    */
   blendY?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1326,7 +1354,7 @@ type ImgixParams = {
    *
    * Applies a gaussian blur to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/blur)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/gaussian-blur)
    */
   blur?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1334,7 +1362,7 @@ type ImgixParams = {
    *
    * Applies a border to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size)
    */
   border?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1344,7 +1372,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-bottom)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-bottom)
    */
   borderBottom?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1354,7 +1382,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-left)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-left)
    */
   borderLeft?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1364,7 +1392,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-radius)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/outer-border-radius)
    */
   borderRadius?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1374,7 +1402,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-radius-inner)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/inner-border-radius)
    */
   borderRadiusInner?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1384,7 +1412,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-right)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-right)
    */
   borderRight?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1394,7 +1422,7 @@ type ImgixParams = {
    *
    * Depends on: `border`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/border-top)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/border-top)
    */
   borderTop?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1402,7 +1430,7 @@ type ImgixParams = {
    *
    * Adjusts the brightness of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/bri)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/brightness)
    */
   bri?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1410,7 +1438,7 @@ type ImgixParams = {
    *
    * Sets one or more Client-Hints headers
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/ch)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/client-hints)
    */
   ch?: InputMaybe<Array<ImgixParamsCh>>;
   /**
@@ -1418,7 +1446,7 @@ type ImgixParams = {
    *
    * Specifies the output chroma subsampling rate.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/chromasub)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/chroma-subsampling)
    */
   chromasub?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1426,7 +1454,7 @@ type ImgixParams = {
    *
    * Limits the number of unique colors in an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/colorquant)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/color-quantization)
    */
   colorquant?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1436,7 +1464,7 @@ type ImgixParams = {
    *
    * Depends on: `palette`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/colors)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/color-palette/palette-color-count)
    */
   colors?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1444,7 +1472,7 @@ type ImgixParams = {
    *
    * Adjusts the contrast of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/con)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/contrast)
    */
   con?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1454,7 +1482,7 @@ type ImgixParams = {
    *
    * Depends on: `mask=corners`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask/corner-radius)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/mask-image/mask-corner-radius)
    */
   cornerRadius?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1464,7 +1492,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/crop)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/crop-mode)
    */
   crop?: InputMaybe<Array<ImgixParamsCrop>>;
   /**
@@ -1472,7 +1500,7 @@ type ImgixParams = {
    *
    * Specifies the color space of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/cs)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/color-space)
    */
   cs?: InputMaybe<ImgixParamsCs>;
   /**
@@ -1480,7 +1508,7 @@ type ImgixParams = {
    *
    * Forces a URL to use send-file in its response.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/dl)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/download)
    */
   dl?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1488,7 +1516,7 @@ type ImgixParams = {
    *
    * Sets the DPI value in the EXIF header.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/dpi)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/dots-per-inch)
    */
   dpi?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1496,7 +1524,7 @@ type ImgixParams = {
    *
    * Adjusts the device-pixel ratio of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/dpr)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/device-pixel-ratio)
    */
   dpr?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1504,7 +1532,7 @@ type ImgixParams = {
    *
    * Applies a duotone effect to the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/duotone)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/duotone)
    */
   duotone?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1514,7 +1542,7 @@ type ImgixParams = {
    *
    * Depends on: `duotone`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/duotone-alpha)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/duotone-alpha)
    */
   duotoneAlpha?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1522,7 +1550,7 @@ type ImgixParams = {
    *
    * Adjusts the exposure of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/exp)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/exposure)
    */
   exp?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1530,9 +1558,25 @@ type ImgixParams = {
    *
    * A Unix timestamp specifying a UTC time. Requests made to this URL after that time will output a 404 status code.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/expires)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/expiration)
    */
   expires?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Face Blur
+   *
+   * Specifies the amount of blur to apply to detected faces. Defaults to 0.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-blur)
+   */
+  faceBlur?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Face Pixelation
+   *
+   * Specifies the pixelation amount of the face.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-pixelation)
+   */
+  facePixel?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Face Index
    *
@@ -1540,7 +1584,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=facearea`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/faceindex)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-index)
    */
   faceindex?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1550,7 +1594,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=facearea`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/facepad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/face-padding)
    */
   facepad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1560,7 +1604,7 @@ type ImgixParams = {
    *
    * Depends on: `fm=json`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/face-detection/faces)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/face-detection/json-face-data)
    */
   faces?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1570,7 +1614,7 @@ type ImgixParams = {
    *
    * Depends on: `fit`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-mode)
    */
   fill?: InputMaybe<ImgixParamsFill>;
   /**
@@ -1580,7 +1624,7 @@ type ImgixParams = {
    *
    * Depends on: `fill=solid`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-color)
    */
   fillColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1590,7 +1634,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-fallback)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-fallback)
    */
   fillGenFallback?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1600,7 +1644,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-neg-prompt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-negative-prompt)
    */
   fillGenNegPrompt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1610,7 +1654,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-pos)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-position)
    */
   fillGenPos?: InputMaybe<Array<ImgixParamsFillGenPos>>;
   /**
@@ -1620,7 +1664,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-prompt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-prompt)
    */
   fillGenPrompt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1630,7 +1674,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gen-seed)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-generative-seed)
    */
   fillGenSeed?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1640,7 +1684,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-cs)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-color-space)
    */
   fillGradientCs?: InputMaybe<ImgixParamsFillGradientCs>;
   /**
@@ -1650,7 +1694,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-linear)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-linear)
    */
   fillGradientLinear?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1660,7 +1704,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gen`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-linear-direction)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-linear-direction)
    */
   fillGradientLinearDirection?: InputMaybe<Array<ImgixParamsFillGradientLinearDirection>>;
   /**
@@ -1670,7 +1714,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial)
    */
   fillGradientRadial?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1680,7 +1724,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-radius)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial-radius)
    */
   fillGradientRadialRadius?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1690,7 +1734,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial-x)
    */
   fillGradientRadialX?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1700,7 +1744,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-radial-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-radial-y)
    */
   fillGradientRadialY?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1710,7 +1754,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=fill`, `fill=gradient`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/fill-gradient-type)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/fill-gradient-type)
    */
   fillGradientType?: InputMaybe<ImgixParamsFillGradientType>;
   /**
@@ -1718,7 +1762,7 @@ type ImgixParams = {
    *
    * Specifies how to map the source image to the output image dimensions.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/resize-fit-mode)
    */
   fit?: InputMaybe<ImgixParamsFit>;
   /**
@@ -1726,7 +1770,7 @@ type ImgixParams = {
    *
    * Flips an image on a specified axis.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/flip)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/flip-axis)
    */
   flip?: InputMaybe<ImgixParamsFlip>;
   /**
@@ -1734,7 +1778,7 @@ type ImgixParams = {
    *
    * Changes the format of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/fm)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/output-format)
    */
   fm?: InputMaybe<ImgixParamsFm>;
   /**
@@ -1744,7 +1788,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-debug)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-debug)
    */
   fpDebug?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -1754,7 +1798,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-x-position)
    */
   fpX?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1764,7 +1808,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-y-position)
    */
   fpY?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1774,19 +1818,23 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`, `crop=focalpoint`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/focalpoint-crop/fp-z)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/focal-point-crop/focal-point-zoom)
    */
   fpZ?: InputMaybe<Scalars['FloatType']['input']>;
   /**
    * Frames Per Second
    *
    * Specifies the framerate of the generated image.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frames-per-second)
    */
   fps?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Frame Selection
    *
    * Specifies the frame of an animated image to use.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frame-selection)
    */
   frame?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1794,7 +1842,7 @@ type ImgixParams = {
    *
    * Adjusts the gamma of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/gam)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/gamma)
    */
   gam?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1803,6 +1851,8 @@ type ImgixParams = {
    * Specifies the quality of the animated gif. The higher the value, the better more compression is applied.
    *
    * Depends on: `fm=gif`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/animated-gif-quality)
    */
   gifQ?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1811,6 +1861,8 @@ type ImgixParams = {
    * Sets grid colors for the transparency checkerboard grid.
    *
    * Depends on: `transparency`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/grid-colors)
    */
   gridColors?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1819,6 +1871,8 @@ type ImgixParams = {
    * Sets grid size for the transparency checkerboard grid.
    *
    * Depends on: `transparency`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/grid-size)
    */
   gridSize?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1826,7 +1880,7 @@ type ImgixParams = {
    *
    * Adjusts the height of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/h)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/image-height)
    */
   h?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1834,7 +1888,7 @@ type ImgixParams = {
    *
    * Adjusts the highlights of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/high)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/highlight)
    */
   high?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1842,7 +1896,7 @@ type ImgixParams = {
    *
    * Applies a half-tone effect to the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/htn)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/halftone)
    */
   htn?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1850,13 +1904,15 @@ type ImgixParams = {
    *
    * Adjusts the hue of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/hue)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/hue-shift)
    */
   hue?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Frame Interval
    *
    * Displays every Nth frame starting with the first frame.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frame-interval)
    */
   interval?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1864,25 +1920,31 @@ type ImgixParams = {
    *
    * Inverts the colors on the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/invert)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/invert)
    */
   invert?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Iptc Passthrough
    *
    * Determine if IPTC data should be passed for JPEG images.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/iptc-passthrough)
    */
   iptc?: InputMaybe<ImgixParamsIptc>;
   /**
    * Jpg Progressive
    *
    * Specifies whether or not a jpg/jpeg uses progressive (true) or baseline (false)
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/jpg-progressive)
    */
   jpgProgressive?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Animation Loop Count
    *
    * Specifies the number of times an animated image should repeat. A value of 0 means infinite looping.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation)
    */
   loop?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1892,15 +1954,23 @@ type ImgixParams = {
    *
    * Depends on: `fm=webp`, `fm=jxr`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/lossless)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/lossless-compression)
    */
   lossless?: InputMaybe<Scalars['BooleanType']['input']>;
+  /**
+   * License Plate Blur
+   *
+   * Specifies the amount of blur to apply to detected license plates. Defaults to 0.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/license-plate-detection/license-plate-blur)
+   */
+  lpBlur?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Watermark Image Url
    *
    * Specifies the location of the watermark image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-image-url)
    */
   mark?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1910,7 +1980,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-align)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-alignment-mode)
    */
   markAlign?: InputMaybe<Array<ImgixParamsMarkAlign>>;
   /**
@@ -1920,7 +1990,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-alpha)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-alpha)
    */
   markAlpha?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1930,7 +2000,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-base)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-base-url)
    */
   markBase?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -1940,7 +2010,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`, `markw`, `markh`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-fit-mode)
    */
   markFit?: InputMaybe<ImgixParamsMarkFit>;
   /**
@@ -1950,9 +2020,29 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-h)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-height)
    */
   markH?: InputMaybe<Scalars['FloatType']['input']>;
+  /**
+   * Watermark If Minimum Height
+   *
+   * Displays the watermark if rendered base image pixel height is equal to or larger than the supplied value
+   *
+   * Depends on: `mark`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-if-minimum-height)
+   */
+  markIfMinHeight?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Watermark If Minimum Width
+   *
+   * Displays the watermark if rendered base image pixel width is equal to or larger than the supplied value
+   *
+   * Depends on: `mark`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-if-minimum-width)
+   */
+  markIfMinWidth?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Watermark Padding
    *
@@ -1960,7 +2050,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-padding)
    */
   markPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1968,7 +2058,7 @@ type ImgixParams = {
    *
    * Rotates a watermark or tiled watermarks by a specified number of degrees.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-rot)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-rotation)
    */
   markRot?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -1978,7 +2068,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-scale)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-scale)
    */
   markScale?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -1988,7 +2078,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-tile)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-tile)
    */
   markTile?: InputMaybe<ImgixParamsMarkTile>;
   /**
@@ -1998,7 +2088,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-w)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-width)
    */
   markW?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2008,7 +2098,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-x-position)
    */
   markX?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2018,7 +2108,7 @@ type ImgixParams = {
    *
    * Depends on: `mark`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/watermark/mark-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/watermark/watermark-y-position)
    */
   markY?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2026,7 +2116,7 @@ type ImgixParams = {
    *
    * Defines the type of mask and specifies the URL if that type is selected.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/mask-image/mask-type)
    */
   mask?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2036,7 +2126,7 @@ type ImgixParams = {
    *
    * Depends on: `mask`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/mask/mask-bg)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/mask-image/mask-background-color)
    */
   maskBg?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2046,7 +2136,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/max-height)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/maximum-height)
    */
   maxH?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2056,7 +2146,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/max-width)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/maximum-width)
    */
   maxW?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2066,7 +2156,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/min-height)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/minimum-height)
    */
   minH?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2076,7 +2166,7 @@ type ImgixParams = {
    *
    * Depends on: `fit=crop`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/min-width)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/minimum-width)
    */
   minW?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2084,7 +2174,7 @@ type ImgixParams = {
    *
    * Applies a monochrome effect to the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/monochrome)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/monochrome)
    */
   monochrome?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2092,7 +2182,7 @@ type ImgixParams = {
    *
    * Reduces the noise in an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/noise-reduction/nr)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/noise-reduction/noise-reduction-bound)
    */
   nr?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2100,15 +2190,53 @@ type ImgixParams = {
    *
    * Provides a threshold by which to sharpen an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/noise-reduction/nrs)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/noise-reduction/noise-reduction-sharpen)
    */
   nrs?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Object Removal Negative Prompt
+   *
+   * Provides a negative text suggestion to object-removal-prompt. Used to reduce the probability of a subject, detail, or object appearing in generative output.
+   *
+   * Depends on: `object-removal-rect`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal-negative-prompt)
+   */
+  objectRemovalNegativePrompt?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Object Removal Prompt
+   *
+   * Suggest auto generative fill for the object-removal-rect parameter
+   *
+   * Depends on: `object-removal-rect`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal-prompt)
+   */
+  objectRemovalPrompt?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Object Removal
+   *
+   * Using a specified rectangle, an object is removed from the image
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal)
+   */
+  objectRemovalRect?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * Object Removal Seed
+   *
+   * Sets the generative seed value for object-removal. Used to generate new outputs from the same prompt
+   *
+   * Depends on: `object-removal-rect`, `object-removal-prompt`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/object-manipulation/object-removal-seed)
+   */
+  objectRemovalSeed?: InputMaybe<Scalars['IntType']['input']>;
   /**
    * Orientation
    *
    * Changes the image orientation.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/orient)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/orientation)
    */
   orient?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2116,7 +2244,7 @@ type ImgixParams = {
    *
    * Pads an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding)
    */
   pad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2124,7 +2252,7 @@ type ImgixParams = {
    *
    * Sets bottom padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-bottom)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-bottom)
    */
   padBottom?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2132,7 +2260,7 @@ type ImgixParams = {
    *
    * Sets left padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-left)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-left)
    */
   padLeft?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2140,7 +2268,7 @@ type ImgixParams = {
    *
    * Sets right padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-right)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-right)
    */
   padRight?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2148,7 +2276,7 @@ type ImgixParams = {
    *
    * Sets top padding of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/border-and-padding/pad-top)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/border-and-padding/padding-top)
    */
   padTop?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2156,7 +2284,7 @@ type ImgixParams = {
    *
    * Selects a page from a PDF for display.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/page)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/pdf/pdf-page-number)
    */
   page?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2164,7 +2292,7 @@ type ImgixParams = {
    *
    * Specifies an output format for palette-extraction.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/palette)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/color-palette/color-palette-extraction)
    */
   palette?: InputMaybe<ImgixParamsPalette>;
   /**
@@ -2172,7 +2300,7 @@ type ImgixParams = {
    *
    * Enables or disables PDF annotation.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/pdf/pdf-annotation)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/pdf/pdf-annotation)
    */
   pdfAnnotation?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -2182,7 +2310,7 @@ type ImgixParams = {
    *
    * Depends on: `palette=css`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/color-palette/prefix)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/color-palette/css-prefix)
    */
   prefix?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2190,7 +2318,7 @@ type ImgixParams = {
    *
    * Applies a pixelation effect to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/px)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/pixellate)
    */
   px?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2198,23 +2326,31 @@ type ImgixParams = {
    *
    * Adjusts the quality of an output image.
    *
-   * Depends on: `fm=jpg`, `fm=pjpg`, `fm=webp`, `fm=jxr`
+   * Depends on: `fm=avif`, `fm=jpg`, `fm=pjpg`, `fm=webp`, `fm=jxr`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/format/q)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/output-quality)
    */
   q?: InputMaybe<Scalars['IntType']['input']>;
+  /**
+   * Rasterize Bypass
+   *
+   * Bypasses all rendering parameters (including default parameters) and serves the original image. Works for svg+xml,x-eps,pdf, and vnd.adobe.illustrator.
+   */
+  rasterizeBypass?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
    * Source Rectangle Region
    *
    * Crops an image to a specified rectangle.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/rect)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/source-rectangle-region)
    */
   rect?: InputMaybe<Scalars['String']['input']>;
   /**
    * Reverse
    *
    * Reverses the frame order on the source animation.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/reverse)
    */
   reverse?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -2222,15 +2358,23 @@ type ImgixParams = {
    *
    * Rotates an image by a specified number of degrees.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/rotation/rot)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/rotation)
    */
   rot?: InputMaybe<Scalars['FloatType']['input']>;
+  /**
+   * Rotation Type
+   *
+   * Changes the rotation type.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/rotation/rotation-type)
+   */
+  rotType?: InputMaybe<ImgixParamsRotType>;
   /**
    * Saturation
    *
    * Adjusts the saturation of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sat)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/saturation)
    */
   sat?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2238,7 +2382,7 @@ type ImgixParams = {
    *
    * Applies a sepia effect to an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/stylize/sepia)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/stylize/sepia-tone)
    */
   sepia?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2246,7 +2390,7 @@ type ImgixParams = {
    *
    * Adjusts the highlights of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/shad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/shadow)
    */
   shad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2254,13 +2398,15 @@ type ImgixParams = {
    *
    * Adjusts the sharpness of the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/sharp)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/sharpen)
    */
   sharp?: InputMaybe<Scalars['FloatType']['input']>;
   /**
    * Frame Skip
    *
    * Skips every Nth frame starting with the first frame.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/animation/frame-skip)
    */
   skip?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2273,6 +2419,8 @@ type ImgixParams = {
    * Sanitize Svg
    *
    * Specifies whether to sanitize an SVG.
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/format/sanitize-svg)
    */
   svgSanitize?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -2280,7 +2428,7 @@ type ImgixParams = {
    *
    * Adds checkerboard behind images which support transparency.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/fill/transparency)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/fill/transparency)
    */
   transparency?: InputMaybe<ImgixParamsTransparency>;
   /**
@@ -2288,9 +2436,19 @@ type ImgixParams = {
    *
    * Trims the source image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-image)
    */
   trim?: InputMaybe<ImgixParamsTrim>;
+  /**
+   * Trim Alpha
+   *
+   * Specifies a trim alpha on a trim operation.
+   *
+   * Depends on: `trim=alpha`
+   *
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-alpha)
+   */
+  trimAlpha?: InputMaybe<Scalars['FloatType']['input']>;
   /**
    * Trim Color
    *
@@ -2298,7 +2456,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=color`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-color)
    */
   trimColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2308,7 +2466,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=auto`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-md)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-mean-difference)
    */
   trimMd?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2318,7 +2476,7 @@ type ImgixParams = {
    *
    * Depends on: `trim`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-padding)
    */
   trimPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2328,7 +2486,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=auto`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-sd)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-standard-deviation)
    */
   trimSd?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2338,7 +2496,7 @@ type ImgixParams = {
    *
    * Depends on: `trim=color`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/trim/trim-tol)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/trim/trim-tolerance)
    */
   trimTol?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2346,7 +2504,7 @@ type ImgixParams = {
    *
    * Sets the text string to render.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-string)
    */
   txt?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2356,7 +2514,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-align)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-align)
    */
   txtAlign?: InputMaybe<Array<ImgixParamsTxtAlign>>;
   /**
@@ -2366,7 +2524,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-clip)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-clipping-mode)
    */
   txtClip?: InputMaybe<Array<ImgixParamsTxtClip>>;
   /**
@@ -2376,7 +2534,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-color)
    */
   txtColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2386,7 +2544,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-fit)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-fit-mode)
    */
   txtFit?: InputMaybe<ImgixParamsTxtFit>;
   /**
@@ -2396,7 +2554,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-font)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-font)
    */
   txtFont?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2406,7 +2564,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/typesetting/txt-lead)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/typesetting-endpoint/text-leading)
    */
   txtLead?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2416,7 +2574,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-line)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-outline)
    */
   txtLine?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2426,7 +2584,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`, `txtline`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-line-color)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-outline-color)
    */
   txtLineColor?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -2436,7 +2594,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-pad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-padding)
    */
   txtPad?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2446,7 +2604,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-shad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-shadow)
    */
   txtShad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2456,7 +2614,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-size)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-font-size)
    */
   txtSize?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2466,7 +2624,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/typesetting/txt-track)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/typesetting-endpoint/text-tracking)
    */
   txtTrack?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2476,7 +2634,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-width)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-width)
    */
   txtWidth?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2486,7 +2644,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-x)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-x-position)
    */
   txtX?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2496,7 +2654,7 @@ type ImgixParams = {
    *
    * Depends on: `txt`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/text/txt-y)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/text/text-y-position)
    */
   txtY?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2504,7 +2662,7 @@ type ImgixParams = {
    *
    * Uses generative AI fill to upscale low resolution images.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution/upscale)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution)
    */
   upscale?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -2512,7 +2670,7 @@ type ImgixParams = {
    *
    * Overrides default fallback behavior for super resolution failures
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution/upscale-fallback)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/super-resolution)
    */
   upscaleFallback?: InputMaybe<Scalars['BooleanType']['input']>;
   /**
@@ -2520,7 +2678,7 @@ type ImgixParams = {
    *
    * Sharpens the source image using an unsharp mask.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/usm)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/unsharp-mask)
    */
   usm?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2530,7 +2688,7 @@ type ImgixParams = {
    *
    * Depends on: `usm`
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/usmrad)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/unsharp-mask-radius)
    */
   usmrad?: InputMaybe<Scalars['FloatType']['input']>;
   /**
@@ -2538,7 +2696,7 @@ type ImgixParams = {
    *
    * Adjusts the vibrance of an image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/adjustment/vib)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/adjustment/vibrance)
    */
   vib?: InputMaybe<Scalars['IntType']['input']>;
   /**
@@ -2546,7 +2704,7 @@ type ImgixParams = {
    *
    * Adjusts the width of the output image.
    *
-   * [Open Imgix reference »](https://docs.imgix.com/apis/url/size/w)
+   * [Open Imgix reference »](https://docs.imgix.com/apis/rendering/size/image-width)
    */
   w?: InputMaybe<Scalars['FloatType']['input']>;
 };
@@ -2556,6 +2714,11 @@ enum ImgixParamsAuto {
   enhance = 'enhance',
   format = 'format',
   redeye = 'redeye'
+}
+
+enum ImgixParamsBgRemoveFgType {
+  auto = 'auto',
+  car = 'car'
 }
 
 enum ImgixParamsBlendAlign {
@@ -2625,6 +2788,7 @@ enum ImgixParamsCrop {
 
 enum ImgixParamsCs {
   adobergb1998 = 'adobergb1998',
+  origin = 'origin',
   srgb = 'srgb',
   strip = 'strip',
   tinysrgb = 'tinysrgb'
@@ -2733,11 +2897,17 @@ enum ImgixParamsPalette {
   json = 'json'
 }
 
+enum ImgixParamsRotType {
+  pivot = 'pivot',
+  straighten = 'straighten'
+}
+
 enum ImgixParamsTransparency {
   grid = 'grid'
 }
 
 enum ImgixParamsTrim {
+  alpha = 'alpha',
   auto = 'auto',
   color = 'color'
 }
@@ -2965,6 +3135,7 @@ enum LegalModelOrderBy {
 type LegalModelTextField = {
   __typename?: 'LegalModelTextField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -2975,11 +3146,11 @@ type LegalRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3118,11 +3289,11 @@ type ProductBrandingRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3185,11 +3356,11 @@ type ProductColorRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3253,11 +3424,11 @@ type ProductLinkRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3277,6 +3448,7 @@ type ProductLinkRecord_seoMetaTagsArgs = {
 type ProductMediaBlockModelTextField = {
   __typename?: 'ProductMediaBlockModelTextField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3287,11 +3459,11 @@ type ProductMediaBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3356,11 +3528,11 @@ type ProductMediaModelRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3385,11 +3557,11 @@ type ProductMediaVariationBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3449,6 +3621,7 @@ enum ProductMetaInfoModelOrderBy {
 type ProductMetaInfoModelTextField = {
   __typename?: 'ProductMetaInfoModelTextField';
   blocks: Array<SizeGuideBlockRecord>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3459,11 +3632,11 @@ type ProductMetaInfoRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3528,11 +3701,11 @@ type ProductMetaTypeRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3552,6 +3725,7 @@ type ProductMetaTypeRecord_seoMetaTagsArgs = {
 type ProductModelDescriptionField = {
   __typename?: 'ProductModelDescriptionField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3630,6 +3804,7 @@ enum ProductModelOrderBy {
 type ProductModelShortSummaryField = {
   __typename?: 'ProductModelShortSummaryField';
   blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
   links: Array<Scalars['String']['output']>;
   value: Scalars['JsonField']['output'];
 };
@@ -3646,11 +3821,11 @@ type ProductRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -3769,11 +3944,11 @@ type ProductUspRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4432,11 +4607,11 @@ type RecordInterface = {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4551,11 +4726,11 @@ type ShopifyCollectionRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4660,11 +4835,11 @@ type ShopifyProductRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4756,11 +4931,11 @@ type SizeGuideBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4795,11 +4970,11 @@ type StartEditorialBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4881,11 +5056,11 @@ type StartProductBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4910,11 +5085,11 @@ type StartProductShortcutBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -4939,11 +5114,11 @@ type StartRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -5029,11 +5204,11 @@ type TwoColumnBlockRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -5501,11 +5676,11 @@ type VariantRecord = RecordInterface & {
   _createdAt: Scalars['DateTime']['output'];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars['String']['output']>;
-  _firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
   _isValid: Scalars['BooleanType']['output'];
   _modelApiKey: Scalars['String']['output'];
   _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
-  _publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
   /** Generates SEO and Social card meta tags to be used in your frontend */
   _seoMetaTags: Array<Tag>;
   _status: ItemStatus;
@@ -5544,18 +5719,18 @@ type AllAboutsQueryVariables = Exact<{
 }>;
 
 
-type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AboutQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string, metaDescription?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutFeedbackFormBlockRecord', id: any } | { __typename: 'AboutTextBlockRecord', id: any, layout?: string, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'AboutThreeColumnBlockRecord', id: any, c1Media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, c1Text: { __typename?: 'AboutThreeColumnBlockModelC1TextField', links: Array<string>, value: any, blocks: Array<string> }, c2Media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, c2Text: { __typename?: 'AboutThreeColumnBlockModelC2TextField', links: Array<string>, value: any, blocks: Array<string> }, c3Media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, c3Text: { __typename?: 'AboutThreeColumnBlockModelC3TextField', links: Array<string>, value: any, blocks: Array<string> } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', links: Array<string>, value: any, blocks: Array<{ __typename: 'ContactFormBlockRecord', id: any, message?: string } | { __typename: 'TwoColumnBlockRecord', id: any, text?: string }> } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
+type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string | null, metaDescription?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, sections: Array<{ __typename: 'AboutFeedbackFormBlockRecord', id: any } | { __typename: 'AboutTextBlockRecord', id: any, layout?: string | null, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'AboutThreeColumnBlockRecord', id: any, c1Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c1Text: { __typename?: 'AboutThreeColumnBlockModelC1TextField', links: Array<string>, value: any, blocks: Array<string> }, c2Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c2Text: { __typename?: 'AboutThreeColumnBlockModelC2TextField', links: Array<string>, value: any, blocks: Array<string> }, c3Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c3Text: { __typename?: 'AboutThreeColumnBlockModelC3TextField', links: Array<string>, value: any, blocks: Array<string> } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', links: Array<string>, value: any, blocks: Array<{ __typename: 'ContactFormBlockRecord', id: any, message?: string | null } | { __typename: 'TwoColumnBlockRecord', id: any, text?: string | null }> } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null } | null };
 
-type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null };
 
-type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string, metaDescription?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, sections: Array<{ __typename: 'AboutFeedbackFormBlockRecord', id: any } | { __typename: 'AboutTextBlockRecord', id: any, layout?: string, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'AboutThreeColumnBlockRecord', id: any, c1Media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, c1Text: { __typename?: 'AboutThreeColumnBlockModelC1TextField', links: Array<string>, value: any, blocks: Array<string> }, c2Media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, c2Text: { __typename?: 'AboutThreeColumnBlockModelC2TextField', links: Array<string>, value: any, blocks: Array<string> }, c3Media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, c3Text: { __typename?: 'AboutThreeColumnBlockModelC3TextField', links: Array<string>, value: any, blocks: Array<string> } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', links: Array<string>, value: any, blocks: Array<{ __typename: 'ContactFormBlockRecord', id: any, message?: string } | { __typename: 'TwoColumnBlockRecord', id: any, text?: string }> } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } };
+type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string | null, metaDescription?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, sections: Array<{ __typename: 'AboutFeedbackFormBlockRecord', id: any } | { __typename: 'AboutTextBlockRecord', id: any, layout?: string | null, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } } | { __typename: 'AboutThreeColumnBlockRecord', id: any, c1Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c1Text: { __typename?: 'AboutThreeColumnBlockModelC1TextField', links: Array<string>, value: any, blocks: Array<string> }, c2Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c2Text: { __typename?: 'AboutThreeColumnBlockModelC2TextField', links: Array<string>, value: any, blocks: Array<string> }, c3Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c3Text: { __typename?: 'AboutThreeColumnBlockModelC3TextField', links: Array<string>, value: any, blocks: Array<string> } } | { __typename: 'AboutTwoColumnBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, text: { __typename?: 'AboutTwoColumnBlockModelTextField', links: Array<string>, value: any, blocks: Array<{ __typename: 'ContactFormBlockRecord', id: any, message?: string | null } | { __typename: 'TwoColumnBlockRecord', id: any, text?: string | null }> } } | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } }>, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null };
 
 type AllCollectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5563,16 +5738,16 @@ type AllCollectionsQueryVariables = Exact<{
 }>;
 
 
-type AllCollectionsQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllCollectionsQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any | null, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }> }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type CollectionQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-type CollectionQuery = { __typename?: 'Query', collection?: { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> } };
+type CollectionQuery = { __typename?: 'Query', collection?: { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any | null, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }> } | null };
 
-type CollectionFragment = { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }> };
+type CollectionFragment = { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any | null, _allReferencingProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }> };
 
 type AllShopifyCollectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5580,16 +5755,16 @@ type AllShopifyCollectionsQueryVariables = Exact<{
 }>;
 
 
-type AllShopifyCollectionsQuery = { __typename?: 'Query', allShopifyCollections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string, shopifyId: string, products: Array<{ __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }>, _allShopifyCollectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllShopifyCollectionsQuery = { __typename?: 'Query', allShopifyCollections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string, shopifyId: string, products: Array<{ __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }> }>, _allShopifyCollectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ShopifyCollectionQueryVariables = Exact<{
   handle?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-type ShopifyCollectionQuery = { __typename?: 'Query', shopifyCollection?: { __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string, shopifyId: string, products: Array<{ __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> } };
+type ShopifyCollectionQuery = { __typename?: 'Query', shopifyCollection?: { __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string, shopifyId: string, products: Array<{ __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }> } | null };
 
-type ShopifyCollectionFragment = { __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string, shopifyId: string, products: Array<{ __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
+type ShopifyCollectionFragment = { __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string, shopifyId: string, products: Array<{ __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }> };
 
 type AllProductColorsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5604,7 +5779,7 @@ type ProductColorFragment = { __typename?: 'ProductColorRecord', id: any, title:
 type ContactQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type ContactQuery = { __typename?: 'Query', contact?: { __typename?: 'ContactRecord', id: any, headline: string, contactFormMessage: string, slug?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, content: { __typename?: 'ContactModelContentField', blocks: Array<string>, links: Array<string>, value: any } } };
+type ContactQuery = { __typename?: 'Query', contact?: { __typename?: 'ContactRecord', id: any, headline: string, contactFormMessage: string, slug?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, content: { __typename?: 'ContactModelContentField', blocks: Array<string>, links: Array<string>, value: any } } | null };
 
 type AllFaqsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5612,7 +5787,7 @@ type AllFaqsQueryVariables = Exact<{
 }>;
 
 
-type AllFaqsQuery = { __typename?: 'Query', allFaqs: Array<{ __typename?: 'FaqRecord', id: any, question: string, answer: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } }>, _allFaqsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllFaqsQuery = { __typename?: 'Query', allFaqs: Array<{ __typename?: 'FaqRecord', id: any, question: string, answer: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } }>, _allFaqsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any | null }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllFaqSectionsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5620,68 +5795,68 @@ type AllFaqSectionsQueryVariables = Exact<{
 }>;
 
 
-type AllFaqSectionsQuery = { __typename?: 'Query', allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllFaqSectionsQuery = { __typename?: 'Query', allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any | null }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type FaqFragment = { __typename?: 'FaqRecord', id: any, question: string, answer: { __typename?: 'FaqModelAnswerField', blocks: Array<string>, links: Array<string>, value: any }, section: { __typename?: 'FaqSectionRecord', id: any, title: string, slug: string } };
 
 type FeedbackQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type FeedbackQuery = { __typename?: 'Query', feedback?: { __typename?: 'FeedbackRecord', id: any, headline: string, intro: { __typename?: 'FeedbackModelIntroField', blocks: Array<string>, value: any, links: Array<string> }, questions: Array<{ __typename?: 'FeedbackQuestionBlockRecord', id: any, headline?: string, text: string }> } };
+type FeedbackQuery = { __typename?: 'Query', feedback?: { __typename?: 'FeedbackRecord', id: any, headline: string, intro: { __typename?: 'FeedbackModelIntroField', blocks: Array<string>, value: any, links: Array<string> }, questions: Array<{ __typename?: 'FeedbackQuestionBlockRecord', id: any, headline?: string | null, text: string }> } | null };
 
-type ImageCartThumbnailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageCartThumbnailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null };
 
-type ImageCartThumbnailFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageCartThumbnailFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } };
 
 type ImageCartThumbnailFragment = ImageCartThumbnailFragment_FileField_ | ImageCartThumbnailFragment_ImageFileField_;
 
-type ImageEightFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageEightFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null };
 
-type ImageEightFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageEightFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } };
 
 type ImageEightFragment = ImageEightFragment_FileField_ | ImageEightFragment_ImageFileField_;
 
-type ImageFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null };
 
-type ImageFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } };
 
 type ImageFragment = ImageFragment_FileField_ | ImageFragment_ImageFileField_;
 
-type ImageMenuFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageMenuFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null };
 
-type ImageMenuFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageMenuFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } };
 
 type ImageMenuFragment = ImageMenuFragment_FileField_ | ImageMenuFragment_ImageFileField_;
 
-type ImageSquareFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageSquareFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null };
 
-type ImageSquareFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageSquareFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } };
 
 type ImageSquareFragment = ImageSquareFragment_FileField_ | ImageSquareFragment_ImageFileField_;
 
-type ImageThumbnailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageThumbnailFragment_FileField_ = { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null };
 
-type ImageThumbnailFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } };
+type ImageThumbnailFragment_ImageFileField_ = { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } };
 
 type ImageThumbnailFragment = ImageThumbnailFragment_FileField_ | ImageThumbnailFragment_ImageFileField_;
 
-type MediaFragment = { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } };
+type MediaFragment = { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null };
 
-type MediaPortraitFragment = { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } };
+type MediaPortraitFragment = { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null };
 
-type ResponsiveImageFragment = { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any };
+type ResponsiveImageFragment = { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any };
 
-type SiteFragment = { __typename?: 'Site', faviconMetaTags: Array<{ __typename?: 'Tag', attributes?: any, content?: string, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string, siteName?: string, titleSuffix?: string, twitterAccount?: string, fallbackSeo?: { __typename?: 'SeoField', description?: string, title?: string, twitterCard?: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
+type SiteFragment = { __typename?: 'Site', faviconMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string | null, siteName?: string | null, titleSuffix?: string | null, twitterAccount?: string | null, fallbackSeo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } | null } | null };
 
 type GeneralQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string, tiktok?: string, instagram?: string, pinterest?: string, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }> } };
+type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string | null, tiktok?: string | null, instagram?: string | null, pinterest?: string | null, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string | null }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }> } | null };
 
 type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GlobalQuery = { __typename?: 'Query', site: { __typename?: 'Site', faviconMetaTags: Array<{ __typename?: 'Tag', attributes?: any, content?: string, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string, siteName?: string, titleSuffix?: string, twitterAccount?: string, fallbackSeo?: { __typename?: 'SeoField', description?: string, title?: string, twitterCard?: string, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, bgColor?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } } };
+type GlobalQuery = { __typename?: 'Query', site: { __typename?: 'Site', faviconMetaTags: Array<{ __typename?: 'Tag', attributes?: any | null, content?: string | null, tag: string }>, globalSeo?: { __typename?: 'GlobalSeoField', facebookPageUrl?: string | null, siteName?: string | null, titleSuffix?: string | null, twitterAccount?: string | null, fallbackSeo?: { __typename?: 'SeoField', description?: string | null, title?: string | null, twitterCard?: string | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, bgColor?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } | null } | null } };
 
 type AllLegalsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5696,7 +5871,7 @@ type LegalQueryVariables = Exact<{
 }>;
 
 
-type LegalQuery = { __typename?: 'Query', legal?: { __typename?: 'LegalRecord', id: any, title: string, slug: string, text: { __typename?: 'LegalModelTextField', blocks: Array<string>, links: Array<string>, value: any } } };
+type LegalQuery = { __typename?: 'Query', legal?: { __typename?: 'LegalRecord', id: any, title: string, slug: string, text: { __typename?: 'LegalModelTextField', blocks: Array<string>, links: Array<string>, value: any } } | null };
 
 type LegalFragment = { __typename?: 'LegalRecord', id: any, title: string, slug: string, text: { __typename?: 'LegalModelTextField', blocks: Array<string>, links: Array<string>, value: any } };
 
@@ -5706,7 +5881,7 @@ type MenuQueryVariables = Exact<{
 }>;
 
 
-type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any }, general?: { __typename?: 'GeneralRecord', instagram?: string, tiktok?: string, pinterest?: string }, contact?: { __typename?: 'ContactRecord', title: string, slug?: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }, faqConfig?: { __typename?: 'FaqConfigRecord', menuImage: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } };
+type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any }, general?: { __typename?: 'GeneralRecord', instagram?: string | null, tiktok?: string | null, pinterest?: string | null } | null, contact?: { __typename?: 'ContactRecord', title: string, slug?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null } | null, faqConfig?: { __typename?: 'FaqConfigRecord', menuImage: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } } | null };
 
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5715,21 +5890,21 @@ type AllProductsQueryVariables = Exact<{
 }>;
 
 
-type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductsQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type ShopifyProductDataQueryVariables = Exact<{
   handle?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-type ShopifyProductDataQuery = { __typename?: 'Query', shopifyProduct?: { __typename?: 'ShopifyProductRecord', id: any, tags?: string, handle: string, title: string } };
+type ShopifyProductDataQuery = { __typename?: 'Query', shopifyProduct?: { __typename?: 'ShopifyProductRecord', id: any, tags?: string | null, handle: string, title: string } | null };
 
 type ProductByIdQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ItemId']['input']>;
 }>;
 
 
-type ProductByIdQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, title: string, label?: string, metaTitle?: string, metaDescription?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }>, metaSections: Array<{ __typename?: 'ProductMetaInfoRecord', id: any, title: string, metaType: { __typename?: 'ProductMetaTypeRecord', id: any, position?: any, title: string }, text: { __typename?: 'ProductMetaInfoModelTextField', value: any, links: Array<string>, blocks: Array<{ __typename: 'SizeGuideBlockRecord', id: any, table?: any, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> } }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } } };
+type ProductByIdQuery = { __typename?: 'Query', product?: { __typename?: 'ProductRecord', id: any, title: string, label?: string | null, metaTitle?: string | null, metaDescription?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> } | null, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> } | null, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string | null, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } }> }> }>, metaSections: Array<{ __typename?: 'ProductMetaInfoRecord', id: any, title: string, metaType: { __typename?: 'ProductMetaTypeRecord', id: any, position?: any | null, title: string }, text: { __typename?: 'ProductMetaInfoModelTextField', value: any, links: Array<string>, blocks: Array<{ __typename: 'SizeGuideBlockRecord', id: any, table?: any | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }> } }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } } | null };
 
 type AllProductByCollectionQueryVariables = Exact<{
   collectionId?: InputMaybe<Scalars['ItemId']['input']>;
@@ -5738,7 +5913,7 @@ type AllProductByCollectionQueryVariables = Exact<{
 }>;
 
 
-type AllProductByCollectionQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductByCollectionQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllProductBrandingQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5746,7 +5921,7 @@ type AllProductBrandingQueryVariables = Exact<{
 }>;
 
 
-type AllProductBrandingQuery = { __typename?: 'Query', allProductBrandings: Array<{ __typename?: 'ProductBrandingRecord', id: any, text?: string, smallText?: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, link: { __typename: 'AboutRecord', id: any, title: string, slug: string } }>, _allProductBrandingsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductBrandingQuery = { __typename?: 'Query', allProductBrandings: Array<{ __typename?: 'ProductBrandingRecord', id: any, text?: string | null, smallText?: string | null, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, link: { __typename: 'AboutRecord', id: any, title: string, slug: string } }>, _allProductBrandingsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllProductMetaTypesQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5754,7 +5929,7 @@ type AllProductMetaTypesQueryVariables = Exact<{
 }>;
 
 
-type AllProductMetaTypesQuery = { __typename?: 'Query', allProductMetaTypes: Array<{ __typename?: 'ProductMetaTypeRecord', id: any, position?: any, title: string }>, _allProductMetaTypesMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductMetaTypesQuery = { __typename?: 'Query', allProductMetaTypes: Array<{ __typename?: 'ProductMetaTypeRecord', id: any, position?: any | null, title: string }>, _allProductMetaTypesMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AllProductsForMenuQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5762,17 +5937,17 @@ type AllProductsForMenuQueryVariables = Exact<{
 }>;
 
 
-type AllProductsForMenuQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllProductsForMenuQuery = { __typename?: 'Query', allProducts: Array<{ __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }>, _allProductsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
-type ProductLightFragment = { __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } };
+type ProductLightFragment = { __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } };
 
-type VariationThumbnailFragment = { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> };
+type VariationThumbnailFragment = { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> };
 
-type ProductFragment = { __typename?: 'ProductRecord', id: any, title: string, label?: string, metaTitle?: string, metaDescription?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> }, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> }, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> }> }>, metaSections: Array<{ __typename?: 'ProductMetaInfoRecord', id: any, title: string, metaType: { __typename?: 'ProductMetaTypeRecord', id: any, position?: any, title: string }, text: { __typename?: 'ProductMetaInfoModelTextField', value: any, links: Array<string>, blocks: Array<{ __typename: 'SizeGuideBlockRecord', id: any, table?: any, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> } }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } };
+type ProductFragment = { __typename?: 'ProductRecord', id: any, title: string, label?: string | null, metaTitle?: string | null, metaDescription?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, description?: { __typename?: 'ProductModelDescriptionField', blocks: Array<string>, value: any, links: Array<string> } | null, shortSummary?: { __typename?: 'ProductModelShortSummaryField', blocks: Array<string>, value: any, links: Array<string> } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, sections: Array<{ __typename?: 'ProductMediaBlockRecord', id: any, text?: { __typename?: 'ProductMediaBlockModelTextField', blocks: Array<string>, value: any, links: Array<string> } | null, productMedia: Array<{ __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string | null, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } }> }> }>, metaSections: Array<{ __typename?: 'ProductMetaInfoRecord', id: any, title: string, metaType: { __typename?: 'ProductMetaTypeRecord', id: any, position?: any | null, title: string }, text: { __typename?: 'ProductMetaInfoModelTextField', value: any, links: Array<string>, blocks: Array<{ __typename: 'SizeGuideBlockRecord', id: any, table?: any | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }> } }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } };
 
-type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string }, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } }> };
+type ProductMediaItemFragment = { __typename?: 'ProductMediaModelRecord', id: any, title: string, altText?: string | null, thumbnail: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }>, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } }> };
 
-type ShopifyProductFragment = { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } };
+type ShopifyProductFragment = { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null };
 
 type SitemapQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
@@ -5785,4 +5960,4 @@ type SitemapQuery = { __typename?: 'Query', allCollections: Array<{ __typename?:
 type StartQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, blackLogo?: any, sections: Array<{ __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, mediaMobile: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, altMedia?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, altMediaMobile?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } | { __typename: 'StartEditorialBlockRecord', id: any, headline: string, text: string, buttonText: string, media: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, mediaOnTop?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, lottieAnimation?: { __typename?: 'FileField', url: string }, about: { __typename?: 'AboutRecord', id: any, slug: string, title: string } } | { __typename: 'StartProductBlockRecord', id: any, headline: string, columns?: string, collection?: { __typename?: 'CollectionRecord', id: any, slug: string, title: string }, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', id: any, product: { __typename?: 'ProductRecord', id: any, title: string, label?: string, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string, description?: string }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string, handle: string, variants?: any, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } } } }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any } }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } }> }>, media?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, mediaMobile?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, altMedia?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } }, altMediaMobile?: { __typename?: 'FileField', id: any, alt?: string, basename: string, format: string, mimeType: string, size: any, title?: string, url: string, width?: any, height?: any, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string, aspectRatio: any, base64?: string, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string, width: any }, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string, framerate?: number, duration?: number, mp4high?: string, mp4med?: string, mp4low?: string } } } };
+type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', id: any, blackLogo?: any | null, sections: Array<{ __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, mediaMobile: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, altMedia?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, altMediaMobile?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null } | { __typename: 'StartEditorialBlockRecord', id: any, headline: string, text: string, buttonText: string, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, mediaOnTop?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, lottieAnimation?: { __typename?: 'FileField', url: string } | null, about: { __typename?: 'AboutRecord', id: any, slug: string, title: string } } | { __typename: 'StartProductBlockRecord', id: any, headline: string, columns?: string | null, collection?: { __typename?: 'CollectionRecord', id: any, slug: string, title: string } | null, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', id: any, product: { __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> }>, media?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, mediaMobile?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, altMedia?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, altMediaMobile?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null } | null };
