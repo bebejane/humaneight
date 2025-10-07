@@ -54,23 +54,26 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
       datocms-structured-text-utils:
-        specifier: ^5.0.0
-        version: 5.0.0
+        specifier: ^5.1.6
+        version: 5.1.6
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
+      ico-utils:
+        specifier: ^0.1.5
+        version: 0.1.5
       is-integer:
         specifier: ^1.0.7
         version: 1.0.7
       lottie-react:
-        specifier: ^2.4.0
-        version: 2.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^2.4.1
+        version: 2.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next:
         specifier: 14.2.28
         version: 14.2.28(@babel/core@7.24.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.4)
       next-dato-utils:
-        specifier: github:bebejane/next-dato-utils#main
-        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/279b8610eab38ab3457e1bdeacdbac6eff0460cb(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@5.0.0)(graphql@16.8.1)(postmark@4.0.5)(react-datocms@7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.4)(zod@3.23.8)
+        specifier: github:bebejane/next-dato-utils
+        version: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/96604d1e9921f6e4905f9e8ad41981dd3851d27d(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@5.1.6)(graphql@16.8.1)(postmark@4.0.5)(react-datocms@7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.4)(zod@3.23.8)
       next-intl:
         specifier: ^3.13.0
         version: 3.14.1(next@14.2.28(@babel/core@7.24.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.4))(react@18.2.0)
@@ -912,6 +915,7 @@ packages:
   '@graphql-tools/prisma-loader@8.0.4':
     resolution: {integrity: sha512-hqKPlw8bOu/GRqtYr0+dINAI13HinTVYBDqhwGAPIFmLr5s+qKskzgCiwbsckdrb5LWVFmVZc+UXn80OGiyBzg==}
     engines: {node: '>=16.0.0'}
+    deprecated: 'This package was intended to be used with an older versions of Prisma.\nThe newer versions of Prisma has a different approach to GraphQL integration.\nTherefore, this package is no longer needed and has been deprecated and removed.\nLearn more: https://www.prisma.io/graphql'
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
@@ -2331,8 +2335,8 @@ packages:
   datocms-structured-text-utils@4.0.1:
     resolution: {integrity: sha512-2rK4bZfzKpdKw2AZhnnD043QkGOUaJDOUGPrQHo5w4hvU4jTBGGxoaTg4KIb3Q5Yo+XUFvreb+U0+86xdh7I+Q==}
 
-  datocms-structured-text-utils@5.0.0:
-    resolution: {integrity: sha512-orMYif1+D/5zTkZ/LgQpgm0yCF/JSyy8ANVrCLGaOib/xSLOSM5PEcbkYgaky/cjzgsF70fMZnUlcDdIWY00og==}
+  datocms-structured-text-utils@5.1.6:
+    resolution: {integrity: sha512-LDk8R5byWmBmK5dIWiTvfPe7pBn9xkZ3VMxevsoNuiffVsz2T3SgtdqNBnGIKaEmxJ3dln/IvxSbkvULf1Y9Eg==}
 
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -2943,6 +2947,9 @@ packages:
   hyphenate-style-name@1.0.5:
     resolution: {integrity: sha512-fedL7PRwmeVkgyhu9hLeTBaI6wcGk7JGJswdaRsa5aUbkXI1kr1xZwTPBtaYPpwf56878iDek6VbVnuWMebJmw==}
 
+  ico-utils@0.1.5:
+    resolution: {integrity: sha512-us1gAi8xD7GKxcqWNNt97ZtY7V6hWa1TLqxoj/3+Hrajapnkys2kfGyQS0Foxs3n9j5nUm7ActvdsaiNREWhWg==}
+
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -3358,11 +3365,11 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lottie-react@2.4.0:
-    resolution: {integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==}
+  lottie-react@2.4.1:
+    resolution: {integrity: sha512-LQrH7jlkigIIv++wIyrOYFLHSKQpEY4zehPicL9bQsrt1rnoKRYCYgpCUe5maqylNtacy58/sQDZTkwMcTRxZw==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   lottie-web@5.12.2:
     resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
@@ -3634,9 +3641,9 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/279b8610eab38ab3457e1bdeacdbac6eff0460cb:
-    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/279b8610eab38ab3457e1bdeacdbac6eff0460cb}
-    version: 1.0.581
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/96604d1e9921f6e4905f9e8ad41981dd3851d27d:
+    resolution: {tarball: https://codeload.github.com/bebejane/next-dato-utils/tar.gz/96604d1e9921f6e4905f9e8ad41981dd3851d27d}
+    version: 1.0.583
     engines: {node: '>=0.18'}
     hasBin: true
     peerDependencies:
@@ -7705,7 +7712,7 @@ snapshots:
     dependencies:
       array-flatten: 3.0.0
 
-  datocms-structured-text-utils@5.0.0:
+  datocms-structured-text-utils@5.1.6:
     dependencies:
       array-flatten: 3.0.0
 
@@ -8530,6 +8537,8 @@ snapshots:
 
   hyphenate-style-name@1.0.5: {}
 
+  ico-utils@0.1.5: {}
+
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -8913,7 +8922,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lottie-react@2.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  lottie-react@2.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       lottie-web: 5.12.2
       react: 18.2.0
@@ -9374,7 +9383,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/279b8610eab38ab3457e1bdeacdbac6eff0460cb(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@5.0.0)(graphql@16.8.1)(postmark@4.0.5)(react-datocms@7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.4)(zod@3.23.8):
+  next-dato-utils@https://codeload.github.com/bebejane/next-dato-utils/tar.gz/96604d1e9921f6e4905f9e8ad41981dd3851d27d(@datocms/cma-client-browser@3.1.2)(@datocms/cma-client-node@3.1.2)(@datocms/cma-client@3.1.2)(@types/react-dom@18.2.15)(@types/react@18.3.3)(datocms-structured-text-utils@5.1.6)(graphql@16.8.1)(postmark@4.0.5)(react-datocms@7.0.1(@types/react-dom@18.2.15)(@types/react@18.3.3)(graphql@16.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.4)(zod@3.23.8):
     dependencies:
       '@datocms/cma-client': 3.1.2
       '@datocms/cma-client-browser': 3.1.2
@@ -9384,7 +9393,7 @@ snapshots:
       '@types/react-dom': 18.2.15
       commander: 11.1.0
       datocms-listen: 0.1.15(graphql@16.8.1)
-      datocms-structured-text-utils: 5.0.0
+      datocms-structured-text-utils: 5.1.6
       dedent-js: 1.0.1
       dotenv: 16.4.5
       graphql: 16.8.1

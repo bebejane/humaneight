@@ -22,9 +22,9 @@
     },
     {
       "currency": {
-        "isoCode": "EUR",
-        "name": "Euro",
-        "symbol": "€"
+        "isoCode": "BGN",
+        "name": "Bulgarian Lev",
+        "symbol": "лв."
       },
       "isoCode": "BG",
       "name": "Bulgaria",
@@ -62,9 +62,9 @@
     },
     {
       "currency": {
-        "isoCode": "EUR",
-        "name": "Euro",
-        "symbol": "€"
+        "isoCode": "CZK",
+        "name": "Czech Koruna",
+        "symbol": "Kč"
       },
       "isoCode": "CZ",
       "name": "Czechia",
@@ -82,9 +82,9 @@
     },
     {
       "currency": {
-        "isoCode": "EUR",
-        "name": "Euro",
-        "symbol": "€"
+        "isoCode": "DKK",
+        "name": "Danish Krone",
+        "symbol": "kr."
       },
       "isoCode": "DK",
       "name": "Denmark",
@@ -162,9 +162,9 @@
     },
     {
       "currency": {
-        "isoCode": "EUR",
-        "name": "Euro",
-        "symbol": "€"
+        "isoCode": "HUF",
+        "name": "Hungarian Forint",
+        "symbol": "Ft"
       },
       "isoCode": "HU",
       "name": "Hungary",
@@ -272,9 +272,9 @@
     },
     {
       "currency": {
-        "isoCode": "EUR",
-        "name": "Euro",
-        "symbol": "€"
+        "isoCode": "PLN",
+        "name": "Polish Złoty",
+        "symbol": "zł"
       },
       "isoCode": "PL",
       "name": "Poland",
@@ -292,9 +292,9 @@
     },
     {
       "currency": {
-        "isoCode": "EUR",
-        "name": "Euro",
-        "symbol": "€"
+        "isoCode": "RON",
+        "name": "Romanian Leu",
+        "symbol": "Lei"
       },
       "isoCode": "RO",
       "name": "Romania",
@@ -346,10 +346,6 @@
       "isoCode": "USD",
       "name": "United States Dollar",
       "symbol": "$"
-    },
-    "market": {
-      "id": "gid://shopify/Market/64719061260",
-      "handle": "united"
     },
     "isoCode": "US",
     "name": "United States",
