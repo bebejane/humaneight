@@ -3,15 +3,14 @@ import Script from 'next/script';
 import NavBar from '@components/nav/NavBar';
 import Footer from '@components/nav/Footer';
 import CookieConsent from '@components/common/CookieConsent';
-
 import { apiQuery } from 'next-dato-utils/api';
 import { AllProductsForMenuDocument, GlobalDocument, GeneralDocument } from '@graphql';
-import { Metadata } from 'next';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@lib/menu';
 import shopifyQuery from '@shopify/shopify-query';
 import { LocalizationDocument, ShopifyProductDocument } from '@shopify/graphql';
-import MaintainanceLayout from './maintenance';
+import * as Sentry from '@sentry/nextjs';
+import type { Metadata } from 'next';
 
 export type LayoutProps = {
 	children: React.ReactNode;
@@ -26,24 +25,21 @@ export default async function RootLayout({ children }: LayoutProps) {
 			variables: { language: 'EN' as LanguageCode },
 			country: 'US',
 		}),
-		apiQuery<AllProductsForMenuQuery, AllProductsForMenuQueryVariables>(
-			AllProductsForMenuDocument,
-			{
-				variables: { first: 100, skip: 0 },
-				all: true,
-				tags: [
-					'product',
-					'collection',
-					'product_color',
-					'product_link',
-					'product_media_model',
-					'product_meta_info',
-					'product_meta_type',
-					'product_usp',
-				],
-				generateTags: false,
-			}
-		),
+		apiQuery<AllProductsForMenuQuery, AllProductsForMenuQueryVariables>(AllProductsForMenuDocument, {
+			variables: { first: 100, skip: 0 },
+			all: true,
+			tags: [
+				'product',
+				'collection',
+				'product_color',
+				'product_link',
+				'product_media_model',
+				'product_meta_info',
+				'product_meta_type',
+				'product_usp',
+			],
+			generateTags: false,
+		}),
 		apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument, {
 			tags: ['general', 'product_branding'],
 		}),
@@ -58,12 +54,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 				<body id='root'>
 					<NavBar menu={menu} localization={localization} tipProduct={randomProduct} />
 					<main>{children}</main>
-					<Footer
-						menu={menu}
-						localization={localization}
-						general={general}
-						randomClaim={randomClaim}
-					/>
+					<Footer menu={menu} localization={localization} general={general} randomClaim={randomClaim} />
 					<CookieConsent />
 					<Script src='https://ac.onthemapmarketing.com/widget/3b24ef8d-6704-4361-886d-da817089839e/autoload.js' />
 				</body>
@@ -122,6 +113,9 @@ export async function generateMetadata() {
 			],
 			locale: 'en_US',
 			type: 'website',
+		},
+		other: {
+			...Sentry.getTraceData(),
 		},
 	} as Metadata;
 }
