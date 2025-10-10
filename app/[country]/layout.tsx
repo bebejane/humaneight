@@ -21,7 +21,6 @@ export async function generateStaticParams() {
 }
 
 export default async function CountryLayout({ children, params }: LayoutProps) {
-	console.log(params.country);
 	if (!(await isValidCountry(params.country))) return notFound();
 
 	return <>{children}</>;
