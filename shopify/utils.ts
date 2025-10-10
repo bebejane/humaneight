@@ -24,6 +24,7 @@ export const cartCookieOptions = {
 };
 
 export const isValidCountry = async (country?: string): Promise<boolean> => {
+	if (country === undefined) return true;
 	const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
 		variables: { language: 'EN' as LanguageCode },
 		country: 'US',
