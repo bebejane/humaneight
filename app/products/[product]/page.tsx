@@ -27,6 +27,7 @@ import RelatedProducts from '@app/products/[product]/components/RelatedProducts'
 import FeedbackForm from '@components/forms/FeedbackForm';
 import ProductVariantsForm from './components/ProductVariantsForm';
 import { Suspense } from 'react';
+import { isValidCountry } from '@shopify/utils';
 
 export default async function Product({ params }: CountryProductParams) {
 	const { shopifyProduct: shopifyProductData } = await apiQuery<
@@ -40,14 +41,7 @@ export default async function Product({ params }: CountryProductParams) {
 
 	if (!shopifyProductData) return notFound();
 
-	const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
-		variables: { language: 'EN' as LanguageCode },
-		country: 'US',
-	});
-
-	if (localization.availableCountries.find(({ isoCode }) => isoCode === params?.country) === undefined) {
-		return notFound();
-	}
+	if (!(await isValidCountry(params.country))) return notFound();
 
 	const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
 		apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {

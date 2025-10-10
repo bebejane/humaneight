@@ -23,10 +23,14 @@ export const cartCookieOptions = {
 	domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'humaneight.com',
 };
 
-export const isValidCountry = async (country: string): Promise<boolean> => {
+export const isValidCountry = async (country?: string): Promise<boolean> => {
 	const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
 		variables: { language: 'EN' as LanguageCode },
 		country: 'US',
 	});
-	return localization.availableCountries.find(({ isoCode }) => isoCode === country) !== undefined;
+
+	return (
+		localization.availableCountries.find(({ isoCode }) => isoCode.toLowerCase() === country?.toLowerCase()) !==
+		undefined
+	);
 };
