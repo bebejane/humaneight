@@ -15,7 +15,7 @@ import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import { CountryParams } from '@app/[country]/layout';
 import { CountryProductParams } from '@app/[country]/products/[product]/page';
-import { ShopifyProductDocument } from '@shopify/graphql';
+import { LocalizationDocument, ShopifyProductDocument } from '@shopify/graphql';
 import { render as structuredToText } from 'datocms-structured-text-to-plain-text';
 
 import shopifyQuery from '@shopify/shopify-query';
@@ -39,6 +39,15 @@ export default async function Product({ params }: CountryProductParams) {
 	});
 
 	if (!shopifyProductData) return notFound();
+
+	const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
+		variables: { language: 'EN' as LanguageCode },
+		country: 'US',
+	});
+
+	if (localization.availableCountries.find(({ isoCode }) => isoCode === params?.country) === undefined) {
+		return notFound();
+	}
 
 	const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
 		apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
@@ -70,10 +79,7 @@ export default async function Product({ params }: CountryProductParams) {
 
 	return (
 		<>
-			<script
-				type='application/ld+json'
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-			/>
+			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
 
 			<section id='product' className={cn(s.product, 'grid')}>
 				<Suspense>
@@ -93,14 +99,11 @@ export default async function Product({ params }: CountryProductParams) {
 }
 
 export async function generateStaticParams(params: CountryParams) {
-	const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(
-		AllProductsDocument,
-		{
-			all: true,
-			tags: ['product'],
-			generateTags: false,
-		}
-	);
+	const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
+		all: true,
+		tags: ['product'],
+		generateTags: false,
+	});
 
 	return allProducts.map(({ shopifyProduct }) => ({
 		product: shopifyProduct?.handle,
@@ -108,10 +111,7 @@ export async function generateStaticParams(params: CountryParams) {
 	}));
 }
 
-const generateLDJson = (
-	product: ProductByIdQuery['product'],
-	shopifyProduct: ShopifyProductQuery['product']
-): any => {
+const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: ShopifyProductQuery['product']): any => {
 	if (!product || !shopifyProduct) return {};
 
 	const availableForSale = shopifyProduct.variants.edges.some(({ node }) => node.availableForSale);
@@ -119,17 +119,15 @@ const generateLDJson = (
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'Product',
-		name: product.title,
-		description: product.description,
-		image: product.image?.url,
-		offers: {
+		'name': product.title,
+		'description': product.description,
+		'image': product.image?.url,
+		'offers': {
 			'@type': 'AggregateOffer',
-			availability: availableForSale
-				? 'https://schema.org/InStock'
-				: 'https://schema.org/OutOfStock',
-			priceCurrency: shopifyProduct.variants.edges[0]?.node.price.currencyCode,
-			highPrice: shopifyProduct.variants.edges[0]?.node.price.amount,
-			lowPrice: shopifyProduct.variants.edges[0]?.node.price.amount,
+			'availability': availableForSale ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+			'priceCurrency': shopifyProduct.variants.edges[0]?.node.price.currencyCode,
+			'highPrice': shopifyProduct.variants.edges[0]?.node.price.amount,
+			'lowPrice': shopifyProduct.variants.edges[0]?.node.price.amount,
 		},
 	};
 };
