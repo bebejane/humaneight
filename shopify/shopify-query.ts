@@ -1,7 +1,7 @@
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request';
 import type { DocumentNode } from 'graphql';
 import { print } from 'graphql/language/printer';
-import isInteger from 'is-integer';
+import * as Sentry from '@sentry/nextjs';
 
 const shopifyApiEndpoint = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE}.myshopify.com/api/${process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_VERSION}/graphql.json`;
 
@@ -92,12 +92,14 @@ const dedupedFetch = async (options: DedupeOptions) => {
 	if (!response.ok) {
 		console.error(JSON.stringify(response, null, 2));
 		console.error(`${response.status} ${response.statusText}`);
+		Sentry.captureException(new Error(`shopify-query: ${response.status}: ${response.statusText}`));
 		throw new Error(`${response.status} ${response.statusText}`);
 	}
 
 	if (responseBody.errors) {
 		console.error(responseBody.errors);
 		const message = responseBody.errors.map(({ message }: { message: string }) => message).join('. ');
+		Sentry.captureException(new Error(message));
 		throw new Error(message);
 	}
 	logs && console.log(queryId, { ...options, body: undefined }, response.headers.get('x-cache'));

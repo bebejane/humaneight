@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import * as Sentry from '@sentry/nextjs';
 import s from './Cart.module.scss';
 import cn from 'classnames';
 import useCart from '@shopify/hooks/useCart';
@@ -38,14 +39,19 @@ export default function Cart({ localization }: CartProps) {
 	const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0);
 	const [terms, setTerms] = useState(false);
 
+	function handleError(e: Error) {
+		setError(e.message);
+		Sentry.captureException(e);
+	}
+
 	useEffect(() => {
 		if (!cart) {
-			createCart(country).catch((e) => setError(e.message));
+			createCart(country).catch(handleError);
 		}
 	}, [cart, createCart]);
 
 	useEffect(() => {
-		createCart(country).catch((e) => setError(e.message));
+		createCart(country).catch(handleError);
 	}, [pathname]);
 
 	useEffect(() => {
@@ -56,6 +62,7 @@ export default function Cart({ localization }: CartProps) {
 	useEffect(() => {
 		setShowCart(false);
 	}, [pathname]);
+
 	useEffect(() => {
 		// Toggle Accessibly App widget button
 		document.getElementById('accessiblyAppWidgetButton')?.style.setProperty('display', showCart ? 'none' : 'block');
