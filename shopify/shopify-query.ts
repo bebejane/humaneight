@@ -90,8 +90,11 @@ const dedupedFetch = async (options: DedupeOptions) => {
 	const responseBody = await response.json();
 
 	if (!response.ok) {
-		console.error(JSON.stringify(response, null, 2));
 		console.error(`${response.status} ${response.statusText}`);
+		try {
+			console.error(JSON.stringify(response, null, 2));
+		} catch (e) {}
+
 		Sentry.captureException(new Error(`shopify-query: ${response.status}: ${response.statusText}`));
 		throw new Error(`${response.status} ${response.statusText}`);
 	}
