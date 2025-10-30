@@ -1,15 +1,12 @@
-
-import { apiQuery } from 'next-dato-utils/api'
-import { FeedbackDocument } from '@graphql'
-import FeedbackForm from '@components/forms/FeedbackForm'
+import { apiQuery } from 'next-dato-utils/api';
+import { FeedbackDocument } from '@/graphql';
+import FeedbackForm from '@/components/forms/FeedbackForm';
 
 type Props = {
-  data: AboutFeedbackFormBlockRecord
-}
+	data: AboutFeedbackFormBlockRecord;
+};
 
 export default async function AboutFeedbackFormBlock({ data: { id } }: Props) {
-  const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument, { tags: ['feedback'] })
-  return (
-    <FeedbackForm feedback={feedback} />
-  )
+	const { feedback } = await apiQuery(FeedbackDocument, { tags: ['feedback'] });
+	return <FeedbackForm feedback={feedback} />;
 }

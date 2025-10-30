@@ -8,7 +8,7 @@ import { Image } from 'react-datocms';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState, useRef, useEffect } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
-import Loader from '@components/common/Loader';
+import Loader from '@/components/common/Loader';
 
 export type GalleryProps = {
 	images: FileField[];

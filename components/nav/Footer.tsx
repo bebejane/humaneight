@@ -1,9 +1,9 @@
 'use client';
 
 import s from './Footer.module.scss';
-import type { Menu } from '@lib/menu';
-import Link from '@components//nav/Link';
-import CountrySelector from '@components/shopify/CountrySelector';
+import type { Menu } from '@/lib/menu';
+import Link from '@/components//nav/Link';
+import CountrySelector from '@/components/shopify/CountrySelector';
 import NewsletterPopup from '../common/NewsletterPopup';
 import { useState } from 'react';
 import Eight from './Eight';
@@ -34,12 +34,7 @@ export default function Footer({ menu, localization, randomClaim, general }: Pro
 								{sub?.map(({ id, title, slug, href, localized }) => (
 									<li key={id}>
 										{id !== 'newsletter' ? (
-											<Link
-												href={href ?? slug ?? ''}
-												className={slug}
-												activeClassName={s.active}
-												localized={localized}
-											>
+											<Link href={href ?? slug ?? ''} className={slug} activeClassName={s.active} localized={localized}>
 												{title}
 											</Link>
 										) : (

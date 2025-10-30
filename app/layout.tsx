@@ -1,14 +1,14 @@
-import '@styles/index.scss';
+import '@/styles/index.scss';
 import Script from 'next/script';
-import NavBar from '@components/nav/NavBar';
-import Footer from '@components/nav/Footer';
-import CookieConsent from '@components/common/CookieConsent';
+import NavBar from '@/components/nav/NavBar';
+import Footer from '@/components/nav/Footer';
+import CookieConsent from '@/components/common/CookieConsent';
 import { apiQuery } from 'next-dato-utils/api';
-import { AllProductsForMenuDocument, GlobalDocument, GeneralDocument } from '@graphql';
+import { AllProductsForMenuDocument, GlobalDocument, GeneralDocument } from '@/graphql';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
-import { buildMenu } from '@lib/menu';
-import shopifyQuery from '@shopify/shopify-query';
-import { LocalizationDocument, ShopifyProductDocument } from '@shopify/graphql';
+import { buildMenu } from '@/lib/menu';
+import shopifyQuery from '@/shopify/shopify-query';
+import { LocalizationDocument } from '@/shopify/graphql';
 import * as Sentry from '@sentry/nextjs';
 import type { Metadata } from 'next';
 
@@ -17,16 +17,13 @@ export type LayoutProps = {
 };
 
 export default async function RootLayout({ children }: LayoutProps) {
-	//  return MaintainanceLayout({ children });
-
 	const [menu, { localization }, { allProducts }, { general }] = await Promise.all([
 		buildMenu(),
-		shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
+		shopifyQuery(LocalizationDocument, {
 			variables: { language: 'EN' as LanguageCode },
 			country: 'US',
 		}),
-		apiQuery<AllProductsForMenuQuery, AllProductsForMenuQueryVariables>(AllProductsForMenuDocument, {
-			variables: { first: 100, skip: 0 },
+		apiQuery(AllProductsForMenuDocument, {
 			all: true,
 			tags: [
 				'product',
@@ -38,9 +35,8 @@ export default async function RootLayout({ children }: LayoutProps) {
 				'product_meta_type',
 				'product_usp',
 			],
-			generateTags: false,
 		}),
-		apiQuery<GeneralQuery, GeneralQueryVariables>(GeneralDocument, {
+		apiQuery(GeneralDocument, {
 			tags: ['general', 'product_branding'],
 		}),
 	]);
@@ -63,10 +59,10 @@ export default async function RootLayout({ children }: LayoutProps) {
 	);
 }
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
 	const {
 		site: { globalSeo, faviconMetaTags },
-	} = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument, {
+	} = await apiQuery(GlobalDocument, {
 		variables: {},
 		revalidate: 60 * 60,
 		tags: ['site'],

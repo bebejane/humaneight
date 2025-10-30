@@ -1,20 +1,20 @@
 import s from './page.module.scss';
 import { CountryContactParams } from '../[country]/contact/page';
-import { ContactDocument, FeedbackDocument } from '@graphql';
+import { ContactDocument, FeedbackDocument } from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
 import { notFound } from 'next/navigation';
-import Content from '@components/content/Content';
-import ContactForm from '@components/forms/ContactForm';
+import Content from '@/components/content/Content';
+import ContactForm from '@/components/forms/ContactForm';
 import { Image } from 'react-datocms';
-import FeedbackForm from '@components/forms/FeedbackForm';
+import FeedbackForm from '@/components/forms/FeedbackForm';
+import { Metadata } from 'next';
 
 export default async function Contact(params: CountryContactParams) {
-	const { contact, draftUrl } = await apiQuery<ContactQuery, ContactQueryVariables>(
-		ContactDocument,
-		{ tags: ['contact'] }
-	);
-	const { feedback } = await apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument, {
+	const { contact, draftUrl } = await apiQuery(ContactDocument, {
+		tags: ['contact'],
+	});
+	const { feedback } = await apiQuery(FeedbackDocument, {
 		tags: ['feedback'],
 	});
 
@@ -39,7 +39,7 @@ export default async function Contact(params: CountryContactParams) {
 	);
 }
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Contact',
 	};

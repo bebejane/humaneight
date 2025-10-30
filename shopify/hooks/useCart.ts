@@ -40,7 +40,7 @@ const useCart = create<CartState>((set, get) => ({
 		if (!(await isValidCountry(country))) throw new Error('Invalid country code: ' + country);
 
 		if (id) {
-			const res = await shopifyQuery<CartQuery, CartQueryVariables>(CartDocument, {
+			const res = await shopifyQuery(CartDocument, {
 				revalidate: 0,
 				variables: { id },
 				country,
@@ -50,7 +50,7 @@ const useCart = create<CartState>((set, get) => ({
 
 		if (!cart) {
 			cart = (
-				await shopifyQuery<CreateCartMutation, CreateCartMutationVariables>(CreateCartDocument, {
+				await shopifyQuery(CreateCartDocument, {
 					revalidate: 0,
 					country,
 				})
@@ -72,17 +72,14 @@ const useCart = create<CartState>((set, get) => ({
 	addToCart: async (line: CartLineInput, country: string) => {
 		get().update(null, async () => {
 			const cart = get().cart as Cart;
-			const { cartLinesAdd } = await shopifyQuery<AddItemToCartMutation, AddItemToCartMutationVariables>(
-				AddItemToCartDocument,
-				{
-					revalidate: 0,
-					variables: {
-						cartId: cart.id,
-						lines: [line],
-					},
-					country,
-				}
-			);
+			const { cartLinesAdd } = await shopifyQuery(AddItemToCartDocument, {
+				revalidate: 0,
+				variables: {
+					cartId: cart.id,
+					lines: [line],
+				},
+				country,
+			});
 
 			if (cartLinesAdd?.userErrors && cartLinesAdd?.userErrors.length > 0)
 				throw new Error(cartLinesAdd?.userErrors.map((e) => e.message).join('. '));
@@ -96,16 +93,13 @@ const useCart = create<CartState>((set, get) => ({
 		get().update(id, async () => {
 			const cart = get().cart as Cart;
 
-			const { cartLinesRemove } = await shopifyQuery<RemoveItemFromCartMutation, RemoveItemFromCartMutationVariables>(
-				RemoveItemFromCartDocument,
-				{
-					revalidate: 0,
-					variables: {
-						cartId: cart.id,
-						lineIds: [id],
-					},
-				}
-			);
+			const { cartLinesRemove } = await shopifyQuery(RemoveItemFromCartDocument, {
+				revalidate: 0,
+				variables: {
+					cartId: cart.id,
+					lineIds: [id],
+				},
+			});
 
 			if (!cartLinesRemove?.cart) throw new Error('Cart not found');
 			return cartLinesRemove.cart as Cart;
@@ -118,17 +112,14 @@ const useCart = create<CartState>((set, get) => ({
 				id: l.node.id,
 				quantity: l.node.id === id ? quantity : l.node.quantity,
 			}));
-			const { cartLinesUpdate } = await shopifyQuery<UpdateItemFromCartMutation, UpdateItemFromCartMutationVariables>(
-				UpdateItemFromCartDocument,
-				{
-					revalidate: 0,
-					variables: {
-						cartId: cart?.id,
-						lines,
-					},
-					country,
-				}
-			);
+			const { cartLinesUpdate } = await shopifyQuery(UpdateItemFromCartDocument, {
+				revalidate: 0,
+				variables: {
+					cartId: cart?.id,
+					lines,
+				},
+				country,
+			});
 			if (!cartLinesUpdate?.cart) throw new Error('Cart not found');
 			return cartLinesUpdate.cart as Cart;
 		});
@@ -136,10 +127,7 @@ const useCart = create<CartState>((set, get) => ({
 	updateBuyerIdentity: async (buyerIdentity: CartBuyerIdentityInput) => {
 		get().update(null, async () => {
 			const id = getCookie('cart', cartCookieOptions) as string;
-			const { cartBuyerIdentityUpdate } = await shopifyQuery<
-				CartBuyerIdentityUpdateMutation,
-				CartBuyerIdentityUpdateMutationVariables
-			>(CartBuyerIdentityUpdateDocument, {
+			const { cartBuyerIdentityUpdate } = await shopifyQuery(CartBuyerIdentityUpdateDocument, {
 				revalidate: 0,
 				variables: {
 					cartId: id,

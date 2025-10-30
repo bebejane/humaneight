@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 import * as Sentry from '@sentry/nextjs';
 import s from './Cart.module.scss';
 import cn from 'classnames';
-import useCart from '@shopify/hooks/useCart';
-import { parseGid } from '@shopify/utils';
+import useCart from '@/shopify/hooks/useCart';
+import { parseGid } from '@/shopify/utils';
 import CountrySelector from './CountrySelector';
-import Loader from '@components/common/Loader';
-import Link from '@components//nav/Link';
+import Loader from '@/components/common/Loader';
+import Link from '@/components//nav/Link';
 import { usePathname } from 'next/navigation';
-import { formatPrice } from '@lib/utils';
+import { formatPrice } from '@/lib/utils';
 import useCountry from '../../shopify/hooks/useCountry';
 
 export type CartProps = {
@@ -34,24 +34,31 @@ export default function Cart({ localization }: CartProps) {
 	const pathname = usePathname();
 	const [showCart, setShowCart] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	const [createCartError, setCreateCartError] = useState<string | null>(null);
 	const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true;
 	const loading = !cart || updating;
 	const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0);
 	const [terms, setTerms] = useState(false);
 
-	function handleError(e: Error) {
-		setError(e.message);
+	function handleError(e: Error | string) {
+		setError(typeof e === 'string' ? e : e?.message);
 		Sentry.captureException(e);
 	}
 
+	function initCart() {
+		setCreateCartError(null);
+		createCart(country).catch((e) => {
+			setCreateCartError(e.message);
+			Sentry.captureException(e);
+		});
+	}
+
 	useEffect(() => {
-		if (!cart) {
-			createCart(country).catch(handleError);
-		}
+		if (!cart) initCart();
 	}, [cart, createCart]);
 
 	useEffect(() => {
-		createCart(country).catch(handleError);
+		initCart();
 	}, [pathname]);
 
 	useEffect(() => {
@@ -67,6 +74,10 @@ export default function Cart({ localization }: CartProps) {
 		// Toggle Accessibly App widget button
 		document.getElementById('accessiblyAppWidgetButton')?.style.setProperty('display', showCart ? 'none' : 'block');
 	}, [showCart]);
+
+	useEffect(() => {
+		handleError(cartError);
+	}, [cartError]);
 
 	if (!showCart) {
 		return (
@@ -102,6 +113,11 @@ export default function Cart({ localization }: CartProps) {
 			</header>
 			{error ? (
 				<div className={s.error}>{error}</div>
+			) : createCartError ? (
+				<div className={s.error}>
+					<span>Error creating cart</span>
+					<button onClick={initCart}>Retry</button>
+				</div>
 			) : cartError ? (
 				<div className={s.error}>{cartError}</div>
 			) : isEmpty ? (

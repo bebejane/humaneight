@@ -1,5 +1,5 @@
-import { LocalizationDocument } from '@shopify/graphql';
-import shopifyQuery from '@shopify/shopify-query';
+import { LocalizationDocument } from '@/shopify/graphql';
+import shopifyQuery from '@/shopify/shopify-query';
 
 export const getShopifyId = (id: string): number => {
 	const shopifyId = Buffer.from(id).toString('base64') as string;
@@ -25,7 +25,7 @@ export const cartCookieOptions = {
 
 export const isValidCountry = async (country?: string): Promise<boolean> => {
 	if (country === undefined) return true;
-	const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
+	const { localization } = await shopifyQuery(LocalizationDocument, {
 		variables: { language: 'EN' as LanguageCode },
 		country: 'US',
 	});

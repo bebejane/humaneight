@@ -1,4 +1,4 @@
-import { CountryShopParams } from '@app/[country]/shop/page';
+import { CountryShopParams } from '@/app/[country]/shop/page';
 import s from './page.module.scss';
 import React from 'react';
 import {
@@ -6,28 +6,28 @@ import {
 	AllProductBrandingDocument,
 	AllProductByCollectionDocument,
 	CollectionDocument,
-} from '@graphql';
+} from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
-//import { DraftMode } from 'next-dato-utils/components';
 import CollectionsFilter from './components/CollectionsFilter';
-import ProductThumbnail from '@components/layout/ProductThumbnail';
-import ThumbnailContainer from '@components/layout/ThumbnailContainer';
-import BrandingThumbnail from '@components/layout/BrandingThumbnail';
-import { tags } from '@lib/constants';
-import { getProductColorVariants } from '@lib/utils';
+import ProductThumbnail from '@/components/layout/ProductThumbnail';
+import ThumbnailContainer from '@/components/layout/ThumbnailContainer';
+import BrandingThumbnail from '@/components/layout/BrandingThumbnail';
+import { tags } from '@/lib/constants';
+import { getProductColorVariants } from '@/lib/utils';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-static';
 export const dynamicParams = true;
 
 export default async function Shop({ params }: CountryShopParams) {
-	console.log('shop');
-	const { collection, draftUrl } = await apiQuery<CollectionQuery, CollectionQueryVariables>(CollectionDocument, {
-		variables: { slug: params?.collection ?? 'all' },
+	const { country, collection: collectionSlug, tag: _tag } = await params;
+	const { collection, draftUrl } = await apiQuery(CollectionDocument, {
+		variables: { slug: collectionSlug ?? 'all' },
 		tags: ['collection', 'product', 'shopify_product'],
 	});
 
 	const all = collection?.slug === 'all';
-	const tag = params?.tag ?? 'all';
+	const tag = _tag ?? 'all';
 
 	const { allProducts, allProductBrandings, allCollections } = await getPageData(all, collection?.id);
 	const filteredProducts = allProducts
@@ -106,25 +106,18 @@ function sortByCollectionOrder(
 
 async function getPageData(all: boolean, collectionId?: string) {
 	const [{ allProducts }, { allProductBrandings }, { allCollections }] = await Promise.all([
-		apiQuery<AllProductByCollectionQuery, AllProductByCollectionQueryVariables>(AllProductByCollectionDocument, {
+		apiQuery(AllProductByCollectionDocument, {
 			all: true,
 			variables: {
 				collectionId: !all ? collectionId : undefined,
-				first: 100,
-				skip: 0,
 			},
-			generateTags: false,
 			tags: ['product', 'shopify_product'],
 		}),
-		apiQuery<AllProductBrandingQuery, AllProductBrandingQueryVariables>(AllProductBrandingDocument, {
-			variables: {
-				first: 100,
-				skip: 0,
-			},
-			tags: ['product_branding', 'product_usp'],
+		apiQuery(AllProductBrandingDocument, {
 			all: true,
+			tags: ['product_branding', 'product_usp'],
 		}),
-		apiQuery<AllCollectionsQuery, AllCollectionsQueryVariables>(AllCollectionsDocument, {
+		apiQuery(AllCollectionsDocument, {
 			all: true,
 			tags: ['product', 'shopify_product', 'collection'],
 		}),
@@ -141,7 +134,7 @@ function generateRandomBranding<T>(brandingCount: number, allProductBrandings: T
 	return randomBrandings;
 }
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Shop',
 	};

@@ -30,10 +30,17 @@ const defaultOptions: DefaultApiQueryOptions = {
 	all: false,
 };
 
-export default async function shopifyQuery<T = void, V = void>(
-	query: DocumentNode,
-	options?: ApiQueryOptions<V>
-): Promise<T> {
+export interface TypedDocumentNode<TResult = { [key: string]: any }, TVariables = { [key: string]: any }>
+	extends DocumentNode {
+	__apiType?: (variables: TVariables) => TResult;
+	__resultType?: TResult;
+	__variablesType?: TVariables;
+}
+
+export default async function shopifyQuery<TResult = any, TVariables = Record<string, any>>(
+	query: TypedDocumentNode<TResult, TVariables>,
+	options?: ApiQueryOptions<TVariables>
+): Promise<TResult> {
 	const opt = { ...defaultOptions, ...(options ?? {}) };
 
 	if (!process.env.NEXT_PUBLIC_SHOPIFY_STORE) throw new Error('NEXT_PUBLIC_SHOPIFY_STORE is not set');
@@ -68,7 +75,7 @@ export type DedupeOptions = {
 };
 
 const dedupedFetch = async (options: DedupeOptions) => {
-	const { url, body, revalidate, tags, queryId, logs } = options;
+	const { body, revalidate, tags, queryId, logs } = options;
 
 	const headers = {
 		'X-Shopify-Storefront-Access-Token': (process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN ||

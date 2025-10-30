@@ -10,41 +10,36 @@ import {
 	GlobalDocument,
 	ProductByIdDocument,
 	ShopifyProductDataDocument,
-} from '@graphql';
+} from '@/graphql';
 import { apiQuery } from 'next-dato-utils/api';
 import { DraftMode } from 'next-dato-utils/components';
-import { CountryParams } from '@app/[country]/layout';
-import { CountryProductParams } from '@app/[country]/products/[product]/page';
-import { LocalizationDocument, ShopifyProductDocument } from '@shopify/graphql';
+import { CountryProductParams } from '@/app/[country]/products/[product]/page';
+import { ShopifyProductDocument } from '@/shopify/graphql';
 import { render as structuredToText } from 'datocms-structured-text-to-plain-text';
-
-import shopifyQuery from '@shopify/shopify-query';
-
+import shopifyQuery from '@/shopify/shopify-query';
 import ProductInfo from './components/ProductInfo';
 import ProductMeta from './components/ProductMeta';
 import ProductPresentation from './components/ProductPresentation';
-import RelatedProducts from '@app/products/[product]/components/RelatedProducts';
-import FeedbackForm from '@components/forms/FeedbackForm';
+import RelatedProducts from '@/app/products/[product]/components/RelatedProducts';
+import FeedbackForm from '@/components/forms/FeedbackForm';
 import ProductVariantsForm from './components/ProductVariantsForm';
 import { Suspense } from 'react';
-import { isValidCountry } from '@shopify/utils';
+import { isValidCountry } from '@/shopify/utils';
 
 export default async function Product({ params }: CountryProductParams) {
-	const { shopifyProduct: shopifyProductData } = await apiQuery<
-		ShopifyProductDataQuery,
-		ShopifyProductDataQueryVariables
-	>(ShopifyProductDataDocument, {
-		variables: { handle: params.product },
+	const { country, product: productHandle } = await params;
+
+	const { shopifyProduct: shopifyProductData } = await apiQuery(ShopifyProductDataDocument, {
+		variables: { handle: productHandle },
 		tags: ['product', 'shopify_product'],
-		generateTags: false,
 	});
 
 	if (!shopifyProductData) return notFound();
 
-	if (!(await isValidCountry(params.country))) return notFound();
+	if (!(await isValidCountry(country))) return notFound();
 
 	const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
-		apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
+		apiQuery(ProductByIdDocument, {
 			variables: { id: shopifyProductData.id },
 			tags: [
 				'product',
@@ -57,12 +52,11 @@ export default async function Product({ params }: CountryProductParams) {
 				'product_meta_type',
 				'product_usp',
 			],
-			generateTags: false,
 		}),
-		apiQuery<FeedbackQuery, FeedbackQueryVariables>(FeedbackDocument),
-		shopifyQuery<ShopifyProductQuery, ShopifyProductQueryVariables>(ShopifyProductDocument, {
-			variables: { handle: params.product },
-			country: params.country,
+		apiQuery(FeedbackDocument),
+		shopifyQuery(ShopifyProductDocument, {
+			variables: { handle: productHandle },
+			country,
 			tags: ['product', 'shopify_product'],
 		}),
 	]);
@@ -92,16 +86,16 @@ export default async function Product({ params }: CountryProductParams) {
 	);
 }
 
-export async function generateStaticParams(params: CountryParams) {
-	const { allProducts } = await apiQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, {
+export async function generateStaticParams({ params }: CountryProductParams) {
+	const { country, product: productHandle } = await params;
+	const { allProducts } = await apiQuery(AllProductsDocument, {
 		all: true,
 		tags: ['product'],
-		generateTags: false,
 	});
 
 	return allProducts.map(({ shopifyProduct }) => ({
 		product: shopifyProduct?.handle,
-		country: params?.params?.country,
+		country,
 	}));
 }
 
@@ -126,31 +120,26 @@ const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: Sh
 	};
 };
 
-export async function generateMetadata({ params }: CountryProductParams) {
+export async function generateMetadata({ params }: CountryProductParams): Promise<Metadata> {
+	const { country, product: productHandle } = await params;
 	const {
 		site: { globalSeo },
-	} = await apiQuery<GlobalQuery, GlobalQueryVariables>(GlobalDocument);
-	const { shopifyProduct: shopifyProductData } = await apiQuery<
-		ShopifyProductDataQuery,
-		ShopifyProductDataQueryVariables
-	>(ShopifyProductDataDocument, {
-		variables: { handle: params.product },
-		generateTags: false,
+	} = await apiQuery(GlobalDocument);
+	const { shopifyProduct: shopifyProductData } = await apiQuery(ShopifyProductDataDocument, {
+		variables: { handle: productHandle },
 	});
 
 	if (!shopifyProductData) return {};
 
 	const [{ product }] = await Promise.all([
-		apiQuery<ProductByIdQuery, ProductByIdQueryVariables>(ProductByIdDocument, {
+		apiQuery(ProductByIdDocument, {
 			variables: { id: shopifyProductData.id },
-			generateTags: false,
 		}),
 	]);
 
 	if (!product) return {};
 
 	const title = product.metaTitle || product.title;
-	//@ts-ignore
 	const description = product.metaDescription || structuredToText(product.description);
 
 	return {
@@ -159,7 +148,7 @@ export async function generateMetadata({ params }: CountryProductParams) {
 		openGraph: {
 			title,
 			description,
-			url: `${process.env.NEXT_PUBLIC_SITE_URL}/${params.country}/products/${params.product}`,
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/${country}/products/${productHandle}`,
 			siteName: globalSeo?.siteName,
 			images: [
 				{

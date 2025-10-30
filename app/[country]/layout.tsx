@@ -1,19 +1,19 @@
-import shopifyQuery from '@shopify/shopify-query';
-import { LocalizationDocument } from '@shopify/graphql';
+import shopifyQuery from '@/shopify/shopify-query';
+import { LocalizationDocument } from '@/shopify/graphql';
 import { notFound } from 'next/navigation';
-import { isValidCountry } from '@shopify/utils';
+import { isValidCountry } from '@/shopify/utils';
 
-export type CountryParams = { params: { country: string }; searchParams: any } | undefined;
+export type CountryParams = { params: Promise<{ country: string }>; searchParams: Promise<any> } | undefined;
 
 export type LayoutProps = {
 	children: React.ReactNode;
-	params: { country: string };
+	params: Promise<{ country: string }>;
 };
 
 export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-	const { localization } = await shopifyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, {
+	const { localization } = await shopifyQuery(LocalizationDocument, {
 		variables: { language: 'EN' as LanguageCode },
 		country: 'US',
 	});
@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 }
 
 export default async function CountryLayout({ children, params }: LayoutProps) {
-	if (!(await isValidCountry(params.country))) return notFound();
+	const { country } = await params;
+	if (!(await isValidCountry(country))) return notFound();
 
 	return <>{children}</>;
 }

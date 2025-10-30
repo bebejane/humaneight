@@ -19,7 +19,7 @@ fragment CollectionFragment on CollectionRecord {
 	titlePlural
 	slug
 	position
-	_allReferencingProducts(first: 100) {
+	_allReferencingProducts(first: 500) {
 		...ProductLightFragment
 	}
 }
