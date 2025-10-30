@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/nextjs';
 import s from './Cart.module.scss';
 import cn from 'classnames';
 import useCart from '@/shopify/hooks/useCart';
+import { useShallow } from '@/shopify/hooks/useCart';
 import { parseGid } from '@/shopify/utils';
 import CountrySelector from './CountrySelector';
 import Loader from '@/components/common/Loader';
@@ -18,8 +19,18 @@ export type CartProps = {
 };
 
 export default function Cart({ localization }: CartProps) {
-	const [cart, createCart, removeFromCart, updateQuantity, updateBuyerIdentity, updating, updatingId, cartError] =
-		useCart((state) => [
+	const [
+		cart,
+		createCart,
+		removeFromCart,
+		updateQuantity,
+		updateBuyerIdentity,
+		updating,
+		updatingId,
+		cartError,
+		clearCartError,
+	] = useCart(
+		useShallow((state) => [
 			state.cart,
 			state.createCart,
 			state.removeFromCart,
@@ -28,22 +39,19 @@ export default function Cart({ localization }: CartProps) {
 			state.updating,
 			state.updatingId,
 			state.error,
-		]);
+			state.clearCartError,
+		])
+	);
 
 	const country = useCountry();
 	const pathname = usePathname();
 	const [showCart, setShowCart] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	//const [error, setError] = useState<string | null>(null);
 	const [createCartError, setCreateCartError] = useState<string | null>(null);
 	const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true;
 	const loading = !cart || updating;
 	const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0);
 	const [terms, setTerms] = useState(false);
-
-	function handleError(e: Error | string) {
-		setError(typeof e === 'string' ? e : e?.message);
-		Sentry.captureException(e);
-	}
 
 	function initCart() {
 		setCreateCartError(null);
@@ -76,7 +84,8 @@ export default function Cart({ localization }: CartProps) {
 	}, [showCart]);
 
 	useEffect(() => {
-		handleError(cartError);
+		if (!cartError) return;
+		Sentry.captureException(cartError);
 	}, [cartError]);
 
 	if (!showCart) {
@@ -111,17 +120,15 @@ export default function Cart({ localization }: CartProps) {
 					<img src='/images/close.svg' alt='Close' />
 				</button>
 			</header>
-			{error ? (
-				<div className={s.error}>{error}</div>
-			) : createCartError ? (
-				<div className={s.error}>
-					<span>Error creating cart</span>
-					<button onClick={initCart}>Retry</button>
-				</div>
+
+			{createCartError ? (
+				<CartError error={'Error creating cart'} close={initCart} label={'Re-try'} />
 			) : cartError ? (
-				<div className={s.error}>{cartError}</div>
-			) : isEmpty ? (
-				<div className={s.empty}>Your cart is empty</div>
+				<CartError error={cartError} close={clearCartError} />
+			) : null}
+
+			{isEmpty ? (
+				<div className={s.alert}>Your cart is empty</div>
 			) : (
 				<>
 					<ul className={s.items} aria-label='Cart items'>
@@ -191,3 +198,20 @@ export default function Cart({ localization }: CartProps) {
 		</div>
 	);
 }
+
+const CartError = ({ error, label, close }: { label?: string; error?: string | Error; close?: () => void }) => {
+	if (!error) return null;
+	return (
+		<div className={s.alert}>
+			<div className={s.wrap}>
+				{error && (
+					<>
+						<h3>Error</h3>
+						<span className={s.error}>{typeof error === 'string' ? error : error.message}</span>
+					</>
+				)}
+				{close && <button onClick={close}>{label ?? 'Close'}</button>}
+			</div>
+		</div>
+	);
+};

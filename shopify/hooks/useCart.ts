@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+export { useShallow } from 'zustand/shallow';
 import shopifyQuery from '../shopify-query';
 import { setCookie, getCookie, deleteCookie } from 'cookies-next';
 import { cartCookieOptions, isValidCountry } from '../utils';
@@ -21,6 +22,7 @@ export interface CartState {
 	clearCart: () => void;
 	createCart: (country: string) => Promise<Cart>;
 	setCart: (cart: Cart) => Promise<Cart>;
+	clearCartError: () => void;
 	addToCart: (lines: CartLineInput, country: string) => void;
 	removeFromCart: (id: string) => void;
 	updateQuantity: (id: string, quantity: number, country: string) => void;
@@ -120,6 +122,10 @@ const useCart = create<CartState>((set, get) => ({
 				},
 				country,
 			});
+
+			if (cartLinesUpdate?.userErrors && cartLinesUpdate?.userErrors.length > 0)
+				throw new Error(cartLinesUpdate?.userErrors.map((e) => e.message).join('. '));
+
 			if (!cartLinesUpdate?.cart) throw new Error('Cart not found');
 			return cartLinesUpdate.cart as Cart;
 		});
@@ -145,6 +151,9 @@ const useCart = create<CartState>((set, get) => ({
 			.then((cart) => get().setCart(cart))
 			.catch((err) => set((state) => ({ error: err.message })))
 			.finally(() => set((state) => ({ updating: false, updatingId: null })));
+	},
+	clearCartError: () => {
+		set(() => ({ error: undefined }));
 	},
 }));
 

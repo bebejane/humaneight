@@ -2,7 +2,7 @@
 
 import s from './AddToCartButton.module.scss';
 import React, { useEffect } from 'react';
-import useCart from '@/shopify/hooks/useCart';
+import useCart, { useShallow } from '@/shopify/hooks/useCart';
 import cn from 'classnames';
 import useCountry from '../../shopify/hooks/useCountry';
 
@@ -22,12 +22,9 @@ export default function AddToCartButton({
 	disabled = false,
 }: AddToCartButtonProps) {
 	const country = useCountry();
-	const [cart, addToCart, updating, error] = useCart((state) => [
-		state.cart,
-		state.addToCart,
-		state.updating,
-		state.error,
-	]);
+	const [cart, addToCart, updating, error] = useCart(
+		useShallow((state) => [state.cart, state.addToCart, state.updating, state.error])
+	);
 
 	const handleAddToCart = () => {
 		if (!disabled && merchandiseId) {
