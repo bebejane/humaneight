@@ -5,7 +5,6 @@
 	"scripts": {
 		"dev": "next dev --turbo & npm run codegen",
 		"build": "next build",
-		"prebuild": "tsx prebuild",
 		"start": "next start",
 		"lint": "next lint",
 		"reset": "rm -rf .next node_modules pnpm-lock.yaml ; pnpm i",
