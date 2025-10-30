@@ -16,12 +16,7 @@ export type Props = {
 	currency?: boolean;
 };
 
-export default function CountrySelector({
-	className,
-	label,
-	modal = false,
-	localization: { availableCountries },
-}: Props) {
+export default function CountrySelector({ className, localization: { availableCountries } }: Props) {
 	const pathname = usePathname();
 	const router = useRouter();
 	const country = useCountry();

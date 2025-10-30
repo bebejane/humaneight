@@ -1,4 +1,4 @@
-query Sitemap($first: IntType = 0, $skip: IntType = 0) {
+query Sitemap($first: IntType = 500, $skip: IntType = 0) {
 	allCollections(first: $first, skip: $skip) {
 		id
 		title

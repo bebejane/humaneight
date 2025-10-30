@@ -64,7 +64,7 @@ export default function ProductThumbnail({
 	const imageSecondary = _imageSecondary ?? colorMediaSecondary ?? product.imageSecondary;
 
 	return (
-		<Link href={href} className={cn(s.thumbnail, s[columns])} data-index={index} scroll={true} prefetch={true}>
+		<Link href={href} className={cn(s.thumbnail, s[columns])} data-index={index} scroll={true}>
 			<figure ref={figureRef}>
 				{image?.responsiveImage && (
 					<Image

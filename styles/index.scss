@@ -1,9 +1,7 @@
-@import "normalize";
+@use 'normalize';
 
-@import "mediaqueries";
+@use 'fonts';
 
-@import "fonts";
+@use 'typography';
 
-@import "typography";
-
-@import "base";
+@use 'base';

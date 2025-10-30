@@ -1,32 +1,27 @@
-// FONT EMBEDDING & TYPO VARIABLES
-$body-font: "Human", Sans-Serif;
-$body-font-light: "Human-Light", Sans-Serif;
-$symbol-font: "Human-Symbol", Sans-Serif;
-
 @font-face {
-    font-family: "Human";
-    src: url("../public/fonts/Concern-Medium.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Human';
+	src: url('../public/fonts/Concern-Medium.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: "Human-Light";
-    src: url("../public/fonts/Concern-Regular.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Human-Light';
+	src: url('../public/fonts/Concern-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: "Human-Symbol";
-    src: url("../public/fonts/Humaneight-Medium.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Human-Symbol';
+	src: url('../public/fonts/Humaneight-Medium.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: "Human-Logo";
-    src: url("../public/fonts/Logo.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Human-Logo';
+	src: url('../public/fonts/Logo.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }

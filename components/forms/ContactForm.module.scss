@@ -1,39 +1,39 @@
 .contactForm {
-  form {
-    margin-top: var(--space);
-    display: flex;
-    flex-direction: column;
+	form {
+		margin-top: var(--space);
+		display: flex;
+		flex-direction: column;
 
-    button[disabled] {
-      opacity: 0.5;
-    }
-  }
+		button[disabled] {
+			opacity: 0.5;
+		}
+	}
 
-  button {
-    padding: 1rem;
-  }
+	button {
+		padding: 1rem;
+	}
 
-  .success,
-  .error {
-    margin-top: 1em;
-  }
+	.success,
+	.error {
+		margin-top: 1em;
+	}
 
-  .error {
-    color: var(--red);
-  }
+	.error {
+		color: var(--red);
+	}
 
-  label {
-    padding-bottom: 1em;
-  }
+	label {
+		padding-bottom: 1em;
+	}
 
-  input,
-  textarea {
-    font-family: $body-font;
-    padding: 1em;
-    margin-bottom: 1rem;
-  }
+	input,
+	textarea {
+		font-family: var(--body-font);
+		padding: 1em;
+		margin-bottom: 1rem;
+	}
 
-  textarea {
-    min-height: 7rem;
-  }
+	textarea {
+		min-height: 7rem;
+	}
 }

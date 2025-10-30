@@ -5,7 +5,6 @@ import {
 	Label,
 	Radio,
 	RadioGroup,
-	Text,
 	Button,
 	ListBox,
 	ListBoxItem,
@@ -33,11 +32,7 @@ export type Props = {
 };
 
 export default function ProductVariantsForm({ product, shopifyProduct: _shopifyProduct, className, mobile }: Props) {
-	const {
-		product: shopifyProduct,
-		loading,
-		error,
-	} = useProduct({
+	const { product: shopifyProduct } = useProduct({
 		handle: product?.shopifyProduct.handle,
 		initialData: _shopifyProduct,
 	});
@@ -248,7 +243,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 const getFirstAvailableVariant = (product: ShopifyProductQuery['product']): ProductVariant => {
 	return (
 		(product?.variants.edges.find(({ node }) => node.availableForSale && node.quantityAvailable)
-			?.node as ProductVariant) ?? product?.variants.edges[0]?.node
+			?.node as ProductVariant) ?? (product?.variants.edges[0]?.node as ProductVariant)
 	);
 };
 

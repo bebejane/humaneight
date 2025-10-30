@@ -2,9 +2,8 @@ import { apiQuery } from 'next-dato-utils/api';
 import { ProductByIdDocument, SitemapDocument } from '@/graphql';
 import { DatoCmsConfig, getUploadReferenceRoutes, getItemReferenceRoutes } from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
-import shopifyQuery from '@/shopify/shopify-query';
+import { getLocalization } from '@/shopify/utils';
 import { tags } from '@/lib/constants';
-import { LocalizationDocument } from '@/shopify/graphql';
 
 export default {
 	routes: {
@@ -26,16 +25,22 @@ export default {
 		upload: async ({ id }) => getUploadReferenceRoutes(id),
 	},
 	sitemap: async () => {
+		const { country, availableCountries } = await getLocalization();
+
+		function generateAlternates(path: string): { languages: any } {
+			const languages: any = {};
+
+			availableCountries
+				.filter(({ isoCode }) => isoCode !== country.isoCode)
+				.forEach((c) => {
+					languages[`en-${c.isoCode}`] = `${process.env.NEXT_PUBLIC_SITE_URL}/${c.isoCode.toLowerCase()}${path}`;
+				});
+			return { languages };
+		}
+
 		const { allProducts, allAbouts, allCollections, allLegals } = await apiQuery(SitemapDocument, {
 			all: true,
 			tags: ['product', 'about', 'legal', 'collection', 'shopify_product'],
-		});
-
-		const {
-			localization: { country, availableCountries },
-		} = await shopifyQuery(LocalizationDocument, {
-			variables: { language: 'EN' as LanguageCode },
-			country: 'US',
 		});
 
 		const staticRoutes: MetadataRoute.Sitemap = [
@@ -58,17 +63,6 @@ export default {
 				priority: 1,
 			},
 		];
-
-		function generateAlternates(path: string): { languages: any } {
-			const languages: any = {};
-
-			availableCountries
-				.filter(({ isoCode }) => isoCode !== country.isoCode)
-				.forEach((c) => {
-					languages[`en-${c.isoCode}`] = `${process.env.NEXT_PUBLIC_SITE_URL}/${c.isoCode.toLowerCase()}${path}`;
-				});
-			return { languages };
-		}
 
 		const productRoutes = allProducts.map(({ shopifyProduct }) => ({
 			url: `${process.env.NEXT_PUBLIC_SITE_URL}/products/${shopifyProduct.handle}`,
@@ -123,7 +117,7 @@ export default {
 			...collectionTagRoutes,
 			...legalRoutes,
 			...aboutRoutes,
-		];
+		] as MetadataRoute.Sitemap;
 	},
 	manifest: async () => {
 		return {

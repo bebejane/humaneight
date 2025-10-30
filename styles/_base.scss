@@ -1,3 +1,5 @@
+@use 'mediaqueries' as *;
+
 :root {
 	--black: #161616;
 	--beige: #f9f7f5;
@@ -11,6 +13,10 @@
 	--outer-margin: 0.8rem;
 	--background: var(--beige);
 	--foreground: var(--black);
+
+	--body-font: 'Human', Sans-Serif;
+	--body-font-light: 'Human-Light', Sans-Serif;
+	--symbol-font: 'Human-Symbol', Sans-Serif;
 
 	--logo-size: calc(var(--nav-size) * 1.2);
 	--logo-size-intro: 13.8vw;
@@ -56,9 +62,9 @@ body {
 	line-height: 1em;
 	color: var(--foreground);
 	background-color: var(--background);
-	font-family: $body-font;
+	font-family: var(--body-font);
 	-webkit-font-smoothing: antialiased;
-	font-feature-settings: "liga", "kern";
+	font-feature-settings: 'liga', 'kern';
 }
 
 html {
@@ -107,10 +113,6 @@ a {
 
 	&:hover {
 		color: var(--beige-dark);
-	}
-
-	&:visited {
-		//color: var(--foreground);
 	}
 }
 
@@ -177,9 +179,11 @@ button {
 		}
 	}
 
-	@include mq($until: desktop) {}
+	@include mq($until: desktop) {
+	}
 
-	@include mq($from: tablet) {}
+	@include mq($from: tablet) {
+	}
 }
 
 hr {
@@ -201,7 +205,7 @@ select {
 	}
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
 	accent-color: var(--gray-dark);
 }
 

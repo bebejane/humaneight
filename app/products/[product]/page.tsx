@@ -28,6 +28,7 @@ import { isValidCountry } from '@/shopify/utils';
 
 export default async function Product({ params }: CountryProductParams) {
 	const { country, product: productHandle } = await params;
+	if (!(await isValidCountry(country))) return notFound();
 
 	const { shopifyProduct: shopifyProductData } = await apiQuery(ShopifyProductDataDocument, {
 		variables: { handle: productHandle },
@@ -35,8 +36,6 @@ export default async function Product({ params }: CountryProductParams) {
 	});
 
 	if (!shopifyProductData) return notFound();
-
-	if (!(await isValidCountry(country))) return notFound();
 
 	const [{ product, draftUrl }, { feedback }, { product: shopifyProduct }] = await Promise.all([
 		apiQuery(ProductByIdDocument, {
@@ -57,18 +56,19 @@ export default async function Product({ params }: CountryProductParams) {
 		shopifyQuery(ShopifyProductDocument, {
 			variables: { handle: productHandle },
 			country,
+			revalidate: 60 * 3,
 			tags: ['product', 'shopify_product'],
 		}),
 	]);
 
 	if (!product || !shopifyProduct) return notFound();
 
-	const productJsonLd = generateLDJson(product, shopifyProduct);
-
 	return (
 		<>
-			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{ __html: generateLDJson(product, shopifyProduct) }}
+			/>
 			<section id='product' className={cn(s.product, 'grid')}>
 				<Suspense>
 					<ProductPresentation product={product} shopifyProduct={shopifyProduct} />
@@ -87,7 +87,7 @@ export default async function Product({ params }: CountryProductParams) {
 }
 
 export async function generateStaticParams({ params }: CountryProductParams) {
-	const { country, product: productHandle } = await params;
+	const { country } = await params;
 	const { allProducts } = await apiQuery(AllProductsDocument, {
 		all: true,
 		tags: ['product'],
@@ -99,12 +99,15 @@ export async function generateStaticParams({ params }: CountryProductParams) {
 	}));
 }
 
-const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: ShopifyProductQuery['product']): any => {
-	if (!product || !shopifyProduct) return {};
+const generateLDJson = (
+	product: ProductByIdQuery['product'],
+	shopifyProduct: ShopifyProductQuery['product']
+): string => {
+	if (!product || !shopifyProduct) throw new Error('Invalid product');
 
 	const availableForSale = shopifyProduct.variants.edges.some(({ node }) => node.availableForSale);
 
-	return {
+	return JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'Product',
 		'name': product.title,
@@ -117,7 +120,7 @@ const generateLDJson = (product: ProductByIdQuery['product'], shopifyProduct: Sh
 			'highPrice': shopifyProduct.variants.edges[0]?.node.price.amount,
 			'lowPrice': shopifyProduct.variants.edges[0]?.node.price.amount,
 		},
-	};
+	});
 };
 
 export async function generateMetadata({ params }: CountryProductParams): Promise<Metadata> {
@@ -125,22 +128,19 @@ export async function generateMetadata({ params }: CountryProductParams): Promis
 	const {
 		site: { globalSeo },
 	} = await apiQuery(GlobalDocument);
+
 	const { shopifyProduct: shopifyProductData } = await apiQuery(ShopifyProductDataDocument, {
 		variables: { handle: productHandle },
 	});
 
 	if (!shopifyProductData) return {};
 
-	const [{ product }] = await Promise.all([
-		apiQuery(ProductByIdDocument, {
-			variables: { id: shopifyProductData.id },
-		}),
-	]);
+	const { product } = await apiQuery(ProductByIdDocument, { variables: { id: shopifyProductData.id } });
 
 	if (!product) return {};
 
 	const title = product.metaTitle || product.title;
-	const description = product.metaDescription || structuredToText(product.description);
+	const description = product.metaDescription || structuredToText(product.description as any);
 
 	return {
 		title,

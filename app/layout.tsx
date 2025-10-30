@@ -7,22 +7,18 @@ import { apiQuery } from 'next-dato-utils/api';
 import { AllProductsForMenuDocument, GlobalDocument, GeneralDocument } from '@/graphql';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 import { buildMenu } from '@/lib/menu';
-import shopifyQuery from '@/shopify/shopify-query';
-import { LocalizationDocument } from '@/shopify/graphql';
 import * as Sentry from '@sentry/nextjs';
 import type { Metadata } from 'next';
+import { getLocalization } from '@/shopify/utils';
 
 export type LayoutProps = {
 	children: React.ReactNode;
 };
 
 export default async function RootLayout({ children }: LayoutProps) {
-	const [menu, { localization }, { allProducts }, { general }] = await Promise.all([
+	const [menu, localization, { allProducts }, { general }] = await Promise.all([
 		buildMenu(),
-		shopifyQuery(LocalizationDocument, {
-			variables: { language: 'EN' as LanguageCode },
-			country: 'US',
-		}),
+		getLocalization(),
 		apiQuery(AllProductsForMenuDocument, {
 			all: true,
 			tags: [

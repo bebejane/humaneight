@@ -1,29 +1,29 @@
 .contactForm {
-  form {
-    margin-top: var(--space);
-    display: flex;
-    flex-direction: column;
-    button[disabled] {
-      opacity: 0.5;
-    }
-  }
+	form {
+		margin-top: var(--space);
+		display: flex;
+		flex-direction: column;
+		button[disabled] {
+			opacity: 0.5;
+		}
+	}
 
-  button {
-    padding: 1rem;
-  }
+	button {
+		padding: 1rem;
+	}
 
-  .error {
-    color: var(--red);
-  }
+	.error {
+		color: var(--red);
+	}
 
-  input,
-  textarea {
-    font-family: $body-font;
-    padding: 1em;
-    margin-bottom: 1rem;
-  }
+	input,
+	textarea {
+		font-family: var(--body-font);
+		padding: 1em;
+		margin-bottom: 1rem;
+	}
 
-  textarea {
-    min-height: 7rem;
-  }
+	textarea {
+		min-height: 7rem;
+	}
 }

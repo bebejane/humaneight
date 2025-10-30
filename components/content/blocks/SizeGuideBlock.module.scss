@@ -1,52 +1,52 @@
 .sizeGuide {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--space);
+	display: flex;
+	justify-content: space-between;
+	margin-top: var(--space);
 
-  @include mq($until: desktop) {
-    margin-top: 0;
+	@include mq($until: desktop) {
+		margin-top: 0;
 
-    flex-direction: column;
-  }
+		flex-direction: column;
+	}
 
-  figure {
-    width: 50%;
-    margin-bottom: var(--space-small);
+	figure {
+		width: 50%;
+		margin-bottom: var(--space-small);
 
-    @include mq($from: desktop) {
-      width: 20%;
-      margin-bottom: var(--space);
-    }
-  }
-  .image {
-  }
+		@include mq($from: desktop) {
+			width: 20%;
+			margin-bottom: var(--space);
+		}
+	}
+	.image {
+	}
 
-  table {
-    @include mq($from: desktop) {
-      width: 75%;
-    }
-    margin-bottom: var(--space);
-    //width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    border: 1px solid var(--gray);
+	table {
+		@include mq($from: desktop) {
+			width: 75%;
+		}
+		margin-bottom: var(--space);
+		//width: 100%;
+		border-collapse: collapse;
+		margin-bottom: 20px;
+		border: 1px solid var(--gray);
 
-    td,
-    th {
-      font-weight: normal;
-      padding: 0.5em;
-      border: 1px solid var(--gray);
-      text-align: center;
-    }
+		td,
+		th {
+			font-weight: normal;
+			padding: 0.5em;
+			border: 1px solid var(--gray);
+			text-align: center;
+		}
 
-    th,
-    td:first-of-type {
-      font-family: $body-font;
-    }
+		th,
+		td:first-of-type {
+			font-family: var(--body-font);
+		}
 
-    td:first-of-type,
-    th:first-of-type {
-      text-align: left;
-    }
-  }
+		td:first-of-type,
+		th:first-of-type {
+			text-align: left;
+		}
+	}
 }

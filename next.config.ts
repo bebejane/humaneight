@@ -1,13 +1,13 @@
+import { NextConfig } from 'next';
 import { withSentryConfig } from '@sentry/nextjs';
+import path from 'path';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
 	sassOptions: {
-		includePaths: ['./components', './app', './styles'],
+		includePaths: ['./components', './app'],
 		prependData: `
-    	@use "sass:math";
-    	@import "mediaqueries";
-    	@import "fonts";
+			@use "sass:math";
+    	@use "./styles/mediaqueries" as *;
   	`,
 	},
 	typescript: {
@@ -16,11 +16,21 @@ const nextConfig = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
-	devIndicators: {
-		buildActivity: false,
+	webpack: (config) => {
+		config.module.exprContextCritical = false;
+		config.resolve.alias['datocms.config'] = path.join(__dirname, 'datocms.config.ts');
+		return config;
 	},
-	experimental: {
-		ppr: false,
+	turbopack: {
+		resolveAlias: {
+			'datocms.config': './datocms.config.ts',
+		},
+	},
+	logging: {
+		incomingRequests: true,
+		fetches: {
+			fullUrl: true,
+		},
 	},
 	async headers() {
 		return [
@@ -86,3 +96,5 @@ export default withSentryConfig(nextConfig, {
 	// https://vercel.com/docs/cron-jobs
 	automaticVercelMonitors: true,
 });
+
+//export default nextConfig;
