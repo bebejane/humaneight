@@ -19,7 +19,6 @@
   }
 
   &.intro {
-
     animation-delay: 0.2s;
 
     a {
@@ -50,7 +49,6 @@
       letter-spacing: var(--letter-space);
     }
   }
-
 }
 
 .tagline {
@@ -76,12 +74,11 @@
     padding: 0;
     margin: 0;
     line-height: 1;
+    font-size: 4.3rem;
 
     @include mq($until: desktop) {
       font-size: 1.6rem;
     }
-
-    font-size: 4.3rem;
 
     span {
       opacity: 1;
