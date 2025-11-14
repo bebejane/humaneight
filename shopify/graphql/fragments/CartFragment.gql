@@ -58,6 +58,7 @@ fragment CartFragment on Cart {
 							name
 							value
 						}
+						quantityAvailable
 					}
 				}
 			}

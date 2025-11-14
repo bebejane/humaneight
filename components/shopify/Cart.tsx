@@ -46,12 +46,17 @@ export default function Cart({ localization }: CartProps) {
 	const country = useCountry();
 	const pathname = usePathname();
 	const [showCart, setShowCart] = useState(false);
-	//const [error, setError] = useState<string | null>(null);
 	const [createCartError, setCreateCartError] = useState<string | null>(null);
 	const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true;
 	const loading = !cart || updating;
 	const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0);
 	const [terms, setTerms] = useState(false);
+	const [error, setError] = useState<string | null>(null);
+
+	function clearErrors() {
+		setError(null);
+		clearCartError();
+	}
 
 	function initCart() {
 		setCreateCartError(null);
@@ -123,8 +128,8 @@ export default function Cart({ localization }: CartProps) {
 
 			{createCartError ? (
 				<CartError error={'Error creating cart'} close={initCart} label={'Re-try'} />
-			) : cartError ? (
-				<CartError error={cartError} close={clearCartError} />
+			) : cartError || error ? (
+				<CartError error={cartError ?? error} close={clearErrors} />
 			) : null}
 
 			{isEmpty ? (
@@ -152,7 +157,14 @@ export default function Cart({ localization }: CartProps) {
 											-
 										</button>
 										{quantity}
-										<button className={s.plus} onClick={() => updateQuantity(id, quantity + 1, country)}>
+										<button
+											//disabled={merchandise.quantityAvailable <= 1}
+											className={s.plus}
+											onClick={() => {
+												if (merchandise.quantityAvailable <= 1) return setError('This item is sold out at the moment');
+												updateQuantity(id, quantity + 1, country);
+											}}
+										>
 											+
 										</button>
 									</div>
@@ -202,14 +214,9 @@ export default function Cart({ localization }: CartProps) {
 const CartError = ({ error, label, close }: { label?: string; error?: string | Error; close?: () => void }) => {
 	if (!error) return null;
 	return (
-		<div className={s.alert}>
+		<div className={s.alert} role='alert' aria-label='Error'>
 			<div className={s.wrap}>
-				{error && (
-					<>
-						<h3>Error</h3>
-						<span className={s.error}>{typeof error === 'string' ? error : error.message}</span>
-					</>
-				)}
+				{error && <span className={s.error}>{typeof error === 'string' ? error : error.message}</span>}
 				{close && <button onClick={close}>{label ?? 'Close'}</button>}
 			</div>
 		</div>

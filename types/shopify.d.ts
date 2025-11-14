@@ -536,6 +536,8 @@ type Cart = HasMetafields & Node & {
   cost: CartCost;
   /** The date and time when the cart was created. */
   createdAt: Scalars['DateTime']['output'];
+  /** The delivery properties of the cart. */
+  delivery: CartDelivery;
   /**
    * The delivery groups available for the cart, based on the buyer identity default
    * delivery address preference or the default address of the logged-in customer.
@@ -637,6 +639,17 @@ type CartmetafieldsArgs = {
   identifiers: Array<HasMetafieldsIdentifier>;
 };
 
+/** A delivery address of the buyer that is interacting with the cart. */
+type CartAddress = CartDeliveryAddress;
+
+/** The input fields to provide exactly one of a variety of delivery address types. */
+type CartAddressInput = {
+  /** Copies details from the customer address to an address on this cart. */
+  copyFromCustomerAddressId?: InputMaybe<Scalars['ID']['input']>;
+  /** A delivery address stored on this cart. */
+  deliveryAddress?: InputMaybe<CartDeliveryAddressInput>;
+};
+
 /** Return type for `cartAttributesUpdate` mutation. */
 type CartAttributesUpdatePayload = {
   __typename?: 'CartAttributesUpdatePayload';
@@ -644,11 +657,15 @@ type CartAttributesUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** The discounts automatically applied to the cart line based on prerequisites that have been met. */
 type CartAutomaticDiscountAllocation = CartDiscountAllocation & {
   __typename?: 'CartAutomaticDiscountAllocation';
+  /** The discount that have been applied on the cart line. */
+  discountApplication: CartDiscountApplication;
   /** The discounted amount that has been applied to the cart line. */
   discountedAmount: MoneyV2;
   /** The type of line that the discount is applicable towards. */
@@ -664,6 +681,8 @@ type CartBillingAddressUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** Represents information about the buyer that is interacting with the cart. */
@@ -734,6 +753,8 @@ type CartBuyerIdentityUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /**
@@ -754,6 +775,8 @@ type CartCodeDiscountAllocation = CartDiscountAllocation & {
   __typename?: 'CartCodeDiscountAllocation';
   /** The code used to apply the discount. */
   code: Scalars['String']['output'];
+  /** The discount that have been applied on the cart line. */
+  discountApplication: CartDiscountApplication;
   /** The discounted amount that has been applied to the cart line. */
   discountedAmount: MoneyV2;
   /** The type of line that the discount is applicable towards. */
@@ -865,17 +888,174 @@ type CartCreatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** The discounts automatically applied to the cart line based on prerequisites that have been met. */
 type CartCustomDiscountAllocation = CartDiscountAllocation & {
   __typename?: 'CartCustomDiscountAllocation';
+  /** The discount that have been applied on the cart line. */
+  discountApplication: CartDiscountApplication;
   /** The discounted amount that has been applied to the cart line. */
   discountedAmount: MoneyV2;
   /** The type of line that the discount is applicable towards. */
   targetType: DiscountApplicationTargetType;
   /** The title of the allocated discount. */
   title: Scalars['String']['output'];
+};
+
+/**
+ * The delivery properties of the cart.
+ *
+ */
+type CartDelivery = {
+  __typename?: 'CartDelivery';
+  /** Selectable addresses to present to the buyer on the cart. */
+  addresses: Array<CartSelectableAddress>;
+};
+
+
+/**
+ * The delivery properties of the cart.
+ *
+ */
+type CartDeliveryaddressesArgs = {
+  selected?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Represents a mailing address for customers and shipping. */
+type CartDeliveryAddress = {
+  __typename?: 'CartDeliveryAddress';
+  /** The first line of the address. Typically the street address or PO Box number. */
+  address1?: Maybe<Scalars['String']['output']>;
+  /**
+   * The second line of the address. Typically the number of the apartment, suite, or unit.
+   *
+   */
+  address2?: Maybe<Scalars['String']['output']>;
+  /** The name of the city, district, village, or town. */
+  city?: Maybe<Scalars['String']['output']>;
+  /** The name of the customer's company or organization. */
+  company?: Maybe<Scalars['String']['output']>;
+  /**
+   * The two-letter code for the country of the address.
+   *
+   * For example, US.
+   *
+   */
+  countryCode?: Maybe<Scalars['String']['output']>;
+  /** The first name of the customer. */
+  firstName?: Maybe<Scalars['String']['output']>;
+  /** A formatted version of the address, customized by the provided arguments. */
+  formatted: Array<Scalars['String']['output']>;
+  /** A comma-separated list of the values for city, province, and country. */
+  formattedArea?: Maybe<Scalars['String']['output']>;
+  /** The last name of the customer. */
+  lastName?: Maybe<Scalars['String']['output']>;
+  /** The latitude coordinate of the customer address. */
+  latitude?: Maybe<Scalars['Float']['output']>;
+  /** The longitude coordinate of the customer address. */
+  longitude?: Maybe<Scalars['Float']['output']>;
+  /** The full name of the customer, based on firstName and lastName. */
+  name?: Maybe<Scalars['String']['output']>;
+  /**
+   * A unique phone number for the customer.
+   *
+   * Formatted using E.164 standard. For example, _+16135551111_.
+   *
+   */
+  phone?: Maybe<Scalars['String']['output']>;
+  /**
+   * The alphanumeric code for the region.
+   *
+   * For example, ON.
+   *
+   */
+  provinceCode?: Maybe<Scalars['String']['output']>;
+  /** The zip or postal code of the address. */
+  zip?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Represents a mailing address for customers and shipping. */
+type CartDeliveryAddressformattedArgs = {
+  withCompany?: InputMaybe<Scalars['Boolean']['input']>;
+  withName?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** The input fields to create or update a cart address. */
+type CartDeliveryAddressInput = {
+  /**
+   * The first line of the address. Typically the street address or PO Box number.
+   *
+   */
+  address1?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The second line of the address. Typically the number of the apartment, suite, or unit.
+   *
+   */
+  address2?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The name of the city, district, village, or town.
+   *
+   */
+  city?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * The name of the customer's company or organization.
+   *
+   */
+  company?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the country. */
+  countryCode?: InputMaybe<CountryCode>;
+  /** The first name of the customer. */
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  /** The last name of the customer. */
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  /**
+   * A unique phone number for the customer.
+   *
+   * Formatted using E.164 standard. For example, _+16135551111_.
+   *
+   */
+  phone?: InputMaybe<Scalars['String']['input']>;
+  /** The region of the address, such as the province, state, or district. */
+  provinceCode?: InputMaybe<Scalars['String']['input']>;
+  /** The zip or postal code of the address. */
+  zip?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Return type for `cartDeliveryAddressesAdd` mutation. */
+type CartDeliveryAddressesAddPayload = {
+  __typename?: 'CartDeliveryAddressesAddPayload';
+  /** The updated cart. */
+  cart?: Maybe<Cart>;
+  /** The list of errors that occurred from executing the mutation. */
+  userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
+};
+
+/** Return type for `cartDeliveryAddressesRemove` mutation. */
+type CartDeliveryAddressesRemovePayload = {
+  __typename?: 'CartDeliveryAddressesRemovePayload';
+  /** The updated cart. */
+  cart?: Maybe<Cart>;
+  /** The list of errors that occurred from executing the mutation. */
+  userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
+};
+
+/** Return type for `cartDeliveryAddressesUpdate` mutation. */
+type CartDeliveryAddressesUpdatePayload = {
+  __typename?: 'CartDeliveryAddressesUpdatePayload';
+  /** The updated cart. */
+  cart?: Maybe<Cart>;
+  /** The list of errors that occurred from executing the mutation. */
+  userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** Preferred location used to find the closest pick up point based on coordinates. */
@@ -977,6 +1157,16 @@ enum CartDeliveryGroupType {
   SUBSCRIPTION = 'SUBSCRIPTION'
 }
 
+/** The input fields for the cart's delivery properties. */
+type CartDeliveryInput = {
+  /**
+   * Selectable addresses to present to the buyer on the cart.
+   *
+   * The input must not contain more than `250` values.
+   */
+  addresses?: InputMaybe<Array<CartSelectableAddressInput>>;
+};
+
 /** Information about a delivery option. */
 type CartDeliveryOption = {
   __typename?: 'CartDeliveryOption';
@@ -1037,6 +1227,8 @@ type CartDeliveryPreferenceInput = {
  *
  */
 type CartDirectPaymentMethodInput = {
+  /** Indicates if the customer has accepted the subscription terms. Defaults to false. */
+  acceptedSubscriptionTerms?: InputMaybe<Scalars['Boolean']['input']>;
   /** The customer's billing address. */
   billingAddress: MailingAddressInput;
   /** The source of the credit card payment. */
@@ -1047,10 +1239,28 @@ type CartDirectPaymentMethodInput = {
 
 /** The discounts that have been applied to the cart line. */
 type CartDiscountAllocation = {
+  /** The discount that have been applied on the cart line. */
+  discountApplication: CartDiscountApplication;
   /** The discounted amount that has been applied to the cart line. */
   discountedAmount: MoneyV2;
   /** The type of line that the discount is applicable towards. */
   targetType: DiscountApplicationTargetType;
+};
+
+/**
+ * The discount application capture the intentions of a discount source at
+ *         the time of application.
+ */
+type CartDiscountApplication = {
+  __typename?: 'CartDiscountApplication';
+  /** The method by which the discount's value is allocated to its entitled items. */
+  allocationMethod: DiscountApplicationAllocationMethod;
+  /** Which lines of targetType that the discount is allocated over. */
+  targetSelection: DiscountApplicationTargetSelection;
+  /** The type of line that the discount is applicable towards. */
+  targetType: DiscountApplicationTargetType;
+  /** The value of the discount application. */
+  value: PricingValue;
 };
 
 /** The discount codes applied to the cart. */
@@ -1069,6 +1279,8 @@ type CartDiscountCodesUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** Possible error codes that can be returned by `CartUserError`. */
@@ -1089,6 +1301,8 @@ enum CartErrorCode {
   INVALID = 'INVALID',
   /** Company location not found or not allowed. */
   INVALID_COMPANY_LOCATION = 'INVALID_COMPANY_LOCATION',
+  /** The delivery address was not found. */
+  INVALID_DELIVERY_ADDRESS_ID = 'INVALID_DELIVERY_ADDRESS_ID',
   /** Delivery group was not found in cart. */
   INVALID_DELIVERY_GROUP = 'INVALID_DELIVERY_GROUP',
   /** Delivery option was not valid. */
@@ -1121,10 +1335,14 @@ enum CartErrorCode {
   MISSING_NOTE = 'MISSING_NOTE',
   /** The note length must be below the specified maximum. */
   NOTE_TOO_LONG = 'NOTE_TOO_LONG',
+  /** Only one delivery address can be selected. */
+  ONLY_ONE_DELIVERY_ADDRESS_CAN_BE_SELECTED = 'ONLY_ONE_DELIVERY_ADDRESS_CAN_BE_SELECTED',
   /** The payment method is not supported. */
   PAYMENT_METHOD_NOT_SUPPORTED = 'PAYMENT_METHOD_NOT_SUPPORTED',
   /** The given province cannot be found. */
   PROVINCE_NOT_FOUND = 'PROVINCE_NOT_FOUND',
+  /** Too many delivery addresses on Cart. */
+  TOO_MANY_DELIVERY_ADDRESSES = 'TOO_MANY_DELIVERY_ADDRESSES',
   /** A general error occurred during address validation. */
   UNSPECIFIED_ADDRESS_ERROR = 'UNSPECIFIED_ADDRESS_ERROR',
   /** Validation failed. */
@@ -1157,6 +1375,17 @@ type CartFreePaymentMethodInput = {
   billingAddress: MailingAddressInput;
 };
 
+/** Return type for `cartGiftCardCodesRemove` mutation. */
+type CartGiftCardCodesRemovePayload = {
+  __typename?: 'CartGiftCardCodesRemovePayload';
+  /** The updated cart. */
+  cart?: Maybe<Cart>;
+  /** The list of errors that occurred from executing the mutation. */
+  userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
+};
+
 /** Return type for `cartGiftCardCodesUpdate` mutation. */
 type CartGiftCardCodesUpdatePayload = {
   __typename?: 'CartGiftCardCodesUpdatePayload';
@@ -1164,6 +1393,8 @@ type CartGiftCardCodesUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** The input fields to create a cart. */
@@ -1181,6 +1412,8 @@ type CartInput = {
    *
    */
   buyerIdentity?: InputMaybe<CartBuyerIdentityInput>;
+  /** The delivery-related fields for the cart. */
+  delivery?: InputMaybe<CartDeliveryInput>;
   /**
    * The case-insensitive discount codes that the customer added at checkout.
    *
@@ -1331,6 +1564,8 @@ type CartLinesAddPayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** Return type for `cartLinesRemove` mutation. */
@@ -1340,6 +1575,8 @@ type CartLinesRemovePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** Return type for `cartLinesUpdate` mutation. */
@@ -1349,6 +1586,8 @@ type CartLinesUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /** The input fields to delete a cart metafield. */
@@ -1407,6 +1646,17 @@ type CartNoteUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
+};
+
+/** An error occurred during the cart operation. */
+type CartOperationError = {
+  __typename?: 'CartOperationError';
+  /** The error code. */
+  code: Scalars['String']['output'];
+  /** The error message. */
+  message?: Maybe<Scalars['String']['output']>;
 };
 
 /**
@@ -1447,6 +1697,8 @@ type CartPaymentUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
 };
 
 /**
@@ -1479,6 +1731,60 @@ type CartPreferencesInput = {
   wallet?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
+/** Return type for `cartPrepareForCompletion` mutation. */
+type CartPrepareForCompletionPayload = {
+  __typename?: 'CartPrepareForCompletionPayload';
+  /** The result of cart preparation for completion. */
+  result?: Maybe<CartPrepareForCompletionResult>;
+  /** The list of errors that occurred from executing the mutation. */
+  userErrors: Array<CartUserError>;
+};
+
+/** The result of cart preparation. */
+type CartPrepareForCompletionResult = CartStatusNotReady | CartStatusReady | CartThrottled;
+
+/**
+ * A selectable delivery address for a cart.
+ *
+ */
+type CartSelectableAddress = {
+  __typename?: 'CartSelectableAddress';
+  /** The delivery address. */
+  address: CartAddress;
+  /** A unique identifier for the address, specific to this cart. */
+  id: Scalars['ID']['output'];
+  /** This delivery address will not be associated with the buyer after a successful checkout. */
+  oneTimeUse: Scalars['Boolean']['output'];
+  /** Sets exactly one address as pre-selected for the buyer. */
+  selected: Scalars['Boolean']['output'];
+};
+
+/** The input fields for a selectable delivery address in a cart. */
+type CartSelectableAddressInput = {
+  /** Exactly one kind of delivery address. */
+  address: CartAddressInput;
+  /** When true, this delivery address will not be associated with the buyer after a successful checkout. */
+  oneTimeUse?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Sets exactly one address as pre-selected for the buyer. */
+  selected?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Defines what kind of address validation is requested. */
+  validationStrategy?: InputMaybe<DeliveryAddressValidationStrategy>;
+};
+
+/** The input fields to update a line item on a cart. */
+type CartSelectableAddressUpdateInput = {
+  /** Exactly one kind of delivery address. */
+  address?: InputMaybe<CartAddressInput>;
+  /** The id of the selectable address. */
+  id: Scalars['ID']['input'];
+  /** When true, this delivery address will not be associated with the buyer after a successful checkout. */
+  oneTimeUse?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Sets exactly one address as pre-selected for the buyer. */
+  selected?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Defines what kind of address validation is requested. */
+  validationStrategy?: InputMaybe<DeliveryAddressValidationStrategy>;
+};
+
 /**
  * The input fields for updating the selected delivery options for a delivery group.
  *
@@ -1497,6 +1803,24 @@ type CartSelectedDeliveryOptionsUpdatePayload = {
   cart?: Maybe<Cart>;
   /** The list of errors that occurred from executing the mutation. */
   userErrors: Array<CartUserError>;
+  /** A list of warnings that occurred during the mutation. */
+  warnings: Array<CartWarning>;
+};
+
+/** Cart is not ready for payment update and completion. */
+type CartStatusNotReady = {
+  __typename?: 'CartStatusNotReady';
+  /** The result of cart preparation for completion. */
+  cart?: Maybe<Cart>;
+  /** The list of errors that caused the cart to not be ready for payment update and completion. */
+  errors: Array<CartOperationError>;
+};
+
+/** Cart is ready for payment update and completion. */
+type CartStatusReady = {
+  __typename?: 'CartStatusReady';
+  /** The result of cart preparation for completion. */
+  cart?: Maybe<Cart>;
 };
 
 /** Return type for `cartSubmitForCompletion` mutation. */
@@ -1510,6 +1834,17 @@ type CartSubmitForCompletionPayload = {
 
 /** The result of cart submit completion. */
 type CartSubmitForCompletionResult = SubmitAlreadyAccepted | SubmitFailed | SubmitSuccess | SubmitThrottled;
+
+/**
+ * Response signifying that the access to cart request is currently being throttled.
+ * The client can retry after `poll_after`.
+ *
+ */
+type CartThrottled = {
+  __typename?: 'CartThrottled';
+  /** The polling delay. */
+  pollAfter: Scalars['DateTime']['output'];
+};
 
 /** Represents an error that happens during execution of a cart mutation. */
 type CartUserError = DisplayableError & {
@@ -1531,6 +1866,38 @@ type CartWalletPaymentMethodInput = {
   applePayWalletContent?: InputMaybe<ApplePayWalletContentInput>;
   /** The payment method information for the Shop Pay wallet. */
   shopPayWalletContent?: InputMaybe<ShopPayWalletContentInput>;
+};
+
+/** A warning that occurred during a cart mutation. */
+type CartWarning = {
+  __typename?: 'CartWarning';
+  /** The code of the warning. */
+  code: CartWarningCode;
+  /** The message text of the warning. */
+  message: Scalars['String']['output'];
+  /** The target of the warning. */
+  target: Scalars['ID']['output'];
+};
+
+/** The code for the cart warning. */
+enum CartWarningCode {
+  /** A delivery address with the same details already exists on this cart. */
+  DUPLICATE_DELIVERY_ADDRESS = 'DUPLICATE_DELIVERY_ADDRESS',
+  /** The merchandise does not have enough stock. */
+  MERCHANDISE_NOT_ENOUGH_STOCK = 'MERCHANDISE_NOT_ENOUGH_STOCK',
+  /** The merchandise is out of stock. */
+  MERCHANDISE_OUT_OF_STOCK = 'MERCHANDISE_OUT_OF_STOCK',
+  /** Gift cards are not available as a payment method. */
+  PAYMENTS_GIFT_CARDS_UNAVAILABLE = 'PAYMENTS_GIFT_CARDS_UNAVAILABLE'
+}
+
+/**
+ * A filter used to view a subset of products in a collection matching a specific category value.
+ *
+ */
+type CategoryFilter = {
+  /** The id of the category to filter on. */
+  id: Scalars['String']['input'];
 };
 
 /**
@@ -1864,6 +2231,23 @@ type ComponentizableCartLine = BaseCartLine & Node & {
 type ComponentizableCartLineattributeArgs = {
   key: Scalars['String']['input'];
 };
+
+/** Details for count of elements. */
+type Count = {
+  __typename?: 'Count';
+  /** Count of elements. */
+  count: Scalars['Int']['output'];
+  /** Precision of count, how exact is the value. */
+  precision: CountPrecision;
+};
+
+/** The precision of the value returned by a count field. */
+enum CountPrecision {
+  /** The count is at least the value. A limit was reached. */
+  AT_LEAST = 'AT_LEAST',
+  /** The count is exactly the value. */
+  EXACT = 'EXACT'
+}
 
 /** A country. */
 type Country = {
@@ -4851,8 +5235,16 @@ type Mutation = {
   cartBuyerIdentityUpdate?: Maybe<CartBuyerIdentityUpdatePayload>;
   /** Creates a new cart. */
   cartCreate?: Maybe<CartCreatePayload>;
+  /** Adds delivery addresses to the cart. */
+  cartDeliveryAddressesAdd?: Maybe<CartDeliveryAddressesAddPayload>;
+  /** Removes delivery addresses from the cart. */
+  cartDeliveryAddressesRemove?: Maybe<CartDeliveryAddressesRemovePayload>;
+  /** Updates one or more delivery addresses on a cart. */
+  cartDeliveryAddressesUpdate?: Maybe<CartDeliveryAddressesUpdatePayload>;
   /** Updates the discount codes applied to the cart. */
   cartDiscountCodesUpdate?: Maybe<CartDiscountCodesUpdatePayload>;
+  /** Removes the gift card codes applied to the cart. */
+  cartGiftCardCodesRemove?: Maybe<CartGiftCardCodesRemovePayload>;
   /** Updates the gift card codes applied to the cart. */
   cartGiftCardCodesUpdate?: Maybe<CartGiftCardCodesUpdatePayload>;
   /** Adds a merchandise line to the cart. */
@@ -4874,6 +5266,8 @@ type Mutation = {
   cartNoteUpdate?: Maybe<CartNoteUpdatePayload>;
   /** Update the customer's payment method that will be used to checkout. */
   cartPaymentUpdate?: Maybe<CartPaymentUpdatePayload>;
+  /** Prepare the cart for cart checkout completion. */
+  cartPrepareForCompletion?: Maybe<CartPrepareForCompletionPayload>;
   /** Update the selected delivery options for a delivery group. */
   cartSelectedDeliveryOptionsUpdate?: Maybe<CartSelectedDeliveryOptionsUpdatePayload>;
   /** Submit the cart for checkout completion. */
@@ -4979,9 +5373,37 @@ type MutationcartCreateArgs = {
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
+type MutationcartDeliveryAddressesAddArgs = {
+  addresses: Array<CartSelectableAddressInput>;
+  cartId: Scalars['ID']['input'];
+};
+
+
+/** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
+type MutationcartDeliveryAddressesRemoveArgs = {
+  addressIds: Array<Scalars['ID']['input']>;
+  cartId: Scalars['ID']['input'];
+};
+
+
+/** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
+type MutationcartDeliveryAddressesUpdateArgs = {
+  addresses: Array<CartSelectableAddressUpdateInput>;
+  cartId: Scalars['ID']['input'];
+};
+
+
+/** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 type MutationcartDiscountCodesUpdateArgs = {
   cartId: Scalars['ID']['input'];
   discountCodes?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
+/** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
+type MutationcartGiftCardCodesRemoveArgs = {
+  appliedGiftCardIds: Array<Scalars['ID']['input']>;
+  cartId: Scalars['ID']['input'];
 };
 
 
@@ -5036,6 +5458,12 @@ type MutationcartNoteUpdateArgs = {
 type MutationcartPaymentUpdateArgs = {
   cartId: Scalars['ID']['input'];
   payment: CartPaymentInput;
+};
+
+
+/** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
+type MutationcartPrepareForCompletionArgs = {
+  cartId: Scalars['ID']['input'];
 };
 
 
@@ -5588,14 +6016,27 @@ enum PageSortKeys {
   UPDATED_AT = 'UPDATED_AT'
 }
 
+/** Type for paginating through multiple sitemap's resources. */
+type PaginatedSitemapResources = {
+  __typename?: 'PaginatedSitemapResources';
+  /** Whether there are more pages to fetch following the current page. */
+  hasNextPage: Scalars['Boolean']['output'];
+  /**
+   * List of sitemap resources for the current page.
+   * Note: The number of items varies between 0 and 250 per page.
+   *
+   */
+  items: Array<SitemapResourceInterface>;
+};
+
 /** Settings related to payments. */
 type PaymentSettings = {
   __typename?: 'PaymentSettings';
-  /** List of the card brands which the shop accepts. */
+  /** List of the card brands which the business entity accepts. */
   acceptedCardBrands: Array<CardBrand>;
   /** The url pointing to the endpoint to vault credit cards. */
   cardVaultUrl: Scalars['URL']['output'];
-  /** The country where the shop is located. */
+  /** The country where the shop is located. When multiple business entities operate within the shop, then this will represent the country of the business entity that's serving the specified buyer context. */
   countryCode: CountryCode;
   /** The three-letter code for the shop's primary currency. */
   currencyCode: CurrencyCode;
@@ -5607,7 +6048,7 @@ type PaymentSettings = {
   enabledPresentmentCurrencies: Array<CurrencyCode>;
   /** The shop’s Shopify Payments account ID. */
   shopifyPaymentsAccountId?: Maybe<Scalars['String']['output']>;
-  /** List of the digital wallets which the shop supports. */
+  /** List of the digital wallets which the business entity supports. */
   supportedDigitalWallets: Array<DigitalWallet>;
 };
 
@@ -5698,8 +6139,23 @@ type PricingValue = MoneyV2 | PricingPercentageValue;
  */
 type Product = HasMetafields & Node & OnlineStorePublishable & Trackable & {
   __typename?: 'Product';
+  /**
+   * A list of variants whose selected options differ with the provided selected options by one, ordered by variant id.
+   * If selected options are not provided, adjacent variants to the first available variant is returned.
+   *
+   * Note that this field returns an array of variants. In most cases, the number of variants in this array will be low.
+   * However, with a low number of options and a high number of values per option, the number of variants returned
+   * here can be high. In such cases, it recommended to avoid using this field.
+   *
+   * This list of variants can be used in combination with the `options` field to build a rich variant picker that
+   * includes variant availability or other variant information.
+   *
+   */
+  adjacentVariants: Array<ProductVariant>;
   /** Indicates if at least one product variant is available for sale. */
   availableForSale: Scalars['Boolean']['output'];
+  /** The category of a product from [Shopify's Standard Product Taxonomy](https://shopify.github.io/product-taxonomy/releases/unstable/?categoryId=sg-4-17-2-17). */
+  category?: Maybe<TaxonomyCategory>;
   /** A list of [collections](/docs/api/storefront/latest/objects/Collection) that include the product. */
   collections: CollectionConnection;
   /** The [compare-at price range](https://help.shopify.com/manual/products/details/product-pricing/sale-pricing) of the product in the shop's default currency. */
@@ -5715,6 +6171,67 @@ type Product = HasMetafields & Node & OnlineStorePublishable & Trackable & {
    *
    */
   descriptionHtml: Scalars['HTML']['output'];
+  /**
+   * An encoded string containing all option value combinations
+   * with a corresponding variant that is currently available for sale.
+   *
+   * Integers represent option and values:
+   * [0,1] represents option_value at array index 0 for the option at array index 0
+   *
+   * `:`, `,`, ` ` and `-` are control characters.
+   * `:` indicates a new option. ex: 0:1 indicates value 0 for the option in position 1, value 1 for the option in position 2.
+   * `,` indicates the end of a repeated prefix, mulitple consecutive commas indicate the end of multiple repeated prefixes.
+   * ` ` indicates a gap in the sequence of option values. ex: 0 4 indicates option values in position 0 and 4 are present.
+   * `-` indicates a continuous range of option values. ex: 0 1-3 4
+   *
+   * Decoding process:
+   *
+   * Example options: [Size, Color, Material]
+   * Example values: [[Small, Medium, Large], [Red, Blue], [Cotton, Wool]]
+   * Example encoded string: "0:0:0,1:0-1,,1:0:0-1,1:1,,2:0:1,1:0,,"
+   *
+   * Step 1: Expand ranges into the numbers they represent: "0:0:0,1:0 1,,1:0:0 1,1:1,,2:0:1,1:0,,"
+   * Step 2: Expand repeated prefixes: "0:0:0,0:1:0 1,1:0:0 1,1:1:1,2:0:1,2:1:0,"
+   * Step 3: Expand shared prefixes so data is encoded as a string: "0:0:0,0:1:0,0:1:1,1:0:0,1:0:1,1:1:1,2:0:1,2:1:0,"
+   * Step 4: Map to options + option values to determine existing variants:
+   *
+   * [Small, Red, Cotton] (0:0:0), [Small, Blue, Cotton] (0:1:0), [Small, Blue, Wool] (0:1:1),
+   * [Medium, Red, Cotton] (1:0:0), [Medium, Red, Wool] (1:0:1), [Medium, Blue, Wool] (1:1:1),
+   * [Large, Red, Wool] (2:0:1), [Large, Blue, Cotton] (2:1:0).
+   *
+   *
+   */
+  encodedVariantAvailability?: Maybe<Scalars['String']['output']>;
+  /**
+   * An encoded string containing all option value combinations with a corresponding variant.
+   *
+   * Integers represent option and values:
+   * [0,1] represents option_value at array index 0 for the option at array index 0
+   *
+   * `:`, `,`, ` ` and `-` are control characters.
+   * `:` indicates a new option. ex: 0:1 indicates value 0 for the option in position 1, value 1 for the option in position 2.
+   * `,` indicates the end of a repeated prefix, mulitple consecutive commas indicate the end of multiple repeated prefixes.
+   * ` ` indicates a gap in the sequence of option values. ex: 0 4 indicates option values in position 0 and 4 are present.
+   * `-` indicates a continuous range of option values. ex: 0 1-3 4
+   *
+   * Decoding process:
+   *
+   * Example options: [Size, Color, Material]
+   * Example values: [[Small, Medium, Large], [Red, Blue], [Cotton, Wool]]
+   * Example encoded string: "0:0:0,1:0-1,,1:0:0-1,1:1,,2:0:1,1:0,,"
+   *
+   * Step 1: Expand ranges into the numbers they represent: "0:0:0,1:0 1,,1:0:0 1,1:1,,2:0:1,1:0,,"
+   * Step 2: Expand repeated prefixes: "0:0:0,0:1:0 1,1:0:0 1,1:1:1,2:0:1,2:1:0,"
+   * Step 3: Expand shared prefixes so data is encoded as a string: "0:0:0,0:1:0,0:1:1,1:0:0,1:0:1,1:1:1,2:0:1,2:1:0,"
+   * Step 4: Map to options + option values to determine existing variants:
+   *
+   * [Small, Red, Cotton] (0:0:0), [Small, Blue, Cotton] (0:1:0), [Small, Blue, Wool] (0:1:1),
+   * [Medium, Red, Cotton] (1:0:0), [Medium, Red, Wool] (1:0:1), [Medium, Blue, Wool] (1:1:1),
+   * [Large, Red, Wool] (2:0:1), [Large, Blue, Cotton] (2:1:0).
+   *
+   *
+   */
+  encodedVariantExistence?: Maybe<Scalars['String']['output']>;
   /**
    * The featured image for the product.
    *
@@ -5766,6 +6283,14 @@ type Product = HasMetafields & Node & OnlineStorePublishable & Trackable & {
   publishedAt: Scalars['DateTime']['output'];
   /** Whether the product can only be purchased with a [selling plan](/docs/apps/build/purchase-options/subscriptions/selling-plans). Products that are sold on subscription (`requiresSellingPlan: true`) can be updated only for online stores. If you update a product to be subscription-only (`requiresSellingPlan:false`), then the product is unpublished from all channels, except the online store. */
   requiresSellingPlan: Scalars['Boolean']['output'];
+  /**
+   * Find an active product variant based on selected options, availability or the first variant.
+   *
+   * All arguments are optional. If no selected options are provided, the first available variant is returned.
+   * If no variants are available, the first variant is returned.
+   *
+   */
+  selectedOrFirstAvailableVariant?: Maybe<ProductVariant>;
   /** A list of all [selling plan groups](/docs/apps/build/purchase-options/subscriptions/selling-plans/build-a-selling-plan) that are associated with the product either directly, or through the product's variants. */
   sellingPlanGroups: SellingPlanGroupConnection;
   /**
@@ -5812,8 +6337,30 @@ type Product = HasMetafields & Node & OnlineStorePublishable & Trackable & {
   variantBySelectedOptions?: Maybe<ProductVariant>;
   /** A list of [variants](/docs/api/storefront/latest/objects/ProductVariant) that are associated with the product. */
   variants: ProductVariantConnection;
+  /** The number of [variants](/docs/api/storefront/latest/objects/ProductVariant) that are associated with the product. */
+  variantsCount?: Maybe<Count>;
   /** The name of the product's vendor. */
   vendor: Scalars['String']['output'];
+};
+
+
+/**
+ * The `Product` object lets you manage products in a merchant’s store.
+ *
+ * Products are the goods and services that merchants offer to customers.
+ * They can include various details such as title, description, price, images, and options such as size or color.
+ * You can use [product variants](/docs/api/storefront/latest/objects/ProductVariant)
+ * to create or update different versions of the same product.
+ * You can also add or update product [media](/docs/api/storefront/latest/interfaces/Media).
+ * Products can be organized by grouping them into a [collection](/docs/api/storefront/latest/objects/Collection).
+ *
+ * Learn more about working with [products and collections](/docs/storefronts/headless/building-with-the-storefront-api/products-collections).
+ *
+ */
+type ProductadjacentVariantsArgs = {
+  caseInsensitiveMatch?: InputMaybe<Scalars['Boolean']['input']>;
+  ignoreUnknownOptions?: InputMaybe<Scalars['Boolean']['input']>;
+  selectedOptions?: InputMaybe<Array<SelectedOptionInput>>;
 };
 
 
@@ -5971,6 +6518,26 @@ type ProductoptionsArgs = {
  * Learn more about working with [products and collections](/docs/storefronts/headless/building-with-the-storefront-api/products-collections).
  *
  */
+type ProductselectedOrFirstAvailableVariantArgs = {
+  caseInsensitiveMatch?: InputMaybe<Scalars['Boolean']['input']>;
+  ignoreUnknownOptions?: InputMaybe<Scalars['Boolean']['input']>;
+  selectedOptions?: InputMaybe<Array<SelectedOptionInput>>;
+};
+
+
+/**
+ * The `Product` object lets you manage products in a merchant’s store.
+ *
+ * Products are the goods and services that merchants offer to customers.
+ * They can include various details such as title, description, price, images, and options such as size or color.
+ * You can use [product variants](/docs/api/storefront/latest/objects/ProductVariant)
+ * to create or update different versions of the same product.
+ * You can also add or update product [media](/docs/api/storefront/latest/interfaces/Media).
+ * Products can be organized by grouping them into a [collection](/docs/api/storefront/latest/objects/Collection).
+ *
+ * Learn more about working with [products and collections](/docs/storefronts/headless/building-with-the-storefront-api/products-collections).
+ *
+ */
 type ProductsellingPlanGroupsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -6083,6 +6650,8 @@ type ProductEdge = {
 type ProductFilter = {
   /** Filter on if the product is available for sale. */
   available?: InputMaybe<Scalars['Boolean']['input']>;
+  /** A product category to filter on. */
+  category?: InputMaybe<CategoryFilter>;
   /** A range of prices to filter with-in. */
   price?: InputMaybe<PriceRangeFilter>;
   /** A product metafield to filter on. */
@@ -6093,6 +6662,8 @@ type ProductFilter = {
   productVendor?: InputMaybe<Scalars['String']['input']>;
   /** A product tag to filter on. */
   tag?: InputMaybe<Scalars['String']['input']>;
+  /** A standard product attribute metafield to filter on. */
+  taxonomyMetafield?: InputMaybe<TaxonomyMetafieldFilter>;
   /** A variant metafield to filter on. */
   variantMetafield?: InputMaybe<MetafieldFilter>;
   /** A variant option to filter on. */
@@ -6156,6 +6727,14 @@ type ProductOption = Node & {
  */
 type ProductOptionValue = Node & {
   __typename?: 'ProductOptionValue';
+  /**
+   * The product variant that combines this option value with the
+   * lowest-position option values for all other options.
+   *
+   * This field will always return a variant, provided a variant including this option value exists.
+   *
+   */
+  firstSelectableVariant?: Maybe<ProductVariant>;
   /** A globally-unique ID. */
   id: Scalars['ID']['output'];
   /** The name of the product option value. */
@@ -6287,6 +6866,8 @@ type ProductVariant = HasMetafields & Node & {
   selectedOptions: Array<SelectedOption>;
   /** Represents an association between a variant and a selling plan. Selling plan allocations describe which selling plans are available for each variant, and what their impact is on pricing. */
   sellingPlanAllocations: SellingPlanAllocationConnection;
+  /** The Shop Pay Installments pricing information for the product variant. */
+  shopPayInstallmentsPricing?: Maybe<ShopPayInstallmentsProductVariantPricing>;
   /** The SKU (stock keeping unit) associated with the variant. */
   sku?: Maybe<Scalars['String']['output']>;
   /** The in-store pickup availability of this variant by location. */
@@ -6625,6 +7206,8 @@ type QueryRoot = {
   pageByHandle?: Maybe<Page>;
   /** List of the shop's pages. */
   pages: PageConnection;
+  /** Settings related to payments. */
+  paymentSettings: PaymentSettings;
   /** List of the predictive search results. */
   predictiveSearch?: Maybe<PredictiveSearchResult>;
   /** Fetch a specific `Product` by one of its unique attributes. */
@@ -6657,6 +7240,8 @@ type QueryRoot = {
   search: SearchResultItemConnection;
   /** The shop associated with the storefront access token. */
   shop: Shop;
+  /** Contains all fields required to generate sitemaps. */
+  sitemap: Sitemap;
   /** A list of redirects for a shop. */
   urlRedirects: UrlRedirectConnection;
 };
@@ -6891,6 +7476,12 @@ type QueryRootsearchArgs = {
   sortKey?: InputMaybe<SearchSortKeys>;
   types?: InputMaybe<Array<SearchType>>;
   unavailableProducts?: InputMaybe<SearchUnavailableProductsType>;
+};
+
+
+/** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
+type QueryRootsitemapArgs = {
+  type: SitemapType;
 };
 
 
@@ -7310,7 +7901,7 @@ type SellingPlanOption = {
 type SellingPlanPercentagePriceAdjustment = {
   __typename?: 'SellingPlanPercentagePriceAdjustment';
   /** The percentage value of the price adjustment. */
-  adjustmentPercentage: Scalars['Int']['output'];
+  adjustmentPercentage: Scalars['Float']['output'];
 };
 
 /** Represents by how much the price of a variant associated with a selling plan is adjusted. Each variant can have up to two price adjustments. If a variant has multiple price adjustments, then the first price adjustment applies when the variant is initially purchased. The second price adjustment applies after a certain number of orders (specified by the `orderCount` field) are made. If a selling plan doesn't have any price adjustments, then the unadjusted price of the variant is the effective price. */
@@ -7372,6 +7963,8 @@ type Shop = HasMetafields & Node & {
   shippingPolicy?: Maybe<ShopPolicy>;
   /** Countries that the shop ships to. */
   shipsToCountries: Array<CountryCode>;
+  /** The Shop Pay Installments pricing information for the shop. */
+  shopPayInstallmentsPricing?: Maybe<ShopPayInstallmentsPricing>;
   /** The shop’s subscription policy. */
   subscriptionPolicy?: Maybe<ShopPolicyWithDefault>;
   /** The shop’s terms of service. */
@@ -7389,6 +7982,80 @@ type ShopmetafieldArgs = {
 /** Shop represents a collection of the general settings and information about the shop. */
 type ShopmetafieldsArgs = {
   identifiers: Array<HasMetafieldsIdentifier>;
+};
+
+/** The financing plan in Shop Pay Installments. */
+type ShopPayInstallmentsFinancingPlan = Node & {
+  __typename?: 'ShopPayInstallmentsFinancingPlan';
+  /** A globally-unique ID. */
+  id: Scalars['ID']['output'];
+  /** The maximum price to qualify for the financing plan. */
+  maxPrice: MoneyV2;
+  /** The minimum price to qualify for the financing plan. */
+  minPrice: MoneyV2;
+  /** The terms of the financing plan. */
+  terms: Array<ShopPayInstallmentsFinancingPlanTerm>;
+};
+
+/** The payment frequency for a Shop Pay Installments Financing Plan. */
+enum ShopPayInstallmentsFinancingPlanFrequency {
+  /** Monthly payment frequency. */
+  MONTHLY = 'MONTHLY',
+  /** Weekly payment frequency. */
+  WEEKLY = 'WEEKLY'
+}
+
+/** The terms of the financing plan in Shop Pay Installments. */
+type ShopPayInstallmentsFinancingPlanTerm = Node & {
+  __typename?: 'ShopPayInstallmentsFinancingPlanTerm';
+  /** The annual percentage rate (APR) of the financing plan. */
+  apr: Scalars['Int']['output'];
+  /** The payment frequency for the financing plan. */
+  frequency: ShopPayInstallmentsFinancingPlanFrequency;
+  /** A globally-unique ID. */
+  id: Scalars['ID']['output'];
+  /** The number of installments for the financing plan. */
+  installmentsCount?: Maybe<Count>;
+  /** The type of loan for the financing plan. */
+  loanType: ShopPayInstallmentsLoan;
+};
+
+/** The loan type for a Shop Pay Installments Financing Plan Term. */
+enum ShopPayInstallmentsLoan {
+  /** An interest-bearing loan type. */
+  INTEREST = 'INTEREST',
+  /** A split-pay loan type. */
+  SPLIT_PAY = 'SPLIT_PAY',
+  /** A zero-percent loan type. */
+  ZERO_PERCENT = 'ZERO_PERCENT'
+}
+
+/** The result for a Shop Pay Installments pricing request. */
+type ShopPayInstallmentsPricing = {
+  __typename?: 'ShopPayInstallmentsPricing';
+  /** The financing plans available for the given price range. */
+  financingPlans: Array<ShopPayInstallmentsFinancingPlan>;
+  /** The maximum price to qualify for financing. */
+  maxPrice: MoneyV2;
+  /** The minimum price to qualify for financing. */
+  minPrice: MoneyV2;
+};
+
+/** The shop pay installments pricing information for a product variant. */
+type ShopPayInstallmentsProductVariantPricing = Node & {
+  __typename?: 'ShopPayInstallmentsProductVariantPricing';
+  /** Whether the product variant is available. */
+  available: Scalars['Boolean']['output'];
+  /** Whether the product variant is eligible for Shop Pay Installments. */
+  eligible: Scalars['Boolean']['output'];
+  /** The full price of the product variant. */
+  fullPrice: MoneyV2;
+  /** The ID of the product variant. */
+  id: Scalars['ID']['output'];
+  /** The number of payment terms available for the product variant. */
+  installmentsCount?: Maybe<Count>;
+  /** The price per term for the product variant. */
+  pricePerTerm: MoneyV2;
 };
 
 /** Represents a Shop Pay payment request. */
@@ -7773,6 +8440,99 @@ type ShopPolicyWithDefault = {
   url: Scalars['URL']['output'];
 };
 
+/** Contains all fields required to generate sitemaps. */
+type Sitemap = {
+  __typename?: 'Sitemap';
+  /** The number of sitemap's pages for a given type. */
+  pagesCount?: Maybe<Count>;
+  /**
+   * A list of sitemap's resources for a given type.
+   *
+   * Important Notes:
+   *   - The number of items per page varies from 0 to 250.
+   *   - Empty pages (0 items) may occur and do not necessarily indicate the end of results.
+   *   - Always check `hasNextPage` to determine if more pages are available.
+   *
+   */
+  resources?: Maybe<PaginatedSitemapResources>;
+};
+
+
+/** Contains all fields required to generate sitemaps. */
+type SitemapresourcesArgs = {
+  page: Scalars['Int']['input'];
+};
+
+/** Represents a sitemap's image. */
+type SitemapImage = {
+  __typename?: 'SitemapImage';
+  /** Image's alt text. */
+  alt?: Maybe<Scalars['String']['output']>;
+  /** Path to the image. */
+  filepath?: Maybe<Scalars['String']['output']>;
+  /** The date and time when the image was updated. */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+/** Represents a sitemap resource that is not a metaobject. */
+type SitemapResource = SitemapResourceInterface & {
+  __typename?: 'SitemapResource';
+  /** Resource's handle. */
+  handle: Scalars['String']['output'];
+  /** Resource's image. */
+  image?: Maybe<SitemapImage>;
+  /** Resource's title. */
+  title?: Maybe<Scalars['String']['output']>;
+  /** The date and time when the resource was updated. */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+/** Represents the common fields for all sitemap resource types. */
+type SitemapResourceInterface = {
+  /** Resource's handle. */
+  handle: Scalars['String']['output'];
+  /** The date and time when the resource was updated. */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+/**
+ * A SitemapResourceMetaobject represents a metaobject with
+ * [the `renderable` capability](https://shopify.dev/docs/apps/build/custom-data/metaobjects/use-metaobject-capabilities#render-metaobjects-as-web-pages).
+ *
+ */
+type SitemapResourceMetaobject = SitemapResourceInterface & {
+  __typename?: 'SitemapResourceMetaobject';
+  /** Resource's handle. */
+  handle: Scalars['String']['output'];
+  /** The URL handle for accessing pages of this metaobject type in the Online Store. */
+  onlineStoreUrlHandle?: Maybe<Scalars['String']['output']>;
+  /** The type of the metaobject. Defines the namespace of its associated metafields. */
+  type: Scalars['String']['output'];
+  /** The date and time when the resource was updated. */
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+/** The types of resources potentially present in a sitemap. */
+enum SitemapType {
+  /** Articles present in the sitemap. */
+  ARTICLE = 'ARTICLE',
+  /** Blogs present in the sitemap. */
+  BLOG = 'BLOG',
+  /** Collections present in the sitemap. */
+  COLLECTION = 'COLLECTION',
+  /**
+   * Metaobjects present in the sitemap. Only metaobject types with the
+   * [`renderable` capability](https://shopify.dev/docs/apps/build/custom-data/metaobjects/use-metaobject-capabilities#render-metaobjects-as-web-pages)
+   * are included in sitemap.
+   *
+   */
+  METAOBJECT = 'METAOBJECT',
+  /** Pages present in the sitemap. */
+  PAGE = 'PAGE',
+  /** Products present in the sitemap. */
+  PRODUCT = 'PRODUCT'
+}
+
 /**
  * The availability of a product variant at a particular location.
  * Local pick-up must be enabled in the  store's shipping settings, otherwise this will return an empty result.
@@ -7824,6 +8584,8 @@ type StringConnection = {
   __typename?: 'StringConnection';
   /** A list of edges. */
   edges: Array<StringEdge>;
+  /** A list of the nodes contained in StringEdge. */
+  nodes: Array<Scalars['String']['output']>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
 };
@@ -7967,6 +8729,8 @@ type SubmitSuccess = {
   __typename?: 'SubmitSuccess';
   /** The ID of the cart completion attempt that will be used for polling for the result. */
   attemptId: Scalars['String']['output'];
+  /** The url to which the buyer should be redirected after the cart is successfully submitted. */
+  redirectUrl: Scalars['URL']['output'];
 };
 
 /** Cart submit for checkout completion is throttled. */
@@ -7988,6 +8752,33 @@ type Swatch = {
   color?: Maybe<Scalars['Color']['output']>;
   /** The swatch image. */
   image?: Maybe<MediaImage>;
+};
+
+/**
+ * The taxonomy category for the product.
+ *
+ */
+type TaxonomyCategory = Node & {
+  __typename?: 'TaxonomyCategory';
+  /** All parent nodes of the current taxonomy category. */
+  ancestors: Array<TaxonomyCategory>;
+  /** A static identifier for the taxonomy category. */
+  id: Scalars['ID']['output'];
+  /** The localized name of the taxonomy category. */
+  name: Scalars['String']['output'];
+};
+
+/**
+ * A filter used to view a subset of products in a collection matching a specific taxonomy metafield value.
+ *
+ */
+type TaxonomyMetafieldFilter = {
+  /** The key of the metafield to filter on. */
+  key: Scalars['String']['input'];
+  /** The namespace of the metafield to filter on. */
+  namespace: Scalars['String']['input'];
+  /** The value of the metafield. */
+  value: Scalars['String']['input'];
 };
 
 /** Represents a resource that you can track the origin of the search traffic. */
@@ -8185,7 +8976,10 @@ type CartQueryVariables = Exact<{
 }>;
 
 
-type CartQuery = { __typename?: 'QueryRoot', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null };
+type CartQuery = { __typename?: 'QueryRoot', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+          | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+          | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+         }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null };
 
 type CreateCartMutationVariables = Exact<{
   country?: InputMaybe<CountryCode>;
@@ -8193,7 +8987,10 @@ type CreateCartMutationVariables = Exact<{
 }>;
 
 
-type CreateCartMutation = { __typename?: 'Mutation', cartCreate?: { __typename?: 'CartCreatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
+type CreateCartMutation = { __typename?: 'Mutation', cartCreate?: { __typename?: 'CartCreatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+            | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+            | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+           }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
 
 type CartBuyerIdentityUpdateMutationVariables = Exact<{
   cartId: Scalars['ID']['input'];
@@ -8201,7 +8998,10 @@ type CartBuyerIdentityUpdateMutationVariables = Exact<{
 }>;
 
 
-type CartBuyerIdentityUpdateMutation = { __typename?: 'Mutation', cartBuyerIdentityUpdate?: { __typename?: 'CartBuyerIdentityUpdatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
+type CartBuyerIdentityUpdateMutation = { __typename?: 'Mutation', cartBuyerIdentityUpdate?: { __typename?: 'CartBuyerIdentityUpdatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+            | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+            | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+           }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
 
 type AddItemToCartMutationVariables = Exact<{
   country?: InputMaybe<CountryCode>;
@@ -8210,7 +9010,10 @@ type AddItemToCartMutationVariables = Exact<{
 }>;
 
 
-type AddItemToCartMutation = { __typename?: 'Mutation', cartLinesAdd?: { __typename?: 'CartLinesAddPayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
+type AddItemToCartMutation = { __typename?: 'Mutation', cartLinesAdd?: { __typename?: 'CartLinesAddPayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+            | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+            | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+           }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
 
 type RemoveItemFromCartMutationVariables = Exact<{
   cartId: Scalars['ID']['input'];
@@ -8218,7 +9021,10 @@ type RemoveItemFromCartMutationVariables = Exact<{
 }>;
 
 
-type RemoveItemFromCartMutation = { __typename?: 'Mutation', cartLinesRemove?: { __typename?: 'CartLinesRemovePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
+type RemoveItemFromCartMutation = { __typename?: 'Mutation', cartLinesRemove?: { __typename?: 'CartLinesRemovePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+            | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+            | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+           }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
 
 type UpdateItemFromCartMutationVariables = Exact<{
   country?: InputMaybe<CountryCode>;
@@ -8227,7 +9033,10 @@ type UpdateItemFromCartMutationVariables = Exact<{
 }>;
 
 
-type UpdateItemFromCartMutation = { __typename?: 'Mutation', cartLinesUpdate?: { __typename?: 'CartLinesUpdatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
+type UpdateItemFromCartMutation = { __typename?: 'Mutation', cartLinesUpdate?: { __typename?: 'CartLinesUpdatePayload', cart?: { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+            | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+            | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+           }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> } | null, userErrors: Array<{ __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null }> } | null };
 
 type AllShopifyCollectionsQueryVariables = Exact<{
   country?: InputMaybe<CountryCode>;
@@ -8290,7 +9099,10 @@ type CustomerAccessTokenDeleteMutation = { __typename?: 'Mutation', customerAcce
 
 type CartErrorsFragment = { __typename: 'CartUserError', field?: Array<string> | null, message: string, code?: CartErrorCode | null };
 
-type CartFragment = { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node: { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } } }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> };
+type CartFragment = { __typename?: 'Cart', id: string, createdAt: any, updatedAt: any, checkoutUrl: any, totalQuantity: number, buyerIdentity: { __typename?: 'CartBuyerIdentity', countryCode?: CountryCode | null, email?: string | null, phone?: string | null, customer?: { __typename?: 'Customer', id: string, createdAt: any, updatedAt: any, displayName: string, firstName?: string | null, lastName?: string | null, email?: string | null, addresses: { __typename?: 'MailingAddressConnection', edges: Array<{ __typename?: 'MailingAddressEdge', node: { __typename?: 'MailingAddress', id: string, address1?: string | null, lastName?: string | null, name?: string | null, phone?: string | null, province?: string | null, provinceCode?: string | null, zip?: string | null, address2?: string | null, company?: string | null, country?: string | null, countryCodeV2?: CountryCode | null, firstName?: string | null, formatted: Array<string>, formattedArea?: string | null } }> }, orders: { __typename?: 'OrderConnection', edges: Array<{ __typename?: 'OrderEdge', node: { __typename?: 'Order', id: string, fulfillmentStatus: OrderFulfillmentStatus, canceledAt?: any | null, lineItems: { __typename?: 'OrderLineItemConnection', edges: Array<{ __typename?: 'OrderLineItemEdge', node: { __typename?: 'OrderLineItem', quantity: number, title: string, variant?: { __typename?: 'ProductVariant', id: string, title: string, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } | null } }> } } }> } } | null }, cost: { __typename?: 'CartCost', totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalTaxAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null, totalDutyAmount?: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } | null }, lines: { __typename?: 'BaseCartLineConnection', edges: Array<{ __typename?: 'BaseCartLineEdge', node:
+        | { __typename?: 'CartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+        | { __typename?: 'ComponentizableCartLine', id: string, quantity: number, cost: { __typename?: 'CartLineCost', subtotalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, totalAmount: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } }, merchandise: { __typename?: 'ProductVariant', id: string, title: string, quantityAvailable?: number | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', url: any, altText?: string | null } | null, product: { __typename?: 'Product', id: string, title: string, handle: string }, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }> } }
+       }> }, attributes: Array<{ __typename?: 'Attribute', key: string, value?: string | null }> };
 
 type CollectionFragment = { __typename?: 'Collection', id: string, handle: string, title: string, description: string, image?: { __typename?: 'Image', id?: string | null, url: any, height?: number | null, width?: number | null, altText?: string | null } | null };
 
@@ -8340,4 +9152,42 @@ type ShopifyVariantQueryVariables = Exact<{
 }>;
 
 
-type ShopifyVariantQuery = { __typename?: 'QueryRoot', variant?: { __typename?: 'AppliedGiftCard' } | { __typename?: 'Article' } | { __typename?: 'Blog' } | { __typename?: 'Cart' } | { __typename?: 'CartLine' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'Company' } | { __typename?: 'CompanyContact' } | { __typename?: 'CompanyLocation' } | { __typename?: 'ComponentizableCartLine' } | { __typename?: 'ExternalVideo' } | { __typename?: 'GenericFile' } | { __typename?: 'Location' } | { __typename?: 'MailingAddress' } | { __typename?: 'Market' } | { __typename?: 'MediaImage' } | { __typename?: 'MediaPresentation' } | { __typename?: 'Menu' } | { __typename?: 'MenuItem' } | { __typename?: 'Metafield' } | { __typename?: 'Metaobject' } | { __typename?: 'Model3d' } | { __typename?: 'Order' } | { __typename?: 'Page' } | { __typename?: 'Product' } | { __typename?: 'ProductOption' } | { __typename?: 'ProductOptionValue' } | { __typename?: 'ProductVariant', id: string, title: string, weight?: number | null, availableForSale: boolean, quantityAvailable?: number | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }>, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, product: { __typename?: 'Product', id: string, handle: string, title: string, description: string, featuredImage?: { __typename?: 'Image', id?: string | null, url: any, height?: number | null, width?: number | null, altText?: string | null } | null, options: Array<{ __typename?: 'ProductOption', id: string, name: string, values: Array<string> }>, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, weight?: number | null, availableForSale: boolean, quantityAvailable?: number | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }>, image?: { __typename?: 'Image', id?: string | null, url: any, height?: number | null, width?: number | null, altText?: string | null } | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } }> } } } | { __typename?: 'Shop' } | { __typename?: 'ShopPolicy' } | { __typename?: 'UrlRedirect' } | { __typename?: 'Video' } | null };
+type ShopifyVariantQuery = { __typename?: 'QueryRoot', variant?:
+    | { __typename?: 'AppliedGiftCard' }
+    | { __typename?: 'Article' }
+    | { __typename?: 'Blog' }
+    | { __typename?: 'Cart' }
+    | { __typename?: 'CartLine' }
+    | { __typename?: 'Collection' }
+    | { __typename?: 'Comment' }
+    | { __typename?: 'Company' }
+    | { __typename?: 'CompanyContact' }
+    | { __typename?: 'CompanyLocation' }
+    | { __typename?: 'ComponentizableCartLine' }
+    | { __typename?: 'ExternalVideo' }
+    | { __typename?: 'GenericFile' }
+    | { __typename?: 'Location' }
+    | { __typename?: 'MailingAddress' }
+    | { __typename?: 'Market' }
+    | { __typename?: 'MediaImage' }
+    | { __typename?: 'MediaPresentation' }
+    | { __typename?: 'Menu' }
+    | { __typename?: 'MenuItem' }
+    | { __typename?: 'Metafield' }
+    | { __typename?: 'Metaobject' }
+    | { __typename?: 'Model3d' }
+    | { __typename?: 'Order' }
+    | { __typename?: 'Page' }
+    | { __typename?: 'Product' }
+    | { __typename?: 'ProductOption' }
+    | { __typename?: 'ProductOptionValue' }
+    | { __typename?: 'ProductVariant', id: string, title: string, weight?: number | null, availableForSale: boolean, quantityAvailable?: number | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }>, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode }, product: { __typename?: 'Product', id: string, handle: string, title: string, description: string, featuredImage?: { __typename?: 'Image', id?: string | null, url: any, height?: number | null, width?: number | null, altText?: string | null } | null, options: Array<{ __typename?: 'ProductOption', id: string, name: string, values: Array<string> }>, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, weight?: number | null, availableForSale: boolean, quantityAvailable?: number | null, selectedOptions: Array<{ __typename?: 'SelectedOption', name: string, value: string }>, image?: { __typename?: 'Image', id?: string | null, url: any, height?: number | null, width?: number | null, altText?: string | null } | null, price: { __typename?: 'MoneyV2', amount: any, currencyCode: CurrencyCode } } }> } } }
+    | { __typename?: 'Shop' }
+    | { __typename?: 'ShopPayInstallmentsFinancingPlan' }
+    | { __typename?: 'ShopPayInstallmentsFinancingPlanTerm' }
+    | { __typename?: 'ShopPayInstallmentsProductVariantPricing' }
+    | { __typename?: 'ShopPolicy' }
+    | { __typename?: 'TaxonomyCategory' }
+    | { __typename?: 'UrlRedirect' }
+    | { __typename?: 'Video' }
+   | null };

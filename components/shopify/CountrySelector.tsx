@@ -56,7 +56,12 @@ export default function CountrySelector({ className, localization: { availableCo
 			ref={formRef}
 			aria-label={'Select country'}
 		>
-			<Select className={s.select} onSelectionChange={handleChange} defaultOpen={false}>
+			<Select
+				className={s.select}
+				onSelectionChange={handleChange}
+				defaultOpen={false}
+				aria-label={selectedCountry?.name ?? 'Select country'}
+			>
 				<Button className={s.button} ref={buttonRef}>
 					<SelectValue className={s.value} key={country}>
 						{selectedCountry?.name}

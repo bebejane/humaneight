@@ -114,6 +114,7 @@ const useCart = create<CartState>((set, get) => ({
 				id: l.node.id,
 				quantity: l.node.id === id ? quantity : l.node.quantity,
 			}));
+
 			const { cartLinesUpdate } = await shopifyQuery(UpdateItemFromCartDocument, {
 				revalidate: 0,
 				variables: {
