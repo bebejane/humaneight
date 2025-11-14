@@ -288,13 +288,13 @@
 
 .alert {
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	left: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
+	height: calc(100% - var(--navbar-height));
 	width: 100%;
 	z-index: 1;
 	padding: calc(2 * var(--outer-margin));
