@@ -42,6 +42,7 @@ export default function Cart({ localization }: CartProps) {
 			state.clearCartError,
 		])
 	);
+	console.log(localization);
 
 	const country = useCountry();
 	const pathname = usePathname();
