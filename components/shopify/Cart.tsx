@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Sentry from '@sentry/nextjs';
 import s from './Cart.module.scss';
 import cn from 'classnames';
@@ -13,6 +13,7 @@ import Link from '@/components//nav/Link';
 import { usePathname } from 'next/navigation';
 import { formatPrice } from '@/lib/utils';
 import useCountry from '../../shopify/hooks/useCountry';
+import { useClickAway } from 'react-use';
 
 export type CartProps = {
 	localization: LocalizationQuery['localization'];
@@ -43,6 +44,7 @@ export default function Cart({ localization }: CartProps) {
 		])
 	);
 
+	const ref = useRef<HTMLDivElement>(null);
 	const country = useCountry();
 	const pathname = usePathname();
 	const [showCart, setShowCart] = useState(false);
@@ -52,6 +54,7 @@ export default function Cart({ localization }: CartProps) {
 	const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0);
 	const [terms, setTerms] = useState(false);
 	const [error, setError] = useState<string | null>(null);
+	useClickAway(ref, () => setShowCart(false));
 
 	function clearErrors() {
 		setError(null);
@@ -114,7 +117,7 @@ export default function Cart({ localization }: CartProps) {
 	}
 
 	return (
-		<div id='cart' className={cn(s.cart, showCart && s.show, updating && s.updating)}>
+		<div id='cart' ref={ref} className={cn(s.cart, showCart && s.show, updating && s.updating)}>
 			<header>
 				<h3>Cart</h3>
 				<div className={s.currency}>
