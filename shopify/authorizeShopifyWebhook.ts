@@ -1,4 +1,3 @@
-import { NextRequest } from 'next/server';
 import * as crypto from 'crypto';
 
 export default async function authorizeShopifyWebhook(
@@ -6,7 +5,7 @@ export default async function authorizeShopifyWebhook(
 	callback?: (body: any) => Promise<Response>
 ): Promise<Response> {
 	console.log('test auth webhook');
-	const body = await req.json();
+	const body = await req.text();
 	const event = (req.headers.get('x-shopify-topic') as string)?.split('/')?.[1];
 	if (!event) {
 		console.log('no event');
@@ -15,8 +14,6 @@ export default async function authorizeShopifyWebhook(
 			{ status: 401 }
 		);
 	}
-
-	return callback(body);
 
 	const hmacHeader = req.headers.get('X-Shopify-Hmac-Sha256');
 	const digest = crypto
@@ -30,7 +27,7 @@ export default async function authorizeShopifyWebhook(
 	console.log('verified', verified);
 	console.log('body', body);
 	if (verified) {
-		return await callback(body);
+		return await callback(JSON.parse(body));
 	} else {
 		return new Response('Unauthorized Request', {
 			status: 401,
