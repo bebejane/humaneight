@@ -18,7 +18,7 @@ export default async function authorizeShopifyWebhook(
 	const hmacHeader = req.headers.get('X-Shopify-Hmac-Sha256');
 	const digest = crypto
 		.createHmac('sha256', process.env.SHOPIFY_WEBHOOK_VERIFY_INTEGRITY)
-		.update(JSON.stringify(body), 'utf8')
+		.update(body, 'utf8')
 		.digest('base64');
 
 	console.log(digest, 'digest');
