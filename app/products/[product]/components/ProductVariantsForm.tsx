@@ -31,7 +31,12 @@ export type Props = {
 	mobile?: boolean;
 };
 
-export default function ProductVariantsForm({ product, shopifyProduct: _shopifyProduct, className, mobile }: Props) {
+export default function ProductVariantsForm({
+	product,
+	shopifyProduct: _shopifyProduct,
+	className,
+	mobile,
+}: Props) {
 	const { product: shopifyProduct } = useProduct({
 		handle: product?.shopifyProduct.handle,
 		initialData: _shopifyProduct,
@@ -47,35 +52,43 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 	const [formStyles, setFormStyles] = useState<React.CSSProperties>({});
 	const formRef = useRef<HTMLFormElement>(null);
 
-	const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')?.metaType.id;
+	const sizeGuideId = product?.metaSections.find(({ metaType }) => metaType?.title === 'Size Guide')
+		?.metaType.id;
 
 	const variantId = searchParams.get('variant') ?? null;
 	const defaultVariant = getFirstAvailableVariant(shopifyProduct as ShopifyProductQuery['product']);
 	const variant =
-		(shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)?.node as ProductVariant) ??
-		defaultVariant;
+		(shopifyProduct?.variants.edges.find(({ node }) => parseGid(node.id) === variantId)
+			?.node as ProductVariant) ?? defaultVariant;
 
 	const haveSizes =
-		shopifyProduct?.variants.edges.find(({ node }) => optionValue(node.selectedOptions, 'Size') !== null) !== undefined;
+		shopifyProduct?.variants.edges.find(
+			({ node }) => optionValue(node.selectedOptions, 'Size') !== null,
+		) !== undefined;
 	const haveColors =
-		shopifyProduct?.variants.edges.find(({ node }) => optionValue(node.selectedOptions, 'Color') !== null) !==
-		undefined;
+		shopifyProduct?.variants.edges.find(
+			({ node }) => optionValue(node.selectedOptions, 'Color') !== null,
+		) !== undefined;
 	const availableSizes = availableVariants(
 		shopifyProduct as Product,
 		'Color',
-		optionValue(variant?.selectedOptions, 'Color')
+		optionValue(variant?.selectedOptions, 'Color'),
 	);
 	const availableColors = availableVariants(
 		shopifyProduct as Product,
 		'Size',
-		optionValue(variant?.selectedOptions, 'Size')
+		optionValue(variant?.selectedOptions, 'Size'),
 	);
 	const sizeOptions = shopifyProduct?.variants.edges
 		.map(({ node }) => optionValue(node.selectedOptions, 'Size'))
-		.reduce<string[]>((acc, val) => (val === null ? acc : acc.includes(val) ? acc : [...acc, val]), []);
+		.reduce<
+			string[]
+		>((acc, val) => (val === null ? acc : acc.includes(val) ? acc : [...acc, val]), []);
 	const colorOptions = shopifyProduct?.variants.edges
 		.map(({ node }) => optionValue(node.selectedOptions, 'Color'))
-		.reduce<string[]>((acc, val) => (val === null ? acc : acc.includes(val) ? acc : [...acc, val]), []);
+		.reduce<
+			string[]
+		>((acc, val) => (val === null ? acc : acc.includes(val) ? acc : [...acc, val]), []);
 
 	const handleColorChange = (value: Key) => {
 		handleVariantChange(value);
@@ -121,14 +134,20 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 		>
 			{haveColors && isDesktop && (
 				<div>
-					<RadioGroup aria-label='Colors' onChange={handleColorChange} className={s.colorsDesktop} key={variant.id}>
+					<RadioGroup
+						aria-label='Colors'
+						onChange={handleColorChange}
+						className={s.colorsDesktop}
+						key={variant.id}
+					>
 						{colorOptions?.map((c, idx) => {
 							const color = shopifyProduct?.variants.edges.find(
-								({ node }) => optionValue(node.selectedOptions, 'Color') === c
+								({ node }) => optionValue(node.selectedOptions, 'Color') === c,
 							)?.node;
 							const v = availableColors.find((v) => optionValue(v.selectedOptions, 'Color') === c);
 							const option = v?.selectedOptions.find((opt) => opt.name === 'Color');
-							const selected = optionValue(variant?.selectedOptions, 'Color') === option?.value ? true : false;
+							const selected =
+								optionValue(variant?.selectedOptions, 'Color') === option?.value ? true : false;
 
 							return (
 								<React.Fragment key={idx}>
@@ -136,7 +155,7 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 										id={v ? parseGid(v.id) : 'unavailable'}
 										value={v ? parseGid(v.id) : 'unavailable'}
 										className={cn(s.radio, selected && s.selected)}
-										isDisabled={!v}
+										//isDisabled={!v}
 										aria-label={option?.value}
 									>
 										<div className={s.label}>
@@ -185,7 +204,12 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 									const option = v.selectedOptions.find((opt) => opt.name === 'Color');
 									if (!option) return null;
 									return (
-										<ListBoxItem id={parseGid(v.id)} key={idx} className={s.option} aria-label={option?.value}>
+										<ListBoxItem
+											id={parseGid(v.id)}
+											key={idx}
+											className={s.option}
+											aria-label={option?.value}
+										>
 											<figure>
 												<img role='icon' src={v.image?.url} alt={v.image?.altText} />
 												<Label>{option?.value}</Label>
@@ -201,13 +225,19 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 
 			{haveSizes && (
 				<div>
-					<RadioGroup onChange={handleVariantChange} className={s.sizes} key={variant.id} aria-label={'Sizes'}>
+					<RadioGroup
+						onChange={handleVariantChange}
+						className={s.sizes}
+						key={variant.id}
+						aria-label={'Sizes'}
+					>
 						{sizeOptions?.map((size, idx) => {
 							const v = availableSizes.find((v) =>
-								v.selectedOptions.find((opt) => opt.name === 'Size' && opt.value === size)
+								v.selectedOptions.find((opt) => opt.name === 'Size' && opt.value === size),
 							);
 							const option = v?.selectedOptions.find((opt) => opt.name === 'Size');
-							const selected = optionValue(variant?.selectedOptions, 'Size') === option?.value ? true : false;
+							const selected =
+								optionValue(variant?.selectedOptions, 'Size') === option?.value ? true : false;
 
 							return (
 								<React.Fragment key={idx}>
@@ -225,7 +255,11 @@ export default function ProductVariantsForm({ product, shopifyProduct: _shopifyP
 						})}
 						<FieldError />
 					</RadioGroup>
-					<a href={`#${sizeGuideId}`} className={s.sizeguide} aria-disabled={sizeGuideId ? 'false' : 'true'}>
+					<a
+						href={`#${sizeGuideId}`}
+						className={s.sizeguide}
+						aria-disabled={sizeGuideId ? 'false' : 'true'}
+					>
 						?
 					</a>
 				</div>
@@ -254,7 +288,7 @@ const optionValue = (options: SelectedOption[], type: 'Color' | 'Size'): string 
 const availableVariants = (
 	product: Product,
 	name: string | undefined,
-	value: string | undefined | null
+	value: string | undefined | null,
 ): ProductVariant[] => {
 	if (!name || !value) return product?.variants?.edges.map(({ node }) => node);
 
