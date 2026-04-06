@@ -46,7 +46,12 @@ export default async function RootLayout({ children }: LayoutProps) {
 				<body id='root'>
 					<NavBar menu={menu} localization={localization} tipProduct={randomProduct} />
 					<main>{children}</main>
-					<Footer menu={menu} localization={localization} general={general} randomClaim={randomClaim} />
+					<Footer
+						menu={menu}
+						localization={localization}
+						general={general}
+						randomClaim={randomClaim}
+					/>
 					<CookieConsent />
 					<Script src='https://ac.onthemapmarketing.com/widget/3b24ef8d-6704-4361-886d-da817089839e/autoload.js' />
 				</body>
@@ -58,7 +63,7 @@ export default async function RootLayout({ children }: LayoutProps) {
 export async function generateMetadata(): Promise<Metadata> {
 	const {
 		site: { globalSeo, faviconMetaTags },
-	} = await apiQuery(GlobalDocument, { revalidate: 60 * 60 });
+	} = await apiQuery(GlobalDocument);
 
 	return {
 		metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
