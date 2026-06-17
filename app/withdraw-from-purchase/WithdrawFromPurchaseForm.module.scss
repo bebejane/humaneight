@@ -49,6 +49,10 @@
 		border: none;
 		color: var(--white);
 		margin-top: 1rem;
+		&[disabled] {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
 	}
 }
 
@@ -75,9 +79,10 @@
 }
 
 .error {
-	color: var(--white);
+	color: var(--red);
 	font-size: var(--body-font-size);
-	margin-top: -0.7em;
+	margin-top: -0.5em;
+	margin-bottom: 1em;
 }
 
 .formerror {

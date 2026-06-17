@@ -1,0 +1,12 @@
+query WithdrawFromPurchase {
+	withdrawFromPurchase {
+		id
+		title
+		intro {
+			blocks
+			links
+			value
+		}
+		eMailText
+	}
+}
