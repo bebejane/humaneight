@@ -4100,6 +4100,8 @@ type Query = {
   upload?: Maybe<FileField>;
   /** Returns a specific record */
   variant?: Maybe<VariantRecord>;
+  /** Returns the single instance record */
+  withdrawFromPurchase?: Maybe<WithdrawFromPurchaseRecord>;
 };
 
 
@@ -4601,6 +4603,13 @@ type QueryvariantArgs = {
   filter?: InputMaybe<VariantModelFilter>;
   locale?: InputMaybe<SiteLocale>;
   orderBy?: InputMaybe<Array<InputMaybe<VariantModelOrderBy>>>;
+};
+
+
+/** The query root for this schema */
+type QuerywithdrawFromPurchaseArgs = {
+  fallbackLocales?: InputMaybe<Array<SiteLocale>>;
+  locale?: InputMaybe<SiteLocale>;
 };
 
 type RecordInterface = {
@@ -5363,6 +5372,7 @@ type UploadFilter = {
   mimeType?: InputMaybe<UploadMimeTypeFilter>;
   notes?: InputMaybe<UploadNotesFilter>;
   orientation?: InputMaybe<OrientationFilter>;
+  path?: InputMaybe<UploadPathFilter>;
   resolution?: InputMaybe<ResolutionFilter>;
   size?: InputMaybe<UploadSizeFilter>;
   smartTags?: InputMaybe<UploadTagsFilter>;
@@ -5476,6 +5486,18 @@ enum UploadOrientation {
   portrait = 'portrait',
   square = 'square'
 }
+
+/** Specifies how to filter by path */
+type UploadPathFilter = {
+  /** Search the asset with the specified path */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** Search assets with the specified paths */
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Exclude the asset with the specified path */
+  neq?: InputMaybe<Scalars['String']['input']>;
+  /** Search assets that do not have the specified paths */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
 
 /** Specifies how to filter by size */
 type UploadSizeFilter = {
@@ -5706,6 +5728,48 @@ enum VideoMp4Res {
   low = 'low',
   medium = 'medium'
 }
+
+type WithdrawFromPurchaseModelIntroField = {
+  __typename?: 'WithdrawFromPurchaseModelIntroField';
+  blocks: Array<Scalars['String']['output']>;
+  inlineBlocks: Array<Scalars['String']['output']>;
+  links: Array<Scalars['String']['output']>;
+  value: Scalars['JsonField']['output'];
+};
+
+/** Record of type Withdraw from purchase (withdraw_from_purchase) */
+type WithdrawFromPurchaseRecord = RecordInterface & {
+  __typename?: 'WithdrawFromPurchaseRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  eMailText: Scalars['String']['output'];
+  id: Scalars['ItemId']['output'];
+  intro: WithdrawFromPurchaseModelIntroField;
+  title: Scalars['String']['output'];
+};
+
+
+/** Record of type Withdraw from purchase (withdraw_from_purchase) */
+type WithdrawFromPurchaseRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Record of type Withdraw from purchase (withdraw_from_purchase) */
+type WithdrawFromPurchaseRecordeMailTextArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 type focalPoint = {
   __typename?: 'focalPoint';
@@ -6001,3 +6065,8 @@ type StartQuery = { __typename?: 'Query', start?: { __typename?: 'StartRecord', 
       | { __typename: 'StartEditorialBlockRecord', id: any, headline: string, text: string, buttonText: string, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, mediaOnTop?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, lottieAnimation?: { __typename?: 'FileField', url: string } | null, about: { __typename?: 'AboutRecord', id: any, slug: string, title: string } }
       | { __typename: 'StartProductBlockRecord', id: any, headline: string, columns?: string | null, collection?: { __typename?: 'CollectionRecord', id: any, slug: string, title: string } | null, selectedProducts: Array<{ __typename?: 'StartProductShortcutBlockRecord', id: any, product: { __typename?: 'ProductRecord', id: any, title: string, label?: string | null, collection: { __typename?: 'CollectionRecord', id: any, title: string, slug: string, position?: any | null }, defaultColor?: { __typename?: 'ProductColorRecord', id: any, title: string } | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, thumbnailForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, secondaryForVariations?: { __typename?: 'ProductMediaModelRecord', id: any, variation: Array<{ __typename?: 'ProductMediaVariationBlockRecord', id: any, media: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> } | null, usp: Array<{ __typename?: 'ProductUspRecord', id: any, title?: string | null, description?: string | null }>, shopifyProduct: { __typename?: 'ShopifyProductRecord', id: any, shopifyId: string, title: string, tags?: string | null, handle: string, variants?: any | null, collections: Array<{ __typename?: 'ShopifyCollectionRecord', id: any, title: string, handle: string }>, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null } }, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, imageSecondary?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, color?: { __typename?: 'ProductColorRecord', id: any, title: string } | null }> }
     >, media?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, mediaMobile?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, altMedia?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null, altMediaMobile?: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } | null } | null };
+
+type WithdrawFromPurchaseQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type WithdrawFromPurchaseQuery = { __typename?: 'Query', withdrawFromPurchase?: { __typename?: 'WithdrawFromPurchaseRecord', id: any, title: string, eMailText: string, intro: { __typename?: 'WithdrawFromPurchaseModelIntroField', blocks: Array<string>, links: Array<string>, value: any } } | null };

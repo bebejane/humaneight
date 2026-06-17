@@ -1,7 +1,9 @@
-import { sendWithdrawFromPurchaseEmail, sendWithdrawFromPurchaseReplyEmail } from '@/lib/email';
+import { sendPostmarkEmail } from 'next-dato-utils/utils';
 import { WithdrawFromPurchaseFormSchema } from '@/app/withdraw-from-purchase/schema';
 import { ZodError } from 'zod';
 import { isbot } from 'isbot';
+import { apiQuery } from 'next-dato-utils/api';
+import { WithdrawFromPurchaseDocument } from '@/graphql';
 
 export async function POST(req: Request) {
 	try {
@@ -10,21 +12,42 @@ export async function POST(req: Request) {
 			WithdrawFromPurchaseFormSchema.parse(data);
 
 		if (isbot(req.headers.get('User-Agent')) || (confirm_email && confirm_email?.length > 0)) {
-			console.log('cancel-purchase form', 'bot detected');
+			console.log('withdraw from purchase form', 'bot detected');
 			return new Response(JSON.stringify({ success: false, error: 'Bots are not allowed.' }), {
 				status: 403,
 			});
 		}
-
-		await sendWithdrawFromPurchaseEmail({
-			email: process.env.POSTMARK_FROM_EMAIL as string,
-			orderNo: order_number,
-			message,
+		const { withdrawFromPurchase } = await apiQuery(WithdrawFromPurchaseDocument);
+		if (!withdrawFromPurchase)
+			return new Response(
+				JSON.stringify({ success: false, error: 'Withdraw from purchase form is not available.' }),
+				{
+					status: 403,
+				},
+			);
+		console.log('cancel order', order_number);
+		await sendPostmarkEmail({
+			to: process.env.POSTMARK_FROM_EMAIL as string,
+			subject: 'Order cancellation: #' + order_number,
+			template: 'order-cancellation',
+			templateData: {
+				email,
+				order_number,
+				message: `Customer has requested to cancel an order.`,
+			},
 		});
 
-		await sendWithdrawFromPurchaseReplyEmail({
-			email,
-			orderNo: order_number,
+		await sendPostmarkEmail({
+			//to: email,
+			to: process.env.POSTMARK_FROM_EMAIL as string,
+			subject: 'Order cancellation: #' + order_number,
+			template: 'order-cancellation-reply',
+			templateData: {
+				order_number,
+				message: `Order cancellation: #${order_number}<br/>
+				${withdrawFromPurchase.eMailText}
+				`,
+			},
 		});
 
 		return new Response(JSON.stringify({ success: true }), { status: 200 });

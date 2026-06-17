@@ -229,3 +229,12 @@ declare module '*/start.gql' {
   export default defaultDocument;
 }
     
+
+declare module '*/withdraw-from-purchase.gql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const WithdrawFromPurchase: DocumentNode;
+
+  export default defaultDocument;
+}
+    

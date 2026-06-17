@@ -66,48 +66,57 @@ export default function WithdrawFromPurchaseForm({ eMailText }: Props) {
 
 	return (
 		<div className={s.container}>
-			<form id='cancel-purchase-form' onSubmit={handleSubmit(onSubmit)} className={s.form}>
-				<div className={s.wrap}>
-					<label htmlFor='order_number' className='medium'>
-						Order No.
-					</label>
-					<input
-						id='order_number'
-						type='text'
-						autoComplete='off'
-						defaultValue={initialState.order_number}
-						{...register('order_number')}
-					/>
-					{errors('order_number')}
-				</div>
-				<div className={s.wrap}>
-					<label htmlFor='email' className='medium'>
-						E-mail
-					</label>
-					<input id='email' type='email' defaultValue={initialState.email} {...register('email')} />
-					{errors('email')}
-					<input
-						id='confirm_email'
-						type='text'
-						defaultValue={initialState.confirm_email}
-						{...register('confirm_email')}
-						style={{ display: 'none' }}
-					/>
-				</div>
-				<div className={s.wrap}>
-					<label htmlFor='message' className='medium'>
-						Message
-					</label>
-					<textarea
-						className='medium'
-						id='message'
-						defaultValue={initialState.message}
-						{...register('message')}
-					/>
-					{errors('message')}
-				</div>
-				<button type='submit'>Send cancellation request</button>
-			</form>
+			{success === false && (
+				<form id='cancel-purchase-form' onSubmit={handleSubmit(onSubmit)} className={s.form}>
+					<div className={s.wrap}>
+						<label htmlFor='order_number' className='medium'>
+							Order No.
+						</label>
+						<input
+							id='order_number'
+							type='text'
+							autoComplete='off'
+							defaultValue={initialState.order_number}
+							{...register('order_number')}
+						/>
+						{errors('order_number')}
+					</div>
+					<div className={s.wrap}>
+						<label htmlFor='email' className='medium'>
+							E-mail
+						</label>
+						<input
+							id='email'
+							type='email'
+							defaultValue={initialState.email}
+							{...register('email')}
+						/>
+						{errors('email')}
+						<input
+							id='confirm_email'
+							type='text'
+							defaultValue={initialState.confirm_email}
+							{...register('confirm_email')}
+							style={{ display: 'none' }}
+						/>
+					</div>
+					<div className={s.wrap}>
+						<label htmlFor='message' className='medium'>
+							Message
+						</label>
+						<textarea
+							className='medium'
+							id='message'
+							defaultValue={initialState.message}
+							{...register('message')}
+						/>
+						{errors('message')}
+					</div>
+					<button type='submit' disabled={loading}>
+						Send cancellation request
+					</button>
+				</form>
+			)}
 			{error && (
 				<div className={s.formerror}>
 					<h2>Something went wrong</h2>

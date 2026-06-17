@@ -17,13 +17,11 @@ export type MenuItem = {
 export type Menu = MenuItem[];
 
 export const buildMenu = async (): Promise<Menu> => {
-	const { allCollections, allFaqSections, allAbouts, allLegals, general, contact, faqConfig } = await apiQuery(
-		MenuDocument,
-		{
+	const { allCollections, allFaqSections, allAbouts, allLegals, general, contact, faqConfig } =
+		await apiQuery(MenuDocument, {
 			all: true,
 			tags: ['collection', 'faq_section', 'general'],
-		}
-	);
+		});
 
 	const menu: Menu = [
 		{
@@ -68,6 +66,13 @@ export const buildMenu = async (): Promise<Menu> => {
 						localized: false,
 						footer: !inMenu,
 					})),
+				{
+					id: 'withdraw-from-purchase',
+					title: 'Withdraw from purchase',
+					slug: '/withdraw-from-purchase',
+					localized: false,
+					footer: true,
+				},
 			],
 		},
 		{
@@ -87,7 +92,13 @@ export const buildMenu = async (): Promise<Menu> => {
 				{ id: 'instagram', title: 'Instagram', href: general?.instagram, localized: false },
 				{ id: 'tiktok', title: 'TikTok', href: general?.tiktok, localized: false },
 				{ id: 'pinterest', title: 'Pinterest', href: general?.pinterest, localized: false },
-				{ id: 'newsletter', title: 'Newsletter', href: '#newsletter', localized: false, footer: true },
+				{
+					id: 'newsletter',
+					title: 'Newsletter',
+					href: '#newsletter',
+					localized: false,
+					footer: true,
+				},
 				{
 					id: 'contact',
 					title: 'Contact',
