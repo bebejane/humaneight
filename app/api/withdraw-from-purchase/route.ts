@@ -38,13 +38,13 @@ export async function POST(req: Request) {
 		});
 
 		await sendPostmarkEmail({
-			//to: email,
-			to: process.env.POSTMARK_FROM_EMAIL as string,
+			to: email,
+			//to: process.env.POSTMARK_FROM_EMAIL as string,
 			subject: 'Order cancellation: #' + order_number,
 			template: 'order-cancellation-reply',
 			templateData: {
 				order_number,
-				message: `Order cancellation: #${order_number}<br/>
+				message: `Order cancellation: #${order_number}\n\n
 				${withdrawFromPurchase.eMailText}
 				`,
 			},
