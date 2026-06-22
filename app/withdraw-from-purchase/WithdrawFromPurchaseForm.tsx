@@ -48,6 +48,7 @@ export default function WithdrawFromPurchaseForm({ eMailText }: Props) {
 			if (res.ok) {
 				if (json.invalid) setInvalid(json.invalid as ZodError);
 				setSuccess(json.success);
+				document.body.scrollTo(0, 0);
 			} else {
 				setError(json.error?.message ?? json.error ?? 'Something went wrong');
 			}
@@ -112,7 +113,7 @@ export default function WithdrawFromPurchaseForm({ eMailText }: Props) {
 						/>
 						{errors('message')}
 					</div>
-					<button className="full" type='submit' disabled={loading}>
+					<button className='full' type='submit' disabled={loading}>
 						Send cancellation request
 					</button>
 				</form>
