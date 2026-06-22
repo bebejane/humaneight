@@ -15,7 +15,7 @@ export default async function WithdrawFromPurchase({
 
 	return (
 		<>
-			<article>
+			<article className={s.withdraw}>
 				<h1 className='topMargin'>{withdrawFromPurchase.title}</h1>
 				<Content content={withdrawFromPurchase.intro} />
 				<WithdrawFromPurchaseForm eMailText={withdrawFromPurchase.eMailText} />
