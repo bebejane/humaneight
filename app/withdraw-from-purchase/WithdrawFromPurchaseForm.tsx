@@ -112,7 +112,7 @@ export default function WithdrawFromPurchaseForm({ eMailText }: Props) {
 						/>
 						{errors('message')}
 					</div>
-					<button type='submit' disabled={loading}>
+					<button className="full" type='submit' disabled={loading}>
 						Send cancellation request
 					</button>
 				</form>

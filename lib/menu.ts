@@ -68,7 +68,7 @@ export const buildMenu = async (): Promise<Menu> => {
 					})),
 				{
 					id: 'withdraw-from-purchase',
-					title: 'Withdraw from purchase',
+					title: 'Cancel order',
 					slug: '/withdraw-from-purchase',
 					localized: false,
 					footer: true,
