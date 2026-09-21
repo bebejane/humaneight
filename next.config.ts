@@ -2,6 +2,8 @@ import { NextConfig } from 'next';
 import { withSentryConfig } from '@sentry/nextjs';
 import path from 'path';
 
+const euroRedirects = ['us', 'ca', 'ch', 'jp', 'kr'];
+
 const nextConfig: NextConfig = {
 	sassOptions: {
 		includePaths: ['./components', './app'],
@@ -32,6 +34,12 @@ const nextConfig: NextConfig = {
 			fullUrl: true,
 		},
 	},
+	redirects: async () =>
+		euroRedirects.map((countryCode) => ({
+			source: `/${countryCode}`,
+			destination: `/fr`,
+			permanent: true,
+		})),
 	async headers() {
 		return [
 			{
