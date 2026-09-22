@@ -41,7 +41,7 @@ export default function Cart({ localization }: CartProps) {
 			state.updatingId,
 			state.error,
 			state.clearCartError,
-		])
+		]),
 	);
 
 	const ref = useRef<HTMLDivElement>(null);
@@ -51,7 +51,10 @@ export default function Cart({ localization }: CartProps) {
 	const [createCartError, setCreateCartError] = useState<string | null>(null);
 	const isEmpty = cart && cart?.lines?.edges?.length > 0 ? false : true;
 	const loading = !cart || updating;
-	const totalItems = cart?.lines.edges.reduce((total, { node: { quantity } }) => total + quantity, 0);
+	const totalItems = cart?.lines.edges.reduce(
+		(total, { node: { quantity } }) => total + quantity,
+		0,
+	);
 	const [terms, setTerms] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	useClickAway(ref, () => setShowCart(false));
@@ -67,6 +70,19 @@ export default function Cart({ localization }: CartProps) {
 			setCreateCartError(e.message);
 			Sentry.captureException(e);
 		});
+	}
+
+	function getShippingAndTaxesText() {
+		let t = 'Shipping and tax are added at checkout';
+		if (['gb', 'no'].includes(country.toLowerCase()))
+			t = (
+				<span>
+					Please note. Import duties and taxes are not included and will be charged by the courier
+					upon delivery. All orders ship from Sweden. <Link href={'/faq#shipping'}>Read more</Link>
+				</span>
+			);
+
+		return t;
 	}
 
 	useEffect(() => {
@@ -88,7 +104,9 @@ export default function Cart({ localization }: CartProps) {
 
 	useEffect(() => {
 		// Toggle Accessibly App widget button
-		document.getElementById('accessiblyAppWidgetButton')?.style.setProperty('display', showCart ? 'none' : 'block');
+		document
+			.getElementById('accessiblyAppWidgetButton')
+			?.style.setProperty('display', showCart ? 'none' : 'block');
 	}, [showCart]);
 
 	useEffect(() => {
@@ -115,7 +133,7 @@ export default function Cart({ localization }: CartProps) {
 			</div>
 		);
 	}
-
+	console.log(country);
 	return (
 		<div id='cart' ref={ref} className={cn(s.cart, showCart && s.show, updating && s.updating)}>
 			<header>
@@ -143,14 +161,22 @@ export default function Cart({ localization }: CartProps) {
 						{cart?.lines.edges.map(({ node: { id, quantity, cost, merchandise } }, idx) => (
 							<li key={idx} className={cn(updatingId === id && s.updating)} aria-labelledby={id}>
 								<figure className={s.thumb}>
-									<Link href={`/products/${merchandise.product.handle}?variant=${parseGid(merchandise.id)}`}>
-										<img role='icon' src={merchandise.image?.url} alt={merchandise.image?.altText ?? ''} />
+									<Link
+										href={`/products/${merchandise.product.handle}?variant=${parseGid(merchandise.id)}`}
+									>
+										<img
+											role='icon'
+											src={merchandise.image?.url}
+											alt={merchandise.image?.altText ?? ''}
+										/>
 									</Link>
 								</figure>
 
 								<div className={s.details}>
 									<div id={id}>{merchandise.product.title}</div>
-									<div className='light'>{merchandise.selectedOptions.map(({ value }) => value).join(' ')}</div>
+									<div className='light'>
+										{merchandise.selectedOptions.map(({ value }) => value).join(' ')}
+									</div>
 									<div aria-label='Quantity'>
 										<button
 											className={s.minus}
@@ -161,10 +187,10 @@ export default function Cart({ localization }: CartProps) {
 										</button>
 										{quantity}
 										<button
-											//disabled={merchandise.quantityAvailable <= 1}
 											className={s.plus}
 											onClick={() => {
-												if (merchandise.quantityAvailable <= 1) return setError('This item is sold out at the moment');
+												if (merchandise.quantityAvailable <= 1)
+													return setError('This item is sold out at the moment');
 												updateQuantity(id, quantity + 1, country);
 											}}
 										>
@@ -193,15 +219,21 @@ export default function Cart({ localization }: CartProps) {
 							{formatPrice(cart?.cost.totalAmount.amount)} {cart?.cost.totalAmount.currencyCode}
 						</div>
 					</div>
-					<div className={cn(s.extra, 'light')}>Shipping and tax are added at checkout</div>
+					<div className={cn(s.extra, 'light')}>{getShippingAndTaxesText()}</div>
 
 					<form action={cart?.checkoutUrl.split('?')[0]} method='GET'>
 						<input type='hidden' name='key' id='key' value={cart?.checkoutUrl.split('?key=')[1]} />
 						<div className={cn(s.check, 'light')}>
-							<input type='checkbox' name='terms' required onChange={(e) => setTerms(e.target.checked)} />
+							<input
+								type='checkbox'
+								name='terms'
+								required
+								onChange={(e) => setTerms(e.target.checked)}
+							/>
 							<span>
-								I accept the <Link href='/legal/terms-conditions'>terms & conditions</Link> and I have read and
-								understood the <Link href='/legal/privacy-policy'>privacy policy</Link>.
+								I accept the <Link href='/legal/terms-conditions'>terms & conditions</Link> and I
+								have read and understood the{' '}
+								<Link href='/legal/privacy-policy'>privacy policy</Link>.
 							</span>
 						</div>
 						<button disabled={!terms} className={cn(s.checkout, 'full')} type='submit'>
@@ -214,12 +246,22 @@ export default function Cart({ localization }: CartProps) {
 	);
 }
 
-const CartError = ({ error, label, close }: { label?: string; error?: string | Error; close?: () => void }) => {
+const CartError = ({
+	error,
+	label,
+	close,
+}: {
+	label?: string;
+	error?: string | Error;
+	close?: () => void;
+}) => {
 	if (!error) return null;
 	return (
 		<div className={s.alert} role='alert' aria-label='Error'>
 			<div className={s.wrap}>
-				{error && <span className={s.error}>{typeof error === 'string' ? error : error.message}</span>}
+				{error && (
+					<span className={s.error}>{typeof error === 'string' ? error : error.message}</span>
+				)}
 				{close && <button onClick={close}>{label ?? 'Close'}</button>}
 			</div>
 		</div>
