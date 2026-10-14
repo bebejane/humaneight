@@ -118,7 +118,7 @@ enum AboutModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-type AboutModelSectionsField = AboutFeedbackFormBlockRecord | AboutTextBlockRecord | AboutThreeColumnBlockRecord | AboutTwoColumnBlockRecord | FullscreenBlockRecord;
+type AboutModelSectionsField = AboutFeedbackFormBlockRecord | AboutTextBlockRecord | AboutThreeColumnBlockRecord | AboutTwoColumnBlockRecord | FullscreenBlockRecord | ResearchBlockRecord;
 
 /** Record of type About (about) */
 type AboutRecord = RecordInterface & {
@@ -4651,6 +4651,86 @@ type RecordInterface_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type Research answer (research_answer_block) */
+type ResearchAnswerBlockRecord = RecordInterface & {
+  __typename?: 'ResearchAnswerBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['IntType']['output']>;
+  valueSecond?: Maybe<Scalars['IntType']['output']>;
+};
+
+
+/** Block of type Research answer (research_answer_block) */
+type ResearchAnswerBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecord = RecordInterface & {
+  __typename?: 'ResearchBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  answers: Array<ResearchAnswerBlockRecord>;
+  claim?: Maybe<Scalars['String']['output']>;
+  compare?: Maybe<Scalars['BooleanType']['output']>;
+  eyebrow?: Maybe<Scalars['String']['output']>;
+  group?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  number?: Maybe<Scalars['String']['output']>;
+  question?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecordclaimArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecordnoteArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecordquestionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Specifies how to filter by upload type */
 type ResolutionFilter = {
   /** Search uploads with the specified resolution */
@@ -5825,6 +5905,7 @@ type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', 
             | { __typename: 'TwoColumnBlockRecord', id: any, text?: string | null }
           > } }
       | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } }
+      | { __typename: 'ResearchBlockRecord', id: any, number?: string | null, claim?: string | null, eyebrow?: string | null, heading?: string | null, question?: string | null, compare?: any | null, group?: string | null, note?: string | null, answers: Array<{ __typename?: 'ResearchAnswerBlockRecord', id: any, label?: string | null, value?: any | null, valueSecond?: any | null }> }
     >, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null } | null };
 
 type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null };
@@ -5838,6 +5919,7 @@ type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug:
           | { __typename: 'TwoColumnBlockRecord', id: any, text?: string | null }
         > } }
     | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } }
+    | { __typename: 'ResearchBlockRecord', id: any, number?: string | null, claim?: string | null, eyebrow?: string | null, heading?: string | null, question?: string | null, compare?: any | null, group?: string | null, note?: string | null, answers: Array<{ __typename?: 'ResearchAnswerBlockRecord', id: any, label?: string | null, value?: any | null, valueSecond?: any | null }> }
   >, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null };
 
 type AllCollectionsQueryVariables = Exact<{

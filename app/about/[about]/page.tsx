@@ -7,6 +7,7 @@ import AboutFeedbackFormBlock from './components/AboutFeedbackFormBlock';
 import AboutTwoColumnBlock from './components/AboutTwoColumnBlock';
 import AboutThreeColumnBlock from './components/AboutThreeColumnBlock';
 import AboutTextBlock from './components/AboutTextBlock';
+import ResearchBlock from './components/ResearchBlock';
 import FullscreenBlock from '@/components/content/blocks/FullscreenBlock';
 import RelatedAbouts from '@/app/about/[about]/components/RelatedAbouts';
 import RevealText from './components/RevealText';
@@ -34,6 +35,7 @@ export default async function About({ params }) {
 							AboutTwoColumnBlock,
 							AboutThreeColumnBlock,
 							AboutTextBlock,
+							ResearchBlock,
 							FullscreenBlock,
 						}}
 					/>

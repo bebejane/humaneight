@@ -96,6 +96,23 @@ fragment AboutFragment on AboutRecord {
 		... on AboutFeedbackFormBlockRecord {
 			id
 		}
+		... on ResearchBlockRecord {
+			id
+			number
+			claim
+			eyebrow
+			heading
+			question
+			compare
+			group
+			note
+			answers {
+				id
+				label
+				value
+				valueSecond
+			}
+		}
 	}
 	content {
 		blocks
