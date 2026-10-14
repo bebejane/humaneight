@@ -12,6 +12,7 @@ export type Props = {
 export default function VariantUnavailableForm({ variant, productTitle, productHandle }: Props) {
 	const [email, setEmail] = useState('');
 	const [confirmEmail, setConfirmEmail] = useState('');
+	const [placeholder, setPlaceholder] = useState(`Sold out. Email me when it's back.`);
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -20,6 +21,7 @@ export default function VariantUnavailableForm({ variant, productTitle, productH
 	const size = variant?.selectedOptions.find((opt) => opt.name === 'Size')?.value ?? '';
 
 	const handleSubmit = async () => {
+		if (!email) return setPlaceholder('Your email');
 		if (loading) return;
 
 		setLoading(true);
@@ -61,29 +63,31 @@ export default function VariantUnavailableForm({ variant, productTitle, productH
 	}
 
 	return (
-		<div className={s.form}>
-			<input
-				type='email'
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-				placeholder={`Sold out. Email me when it's back.`}
-				aria-label='E-mail address'
-				autoComplete='email'
-				required={true}
-			/>
-			<input
-				type='text'
-				value={confirmEmail}
-				onChange={(e) => setConfirmEmail(e.target.value)}
-				tabIndex={-1}
-				autoComplete='off'
-				aria-hidden='true'
-				style={{ display: 'none' }}
-			/>
-			<button type='button' onClick={handleSubmit} disabled={loading}>
-				{loading ? 'Sending...' : 'Notify me'}
-			</button>
-			{error && <p className={s.error}>{error}</p>}
-		</div>
+		<>
+			<div className={s.form}>
+				<input
+					type='email'
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					placeholder={placeholder}
+					aria-label='E-mail address'
+					autoComplete='email'
+					required={true}
+				/>
+				<input
+					type='text'
+					value={confirmEmail}
+					onChange={(e) => setConfirmEmail(e.target.value)}
+					tabIndex={-1}
+					autoComplete='off'
+					aria-hidden='true'
+					style={{ display: 'none' }}
+				/>
+				<button type='button' onClick={handleSubmit} disabled={loading}>
+					{loading ? 'Sending...' : 'Notify me'}
+				</button>
+			</div>
+			{error && <span className={s.error}>{error}</span>}
+		</>
 	);
 }

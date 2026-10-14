@@ -16,10 +16,11 @@
 		flex: 0 0 100%;
 		margin: 0.5rem 0 0;
 	}
+}
 
-	.error {
-		color: var(--red, #c00);
-	}
+.error {
+	color: var(--red, #c00);
+	font-size: 0.8rem;
 }
 
 .success {
