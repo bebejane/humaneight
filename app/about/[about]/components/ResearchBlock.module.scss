@@ -1,19 +1,43 @@
 .section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-bottom: var(--space);
+  position: relative;
 
   @include mq($from: desktop) {
+    flex-direction: row;
     margin-bottom: var(--space-big);
   }
 
-  .header,
-  .legend,
-  .answers,
-  .note {
-    grid-column: span 12;
+  &:nth-child(odd):not(.hasNumber) {
+    @include mq($from: desktop) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .numberColumn,
+  .content {
+    @include mq($from: desktop) {
+      flex: 0 0 calc(50% - var(--half-gutter));
+    }
+  }
+
+  .numberColumn {
+    @include mq($from: desktop) {
+      position: sticky;
+      top: var(--navbar-height);
+      align-self: flex-start;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
 
     @include mq($from: desktop) {
-      grid-column-start: 3;
-      grid-column-end: 11;
+      padding-right: var(--gutter);
+      padding-left: var(--gutter);
     }
   }
 
@@ -30,6 +54,9 @@
 
   .number {
     margin-top: 0.25em;
+    font-size: 22vw !important;
+    margin-top: -0.1em;
+    padding-bottom: 0.35em;
   }
 
   .claim {
