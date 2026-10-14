@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 export default async function addContact(
 	prevState: any,
-	formData: FormData
+	formData: FormData,
 ): Promise<{ success: boolean; error?: string; email?: string; message?: string }> {
 	const email = formData.get('email') as string;
 	const message = formData.get('message') as string;
@@ -27,10 +27,14 @@ export default async function addContact(
 			return { success: false, error: 'Message is required' };
 		}
 
-		console.log('addContact', email, message);
 		await sleep(1000);
 		return { success: true };
 	} catch (error) {
-		return { success: false, error: error instanceof Error ? error.message : (error as string), email, message };
+		return {
+			success: false,
+			error: error instanceof Error ? error.message : (error as string),
+			email,
+			message,
+		};
 	}
 }
