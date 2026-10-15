@@ -67,6 +67,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 	return {
 		metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
+		alternates: {
+			canonical: '/',
+		},
 		title: {
 			template: `${globalSeo?.siteName} — %s`,
 			default: globalSeo?.siteName,
