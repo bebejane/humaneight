@@ -17,7 +17,7 @@ export type Props = {
 export default function MenuMobile({ menu, localization, showMenu }: Props) {
 	const pathname = usePathname();
 	const [menuItemId, setMenuItemId] = useState<MenuItem['id'] | null>(null);
-
+	console.log(menu);
 	return (
 		<nav className={cn(s.menuMobile, showMenu && s.show)}>
 			<ul>
@@ -34,9 +34,12 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
 						<ul className={cn(menuItemId === id && s.show)}>
 							{sub
 								?.filter(({ footer }) => !footer)
-								.map(({ id, title, localized, slug }) => (
-									<li key={id} className={cn('nav', pathname.endsWith(slug as string) && s.selected)}>
-										<Link href={`${slug}`} localized={localized} className='nav nav-hover'>
+								.map(({ id, title, localized, slug, href }) => (
+									<li
+										key={id}
+										className={cn('nav', pathname.endsWith(slug as string) && s.selected)}
+									>
+										<Link href={href ?? slug} localized={localized} className='nav nav-hover'>
 											{title}
 										</Link>
 									</li>
@@ -45,7 +48,9 @@ export default function MenuMobile({ menu, localization, showMenu }: Props) {
 					</li>
 				))}
 				<li className={s.country}>
-					{showMenu && <CountrySelector localization={localization} label='Location' modal={true} />}
+					{showMenu && (
+						<CountrySelector localization={localization} label='Location' modal={true} />
+					)}
 				</li>
 			</ul>
 		</nav>
