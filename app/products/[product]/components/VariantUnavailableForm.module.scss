@@ -1,0 +1,32 @@
+.form {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+
+	input {
+		flex: 1;
+	}
+	button {
+		margin: 0;
+		margin-left: 1rem;
+	}
+
+	p {
+		flex: 0 0 100%;
+		margin: 0.5rem 0 0;
+	}
+}
+
+.error {
+	color: var(--red, #c00);
+	font-size: 0.8rem;
+}
+
+.success {
+	all: unset;
+	text-align: center;
+	width: 100%;
+	justify-content: center;
+	margin-top: 1rem;
+}
