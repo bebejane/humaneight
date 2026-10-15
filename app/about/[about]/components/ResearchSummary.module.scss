@@ -1,0 +1,55 @@
+.container {
+	width: 100%;
+	background-color: var(--gray-dark);
+	padding: var(--outer-margin);
+	h2 {
+	}
+	p {
+	}
+	.stats {
+		display: flex;
+		flex-direction: row;
+		@include mq($until: desktop) {
+			flex-direction: column;
+		}
+		.stat {
+			display: flex;
+			flex-direction: column;
+			flex: 0 0 50%;
+			margin-right: 1rem;
+			&:last-child {
+				margin-right: 0;
+			}
+			.name {
+			}
+			.ages {
+				display: flex;
+				flex-direction: column;
+				.row {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+
+					.age {
+						flex: 0 0 100px;
+					}
+					.bar {
+						height: 0.5rem;
+						width: 100%;
+						background-color: var(--white);
+						.value {
+							background-color: var(--black);
+							height: 100%;
+						}
+					}
+					.percentage {
+						flex: 0 0 40px;
+						text-align: right;
+					}
+				}
+			}
+			.gender {
+			}
+		}
+	}
+}

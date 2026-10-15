@@ -11,6 +11,7 @@ export type Props = {
 
 export default function VariantUnavailableForm({ variant, productTitle, productHandle }: Props) {
 	const [email, setEmail] = useState('');
+	const [newsletter, setNewsletter] = useState('1');
 	const [confirmEmail, setConfirmEmail] = useState('');
 	const [placeholder, setPlaceholder] = useState(`Sold out. Email me when it's back.`);
 	const [loading, setLoading] = useState(false);
@@ -34,6 +35,7 @@ export default function VariantUnavailableForm({ variant, productTitle, productH
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					email,
+					newsletter,
 					confirm_email: confirmEmail,
 					variantId: variant?.id,
 					variantTitle: variant?.title,
@@ -87,8 +89,19 @@ export default function VariantUnavailableForm({ variant, productTitle, productH
 					{loading ? 'Sending...' : 'Notify me'}
 				</button>
 			</div>
-			<div className={s.update}>
-				<p className="small">Sign up for updates and promotions</p>
+			<div className={s.newsletter}>
+				<p className={'small'}>
+					<input
+						type='checkbox'
+						name='newsletter'
+						value={newsletter}
+						checked={newsletter === '1'}
+						tabIndex={-1}
+						autoComplete='off'
+						onChange={(e) => setNewsletter(e.target.checked ? '1' : '0')}
+					/>
+					<label htmlFor='newsletter'>Sign up for updates and promotions</label>
+				</p>
 			</div>
 			{error && <span className={s.error}>{error}</span>}
 		</>

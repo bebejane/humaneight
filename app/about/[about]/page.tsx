@@ -12,6 +12,7 @@ import FullscreenBlock from '@/components/content/blocks/FullscreenBlock';
 import RelatedAbouts from '@/app/about/[about]/components/RelatedAbouts';
 import RevealText from './components/RevealText';
 import { Metadata } from 'next';
+import ResearchSummary from '@/app/about/[about]/components/ResearchSummary';
 
 export default async function About({ params }) {
 	const slug = (await params).about;
@@ -40,6 +41,7 @@ export default async function About({ params }) {
 						}}
 					/>
 				))}
+				{slug === 'research' && <ResearchSummary />}
 			</article>
 			<RelatedAbouts about={about} />
 			<DraftMode url={draftUrl} tag={about.id} />

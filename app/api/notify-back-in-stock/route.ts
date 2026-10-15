@@ -1,10 +1,11 @@
-import { sendPostmarkEmail } from 'next-dato-utils/utils';
+import { sendPostmarkEmail, signupCampaignMonitorNewsletter } from 'next-dato-utils/utils';
 import { z } from 'zod';
 import { isbot } from 'isbot';
 import { parseGid } from '@/shopify/utils';
 
 const NotifyBackInStockSchema = z.object({
 	email: z.string().email({ message: 'E-mail address is invalid' }),
+	newsletter: z.string().max(1).optional(),
 	variantId: z.string().min(1, { message: 'Variant is required' }),
 	variantTitle: z.string().optional(),
 	productTitle: z.string().optional(),
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
 		const data = await req.json();
 		const {
 			email,
+			newsletter,
 			variantId,
 			variantTitle,
 			productTitle,
@@ -59,11 +61,9 @@ export async function POST(req: Request) {
 			text,
 		});
 
-		await sendPostmarkEmail({
-			to: 'mattias@konst-teknik.se' as string,
-			subject: `Notify me: ${productTitle ?? 'Product'} – ${variantTitle ?? ''}`.trim(),
-			text,
-		});
+		if (newsletter === '1') {
+			await signupCampaignMonitorNewsletter(email);
+		}
 
 		if (res.error) throw new Error(res.error);
 
