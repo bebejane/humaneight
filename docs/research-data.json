@@ -1,0 +1,465 @@
+{
+  "meta": {
+    "title": "We asked 1,000 people.",
+    "fieldwork": "30 January to 6 February 2026",
+    "agency": "3Gem Research and Insights",
+    "sample": {
+      "neurodivergent": 500,
+      "non_neurodivergent": 500
+    },
+    "country": "UK",
+    "age": "18+",
+    "press_contact": "humaneight@wearetheromans.com"
+  },
+  "findings": [
+    {
+      "id": "f1",
+      "number": "91%",
+      "claim": "of neurodivergent people find mainstream fashion uncomfortable to wear, at least sometimes. For non neurodivergent people the figure is 57%.",
+      "question": "How often do you find mainstream fashion uncomfortable to wear?",
+      "compare": true,
+      "answers": [
+        [
+          "Almost always",
+          6,
+          4
+        ],
+        [
+          "Often",
+          41,
+          11
+        ],
+        [
+          "Sometimes",
+          44,
+          42
+        ],
+        [
+          "Rarely",
+          7,
+          30
+        ],
+        [
+          "Never",
+          2,
+          14
+        ]
+      ],
+      "note": "91% is almost always, often and sometimes added together. Almost always and often alone is 47%, against 15% for non neurodivergent people."
+    },
+    {
+      "id": "f2",
+      "number": "80%",
+      "claim": "of neurodivergent people think the fashion industry has a neurotypical bias.",
+      "question": "Do you think the fashion industry has a neurotypical bias (i.e. do you think clothing items are catered to people who aren't neurodiverse)?",
+      "answers": [
+        [
+          "Yes, definitely",
+          32
+        ],
+        [
+          "Yes, in some cases",
+          48
+        ],
+        [
+          "No",
+          11
+        ],
+        [
+          "Not sure",
+          10
+        ]
+      ]
+    },
+    {
+      "id": "f3",
+      "number": "83%",
+      "claim": "have let sensory issues stop them from buying clothes they liked the look of.",
+      "question": "Have sensory issues ever stopped you from buying clothing you liked the look of?",
+      "answers": [
+        [
+          "Yes, frequently",
+          16
+        ],
+        [
+          "Yes, sometimes",
+          40
+        ],
+        [
+          "Occasionally",
+          27
+        ],
+        [
+          "Rarely",
+          12
+        ],
+        [
+          "Never",
+          6
+        ]
+      ]
+    },
+    {
+      "id": "f4",
+      "number": "14%",
+      "claim": "find it easy to find clothes that meet their sensory needs. 47% find it difficult.",
+      "question": "When shopping for clothes, how easy is it to find items that meet your sensory needs? By sensory needs we mean connected with the physical senses of touch, smell, taste, hearing, and sight.",
+      "answers": [
+        [
+          "Very difficult",
+          9
+        ],
+        [
+          "Difficult",
+          38
+        ],
+        [
+          "Neither easy nor difficult",
+          40
+        ],
+        [
+          "Easy",
+          11
+        ],
+        [
+          "Very easy",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "f5",
+      "number": "65%",
+      "claim": "of non neurodivergent people did not know that sensory sensitivities can stop neurodivergent people from wearing clothes from many retailers.",
+      "question": "Did you know that neurodiverse people have sensory sensitivities that can stop them from wearing clothes from many retailers? Asked to the 500 non neurodivergent respondents.",
+      "group": "non_neurodivergent",
+      "answers": [
+        [
+          "No",
+          65
+        ],
+        [
+          "Yes",
+          35
+        ]
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": "irritates",
+      "eyebrow": "What irritates",
+      "heading": "The garment is the problem.",
+      "question": "What are the most irritating things about modern clothing that neurotypical people might not realise? Several answers allowed.",
+      "answers": [
+        [
+          "Fabric texture (rough, itchy, sticky)",
+          42
+        ],
+        [
+          "Scratchy labels",
+          39
+        ],
+        [
+          "Tightness or pressure",
+          29
+        ],
+        [
+          "Sounds (rustling fabrics)",
+          23
+        ],
+        [
+          "Rough seams",
+          21
+        ],
+        [
+          "Smell (dyes, detergents)",
+          19
+        ],
+        [
+          "Weight or heaviness of clothing",
+          16
+        ],
+        [
+          "Breathability",
+          16
+        ],
+        [
+          "Washing tags",
+          15
+        ],
+        [
+          "Temperature",
+          14
+        ],
+        [
+          "None of these",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "help",
+      "eyebrow": "What would help",
+      "heading": "Take the label off. Start there.",
+      "question": "Which changes would most improve clothing for your sensory comfort? Several answers allowed.",
+      "answers": [
+        [
+          "Tag-free or removable labels",
+          48
+        ],
+        [
+          "Softer or more predictable fabrics",
+          41
+        ],
+        [
+          "Adjustable fits (elastic, ties, stretch)",
+          38
+        ],
+        [
+          "Consistent sizing and textures",
+          32
+        ],
+        [
+          "Fewer seams or flat seams",
+          31
+        ],
+        [
+          "Clear sensory descriptions online and on the garment",
+          27
+        ],
+        [
+          "Sensory-friendly collections",
+          26
+        ],
+        [
+          "Don't know",
+          5
+        ]
+      ]
+    },
+    {
+      "id": "industry",
+      "eyebrow": "The industry",
+      "heading": "Half see some effort. Few see enough.",
+      "questions": [
+        {
+          "question": "Do you think the fashion industry takes into account the needs of neurodiverse individuals (e.g. clothes regularly include scratchy labels, rough seams, tight fitting etc.)?",
+          "answers": [
+            [
+              "Yes, definitely",
+              14
+            ],
+            [
+              "Yes, in some cases",
+              42
+            ],
+            [
+              "No",
+              38
+            ],
+            [
+              "Not sure",
+              6
+            ]
+          ]
+        },
+        {
+          "question": "Do you think designers and labels cater well to neurodiverse individuals?",
+          "answers": [
+            [
+              "Yes, definitely",
+              15
+            ],
+            [
+              "Yes, in some cases",
+              39
+            ],
+            [
+              "No",
+              38
+            ],
+            [
+              "Not sure",
+              8
+            ]
+          ]
+        },
+        {
+          "question": "Do you think companies in the fashion industry such as clothes manufacturers and designers would benefit from consulting more with people who are neurodiverse?",
+          "answers": [
+            [
+              "Yes",
+              82
+            ],
+            [
+              "No",
+              9
+            ],
+            [
+              "I don't know",
+              9
+            ]
+          ]
+        },
+        {
+          "question": "On average, how well do clothing labels from mainstream or designer brands communicate sensory information (e.g. softness, stretch, seams)?",
+          "answers": [
+            [
+              "Not at all",
+              9
+            ],
+            [
+              "Poorly",
+              37
+            ],
+            [
+              "Adequately",
+              28
+            ],
+            [
+              "Well",
+              14
+            ],
+            [
+              "Very well",
+              4
+            ],
+            [
+              "I don't usually check labels or descriptions",
+              8
+            ]
+          ]
+        },
+        {
+          "question": "How much do you think neurodiverse individuals are represented in fashion marketing campaigns?",
+          "answers": [
+            [
+              "Not at all",
+              13
+            ],
+            [
+              "Rarely",
+              37
+            ],
+            [
+              "Sometimes",
+              33
+            ],
+            [
+              "Often",
+              7
+            ],
+            [
+              "Very much",
+              4
+            ],
+            [
+              "I don't engage with fashion marketing",
+              6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comfort",
+      "eyebrow": "Comfort or look",
+      "heading": "Comfort wins. For everyone.",
+      "question": "Is sensory comfort more or less important than the look of the clothes you buy? Asked to both groups.",
+      "compare": true,
+      "answers": [
+        [
+          "Much more important",
+          22,
+          19
+        ],
+        [
+          "Slightly more important",
+          30,
+          20
+        ],
+        [
+          "Equally important",
+          40,
+          47
+        ],
+        [
+          "Slightly less important",
+          6,
+          8
+        ],
+        [
+          "Much less important",
+          1,
+          6
+        ]
+      ],
+      "note": "Only 8% of neurodivergent people and 13% of non neurodivergent people put the look ahead of comfort."
+    }
+  ],
+  "demographics": {
+    "neurodivergent": {
+      "mean_age": 39,
+      "men": 49,
+      "women": 51,
+      "age": [
+        [
+          "18 to 24",
+          12
+        ],
+        [
+          "25 to 34",
+          30
+        ],
+        [
+          "35 to 44",
+          27
+        ],
+        [
+          "45 to 54",
+          17
+        ],
+        [
+          "55 to 64",
+          10
+        ],
+        [
+          "65 and over",
+          4
+        ]
+      ]
+    },
+    "non_neurodivergent": {
+      "mean_age": 51,
+      "men": 51,
+      "women": 49,
+      "age": [
+        [
+          "18 to 24",
+          0
+        ],
+        [
+          "25 to 34",
+          14
+        ],
+        [
+          "35 to 44",
+          22
+        ],
+        [
+          "45 to 54",
+          23
+        ],
+        [
+          "55 to 64",
+          23
+        ],
+        [
+          "65 and over",
+          18
+        ]
+      ]
+    }
+  }
+}
