@@ -6,16 +6,27 @@
 
 	input {
 		flex: 1;
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 	button {
 		margin: 0;
 		margin-left: 1rem;
 	}
 
+	input,
+	button {
+		height: 2.1rem;
+	}
+
 	p {
 		flex: 0 0 100%;
 		margin: 0.5rem 0 0;
 	}
+}
+
+.update {
+	margin-top: 1rem;
 }
 
 .error {

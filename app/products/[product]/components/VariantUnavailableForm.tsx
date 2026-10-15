@@ -87,6 +87,9 @@ export default function VariantUnavailableForm({ variant, productTitle, productH
 					{loading ? 'Sending...' : 'Notify me'}
 				</button>
 			</div>
+			<div className={s.update}>
+				<p className="small">Sign up for updates and promotions</p>
+			</div>
 			{error && <span className={s.error}>{error}</span>}
 		</>
 	);
