@@ -22,7 +22,7 @@ export default function ResearchSummary() {
 						</div>
 						<div className={s.ages}>
 							{ages.map(({ age, percentage }) => (
-								<div className={s.row}>
+								<div className={s.row} key={age}>
 									<div className={s.age}>{age}</div>
 									<div className={s.bar}>
 										<div className={s.value} style={{ width: `${percentage}%` }}></div>

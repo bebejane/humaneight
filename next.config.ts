@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     	@use "./styles/mediaqueries" as *;
   	`,
 	},
+	devIndicators: false,
 	typescript: {
 		ignoreBuildErrors: true,
 	},
