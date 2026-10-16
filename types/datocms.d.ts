@@ -1040,6 +1040,9 @@ type GeneralRecord = RecordInterface & {
   eights: Array<FileField>;
   id: Scalars['ItemId']['output'];
   instagram?: Maybe<Scalars['String']['output']>;
+  notificationEnable?: Maybe<Scalars['BooleanType']['output']>;
+  notificationLink?: Maybe<Scalars['String']['output']>;
+  notificationText?: Maybe<Scalars['String']['output']>;
   pinterest?: Maybe<Scalars['String']['output']>;
   tiktok?: Maybe<Scalars['String']['output']>;
 };
@@ -6059,7 +6062,7 @@ type SiteFragment = { __typename?: 'Site', faviconMetaTags: Array<{ __typename?:
 type GeneralQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string | null, tiktok?: string | null, instagram?: string | null, pinterest?: string | null, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string | null }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }> } | null };
+type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string | null, tiktok?: string | null, instagram?: string | null, pinterest?: string | null, notificationText?: string | null, notificationLink?: string | null, notificationEnable?: any | null, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string | null }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }> } | null };
 
 type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 

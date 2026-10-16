@@ -18,9 +18,10 @@ export type Props = {
 	menu: Menu;
 	localization: LocalizationQuery['localization'];
 	tipProduct: AllProductsForMenuQuery['allProducts'][0];
+	general: GeneralQuery['general'];
 };
 
-export default function NavBar({ menu, localization, tipProduct }: Props) {
+export default function NavBar({ menu, localization, tipProduct, general }: Props) {
 	const pathname = usePathname();
 	const isHome =
 		pathname === '/' ||
@@ -38,7 +39,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 		<>
 			<Logo key={pathname} showMenu={showMenu} localization={localization} />
 			<Hamburger showMenu={showMenu} setShowMenu={setShowMenu} />
-			{isHome && <NotificationBanner />}
+			{isHome && <NotificationBanner general={general} />}
 			<nav className={s.navbar}>
 				<button
 					aria-pressed={showMenu}
