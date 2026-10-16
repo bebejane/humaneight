@@ -37,13 +37,15 @@ export const buildMenu = async (): Promise<Menu> => {
 		{
 			id: 'about',
 			title: 'About',
-			sub: allAbouts.map(({ id, slug, title, image }) => ({
-				id,
-				title,
-				slug: `/about/${slug}`,
-				image: image as FileFieldInterface,
-				localized: false,
-			})),
+			sub: allAbouts
+				.filter(({ disableInMenu }) => !disableInMenu)
+				.map(({ id, title, slug, image }) => ({
+					id,
+					title,
+					slug: `/about/${slug}`,
+					image: image as FileFieldInterface,
+					localized: false,
+				})),
 		},
 		{
 			id: 'help',

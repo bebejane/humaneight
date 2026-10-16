@@ -16,6 +16,7 @@ query About($slug: String!) {
 fragment AboutLightFragment on AboutRecord {
 	id
 	title
+	disableInMenu
 	slug
 	image {
 		...ImageThumbnailFragment
@@ -121,4 +122,5 @@ fragment AboutFragment on AboutRecord {
 	}
 	metaTitle
 	metaDescription
+	disableInMenu
 }
