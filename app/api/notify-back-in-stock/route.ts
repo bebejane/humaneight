@@ -61,6 +61,12 @@ export async function POST(req: Request) {
 			text,
 		});
 
+		await sendPostmarkEmail({
+			to: 'mattias@konst-teknik.se' as string,
+			subject: `Notify me: ${productTitle ?? 'Product'} – ${variantTitle ?? ''}`.trim(),
+			text,
+		});
+
 		if (newsletter === '1') {
 			await signupCampaignMonitorNewsletter(email);
 		}
