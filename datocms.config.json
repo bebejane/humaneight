@@ -1,0 +1,13 @@
+{
+	"profiles": {
+		"default": {
+			"siteId": "109277",
+			"organizationId": "627964",
+			"logLevel": "NONE",
+			"migrations": {
+				"directory": "./migrations",
+				"modelApiKey": "schema_migration"
+			}
+		}
+	}
+}
