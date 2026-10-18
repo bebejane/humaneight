@@ -1,6 +1,6 @@
 import { apiQuery } from 'next-dato-utils/api';
 import { ProductByIdDocument, SitemapDocument } from '@/graphql';
-import { DatoCmsConfig, getUploadReferenceRoutes, getItemReferenceRoutes } from 'next-dato-utils/config';
+import { DatoCmsConfig, getUploadReferenceRoutes } from 'next-dato-utils/config';
 import { MetadataRoute } from 'next';
 import { getLocalization } from '@/shopify/utils';
 import { tags } from '@/lib/constants';
@@ -33,7 +33,8 @@ export default {
 			availableCountries
 				.filter(({ isoCode }) => isoCode !== country.isoCode)
 				.forEach((c) => {
-					languages[`en-${c.isoCode}`] = `${process.env.NEXT_PUBLIC_SITE_URL}/${c.isoCode.toLowerCase()}${path}`;
+					languages[`en-${c.isoCode}`] =
+						`${process.env.NEXT_PUBLIC_SITE_URL}/${c.isoCode.toLowerCase()}${path}`;
 				});
 			return { languages };
 		}
@@ -90,7 +91,7 @@ export default {
 						changeFrequency: 'daily',
 						priority: 1,
 					}))
-					.flat()
+					.flat(),
 			)
 			.flat();
 

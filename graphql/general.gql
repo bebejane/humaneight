@@ -12,5 +12,8 @@ query General {
 		eights {
 			...ImageEightFragment
 		}
+		notificationText
+		notificationLink
+		notificationEnable
 	}
 }

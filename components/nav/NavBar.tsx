@@ -12,15 +12,20 @@ import Hamburger from './Hamburger';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import useIsDesktop from '@/lib/hooks/useIsDesktop';
+import NotificationBanner from '@/components/common/NotificationBanner';
 
 export type Props = {
 	menu: Menu;
 	localization: LocalizationQuery['localization'];
 	tipProduct: AllProductsForMenuQuery['allProducts'][0];
+	general: GeneralQuery['general'];
 };
 
-export default function NavBar({ menu, localization, tipProduct }: Props) {
+export default function NavBar({ menu, localization, tipProduct, general }: Props) {
 	const pathname = usePathname();
+	const isHome =
+		pathname === '/' ||
+		localization.availableCountries.some(({ isoCode }) => pathname === `/${isoCode.toLowerCase()}`);
 	const [showMenu, setShowMenu] = useState(false);
 	const [isShopPage, setIsShopPage] = useState(pathname.toLowerCase().startsWith('/shop'));
 	const isDesktop = useIsDesktop(false);
@@ -34,6 +39,7 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 		<>
 			<Logo key={pathname} showMenu={showMenu} localization={localization} />
 			<Hamburger showMenu={showMenu} setShowMenu={setShowMenu} />
+			{isHome && <NotificationBanner general={general} />}
 			<nav className={s.navbar}>
 				<button
 					aria-pressed={showMenu}
@@ -43,11 +49,17 @@ export default function NavBar({ menu, localization, tipProduct }: Props) {
 					Menu
 				</button>
 				{showMenu ? (
-					<button className={cn(s.item, s.close, 'nav', 'nav-hover')} onClick={() => setShowMenu(false)}>
+					<button
+						className={cn(s.item, s.close, 'nav', 'nav-hover')}
+						onClick={() => setShowMenu(false)}
+					>
 						Close
 					</button>
 				) : (
-					<Link href='/shop' className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}>
+					<Link
+						href='/shop'
+						className={cn(s.item, 'nav', 'nav-hover', s.shop, isShopPage && s.active)}
+					>
 						Shop
 					</Link>
 				)}

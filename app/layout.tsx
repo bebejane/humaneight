@@ -44,7 +44,12 @@ export default async function RootLayout({ children }: LayoutProps) {
 		<>
 			<html lang='en'>
 				<body id='root'>
-					<NavBar menu={menu} localization={localization} tipProduct={randomProduct} />
+					<NavBar
+						menu={menu}
+						localization={localization}
+						tipProduct={randomProduct}
+						general={general}
+					/>
 					<main>{children}</main>
 					<Footer
 						menu={menu}

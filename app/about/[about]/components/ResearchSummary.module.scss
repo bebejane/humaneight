@@ -1,0 +1,72 @@
+.container {
+	width: 100%;
+	background-color: var(--gray);
+	padding: var(--outer-margin);
+	padding-bottom: 2.5rem;
+	@include mq($from: desktop) {
+		padding-left: calc(1.5 * var(--outer-margin));
+		padding-right: calc(1.5 * var(--outer-margin));
+	}
+
+	h2 {
+	}
+	p {
+		@include mq($from: desktop) {
+			column-count: 2;
+			column-gap: calc(var(--gutter) * 2);
+		}
+	}
+	.stats {
+		margin-top: 2rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+
+		@include mq($until: desktop) {
+			flex-direction: column;
+		}
+		.stat {
+			display: flex;
+			flex-direction: column;
+			flex: 0 0 calc(50% - (1 * var(--gutter)));
+			margin-right: 1rem;
+			&:last-child {
+				margin-right: 0;
+			}
+			.name {
+				padding-bottom: 0.5rem;
+			}
+			.ages {
+				display: flex;
+				flex-direction: column;
+				.row {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					margin-top: 0.5rem;
+
+					.age {
+						flex: 0 0 100px;
+					}
+					.bar {
+						height: 0.6rem;
+						width: 100%;
+						background-color: var(--white);
+						.value {
+							background-color: var(--black);
+							height: 100%;
+						}
+					}
+					.percentage {
+						flex: 0 0 40px;
+						text-align: right;
+					}
+				}
+			}
+			.gender {
+				margin-top: 1rem;
+				margin-bottom: 0.75rem;
+			}
+		}
+	}
+}

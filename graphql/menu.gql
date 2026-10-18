@@ -15,6 +15,7 @@ query Menu($first: IntType = 100, $skip: IntType = 0) {
 	allAbouts(first: $first, skip: $skip) {
 		id
 		title
+		disableInMenu
 		slug
 		image {
 			...ImageMenuFragment

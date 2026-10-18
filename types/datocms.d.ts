@@ -68,6 +68,7 @@ type AboutModelFilter = {
   _unpublishingScheduledAt?: InputMaybe<PublishedAtFilter>;
   _updatedAt?: InputMaybe<UpdatedAtFilter>;
   content?: InputMaybe<StructuredTextFilter>;
+  disableInMenu?: InputMaybe<BooleanFilter>;
   headline?: InputMaybe<StringFilter>;
   id?: InputMaybe<ItemIdFilter>;
   image?: InputMaybe<FileFilter>;
@@ -104,6 +105,8 @@ enum AboutModelOrderBy {
   _unpublishingScheduledAt_DESC = '_unpublishingScheduledAt_DESC',
   _updatedAt_ASC = '_updatedAt_ASC',
   _updatedAt_DESC = '_updatedAt_DESC',
+  disableInMenu_ASC = 'disableInMenu_ASC',
+  disableInMenu_DESC = 'disableInMenu_DESC',
   headline_ASC = 'headline_ASC',
   headline_DESC = 'headline_DESC',
   id_ASC = 'id_ASC',
@@ -118,7 +121,7 @@ enum AboutModelOrderBy {
   title_DESC = 'title_DESC'
 }
 
-type AboutModelSectionsField = AboutFeedbackFormBlockRecord | AboutTextBlockRecord | AboutThreeColumnBlockRecord | AboutTwoColumnBlockRecord | FullscreenBlockRecord;
+type AboutModelSectionsField = AboutFeedbackFormBlockRecord | AboutTextBlockRecord | AboutThreeColumnBlockRecord | AboutTwoColumnBlockRecord | FullscreenBlockRecord | ResearchBlockRecord;
 
 /** Record of type About (about) */
 type AboutRecord = RecordInterface & {
@@ -137,6 +140,7 @@ type AboutRecord = RecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
   _updatedAt: Scalars['DateTime']['output'];
   content?: Maybe<AboutModelContentField>;
+  disableInMenu?: Maybe<Scalars['BooleanType']['output']>;
   headline?: Maybe<Scalars['String']['output']>;
   id: Scalars['ItemId']['output'];
   image?: Maybe<ImageFileField>;
@@ -1040,6 +1044,9 @@ type GeneralRecord = RecordInterface & {
   eights: Array<FileField>;
   id: Scalars['ItemId']['output'];
   instagram?: Maybe<Scalars['String']['output']>;
+  notificationEnable?: Maybe<Scalars['BooleanType']['output']>;
+  notificationLink?: Maybe<Scalars['String']['output']>;
+  notificationText?: Maybe<Scalars['String']['output']>;
   pinterest?: Maybe<Scalars['String']['output']>;
   tiktok?: Maybe<Scalars['String']['output']>;
 };
@@ -4651,6 +4658,86 @@ type RecordInterface_seoMetaTagsArgs = {
   locale?: InputMaybe<SiteLocale>;
 };
 
+/** Block of type Research answer (research_answer_block) */
+type ResearchAnswerBlockRecord = RecordInterface & {
+  __typename?: 'ResearchAnswerBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  id: Scalars['ItemId']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['IntType']['output']>;
+  valueSecond?: Maybe<Scalars['IntType']['output']>;
+};
+
+
+/** Block of type Research answer (research_answer_block) */
+type ResearchAnswerBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecord = RecordInterface & {
+  __typename?: 'ResearchBlockRecord';
+  _createdAt: Scalars['DateTime']['output'];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars['String']['output']>;
+  _firstPublishedAt: Scalars['DateTime']['output'];
+  _isValid: Scalars['BooleanType']['output'];
+  _modelApiKey: Scalars['String']['output'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _publishedAt: Scalars['DateTime']['output'];
+  /** Generates SEO and Social card meta tags to be used in your frontend */
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _unpublishingScheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  _updatedAt: Scalars['DateTime']['output'];
+  answers: Array<ResearchAnswerBlockRecord>;
+  claim?: Maybe<Scalars['String']['output']>;
+  compare?: Maybe<Scalars['BooleanType']['output']>;
+  eyebrow?: Maybe<Scalars['String']['output']>;
+  group?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ItemId']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  number?: Maybe<Scalars['String']['output']>;
+  question?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecord_seoMetaTagsArgs = {
+  locale?: InputMaybe<SiteLocale>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecordclaimArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecordnoteArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Block of type Research section (research_block) */
+type ResearchBlockRecordquestionArgs = {
+  markdown?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Specifies how to filter by upload type */
 type ResolutionFilter = {
   /** Search uploads with the specified resolution */
@@ -5809,14 +5896,14 @@ type AllAboutsQueryVariables = Exact<{
 }>;
 
 
-type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
+type AllAboutsQuery = { __typename?: 'Query', allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, disableInMenu?: any | null, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any } };
 
 type AboutQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string | null, metaDescription?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, sections: Array<
+type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string | null, metaDescription?: string | null, disableInMenu?: any | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, sections: Array<
       | { __typename: 'AboutFeedbackFormBlockRecord', id: any }
       | { __typename: 'AboutTextBlockRecord', id: any, layout?: string | null, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } }
       | { __typename: 'AboutThreeColumnBlockRecord', id: any, c1Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c1Text: { __typename?: 'AboutThreeColumnBlockModelC1TextField', links: Array<string>, value: any, blocks: Array<string> }, c2Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c2Text: { __typename?: 'AboutThreeColumnBlockModelC2TextField', links: Array<string>, value: any, blocks: Array<string> }, c3Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c3Text: { __typename?: 'AboutThreeColumnBlockModelC3TextField', links: Array<string>, value: any, blocks: Array<string> } }
@@ -5825,11 +5912,12 @@ type AboutQuery = { __typename?: 'Query', about?: { __typename?: 'AboutRecord', 
             | { __typename: 'TwoColumnBlockRecord', id: any, text?: string | null }
           > } }
       | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } }
+      | { __typename: 'ResearchBlockRecord', id: any, number?: string | null, claim?: string | null, eyebrow?: string | null, heading?: string | null, question?: string | null, compare?: any | null, group?: string | null, note?: string | null, answers: Array<{ __typename?: 'ResearchAnswerBlockRecord', id: any, label?: string | null, value?: any | null, valueSecond?: any | null }> }
     >, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null } | null };
 
-type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null };
+type AboutLightFragment = { __typename?: 'AboutRecord', id: any, title: string, disableInMenu?: any | null, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null };
 
-type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string | null, metaDescription?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, sections: Array<
+type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug: string, metaTitle?: string | null, metaDescription?: string | null, disableInMenu?: any | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null, sections: Array<
     | { __typename: 'AboutFeedbackFormBlockRecord', id: any }
     | { __typename: 'AboutTextBlockRecord', id: any, layout?: string | null, text: { __typename?: 'AboutTextBlockModelTextField', links: Array<string>, value: any } }
     | { __typename: 'AboutThreeColumnBlockRecord', id: any, c1Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c1Text: { __typename?: 'AboutThreeColumnBlockModelC1TextField', links: Array<string>, value: any, blocks: Array<string> }, c2Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c2Text: { __typename?: 'AboutThreeColumnBlockModelC2TextField', links: Array<string>, value: any, blocks: Array<string> }, c3Media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null }, c3Text: { __typename?: 'AboutThreeColumnBlockModelC3TextField', links: Array<string>, value: any, blocks: Array<string> } }
@@ -5838,6 +5926,7 @@ type AboutFragment = { __typename?: 'AboutRecord', id: any, title: string, slug:
           | { __typename: 'TwoColumnBlockRecord', id: any, text?: string | null }
         > } }
     | { __typename: 'FullscreenBlockRecord', id: any, media: { __typename?: 'FileField', id: any, alt?: string | null, basename: string, format: string, mimeType: string, size: any, title?: string | null, url: string, width?: any | null, height?: any | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null, video?: { __typename?: 'UploadVideoField', thumbnailUrl: string, streamingUrl: string, mp4Url?: string | null, framerate?: number | null, duration?: number | null, mp4high?: string | null, mp4med?: string | null, mp4low?: string | null } | null } }
+    | { __typename: 'ResearchBlockRecord', id: any, number?: string | null, claim?: string | null, eyebrow?: string | null, heading?: string | null, question?: string | null, compare?: any | null, group?: string | null, note?: string | null, answers: Array<{ __typename?: 'ResearchAnswerBlockRecord', id: any, label?: string | null, value?: any | null, valueSecond?: any | null }> }
   >, content?: { __typename?: 'AboutModelContentField', blocks: Array<string>, links: Array<string>, value: any } | null };
 
 type AllCollectionsQueryVariables = Exact<{
@@ -5977,7 +6066,7 @@ type SiteFragment = { __typename?: 'Site', faviconMetaTags: Array<{ __typename?:
 type GeneralQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string | null, tiktok?: string | null, instagram?: string | null, pinterest?: string | null, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string | null }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }> } | null };
+type GeneralQuery = { __typename?: 'Query', general?: { __typename?: 'GeneralRecord', id: any, eMail?: string | null, tiktok?: string | null, instagram?: string | null, pinterest?: string | null, notificationText?: string | null, notificationLink?: string | null, notificationEnable?: any | null, claims: Array<{ __typename?: 'ClaimRecord', id: any, text?: string | null }>, eights: Array<{ __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null }> } | null };
 
 type GlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6007,7 +6096,7 @@ type MenuQueryVariables = Exact<{
 }>;
 
 
-type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any }, general?: { __typename?: 'GeneralRecord', instagram?: string | null, tiktok?: string | null, pinterest?: string | null } | null, contact?: { __typename?: 'ContactRecord', title: string, slug?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null } | null, faqConfig?: { __typename?: 'FaqConfigRecord', menuImage: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } } | null };
+type MenuQuery = { __typename?: 'Query', allCollections: Array<{ __typename?: 'CollectionRecord', id: any, title: string, titlePlural: string, slug: string, image: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } }>, _allCollectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allAbouts: Array<{ __typename?: 'AboutRecord', id: any, title: string, disableInMenu?: any | null, slug: string, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null }>, _allAboutsMeta: { __typename?: 'CollectionMetadata', count: any }, allFaqSections: Array<{ __typename?: 'FaqSectionRecord', id: any, title: string, slug: string, inMenu?: any | null, image?: { __typename?: 'FileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage?: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } | null } | null }>, _allFaqSectionsMeta: { __typename?: 'CollectionMetadata', count: any }, allLegals: Array<{ __typename?: 'LegalRecord', id: any, title: string, slug: string }>, _allLegalsMeta: { __typename?: 'CollectionMetadata', count: any }, general?: { __typename?: 'GeneralRecord', instagram?: string | null, tiktok?: string | null, pinterest?: string | null } | null, contact?: { __typename?: 'ContactRecord', title: string, slug?: string | null, image?: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } | null } | null, faqConfig?: { __typename?: 'FaqConfigRecord', menuImage: { __typename?: 'ImageFileField', format: string, id: any, mimeType: string, url: string, title?: string | null, responsiveImage: { __typename?: 'ResponsiveImage', alt?: string | null, aspectRatio: any, base64?: string | null, height: any, sizes: string, src: string, srcSet: string, webpSrcSet: string, title?: string | null, width: any } } } | null };
 
 type AllProductsQueryVariables = Exact<{
   first?: InputMaybe<Scalars['IntType']['input']>;
