@@ -31,7 +31,7 @@
       ],
     },
     "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
   },
   "include": [
     "next-env.d.ts",
@@ -41,5 +41,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

@@ -1,5 +1,4 @@
 import '@/styles/index.scss';
-import Script from 'next/script';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/nav/Footer';
 import CookieConsent from '@/components/common/CookieConsent';
@@ -58,7 +57,6 @@ export default async function RootLayout({ children }: LayoutProps) {
 						randomClaim={randomClaim}
 					/>
 					<CookieConsent />
-					<Script src='https://ac.onthemapmarketing.com/widget/3b24ef8d-6704-4361-886d-da817089839e/autoload.js' />
 				</body>
 			</html>
 		</>
